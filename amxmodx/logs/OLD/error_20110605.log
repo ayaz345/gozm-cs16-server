@@ -1,0 +1,13 @@
+L 06/05/2011 - 06:15:03: Start of error session.
+L 06/05/2011 - 06:15:03: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110605.log")
+L 06/05/2011 - 06:15:03: [MySQL] Invalid handle: 0
+L 06/05/2011 - 06:15:03: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 06/05/2011 - 06:15:03: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/05/2011 - 17:20:40: Start of error session.
+L 06/05/2011 - 17:20:40: Info (map "zm_dust_base_fin") (file "addons/amxmodx/logs/error_20110605.log")
+L 06/05/2011 - 17:20:40: [AMXX] Run time error 4 (plugin "admin_gag_mute.amxx") - debug not enabled!
+L 06/05/2011 - 17:20:40: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/05/2011 - 20:44:15: Start of error session.
+L 06/05/2011 - 20:44:15: Info (map "zm_xata") (file "addons/amxmodx/logs/error_20110605.log")
+L 06/05/2011 - 20:44:15: [AMXX] Run time error 4 (plugin "admin_gag_mute.amxx") - debug not enabled!
+L 06/05/2011 - 20:44:15: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

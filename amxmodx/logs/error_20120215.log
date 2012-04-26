@@ -1,0 +1,5 @@
+L 02/15/2012 - 20:40:00: Start of error session.
+L 02/15/2012 - 20:40:00: Info (map "zm_kill_duster_2") (file "addons/amxmodx/logs/error_20120215.log")
+L 02/15/2012 - 20:40:00: [MySQL] Thread worker was unable to start.
+L 02/15/2012 - 20:40:00: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_ThreadQuery") - debug not enabled!
+L 02/15/2012 - 20:40:00: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

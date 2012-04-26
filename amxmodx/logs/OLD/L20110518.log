@@ -1,0 +1,439 @@
+L 05/18/2011 - 00:16:12: -------- Mapchange to zm_houses --------
+L 05/18/2011 - 00:16:14: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 00:42:30: -------- Mapchange to zm_303 --------
+L 05/18/2011 - 00:42:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 01:04:52: -------- Mapchange to zm_jambalaya_escape --------
+L 05/18/2011 - 01:04:54: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 01:19:23: [admin_amxbans.amxx] Login: "Dumka<2026><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 01:29:18: [admincmd.amxx] Cmd: "Dumka<2026><STEAM_0:0:1236438227><>" ask for players list
+L 05/18/2011 - 01:48:05: -------- Mapchange to zm_escapetrain --------
+L 05/18/2011 - 01:48:06: [admin_amxbans.amxx] Login: "Dumka<2026><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 01:48:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 01:59:46: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 01:59:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:00:19: [admin_amxbans.amxx] Login: "yo<2038><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:03:23: [admin_amxbans.amxx] Login: "yo<2040><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:03:40: [mapsmenu.amxx] Cmd: "yo<2040><STEAM_0:0:1236438227><>" changelevel "016_rmk"
+L 05/18/2011 - 02:03:42: -------- Mapchange to 016_rmk --------
+L 05/18/2011 - 02:03:43: [admin_amxbans.amxx] Login: "yo<2040><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:03:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:14:21: [mapsmenu.amxx] Cmd: "yo<2040><STEAM_0:0:1236438227><>" changelevel "016_rmk"
+L 05/18/2011 - 02:14:23: -------- Mapchange to 016_rmk --------
+L 05/18/2011 - 02:14:24: [admin_amxbans.amxx] Login: "yo<2040><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:14:25: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:17:45: [plmenu.amxx] Kick: "yo<2040><STEAM_0:0:1236438227><>" kick "yo<2040><STEAM_0:0:1236438227><>"
+L 05/18/2011 - 02:17:50: [admin_amxbans.amxx] Login: "yo<2041><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:18:47: [plmenu.amxx] Kick: "yo<2041><STEAM_0:0:1236438227><>" kick "yo<2041><STEAM_0:0:1236438227><>"
+L 05/18/2011 - 02:18:50: [admin_amxbans.amxx] Login: "yo<2042><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:19:45: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 02:19:47: [admin_amxbans.amxx] Login: "yo<2042><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:19:48: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:20:36: [mapsmenu.amxx] Cmd: "yo<2042><STEAM_0:0:1236438227><>" changelevel "016_rmk"
+L 05/18/2011 - 02:20:38: -------- Mapchange to 016_rmk --------
+L 05/18/2011 - 02:20:39: [admin_amxbans.amxx] Login: "yo<2042><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 02:20:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:24:43: [voteban.amxx] Вотебан запустил yo против yo STEAM_0:0:1236438227
+L 05/18/2011 - 02:24:58: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:1236438227 is banned for 60 minutes
+L 05/18/2011 - 02:27:29: -------- Mapchange to 016_rmk --------
+L 05/18/2011 - 02:27:31: -------- Mapchange to zm_202 --------
+L 05/18/2011 - 02:27:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:30:32: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 02:30:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 02:50:28: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 02:50:31: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 03:10:24: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 03:10:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 03:28:47: -------- Mapchange to zm_south_escape_b2 --------
+L 05/18/2011 - 03:28:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 03:32:01: -------- Mapchange to zm_303 --------
+L 05/18/2011 - 03:32:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 03:40:44: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 03:40:47: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 04:00:41: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 04:00:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 04:23:37: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 04:23:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 04:43:33: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 04:43:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 05:03:30: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 05:03:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 05:36:26: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 05:36:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 06:03:30: -------- Mapchange to zm_fdust2x2 --------
+L 05/18/2011 - 06:03:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 06:17:18: -------- Mapchange to zm_south_escape_b2 --------
+L 05/18/2011 - 06:17:20: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 06:44:43: -------- Mapchange to zm_jambalaya_escape --------
+L 05/18/2011 - 06:44:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 06:56:01: -------- Mapchange to zm_303 --------
+L 05/18/2011 - 06:56:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 07:20:49: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 07:20:52: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 07:53:57: -------- Mapchange to zm_202 --------
+L 05/18/2011 - 07:53:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 07:58:34: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 07:58:37: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 08:15:37: -------- Mapchange to cs_office --------
+L 05/18/2011 - 08:15:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 08:20:53: -------- Mapchange to zm_houses --------
+L 05/18/2011 - 08:20:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 08:36:08: [voteban.amxx] Вотебан запустил MELOK ONER против MorsoneR STEAM_0:0:1841927798
+L 05/18/2011 - 08:36:23: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:1841927798 is banned for 60 minutes
+L 05/18/2011 - 08:36:24: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил MorsoneR<STEAM_0:0:1841927798> на 1 час (60 минут). Причина: VIP->MELOK ONER.
+L 05/18/2011 - 08:46:23: -------- Mapchange to cs_estate --------
+L 05/18/2011 - 08:46:26: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 09:15:21: -------- Mapchange to zm_dust_base_fin --------
+L 05/18/2011 - 09:15:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 09:36:17: -------- Mapchange to cs_militia --------
+L 05/18/2011 - 09:36:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 10:11:15: [voteban.amxx] Вотебан запустил [elle]_[PRO_GAMERS]_ogur4ik против [elle]_[PRO_GAMERS]_ogur4ik STEAM_0:4:1070564851
+L 05/18/2011 - 10:11:30: [voteban.amxx] [AMXX] The voteban dit not sucseed.
+L 05/18/2011 - 10:13:01: -------- Mapchange to ze_jurassickpark3_lg --------
+L 05/18/2011 - 10:13:02: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 10:18:41: -------- Mapchange to zm_xata --------
+L 05/18/2011 - 10:18:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 10:24:03: [voteban.amxx] Вотебан запустил Euforia против [elle]_[PRO_GAMERS]_ogur4ik STEAM_0:4:1070564851
+L 05/18/2011 - 10:24:18: [voteban.amxx] [AMXX] The voteban dit not sucseed.
+L 05/18/2011 - 10:28:40: -------- Mapchange to zm_303 --------
+L 05/18/2011 - 10:28:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 11:04:08: -------- Mapchange to zm_fdust2x2 --------
+L 05/18/2011 - 11:04:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 11:50:54: -------- Mapchange to zm_202 --------
+L 05/18/2011 - 11:50:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 12:11:53: -------- Mapchange to de_dust --------
+L 05/18/2011 - 12:11:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 12:20:57: -------- Mapchange to zm_houses --------
+L 05/18/2011 - 12:20:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 12:40:27: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 12:40:27: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 12:40:27: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305708' at line 1 (1064)
+L 05/18/2011 - 12:40:27: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 12:43:28: -------- Mapchange to zm_army --------
+L 05/18/2011 - 12:43:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 12:43:33: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 12:43:33: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 12:43:33: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305708' at line 1 (1064)
+L 05/18/2011 - 12:43:33: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 12:49:24: [voteban.amxx] Вотебан запустил Sgt.Mac против zan STEAM_0:4:2038036997
+L 05/18/2011 - 12:49:39: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:4:2038036997 is banned for 60 minutes
+L 05/18/2011 - 12:49:40: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил zan<STEAM_0:4:2038036997> на 1 час (60 минут). Причина: VIP->Sgt.Mac.
+L 05/18/2011 - 12:55:05: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 12:55:05: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 12:55:05: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305708' at line 1 (1064)
+L 05/18/2011 - 12:55:05: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 12:55:55: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 12:55:55: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 12:55:55: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305708' at line 1 (1064)
+L 05/18/2011 - 12:55:55: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 12:57:36: [voteban.amxx] Вотебан запустил Sgt.Mac против db[S.W.A.T.]db STEAM_0:4:1925387889
+L 05/18/2011 - 12:57:51: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:4:1925387889 is banned for 60 minutes
+L 05/18/2011 - 12:57:52: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил db[S.W.A.T.]db<STEAM_0:4:1925387889> на 1 час (60 минут). Причина: VIP->Sgt.Mac.
+L 05/18/2011 - 13:22:19: -------- Mapchange to zm_desolation_house --------
+L 05/18/2011 - 13:22:21: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 13:44:55: -------- Mapchange to zm_xata --------
+L 05/18/2011 - 13:44:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 14:06:57: -------- Mapchange to zm_dust_base_fin --------
+L 05/18/2011 - 14:07:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 14:23:03: [admin_amxbans.amxx] Login: "Dumka<278><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 14:29:03: -------- Mapchange to zm_fdust2x2 --------
+L 05/18/2011 - 14:29:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 14:35:18: [admin_amxbans.amxx] Login: "Dumka<288><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 14:51:57: -------- Mapchange to ze_jurassickpark3_lg --------
+L 05/18/2011 - 14:51:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 15:07:08: -------- Mapchange to 016_rmk --------
+L 05/18/2011 - 15:07:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 15:09:08: [admin_amxbans.amxx] Login: "Dumka<317><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 15:28:05: -------- Mapchange to zm_202 --------
+L 05/18/2011 - 15:28:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 15:34:56: [admin_amxbans.amxx] Login: "Dumka<338><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 15:35:17: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 15:35:17: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 15:35:17: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305718' at line 1 (1064)
+L 05/18/2011 - 15:35:17: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 15:36:16: [admin_amxbans.amxx] Login: "Dumka<338><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 15:36:20: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 15:36:20: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 15:36:20: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305718' at line 1 (1064)
+L 05/18/2011 - 15:36:20: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 15:46:51: -------- Mapchange to zm_army --------
+L 05/18/2011 - 15:46:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 15:46:56: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 15:46:56: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 15:46:56: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305719' at line 1 (1064)
+L 05/18/2011 - 15:46:56: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 15:56:29: [admin_amxbans.amxx] Login: "Dumka<350><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 16:09:17: -------- Mapchange to zm_south_escape_b2 --------
+L 05/18/2011 - 16:09:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 16:09:21: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 16:09:21: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 16:09:21: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305720' at line 1 (1064)
+L 05/18/2011 - 16:09:21: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 16:09:46: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 16:09:46: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 16:09:46: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305720' at line 1 (1064)
+L 05/18/2011 - 16:09:46: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 16:09:59: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 16:09:59: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 16:09:59: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1305720' at line 1 (1064)
+L 05/18/2011 - 16:09:59: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 16:37:54: [admin_amxbans.amxx] Login: "Dumka<368><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 16:49:59: -------- Mapchange to zm_xata --------
+L 05/18/2011 - 16:50:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 17:15:41: -------- Mapchange to zm_303 --------
+L 05/18/2011 - 17:15:43: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 17:38:59: -------- Mapchange to zm_dust_base_fin --------
+L 05/18/2011 - 17:39:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 17:54:33: [admin_amxbans.amxx] Login: "Dumka<462><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 18:00:02: -------- Mapchange to zm_neris --------
+L 05/18/2011 - 18:00:04: [admin_amxbans.amxx] Login: "Dumka<462><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 18:00:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 18:11:15: [admincmd.amxx] Cmd: "Dumka<462><STEAM_0:0:1236438227><>" ask for players list
+L 05/18/2011 - 18:20:27: -------- Mapchange to zm_desolation_house --------
+L 05/18/2011 - 18:20:29: [admin_amxbans.amxx] Login: "Dumka<462><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 18:20:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 18:23:52: [voteban.amxx] Вотебан запустил Dumka против ?!F0rSeRf<=~ STEAM_0:0:1569559782
+L 05/18/2011 - 18:24:07: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:1569559782 is banned for 60 minutes
+L 05/18/2011 - 18:24:08: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил ?!F0rSeRf<=~<STEAM_0:0:1569559782> на 1 час (60 минут). Причина: VIP->Dumka.
+L 05/18/2011 - 18:35:50: [voteban.amxx] Вотебан запустил Dumka против white dragon STEAM_0:0:28571137
+L 05/18/2011 - 18:36:05: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:28571137 is banned for 60 minutes
+L 05/18/2011 - 18:36:06: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил white dragon<STEAM_0:0:28571137> на 1 час (60 минут). Причина: VIP->Dumka.
+L 05/18/2011 - 18:41:19: -------- Mapchange to cs_militia --------
+L 05/18/2011 - 18:41:28: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 18:41:28: [admin_amxbans.amxx] Login: "Dumka<462><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 18:48:20: [admincmd.amxx] Cmd: "Dumka<462><STEAM_0:0:1236438227><>" ask for players list
+L 05/18/2011 - 19:02:28: [admin_amxbans.amxx] Login: ".::T9o::.<526><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.41.170")
+L 05/18/2011 - 19:02:31: -------- Mapchange to zm_houses --------
+L 05/18/2011 - 19:02:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 19:02:33: [admin_amxbans.amxx] Login: "Dumka<462><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 19:02:43: [admin_amxbans.amxx] Login: ".::T9o::.<526><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.41.170")
+L 05/18/2011 - 19:31:00: [admin_amxbans.amxx] Login: ".::T9o::.<544><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 19:32:27: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 19:32:27: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 19:32:27: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 05/18/2011 - 19:32:27: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 19:32:30: [admin_amxbans.amxx] Login: ".::T9o::.<548><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 19:32:37: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 19:32:37: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 19:32:37: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 05/18/2011 - 19:32:37: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 19:37:44: -------- Mapchange to 016_rmk --------
+L 05/18/2011 - 19:37:45: [admin_amxbans.amxx] Login: ".::T9o::.<548><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 19:37:46: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 05/18/2011 - 19:37:51: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 19:37:52: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 19:37:52: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 19:37:52: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 05/18/2011 - 19:37:52: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 19:38:20: [admin_amxbans.amxx] Login: "Dumka<556><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 19:42:41: [plmenu.amxx] Cmd: ".::T9o::.<548><STEAM_0:0:1836044300><>" transfer ".::T9o::.<548><STEAM_0:0:1836044300><>" (team "TERRORIST")
+L 05/18/2011 - 19:47:04: [plmenu.amxx] Cmd: ".::T9o::.<548><STEAM_0:0:1836044300><>" slay "xXx<550><STEAM_0:4:62583115><>"
+L 05/18/2011 - 19:50:14: [plmenu.amxx] Cmd: ".::T9o::.<548><STEAM_0:0:1836044300><>" slay "db[S.W.A.T.]db<439><STEAM_0:4:1925387889><>"
+L 05/18/2011 - 19:54:01: [plmenu.amxx] Kick: ".::T9o::.<548><STEAM_0:0:1836044300><>" kick "xXx<550><STEAM_0:4:62583115><>"
+L 05/18/2011 - 19:58:53: -------- Mapchange to zm_army --------
+L 05/18/2011 - 19:58:54: [admin_amxbans.amxx] Login: ".::T9o::.<548><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 19:58:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 20:07:39: [mapsmenu.amxx] Vote: ".::T9o::.<548><STEAM_0:0:1836044300><>" vote maps (map#1 "zm_202") (map#2 "") (map#3 "") (map#4 "")
+L 05/18/2011 - 20:07:51: [mapsmenu.amxx] Vote: Voting successful. Map will be changed to zm_202
+L 05/18/2011 - 20:07:55: [mapsmenu.amxx] Vote: Result accepted
+L 05/18/2011 - 20:07:57: -------- Mapchange to zm_202 --------
+L 05/18/2011 - 20:07:58: [admin_amxbans.amxx] Login: ".::T9o::.<548><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 20:07:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 20:11:22: [plmenu.amxx] Cmd: ".::T9o::.<548><STEAM_0:0:1836044300><>" transfer ".::T9o::.<548><STEAM_0:0:1836044300><>" (team "TERRORIST")
+L 05/18/2011 - 20:17:43: [plmenu.amxx] Cmd: ".::T9o::.<548><STEAM_0:0:1836044300><>" transfer ".::T9o::.<548><STEAM_0:0:1836044300><>" (team "CT")
+L 05/18/2011 - 20:17:53: [admin_amxbans.amxx] Login: ".::T9o::.<638><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 20:23:21: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" transfer "db[S.W.A.T.]db<439><STEAM_0:4:1925387889><>" (team "TERRORIST")
+L 05/18/2011 - 20:25:43: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:25:43: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:25:44: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:25:44: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:25:44: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:25:44: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:25:45: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" slap with 0 damage "DR.STEIN<642><STEAM_0:0:1305109295><>"
+L 05/18/2011 - 20:27:26: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 20:27:26: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 20:27:26: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/18/2011 - 20:27:26: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 20:27:29: [plmenu.amxx] Cmd: ".::T9o::.<638><STEAM_0:0:1836044300><>" transfer ".::T9o::.<638><STEAM_0:0:1836044300><>" (team "TERRORIST")
+L 05/18/2011 - 20:30:08: -------- Mapchange to de_dust --------
+L 05/18/2011 - 20:30:11: [admin_amxbans.amxx] Login: ".::T9o::.<638><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.3.218")
+L 05/18/2011 - 20:30:12: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 20:30:15: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 20:30:15: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 20:30:15: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/18/2011 - 20:30:15: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 20:39:43: [admin_amxbans.amxx] Login: "Dumka<698><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 20:42:41: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 20:42:41: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 20:42:41: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/18/2011 - 20:42:41: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 20:48:29: [admin_amxbans.amxx] Login: "Dumka<719><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 20:52:07: -------- Mapchange to ze_jurassickpark3_lg --------
+L 05/18/2011 - 20:52:09: [admin_amxbans.amxx] Login: "Dumka<719><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 20:52:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 20:52:15: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 20:52:15: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 20:52:15: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/18/2011 - 20:52:15: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 20:53:23: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 20:53:23: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 20:53:23: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/18/2011 - 20:53:23: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 20:54:43: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka"
+L 05/18/2011 - 20:55:24: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:53: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:56: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:56: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:56: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:57: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:57: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:57: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:02:57: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" psay "Lenusjka<710><STEAM_0:4:1429483121><>" "setinfo _pw leno4ka "
+L 05/18/2011 - 21:07:24: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 21:14:09: -------- Mapchange to zm_303 --------
+L 05/18/2011 - 21:14:11: [admin_amxbans.amxx] Login: "Dumka<719><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 21:14:11: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 21:14:11: [admin_amxbans.amxx] Login: "Lenusjka<710><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:14:11: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 21:14:17: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/18/2011 - 21:14:17: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/18/2011 - 21:14:17: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/18/2011 - 21:14:17: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/18/2011 - 21:14:25: [admin_amxbans.amxx] Login: "Lenusjka<788><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:14:39: [admin_amxbans.amxx] Login: "Lenusjka<789><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:14:50: [admin_amxbans.amxx] Login: "Lenusjka<790><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:15:22: [admin_amxbans.amxx] Login: "VANDAL<792><STEAM_0:0:31999920><>" kicked due to invalid password (account "VANDAL") (address "91.205.25.41")
+L 05/18/2011 - 21:15:28: [admin_amxbans.amxx] Login: "Lenusjka<794><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:15:53: [admin_amxbans.amxx] Login: "VANDAL<795><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 21:16:41: [admin_amxbans.amxx] Login: "Lenusjka<796><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:17:03: [admin_amxbans.amxx] Login: "Lenusjka<797><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:17:09: [admin_amxbans.amxx] Login: "Lenusjka<798><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:17:32: [admin_amxbans.amxx] Login: "Lenusjka<799><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:17:45: [admin_amxbans.amxx] Login: "Lenusjka<800><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:17:55: [admin_amxbans.amxx] Login: "Lenusjka<802><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:18:16: [admin_amxbans.amxx] Login: "Lenusjka<808><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:18:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" transfer "SNEG (The cake is a lie)<737><STEAM_0:4:696385531><>" (team "TERRORIST")
+L 05/18/2011 - 21:37:49: [admin_amxbans.amxx] Login: ".::T9o::.<835><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.12.221")
+L 05/18/2011 - 21:37:51: -------- Mapchange to zm_fdust2x2 --------
+L 05/18/2011 - 21:37:52: [admin_amxbans.amxx] Login: ".::T9o::.<835><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "95.55.12.221")
+L 05/18/2011 - 21:37:52: [admin_amxbans.amxx] Login: "VANDAL<795><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 21:37:52: [admin_amxbans.amxx] Login: "Dumka<719><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 21:37:52: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 21:37:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 21:38:08: [admin_amxbans.amxx] Login: "Lenusjka<840><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:38:19: [admin_amxbans.amxx] Login: "Lenusjka<842><STEAM_0:4:1429483121><>" kicked due to invalid password (account "Lenusjka") (address "91.190.52.3")
+L 05/18/2011 - 21:41:41: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" transfer "db[S.W.A.T.]db<439><STEAM_0:4:1925387889><>" (team "TERRORIST")
+L 05/18/2011 - 21:42:07: [plmenu.amxx] Kick: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" kick "dino_km24[tm]_*<843><STEAM_0:4:385678454><>"
+L 05/18/2011 - 21:54:50: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " Cepera"
+L 05/18/2011 - 21:55:02: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " npo admin 4at 3HaeIIb?"
+L 05/18/2011 - 21:55:14: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " HanuIIIu"
+L 05/18/2011 - 21:55:27: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " say_team @"
+L 05/18/2011 - 21:55:50: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " TyT"
+L 05/18/2011 - 21:55:58: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " say_team"
+L 05/18/2011 - 21:56:26: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " Ceperaaaa"
+L 05/18/2011 - 21:56:35: [adminchat.amxx] Chat: "Dumka<719><STEAM_0:0:263411619><>" chat " 6ykBa U"
+L 05/18/2011 - 21:58:19: -------- Mapchange to zm_xata --------
+L 05/18/2011 - 21:58:21: [admin_amxbans.amxx] Login: "~Helena~<832><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 21:58:21: [admin_amxbans.amxx] Login: "Dumka<719><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 21:58:21: [admin_amxbans.amxx] Login: "VANDAL<795><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 21:58:21: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<772><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 21:58:22: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 21:58:24: [admin_amxbans.amxx] Login: "Dumka<858><STEAM_0:0:263411619><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 21:58:30: [admin_amxbans.amxx] Login: "~Helena~<861><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 21:59:20: [admin_amxbans.amxx] Login: "~Helena~<866><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 21:59:43: [admin_amxbans.amxx] Login: "~Helena~<867><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:00:43: [admin_amxbans.amxx] Login: "~Helena~<869><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:02:26: [admin_amxbans.amxx] Login: "~Helena~<874><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:03:45: [admin_amxbans.amxx] Login: "~Helena~<880><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:04:46: [admin_amxbans.amxx] Login: "~Helena~<885><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:05:03: [admin_amxbans.amxx] Login: "~Helena~<887><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:05:05: [admin_amxbans.amxx] Login: "~Helena~<888><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:05:09: [admin_amxbans.amxx] Login: "~Helena~<889><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:05:12: [admin_amxbans.amxx] Login: "~Helena~<890><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:06:19: [admin_amxbans.amxx] Login: "~Helena~<893><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:06:45: [admin_amxbans.amxx] Login: "~Helena~<894><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:08:59: [admin_amxbans.amxx] Login: "~Helena~<898><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:22:36: [admin_amxbans.amxx] Login: "Dumka<910><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 22:23:02: [adminvote.amxx] Vote: "Dumka<910><STEAM_0:0:1236438227><>" vote custom (question "cMeHuTb?") (option#1 "da") (option#2 "net")
+L 05/18/2011 - 22:23:14: [adminvote.amxx] Vote: Voting successful (got "5") (needed "1") (result "cMeHuTb? - da")
+L 05/18/2011 - 22:30:43: [admin_amxbans.amxx] Login: "Kaktyc_JIaum<919><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 22:31:48: [admin_amxbans.amxx] Login: ".::T9o::.<920><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "78.37.228.44")
+L 05/18/2011 - 22:32:30: [voteban.amxx] Вотебан запустил VANDAL против Kaktyc_JIaum STEAM_0:4:446327478
+L 05/18/2011 - 22:32:46: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:4:446327478 is banned for 60 minutes
+L 05/18/2011 - 22:34:49: [plmenu.amxx] Cmd: ".::T9o::.<920><STEAM_0:0:1836044300><>" transfer ".::T9o::.<920><STEAM_0:0:1836044300><>" (team "TERRORIST")
+L 05/18/2011 - 22:37:17: [admin_amxbans.amxx] Login: "Dumka<935><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 22:38:44: [admin_amxbans.amxx] Login: "~Helena~<937><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:39:21: [admin_amxbans.amxx] Login: "~Helena~<940><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:39:53: [admin_amxbans.amxx] Login: "~Helena~<942><STEAM_0:4:998264682><>" kicked due to invalid password (account "~Helena~") (address "109.124.92.222")
+L 05/18/2011 - 22:40:07: [mapsmenu.amxx] Vote: "Dumka<935><STEAM_0:0:1236438227><>" vote maps (map#1 "zm_houses") (map#2 "cs_militia") (map#3 "zm_202") (map#4 "zm_fdust2x2")
+L 05/18/2011 - 22:40:19: [mapsmenu.amxx] Vote: Voting failed
+L 05/18/2011 - 22:40:34: [mapsmenu.amxx] Vote: "Dumka<935><STEAM_0:0:1236438227><>" vote maps (map#1 "016_rmk") (map#2 "zm_neris") (map#3 "zm_houses") (map#4 "cs_militia")
+L 05/18/2011 - 22:40:46: [mapsmenu.amxx] Vote: Voting failed
+L 05/18/2011 - 22:41:16: [mapsmenu.amxx] Vote: "Dumka<935><STEAM_0:0:1236438227><>" vote maps (map#1 "016_rmk") (map#2 "cs_militia") (map#3 "") (map#4 "")
+L 05/18/2011 - 22:41:28: [mapsmenu.amxx] Vote: Voting failed
+L 05/18/2011 - 22:42:30: [mapsmenu.amxx] Vote: "Dumka<935><STEAM_0:0:1236438227><>" vote maps (map#1 "zm_desolation_house") (map#2 "016_rmk") (map#3 "cs_militia") (map#4 "")
+L 05/18/2011 - 22:42:42: [mapsmenu.amxx] Vote: Voting successful. Map will be changed to zm_desolation_house
+L 05/18/2011 - 22:42:42: [mapsmenu.amxx] Vote: Result accepted
+L 05/18/2011 - 22:42:45: -------- Mapchange to zm_desolation_house --------
+L 05/18/2011 - 22:42:46: [admin_amxbans.amxx] Login: ".::T9o::.<920><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmopqtu") (address "78.37.228.44")
+L 05/18/2011 - 22:42:46: [admin_amxbans.amxx] Login: "Dumka<935><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 22:42:46: [admin_amxbans.amxx] Login: "VANDAL<795><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 22:42:46: [admin_amxbans.amxx] Login: "Kaktyc_JIaum<919><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 22:42:47: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 22:44:41: [plmenu.amxx] Cmd: ".::T9o::.<920><STEAM_0:0:1836044300><>" transfer ".::T9o::.<920><STEAM_0:0:1836044300><>" (team "TERRORIST")
+L 05/18/2011 - 22:47:24: [amxbans.amxx] Kaktyc_JIaum<919><STEAM_0:4:446327478><SPECTATOR> забанил 05^Bcegda^HA^nepBom MECTE<STEAM_0:0:368098541> на 30 минут (30 минут). Причина: Spam.
+L 05/18/2011 - 22:47:47: [admin_amxbans.amxx] Login: "~Helena~<964><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "atz") (address "109.124.92.222")
+L 05/18/2011 - 22:50:21: [voteban.amxx] Вотебан запустил ~Helena~ против Kaktyc_JIaum STEAM_0:4:446327478
+L 05/18/2011 - 22:50:36: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:4:446327478 is banned for 60 minutes
+L 05/18/2011 - 23:00:10: [admin_amxbans.amxx] Login: "VANDAL<976><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 23:04:13: -------- Mapchange to zm_neris --------
+L 05/18/2011 - 23:04:14: [admin_amxbans.amxx] Login: "~Helena~<964><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "atz") (address "109.124.92.222")
+L 05/18/2011 - 23:04:14: [admin_amxbans.amxx] Login: "Dumka<935><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 23:04:15: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 23:06:55: [admin_amxbans.amxx] Login: "VANDAL<993><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 23:08:38: [admin_amxbans.amxx] Login: "VANDAL<997><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "atz") (address "91.205.25.41")
+L 05/18/2011 - 23:25:37: -------- Mapchange to zm_202 --------
+L 05/18/2011 - 23:25:39: [admin_amxbans.amxx] Login: "~Helena~<964><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "atz") (address "109.124.92.222")
+L 05/18/2011 - 23:25:39: [admin_amxbans.amxx] Login: "Dumka<935><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 23:25:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 23:25:55: [admin_amxbans.amxx] Login: "~Helena~<1005><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "atz") (address "109.124.92.222")
+L 05/18/2011 - 23:30:38: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 23:49:03: -------- Mapchange to cs_office --------
+L 05/18/2011 - 23:49:06: [admin_amxbans.amxx] Login: "~Helena~<1005><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "atz") (address "109.124.92.222")
+L 05/18/2011 - 23:49:06: [admin_amxbans.amxx] Login: "Dumka<935><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/18/2011 - 23:49:06: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 23:49:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/18/2011 - 23:51:19: [admin_amxbans.amxx] Login: "a Bot<1011><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 23:52:01: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmopqtu") (address "212.55.104.156")
+L 05/18/2011 - 23:58:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:54: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:58:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:06: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:07: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:07: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:07: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:14: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:14: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:15: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:15: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:15: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:16: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"
+L 05/18/2011 - 23:59:16: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>" slap with 0 damage "[o_VIP_o]                (^_^)V<1011><STEAM_0:4:446327478><>"

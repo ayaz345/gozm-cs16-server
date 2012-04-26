@@ -1,0 +1,488 @@
+L 07/12/2011 - 00:06:40: -------- Mapchange to zm_army --------
+L 07/12/2011 - 00:06:41: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<2445><STEAM_0:4:1521796595><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.53.28")
+L 07/12/2011 - 00:15:56: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2510><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 00:17:56: [admin_amxbans.amxx] Login: "~Helena~<2513><STEAM_0:4:654364522><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.231")
+L 07/12/2011 - 00:29:28: -------- Mapchange to 016 --------
+L 07/12/2011 - 00:29:29: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2510><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 00:29:29: [admin_amxbans.amxx] Login: "~Helena~<2513><STEAM_0:4:654364522><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.231")
+L 07/12/2011 - 00:29:30: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<2445><STEAM_0:4:1521796595><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.53.28")
+L 07/12/2011 - 00:52:07: -------- Mapchange to zm_umbrella_office --------
+L 07/12/2011 - 00:52:08: [admin_amxbans.amxx] Login: "~Helena~<2513><STEAM_0:4:654364522><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.231")
+L 07/12/2011 - 00:56:45: [admin_amxbans.amxx] Login: "777<2523><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:06:14: [plmenu.amxx] Kick: "777<2523><STEAM_0:4:446327478><>" kick "diamond<2522><STEAM_0:4:2135497605><>"
+L 07/12/2011 - 01:09:04: [plmenu.amxx] Cmd: "777<2523><STEAM_0:4:446327478><>" transfer "777<2523><STEAM_0:4:446327478><>" (team "CT")
+L 07/12/2011 - 01:09:09: [plmenu.amxx] Cmd: "777<2523><STEAM_0:4:446327478><>" transfer "777<2523><STEAM_0:4:446327478><>" (team "TERRORIST")
+L 07/12/2011 - 01:10:00: [admin_amxbans.amxx] Login: "[o_VIP_o]               (^_^)V<2542><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:11:56: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:13:55: -------- Mapchange to de_dust --------
+L 07/12/2011 - 01:13:57: [admin_amxbans.amxx] Login: "~Helena~<2513><STEAM_0:4:654364522><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.231")
+L 07/12/2011 - 01:13:58: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:16:00: [adminvote.amxx] Vote: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" vote custom (question "Helena_xo4et_Ha_fdust2x2_a_tbI?") (option#1 "ga") (option#2 "ga")
+L 07/12/2011 - 01:16:12: [adminvote.amxx] Vote: Voting successful (got "4") (needed "1") (result "Helena_xo4et_Ha_fdust2x2_a_tbI? - ga")
+L 07/12/2011 - 01:17:29: [mapsmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" changelevel "zm_fdust2x2"
+L 07/12/2011 - 01:17:31: -------- Mapchange to zm_fdust2x2 --------
+L 07/12/2011 - 01:17:32: [admin_amxbans.amxx] Login: "~Helena~<2513><STEAM_0:4:654364522><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.231")
+L 07/12/2011 - 01:17:32: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:18:34: [plmenu.amxx] Kick: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" kick "Sanya 36 rus<2519><STEAM_0:0:489737300><>"
+L 07/12/2011 - 01:23:49: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:49: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:55: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:56: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:56: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:58: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:23:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:27: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:39: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:39: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:39: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:50: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:52: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:54: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:54: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:54: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:54: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:54: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:55: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:55: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:24:59: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:01: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "tEmzz :))<2545><STEAM_0:0:287945496><>"
+L 07/12/2011 - 01:25:43: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:25:48: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:25:51: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:25:53: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:25:55: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:25:58: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:00: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:02: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:05: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:07: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:09: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:10: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:10: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:11: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:11: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:11: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:11: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:11: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:11: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:12: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:12: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:12: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:12: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:12: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:12: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:13: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:14: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:16: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:16: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:17: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:17: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:17: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:17: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:17: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:18: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:18: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:18: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:18: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:18: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:19: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:19: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:19: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:19: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:19: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:20: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:20: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:20: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:20: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:20: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:21: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:21: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:21: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:21: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:22: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:22: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:22: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:22: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:22: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:23: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:23: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:23: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:23: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:23: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:24: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:24: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:24: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:24: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:24: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:25: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:25: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:25: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:25: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:26:27: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" slay "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:27:16: [plmenu.amxx] Kick: "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>" kick "[o_VIP_o]                (^_^)V<2542><STEAM_0:4:446327478><>"
+L 07/12/2011 - 01:27:24: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:29:27: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:28: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:29: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:30: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:31: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:32: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:33: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:35: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:36: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:37: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:38: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:39: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:39: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:40: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:40: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:40: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:40: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:41: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:41: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:41: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:41: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:41: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:42: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:42: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:42: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:42: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:42: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:43: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:43: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:29:43: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" slap with 0 damage "zm_KHP_CAHbka*<2544><STEAM_0:0:836789539><>"
+L 07/12/2011 - 01:31:18: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 01:33:55: [adminchat.amxx] Chat: "[o_VIP_o]                (^_^)V<2547><STEAM_0:4:446327478><>" tsay "=*"
+L 07/12/2011 - 01:40:22: -------- Mapchange to de_nuke --------
+L 07/12/2011 - 01:40:25: [admin_amxbans.amxx] Login: "~Helena~<2513><STEAM_0:4:654364522><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.231")
+L 07/12/2011 - 02:02:15: -------- Mapchange to zm_666_brick --------
+L 07/12/2011 - 02:22:49: -------- Mapchange to zm_simple_b1 --------
+L 07/12/2011 - 02:41:11: -------- Mapchange to zm_cpl_mill_kamp --------
+L 07/12/2011 - 02:44:12: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 02:52:36: -------- Mapchange to zm_escapetrain --------
+L 07/12/2011 - 02:55:37: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 03:07:00: -------- Mapchange to cs_italy --------
+L 07/12/2011 - 03:10:48: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 03:21:29: -------- Mapchange to de_nuke --------
+L 07/12/2011 - 03:44:21: -------- Mapchange to de_dust --------
+L 07/12/2011 - 03:50:09: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 04:07:55: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 04:18:48: -------- Mapchange to zm_simple_b1 --------
+L 07/12/2011 - 04:22:14: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 04:37:25: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 04:49:57: -------- Mapchange to zm_fdust2x2 --------
+L 07/12/2011 - 05:11:01: -------- Mapchange to zm_666_brick --------
+L 07/12/2011 - 05:33:38: -------- Mapchange to zm_alley --------
+L 07/12/2011 - 05:43:43: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 06:02:24: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 06:12:50: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 06:25:46: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 06:34:09: -------- Mapchange to zm_simple_b1 --------
+L 07/12/2011 - 06:38:36: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 06:48:32: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 06:58:59: -------- Mapchange to de_dust --------
+L 07/12/2011 - 07:20:07: -------- Mapchange to zm_303 --------
+L 07/12/2011 - 07:23:50: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 07:33:46: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 07:43:42: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 07:53:39: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 08:03:35: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 08:12:13: -------- Mapchange to cs_militia --------
+L 07/12/2011 - 08:30:39: -------- Mapchange to zm_neris --------
+L 07/12/2011 - 08:33:39: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 08:45:05: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 08:56:05: -------- Mapchange to de_dust --------
+L 07/12/2011 - 09:16:22: -------- Mapchange to zm_cpl_mill_kamp --------
+L 07/12/2011 - 09:37:22: -------- Mapchange to zm_houses --------
+L 07/12/2011 - 09:39:32: [admin_amxbans.amxx] Login: "pro_BaD_HeaD---IIaJIa4<2796><STEAM_0:0:2040851104><>" became an admin (account "pro_BaD_HeaD---IIaJIa4") (access "at") (address "176.62.181.126")
+L 07/12/2011 - 09:54:06: -------- Mapchange to zm_army --------
+L 07/12/2011 - 09:54:07: [admin_amxbans.amxx] Login: "pro_BaD_HeaD---IIaJIa4<2796><STEAM_0:0:2040851104><>" became an admin (account "pro_BaD_HeaD---IIaJIa4") (access "at") (address "176.62.181.126")
+L 07/12/2011 - 10:16:01: -------- Mapchange to cs_italy --------
+L 07/12/2011 - 10:20:45: [admin_amxbans.amxx] Login: "Euforia<2816><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 10:38:00: -------- Mapchange to 016 --------
+L 07/12/2011 - 10:38:01: [admin_amxbans.amxx] Login: "Euforia<2816><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 10:45:41: -------- Mapchange to zm_fdust2x2 --------
+L 07/12/2011 - 10:45:42: [admin_amxbans.amxx] Login: "Euforia<2816><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 11:07:00: -------- Mapchange to zm_hospital_v1 --------
+L 07/12/2011 - 11:17:38: -------- Mapchange to zm_666_brick --------
+L 07/12/2011 - 11:23:44: [admin_amxbans.amxx] Login: "KAPEJI<2872><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 11:29:54: [plmenu.amxx] Kick: "KAPEJI<2872><STEAM_0:4:446327478><>" kick ".i.F.A.Q.i. | AnDreI |<2827><STEAM_0:4:642880625><>"
+L 07/12/2011 - 11:30:45: [admin_amxbans.amxx] Login: "KAPEJI [10 rus]<2879><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 07/12/2011 - 11:35:25: [admincmd.amxx] Ban: "KAPEJI [10 rus]<2879><STEAM_0:4:446327478><>" ban and kick ".i.F.A.Q.i. | AnDreI |<2878><STEAM_0:4:642880625><>" (minutes "|") (reason "AnDreI")
+L 07/12/2011 - 11:37:56: -------- Mapchange to ze_lift_escape_b5 --------
+L 07/12/2011 - 11:54:52: -------- Mapchange to zm_303 --------
+L 07/12/2011 - 12:17:08: -------- Mapchange to de_dust --------
+L 07/12/2011 - 12:19:28: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2912><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 12:20:57: [admin_amxbans.amxx] Login: "Euforia<2914><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 12:37:27: -------- Mapchange to zm_umbrella_office --------
+L 07/12/2011 - 12:37:28: [admin_amxbans.amxx] Login: "Euforia<2914><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 12:37:28: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2912><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 12:59:50: -------- Mapchange to zm_dwarf --------
+L 07/12/2011 - 12:59:51: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2912><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 13:22:01: -------- Mapchange to 016 --------
+L 07/12/2011 - 13:22:02: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2912><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 13:22:20: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2969><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 13:42:06: -------- Mapchange to cs_italy --------
+L 07/12/2011 - 13:42:09: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2969><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 13:46:47: [voteban.amxx] Voteban starter Masyanya  |[BBS]| against +Frag STEAM_0:0:2075426588
+L 07/12/2011 - 13:47:02: [voteban.amxx] [AMXX] BANNED: +Frag, STARTER: Masyanya  |[BBS]|
+L 07/12/2011 - 14:02:13: -------- Mapchange to zm_neris --------
+L 07/12/2011 - 14:02:14: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2969><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 14:22:31: -------- Mapchange to de_nuke --------
+L 07/12/2011 - 14:22:36: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<2969><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 14:35:05: [admin_amxbans.amxx] Login: "Euforia<3041><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 14:36:51: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3042><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 14:42:52: [voteban.amxx] Voteban starter Euforia against Satan STEAM_0:0:2031269599
+L 07/12/2011 - 14:43:07: [voteban.amxx] [AMXX] BANNED: Satan, STARTER: Euforia
+L 07/12/2011 - 14:43:14: -------- Mapchange to zm_fdust2x2 --------
+L 07/12/2011 - 14:43:15: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3042><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 14:43:15: [admin_amxbans.amxx] Login: "Euforia<3041><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 15:01:55: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<3071><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 15:03:51: [admin_amxbans.amxx] Login: "~Helena~<3073><STEAM_0:4:780193642><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.244")
+L 07/12/2011 - 15:04:13: -------- Mapchange to zm_hospital_v1 --------
+L 07/12/2011 - 15:04:15: [admin_amxbans.amxx] Login: "~Helena~<3073><STEAM_0:4:780193642><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.244")
+L 07/12/2011 - 15:04:15: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3042><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 15:04:15: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<3071><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 15:04:15: [admin_amxbans.amxx] Login: "~Helena~<3075><STEAM_0:4:780193642><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.244")
+L 07/12/2011 - 15:14:57: -------- Mapchange to zm_666_brick --------
+L 07/12/2011 - 15:14:58: [admin_amxbans.amxx] Login: "~Helena~<3075><STEAM_0:4:780193642><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.244")
+L 07/12/2011 - 15:14:58: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<3071><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 15:35:12: -------- Mapchange to de_dust --------
+L 07/12/2011 - 15:35:14: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<3071><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 15:42:41: -------- Mapchange to zm_army --------
+L 07/12/2011 - 15:42:42: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<3071><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 16:02:51: -------- Mapchange to cs_militia --------
+L 07/12/2011 - 16:26:00: -------- Mapchange to zm_303 --------
+L 07/12/2011 - 16:26:21: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3160><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 16:39:02: [adminchat.amxx] Chat: "InTenS<3149><STEAM_0:4:1986317552><>" chat "_(_"
+L 07/12/2011 - 16:44:03: [voteban.amxx] Voteban starter Ipse [Str,RUS] against Parovoz STEAM_0:0:18159256
+L 07/12/2011 - 16:44:19: [voteban.amxx] [AMXX] BANNED: Parovoz, STARTER: Ipse [Str,RUS]
+L 07/12/2011 - 16:46:20: -------- Mapchange to zm_dwarf --------
+L 07/12/2011 - 16:46:21: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3160><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 16:46:44: [voteban.amxx] Voteban starter Ipse [Str,RUS] against Parovoz STEAM_0:0:18159256
+L 07/12/2011 - 16:46:55: [voteban.amxx] Voteban starter Ipse [Str,RUS] against Parovoz STEAM_0:0:18159256
+L 07/12/2011 - 16:46:59: [voteban.amxx] [AMXX] BANNED: Parovoz, STARTER: Ipse [Str,RUS]
+L 07/12/2011 - 16:47:10: [voteban.amxx] [AMXX] BANNED: Parovoz, STARTER: Ipse [Str,RUS]
+L 07/12/2011 - 16:47:48: [voteban.amxx] Voteban starter Ipse [Str,RUS] against Parovoz STEAM_0:0:18159256
+L 07/12/2011 - 16:48:03: [voteban.amxx] [AMXX] BANNED: Parovoz, STARTER: Ipse [Str,RUS]
+L 07/12/2011 - 17:08:49: -------- Mapchange to zm_escapetrain --------
+L 07/12/2011 - 17:08:50: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3160><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 17:25:57: -------- Mapchange to ze_lift_escape_b5 --------
+L 07/12/2011 - 17:25:58: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3160><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 17:38:17: [admin_amxbans.amxx] Login: "Euforia<3227><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 17:43:44: -------- Mapchange to zm_vendetta --------
+L 07/12/2011 - 17:43:45: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<3160><STEAM_0:4:371377651><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.25.133")
+L 07/12/2011 - 17:57:37: [admin_amxbans.amxx] Login: "Dema Zolotarev<3262><STEAM_0:4:1417253489><>" became an admin (account "Dema Zolotarev") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 18:04:49: -------- Mapchange to zm_666_brick --------
+L 07/12/2011 - 18:04:50: [admin_amxbans.amxx] Login: "Dema Zolotarev<3262><STEAM_0:4:1417253489><>" became an admin (account "Dema Zolotarev") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 18:16:25: [admin_amxbans.amxx] Login: "Dema Zolotarev<3289><STEAM_0:4:1417253489><>" became an admin (account "Dema Zolotarev") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 18:26:14: -------- Mapchange to zm_fdust2x2 --------
+L 07/12/2011 - 18:47:00: -------- Mapchange to cs_italy --------
+L 07/12/2011 - 19:07:10: -------- Mapchange to zm_neris --------
+L 07/12/2011 - 19:12:38: [admin_amxbans.amxx] Login: "Euforia<3395><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 19:16:23: -------- Mapchange to cs_estate --------
+L 07/12/2011 - 19:16:27: -------- Mapchange to zm_army --------
+L 07/12/2011 - 19:16:31: [admin_amxbans.amxx] Login: "Euforia<5><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 19:37:50: -------- Mapchange to zm_303 --------
+L 07/12/2011 - 20:01:04: -------- Mapchange to zm_houses --------
+L 07/12/2011 - 20:21:17: -------- Mapchange to 016 --------
+L 07/12/2011 - 20:42:09: -------- Mapchange to zm_umbrella_office --------
+L 07/12/2011 - 20:42:24: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<175><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 20:44:09: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<199><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 20:50:09: [admin_amxbans.amxx] Login: "Euforia<209><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 07/12/2011 - 21:03:28: -------- Mapchange to zm_dwarf --------
+L 07/12/2011 - 21:03:29: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<199><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 21:03:58: [admin_amxbans.amxx] Login: "pro_BaD_HeaD---IIaJIa4<226><STEAM_0:0:2040851104><>" became an admin (account "pro_BaD_HeaD---IIaJIa4") (access "at") (address "176.62.181.126")
+L 07/12/2011 - 21:24:21: -------- Mapchange to zm_666_brick --------
+L 07/12/2011 - 21:24:22: [admin_amxbans.amxx] Login: "pro_BaD_HeaD---IIaJIa4<226><STEAM_0:0:2040851104><>" became an admin (account "pro_BaD_HeaD---IIaJIa4") (access "at") (address "176.62.181.126")
+L 07/12/2011 - 21:24:22: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<199><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 21:41:07: [admin_amxbans.amxx] Login: "Den1s<240><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 21:43:04: [voteban.amxx] Voteban starter Ipse [Str,RUS] against [NO-UCP] MARKOVKA STEAM_0:0:525738146
+L 07/12/2011 - 21:43:19: [voteban.amxx] [AMXX] BANNED: [NO-UCP] MARKOVKA, STARTER: Ipse [Str,RUS]
+L 07/12/2011 - 21:46:37: -------- Mapchange to de_nuke --------
+L 07/12/2011 - 21:46:41: [admin_amxbans.amxx] Login: "Den1s<240><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 21:46:41: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<199><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 22:02:22: [plmenu.amxx] Kick: "Den1s<240><STEAM_0:0:889229784><>" kick "valeron<207><STEAM_0:4:99417331><>"
+L 07/12/2011 - 22:08:27: -------- Mapchange to cs_italy --------
+L 07/12/2011 - 22:08:31: [admin_amxbans.amxx] Login: "Den1s<240><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 22:08:31: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<199><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 22:29:04: -------- Mapchange to de_dust --------
+L 07/12/2011 - 22:29:07: [admin_amxbans.amxx] Login: "Den1s<240><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 22:29:07: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<199><STEAM_0:4:1225246195><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "95.105.83.59")
+L 07/12/2011 - 22:39:22: [admin_amxbans.amxx] Login: "~Helena~<305><STEAM_0:4:604032874><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.225")
+L 07/12/2011 - 22:39:27: -------- Mapchange to ze_jurassicpark --------
+L 07/12/2011 - 22:39:28: [admin_amxbans.amxx] Login: "Den1s<240><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 22:39:28: [admin_amxbans.amxx] Login: "~Helena~<305><STEAM_0:4:604032874><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.225")
+L 07/12/2011 - 22:51:13: -------- Mapchange to zm_houses --------
+L 07/12/2011 - 22:51:14: [admin_amxbans.amxx] Login: "~Helena~<305><STEAM_0:4:604032874><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.225")
+L 07/12/2011 - 22:51:14: [admin_amxbans.amxx] Login: "Den1s<240><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 22:57:31: [admin_amxbans.amxx] Login: "pro.BaD_HeaD---AKEM[cl]<331><STEAM_0:4:533501809><>" became an admin (account "pro.BaD_HeaD---AKEM[cl]") (access "at") (address "91.204.197.150")
+L 07/12/2011 - 23:02:03: [admin_amxbans.amxx] Login: "PRO(KENT IGRAET DMB OO7 SPB)<338><STEAM_0:0:689630666><>" became an admin (account "PRO(KENT IGRAET DMB OO7 SPB)") (access "at") (address "91.103.154.227")
+L 07/12/2011 - 23:03:52: [admin_amxbans.amxx] Login: "player<340><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 07/12/2011 - 23:14:31: -------- Mapchange to zm_303 --------
+L 07/12/2011 - 23:14:32: [admin_amxbans.amxx] Login: "~Helena~<305><STEAM_0:4:604032874><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.225")
+L 07/12/2011 - 23:14:32: [admin_amxbans.amxx] Login: "PRO(KENT IGRAET DMB OO7 SPB)<338><STEAM_0:0:689630666><>" became an admin (account "PRO(KENT IGRAET DMB OO7 SPB)") (access "at") (address "91.103.154.227")
+L 07/12/2011 - 23:35:48: -------- Mapchange to 016 --------
+L 07/12/2011 - 23:35:49: [admin_amxbans.amxx] Login: "~Helena~<305><STEAM_0:4:604032874><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.225")
+L 07/12/2011 - 23:46:26: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<389><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")
+L 07/12/2011 - 23:56:21: -------- Mapchange to zm_fdust2x2 --------
+L 07/12/2011 - 23:56:22: [admin_amxbans.amxx] Login: "~Helena~<305><STEAM_0:4:604032874><>" became an admin (account "~Helena~") (access "at") (address "109.124.93.225")
+L 07/12/2011 - 23:56:22: [admin_amxbans.amxx] Login: "Masyanya  |[BBS]|<389><STEAM_0:4:1417253489><>" became an admin (account "Masyanya  |[BBS]|") (access "at") (address "91.198.175.1")

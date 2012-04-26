@@ -1,0 +1,648 @@
+L 05/29/2011 - 00:00:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 00:00:03: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 00:00:03: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 00:00:03: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 00:00:03: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 00:02:04: [admin_amxbans.amxx] Login: "vk<1153><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 00:07:00: [admin_amxbans.amxx] Login: "Dumka<1156><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 00:10:30: [admin_amxbans.amxx] Login: "vk<1157><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 00:10:32: [admin_amxbans.amxx] Login: "~Helena~<1158><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.222")
+L 05/29/2011 - 00:12:13: [voteban.amxx] Вотебан запустил [zoom]-_-[zoom] против IceCube STEAM_0:0:969518429
+L 05/29/2011 - 00:12:28: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:969518429 is banned for 60 minutes
+L 05/29/2011 - 00:12:29: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил IceCube<STEAM_0:0:969518429> на 1 час (60 минут). Причина: VIP->[zoom]-_-[zoom].
+L 05/29/2011 - 00:20:47: -------- Mapchange to 016_rmk --------
+L 05/29/2011 - 00:20:48: [admin_amxbans.amxx] Login: "~Helena~<1158><STEAM_0:4:998264682><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.222")
+L 05/29/2011 - 00:20:48: [admin_amxbans.amxx] Login: "vk<1157><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 00:20:48: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1130><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.165.185")
+L 05/29/2011 - 00:20:48: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1136><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 00:20:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 00:20:49: [admin_amxbans.amxx] Login: "Dumka<1156><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 00:20:53: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 00:20:53: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 00:20:53: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 00:20:53: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 00:24:48: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1167><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.165.185")
+L 05/29/2011 - 00:24:50: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 00:24:50: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 00:24:50: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 00:24:50: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 00:41:11: -------- Mapchange to cs_militia --------
+L 05/29/2011 - 00:41:20: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1167><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.165.185")
+L 05/29/2011 - 00:41:20: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1136><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 00:41:21: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 00:41:24: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 00:41:24: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 00:41:24: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 00:41:24: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 00:42:23: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1187><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 00:53:18: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1190><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 01:02:14: -------- Mapchange to ze_jurassickpark3_lg --------
+L 05/29/2011 - 01:02:16: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1190><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 01:02:16: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1167><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.165.185")
+L 05/29/2011 - 01:02:17: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 01:02:21: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 01:02:21: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 01:02:21: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 01:02:21: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 01:10:43: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1198><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 01:10:56: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1199><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 01:19:59: -------- Mapchange to zm_fdust2x2 --------
+L 05/29/2011 - 01:20:00: [admin_amxbans.amxx] Login: "Yura_Alexandrov<1199><STEAM_0:0:1298565332><>" became an admin (account "Yura_Alexandrov") (access "at") (address "92.100.222.78")
+L 05/29/2011 - 01:20:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 01:24:07: [admin_amxbans.amxx] Login: "Dumka<1201><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 01:48:16: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 01:48:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 02:16:01: -------- Mapchange to zm_desolation_house --------
+L 05/29/2011 - 02:16:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 02:36:55: -------- Mapchange to zm_south_escape_b2 --------
+L 05/29/2011 - 02:36:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 03:02:29: [admin_amxbans.amxx] Login: "Dumka<1225><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 03:08:34: -------- Mapchange to zm_202 --------
+L 05/29/2011 - 03:08:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 03:31:17: -------- Mapchange to zm_303 --------
+L 05/29/2011 - 03:31:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 03:36:21: [admin_amxbans.amxx] Login: "vk<1234><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 03:39:42: [admin_amxbans.amxx] Login: "vk<1235><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 03:42:39: [admin_amxbans.amxx] Login: "vk<1237><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 03:49:24: -------- Mapchange to de_dust --------
+L 05/29/2011 - 03:49:26: [admin_amxbans.amxx] Login: "vk<1237><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 03:49:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 04:11:31: -------- Mapchange to zm_dust_base_fin --------
+L 05/29/2011 - 04:11:32: [admin_amxbans.amxx] Login: "vk<1237><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 04:11:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 04:15:10: [admin_amxbans.amxx] Login: "Dumka<1242><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 04:19:55: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 04:19:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 04:39:52: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 04:39:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 04:41:33: [admin_amxbans.amxx] Login: "Dumka<1251><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 04:59:48: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 04:59:51: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 05:19:45: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 05:19:48: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 05:39:41: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 05:39:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 05:59:38: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 05:59:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 06:19:34: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 06:19:37: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 06:39:30: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 06:39:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 06:59:27: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 06:59:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 07:19:24: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 07:19:28: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 07:58:36: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 07:58:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 08:21:02: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 08:21:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 08:49:32: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 08:49:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 09:09:59: -------- Mapchange to awp_city --------
+L 05/29/2011 - 09:10:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 09:21:40: [admin_amxbans.amxx] Login: "Euforia<1317><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 09:32:03: -------- Mapchange to zm_dust_base_fin --------
+L 05/29/2011 - 09:32:04: [admin_amxbans.amxx] Login: "Euforia<1317><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 09:32:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 09:35:44: -------- Mapchange to cs_estate --------
+L 05/29/2011 - 09:35:47: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 09:52:04: [admin_amxbans.amxx] Login: "Euforia<1325><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 10:01:49: [voteban.amxx] Вотебан запустил Euforia против Warden BOT
+L 05/29/2011 - 10:02:04: [voteban.amxx] [AMXX] The vote succeeded: BOT is banned for 60 minutes
+L 05/29/2011 - 10:10:21: [admin_amxbans.amxx] Login: "Euforia<1335><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 10:11:37: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1336><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 10:11:39: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 10:11:39: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 10:11:39: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 10:11:39: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 10:12:02: -------- Mapchange to cs_militia --------
+L 05/29/2011 - 10:12:07: [admin_amxbans.amxx] Login: "Euforia<1335><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 10:12:07: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1336><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 10:12:08: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 10:12:10: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 10:12:10: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 10:12:10: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 10:12:10: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 10:32:59: -------- Mapchange to zm_neris --------
+L 05/29/2011 - 10:33:00: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1336><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 10:33:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 10:33:03: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 10:33:03: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 10:33:03: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 10:33:03: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 10:33:36: [admin_amxbans.amxx] Login: "Euforia<1355><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 10:36:46: [admin_amxbans.amxx] Login: "vk<1362><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 10:40:47: [admin_amxbans.amxx] Login: "Lol'ka<1363><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 05/29/2011 - 10:46:19: [adminchat.amxx] Chat: "Lol'ka<1363><STEAM_0:4:446327478><>" tsay "~_^"
+L 05/29/2011 - 10:53:37: -------- Mapchange to zm_303 --------
+L 05/29/2011 - 10:53:38: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1336><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 10:53:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 10:53:41: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 10:53:41: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 10:53:41: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 10:53:41: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:08:05: [admin_amxbans.amxx] Login: "vk<1371><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 11:14:01: -------- Mapchange to zm_south_escape_b2 --------
+L 05/29/2011 - 11:14:02: [admin_amxbans.amxx] Login: "vk<1371><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 11:14:03: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1336><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 11:14:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 11:14:06: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:14:06: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:14:06: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 11:14:06: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:20:53: [admin_amxbans.amxx] Login: "He6o<1381><STEAM_0:4:1214550897><>" became an admin (account "He6o") (access "at") (address "91.196.149.57")
+L 05/29/2011 - 11:21:44: [admin_amxbans.amxx] Login: "He6o<1384><STEAM_0:4:1214550897><>" became an admin (account "He6o") (access "at") (address "91.196.149.57")
+L 05/29/2011 - 11:22:21: [admin_amxbans.amxx] Login: "He6o<1385><STEAM_0:4:1214550897><>" became an admin (account "He6o") (access "at") (address "91.196.149.57")
+L 05/29/2011 - 11:23:25: [admin_amxbans.amxx] Login: "vk<1386><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 11:30:10: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:30:10: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:30:10: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 11:30:10: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:31:30: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:31:30: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:31:30: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 11:31:30: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:35:36: -------- Mapchange to 016_rmk --------
+L 05/29/2011 - 11:35:37: [admin_amxbans.amxx] Login: "vk<1386><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 11:35:37: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1336><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 11:35:37: [admin_amxbans.amxx] Login: "He6o<1385><STEAM_0:4:1214550897><>" became an admin (account "He6o") (access "at") (address "91.196.149.57")
+L 05/29/2011 - 11:35:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 11:35:41: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:46:06: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1401><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 11:46:08: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:46:08: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:46:08: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 11:46:08: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:53:20: [admin_amxbans.amxx] Login: "Euforia<1404><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 11:56:33: -------- Mapchange to zm_fdust2x2 --------
+L 05/29/2011 - 11:56:34: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1401><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 11:56:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 11:56:38: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 12:11:46: [admin_amxbans.amxx] Login: "Euforia<1420><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 12:19:10: -------- Mapchange to cs_office --------
+L 05/29/2011 - 12:19:12: [admin_amxbans.amxx] Login: "Euforia<1420><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 12:19:12: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1401><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "83.149.21.129")
+L 05/29/2011 - 12:19:13: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 12:19:17: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 12:26:04: [admin_amxbans.amxx] Login: "Vik<1434><STEAM_0:4:2127123178><>" became an admin (account "Vik") (access "at") (address "109.71.206.84")
+L 05/29/2011 - 12:42:23: -------- Mapchange to ze_jurassickpark3_lg --------
+L 05/29/2011 - 12:42:24: [admin_amxbans.amxx] Login: "Vik<1434><STEAM_0:4:2127123178><>" became an admin (account "Vik") (access "at") (address "109.71.206.84")
+L 05/29/2011 - 12:42:25: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 12:50:23: [admin_amxbans.amxx] Login: "Euforia<1456><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 12:52:57: [admin_amxbans.amxx] Login: "~Helena~<1457><STEAM_0:4:1132482410><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.46")
+L 05/29/2011 - 13:00:11: [voteban.amxx] Вотебан запустил Euforia против IceCube STEAM_0:0:969518429
+L 05/29/2011 - 13:00:26: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:969518429 is banned for 60 minutes
+L 05/29/2011 - 13:00:27: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил IceCube<STEAM_0:0:969518429> на 1 час (60 минут). Причина: VIP->Euforia.
+L 05/29/2011 - 13:05:25: -------- Mapchange to zm_202 --------
+L 05/29/2011 - 13:05:26: [admin_amxbans.amxx] Login: "~Helena~<1457><STEAM_0:4:1132482410><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.46")
+L 05/29/2011 - 13:05:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 13:26:44: -------- Mapchange to awp_city --------
+L 05/29/2011 - 13:26:45: [admin_amxbans.amxx] Login: "~Helena~<1457><STEAM_0:4:1132482410><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.46")
+L 05/29/2011 - 13:26:46: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 13:33:57: [admin_amxbans.amxx] Login: "Euforia<1499><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 13:47:29: -------- Mapchange to zm_simple_b1 --------
+L 05/29/2011 - 13:47:30: [admin_amxbans.amxx] Login: "~Helena~<1457><STEAM_0:4:1132482410><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.46")
+L 05/29/2011 - 13:47:30: [admin_amxbans.amxx] Login: "Euforia<1499><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 13:47:31: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 14:09:46: -------- Mapchange to zm_303 --------
+L 05/29/2011 - 14:09:48: [admin_amxbans.amxx] Login: "~Helena~<1457><STEAM_0:4:1132482410><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.46")
+L 05/29/2011 - 14:09:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 14:20:02: [admin_amxbans.amxx] Login: "TaHbko<1539><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 14:20:06: [admin_amxbans.amxx] Login: "TaHbko<1540><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 14:24:22: [admin_amxbans.amxx] Login: "He6o<1554><STEAM_0:4:1372133098><>" became an admin (account "He6o") (access "at") (address "109.207.206.10")
+L 05/29/2011 - 14:24:28: [admin_amxbans.amxx] Login: "He6o<1556><STEAM_0:4:1372133098><>" became an admin (account "He6o") (access "at") (address "109.207.206.10")
+L 05/29/2011 - 14:31:48: -------- Mapchange to de_westwood --------
+L 05/29/2011 - 14:31:51: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 14:34:51: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1578><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 14:34:53: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 14:34:53: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 14:34:53: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 14:34:53: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 14:34:55: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1579><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 14:34:57: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 14:34:57: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 14:34:57: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 14:34:57: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 14:38:48: [admin_amxbans.amxx] Login: "VANDAL<1580><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 14:38:54: [admin_amxbans.amxx] Login: "TaHbko<1581><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 14:38:54: [admin_amxbans.amxx] Login: "VANDAL<1582><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 14:42:25: [admin_amxbans.amxx] Login: "Vik<1583><STEAM_0:4:2127123178><>" became an admin (account "Vik") (access "at") (address "109.71.206.84")
+L 05/29/2011 - 14:42:28: [admin_amxbans.amxx] Login: "Vik<1584><STEAM_0:4:2127123178><>" became an admin (account "Vik") (access "at") (address "109.71.206.84")
+L 05/29/2011 - 14:54:09: -------- Mapchange to zm_south_escape_b2 --------
+L 05/29/2011 - 14:54:10: [admin_amxbans.amxx] Login: "TaHbko<1581><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 14:54:10: [admin_amxbans.amxx] Login: "Vik<1584><STEAM_0:4:2127123178><>" became an admin (account "Vik") (access "at") (address "109.71.206.84")
+L 05/29/2011 - 14:54:10: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1579><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 14:54:10: [admin_amxbans.amxx] Login: "VANDAL<1582><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 14:54:11: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 14:54:15: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 14:54:15: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 14:54:15: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 14:54:15: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 14:54:15: [admin_amxbans.amxx] Login: "TaHbko<1595><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 14:59:39: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 15:04:03: [admin_amxbans.amxx] Login: "Euforia<1618><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 15:14:18: [admin_amxbans.amxx] Login: "Euforia<1634><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 15:15:25: -------- Mapchange to cs_office --------
+L 05/29/2011 - 15:15:28: [admin_amxbans.amxx] Login: "VANDAL<1582><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 15:15:28: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 15:15:28: [admin_amxbans.amxx] Login: "Euforia<1634><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 15:15:28: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1579><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 15:15:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 15:15:35: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 15:15:35: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 15:15:35: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 15:15:35: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 15:36:30: -------- Mapchange to de_dust --------
+L 05/29/2011 - 15:36:32: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 15:36:32: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1579><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 15:36:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 15:36:37: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 15:36:37: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 15:36:37: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 15:36:37: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 15:57:50: -------- Mapchange to zm_dust_base_fin --------
+L 05/29/2011 - 15:57:51: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 15:57:51: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1579><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 15:57:52: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 15:57:58: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 15:57:58: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 15:57:58: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 15:57:58: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 16:17:41: [voteban.amxx] Вотебан запустил Ipse [Str,RUS] против ?!F0rSeRf<=~ STEAM_0:0:1569559782
+L 05/29/2011 - 16:17:56: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:1569559782 is banned for 60 minutes
+L 05/29/2011 - 16:17:57: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил ?!F0rSeRf<=~<STEAM_0:0:1569559782> на 1 час (60 минут). Причина: VIP->Ipse [Str,RUS].
+L 05/29/2011 - 16:18:01: [admin_amxbans.amxx] Login: "Euforia<1736><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 16:18:27: [admin_amxbans.amxx] Login: "Euforia<1737><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 16:18:40: -------- Mapchange to 016_rmk --------
+L 05/29/2011 - 16:18:41: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1579><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 16:18:41: [admin_amxbans.amxx] Login: "Euforia<1737><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 16:18:42: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 16:18:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 16:18:48: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 16:18:48: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 16:18:48: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 16:18:48: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 16:33:28: [admin_amxbans.amxx] Login: "TaHbko<1750><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 16:38:56: -------- Mapchange to zm_army --------
+L 05/29/2011 - 16:38:56: [admin_amxbans.amxx] Login: "TaHbko<1750><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 16:38:56: [admin_amxbans.amxx] Login: "Euforia<1737><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 16:38:57: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 16:38:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 16:39:15: [admin_amxbans.amxx] Login: "TaHbko<1757><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 16:45:31: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 16:45:31: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 16:45:31: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 16:45:31: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 16:50:09: [admin_amxbans.amxx] Login: "TaHbko<1757><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:00:27: -------- Mapchange to zm_303 --------
+L 05/29/2011 - 17:00:28: [admin_amxbans.amxx] Login: "TaHbko<1757><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:00:28: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 17:00:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 17:00:34: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:00:34: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:00:34: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 17:00:34: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:06:26: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1785><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 17:06:28: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:06:28: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:06:28: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 17:06:28: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:13:10: [voteban.amxx] Вотебан запустил [zoom]-_-[zoom] против Qw.1!mOrt1 STEAM_0:0:1932607417
+L 05/29/2011 - 17:13:25: [voteban.amxx] [AMXX] The voteban dit not sucseed.
+L 05/29/2011 - 17:21:06: [voteban.amxx] Вотебан запустил Ipse [Str,RUS] против [GIS121 STEAM_0:0:1561081317
+L 05/29/2011 - 17:21:21: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:1561081317 is banned for 60 minutes
+L 05/29/2011 - 17:21:22: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил [GIS121<STEAM_0:0:1561081317> на 1 час (60 минут). Причина: VIP->Ipse [Str,RUS].
+L 05/29/2011 - 17:21:25: -------- Mapchange to zm_houses --------
+L 05/29/2011 - 17:21:26: [admin_amxbans.amxx] Login: "TaHbko<1757><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:21:26: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 17:21:26: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1785><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 17:21:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 17:21:32: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:21:32: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:21:32: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 17:21:32: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:21:33: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:21:33: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:21:33: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 17:21:33: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:23:15: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1802><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 17:23:17: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:23:17: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:23:17: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 17:23:17: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:26:59: [admin_amxbans.amxx] Login: "TaHbko<1810><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:28:25: [admin_amxbans.amxx] Login: "TaHbko<1815><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:34:05: [admin_amxbans.amxx] Login: "TaHbko<1820><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:36:05: [voteban.amxx] Вотебан запустил TaHbko против KATbKA STEAM_0:0:1410218480
+L 05/29/2011 - 17:36:20: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:1410218480 is banned for 60 minutes
+L 05/29/2011 - 17:37:10: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:37:10: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:37:10: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 05/29/2011 - 17:37:10: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:42:36: -------- Mapchange to awp_city --------
+L 05/29/2011 - 17:42:38: [admin_amxbans.amxx] Login: "TaHbko<1820><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 17:42:38: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 17:42:38: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1802><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 17:42:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''am' at line 1 (1064)
+L 05/29/2011 - 17:42:43: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 17:45:41: [admin_amxbans.amxx] Login: "Euforia<1830><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 18:03:24: -------- Mapchange to zm_simple_b1 --------
+L 05/29/2011 - 18:03:25: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 18:03:25: [admin_amxbans.amxx] Login: "Euforia<1830><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 18:03:25: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1802><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 18:03:26: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 18:03:31: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 18:03:31: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 18:03:31: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 18:03:31: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 18:17:15: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<1884><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqstu") (address "172.23.65.13")
+L 05/29/2011 - 18:25:31: -------- Mapchange to de_westwood --------
+L 05/29/2011 - 18:25:34: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1609><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 18:25:34: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1802><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 18:25:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 18:25:38: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1901><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 18:25:40: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 18:25:40: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 18:25:40: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 18:25:40: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 18:25:41: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 18:25:41: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 18:25:41: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 18:25:41: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 18:25:45: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1903><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 18:47:32: -------- Mapchange to de_dust --------
+L 05/29/2011 - 18:47:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 19:05:04: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<1948><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 05/29/2011 - 19:08:12: [admincmd.amxx] Cmd: "I bet u look good on dancefloor<1948><STEAM_0:0:1236438227><>" ask for players list
+L 05/29/2011 - 19:09:32: -------- Mapchange to zm_escapetrain --------
+L 05/29/2011 - 19:09:33: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<1948><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 19:09:34: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 19:13:54: [admin_amxbans.amxx] Login: "Euforia<1961><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 19:15:00: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 19:15:00: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 19:15:00: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 05/29/2011 - 19:15:00: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 19:23:26: [admin_amxbans.amxx] Login: "lollipop<1969><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 19:31:01: -------- Mapchange to zm_dust_base_fin --------
+L 05/29/2011 - 19:31:02: [admin_amxbans.amxx] Login: "lollipop<1969><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 19:31:02: [admin_amxbans.amxx] Login: "Euforia<1961><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 19:31:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 19:31:06: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 19:31:06: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 19:31:06: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 05/29/2011 - 19:31:06: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 19:32:53: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<1977><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 19:32:55: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 19:32:55: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 19:32:55: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 19:32:55: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 19:34:41: [admin_amxbans.amxx] Login: "Euforia<1984><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 19:50:41: [admin_amxbans.amxx] Login: "Euforia<1993><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 19:51:22: -------- Mapchange to zm_army --------
+L 05/29/2011 - 19:51:23: [admin_amxbans.amxx] Login: "Euforia<1993><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 19:51:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 19:52:20: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1997><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 20:01:58: [admin_amxbans.amxx] Login: "vk<2018><STEAM_0:4:1439307498><>" kicked due to invalid password (account "vk") (address "109.207.200.2")
+L 05/29/2011 - 20:02:03: [admin_amxbans.amxx] Login: "vk<2020><STEAM_0:4:1439307498><>" kicked due to invalid password (account "vk") (address "109.207.200.2")
+L 05/29/2011 - 20:02:05: [admin_amxbans.amxx] Login: "vk<2021><STEAM_0:4:1439307498><>" kicked due to invalid password (account "vk") (address "109.207.200.2")
+L 05/29/2011 - 20:02:07: [admin_amxbans.amxx] Login: "vk<2022><STEAM_0:4:1439307498><>" kicked due to invalid password (account "vk") (address "109.207.200.2")
+L 05/29/2011 - 20:02:08: [admin_amxbans.amxx] Login: "vk<2023><STEAM_0:4:1439307498><>" kicked due to invalid password (account "vk") (address "109.207.200.2")
+L 05/29/2011 - 20:02:09: [admin_amxbans.amxx] Login: "vk<2024><STEAM_0:4:1439307498><>" kicked due to invalid password (account "vk") (address "109.207.200.2")
+L 05/29/2011 - 20:02:21: [admin_amxbans.amxx] Login: "He6o<2026><STEAM_0:4:1439307498><>" kicked due to invalid password (account "He6o") (address "109.207.200.2")
+L 05/29/2011 - 20:05:58: [admin_amxbans.amxx] Login: "Euforia<2030><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 20:11:28: -------- Mapchange to cs_militia --------
+L 05/29/2011 - 20:11:35: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1997><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 20:11:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 20:14:03: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:14:03: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:14:03: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amx' at line 1 (1064)
+L 05/29/2011 - 20:14:03: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:18:51: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:18:51: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:18:51: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expire' at line 1 (1064)
+L 05/29/2011 - 20:18:51: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:25:18: [admin_amxbans.amxx] Login: "Vik<2074><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 20:26:22: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:26:22: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:26:22: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amx' at line 1 (1064)
+L 05/29/2011 - 20:26:22: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:27:21: [admin_amxbans.amxx] Login: "Euforia<2081><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 20:32:23: [admin_amxbans.amxx] Login: "vk<2086><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 20:32:50: [admin_amxbans.amxx] Login: "lollipop<2087><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 20:33:30: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<2088><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 20:34:33: -------- Mapchange to 016_rmk --------
+L 05/29/2011 - 20:34:34: [admin_amxbans.amxx] Login: "vk<2086><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 20:34:34: [admin_amxbans.amxx] Login: "Vik<2074><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 20:34:34: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1997><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 20:34:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 20:34:35: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<2088><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 20:34:41: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:34:41: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:34:41: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amx' at line 1 (1064)
+L 05/29/2011 - 20:34:41: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:34:57: [admin_amxbans.amxx] Login: "RatatuI'Ka*<2091><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 20:55:32: -------- Mapchange to zm_fdust2x2 --------
+L 05/29/2011 - 20:55:34: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<1997><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 20:55:34: [admin_amxbans.amxx] Login: "RatatuI'Ka*<2091><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 20:55:34: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<2088><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 20:55:34: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<2088><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 20:55:34: [admin_amxbans.amxx] Login: "I bet u look good on dancefloor<2107><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 20:55:34: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amx' at line 1 (1064)
+L 05/29/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:55:46: [admin_amxbans.amxx] Login: "Vik<2112><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 20:56:59: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:56:59: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:56:59: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amx' at line 1 (1064)
+L 05/29/2011 - 20:56:59: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:57:22: [admin_amxbans.amxx] Login: "VANDAL<2125><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 20:57:27: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 20:57:27: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 20:57:27: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expire' at line 1 (1064)
+L 05/29/2011 - 20:57:27: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 20:59:58: [admin_amxbans.amxx] Login: "vk<2131><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 21:00:00: [voteban.amxx] Вотебан запустил VANDAL против GizM STEAM_0:0:2109979847
+L 05/29/2011 - 21:00:15: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:2109979847 is banned for 60 minutes
+L 05/29/2011 - 21:00:16: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил GizM<STEAM_0:0:2109979847> на 1 час (60 минут). Причина: VIP->VANDAL.
+L 05/29/2011 - 21:01:12: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<2134><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 21:09:53: [admin_amxbans.amxx] Login: "9I RatatuIka :D<2107><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 21:10:00: [admin_amxbans.amxx] Login: "Euforia<2138><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 21:10:49: [admin_amxbans.amxx] Login: "Dumka<2091><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 21:11:14: [admin_amxbans.amxx] Login: "RatatuI'ka*<2107><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 21:12:43: [voteban.amxx] Вотебан запустил Ipse [Str,RUS] против 8) = X) rpa4 STEAM_0:0:555347714
+L 05/29/2011 - 21:12:58: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:555347714 is banned for 60 minutes
+L 05/29/2011 - 21:13:00: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил 8) = X) rpa4<STEAM_0:0:555347714> на 1 час (60 минут). Причина: VIP->Ipse [Str,RUS].
+L 05/29/2011 - 21:14:24: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2140><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 05/29/2011 - 21:18:36: -------- Mapchange to zm_neris --------
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "vk<2131><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<2134><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "Euforia<2138><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "RatatuI'ka*<2107><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "VANDAL<2125><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "Dumka<2091><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 21:18:37: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2140><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 05/29/2011 - 21:18:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 21:18:44: [admin_amxbans.amxx] Login: "Dumka<2146><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 21:21:10: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 05/29/2011 - 21:26:25: [admin_amxbans.amxx] Login: ".::T9o::.<2151><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmnopqtu") (address "95.55.44.167")
+L 05/29/2011 - 21:27:14: [adminchat.amxx] Chat: ".::T9o::.<2151><STEAM_0:0:1836044300><>" chat " 3gaPOBA !"
+L 05/29/2011 - 21:30:42: [adminchat.amxx] Chat: ".::T9o::.<2151><STEAM_0:0:1836044300><>" psay "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" "CMOr 3a6aHuTb???"
+L 05/29/2011 - 21:36:11: [admin_amxbans.amxx] Login: "GDfresh<2156><STEAM_0:4:1004299258><>" became an admin (account "GDfresh") (access "at") (address "77.37.228.222")
+L 05/29/2011 - 21:38:46: [plmenu.amxx] Kick: ".::T9o::.<2151><STEAM_0:0:1836044300><>" kick "ZLoY<2147><STEAM_0:0:735965705><>"
+L 05/29/2011 - 21:41:29: [mapsmenu.amxx] Cmd: "RatatuI'ka*<2107><STEAM_0:0:1236438227><>" changelevel "zm_south_escape_b2"
+L 05/29/2011 - 21:41:31: -------- Mapchange to zm_south_escape_b2 --------
+L 05/29/2011 - 21:41:32: [admin_amxbans.amxx] Login: "GDfresh<2156><STEAM_0:4:1004299258><>" became an admin (account "GDfresh") (access "at") (address "77.37.228.222")
+L 05/29/2011 - 21:41:32: [admin_amxbans.amxx] Login: "RatatuI'ka*<2107><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 21:41:32: [admin_amxbans.amxx] Login: "Euforia<2138><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 21:41:32: [admin_amxbans.amxx] Login: "VANDAL<2125><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 21:41:32: [admin_amxbans.amxx] Login: "Dumka<2146><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 21:41:33: [admin_amxbans.amxx] Login: ".::T9o::.<2151><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmnopqtu") (address "95.55.44.167")
+L 05/29/2011 - 21:41:33: [admin_amxbans.amxx] Login: "Ipse [Str,RUS]<2134><STEAM_0:4:1097281227><>" became an admin (account "Ipse [Str,RUS]") (access "at") (address "46.191.146.43")
+L 05/29/2011 - 21:41:33: [admin_amxbans.amxx] Login: "VANDAL<2175><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 21:41:33: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 05/29/2011 - 21:41:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 21:42:19: [admin_amxbans.amxx] Login: "GDfresh<2180><STEAM_0:4:1004299258><>" became an admin (account "GDfresh") (access "at") (address "77.37.228.222")
+L 05/29/2011 - 21:42:56: [adminchat.amxx] Chat: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" chat " Pom 9I Katbky tak u He yBugeJI noka)) a Bgpyr B tonky Ha !)"
+L 05/29/2011 - 21:43:12: [adminchat.amxx] Chat: ".::T9o::.<2151><STEAM_0:0:1836044300><>" chat " a nPuKO/\ CPEgu HAC CEu'4aC))"
+L 05/29/2011 - 21:47:00: [adminvote.amxx] Vote: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" vote custom (question "3a6aHutb_Raty?") (option#1 "Het") (option#2 "Het")
+L 05/29/2011 - 21:47:13: [adminvote.amxx] Vote: Voting successful (got "8") (needed "1") (result "3a6aHutb_Raty? - Het")
+L 05/29/2011 - 21:47:53: [adminvote.amxx] Vote: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" vote custom (question "3a6aHutb_Pomky?") (option#1 "ga") (option#2 "ga")
+L 05/29/2011 - 21:48:05: [adminvote.amxx] Vote: Voting successful (got "7") (needed "1") (result "3a6aHutb_Pomky? - ga")
+L 05/29/2011 - 21:48:40: [adminvote.amxx] Vote: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" vote custom (question "Dumka_4utak?") (option#1 "9I") (option#2 "ero")
+L 05/29/2011 - 21:48:52: [adminvote.amxx] Vote: Voting successful (got "4") (needed "1") (result "Dumka_4utak? - ero")
+L 05/29/2011 - 21:49:21: [adminvote.amxx] Vote: ".::T9o::.<2151><STEAM_0:0:1836044300><>" vote custom (question ".::T9o::.") (option#1 "Dumka") (option#2 "[o_VIP_o]")
+L 05/29/2011 - 21:49:33: [adminvote.amxx] Vote: Voting successful (got "4") (needed "1") (result ".::T9o::. - [o_VIP_o]")
+L 05/29/2011 - 22:02:50: -------- Mapchange to de_dust --------
+L 05/29/2011 - 22:02:53: [admin_amxbans.amxx] Login: ".::T9o::.<2151><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmnopqtu") (address "95.55.44.167")
+L 05/29/2011 - 22:02:53: [admin_amxbans.amxx] Login: "RatatuI'ka*<2107><STEAM_0:0:1236438227><>" became an admin (account "172.23.65.13") (access "abcdefghijklmnopqrsu") (address "172.23.65.13")
+L 05/29/2011 - 22:02:53: [admin_amxbans.amxx] Login: "VANDAL<2175><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 22:02:53: [admin_amxbans.amxx] Login: "Dumka<2146><STEAM_0:4:1841901954><>" became an admin (account "188.129.206.114") (access "at") (address "188.129.206.114")
+L 05/29/2011 - 22:02:53: [admin_amxbans.amxx] Login: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" became an admin (account "212.55.104.156") (access "abcdefgijmnopqrtu") (address "212.55.104.156")
+L 05/29/2011 - 22:02:54: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 22:05:45: [admin_amxbans.amxx] Login: "VANDAL<2259><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 22:11:19: [plmenu.amxx] Kick: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" kick "N!ki<2253><STEAM_0:4:1149210737><>"
+L 05/29/2011 - 22:12:08: [admin_amxbans.amxx] Login: "Euforia<2279><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:12:10: [admin_amxbans.amxx] Login: "Euforia<2280><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:12:17: [admin_amxbans.amxx] Login: "Euforia<2281><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:12:42: [admin_amxbans.amxx] Login: "~Helena~<2282><STEAM_0:4:2004897642><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.70")
+L 05/29/2011 - 22:14:18: [adminchat.amxx] Chat: ".::T9o::.<2151><STEAM_0:0:1836044300><>" tsay "gPy}I{HEE!!"
+L 05/29/2011 - 22:17:34: [plmenu.amxx] Cmd: "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" transfer "[o_VIP_o]                (^_^)V<2148><STEAM_0:4:446327478><>" (team "TERRORIST")
+L 05/29/2011 - 22:18:28: [amxbans.amxx] .::T9o::.<2151><STEAM_0:0:1836044300><CT> забанил Alberkoke<STEAM_0:4:415059446> на 1 час (60 минут). Причина: Spam.
+L 05/29/2011 - 22:18:36: [voteban.amxx] Вотебан запустил [o_VIP_o]                (^_^)V против Alberkoke STEAM_0:4:415059446
+L 05/29/2011 - 22:18:51: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:4:415059446 is banned for 60 minutes
+L 05/29/2011 - 22:19:20: [plmenu.amxx] Kick: ".::T9o::.<2151><STEAM_0:0:1836044300><>" kick "---===Camelot===---<2202><STEAM_0:4:1417253489><>"
+L 05/29/2011 - 22:19:33: [admin_amxbans.amxx] Login: "Vik<2288><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 22:24:55: -------- Mapchange to zm_202 --------
+L 05/29/2011 - 22:24:56: [admin_amxbans.amxx] Login: "~Helena~<2282><STEAM_0:4:2004897642><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.70")
+L 05/29/2011 - 22:24:56: [admin_amxbans.amxx] Login: ".::T9o::.<2151><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmnopqtu") (address "95.55.44.167")
+L 05/29/2011 - 22:24:56: [admin_amxbans.amxx] Login: "Vik<2288><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 22:24:56: [admin_amxbans.amxx] Login: "Euforia<2281><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:24:57: [admin_amxbans.amxx] Login: "VANDAL<2259><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 22:24:57: [admin_amxbans.amxx] Login: "Euforia<2296><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:24:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 22:25:54: [admin_amxbans.amxx] Login: "~Helena~<2312><STEAM_0:4:2004897642><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.70")
+L 05/29/2011 - 22:26:02: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:02: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:03: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:04: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:04: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:04: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:26:04: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" slap with 0 damage "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:27:28: [admin_amxbans.amxx] Login: "Euforia<2329><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:42:31: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<2357><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 22:42:33: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 22:42:33: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 22:42:33: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 22:42:33: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 22:42:41: [plmenu.amxx] Kick: ".::T9o::.<2151><STEAM_0:0:1836044300><>" kick "RSP154<2289><STEAM_0:0:506440422><>"
+L 05/29/2011 - 22:49:40: -------- Mapchange to zm_dust_base_fin --------
+L 05/29/2011 - 22:49:41: [admin_amxbans.amxx] Login: "Vik<2288><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 22:49:41: [admin_amxbans.amxx] Login: ".::T9o::.<2151><STEAM_0:0:1836044300><>" became an admin (account ".::T9o::.") (access "abcdefgijmnopqtu") (address "95.55.44.167")
+L 05/29/2011 - 22:49:41: [admin_amxbans.amxx] Login: "Euforia<2329><STEAM_0:0:1235555515><>" became an admin (account "Euforia") (access "at") (address "188.123.245.19")
+L 05/29/2011 - 22:49:41: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<2357><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 22:49:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 22:49:46: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 22:49:46: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 22:49:46: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 22:49:46: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 22:52:56: [plmenu.amxx] Cmd: ".::T9o::.<2151><STEAM_0:0:1836044300><>" transfer ".::T9o::.<2151><STEAM_0:0:1836044300><>" (team "TERRORIST")
+L 05/29/2011 - 22:55:55: [adminchat.amxx] Chat: ".::T9o::.<2151><STEAM_0:0:1836044300><>" tsay "nPABu/\bHO Euf!"
+L 05/29/2011 - 22:58:15: [admin_amxbans.amxx] Login: "VANDAL<2376><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 23:00:59: [admin_amxbans.amxx] Login: "vk<2384><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:04:18: [admin_amxbans.amxx] Login: "TaHbko<2385><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 23:05:18: [plmenu.amxx] Kick: ".::T9o::.<2151><STEAM_0:0:1836044300><>" kick "olegan<2381><STEAM_0:0:967511769><>"
+L 05/29/2011 - 23:09:57: -------- Mapchange to zm_army --------
+L 05/29/2011 - 23:09:59: [admin_amxbans.amxx] Login: "TaHbko<2385><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 23:09:59: [admin_amxbans.amxx] Login: "Vik<2288><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 23:09:59: [admin_amxbans.amxx] Login: "vk<2384><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:09:59: [admin_amxbans.amxx] Login: "VANDAL<2376><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 23:09:59: [admin_amxbans.amxx] Login: "[zoom]-_-[zoom]<2357><STEAM_0:0:919467540><>" became an admin (account "[zoom]-_-[zoom]") (access "at") (address "85.26.164.97")
+L 05/29/2011 - 23:09:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 23:10:04: [amxbans.amxx] [Amxbans] Запрос провален!
+L 05/29/2011 - 23:10:04: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 05/29/2011 - 23:10:04: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expired' at line 1 (1064)
+L 05/29/2011 - 23:10:04: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 05/29/2011 - 23:10:08: [admin_amxbans.amxx] Login: "TaHbko<2389><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 23:14:19: [admin_amxbans.amxx] Login: "TaHbko<2394><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 23:17:13: [admin_amxbans.amxx] Login: "TaHbko<2400><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 23:25:17: [admin_amxbans.amxx] Login: "vk<2408><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:25:35: [admin_amxbans.amxx] Login: "vk<2409><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:25:48: [admin_amxbans.amxx] Login: "vk<2410><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:26:04: [admin_amxbans.amxx] Login: "vk<2411><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:27:03: [voteban.amxx] Вотебан запустил Vik против olegan STEAM_0:0:967511769
+L 05/29/2011 - 23:27:18: [voteban.amxx] [AMXX] The vote succeeded: STEAM_0:0:967511769 is banned for 60 minutes
+L 05/29/2011 - 23:27:19: [amxbans.amxx]  Зомби сервер ٩(̾●̮̮̃̾•̃̾)۶ Go Zombie !!!<0><><> забанил olegan<STEAM_0:0:967511769> на 1 час (60 минут). Причина: VIP->Vik.
+L 05/29/2011 - 23:31:12: -------- Mapchange to zm_303 --------
+L 05/29/2011 - 23:31:13: [admin_amxbans.amxx] Login: "VANDAL<2376><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 23:31:13: [admin_amxbans.amxx] Login: "Vik<2288><STEAM_0:4:977883882><>" became an admin (account "Vik") (access "at") (address "109.71.206.221")
+L 05/29/2011 - 23:31:14: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 23:31:35: [admin_amxbans.amxx] Login: "GDfresh<2424><STEAM_0:4:1004299258><>" became an admin (account "GDfresh") (access "at") (address "77.37.228.222")
+L 05/29/2011 - 23:33:57: [admin_amxbans.amxx] Login: "vk<2428><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")
+L 05/29/2011 - 23:34:43: [admin_amxbans.amxx] Login: "TaHbko<2429><STEAM_0:1:40319687><>" became an admin (account "TaHbko") (access "at") (address "109.191.140.114")
+L 05/29/2011 - 23:46:10: [admin_amxbans.amxx] Login: "~Helena~<2431><STEAM_0:4:2004897642><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.70")
+L 05/29/2011 - 23:52:19: -------- Mapchange to zm_xata --------
+L 05/29/2011 - 23:52:20: [admin_amxbans.amxx] Login: "~Helena~<2431><STEAM_0:4:2004897642><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.70")
+L 05/29/2011 - 23:52:20: [admin_amxbans.amxx] Login: "VANDAL<2376><STEAM_0:0:31999920><>" became an admin (account "VANDAL") (access "at") (address "91.205.25.41")
+L 05/29/2011 - 23:52:21: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 05/29/2011 - 23:56:45: [admin_amxbans.amxx] Login: "vk<2451><STEAM_0:4:307173098><>" became an admin (account "vk") (access "at") (address "109.207.194.141")

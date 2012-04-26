@@ -1,0 +1,14 @@
+[en]
+ALREADY_HAVE_BAT = [ZP] You already have a bat!
+BAT_ON_NEXT_SPAWN = [ZP] You will get your bat at next spawn
+GIVE_BAT = [ZP] Now you have bat ! [ longjump / lower gravity / animal friend ] 
+
+[pl]
+ALREADY_HAVE_BAT = [ZP] Masz juz nietoperza!
+BAT_ON_NEXT_SPAWN = [ZP] Dostaniesz nietoperza podczas nastepnego odrodzenia
+GIVE_BAT = [ZP] Zaopiekowales sie nietoperzem ! [ Dodatkowo masz longjump'a / nizsza grawitacje / zwierzaka ] 
+
+[ru]
+ALREADY_HAVE_BAT = [ZP] У тебя уже есть мышь!
+BAT_ON_NEXT_SPAWN = [ZP] Ты получишь мышь, когда возродишься.
+GIVE_BAT = [ZP] Ты получил летучую мышь! [ прыжок / низкая гравитация ] 

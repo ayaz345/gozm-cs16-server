@@ -1,0 +1,1206 @@
+L 06/18/2010 - 17:38:22: Log file started (file "cstrike/addons/amxmodx/configs/csf_anticheat/logs/csf_ac_cdhack.log") (game "cstrike") (amx "1.8.1.3746")
+L 06/18/2010 - 17:38:22: CDHack * Nick: <Padla> , IP: <95.73.119.188> , SteamID: <STEAM_0:4:177591795>
+L 06/18/2010 - 19:30:25: CDHack * Nick: <AK 47 | Dimon> , IP: <91.210.94.147> , SteamID: <STEAM_0:4:486611057>
+L 06/18/2010 - 19:41:12: CDHack * Nick: <~>Black_Angel<~> , IP: <92.100.176.130> , SteamID: <STEAM_0:4:368460658>
+L 06/18/2010 - 22:25:54: CDHack * Nick: <WRCK | Drau> , IP: <89.190.101.162> , SteamID: <STEAM_0:4:94154352>
+L 06/19/2010 - 15:04:41: CDHack * Nick: <::FD GOD::> , IP: <217.118.90.236> , SteamID: <STEAM_0:0:97992800>
+L 06/19/2010 - 15:38:24: CDHack * Nick: <sunr1se.> , IP: <91.200.54.10> , SteamID: <STEAM_0:4:1370822001>
+L 06/19/2010 - 20:02:23: CDHack * Nick: <[Unregistered]ZIZKU> , IP: <91.200.224.8> , SteamID: <STEAM_0:0:2030820956>
+L 06/19/2010 - 22:51:36: CDHack * Nick: <markeloff> , IP: <178.129.4.182> , SteamID: <STEAM_0:4:262943109>
+L 06/20/2010 - 03:37:07: CDHack * Nick: <q.[tm] `nO Pro> , IP: <91.201.176.51> , SteamID: <STEAM_0:4:1299584497>
+L 06/20/2010 - 16:15:30: CDHack * Nick: <r9i6a=))> , IP: <91.122.27.100> , SteamID: <STEAM_0:4:1722010737>
+L 06/20/2010 - 17:10:14: CDHack * Nick: <xxx-krot> , IP: <83.149.3.194> , SteamID: <STEAM_0:0:966925969>
+L 06/20/2010 - 18:55:00: CDHack * Nick: <Hard.eX. > Laban> , IP: <91.210.206.10> , SteamID: <STEAM_0:0:488042261>
+L 06/20/2010 - 21:48:43: CDHack * Nick: <SenS^GameS | > Duster> , IP: <95.52.146.220> , SteamID: <STEAM_0:4:988244851>
+L 06/21/2010 - 16:53:06: CDHack * Nick: <()n_??> , IP: <91.193.70.250> , SteamID: <STEAM_0:4:697111025>
+L 06/21/2010 - 20:50:27: CDHack * Nick: <ROLEX> , IP: <91.191.61.82> , SteamID: <STEAM_0:4:2108731121>
+L 06/22/2010 - 08:08:43: CDHack * Nick: <ELector> , IP: <178.234.123.145> , SteamID: <STEAM_0:4:471041029>
+L 06/22/2010 - 13:59:02: CDHack * Nick: <L_A> , IP: <78.37.238.166> , SteamID: <STEAM_0:4:131687419>
+L 06/22/2010 - 14:50:26: CDHack * Nick: <svR_l jevl 7 mk> , IP: <78.29.32.130> , SteamID: <STEAM_0:4:364806139>
+L 06/22/2010 - 16:21:09: CDHack * Nick: <koLLeGa> , IP: <91.122.193.62> , SteamID: <STEAM_0:4:1271843953>
+L 06/22/2010 - 19:18:36: CDHack * Nick: <Tixuu`>skit> , IP: <92.127.32.197> , SteamID: <STEAM_0:4:910053106>
+L 06/22/2010 - 19:25:36: CDHack * Nick: <ch1xoTka> , IP: <93.100.137.175> , SteamID: <STEAM_0:4:57328498>
+L 06/22/2010 - 21:01:30: CDHack * Nick: <-=OPG=-=RICH=-> , IP: <91.124.71.202> , SteamID: <STEAM_0:4:831377265>
+L 06/23/2010 - 04:19:50: CDHack * Nick: <pR>ZveR> , IP: <89.232.105.185> , SteamID: <STEAM_0:4:135955824>
+L 06/23/2010 - 13:54:19: CDHack * Nick: <eSx|IIeTpo_6aMnep> , IP: <93.175.197.88> , SteamID: <STEAM_0:4:2026678002>
+L 06/23/2010 - 14:06:24: CDHack * Nick: <^max> , IP: <77.45.172.6> , SteamID: <STEAM_0:4:1475897338>
+L 06/23/2010 - 14:35:59: CDHack * Nick: <Padla> , IP: <95.73.113.194> , SteamID: <STEAM_0:4:899077619>
+L 06/23/2010 - 15:49:36: CDHack * Nick: <VANNiJIJIaA_____ICE> , IP: <89.204.10.19> , SteamID: <STEAM_0:4:1563105136>
+L 06/23/2010 - 15:55:26: CDHack * Nick: <VANNiJIJIaA_____ICE> , IP: <188.18.192.89> , SteamID: <STEAM_0:4:2018408450>
+L 06/23/2010 - 18:11:32: CDHack * Nick: <Nils> , IP: <95.73.249.208> , SteamID: <STEAM_0:4:1020450291>
+L 06/23/2010 - 18:43:58: CDHack * Nick: <Yuk[1]N.?> , IP: <91.201.244.50> , SteamID: <STEAM_0:4:1305744881>
+L 06/23/2010 - 18:59:20: CDHack * Nick: <777> , IP: <93.100.126.130> , SteamID: <STEAM_0:4:361841522>
+L 06/24/2010 - 14:02:10: CDHack * Nick: <PeHaT 116 rus> , IP: <89.232.105.226> , SteamID: <STEAM_0:4:630883696>
+L 06/24/2010 - 17:39:02: CDHack * Nick: <sypeer head> , IP: <91.207.88.157> , SteamID: <STEAM_0:4:436344561>
+L 06/24/2010 - 18:18:03: CDHack * Nick: <>Vet@H_Tm.<|>~ZeN^HeLLp@1$eR`~<> , IP: <91.207.98.17> , SteamID: <STEAM_0:4:1545541361>
+L 06/24/2010 - 18:49:14: CDHack * Nick: <qq> , IP: <91.122.169.25> , SteamID: <STEAM_0:0:1226573782>
+L 06/24/2010 - 19:05:07: CDHack * Nick: <CTEPT> , IP: <95.53.149.136> , SteamID: <STEAM_0:4:283438067>
+L 06/24/2010 - 20:52:15: CDHack * Nick: <= CyBeR => , IP: <91.191.98.68> , SteamID: <STEAM_0:4:1990143729>
+L 06/24/2010 - 21:21:44: CDHack * Nick: <EZIZAGA> , IP: <109.237.113.239> , SteamID: <STEAM_0:4:588679146>
+L 06/24/2010 - 21:38:01: CDHack * Nick: <***DIM@S***> , IP: <90.150.250.196> , SteamID: <STEAM_0:4:919812721>
+L 06/25/2010 - 01:15:02: CDHack * Nick: <eL.Gam1ng*tm|FucK!#> , IP: <188.16.77.95> , SteamID: <STEAM_0:4:2064185602>
+L 06/25/2010 - 06:09:49: CDHack * Nick: <KKKKEKKKKSSSS> , IP: <95.72.248.31> , SteamID: <STEAM_0:4:1532122483>
+L 06/25/2010 - 12:02:32: CDHack * Nick: <Jey-Bi ^^,> , IP: <91.193.175.32> , SteamID: <STEAM_0:0:1907027552>
+L 06/25/2010 - 13:13:36: CDHack * Nick: <kJl0H''KeNnY | :D> , IP: <109.165.119.195> , SteamID: <STEAM_0:4:890610666>
+L 06/25/2010 - 15:22:44: CDHack * Nick: <1925> , IP: <91.200.156.247> , SteamID: <STEAM_0:4:794826097>
+L 06/25/2010 - 23:42:47: CDHack * Nick: <$ FANTOM $> , IP: <91.207.114.254> , SteamID: <STEAM_0:4:731322097>
+L 06/26/2010 - 00:18:32: CDHack * Nick: <ORA> , IP: <91.124.245.228> , SteamID: <STEAM_0:4:651480945>
+L 06/26/2010 - 04:31:41: CDHack * Nick: <agent 007> , IP: <91.208.20.72> , SteamID: <STEAM_0:4:1889802609>
+L 06/26/2010 - 07:01:57: CDHack * Nick: <Game.pro | CHE}|{uHKA> , IP: <81.88.213.3> , SteamID: <STEAM_0:4:1430576500>
+L 06/26/2010 - 09:05:06: CDHack * Nick: <VANNiJIJIaA_____ICE> , IP: <89.204.42.80> , SteamID: <STEAM_0:4:2092636016>
+L 06/26/2010 - 10:24:11: CDHack * Nick: <~8)s.bor> , IP: <91.203.168.146> , SteamID: <STEAM_0:4:502928625>
+L 06/26/2010 - 12:35:18: CDHack * Nick: <KpeHdeJIb> , IP: <91.196.72.131> , SteamID: <STEAM_0:0:219437009>
+L 06/26/2010 - 14:58:47: CDHack * Nick: <raspa NooB> , IP: <78.36.79.16> , SteamID: <STEAM_0:4:1552540539>
+L 06/26/2010 - 16:33:43: CDHack * Nick: <34728yer2378tg3fe1d8qs///////od> , IP: <93.123.253.72> , SteamID: <STEAM_0:4:1892732146>
+L 06/26/2010 - 20:12:58: CDHack * Nick: <12> , IP: <109.185.6.22> , SteamID: <STEAM_0:4:1605185002>
+L 06/27/2010 - 21:10:45: CDHack * Nick: <Zippo> , IP: <91.195.97.83> , SteamID: <STEAM_0:4:2099155185>
+L 06/27/2010 - 21:34:52: CDHack * Nick: <maucle> , IP: <95.104.253.189> , SteamID: <STEAM_0:4:173065587>
+L 06/27/2010 - 23:39:56: CDHack * Nick: <[Unregistered]EMJCM> , IP: <91.215.79.52> , SteamID: <STEAM_0:4:1317640945>
+L 06/28/2010 - 10:24:38: CDHack * Nick: <Space Ship> , IP: <91.201.51.76> , SteamID: <STEAM_0:4:1924634097>
+L 06/28/2010 - 15:09:41: CDHack * Nick: <.i.[Smoke][Weed].i.> , IP: <91.122.163.239> , SteamID: <STEAM_0:4:595577969>
+L 06/28/2010 - 20:07:31: CDHack * Nick: <1.6^PRO.m1Le >|~JIexa~> , IP: <92.39.71.59> , SteamID: <STEAM_0:0:764394114>
+L 06/28/2010 - 20:59:32: CDHack * Nick: <KpuBopykuu> , IP: <178.130.2.12> , SteamID: <STEAM_0:0:494368621>
+L 06/28/2010 - 21:29:53: CDHack * Nick: <^Atomic.pro:tm^~Desert Eagle~> , IP: <217.64.27.104> , SteamID: <STEAM_0:4:1621348656>
+L 06/28/2010 - 23:50:56: CDHack * Nick: <kvadrat> , IP: <91.122.49.71> , SteamID: <STEAM_0:4:2000079985>
+L 06/29/2010 - 00:00:27: CDHack * Nick: <MOH_CTEP> , IP: <89.204.30.235> , SteamID: <STEAM_0:4:555816816>
+L 07/09/2010 - 22:36:17: CDHack * Nick: <maxping> , IP: <93.189.74.93> , SteamID: <STEAM_0:4:2047553522>
+L 07/09/2010 - 23:43:01: CDHack * Nick: <(^^,)> , IP: <90.151.109.110> , SteamID: <STEAM_0:4:1670953713>
+L 07/09/2010 - 23:47:57: CDHack * Nick: <MASINSKA UBICA> , IP: <91.191.18.218> , SteamID: <STEAM_0:4:967257841>
+L 07/10/2010 - 00:27:05: CDHack * Nick: <Phantom_74> , IP: <94.51.29.123> , SteamID: <STEAM_0:4:1763764467>
+L 07/10/2010 - 09:57:40: CDHack * Nick: <-=KILLER=-> , IP: <78.81.24.3> , SteamID: <STEAM_0:4:1428314619>
+L 07/10/2010 - 10:16:40: CDHack * Nick: <AK 47 | Dimon> , IP: <91.210.94.107> , SteamID: <STEAM_0:4:1627461745>
+L 07/10/2010 - 21:24:48: CDHack * Nick: <[S][C][B] ll>CoRdObA<ll> , IP: <91.139.146.219> , SteamID: <STEAM_0:4:963065073>
+L 07/10/2010 - 21:42:51: CDHack * Nick: <mikkimaus> , IP: <92.101.91.242> , SteamID: <STEAM_0:0:159976578>
+L 07/11/2010 - 02:13:21: CDHack * Nick: <AAA> , IP: <91.192.189.96> , SteamID: <STEAM_0:4:1693487473>
+L 07/11/2010 - 02:20:22: CDHack * Nick: <AweCs*knife | <<<GiT@RiST>>>> , IP: <89.232.105.187> , SteamID: <STEAM_0:4:152733040>
+L 07/11/2010 - 13:09:23: CDHack * Nick: <M> , IP: <89.106.192.238> , SteamID: <STEAM_0:4:600720496>
+L 07/11/2010 - 19:49:43: CDHack * Nick: <Team pro> , IP: <188.134.44.135> , SteamID: <STEAM_0:4:389558786>
+L 07/12/2010 - 00:02:52: CDHack * Nick: <SATANA> , IP: <89.254.200.189> , SteamID: <STEAM_0:4:172625520>
+L 07/12/2010 - 01:08:19: CDHack * Nick: <ORA> , IP: <178.95.53.105> , SteamID: <STEAM_0:4:1614077573>
+L 07/12/2010 - 03:21:46: CDHack * Nick: <Glamour For Better> , IP: <89.20.0.178> , SteamID: <STEAM_0:4:229538672>
+L 07/12/2010 - 20:41:08: CDHack * Nick: <rbl rbl> , IP: <109.126.185.23> , SteamID: <STEAM_0:0:1437965075>
+L 07/13/2010 - 14:44:26: CDHack * Nick: <Owner> , IP: <91.204.156.145> , SteamID: <STEAM_0:4:476059505>
+L 07/13/2010 - 17:14:26: CDHack * Nick: <STK | DaNiEx <3> , IP: <213.133.27.169> , SteamID: <STEAM_0:4:2339766>
+L 07/13/2010 - 19:28:46: CDHack * Nick: <A MHe HpaBuTc9I TaKou' HuK :)> , IP: <109.110.95.115> , SteamID: <STEAM_0:4:1828832874>
+L 07/13/2010 - 20:39:46: CDHack * Nick: <:D> , IP: <89.237.38.58> , SteamID: <STEAM_0:4:1237125104>
+L 07/13/2010 - 22:00:53: CDHack * Nick: <Paraska> , IP: <91.124.194.131> , SteamID: <STEAM_0:4:357519217>
+L 07/14/2010 - 14:06:16: CDHack * Nick: <Na!t#MaR^> , IP: <78.37.239.74> , SteamID: <STEAM_0:4:1910105083>
+L 07/15/2010 - 07:45:49: CDHack * Nick: <-333> , IP: <93.124.7.112> , SteamID: <STEAM_0:4:1823330162>
+L 07/15/2010 - 08:48:24: CDHack * Nick: <maxping> , IP: <93.189.75.156> , SteamID: <STEAM_0:4:445362162>
+L 07/15/2010 - 23:39:03: CDHack * Nick: <zewru> , IP: <88.216.139.50> , SteamID: <STEAM_0:4:1307286896>
+L 07/16/2010 - 12:49:35: CDHack * Nick: <PIT-BULL> , IP: <91.190.67.1> , SteamID: <STEAM_0:4:1410313841>
+L 07/16/2010 - 13:03:13: CDHack * Nick: <Hooligans> , IP: <93.100.135.33> , SteamID: <STEAM_0:4:1148044146>
+L 07/16/2010 - 18:03:48: CDHack * Nick: <GAVNOMES> , IP: <92.126.114.209> , SteamID: <STEAM_0:4:1008160370>
+L 07/16/2010 - 19:31:12: CDHack * Nick: <PvP_uJlu_3aCaJl?.(no sound)> , IP: <91.197.195.118> , SteamID: <STEAM_0:4:1875874801>
+L 07/16/2010 - 23:55:16: CDHack * Nick: <<---PoMka* | 59 Rus^^> , IP: <90.150.215.194> , SteamID: <STEAM_0:4:902150769>
+L 07/17/2010 - 00:52:00: CDHack * Nick: <Phantom_74> , IP: <94.50.28.139> , SteamID: <STEAM_0:4:287336563>
+L 07/17/2010 - 06:33:22: CDHack * Nick: <SoooQa bomj> , IP: <91.210.86.156> , SteamID: <STEAM_0:4:444930161>
+L 07/17/2010 - 07:58:05: CDHack * Nick: <[mU___kEnTu___]***pEnDaL4> , IP: <94.179.138.114> , SteamID: <STEAM_0:4:1844127987>
+L 07/17/2010 - 09:18:24: CDHack * Nick: <[Unregistered]BETRM> , IP: <90.150.46.148> , SteamID: <STEAM_0:4:515455601>
+L 07/17/2010 - 16:16:21: CDHack * Nick: <kent 4> , IP: <91.201.244.139> , SteamID: <STEAM_0:4:290723313>
+L 07/17/2010 - 17:32:51: CDHack * Nick: <_z1p> , IP: <92.39.224.99> , SteamID: <STEAM_0:4:1700684530>
+L 07/18/2010 - 15:37:14: CDHack * Nick: <<|Bce-oK|>**Xom9K.!> , IP: <91.201.247.223> , SteamID: <STEAM_0:4:995464689>
+L 07/18/2010 - 15:53:02: CDHack * Nick: <Soska> , IP: <79.173.80.251> , SteamID: <STEAM_0:4:688269307>
+L 07/18/2010 - 16:45:53: CDHack * Nick: <mr.pupkin> , IP: <78.25.151.126> , SteamID: <STEAM_0:0:1363091240>
+L 07/18/2010 - 17:27:29: CDHack * Nick: </> , IP: <178.44.233.74> , SteamID: <STEAM_0:4:1910171397>
+L 07/18/2010 - 19:29:57: CDHack * Nick: <mym> , IP: <91.203.170.195> , SteamID: <STEAM_0:4:897258737>
+L 07/19/2010 - 16:57:54: CDHack * Nick: <}I{OPA-CKNH> , IP: <94.180.20.208> , SteamID: <STEAM_0:4:1017391987>
+L 07/19/2010 - 17:06:32: CDHack * Nick: <Mr. SAMBIST> , IP: <95.68.140.142> , SteamID: <STEAM_0:4:333992819>
+L 07/19/2010 - 19:16:27: CDHack * Nick: <spase> , IP: <91.192.20.66> , SteamID: <STEAM_0:4:1973686641>
+L 07/19/2010 - 20:32:55: CDHack * Nick: <PABLO ESKABARO> , IP: <91.189.51.238> , SteamID: <STEAM_0:4:599240689>
+L 07/19/2010 - 23:23:17: CDHack * Nick: <::<nOoBo4eK>::Mc_Flash> , IP: <95.132.33.201> , SteamID: <STEAM_0:4:809415539>
+L 07/20/2010 - 07:43:45: CDHack * Nick: <TranZ> , IP: <89.254.236.251> , SteamID: <STEAM_0:4:693636720>
+L 07/20/2010 - 09:54:52: CDHack * Nick: <BaMnuP> , IP: <91.205.208.36> , SteamID: <STEAM_0:4:1187387377>
+L 07/20/2010 - 11:14:18: CDHack * Nick: <*Rumyan> , IP: <91.185.63.84> , SteamID: <STEAM_0:4:2125573617>
+L 07/20/2010 - 15:19:04: CDHack * Nick: <Elegant> , IP: <91.203.170.208> , SteamID: <STEAM_0:4:1023087857>
+L 07/20/2010 - 15:38:09: CDHack * Nick: <l9x> , IP: <78.37.240.99> , SteamID: <STEAM_0:4:1700160507>
+L 07/20/2010 - 15:41:15: CDHack * Nick: <l9x> , IP: <78.37.212.114> , SteamID: <STEAM_0:4:1841587195>
+L 07/20/2010 - 16:24:53: CDHack * Nick: <III> , IP: <91.124.91.16> , SteamID: <STEAM_0:4:1552142193>
+L 07/20/2010 - 18:43:57: CDHack * Nick: <Phantom_74> , IP: <188.18.237.193> , SteamID: <STEAM_0:4:878245890>
+L 07/21/2010 - 00:55:08: CDHack * Nick: <TORENT VKL> , IP: <91.124.204.24> , SteamID: <STEAM_0:4:1489522545>
+L 07/21/2010 - 13:47:10: CDHack * Nick: <Player> , IP: <91.148.86.188> , SteamID: <STEAM_0:4:176503665>
+L 07/21/2010 - 14:02:12: CDHack * Nick: <3.bl> , IP: <95.71.238.177> , SteamID: <STEAM_0:4:207180531>
+L 07/21/2010 - 15:32:54: CDHack * Nick: <[Unregistered]OBOTH> , IP: <91.122.42.254> , SteamID: <STEAM_0:4:733695089>
+L 07/21/2010 - 18:24:24: CDHack * Nick: <o4enb Pank GaStOrBaYtR> , IP: <91.194.191.247> , SteamID: <STEAM_0:4:795971697>
+L 07/22/2010 - 05:26:24: CDHack * Nick: <kay> , IP: <217.118.92.45> , SteamID: <STEAM_0:4:1107315248>
+L 07/22/2010 - 20:40:37: CDHack * Nick: <{M@K$}> , IP: <91.206.126.233> , SteamID: <STEAM_0:4:537990769>
+L 07/23/2010 - 10:45:29: CDHack * Nick: <lllololll> , IP: <92.39.79.83> , SteamID: <STEAM_0:4:2097799922>
+L 07/23/2010 - 15:58:38: CDHack * Nick: <killer777> , IP: <91.210.86.155> , SteamID: <STEAM_0:4:419764337>
+L 07/23/2010 - 17:14:32: CDHack * Nick: <dimon> , IP: <91.203.164.102> , SteamID: <STEAM_0:4:1744573681>
+L 07/23/2010 - 18:22:27: CDHack * Nick: <Barnis> , IP: <91.187.160.168> , SteamID: <STEAM_0:4:16657649>
+L 07/23/2010 - 22:28:33: CDHack * Nick: <ALLIOT> , IP: <91.211.238.216> , SteamID: <STEAM_0:4:953751793>
+L 07/24/2010 - 07:04:22: CDHack * Nick: <WaTo> , IP: <89.189.191.104> , SteamID: <STEAM_0:4:1626451952>
+L 07/24/2010 - 12:35:12: CDHack * Nick: <y6uvawka<3> , IP: <89.178.251.103> , SteamID: <STEAM_0:4:1733535856>
+L 07/24/2010 - 21:34:38: CDHack * Nick: <[l2joy.ru] Sleg> , IP: <91.185.7.188> , SteamID: <STEAM_0:4:179154417>
+L 07/24/2010 - 23:41:31: CDHack * Nick: <PUMA> , IP: <90.150.65.138> , SteamID: <STEAM_0:4:294566513>
+L 07/25/2010 - 03:21:13: CDHack * Nick: <Girl_Beby> , IP: <91.196.151.205> , SteamID: <STEAM_0:4:845517681>
+L 07/25/2010 - 10:42:51: CDHack * Nick: <sasan> , IP: <178.44.246.23> , SteamID: <STEAM_0:4:1599432453>
+L 07/25/2010 - 14:32:48: CDHack * Nick: <pc.pro | ViPER> , IP: <95.54.28.159> , SteamID: <STEAM_0:4:455109235>
+L 07/25/2010 - 19:29:11: CDHack * Nick: <kolobrzeg> , IP: <89.125.81.116> , SteamID: <STEAM_0:4:1854328816>
+L 07/25/2010 - 20:27:33: CDHack * Nick: <Luffy> , IP: <86.21.188.156> , SteamID: <STEAM_0:4:451967991>
+L 07/25/2010 - 21:33:34: CDHack * Nick: <National Team Russia> , IP: <95.27.47.83> , SteamID: <STEAM_0:4:2100952307>
+L 07/25/2010 - 23:34:14: CDHack * Nick: <SKYNETUGA> , IP: <2.80.74.147> , SteamID: <STEAM_0:4:487283037>
+L 07/26/2010 - 00:21:25: CDHack * Nick: <ST 100 iz 100> , IP: <91.201.177.85> , SteamID: <STEAM_0:4:2121700849>
+L 07/26/2010 - 01:32:51: CDHack * Nick: <Faka> , IP: <95.215.254.63> , SteamID: <STEAM_0:4:1263606515>
+L 07/26/2010 - 01:39:23: CDHack * Nick: <Venom> , IP: <91.201.246.121> , SteamID: <STEAM_0:4:1750406641>
+L 07/26/2010 - 08:03:24: CDHack * Nick: <Sladko> , IP: <95.106.82.207> , SteamID: <STEAM_0:4:856114291>
+L 07/26/2010 - 09:16:42: CDHack * Nick: <Last Shot^Fokus[NIK]~> , IP: <91.197.207.223> , SteamID: <STEAM_0:4:994677745>
+L 07/26/2010 - 13:46:02: CDHack * Nick: <Grey^> , IP: <93.123.253.52> , SteamID: <STEAM_0:4:1322306802>
+L 07/26/2010 - 13:51:26: CDHack * Nick: <EleCtoR> , IP: <95.179.96.254> , SteamID: <STEAM_0:4:731785459>
+L 07/26/2010 - 18:06:35: CDHack * Nick: <BooM3D|VL@D> , IP: <193.151.107.40> , SteamID: <STEAM_0:4:1083947708>
+L 07/26/2010 - 23:53:32: CDHack * Nick: <We_F_The_F|>2c19<|> , IP: <109.205.254.36> , SteamID: <STEAM_0:0:1751195526>
+L 07/27/2010 - 07:47:45: CDHack * Nick: <tyuii> , IP: <89.31.118.163> , SteamID: <STEAM_0:4:85294832>
+L 07/27/2010 - 12:07:03: CDHack * Nick: <UGP I Vanchik> , IP: <89.254.200.12> , SteamID: <STEAM_0:4:1388973680>
+L 07/27/2010 - 12:44:14: CDHack * Nick: <:(> , IP: <89.222.225.141> , SteamID: <STEAM_0:4:308190832>
+L 07/27/2010 - 12:58:33: CDHack * Nick: <[war3ft.ru]FIIJB> , IP: <95.106.96.168> , SteamID: <STEAM_0:4:10372211>
+L 07/27/2010 - 14:01:00: CDHack * Nick: <`[C*H*E*A*T*E*R]`> , IP: <89.232.105.32> , SteamID: <STEAM_0:4:1150977392>
+L 07/27/2010 - 15:12:52: CDHack * Nick: <W1n |ConTinenTal Baby|17.4|> , IP: <91.191.203.103> , SteamID: <STEAM_0:4:1733013233>
+L 07/27/2010 - 19:54:28: CDHack * Nick: <Ziom> , IP: <91.150.220.171> , SteamID: <STEAM_0:4:20986481>
+L 07/28/2010 - 00:52:20: CDHack * Nick: <:(> , IP: <91.186.247.154> , SteamID: <STEAM_0:4:433433713>
+L 07/28/2010 - 10:36:51: CDHack * Nick: <alfa-strike.net> , IP: <91.206.126.240> , SteamID: <STEAM_0:4:747705969>
+L 07/28/2010 - 11:35:28: CDHack * Nick: <beZp0leZn11> , IP: <90.150.112.24> , SteamID: <STEAM_0:0:1433903767>
+L 07/28/2010 - 12:44:23: CDHack * Nick: <name> , IP: <91.185.16.8> , SteamID: <STEAM_0:4:1353068017>
+L 07/28/2010 - 13:50:46: CDHack * Nick: <maxping> , IP: <93.189.75.16> , SteamID: <STEAM_0:4:1552658418>
+L 07/28/2010 - 17:39:28: CDHack * Nick: <shAf*> , IP: <85.26.233.46> , SteamID: <STEAM_0:0:1777323816>
+L 07/29/2010 - 05:02:05: CDHack * Nick: <[6e3 aHTu4uTa]Paxan> , IP: <91.206.126.244> , SteamID: <STEAM_0:4:781260401>
+L 07/29/2010 - 12:50:13: CDHack * Nick: <pos'olok TillyKKe =)> , IP: <91.189.157.157> , SteamID: <STEAM_0:4:442544113>
+L 07/29/2010 - 12:57:09: CDHack * Nick: <AFK> , IP: <91.197.21.224> , SteamID: <STEAM_0:0:1300906669>
+L 07/29/2010 - 13:45:58: CDHack * Nick: <<<<---Meg@--->>>{Ramazan}> , IP: <95.172.106.203> , SteamID: <STEAM_0:4:823863155>
+L 07/29/2010 - 15:47:51: CDHack * Nick: <APFK> , IP: <89.169.105.206> , SteamID: <STEAM_0:4:865773040>
+L 07/29/2010 - 16:03:02: CDHack * Nick: <TR@1H3R> , IP: <95.167.134.70> , SteamID: <STEAM_0:4:2012029683>
+L 07/29/2010 - 16:15:31: CDHack * Nick: <Tuzik> , IP: <91.185.59.163> , SteamID: <STEAM_0:4:87272945>
+L 07/29/2010 - 17:52:00: CDHack * Nick: <o5 smoke> , IP: <94.31.155.224> , SteamID: <STEAM_0:4:618921715>
+L 07/29/2010 - 18:34:49: CDHack * Nick: <KobrA> , IP: <91.202.92.238> , SteamID: <STEAM_0:0:1709803176>
+L 07/29/2010 - 18:57:03: CDHack * Nick: <No3 | AngelofDeath> , IP: <92.112.78.150> , SteamID: <STEAM_0:4:529090930>
+L 07/29/2010 - 21:36:01: CDHack * Nick: <jensen> , IP: <109.69.25.150> , SteamID: <STEAM_0:4:530764778>
+L 07/29/2010 - 21:48:53: CDHack * Nick: <EleCtoR> , IP: <95.179.95.176> , SteamID: <STEAM_0:4:209823987>
+L 07/30/2010 - 05:40:28: CDHack * Nick: <SFF666> , IP: <213.5.105.159> , SteamID: <STEAM_0:4:454751158>
+L 07/30/2010 - 15:16:32: CDHack * Nick: <Mix>_<ony> , IP: <89.254.208.151> , SteamID: <STEAM_0:4:524684912>
+L 07/30/2010 - 15:18:27: CDHack * Nick: <VaH9> , IP: <91.195.172.218> , SteamID: <STEAM_0:4:972558577>
+L 07/30/2010 - 17:06:18: CDHack * Nick: <NTL> , IP: <89.222.225.148> , SteamID: <STEAM_0:4:517906032>
+L 07/30/2010 - 17:25:22: CDHack * Nick: <EleCtoR> , IP: <178.234.123.21> , SteamID: <STEAM_0:4:1578337285>
+L 07/30/2010 - 17:59:20: CDHack * Nick: <;D> , IP: <217.118.78.110> , SteamID: <STEAM_0:4:1669941808>
+L 07/30/2010 - 18:45:26: CDHack * Nick: <meow !> , IP: <93.81.18.143> , SteamID: <STEAM_0:4:321346034>
+L 07/31/2010 - 12:25:15: CDHack * Nick: <bfg> , IP: <178.94.90.14> , SteamID: <STEAM_0:4:1401118213>
+L 07/31/2010 - 16:05:53: CDHack * Nick: <Srx`[salomon48]> , IP: <109.172.40.149> , SteamID: <STEAM_0:4:507127658>
+L 07/31/2010 - 17:03:30: CDHack * Nick: <yghht> , IP: <217.197.246.187> , SteamID: <STEAM_0:4:156570544>
+L 07/31/2010 - 20:18:18: CDHack * Nick: <Damn, you suck!> , IP: <92.50.244.84> , SteamID: <STEAM_0:4:2127849586>
+L 07/31/2010 - 23:10:58: CDHack * Nick: <$007$> , IP: <83.234.74.112> , SteamID: <STEAM_0:4:1821049973>
+L 08/01/2010 - 00:48:59: CDHack * Nick: <My Name> , IP: <79.111.143.114> , SteamID: <STEAM_0:4:1844037371>
+L 08/01/2010 - 04:21:03: CDHack * Nick: <[p47]sergei> , IP: <91.147.54.7> , SteamID: <STEAM_0:4:1463105777>
+L 08/01/2010 - 08:30:15: CDHack * Nick: <donald duck> , IP: <85.26.233.151> , SteamID: <STEAM_0:4:526056566>
+L 08/01/2010 - 14:01:01: CDHack * Nick: <SpoKe^> , IP: <93.123.253.98> , SteamID: <STEAM_0:4:1708182770>
+L 08/01/2010 - 15:56:07: CDHack * Nick: <[l2joy.ru] Sleg> , IP: <91.185.16.247> , SteamID: <STEAM_0:4:791031281>
+L 08/01/2010 - 16:43:52: CDHack * Nick: <cawa> , IP: <95.135.68.147> , SteamID: <STEAM_0:4:487338739>
+L 08/01/2010 - 18:39:36: CDHack * Nick: <Almedin> , IP: <91.191.29.131> , SteamID: <STEAM_0:4:354463473>
+L 08/01/2010 - 19:57:05: CDHack * Nick: <progre55> , IP: <87.96.182.148> , SteamID: <STEAM_0:4:519389559>
+L 08/01/2010 - 20:29:38: CDHack * Nick: <BoLwOy-BrAt> , IP: <91.185.27.47> , SteamID: <STEAM_0:4:1126411761>
+L 08/01/2010 - 23:56:42: CDHack * Nick: <.:: FANTIK ::.> , IP: <94.141.58.145> , SteamID: <STEAM_0:4:473118707>
+L 08/02/2010 - 10:06:50: CDHack * Nick: <KpuBopyKue*tm | - X Game's> , IP: <213.191.5.136> , SteamID: <STEAM_0:4:279752374>
+L 08/02/2010 - 12:00:00: CDHack * Nick: <[l2joy.ru] Sleg> , IP: <91.185.16.67> , SteamID: <STEAM_0:4:1965436401>
+L 08/02/2010 - 13:59:26: CDHack * Nick: <DANIK_BY_MOSKOW> , IP: <91.197.11.254> , SteamID: <STEAM_0:0:332964211>
+L 08/02/2010 - 18:24:21: CDHack * Nick: <^KeP^> , IP: <91.192.217.195> , SteamID: <STEAM_0:4:893555057>
+L 08/02/2010 - 19:23:52: CDHack * Nick: <cosmos> , IP: <94.24.234.51> , SteamID: <STEAM_0:4:1297841523>
+L 08/02/2010 - 20:29:25: CDHack * Nick: <LOLka> , IP: <188.17.171.41> , SteamID: <STEAM_0:4:1081866626>
+L 08/02/2010 - 20:40:59: CDHack * Nick: <6ol'shue cuc'ku - eto pezdo :D> , IP: <62.118.149.62> , SteamID: <STEAM_0:4:1273285187>
+L 08/02/2010 - 21:53:23: CDHack * Nick: <Mala:)> , IP: <91.192.0.2> , SteamID: <STEAM_0:4:1437471089>
+L 08/02/2010 - 22:19:49: CDHack * Nick: <m1kewa :3> , IP: <78.106.2.241> , SteamID: <STEAM_0:4:741295227>
+L 08/03/2010 - 08:40:52: CDHack * Nick: <@Maksim@> , IP: <94.51.199.79> , SteamID: <STEAM_0:4:1934485747>
+L 08/03/2010 - 12:06:31: CDHack * Nick: <>>-HAC-PATb->[58RUS]> , IP: <93.124.95.81> , SteamID: <STEAM_0:4:2080493426>
+L 08/03/2010 - 13:14:44: CDHack * Nick: <eXsplos1on> , IP: <78.25.181.73> , SteamID: <STEAM_0:4:1886715387>
+L 08/03/2010 - 14:09:10: CDHack * Nick: <frost> , IP: <92.101.107.236> , SteamID: <STEAM_0:4:580633586>
+L 08/03/2010 - 16:51:35: CDHack * Nick: <!!!!I(EI(S!!!!!> , IP: <94.143.240.236> , SteamID: <STEAM_0:4:584464115>
+L 08/03/2010 - 18:07:26: CDHack * Nick: <NeKrOn> , IP: <91.122.208.168> , SteamID: <STEAM_0:4:12995697>
+L 08/03/2010 - 21:34:35: CDHack * Nick: <andrei-ka> , IP: <217.118.78.102> , SteamID: <STEAM_0:0:1564468796>
+L 08/03/2010 - 21:36:34: CDHack * Nick: <No Swear> , IP: <95.220.0.1> , SteamID: <STEAM_0:4:1412308851>
+L 08/03/2010 - 22:30:39: CDHack * Nick: <`[C*H*E*A*T*E*R]`> , IP: <213.88.2.66> , SteamID: <STEAM_0:4:1974426934>
+L 08/03/2010 - 23:22:28: CDHack * Nick: <Diablo> , IP: <10.10.82.19> , SteamID: <STEAM_0:4:1560769625>
+L 08/04/2010 - 00:56:46: CDHack * Nick: <y6uBajiko_4uteRoB> , IP: <89.254.214.203> , SteamID: <STEAM_0:4:826609264>
+L 08/04/2010 - 12:49:37: CDHack * Nick: <;D> , IP: <217.118.78.98> , SteamID: <STEAM_0:4:1703496240>
+L 08/04/2010 - 13:05:14: CDHack * Nick: <Malish> , IP: <91.185.7.204> , SteamID: <STEAM_0:4:850243057>
+L 08/05/2010 - 09:51:51: CDHack * Nick: <Player> , IP: <91.124.58.125> , SteamID: <STEAM_0:4:1781747569>
+L 08/05/2010 - 16:39:45: CDHack * Nick: <[S.E.R.E.G.A]> , IP: <91.204.176.11> , SteamID: <STEAM_0:4:1366693745>
+L 08/05/2010 - 19:24:32: CDHack * Nick: <tapokteam.topman> , IP: <91.122.139.49> , SteamID: <STEAM_0:4:1282133105>
+L 08/05/2010 - 22:12:44: CDHack * Nick: <DeMoN@ Pro {ClaSIC} **> , IP: <91.123.173.169> , SteamID: <STEAM_0:4:7916785>
+L 08/06/2010 - 13:18:41: CDHack * Nick: <zlat.tm[clan]_pRo_DAXAKA> , IP: <91.206.54.25> , SteamID: <STEAM_0:4:1479874161>
+L 08/06/2010 - 16:09:32: CDHack * Nick: <*[CrAzY]*> , IP: <95.53.143.99> , SteamID: <STEAM_0:4:1701440499>
+L 08/06/2010 - 17:25:13: CDHack * Nick: <kpolik 4it 9 cnalil> , IP: <78.36.148.95> , SteamID: <STEAM_0:4:2070176635>
+L 08/06/2010 - 17:56:44: CDHack * Nick: <My Name> , IP: <79.111.28.238> , SteamID: <STEAM_0:4:597706491>
+L 08/06/2010 - 18:45:19: CDHack * Nick: <MONOLITObELL> , IP: <78.36.140.185> , SteamID: <STEAM_0:4:141058939>
+L 08/06/2010 - 20:42:14: CDHack * Nick: <*PrO* =WhO+> , IP: <78.61.168.18> , SteamID: <STEAM_0:4:1576693755>
+L 08/07/2010 - 04:55:27: CDHack * Nick: <[X-StyLe^]Pa^ssIon_c R y`> , IP: <91.124.38.165> , SteamID: <STEAM_0:4:104681329>
+L 08/07/2010 - 11:51:54: CDHack * Nick: <angmon> , IP: <188.162.222.194> , SteamID: <STEAM_0:4:901849090>
+L 08/07/2010 - 15:36:02: CDHack * Nick: <scorpion> , IP: <85.26.232.15> , SteamID: <STEAM_0:4:1398439030>
+L 08/07/2010 - 16:30:38: CDHack * Nick: <Malish> , IP: <91.185.16.210> , SteamID: <STEAM_0:4:1034300913>
+L 08/07/2010 - 20:29:42: CDHack * Nick: <kill_m@sTeR___???> , IP: <91.204.177.36> , SteamID: <STEAM_0:4:1190565745>
+L 08/07/2010 - 21:12:15: CDHack * Nick: <snOOper> , IP: <78.111.154.48> , SteamID: <STEAM_0:4:1289963259>
+L 08/08/2010 - 09:55:41: CDHack * Nick: <Kill You> , IP: <188.17.254.203> , SteamID: <STEAM_0:4:827423106>
+L 08/08/2010 - 12:07:01: CDHack * Nick: <Fors UA> , IP: <95.134.22.98> , SteamID: <STEAM_0:4:1705325171>
+L 08/08/2010 - 12:46:33: CDHack * Nick: <[mT]3.bl> , IP: <178.44.234.78> , SteamID: <STEAM_0:4:1943758597>
+L 08/08/2010 - 13:13:54: CDHack * Nick: <@nt()n> , IP: <91.211.28.250> , SteamID: <STEAM_0:4:698358001>
+L 08/08/2010 - 15:02:28: CDHack * Nick: <<<=BoXeR=>>> , IP: <126.126.158.34> , SteamID: <STEAM_0:4:1172393571>
+L 08/08/2010 - 21:30:37: CDHack * Nick: <schvarzneger> , IP: <95.78.198.236> , SteamID: <STEAM_0:4:583882355>
+L 08/09/2010 - 11:14:59: CDHack * Nick: <kak tak ?! 0_o> , IP: <91.124.30.180> , SteamID: <STEAM_0:4:245452657>
+L 08/09/2010 - 11:21:58: CDHack * Nick: <Malish> , IP: <91.185.7.207> , SteamID: <STEAM_0:4:858631665>
+L 08/09/2010 - 13:15:36: CDHack * Nick: <CANA> , IP: <91.191.226.49> , SteamID: <STEAM_0:0:87099632>
+L 08/09/2010 - 16:04:41: CDHack * Nick: <player> , IP: <78.36.130.85> , SteamID: <STEAM_0:4:2121229179>
+L 08/09/2010 - 18:08:10: CDHack * Nick: <.eX-Surf.> , IP: <91.187.109.70> , SteamID: <STEAM_0:4:2006494449>
+L 08/09/2010 - 19:16:30: CDHack * Nick: <=(bulat)= X-men Clan [[BlacKHaW> , IP: <85.26.232.248> , SteamID: <STEAM_0:4:685407350>
+L 08/09/2010 - 20:19:55: CDHack * Nick: <cFg.| Smoken> , IP: <91.122.128.20> , SteamID: <STEAM_0:4:1592675441>
+L 08/09/2010 - 20:28:08: CDHack * Nick: <pro/>6aJIDa> , IP: <90.151.215.199> , SteamID: <STEAM_0:4:927316721>
+L 08/09/2010 - 21:09:39: CDHack * Nick: <95 reg> , IP: <89.163.50.50> , SteamID: <STEAM_0:4:1303847152>
+L 08/09/2010 - 21:49:41: CDHack * Nick: <kiloki> , IP: <80.90.125.83> , SteamID: <STEAM_0:4:2098257012>
+L 08/09/2010 - 22:05:08: CDHack * Nick: <Hellboy> , IP: <89.185.92.232> , SteamID: <STEAM_0:4:545271280>
+L 08/10/2010 - 13:06:26: CDHack * Nick: <BTORH[!]k> , IP: <78.25.150.163> , SteamID: <STEAM_0:4:90537467>
+L 08/10/2010 - 18:19:17: CDHack * Nick: <[Pro]><[Gamer]><[KoMap]> , IP: <85.175.204.110> , SteamID: <STEAM_0:4:1674061558>
+L 08/10/2010 - 18:19:25: CDHack * Nick: <.!.(ProGamer).!.> , IP: <85.175.204.159> , SteamID: <STEAM_0:4:457713398>
+L 08/10/2010 - 21:03:08: CDHack * Nick: <wild> , IP: <79.164.122.87> , SteamID: <STEAM_0:4:2131960699>
+L 08/11/2010 - 03:19:58: CDHack * Nick: <n4eJIa> , IP: <109.205.253.53> , SteamID: <STEAM_0:0:224203758>
+L 08/11/2010 - 12:16:37: CDHack * Nick: <Inmate #001> , IP: <91.198.86.193> , SteamID: <STEAM_0:4:872747633>
+L 08/11/2010 - 12:53:18: CDHack * Nick: <JoNY_mO> , IP: <94.41.32.7> , SteamID: <STEAM_0:4:1463707123>
+L 08/11/2010 - 13:06:12: CDHack * Nick: <=(BULAT)= Clan[[BlacKHaWk]]> , IP: <85.26.233.235> , SteamID: <STEAM_0:0:1295770327>
+L 08/11/2010 - 13:33:08: CDHack * Nick: <sanoris 43 RUS> , IP: <89.254.240.167> , SteamID: <STEAM_0:4:123080304>
+L 08/11/2010 - 16:26:23: CDHack * Nick: <lol> , IP: <91.192.170.78> , SteamID: <STEAM_0:0:759149353>
+L 08/11/2010 - 17:36:57: CDHack * Nick: <Shadow> , IP: <91.124.111.102> , SteamID: <STEAM_0:4:1738133361>
+L 08/11/2010 - 20:05:12: CDHack * Nick: <GIGN> , IP: <91.124.113.191> , SteamID: <STEAM_0:4:186044273>
+L 08/11/2010 - 22:47:40: CDHack * Nick: <Rock'n'Roll> , IP: <94.51.71.73> , SteamID: <STEAM_0:4:1879959795>
+L 08/12/2010 - 12:00:35: CDHack * Nick: <olol> , IP: <79.120.89.23> , SteamID: <STEAM_0:4:1594019195>
+L 08/12/2010 - 19:04:15: CDHack * Nick: <Qv8~Lin`> , IP: <91.200.212.9> , SteamID: <STEAM_0:4:1346639217>
+L 08/12/2010 - 19:07:19: CDHack * Nick: <aKRAcrew46> , IP: <77.51.21.41> , SteamID: <STEAM_0:4:1076160762>
+L 08/12/2010 - 22:28:47: CDHack * Nick: <DeLaTi He4uro :D> , IP: <212.13.14.96> , SteamID: <STEAM_0:4:1688827830>
+L 08/12/2010 - 22:56:49: CDHack * Nick: <.!.(ProGamer).!.> , IP: <178.34.161.32> , SteamID: <STEAM_0:4:1157554181>
+L 08/13/2010 - 03:16:54: CDHack * Nick: <Silver_812> , IP: <85.26.183.71> , SteamID: <STEAM_0:4:2004221046>
+L 08/13/2010 - 18:08:59: CDHack * Nick: <Kira> , IP: <89.236.211.201> , SteamID: <STEAM_0:4:809994096>
+L 08/13/2010 - 20:08:41: CDHack * Nick: <Dos> , IP: <95.53.5.118> , SteamID: <STEAM_0:4:1873603571>
+L 08/14/2010 - 10:25:23: CDHack * Nick: <gAm*[R][O][N]> , IP: <89.254.199.119> , SteamID: <STEAM_0:4:1867353712>
+L 08/14/2010 - 17:49:07: CDHack * Nick: <.> , IP: <188.162.112.45> , SteamID: <STEAM_0:4:1108746242>
+L 08/14/2010 - 18:26:27: CDHack * Nick: <Dos> , IP: <95.53.60.252> , SteamID: <STEAM_0:4:716205043>
+L 08/14/2010 - 23:50:13: CDHack * Nick: <trance> , IP: <91.205.130.105> , SteamID: <STEAM_0:4:1617893361>
+L 08/15/2010 - 12:37:54: CDHack * Nick: <Op61T> , IP: <78.85.185.237> , SteamID: <STEAM_0:4:577952763>
+L 08/15/2010 - 16:42:03: CDHack * Nick: <EBANASHKA> , IP: <95.215.253.101> , SteamID: <STEAM_0:4:1716558579>
+L 08/15/2010 - 19:20:06: CDHack * Nick: <pom@HbI4> , IP: <95.165.202.5> , SteamID: <STEAM_0:4:1447764979>
+L 08/15/2010 - 19:29:41: CDHack * Nick: <mina> , IP: <89.232.105.8> , SteamID: <STEAM_0:4:1352303984>
+L 08/16/2010 - 11:31:28: CDHack * Nick: <[PrO_fire]^tm*Vikki*> , IP: <91.202.86.81> , SteamID: <STEAM_0:4:2080707697>
+L 08/16/2010 - 13:53:44: CDHack * Nick: <=(BULAT)= Clan[[BlacKHaWk]]> , IP: <83.149.21.155> , SteamID: <STEAM_0:0:1295770327>
+L 08/16/2010 - 15:54:43: CDHack * Nick: <oops!> , IP: <92.39.71.113> , SteamID: <STEAM_0:4:1812849394>
+L 08/16/2010 - 16:26:01: CDHack * Nick: <S.P.Q.R> , IP: <95.72.223.140> , SteamID: <STEAM_0:4:314692979>
+L 08/16/2010 - 17:22:56: CDHack * Nick: <-ZDW-> , IP: <91.204.20.194> , SteamID: <STEAM_0:4:899946353>
+L 08/16/2010 - 18:05:41: CDHack * Nick: <Mr.Che$ter> , IP: <91.122.251.240> , SteamID: <STEAM_0:4:752077937>
+L 08/16/2010 - 19:27:23: CDHack * Nick: <NooB> , IP: <91.202.241.160> , SteamID: <STEAM_0:4:81171569>
+L 08/16/2010 - 23:28:14: CDHack * Nick: <Krabster18.clan.su> , IP: <91.188.50.198> , SteamID: <STEAM_0:4:934752113>
+L 08/17/2010 - 00:49:26: CDHack * Nick: <Pridumay sebe nik> , IP: <92.53.108.183> , SteamID: <STEAM_0:4:253258738>
+L 08/17/2010 - 03:06:46: CDHack * Nick: <[p47]| MaDaFaKaZ | Nr1 |> , IP: <91.187.103.33> , SteamID: <STEAM_0:4:1142795505>
+L 08/17/2010 - 09:13:40: CDHack * Nick: <USB> , IP: <178.34.166.253> , SteamID: <STEAM_0:4:712859653>
+L 08/17/2010 - 14:02:41: CDHack * Nick: <`N0obKo> , IP: <83.69.83.251> , SteamID: <STEAM_0:4:688378869>
+L 08/17/2010 - 14:35:17: CDHack * Nick: <www.LooKsZonE.ru> , IP: <91.189.54.30> , SteamID: <STEAM_0:4:1538600945>
+L 08/17/2010 - 22:18:26: CDHack * Nick: <Player> , IP: <188.162.99.137> , SteamID: <STEAM_0:0:1530965077>
+L 08/17/2010 - 23:04:49: CDHack * Nick: <Player> , IP: <188.162.104.110> , SteamID: <STEAM_0:0:1530965077>
+L 08/17/2010 - 23:39:42: CDHack * Nick: <Player> , IP: <188.162.105.195> , SteamID: <STEAM_0:0:1530965077>
+L 08/18/2010 - 01:54:51: CDHack * Nick: <--  M@rk!0n! --> , IP: <91.191.44.28> , SteamID: <STEAM_0:4:1522020081>
+L 08/18/2010 - 04:23:39: CDHack * Nick: <oryP4ik> , IP: <91.194.89.178> , SteamID: <STEAM_0:4:226660465>
+L 08/18/2010 - 08:47:10: CDHack * Nick: <rus-86_Bender> , IP: <188.19.160.132> , SteamID: <STEAM_0:4:385775746>
+L 08/18/2010 - 10:37:47: CDHack * Nick: <miki> , IP: <193.188.254.237> , SteamID: <STEAM_0:4:575745852>
+L 08/18/2010 - 18:03:46: CDHack * Nick: <go> , IP: <91.210.148.233> , SteamID: <STEAM_0:4:543430769>
+L 08/18/2010 - 18:43:37: CDHack * Nick: <[Extazy]^pro?!^6aJIbLLI0u_?!> , IP: <89.253.52.163> , SteamID: <STEAM_0:4:87298032>
+L 08/18/2010 - 19:38:40: CDHack * Nick: <Player> , IP: <188.162.113.134> , SteamID: <STEAM_0:0:1530965077>
+L 08/18/2010 - 22:53:07: CDHack * Nick: <4poker> , IP: <92.53.111.237> , SteamID: <STEAM_0:4:572124146>
+L 08/19/2010 - 01:50:02: CDHack * Nick: <Player> , IP: <213.108.17.246> , SteamID: <STEAM_0:4:799459126>
+L 08/19/2010 - 09:32:51: CDHack * Nick: <simple person> , IP: <95.221.254.99> , SteamID: <STEAM_0:4:1699815411>
+L 08/19/2010 - 18:43:46: CDHack * Nick: <Sanek> , IP: <79.139.162.116> , SteamID: <STEAM_0:4:1862219003>
+L 08/19/2010 - 22:21:24: CDHack * Nick: <[Deadmau5]^Euphoria> , IP: <92.54.91.222> , SteamID: <STEAM_0:4:998500978>
+L 08/19/2010 - 23:18:37: CDHack * Nick: <Player> , IP: <91.200.200.8> , SteamID: <STEAM_0:4:1355421041>
+L 08/19/2010 - 23:18:41: CDHack * Nick: <ooPs^^> , IP: <178.120.112.215> , SteamID: <STEAM_0:4:1058426117>
+L 08/19/2010 - 23:18:45: CDHack * Nick: <**Speed**> , IP: <91.200.200.16> , SteamID: <STEAM_0:4:1556747633>
+L 08/19/2010 - 23:18:45: CDHack * Nick: <ZED^(64RUS)> , IP: <95.29.70.191> , SteamID: <STEAM_0:4:185434099>
+L 08/19/2010 - 23:19:08: CDHack * Nick: <deadmou5e> , IP: <91.76.228.221> , SteamID: <STEAM_0:0:1300482059>
+L 08/20/2010 - 10:11:01: CDHack * Nick: <IceMan 75rus> , IP: <95.189.88.95> , SteamID: <STEAM_0:4:2063740915>
+L 08/20/2010 - 10:40:35: CDHack * Nick: <!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!> , IP: <91.191.96.116> , SteamID: <STEAM_0:4:1855860465>
+L 08/20/2010 - 12:06:03: CDHack * Nick: <qqqqq> , IP: <91.146.40.218> , SteamID: <STEAM_0:0:88547064>
+L 08/20/2010 - 12:28:23: CDHack * Nick: <TORETTO> , IP: <217.8.225.83> , SteamID: <STEAM_0:4:2103375152>
+L 08/20/2010 - 13:40:13: CDHack * Nick: <Cs-Spb[clan]<Spanzer>> , IP: <81.94.27.209> , SteamID: <STEAM_0:4:1008983668>
+L 08/20/2010 - 21:49:52: CDHack * Nick: <Contr Team [@] RobbeN> , IP: <91.124.63.111> , SteamID: <STEAM_0:4:1664208753>
+L 08/21/2010 - 12:53:33: CDHack * Nick: <vol.team.kapanyz146> , IP: <89.223.24.76> , SteamID: <STEAM_0:4:1923227376>
+L 08/21/2010 - 13:24:21: CDHack * Nick: <3.bl> , IP: <178.44.215.25> , SteamID: <STEAM_0:4:1480976133>
+L 08/21/2010 - 13:29:28: CDHack * Nick: <loko> , IP: <87.251.152.106> , SteamID: <STEAM_0:4:1642204407>
+L 08/21/2010 - 16:14:55: CDHack * Nick: <=(BULAT)= Clan[[BlacKHaWk]]> , IP: <83.149.21.145> , SteamID: <STEAM_0:0:1295770327>
+L 08/21/2010 - 21:17:25: CDHack * Nick: <[B]KOHTPE|MIHEPAJIKA> , IP: <95.134.154.250> , SteamID: <STEAM_0:0:621546677>
+L 08/22/2010 - 00:18:19: CDHack * Nick: <6op(/)c 6p(/)TBA> , IP: <95.55.235.28> , SteamID: <STEAM_0:4:1524361971>
+L 08/22/2010 - 01:35:37: CDHack * Nick: <[> , IP: <91.204.176.21> , SteamID: <STEAM_0:4:1584797553>
+L 08/22/2010 - 08:24:06: CDHack * Nick: <roma> , IP: <85.173.25.194> , SteamID: <STEAM_0:4:899852278>
+L 08/22/2010 - 12:24:44: CDHack * Nick: <makkirus_PRO***MasTeP_KILL***> , IP: <95.32.227.209> , SteamID: <STEAM_0:4:1012916595>
+L 08/22/2010 - 18:27:17: CDHack * Nick: <S.G pro-TOMAC!> , IP: <188.17.74.81> , SteamID: <STEAM_0:4:2081126786>
+L 08/22/2010 - 19:10:15: CDHack * Nick: <Pro.STARS|FD_GOD> , IP: <217.118.90.161> , SteamID: <STEAM_0:4:67324464>
+L 08/22/2010 - 19:10:17: CDHack * Nick: <Target  +> , IP: <89.201.101.167> , SteamID: <STEAM_0:4:119313904>
+L 08/22/2010 - 19:10:20: CDHack * Nick: <TORETTO> , IP: <92.36.73.171> , SteamID: <STEAM_0:4:17490802>
+L 08/22/2010 - 22:14:52: CDHack * Nick: <bra1n ><> , IP: <94.253.116.161> , SteamID: <STEAM_0:4:68423667>
+L 08/23/2010 - 19:05:48: CDHack * Nick: <BOMj> , IP: <95.55.38.35> , SteamID: <STEAM_0:4:1161652979>
+L 08/23/2010 - 22:56:15: CDHack * Nick: <S.G pro-TOMAC!> , IP: <90.150.215.223> , SteamID: <STEAM_0:4:994425457>
+L 08/24/2010 - 17:21:48: CDHack * Nick: <-=Fled=-> , IP: <91.193.254.115> , SteamID: <STEAM_0:4:1834029553>
+L 08/24/2010 - 18:37:09: CDHack * Nick: <kto tam 4it cyka> , IP: <78.36.150.174> , SteamID: <STEAM_0:4:65364859>
+L 08/24/2010 - 22:38:21: CDHack * Nick: <[All-CS.Net.Ru] User> , IP: <195.91.230.65> , SteamID: <STEAM_0:4:1952275645>
+L 08/24/2010 - 23:39:48: CDHack * Nick: <BACKS$$$> , IP: <188.16.75.107> , SteamID: <STEAM_0:4:1628174594>
+L 08/25/2010 - 05:45:55: CDHack * Nick: <ssss> , IP: <91.211.174.119> , SteamID: <STEAM_0:4:1870207217>
+L 08/25/2010 - 09:20:55: CDHack * Nick: <422{aK-47]-_{]stEpA-51rUs{}113> , IP: <91.210.206.30> , SteamID: <STEAM_0:4:1539905649>
+L 08/25/2010 - 09:28:46: CDHack * Nick: <Noize DM> , IP: <94.79.44.121> , SteamID: <STEAM_0:4:1748522739>
+L 08/25/2010 - 17:43:31: CDHack * Nick: <gruv> , IP: <91.122.164.233> , SteamID: <STEAM_0:4:545016945>
+L 08/25/2010 - 22:56:16: CDHack * Nick: <Skill_Paren> , IP: <93.157.175.170> , SteamID: <STEAM_0:4:33144818>
+L 08/25/2010 - 22:59:25: CDHack * Nick: <stop> , IP: <91.122.152.145> , SteamID: <STEAM_0:4:476204145>
+L 08/26/2010 - 04:32:59: CDHack * Nick: <228> , IP: <95.53.156.156> , SteamID: <STEAM_0:4:450915315>
+L 08/26/2010 - 17:12:16: CDHack * Nick: <9 koka> , IP: <78.36.153.253> , SteamID: <STEAM_0:4:711123835>
+L 08/27/2010 - 12:57:25: CDHack * Nick: <-=Fled=-> , IP: <93.89.214.92> , SteamID: <STEAM_0:4:2059754994>
+L 08/27/2010 - 19:28:25: CDHack * Nick: <jump.?!> , IP: <91.122.187.40> , SteamID: <STEAM_0:4:1089719409>
+L 08/28/2010 - 02:44:58: CDHack * Nick: <wtF> , IP: <82.131.53.253> , SteamID: <STEAM_0:4:708096245>
+L 08/28/2010 - 18:11:07: CDHack * Nick: <3D -MiX- | sTeeL> , IP: <188.134.70.153> , SteamID: <STEAM_0:4:403517954>
+L 08/29/2010 - 07:42:27: CDHack * Nick: <LOyer***@!@> , IP: <91.200.212.6> , SteamID: <STEAM_0:4:1472468337>
+L 08/29/2010 - 13:59:37: CDHack * Nick: <@S.P.R.I.N.T.E.R@> , IP: <91.103.153.246> , SteamID: <STEAM_0:4:803390193>
+L 08/29/2010 - 14:23:41: CDHack * Nick: <Player> , IP: <92.101.135.36> , SteamID: <STEAM_0:4:1189987314>
+L 08/29/2010 - 16:42:10: CDHack * Nick: <Kolpino |EBASHER| enT  *KAKOS*> , IP: <91.193.168.147> , SteamID: <STEAM_0:4:494539249>
+L 08/30/2010 - 20:43:50: CDHack * Nick: <-=Fled=-> , IP: <93.89.212.116> , SteamID: <STEAM_0:4:1858362866>
+L 08/31/2010 - 00:38:54: CDHack * Nick: <Kolpino |EBASHER| enT  *KAKOS*> , IP: <91.193.168.18> , SteamID: <STEAM_0:4:1576669681>
+L 08/31/2010 - 12:05:33: CDHack * Nick: <Macs^^> , IP: <94.26.168.3> , SteamID: <STEAM_0:4:1434090611>
+L 08/31/2010 - 12:42:14: CDHack * Nick: <Ryki Syki> , IP: <95.28.178.249> , SteamID: <STEAM_0:4:678920051>
+L 08/31/2010 - 17:17:27: CDHack * Nick: <IIeTp I> , IP: <94.41.144.5> , SteamID: <STEAM_0:4:1449551347>
+L 09/01/2010 - 03:29:00: CDHack * Nick: <DIESEL> , IP: <194.220.80.40> , SteamID: <STEAM_0:4:1082531645>
+L 09/01/2010 - 10:40:42: CDHack * Nick: <MEGA-OTEC-zaebok/vse_telki_suki> , IP: <89.251.107.47> , SteamID: <STEAM_0:4:1125879024>
+L 09/01/2010 - 21:35:30: CDHack * Nick: <-=ANANIM=-> , IP: <95.72.44.42> , SteamID: <STEAM_0:4:1102599539>
+L 09/02/2010 - 23:44:09: CDHack * Nick: <Kolpino |EBASHER| enT  *KAKOS*> , IP: <91.201.50.71> , SteamID: <STEAM_0:4:2000098801>
+L 09/03/2010 - 00:52:22: CDHack * Nick: <mIx [tm] > Denis.K> , IP: <95.30.12.249> , SteamID: <STEAM_0:4:673742451>
+L 09/03/2010 - 14:28:11: CDHack * Nick: <=P> , IP: <91.200.254.117> , SteamID: <STEAM_0:4:1850807665>
+L 09/03/2010 - 19:56:11: CDHack * Nick: <Lambda> , IP: <10.98.70.125> , SteamID: <STEAM_0:4:1779253337>
+L 09/04/2010 - 04:49:09: CDHack * Nick: <TUZ> , IP: <91.193.206.210> , SteamID: <STEAM_0:4:1036587505>
+L 09/04/2010 - 11:00:40: CDHack * Nick: <Hiplen^TM*_|_*boss> , IP: <85.26.235.195> , SteamID: <STEAM_0:4:895220854>
+L 09/05/2010 - 05:39:43: CDHack * Nick: <MIRON (Alzamay)> , IP: <92.124.29.184> , SteamID: <STEAM_0:4:144756594>
+L 09/05/2010 - 07:14:18: CDHack * Nick: <DirK> , IP: <91.206.19.168> , SteamID: <STEAM_0:4:10983025>
+L 09/05/2010 - 12:35:16: CDHack * Nick: <Isan4ik RPO   .:> , IP: <89.250.6.253> , SteamID: <STEAM_0:4:707595376>
+L 09/05/2010 - 15:24:15: CDHack * Nick: <}|{MyPuK> , IP: <91.144.133.204> , SteamID: <STEAM_0:4:854374769>
+L 09/05/2010 - 17:04:56: CDHack * Nick: <warr1[o]rs> , IP: <178.120.118.76> , SteamID: <STEAM_0:4:1922387205>
+L 09/05/2010 - 18:16:13: CDHack * Nick: <dIM> , IP: <91.194.111.250> , SteamID: <STEAM_0:4:697929841>
+L 09/06/2010 - 19:30:02: CDHack * Nick: <Player> , IP: <91.122.1.8> , SteamID: <STEAM_0:4:1353632881>
+L 09/06/2010 - 21:57:58: CDHack * Nick: <cfg.rush > a?> , IP: <95.30.14.155> , SteamID: <STEAM_0:4:422149747>
+L 09/07/2010 - 00:37:29: CDHack * Nick: <Player> , IP: <91.187.103.42> , SteamID: <STEAM_0:4:1100852465>
+L 09/07/2010 - 10:21:43: CDHack * Nick: <*MoNyAL^tm.~Goo^DD> , IP: <91.196.42.78> , SteamID: <STEAM_0:4:1941640049>
+L 09/07/2010 - 17:16:50: CDHack * Nick: <^MpQ ~ [L]hacko> , IP: <92.52.39.16> , SteamID: <STEAM_0:4:1555950450>
+L 09/07/2010 - 20:21:13: CDHack * Nick: <FP means Fred Perry))> , IP: <80.92.96.112> , SteamID: <STEAM_0:4:1822318452>
+L 09/07/2010 - 20:25:02: CDHack * Nick: <[*UlTrA^KiL3rZ*]-^_^MaKroS ^_^> , IP: <91.134.65.105> , SteamID: <STEAM_0:4:1611575921>
+L 09/07/2010 - 20:35:31: CDHack * Nick: <(***graf***)> , IP: <95.53.176.245> , SteamID: <STEAM_0:4:779512819>
+L 09/07/2010 - 20:38:25: CDHack * Nick: <warr1[o]rs> , IP: <109.232.113.121> , SteamID: <STEAM_0:4:1746306410>
+L 09/08/2010 - 00:50:56: CDHack * Nick: <ecpotuk> , IP: <79.120.96.7> , SteamID: <STEAM_0:4:1461603707>
+L 09/08/2010 - 15:21:38: CDHack * Nick: <B@RCUK> , IP: <79.142.91.3> , SteamID: <STEAM_0:4:1426306683>
+L 09/10/2010 - 08:12:01: CDHack * Nick: <*Geo~Elite~2010*~Hosting> , IP: <91.124.39.75> , SteamID: <STEAM_0:4:1899876209>
+L 09/10/2010 - 14:41:07: CDHack * Nick: <PiDbUlIs``> , IP: <78.57.152.63> , SteamID: <STEAM_0:4:1264741883>
+L 09/10/2010 - 19:03:43: CDHack * Nick: <Pro.STARS|DUMBUzz> , IP: <85.26.232.79> , SteamID: <STEAM_0:4:1935309942>
+L 09/11/2010 - 10:06:46: CDHack * Nick: <Player> , IP: <91.147.255.181> , SteamID: <STEAM_0:4:240236785>
+L 09/11/2010 - 17:31:32: CDHack * Nick: <Impulse*Tr[1]x!?> , IP: <85.192.185.192> , SteamID: <STEAM_0:4:888312182>
+L 09/11/2010 - 20:40:08: CDHack * Nick: <vasya> , IP: <91.200.114.151> , SteamID: <STEAM_0:4:521606513>
+L 09/12/2010 - 10:42:40: CDHack * Nick: <AZWON> , IP: <81.30.177.55> , SteamID: <STEAM_0:4:1333198452>
+L 09/12/2010 - 18:12:00: CDHack * Nick: <Ant0n Silanov> , IP: <80.64.175.24> , SteamID: <STEAM_0:4:1492767092>
+L 09/13/2010 - 14:33:00: CDHack * Nick: <[war3ft.ru]AZWON> , IP: <81.30.188.158> , SteamID: <STEAM_0:4:468745844>
+L 09/14/2010 - 08:08:20: CDHack * Nick: <diman!)xD> , IP: <95.181.13.20> , SteamID: <STEAM_0:4:1588112371>
+L 09/14/2010 - 08:41:32: CDHack * Nick: <[f1]> , IP: <89.222.186.12> , SteamID: <STEAM_0:4:1391664752>
+L 09/14/2010 - 13:11:57: CDHack * Nick: <PRO !> , IP: <94.143.246.226> , SteamID: <STEAM_0:4:634730227>
+L 09/14/2010 - 17:41:22: CDHack * Nick: <Barista> , IP: <91.185.7.215> , SteamID: <STEAM_0:4:1059958257>
+L 09/14/2010 - 17:52:56: CDHack * Nick: <unnamed> , IP: <91.192.237.128> , SteamID: <STEAM_0:4:349737329>
+L 09/15/2010 - 00:21:03: CDHack * Nick: <dizel> , IP: <89.204.65.240> , SteamID: <STEAM_0:4:747542384>
+L 09/15/2010 - 15:58:34: CDHack * Nick: <[WAR].DEVIL.Tm> , IP: <93.100.185.192> , SteamID: <STEAM_0:4:888324978>
+L 09/15/2010 - 17:40:13: CDHack * Nick: <400kg> , IP: <188.187.133.224> , SteamID: <STEAM_0:4:619490434>
+L 09/15/2010 - 21:33:50: CDHack * Nick: <I-O P E U,> , IP: <89.250.160.119> , SteamID: <STEAM_0:4:1870531696>
+L 09/16/2010 - 00:37:02: CDHack * Nick: <400kg^O_o> , IP: <92.100.42.89> , SteamID: <STEAM_0:4:2017149810>
+L 09/16/2010 - 17:28:36: CDHack * Nick: <[o] Isukah> , IP: <88.87.253.234> , SteamID: <STEAM_0:4:567335664>
+L 09/17/2010 - 00:34:40: CDHack * Nick: <He3aBucuMoCTb | StaniS[love]> , IP: <79.139.165.183> , SteamID: <STEAM_0:4:259831035>
+L 09/17/2010 - 10:51:40: CDHack * Nick: <35rus^tm|EcToHu9> , IP: <92.101.147.5> , SteamID: <STEAM_0:4:1449640946>
+L 09/17/2010 - 11:44:01: CDHack * Nick: <Player> , IP: <80.93.118.3> , SteamID: <STEAM_0:4:1427464180>
+L 09/17/2010 - 12:14:48: CDHack * Nick: <Pro[oF] l Freezz> , IP: <188.18.207.244> , SteamID: <STEAM_0:4:784988162>
+L 09/17/2010 - 14:11:29: CDHack * Nick: <GHK'> , IP: <91.206.126.249> , SteamID: <STEAM_0:4:672208497>
+L 09/17/2010 - 14:47:02: CDHack * Nick: <He3aBucuMoCTb | StaniS[love]> , IP: <79.139.164.138> , SteamID: <STEAM_0:4:301741307>
+L 09/17/2010 - 16:22:07: CDHack * Nick: <DeLeTe> , IP: <94.19.80.157> , SteamID: <STEAM_0:4:436631795>
+L 09/17/2010 - 17:55:55: CDHack * Nick: <Evgesha> , IP: <80.70.231.183> , SteamID: <STEAM_0:4:257806964>
+L 09/17/2010 - 18:10:27: CDHack * Nick: <Dr.Shmulge[Pslan]@GREEN@sOsKa> , IP: <81.195.14.94> , SteamID: <STEAM_0:4:2074677492>
+L 09/18/2010 - 02:43:30: CDHack * Nick: <He3aBucuMoCTb | StaniS[love]> , IP: <95.165.147.251> , SteamID: <STEAM_0:4:694658035>
+L 09/18/2010 - 14:24:22: CDHack * Nick: <(((Gormonist)))> , IP: <95.55.216.75> , SteamID: <STEAM_0:4:1900178163>
+L 09/18/2010 - 16:08:49: CDHack * Nick: <*BoSS*> , IP: <91.189.24.10> , SteamID: <STEAM_0:4:1369583601>
+L 09/18/2010 - 20:48:31: CDHack * Nick: <}{0TT@6b)4  [52RUS]> , IP: <94.198.234.129> , SteamID: <STEAM_0:4:341512819>
+L 09/18/2010 - 21:59:44: CDHack * Nick: <fox> , IP: <89.178.99.184> , SteamID: <STEAM_0:4:144681072>
+L 09/19/2010 - 06:05:47: CDHack * Nick: <dedok> , IP: <94.137.43.91> , SteamID: <STEAM_0:4:2033956339>
+L 09/19/2010 - 08:28:42: CDHack * Nick: <|F_o_X_HYdE:)DUMBUzz> , IP: <85.26.235.190> , SteamID: <STEAM_0:4:198966390>
+L 09/19/2010 - 08:32:23: CDHack * Nick: <Tyber> , IP: <178.66.233.223> , SteamID: <STEAM_0:4:995807237>
+L 09/19/2010 - 10:48:42: CDHack * Nick: <xD> , IP: <89.223.25.106> , SteamID: <STEAM_0:4:1638047472>
+L 09/22/2010 - 14:44:43: CDHack * Nick: <[kpot]-Olol> , IP: <85.140.196.132> , SteamID: <STEAM_0:4:382482294>
+L 09/22/2010 - 16:47:29: CDHack * Nick: <Nikita ( 67 rus)> , IP: <95.158.196.205> , SteamID: <STEAM_0:4:843857523>
+L 09/23/2010 - 12:58:00: CDHack * Nick: <SJLABUK-AK47> , IP: <89.189.191.26> , SteamID: <STEAM_0:4:1509011440>
+L 09/25/2010 - 18:14:53: CDHack * Nick: <yaroslav> , IP: <94.181.210.12> , SteamID: <STEAM_0:4:1388784627>
+L 09/25/2010 - 19:00:16: CDHack * Nick: <camper> , IP: <91.196.228.12> , SteamID: <STEAM_0:4:1390154609>
+L 09/25/2010 - 20:28:47: CDHack * Nick: <EBAIIIER_B_CS> , IP: <84.204.162.144> , SteamID: <STEAM_0:4:486479734>
+L 09/25/2010 - 21:26:48: CDHack * Nick: <[Central_Ladoga]_4ifik.tm> , IP: <178.66.133.133> , SteamID: <STEAM_0:4:376229893>
+L 09/26/2010 - 01:47:43: CDHack * Nick: <ky> , IP: <91.193.205.238> , SteamID: <STEAM_0:4:600347121>
+L 09/26/2010 - 15:12:15: CDHack * Nick: <Isukah> , IP: <88.87.254.176> , SteamID: <STEAM_0:4:215046896>
+L 09/26/2010 - 20:44:21: CDHack * Nick: <S.W.A.T> , IP: <89.189.140.138> , SteamID: <STEAM_0:4:300429296>
+L 09/27/2010 - 14:57:05: CDHack * Nick: <Gaara> , IP: <89.23.3.184> , SteamID: <STEAM_0:4:145750768>
+L 09/28/2010 - 09:38:47: CDHack * Nick: <kislO> , IP: <77.45.173.222> , SteamID: <STEAM_0:4:1006168058>
+L 09/28/2010 - 14:53:38: CDHack * Nick: <AZWON> , IP: <94.41.84.202> , SteamID: <STEAM_0:4:830760435>
+L 09/28/2010 - 17:14:28: CDHack * Nick: <Player> , IP: <80.91.189.122> , SteamID: <STEAM_0:4:1777392884>
+L 09/28/2010 - 18:04:10: CDHack * Nick: <Player> , IP: <188.225.180.19> , SteamID: <STEAM_0:4:1567883650>
+L 09/29/2010 - 02:14:08: CDHack * Nick: <[Othernet.ru] bullet666> , IP: <91.122.203.124> , SteamID: <STEAM_0:4:1791741041>
+L 09/29/2010 - 13:24:09: CDHack * Nick: <COLOVEI> , IP: <95.53.165.73> , SteamID: <STEAM_0:4:1887235059>
+L 09/29/2010 - 14:32:12: CDHack * Nick: <OTMOPO3Ok> , IP: <78.37.207.83> , SteamID: <STEAM_0:4:2101994491>
+L 09/29/2010 - 17:01:04: CDHack * Nick: <28 CAHTNMETPOB> , IP: <91.189.166.47> , SteamID: <STEAM_0:4:1132277745>
+L 09/29/2010 - 21:56:26: CDHack * Nick: <grek^7,40[Harlem]> , IP: <78.36.177.211> , SteamID: <STEAM_0:4:1031201659>
+L 09/29/2010 - 23:29:21: CDHack * Nick: <gukuu> , IP: <95.55.153.63> , SteamID: <STEAM_0:4:1264773875>
+L 10/01/2010 - 07:25:45: CDHack * Nick: <666> , IP: <91.122.193.48> , SteamID: <STEAM_0:4:1288621169>
+L 10/01/2010 - 07:54:46: CDHack * Nick: <MaHb9IK c Bu6PaToPoM> , IP: <91.201.177.78> , SteamID: <STEAM_0:4:1945540081>
+L 10/01/2010 - 13:49:53: CDHack * Nick: <urpok> , IP: <94.237.244.225> , SteamID: <STEAM_0:4:609486835>
+L 10/01/2010 - 18:26:58: CDHack * Nick: <[Othernet.ru] Mayonez> , IP: <62.220.32.150> , SteamID: <STEAM_0:4:532553539>
+L 10/03/2010 - 04:52:04: CDHack * Nick: <.:BinGo:.> , IP: <178.236.128.249> , SteamID: <STEAM_0:4:678299397>
+L 10/03/2010 - 05:43:54: CDHack * Nick: <<<.::[-=V!RY$=-]::.>>> , IP: <95.190.58.218> , SteamID: <STEAM_0:4:968044147>
+L 10/03/2010 - 11:42:37: CDHack * Nick: <max> , IP: <195.140.128.200> , SteamID: <STEAM_0:0:222588327>
+L 10/03/2010 - 13:27:29: CDHack * Nick: <Boys Noizer> , IP: <91.189.49.85> , SteamID: <STEAM_0:4:2117513201>
+L 10/03/2010 - 13:33:23: CDHack * Nick: <Smuk> , IP: <95.132.133.123> , SteamID: <STEAM_0:4:1768731507>
+L 10/04/2010 - 03:17:19: CDHack * Nick: <cykaaa> , IP: <79.173.80.252> , SteamID: <STEAM_0:4:713435131>
+L 10/04/2010 - 17:19:16: CDHack * Nick: <Kinder.> , IP: <91.122.205.81> , SteamID: <STEAM_0:4:2085145713>
+L 10/04/2010 - 18:16:44: CDHack * Nick: <bit> , IP: <95.53.161.23> , SteamID: <STEAM_0:4:1602153459>
+L 10/05/2010 - 18:40:17: CDHack * Nick: <Gaara> , IP: <89.23.19.253> , SteamID: <STEAM_0:4:707263216>
+L 10/06/2010 - 12:00:35: CDHack * Nick: <Player> , IP: <188.134.40.228> , SteamID: <STEAM_0:4:649736706>
+L 10/06/2010 - 19:48:03: CDHack * Nick: <>|OCA|CCCP|Mr.*KeKc_Pro<^> , IP: <83.217.30.60> , SteamID: <STEAM_0:4:1252072949>
+L 10/06/2010 - 21:53:37: CDHack * Nick: <JleHa=)> , IP: <46.118.151.79> , SteamID: <STEAM_0:4:1936050763>
+L 10/07/2010 - 17:17:14: CDHack * Nick: <grek^7,40[Harlem]> , IP: <78.36.180.22> , SteamID: <STEAM_0:4:1609851771>
+L 10/08/2010 - 13:10:08: CDHack * Nick: <BooMM.BoXX> , IP: <80.251.113.57> , SteamID: <STEAM_0:4:1209437428>
+L 10/08/2010 - 17:04:36: CDHack * Nick: <LoVe^_^> , IP: <178.120.118.177> , SteamID: <STEAM_0:4:202722565>
+L 10/08/2010 - 17:50:18: CDHack * Nick: <SNIKERS!> , IP: <95.68.127.145> , SteamID: <STEAM_0:4:470930291>
+L 10/08/2010 - 23:31:45: CDHack * Nick: <prco> , IP: <78.98.91.138> , SteamID: <STEAM_0:4:293847163>
+L 10/09/2010 - 18:24:05: CDHack * Nick: <:)> , IP: <217.24.120.34> , SteamID: <STEAM_0:4:1167228208>
+L 10/09/2010 - 22:00:08: CDHack * Nick: <MoNsTeR> , IP: <91.203.168.160> , SteamID: <STEAM_0:4:83498225>
+L 10/10/2010 - 02:52:51: CDHack * Nick: <6nk_k 2> , IP: <92.101.60.187> , SteamID: <STEAM_0:4:154158066>
+L 10/10/2010 - 12:26:50: CDHack * Nick: <unnamed> , IP: <89.254.206.180> , SteamID: <STEAM_0:4:248057456>
+L 10/10/2010 - 22:39:27: CDHack * Nick: <jo trom> , IP: <217.77.54.144> , SteamID: <STEAM_0:4:481646512>
+L 10/11/2010 - 16:02:09: CDHack * Nick: <[Othernet.ru] OTMOPO3Ok> , IP: <78.37.249.242> , SteamID: <STEAM_0:4:768795643>
+L 10/11/2010 - 18:23:23: CDHack * Nick: <29(*_*)> , IP: <188.163.5.77> , SteamID: <STEAM_0:4:1915527298>
+L 10/12/2010 - 13:20:23: CDHack * Nick: <vl@dojkeee> , IP: <193.106.202.129> , SteamID: <STEAM_0:4:340476988>
+L 10/12/2010 - 17:40:29: CDHack * Nick: <<<.::[-=V!RY$=-]::.>>> , IP: <95.190.35.78> , SteamID: <STEAM_0:4:1941941875>
+L 10/15/2010 - 23:01:21: CDHack * Nick: <Fiw***> , IP: <85.232.147.0> , SteamID: <STEAM_0:4:1424459126>
+L 10/17/2010 - 03:02:25: CDHack * Nick: <[No MyAc][syIIep_IIyIIep]> , IP: <91.192.20.13> , SteamID: <STEAM_0:4:1378095473>
+L 10/17/2010 - 14:05:50: CDHack * Nick: <Player> , IP: <91.195.91.137> , SteamID: <STEAM_0:4:268669169>
+L 10/17/2010 - 22:45:23: CDHack * Nick: <XplodJnr> , IP: <91.187.85.68> , SteamID: <STEAM_0:4:1988406513>
+L 10/18/2010 - 04:47:07: CDHack * Nick: <WipeOuTeam. AMIGO> , IP: <46.118.147.130> , SteamID: <STEAM_0:4:367512139>
+L 10/18/2010 - 06:48:01: CDHack * Nick: <[~I~]_~Individ~> , IP: <91.185.14.139> , SteamID: <STEAM_0:4:287911409>
+L 10/18/2010 - 12:20:24: CDHack * Nick: <gluk> , IP: <95.26.177.151> , SteamID: <STEAM_0:4:527891571>
+L 10/19/2010 - 01:11:00: CDHack * Nick: <Tbl JIaMo> , IP: <91.195.230.240> , SteamID: <STEAM_0:4:752685297>
+L 10/19/2010 - 13:26:12: CDHack * Nick: <*NIKE 6.0*> , IP: <91.204.176.13> , SteamID: <STEAM_0:4:1383470961>
+L 10/19/2010 - 17:51:34: CDHack * Nick: <kirilL> , IP: <84.242.211.233> , SteamID: <STEAM_0:4:541558902>
+L 10/21/2010 - 19:30:27: CDHack * Nick: <[Gold]HuManS*tm Pro Igrok> , IP: <91.124.46.60> , SteamID: <STEAM_0:4:1253658481>
+L 10/21/2010 - 22:57:20: CDHack * Nick: <koss^1mpo_Or[t]al.tm> , IP: <78.36.146.20> , SteamID: <STEAM_0:4:1592222587>
+L 10/22/2010 - 19:22:35: CDHack * Nick: <Kallen> , IP: <89.254.223.89> , SteamID: <STEAM_0:0:150230799>
+L 10/23/2010 - 06:19:54: CDHack * Nick: <4uT> , IP: <95.134.128.11> , SteamID: <STEAM_0:4:1366176371>
+L 10/23/2010 - 09:22:52: CDHack * Nick: <Expert> , IP: <78.24.50.204> , SteamID: <STEAM_0:4:850886011>
+L 10/23/2010 - 12:26:07: CDHack * Nick: <LoVe^_^> , IP: <178.126.113.128> , SteamID: <STEAM_0:4:345427461>
+L 10/23/2010 - 16:38:06: CDHack * Nick: <Player> , IP: <178.217.108.238> , SteamID: <STEAM_0:4:597171589>
+L 10/23/2010 - 17:17:59: CDHack * Nick: <Player1> , IP: <91.192.136.22> , SteamID: <STEAM_0:4:1609175409>
+L 10/24/2010 - 17:50:26: CDHack * Nick: <KaJe=*> , IP: <79.134.26.113> , SteamID: <STEAM_0:4:1814246011>
+L 10/24/2010 - 20:55:17: CDHack * Nick: <MaN-MEAT> , IP: <81.9.16.95> , SteamID: <STEAM_0:4:2066118132>
+L 10/24/2010 - 23:44:27: CDHack * Nick: <polop> , IP: <92.243.166.244> , SteamID: <STEAM_0:4:788334834>
+L 10/25/2010 - 16:10:46: CDHack * Nick: <Kallen> , IP: <89.254.217.118> , SteamID: <STEAM_0:0:150230799>
+L 10/26/2010 - 15:25:18: CDHack * Nick: <NV 86 1MKR | NIkItA> , IP: <91.122.170.199> , SteamID: <STEAM_0:4:930827377>
+L 10/26/2010 - 18:38:18: CDHack * Nick: <Support.pro l DarkPsYcoma> , IP: <178.95.41.58> , SteamID: <STEAM_0:4:1236983429>
+L 10/26/2010 - 19:23:20: CDHack * Nick: <PPC> , IP: <91.147.61.136> , SteamID: <STEAM_0:4:280017137>
+L 10/26/2010 - 20:04:32: CDHack * Nick: <OnEp> , IP: <91.205.208.37> , SteamID: <STEAM_0:4:1178998769>
+L 10/26/2010 - 21:01:14: CDHack * Nick: <TiMatY mafAcKa PiDaRS> , IP: <80.92.96.29> , SteamID: <STEAM_0:4:1511939956>
+L 10/26/2010 - 21:14:23: CDHack * Nick: <ewerty> , IP: <81.9.16.82> , SteamID: <STEAM_0:4:2108061172>
+L 10/27/2010 - 16:32:29: CDHack * Nick: <DuDkA> , IP: <62.176.15.10> , SteamID: <STEAM_0:4:1370073411>
+L 10/27/2010 - 17:55:11: CDHack * Nick: <[MegaLan]> , IP: <91.193.35.19> , SteamID: <STEAM_0:4:1564447217>
+L 10/27/2010 - 21:52:56: CDHack * Nick: <MAKC> , IP: <95.84.244.136> , SteamID: <STEAM_0:4:282352499>
+L 10/28/2010 - 18:54:47: CDHack * Nick: <jS> , IP: <178.126.116.172> , SteamID: <STEAM_0:4:43273733>
+L 10/28/2010 - 21:02:26: CDHack * Nick: <Ops>>> , IP: <78.37.183.217> , SteamID: <STEAM_0:4:947250171>
+L 10/29/2010 - 21:28:00: CDHack * Nick: <-=V.T.P.=-      scoobi> , IP: <91.196.53.134> , SteamID: <STEAM_0:4:397710193>
+L 10/30/2010 - 00:00:58: CDHack * Nick: <Lumeniscent> , IP: <78.111.57.87> , SteamID: <STEAM_0:4:2134034171>
+L 10/30/2010 - 00:03:50: CDHack * Nick: <HATA/19> , IP: <91.192.180.138> , SteamID: <STEAM_0:4:301207921>
+L 10/30/2010 - 00:38:21: CDHack * Nick: <[SK8]*Junker> , IP: <195.191.146.137> , SteamID: <STEAM_0:4:275197629>
+L 10/30/2010 - 13:05:56: CDHack * Nick: <Filka> , IP: <95.52.136.238> , SteamID: <STEAM_0:4:602565491>
+L 10/30/2010 - 15:39:30: CDHack * Nick: <empty> , IP: <85.26.161.230> , SteamID: <STEAM_0:4:671022198>
+L 10/30/2010 - 17:26:57: CDHack * Nick: <FaSaD> , IP: <85.234.31.145> , SteamID: <STEAM_0:4:471958646>
+L 10/30/2010 - 17:50:29: CDHack * Nick: <killeR> , IP: <90.157.8.34> , SteamID: <STEAM_0:4:1168785393>
+L 10/30/2010 - 18:01:33: CDHack * Nick: <SiMbA*> , IP: <89.222.150.87> , SteamID: <STEAM_0:4:2137333360>
+L 10/30/2010 - 18:12:54: CDHack * Nick: <28 CAHTNMETPOB> , IP: <91.201.205.129> , SteamID: <STEAM_0:4:340301297>
+L 10/30/2010 - 19:14:13: CDHack * Nick: <Mr.KGN> , IP: <188.19.183.125> , SteamID: <STEAM_0:4:1786116226>
+L 10/30/2010 - 19:16:56: CDHack * Nick: <_____________ Ak - 47 _________> , IP: <94.232.201.150> , SteamID: <STEAM_0:4:533366131>
+L 10/30/2010 - 19:20:02: CDHack * Nick: <-=-=-=->>Z@R@Z@<<-=-=-=-> , IP: <213.168.57.252> , SteamID: <STEAM_0:4:716350774>
+L 10/30/2010 - 19:23:52: CDHack * Nick: <otsos> , IP: <92.53.80.82> , SteamID: <STEAM_0:4:2105961458>
+L 10/30/2010 - 20:13:00: CDHack * Nick: <BUGOR> , IP: <81.222.177.137> , SteamID: <STEAM_0:4:276209268>
+L 10/30/2010 - 22:36:02: CDHack * Nick: <[CHEATER]aleCSandr> , IP: <83.234.218.98> , SteamID: <STEAM_0:4:1707279477>
+L 10/30/2010 - 23:28:19: CDHack * Nick: <VladOk> , IP: <109.60.172.246> , SteamID: <STEAM_0:4:804810602>
+L 10/31/2010 - 00:56:26: CDHack * Nick: <ppc> , IP: <94.180.146.163> , SteamID: <STEAM_0:4:90647411>
+L 10/31/2010 - 15:55:59: CDHack * Nick: <[war3ft.ru]DENYF> , IP: <91.192.170.212> , SteamID: <STEAM_0:4:1056641393>
+L 11/01/2010 - 12:10:43: CDHack * Nick: <NooBk /o_o/> , IP: <178.66.161.160> , SteamID: <STEAM_0:4:83808261>
+L 11/01/2010 - 13:18:34: CDHack * Nick: <^Lelush^`> , IP: <78.36.145.242> , SteamID: <STEAM_0:4:770106235>
+L 11/02/2010 - 00:30:24: CDHack * Nick: <SNAIPER> , IP: <95.190.74.98> , SteamID: <STEAM_0:4:1703620211>
+L 11/02/2010 - 07:13:28: CDHack * Nick: <_PrO_Cs_1.6_SuPeR_HeAd_ShOt_> , IP: <85.26.165.224> , SteamID: <STEAM_0:0:87011313>
+L 11/02/2010 - 10:49:00: CDHack * Nick: <CrowHunter> , IP: <91.203.168.202> , SteamID: <STEAM_0:4:838472945>
+L 11/02/2010 - 18:24:05: CDHack * Nick: <fr0st^> , IP: <95.53.228.64> , SteamID: <STEAM_0:4:1960602611>
+L 11/02/2010 - 18:36:16: CDHack * Nick: <pisun> , IP: <91.192.171.160> , SteamID: <STEAM_0:4:83595633>
+L 11/02/2010 - 20:43:29: CDHack * Nick: <0bevan> , IP: <109.184.5.31> , SteamID: <STEAM_0:4:1529654634>
+L 11/02/2010 - 23:34:15: CDHack * Nick: <***LUCEVER***> , IP: <95.68.191.217> , SteamID: <STEAM_0:4:946983795>
+L 11/03/2010 - 15:09:20: CDHack * Nick: <Fake_Gnom ^^> , IP: <178.49.253.31> , SteamID: <STEAM_0:4:1532029317>
+L 11/04/2010 - 01:39:05: CDHack * Nick: <dimon_buiycani> , IP: <95.65.101.38> , SteamID: <STEAM_0:4:1201459699>
+L 11/04/2010 - 13:28:51: CDHack * Nick: <[D-Grad] KpacaBa :*> , IP: <95.31.133.152> , SteamID: <STEAM_0:4:418184947>
+L 11/04/2010 - 16:14:21: CDHack * Nick: <Denis R> , IP: <93.80.30.205> , SteamID: <STEAM_0:4:841046386>
+L 11/04/2010 - 20:19:52: CDHack * Nick: <[DaNTeZ]> , IP: <95.31.246.6> , SteamID: <STEAM_0:4:1473609459>
+L 11/04/2010 - 21:24:13: CDHack * Nick: <FUOK> , IP: <93.157.175.163> , SteamID: <STEAM_0:4:91865074>
+L 11/04/2010 - 23:46:50: CDHack * Nick: <Glam_awp> , IP: <92.101.103.178> , SteamID: <STEAM_0:4:228443122>
+L 11/05/2010 - 09:34:50: CDHack * Nick: <4eJIoBeK> , IP: <92.112.120.108> , SteamID: <STEAM_0:4:1653754226>
+L 11/05/2010 - 09:54:46: CDHack * Nick: <Dantist> , IP: <91.194.191.233> , SteamID: <STEAM_0:4:544313457>
+L 11/05/2010 - 11:48:45: CDHack * Nick: <keks///str@> , IP: <94.41.156.203> , SteamID: <STEAM_0:4:828401139>
+L 11/05/2010 - 11:57:45: CDHack * Nick: <[M*G]SkwI-DwarRd> , IP: <95.72.57.239> , SteamID: <STEAM_0:4:590534003>
+L 11/05/2010 - 12:07:09: CDHack * Nick: <<:FOX:>> , IP: <78.138.171.130> , SteamID: <STEAM_0:4:368817275>
+L 11/05/2010 - 12:38:53: CDHack * Nick: <{KenT}89[rus]> , IP: <178.46.3.104> , SteamID: <STEAM_0:4:1622140421>
+L 11/05/2010 - 14:27:54: CDHack * Nick: <No Swear> , IP: <94.240.247.53> , SteamID: <STEAM_0:4:1314228595>
+L 11/05/2010 - 19:37:49: CDHack * Nick: <jAKONDA> , IP: <91.192.171.46> , SteamID: <STEAM_0:4:1140560241>
+L 11/06/2010 - 11:28:35: CDHack * Nick: <-1> , IP: <188.134.41.2> , SteamID: <STEAM_0:4:1438298626>
+L 11/06/2010 - 12:29:17: CDHack * Nick: <SmoKe> , IP: <193.34.8.14> , SteamID: <STEAM_0:4:1403674684>
+L 11/06/2010 - 12:49:55: CDHack * Nick: <A[]KTIV> , IP: <10.178.148.30> , SteamID: <STEAM_0:4:1541679193>
+L 11/06/2010 - 16:29:54: CDHack * Nick: <]FVWJR> , IP: <89.178.187.181> , SteamID: <STEAM_0:4:242460784>
+L 11/06/2010 - 17:24:58: CDHack * Nick: <)_(> , IP: <188.134.38.142> , SteamID: <STEAM_0:4:331166210>
+L 11/06/2010 - 18:11:42: CDHack * Nick: <Boss Bitch> , IP: <95.27.231.241> , SteamID: <STEAM_0:4:744357107>
+L 11/06/2010 - 22:08:33: CDHack * Nick: <_ak_47 vadim> , IP: <94.75.47.99> , SteamID: <STEAM_0:4:1698288883>
+L 11/06/2010 - 22:17:53: CDHack * Nick: <virtys pro> , IP: <95.190.117.19> , SteamID: <STEAM_0:4:1561636467>
+L 11/07/2010 - 03:14:05: CDHack * Nick: <RRRRRRRRRRRRRRRRRRRRRRRRSSSSSSS> , IP: <85.175.125.86> , SteamID: <STEAM_0:4:2140186358>
+L 11/07/2010 - 10:54:36: CDHack * Nick: <unnamed> , IP: <91.185.15.103> , SteamID: <STEAM_0:4:1730784753>
+L 11/07/2010 - 12:08:59: CDHack * Nick: <]FVWJR> , IP: <93.80.183.35> , SteamID: <STEAM_0:4:1165351282>
+L 11/07/2010 - 12:56:23: CDHack * Nick: <]FVWJR> , IP: <93.80.151.48> , SteamID: <STEAM_0:4:1290131826>
+L 11/07/2010 - 17:52:10: CDHack * Nick: <Victor_12_-1_> , IP: <91.200.156.75> , SteamID: <STEAM_0:4:1902122353>
+L 11/08/2010 - 12:16:03: CDHack * Nick: <kotira.248)))))))> , IP: <83.149.36.247> , SteamID: <STEAM_0:0:704030911>
+L 11/08/2010 - 16:31:54: CDHack * Nick: <Gidroponik<3> , IP: <109.172.40.139> , SteamID: <STEAM_0:4:289023850>
+L 11/08/2010 - 17:29:55: CDHack * Nick: <RAMPAGE [My name is DIMA]> , IP: <178.34.39.173> , SteamID: <STEAM_0:4:37609477>
+L 11/08/2010 - 19:35:24: CDHack * Nick: <fr0st^> , IP: <95.53.228.239> , SteamID: <STEAM_0:4:593259507>
+L 11/08/2010 - 22:51:23: CDHack * Nick: <DsD> , IP: <109.184.39.11> , SteamID: <STEAM_0:4:1362996586>
+L 11/08/2010 - 23:54:42: CDHack * Nick: <[6e3 aHTu4uTa][No-MyAC]gluxarb> , IP: <213.191.29.105> , SteamID: <STEAM_0:4:1612754614>
+L 11/09/2010 - 02:24:16: CDHack * Nick: <Player> , IP: <95.54.89.193> , SteamID: <STEAM_0:4:872606323>
+L 11/09/2010 - 02:58:47: CDHack * Nick: <KaJIuHa> , IP: <81.88.213.8> , SteamID: <STEAM_0:4:1355079028>
+L 11/09/2010 - 03:28:02: CDHack * Nick: <wizard> , IP: <91.207.105.4> , SteamID: <STEAM_0:4:1452971761>
+L 11/09/2010 - 09:05:13: CDHack * Nick: <JlUKeH> , IP: <217.118.81.26> , SteamID: <STEAM_0:4:1502005808>
+L 11/09/2010 - 16:33:51: CDHack * Nick: <jAKONDA> , IP: <91.192.171.77> , SteamID: <STEAM_0:4:1920700785>
+L 11/10/2010 - 07:10:35: CDHack * Nick: <[No-MyAC]maestro> , IP: <77.94.122.236> , SteamID: <STEAM_0:4:580083322>
+L 11/10/2010 - 10:19:38: CDHack * Nick: <Shock> , IP: <94.75.9.32> , SteamID: <STEAM_0:4:1152046323>
+L 11/10/2010 - 13:54:31: CDHack * Nick: <SHAKAL> , IP: <94.230.47.249> , SteamID: <STEAM_0:4:674857587>
+L 11/10/2010 - 15:25:59: CDHack * Nick: <PATRIK^> , IP: <79.139.181.230> , SteamID: <STEAM_0:4:670348539>
+L 11/10/2010 - 17:25:09: CDHack * Nick: <[war3ft.ru]EFOSD> , IP: <77.239.236.192> , SteamID: <STEAM_0:4:886572794>
+L 11/10/2010 - 19:37:01: CDHack * Nick: <[war3ft.ru]QBEVO> , IP: <89.148.215.119> , SteamID: <STEAM_0:4:1866840944>
+L 11/10/2010 - 22:25:11: CDHack * Nick: <M@4ETE> , IP: <91.192.171.134> , SteamID: <STEAM_0:4:402362737>
+L 11/11/2010 - 09:09:39: CDHack * Nick: <Player [CS-HLDS.RU]> , IP: <95.54.20.193> , SteamID: <STEAM_0:4:874801779>
+L 11/11/2010 - 09:47:51: CDHack * Nick: <NoRD1k> , IP: <95.52.207.174> , SteamID: <STEAM_0:4:63564659>
+L 11/11/2010 - 10:02:02: CDHack * Nick: <Remus> , IP: <93.124.87.31> , SteamID: <STEAM_0:4:1527107442>
+L 11/11/2010 - 14:25:34: CDHack * Nick: <VIP_DRAGO_VIP> , IP: <89.169.93.134> , SteamID: <STEAM_0:4:394307056>
+L 11/11/2010 - 16:09:12: CDHack * Nick: <[nuckapeBka]6paTaH> , IP: <87.249.59.163> , SteamID: <STEAM_0:4:87264759>
+L 11/11/2010 - 16:31:23: CDHack * Nick: <jUMPER> , IP: <91.192.171.147> , SteamID: <STEAM_0:4:494637425>
+L 11/11/2010 - 18:41:05: CDHack * Nick: <mark> , IP: <212.21.19.164> , SteamID: <STEAM_0:4:111672246>
+L 11/12/2010 - 16:41:13: CDHack * Nick: <[war3ft.ru]QRLUW> , IP: <92.243.181.6> , SteamID: <STEAM_0:4:1475643634>
+L 11/12/2010 - 17:36:57: CDHack * Nick: <Player [CS-HLDS.RU]> , IP: <178.67.41.149> , SteamID: <STEAM_0:4:507170949>
+L 11/12/2010 - 18:40:31: CDHack * Nick: <JonesMaster> , IP: <46.73.13.251> , SteamID: <STEAM_0:4:690542027>
+L 11/12/2010 - 19:23:39: CDHack * Nick: <Kick> , IP: <91.192.170.48> , SteamID: <STEAM_0:4:1291522417>
+L 11/13/2010 - 00:49:48: CDHack * Nick: <ParaDise> , IP: <188.134.38.150> , SteamID: <STEAM_0:4:532492802>
+L 11/13/2010 - 06:41:15: CDHack * Nick: <mavrik> , IP: <91.195.137.235> , SteamID: <STEAM_0:4:560632049>
+L 11/13/2010 - 13:17:34: CDHack * Nick: <n0th!ng | Hapko 6aPoH> , IP: <91.192.152.13> , SteamID: <STEAM_0:4:1382158705>
+L 11/13/2010 - 15:56:34: CDHack * Nick: <4AK> , IP: <94.143.240.201> , SteamID: <STEAM_0:4:810956531>
+L 11/13/2010 - 17:15:18: CDHack * Nick: <:[:Mafia:]: GeNeRaL> , IP: <91.194.191.165> , SteamID: <STEAM_0:4:108105841>
+L 11/13/2010 - 17:51:28: CDHack * Nick: <WonHitler> , IP: <91.214.128.50> , SteamID: <STEAM_0:4:1307449969>
+L 11/13/2010 - 20:51:48: CDHack * Nick: <wantys> , IP: <178.64.34.119> , SteamID: <STEAM_0:4:1866420485>
+L 11/14/2010 - 05:32:55: CDHack * Nick: <jakeh <3 s3n> , IP: <77.246.104.166> , SteamID: <STEAM_0:4:127535738>
+L 11/14/2010 - 12:39:33: CDHack * Nick: <[6e3 aHTu4uTa]Asist> , IP: <109.124.93.6> , SteamID: <STEAM_0:4:1468059498>
+L 11/14/2010 - 18:21:08: CDHack * Nick: <.:_FiGhTeRs_:. kick butovski> , IP: <62.221.77.14> , SteamID: <STEAM_0:4:1401462723>
+L 11/15/2010 - 08:13:10: CDHack * Nick: <Karol> , IP: <178.123.152.36> , SteamID: <STEAM_0:4:1189235845>
+L 11/15/2010 - 15:37:57: CDHack * Nick: <hYDroPone.>> , IP: <91.122.180.41> , SteamID: <STEAM_0:4:1081363569>
+L 11/15/2010 - 19:06:56: CDHack * Nick: <6aTbka KoJIbKa ugeT B 6ou> , IP: <188.134.42.74> , SteamID: <STEAM_0:4:1908093442>
+L 11/15/2010 - 20:15:04: CDHack * Nick: <TpaxHu^^MEH9l> , IP: <92.113.60.22> , SteamID: <STEAM_0:4:1605388786>
+L 11/15/2010 - 20:41:29: CDHack * Nick: <ExCluSiVe^PrO-|England|> , IP: <95.26.216.114> , SteamID: <STEAM_0:4:1841462387>
+L 11/15/2010 - 20:58:11: CDHack * Nick: <3D-Oguz> , IP: <78.171.105.57> , SteamID: <STEAM_0:4:1209705723>
+L 11/15/2010 - 21:02:39: CDHack * Nick: <kyHuJIuHryC> , IP: <95.53.133.197> , SteamID: <STEAM_0:4:913107955>
+L 11/16/2010 - 07:13:58: CDHack * Nick: <6a6kuH BHyk=)))> , IP: <92.126.16.130> , SteamID: <STEAM_0:4:363220594>
+L 11/16/2010 - 11:32:56: CDHack * Nick: <skorpion 32RUS> , IP: <94.75.132.157> , SteamID: <STEAM_0:4:443307251>
+L 11/16/2010 - 16:12:33: CDHack * Nick: <}|{0CT> , IP: <178.187.240.109> , SteamID: <STEAM_0:4:1649814661>
+L 11/16/2010 - 20:28:05: CDHack * Nick: <Boss Bitch> , IP: <93.80.221.33> , SteamID: <STEAM_0:4:1145100658>
+L 11/16/2010 - 21:17:44: CDHack * Nick: <KPbIC9ITINA> , IP: <95.106.7.110> , SteamID: <STEAM_0:4:1672332403>
+L 11/17/2010 - 15:08:30: CDHack * Nick: <DadleJump> , IP: <109.124.93.247> , SteamID: <STEAM_0:4:788582250>
+L 11/17/2010 - 15:49:04: CDHack * Nick: <Bvk*TeaM___aJIkaIII> , IP: <213.21.55.99> , SteamID: <STEAM_0:4:1698036662>
+L 11/17/2010 - 20:14:11: CDHack * Nick: <Player> , IP: <178.65.71.228> , SteamID: <STEAM_0:4:646828421>
+L 11/18/2010 - 02:21:49: CDHack * Nick: <LeoMessi> , IP: <85.140.167.207> , SteamID: <STEAM_0:4:863876982>
+L 11/18/2010 - 05:36:51: CDHack * Nick: <MAXET> , IP: <109.188.180.215> , SteamID: <STEAM_0:4:1064578922>
+L 11/18/2010 - 15:54:04: CDHack * Nick: <~d[ev]il~> , IP: <87.229.139.160> , SteamID: <STEAM_0:4:82543607>
+L 11/18/2010 - 18:21:01: CDHack * Nick: <---CATAHuCT---> , IP: <91.214.198.48> , SteamID: <STEAM_0:4:1288510065>
+L 11/19/2010 - 09:48:47: CDHack * Nick: <Skill> , IP: <178.92.190.94> , SteamID: <STEAM_0:4:2079416069>
+L 11/19/2010 - 14:44:44: CDHack * Nick: <Player [CS-HLDS.RU]> , IP: <95.130.132.8> , SteamID: <STEAM_0:4:1357656179>
+L 11/19/2010 - 16:27:36: CDHack * Nick: <[Central_Ladoga]_4ifik.tm> , IP: <178.66.140.251> , SteamID: <STEAM_0:4:694702085>
+L 11/19/2010 - 18:30:08: CDHack * Nick: <[NO-sXe-I] MasXe> , IP: <188.186.40.101> , SteamID: <STEAM_0:4:1715088386>
+L 11/19/2010 - 19:14:38: CDHack * Nick: <[No-MyaC]No Slip> , IP: <109.124.93.194> , SteamID: <STEAM_0:4:897634154>
+L 11/19/2010 - 20:46:44: CDHack * Nick: <-=050=-> , IP: <78.138.167.194> , SteamID: <STEAM_0:4:905819259>
+L 11/20/2010 - 09:57:56: CDHack * Nick: <=)> , IP: <79.173.94.55> , SteamID: <STEAM_0:4:1325475835>
+L 11/20/2010 - 10:52:27: CDHack * Nick: <Player [CS-HLDS.RU]> , IP: <188.186.241.151> , SteamID: <STEAM_0:4:525773826>
+L 11/20/2010 - 13:37:20: CDHack * Nick: <hEadSHod> , IP: <91.194.191.234> , SteamID: <STEAM_0:4:569479281>
+L 11/20/2010 - 13:49:09: CDHack * Nick: <MHE IIOX> , IP: <78.29.106.67> , SteamID: <STEAM_0:4:1964736507>
+L 11/20/2010 - 14:20:09: CDHack * Nick: <JumpSpeed_preie> , IP: <91.195.231.64> , SteamID: <STEAM_0:4:1960677617>
+L 11/20/2010 - 18:35:29: CDHack * Nick: <Omen-Terrorist> , IP: <77.232.143.174> , SteamID: <STEAM_0:4:65635706>
+L 11/21/2010 - 01:29:40: CDHack * Nick: <nooblo> , IP: <78.37.178.15> , SteamID: <STEAM_0:4:1400333307>
+L 11/21/2010 - 09:11:53: CDHack * Nick: <NooB^tm_max)))> , IP: <92.241.252.37> , SteamID: <STEAM_0:4:1179650546>
+L 11/21/2010 - 13:55:11: CDHack * Nick: <NAVIGATOR> , IP: <188.134.40.104> , SteamID: <STEAM_0:4:1622815234>
+L 11/21/2010 - 14:12:02: CDHack * Nick: <[Dead or Alive]~ B/|aD 53.rus> , IP: <84.242.239.250> , SteamID: <STEAM_0:4:702122102>
+L 11/21/2010 - 21:47:24: CDHack * Nick: <DANGER> , IP: <213.108.2.1> , SteamID: <STEAM_0:4:1412384566>
+L 11/22/2010 - 01:46:03: CDHack * Nick: <logoped> , IP: <89.178.103.220> , SteamID: <STEAM_0:4:983410800>
+L 11/22/2010 - 19:29:21: CDHack * Nick: <[Central_Ladoga]_4ifik.tm> , IP: <178.66.138.122> , SteamID: <STEAM_0:4:1777029125>
+L 11/22/2010 - 22:06:05: CDHack * Nick: <noob> , IP: <78.85.240.57> , SteamID: <STEAM_0:4:1213619195>
+L 11/23/2010 - 03:49:36: CDHack * Nick: <No Swear> , IP: <178.122.97.213> , SteamID: <STEAM_0:4:1042205701>
+L 11/23/2010 - 10:10:38: CDHack * Nick: <[pro]RUSY> , IP: <94.181.16.125> , SteamID: <STEAM_0:4:1780886515>
+L 11/23/2010 - 15:42:39: CDHack * Nick: <[LiaNet Games]> , IP: <85.202.126.11> , SteamID: <STEAM_0:4:1360073846>
+L 11/23/2010 - 15:54:11: CDHack * Nick: <jAKONDA> , IP: <91.192.171.222> , SteamID: <STEAM_0:4:1006342513>
+L 11/24/2010 - 14:33:42: CDHack * Nick: <SMERTELNY ZASOS> , IP: <109.205.248.91> , SteamID: <STEAM_0:4:2035423210>
+L 11/24/2010 - 15:40:42: CDHack * Nick: <FpaHkuLLITeuH> , IP: <78.36.86.164> , SteamID: <STEAM_0:4:109405051>
+L 11/25/2010 - 01:05:18: CDHack * Nick: <Xe-Xe-Xe))> , IP: <178.65.116.160> , SteamID: <STEAM_0:4:76829061>
+L 11/25/2010 - 16:02:00: CDHack * Nick: <[ShoT<tm>]KamikadziK> , IP: <89.254.223.13> , SteamID: <STEAM_0:4:1380028016>
+L 11/25/2010 - 20:34:44: CDHack * Nick: <IIoJl kiJlo> , IP: <77.243.99.216> , SteamID: <STEAM_0:4:949979386>
+L 11/26/2010 - 12:27:20: CDHack * Nick: <IrkWar Team | ToFiFi> , IP: <217.12.78.59> , SteamID: <STEAM_0:4:1225357104>
+L 11/26/2010 - 15:01:34: CDHack * Nick: <sin> , IP: <213.21.3.43> , SteamID: <STEAM_0:4:1093663670>
+L 11/26/2010 - 15:44:14: CDHack * Nick: <slavka_pro> , IP: <91.199.153.6> , SteamID: <STEAM_0:4:1474466545>
+L 11/26/2010 - 17:17:53: CDHack * Nick: <[No-MyAC]Krasav4iK> , IP: <89.189.144.173> , SteamID: <STEAM_0:4:40251376>
+L 11/26/2010 - 17:19:01: CDHack * Nick: <gebo!> , IP: <92.101.142.19> , SteamID: <STEAM_0:4:1567179762>
+L 11/26/2010 - 17:21:03: CDHack * Nick: <*flash*Timjkee> , IP: <188.186.165.236> , SteamID: <STEAM_0:4:586984450>
+L 11/26/2010 - 18:44:31: CDHack * Nick: <[Pe4enKa.tm***] | bl [cl]> , IP: <79.165.16.97> , SteamID: <STEAM_0:4:1680221179>
+L 11/26/2010 - 19:16:01: CDHack * Nick: <ololo-Tm| zZz.frOzeN<3 skIlL^> , IP: <178.214.38.172> , SteamID: <STEAM_0:4:45947397>
+L 11/26/2010 - 19:21:19: CDHack * Nick: </NSKHAMER/{THE PRO}LEXA> , IP: <94.251.127.38> , SteamID: <STEAM_0:4:1200721139>
+L 11/26/2010 - 20:25:43: CDHack * Nick: <FBI> , IP: <95.53.213.20> , SteamID: <STEAM_0:4:1589963763>
+L 11/26/2010 - 20:41:09: CDHack * Nick: <NOBLEMAN26RUS> , IP: <95.153.161.3> , SteamID: <STEAM_0:4:1434369523>
+L 11/26/2010 - 21:03:13: CDHack * Nick: <<<< VOLK >>>> , IP: <79.165.31.69> , SteamID: <STEAM_0:4:1981916155>
+L 11/26/2010 - 23:52:28: CDHack * Nick: <.:Pezvie ogyrci:. west> , IP: <95.83.128.181> , SteamID: <STEAM_0:4:242112755>
+L 11/26/2010 - 23:54:36: CDHack * Nick: <TTcux^> , IP: <78.36.135.47> , SteamID: <STEAM_0:4:1131275131>
+L 11/27/2010 - 13:04:03: CDHack * Nick: <Roma> , IP: <109.233.173.27> , SteamID: <STEAM_0:4:1501070826>
+L 11/27/2010 - 17:51:45: CDHack * Nick: <sem> , IP: <91.203.38.11> , SteamID: <STEAM_0:4:1362957553>
+L 11/27/2010 - 18:27:57: CDHack * Nick: <Player> , IP: <95.52.217.233> , SteamID: <STEAM_0:4:541256563>
+L 11/27/2010 - 18:39:35: CDHack * Nick: <I'm_DroN_56[RUS]> , IP: <95.78.205.218> , SteamID: <STEAM_0:4:969463411>
+L 11/28/2010 - 11:54:00: CDHack * Nick: <I'm_DroN_56[RUS]> , IP: <95.78.224.10> , SteamID: <STEAM_0:4:1373525619>
+L 11/28/2010 - 14:42:44: CDHack * Nick: <4ut_off> , IP: <213.80.214.66> , SteamID: <STEAM_0:4:1975867702>
+L 11/28/2010 - 23:59:07: CDHack * Nick: <MOHCTEP> , IP: <95.54.54.135> , SteamID: <STEAM_0:4:389376627>
+L 11/29/2010 - 17:40:28: CDHack * Nick: <mr.KYMAPOZO> , IP: <80.234.4.140> , SteamID: <STEAM_0:4:313263220>
+L 11/29/2010 - 21:50:13: CDHack * Nick: <Sasha-72> , IP: <178.46.19.82> , SteamID: <STEAM_0:4:2108155397>
+L 11/30/2010 - 09:24:42: CDHack * Nick: <NK.citi.PRO DooM> , IP: <195.191.158.53> , SteamID: <STEAM_0:4:1314991805>
+L 11/30/2010 - 16:04:25: CDHack * Nick: <kil'ka_yura> , IP: <79.173.80.255> , SteamID: <STEAM_0:4:721823739>
+L 11/30/2010 - 18:56:41: CDHack * Nick: <PRO> , IP: <87.255.14.126> , SteamID: <STEAM_0:4:1806241527>
+L 11/30/2010 - 22:38:44: CDHack * Nick: <007> , IP: <91.192.170.172> , SteamID: <STEAM_0:4:50008433>
+L 12/01/2010 - 02:14:16: CDHack * Nick: <Grammaton Cleric> , IP: <91.76.18.250> , SteamID: <STEAM_0:4:698832753>
+L 12/01/2010 - 12:11:10: CDHack * Nick: <Junior> , IP: <90.151.190.251> , SteamID: <STEAM_0:4:695286513>
+L 12/01/2010 - 14:18:31: CDHack * Nick: <228=228> , IP: <95.52.197.199> , SteamID: <STEAM_0:4:927787891>
+L 12/01/2010 - 15:19:45: CDHack * Nick: <jAKONDA> , IP: <91.192.170.161> , SteamID: <STEAM_0:4:75174257>
+L 12/01/2010 - 20:01:23: CDHack * Nick: <[war3ft.ru]XCAZI> , IP: <91.211.26.181> , SteamID: <STEAM_0:4:237181169>
+L 12/01/2010 - 20:21:04: CDHack * Nick: <GROM> , IP: <95.154.154.20> , SteamID: <STEAM_0:4:1591950451>
+L 12/01/2010 - 20:45:09: CDHack * Nick: <Ufa^team*KaBla3*[zcl]> , IP: <109.187.29.107> , SteamID: <STEAM_0:4:1629531370>
+L 12/01/2010 - 21:07:49: CDHack * Nick: <CS*_KZ*_No__NaMe.?> , IP: <178.91.62.180> , SteamID: <STEAM_0:4:246504581>
+L 12/01/2010 - 21:31:19: CDHack * Nick: <400kg> , IP: <89.169.17.139> , SteamID: <STEAM_0:4:287745520>
+L 12/02/2010 - 09:03:45: CDHack * Nick: <den> , IP: <85.26.233.246> , SteamID: <STEAM_0:4:802880630>
+L 12/02/2010 - 10:25:20: CDHack * Nick: <ex*> , IP: <95.107.124.241> , SteamID: <STEAM_0:4:739263731>
+L 12/02/2010 - 11:39:54: CDHack * Nick: <Player> , IP: <178.187.232.163> , SteamID: <STEAM_0:4:89795717>
+L 12/02/2010 - 13:06:06: CDHack * Nick: <[No-MyAC]S1nTeZzZ!_VcN'foReve> , IP: <94.137.223.250> , SteamID: <STEAM_0:4:700560883>
+L 12/02/2010 - 18:40:14: CDHack * Nick: <*NIKE 6.0*> , IP: <91.204.176.15> , SteamID: <STEAM_0:4:1400248177>
+L 12/02/2010 - 19:31:31: CDHack * Nick: <==9I TBo9I CMePTb==> , IP: <87.117.190.109> , SteamID: <STEAM_0:4:1651592183>
+L 12/02/2010 - 23:40:19: CDHack * Nick: <zoN!xX;  ./> , IP: <213.163.118.13> , SteamID: <STEAM_0:4:1377116342>
+L 12/03/2010 - 19:17:12: CDHack * Nick: <Zloy^DeD> , IP: <178.140.93.147> , SteamID: <STEAM_0:4:486586117>
+L 12/04/2010 - 00:58:49: CDHack * Nick: <HooliGaN_26Rus> , IP: <95.153.167.40> , SteamID: <STEAM_0:4:1090371059>
+L 12/04/2010 - 10:36:48: CDHack * Nick: <Looser||Jaka :)> , IP: <91.193.207.35> , SteamID: <STEAM_0:4:1162449393>
+L 12/04/2010 - 15:19:55: CDHack * Nick: <: cccp>} | alexey> , IP: <109.205.253.234> , SteamID: <STEAM_0:4:567318506>
+L 12/04/2010 - 21:06:47: CDHack * Nick: <BadBoy 5v. | !!!GAMER!!!> , IP: <109.201.81.192> , SteamID: <STEAM_0:4:881235434>
+L 12/05/2010 - 00:17:30: CDHack * Nick: <-lonsdele maik-> , IP: <83.237.124.180> , SteamID: <STEAM_0:4:244320245>
+L 12/05/2010 - 01:18:26: CDHack * Nick: <-lonsdele maik-> , IP: <83.237.222.10> , SteamID: <STEAM_0:4:1371604981>
+L 12/05/2010 - 09:02:26: CDHack * Nick: <>PROFI<[ViJeT161rus]> , IP: <109.165.38.2> , SteamID: <STEAM_0:4:1438458858>
+L 12/05/2010 - 09:26:21: CDHack * Nick: <HooliGaN_26Rus> , IP: <95.153.164.24> , SteamID: <STEAM_0:4:1492925939>
+L 12/05/2010 - 14:27:31: CDHack * Nick: <White Wolf> , IP: <178.34.13.194> , SteamID: <STEAM_0:4:900259845>
+L 12/05/2010 - 15:04:23: CDHack * Nick: <[war3ft.ru]TKQWO> , IP: <92.126.77.31> , SteamID: <STEAM_0:4:1527303794>
+L 12/05/2010 - 15:21:13: CDHack * Nick: <Krasav4ik> , IP: <94.41.29.198> , SteamID: <STEAM_0:4:933291507>
+L 12/05/2010 - 16:25:07: CDHack * Nick: <[GOLD~bati]_35 rus> , IP: <92.101.135.62> , SteamID: <STEAM_0:4:1273873394>
+L 12/05/2010 - 16:44:45: CDHack * Nick: <HukuToc> , IP: <109.197.77.9> , SteamID: <STEAM_0:4:1342739434>
+L 12/05/2010 - 20:56:22: CDHack * Nick: <Dak kak tak???> , IP: <178.64.72.90> , SteamID: <STEAM_0:4:2039107845>
+L 12/06/2010 - 17:24:16: CDHack * Nick: <IrkWar*K@V=K@3*38azer> , IP: <178.217.65.76> , SteamID: <STEAM_0:4:1921949061>
+L 12/06/2010 - 17:25:16: CDHack * Nick: <Electr[O_o]_IIygeJIb_e6a> , IP: <91.210.163.249> , SteamID: <STEAM_0:4:679450737>
+L 12/06/2010 - 21:21:44: CDHack * Nick: <PUPS!!> , IP: <83.237.208.25> , SteamID: <STEAM_0:4:1480984565>
+L 12/07/2010 - 07:49:41: CDHack * Nick: <s.team~SinDRoM^tm> , IP: <91.194.191.232> , SteamID: <STEAM_0:4:552702065>
+L 12/07/2010 - 09:10:41: CDHack * Nick: <///Adidas///> , IP: <80.84.176.58> , SteamID: <STEAM_0:4:1240882036>
+L 12/07/2010 - 14:42:20: CDHack * Nick: <{Helish}En4anter o_O> , IP: <109.124.92.68> , SteamID: <STEAM_0:4:1988120426>
+L 12/07/2010 - 15:24:47: CDHack * Nick: <Electr[O_o]_IIygeJIb_e6a> , IP: <195.93.128.239> , SteamID: <STEAM_0:4:594436029>
+L 12/07/2010 - 15:54:18: CDHack * Nick: <>|D!{N}GO|<> , IP: <178.49.252.91> , SteamID: <STEAM_0:4:2035313029>
+L 12/07/2010 - 16:37:18: CDHack * Nick: <monstor> , IP: <81.161.208.24> , SteamID: <STEAM_0:4:1489379828>
+L 12/07/2010 - 19:18:34: CDHack * Nick: <=1kona=> , IP: <78.132.144.140> , SteamID: <STEAM_0:4:317076347>
+L 12/07/2010 - 20:07:29: CDHack * Nick: <[kent}89{rus]> , IP: <178.47.31.198> , SteamID: <STEAM_0:4:933357189>
+L 12/08/2010 - 04:50:00: CDHack * Nick: <shahid> , IP: <80.237.24.47> , SteamID: <STEAM_0:4:1126303732>
+L 12/08/2010 - 15:13:38: CDHack * Nick: <CL*|PRO|*[m4a1]> , IP: <95.27.240.2> , SteamID: <STEAM_0:4:1440120051>
+L 12/08/2010 - 16:17:50: CDHack * Nick: <[Dj-Life.Ru] ~> DaHuJla> , IP: <94.181.145.79> , SteamID: <STEAM_0:4:1936108531>
+L 12/08/2010 - 17:24:12: CDHack * Nick: <kys> , IP: <80.78.117.43> , SteamID: <STEAM_0:4:1091884660>
+L 12/08/2010 - 19:40:45: CDHack * Nick: <EBCEEB> , IP: <95.67.158.57> , SteamID: <STEAM_0:4:1214337267>
+L 12/08/2010 - 21:03:22: CDHack * Nick: <[E.A]-Team | Zews> , IP: <95.79.76.243> , SteamID: <STEAM_0:4:755521267>
+L 12/09/2010 - 01:15:11: CDHack * Nick: <St1m> , IP: <172.22.9.191> , SteamID: <STEAM_0:4:187365898>
+L 12/09/2010 - 17:40:42: CDHack * Nick: <alt.nick> , IP: <91.206.218.66> , SteamID: <STEAM_0:4:1975719537>
+L 12/09/2010 - 18:03:48: CDHack * Nick: <VampiR> , IP: <2.95.204.134> , SteamID: <STEAM_0:4:399007453>
+L 12/10/2010 - 06:24:26: CDHack * Nick: <[P]I[K].tm | krenk> , IP: <94.41.145.252> , SteamID: <STEAM_0:4:719775219>
+L 12/10/2010 - 14:24:18: CDHack * Nick: <nOxYuCT> , IP: <94.242.137.3> , SteamID: <STEAM_0:4:1433045107>
+L 12/10/2010 - 16:22:17: CDHack * Nick: <*The^best* | Skipper> , IP: <88.205.239.221> , SteamID: <STEAM_0:4:978950128>
+L 12/10/2010 - 16:55:34: CDHack * Nick: <usik> , IP: <188.186.181.105> , SteamID: <STEAM_0:4:1618258946>
+L 12/10/2010 - 17:04:34: CDHack * Nick: <Crazy^pro | LEGION> , IP: <188.16.64.215> , SteamID: <STEAM_0:4:1057913090>
+L 12/10/2010 - 17:11:54: CDHack * Nick: <GaNJa> , IP: <89.178.214.245> , SteamID: <STEAM_0:4:776284272>
+L 12/10/2010 - 19:30:13: CDHack * Nick: <LAGgER> , IP: <178.67.52.70> , SteamID: <STEAM_0:4:2008305797>
+L 12/10/2010 - 19:30:17: CDHack * Nick: <unamed> , IP: <109.201.69.55> , SteamID: <STEAM_0:4:1326224874>
+L 12/10/2010 - 19:55:20: CDHack * Nick: <$-xXx-y4uTeJIb_XuMuu-xXx-$> , IP: <78.37.248.48> , SteamID: <STEAM_0:4:1288856571>
+L 12/10/2010 - 23:13:37: CDHack * Nick: <NIGHT^tm | FLASH> , IP: <95.83.160.103> , SteamID: <STEAM_0:4:1736333555>
+L 12/11/2010 - 09:49:31: CDHack * Nick: <Charle_StyLE{_}BOss()}-SAM> , IP: <94.19.250.69> , SteamID: <STEAM_0:4:1985181939>
+L 12/11/2010 - 12:46:50: CDHack * Nick: <OPTIMUS> , IP: <91.197.243.22> , SteamID: <STEAM_0:4:1607963633>
+L 12/11/2010 - 14:34:17: CDHack * Nick: <[Pro]100_Dr.Fanta^> , IP: <213.148.180.94> , SteamID: <STEAM_0:4:2079603510>
+L 12/11/2010 - 16:26:21: CDHack * Nick: <urpok> , IP: <178.44.232.44> , SteamID: <STEAM_0:4:1121609477>
+L 12/11/2010 - 16:36:01: CDHack * Nick: <[All-CS.Net.Ru] User> , IP: <188.19.170.253> , SteamID: <STEAM_0:0:423252765>
+L 12/11/2010 - 21:48:10: CDHack * Nick: <C. Ronaldo> , IP: <213.141.244.246> , SteamID: <STEAM_0:4:802437046>
+L 12/12/2010 - 10:42:13: CDHack * Nick: <NOob> , IP: <91.194.191.228> , SteamID: <STEAM_0:4:653365361>
+L 12/12/2010 - 11:18:56: CDHack * Nick: <~ProNoob~B~CSe> , IP: <178.179.68.148> , SteamID: <STEAM_0:4:512501893>
+L 12/12/2010 - 18:00:39: CDHack * Nick: <BOBI> , IP: <109.187.88.162> , SteamID: <STEAM_0:4:92417258>
+L 12/12/2010 - 18:09:13: CDHack * Nick: <.-*^*-.13abyKnight.-*^*-.> , IP: <217.8.225.129> , SteamID: <STEAM_0:4:341767472>
+L 12/12/2010 - 20:06:01: CDHack * Nick: <WooHooo!!!> , IP: <188.18.222.152> , SteamID: <STEAM_0:4:415332354>
+L 12/12/2010 - 22:26:52: CDHack * Nick: <daun's^tm Czar_of_Rap> , IP: <109.61.129.43> , SteamID: <STEAM_0:4:1097789418>
+L 12/13/2010 - 18:23:49: CDHack * Nick: <[HeaD.PrO]*-=9I=-=CHEATER=-> , IP: <95.52.193.17> , SteamID: <STEAM_0:4:1548675955>
+L 12/13/2010 - 23:45:43: CDHack * Nick: <<:VIKAN:>> , IP: <94.233.135.188> , SteamID: <STEAM_0:4:183338483>
+L 12/14/2010 - 07:38:04: CDHack * Nick: <ve]{1_9_3_0}L> , IP: <92.243.183.52> , SteamID: <STEAM_0:4:1324714226>
+L 12/14/2010 - 10:17:20: CDHack * Nick: <skorpion> , IP: <92.101.123.191> , SteamID: <STEAM_0:4:185844722>
+L 12/14/2010 - 13:44:40: CDHack * Nick: <ks.1nt_brAnkO*> , IP: <89.23.8.209> , SteamID: <STEAM_0:4:1009416944>
+L 12/14/2010 - 14:19:11: CDHack * Nick: <<- e6awy KpoJluKOB #2> , IP: <94.181.148.178> , SteamID: <STEAM_0:4:233057267>
+L 12/14/2010 - 16:24:13: CDHack * Nick: <Dj.6a6yc9l.xD.cfg# ^^> , IP: <109.205.252.156> , SteamID: <STEAM_0:4:449845226>
+L 12/14/2010 - 23:55:07: CDHack * Nick: <PaTPoL.pro>FraGeR> , IP: <95.53.175.186> , SteamID: <STEAM_0:4:167373811>
+L 12/15/2010 - 16:34:46: CDHack * Nick: <_Virtus.Pro_Rvot> , IP: <95.79.153.140> , SteamID: <STEAM_0:4:316856051>
+L 12/15/2010 - 16:34:56: CDHack * Nick: <Virtus.Pro_Head Shot> , IP: <93.120.226.49> , SteamID: <STEAM_0:4:1281314162>
+L 12/15/2010 - 16:59:37: CDHack * Nick: <|cn6|}I{eka)100 KILL> , IP: <89.223.47.13> , SteamID: <STEAM_0:4:1379507952>
+L 12/15/2010 - 17:28:29: CDHack * Nick: <S.T.A.T> , IP: <188.18.71.200> , SteamID: <STEAM_0:4:814610434>
+L 12/15/2010 - 18:00:20: CDHack * Nick: <[CnuDbI_PrO] | )I(eN9> , IP: <188.134.44.162> , SteamID: <STEAM_0:4:95957506>
+L 12/15/2010 - 18:23:00: CDHack * Nick: <PEGMEJ> , IP: <78.84.195.53> , SteamID: <STEAM_0:4:1313856379>
+L 12/15/2010 - 18:32:06: CDHack * Nick: <CaHb|4> , IP: <217.197.232.62> , SteamID: <STEAM_0:4:1272583088>
+L 12/15/2010 - 22:52:16: CDHack * Nick: <Skam> , IP: <46.147.180.197> , SteamID: <STEAM_0:4:913586379>
+L 12/16/2010 - 12:29:36: CDHack * Nick: <<dok>let> , IP: <92.126.103.92> , SteamID: <STEAM_0:4:2057162354>
+L 12/16/2010 - 12:34:09: CDHack * Nick: <Kenny> , IP: <91.78.208.36> , SteamID: <STEAM_0:4:1187403377>
+L 12/16/2010 - 12:50:33: CDHack * Nick: <Sponge Bob> , IP: <95.143.213.26> , SteamID: <STEAM_0:4:1506064115>
+L 12/16/2010 - 17:26:06: CDHack * Nick: <SpawN> , IP: <178.140.100.240> , SteamID: <STEAM_0:4:748435205>
+L 12/16/2010 - 22:56:43: CDHack * Nick: <157911> , IP: <10.50.116.148> , SteamID: <STEAM_0:4:513042521>
+L 12/16/2010 - 23:51:51: CDHack * Nick: <$$$fantOM$$$> , IP: <109.187.82.29> , SteamID: <STEAM_0:4:1510419690>
+L 12/17/2010 - 10:34:12: CDHack * Nick: <kim-13> , IP: <92.101.87.197> , SteamID: <STEAM_0:4:906347506>
+L 12/17/2010 - 15:25:46: CDHack * Nick: <.:^A.T.C^:. > T1m0n` [love] :D> , IP: <94.143.246.22> , SteamID: <STEAM_0:4:1607808755>
+L 12/17/2010 - 15:46:18: CDHack * Nick: <+Love cs 1.6 in css+> , IP: <178.67.47.21> , SteamID: <STEAM_0:4:1580847237>
+L 12/17/2010 - 16:06:49: CDHack * Nick: <_SkuLL_> , IP: <91.197.67.141> , SteamID: <STEAM_0:4:303010801>
+L 12/17/2010 - 16:35:54: CDHack * Nick: <Multiplayer> , IP: <94.242.190.152> , SteamID: <STEAM_0:4:418449523>
+L 12/18/2010 - 11:00:48: CDHack * Nick: <DiNo> , IP: <91.196.150.186> , SteamID: <STEAM_0:4:166007665>
+L 12/18/2010 - 19:30:13: CDHack * Nick: <BIG[boom]Def> , IP: <188.134.39.17> , SteamID: <STEAM_0:4:1547547138>
+L 12/18/2010 - 19:39:34: CDHack * Nick: <CS*KZ*[forceTM]*JaNByL> , IP: <178.91.63.1> , SteamID: <STEAM_0:4:1412553861>
+L 12/19/2010 - 05:10:35: CDHack * Nick: <Oops> , IP: <77.108.98.177> , SteamID: <STEAM_0:4:203376506>
+L 12/19/2010 - 08:58:09: CDHack * Nick: <mel> , IP: <109.187.106.82> , SteamID: <STEAM_0:4:2107321578>
+L 12/19/2010 - 17:35:52: CDHack * Nick: <fant0m> , IP: <91.200.114.223> , SteamID: <STEAM_0:4:991368561>
+L 12/20/2010 - 01:56:23: CDHack * Nick: <Vs!>*> , IP: <95.24.46.111> , SteamID: <STEAM_0:4:1664712051>
+L 12/20/2010 - 12:08:58: CDHack * Nick: <~MEAT~> , IP: <95.53.150.189> , SteamID: <STEAM_0:4:174418931>
+L 12/20/2010 - 15:32:17: CDHack * Nick: <___>K2<___> , IP: <91.196.96.179> , SteamID: <STEAM_0:4:220074865>
+L 12/20/2010 - 17:24:03: CDHack * Nick: <Arkaduu'Petrushko xD> , IP: <93.81.180.120> , SteamID: <STEAM_0:4:1760844274>
+L 12/20/2010 - 21:13:15: CDHack * Nick: <24> , IP: <213.167.192.104> , SteamID: <STEAM_0:4:1624122038>
+L 12/20/2010 - 22:22:20: CDHack * Nick: <XJIoIIeC> , IP: <2.95.9.34> , SteamID: <STEAM_0:4:1168826077>
+L 12/21/2010 - 11:22:10: CDHack * Nick: <DOK> , IP: <78.85.210.196> , SteamID: <STEAM_0:4:919034875>
+L 12/21/2010 - 12:13:26: CDHack * Nick: <<47RuZ>G3N0M!> , IP: <213.172.19.183> , SteamID: <STEAM_0:4:254256950>
+L 12/21/2010 - 15:54:07: CDHack * Nick: <6e3yMHa9I_nono4Ka> , IP: <95.143.213.30> , SteamID: <STEAM_0:4:1539618547>
+L 12/21/2010 - 19:31:05: CDHack * Nick: <urpok> , IP: <91.193.142.171> , SteamID: <STEAM_0:4:23663089>
+L 12/22/2010 - 00:59:59: CDHack * Nick: <FTP* Kol9n.G> , IP: <95.54.68.190> , SteamID: <STEAM_0:4:193751667>
+L 12/22/2010 - 07:57:31: CDHack * Nick: <^0z> , IP: <95.25.138.106> , SteamID: <STEAM_0:4:1642823155>
+L 12/22/2010 - 10:48:38: CDHack * Nick: <=)MeGaPIX(=> , IP: <193.238.132.194> , SteamID: <STEAM_0:4:904660540>
+L 12/22/2010 - 14:59:26: CDHack * Nick: <[AK-47]_Gans_[11-rus]> , IP: <92.42.0.5> , SteamID: <STEAM_0:4:1445880946>
+L 12/22/2010 - 17:22:21: CDHack * Nick: <LEONARDO> , IP: <109.171.85.125> , SteamID: <STEAM_0:4:1778689258>
+L 12/22/2010 - 21:47:42: CDHack * Nick: <)!(uxapKa> , IP: <91.200.54.132> , SteamID: <STEAM_0:4:380966257>
+L 12/23/2010 - 01:20:46: CDHack * Nick: <RUB228=)> , IP: <91.195.137.238> , SteamID: <STEAM_0:4:602575089>
+L 12/23/2010 - 02:10:27: CDHack * Nick: <Vs!>*> , IP: <95.25.31.60> , SteamID: <STEAM_0:4:1252130291>
+L 12/23/2010 - 08:41:53: CDHack * Nick: <ss_666> , IP: <91.185.9.15> , SteamID: <STEAM_0:0:1909009188>
+L 12/23/2010 - 08:47:17: CDHack * Nick: <[war3ft.ru]PTXFF> , IP: <94.73.245.200> , SteamID: <STEAM_0:4:819254771>
+L 12/23/2010 - 10:49:40: CDHack * Nick: <.:HHT:.D.O.P.I.N.G> , IP: <95.67.168.40> , SteamID: <STEAM_0:4:1090146547>
+L 12/23/2010 - 14:18:32: CDHack * Nick: <sisikin> , IP: <95.29.132.20> , SteamID: <STEAM_0:4:1592557555>
+L 12/23/2010 - 17:16:55: CDHack * Nick: <XJIoIIeC> , IP: <2.95.9.26> , SteamID: <STEAM_0:4:1504370397>
+L 12/23/2010 - 20:10:25: CDHack * Nick: <~PRO GODS_TM_STRikeR~> , IP: <94.233.234.103> , SteamID: <STEAM_0:4:1734018547>
+L 12/23/2010 - 20:22:16: CDHack * Nick: <400kg> , IP: <95.105.83.114> , SteamID: <STEAM_0:4:1837614579>
+L 12/24/2010 - 07:05:21: CDHack * Nick: <Dre@m*Te@m*<PRO V@mpidr>> , IP: <80.64.175.10> , SteamID: <STEAM_0:4:1375326580>
+L 12/24/2010 - 10:52:32: CDHack * Nick: <tin> , IP: <92.101.143.162> , SteamID: <STEAM_0:4:99206130>
+L 12/24/2010 - 14:54:29: CDHack * Nick: <Fast FooD> , IP: <178.206.115.104> , SteamID: <STEAM_0:4:1620547077>
+L 12/24/2010 - 15:38:39: CDHack * Nick: <Ruki V Srake 8==3> , IP: <46.147.148.33> , SteamID: <STEAM_0:4:1147418827>
+L 12/24/2010 - 20:01:32: CDHack * Nick: <arden> , IP: <80.64.175.40> , SteamID: <STEAM_0:4:1090113908>
+L 12/24/2010 - 21:37:22: CDHack * Nick: <0bevan> , IP: <95.53.220.189> , SteamID: <STEAM_0:4:171994099>
+L 12/25/2010 - 09:02:15: CDHack * Nick: <(1)NOOB> , IP: <46.147.132.141> , SteamID: <STEAM_0:4:309082315>
+L 12/25/2010 - 14:49:11: CDHack * Nick: <unnamed> , IP: <89.254.198.82> , SteamID: <STEAM_0:4:2110590576>
+L 12/25/2010 - 18:45:11: CDHack * Nick: <qwerty> , IP: <78.36.128.185> , SteamID: <STEAM_0:4:141452155>
+L 12/25/2010 - 20:46:06: CDHack * Nick: <BOB> , IP: <91.203.67.132> , SteamID: <STEAM_0:0:294250197>
+L 12/25/2010 - 21:51:58: CDHack * Nick: <PaTRoL.PrO>vadya-11$SAMBO$> , IP: <92.101.144.179> , SteamID: <STEAM_0:4:224805874>
+L 12/26/2010 - 23:30:19: CDHack * Nick: <No Swear> , IP: <188.134.40.2> , SteamID: <STEAM_0:4:1438265858>
+L 12/26/2010 - 23:32:54: CDHack * Nick: <:D !!!> , IP: <85.159.230.118> , SteamID: <STEAM_0:4:1876770550>
+L 12/29/2010 - 00:15:37: CDHack * Nick: <Grazy> , IP: <78.108.79.245> , SteamID: <STEAM_0:4:772392827>
+L 12/29/2010 - 06:28:48: CDHack * Nick: <nubas =Dpro> , IP: <94.233.220.65> , SteamID: <STEAM_0:4:1950352883>
+L 12/29/2010 - 17:25:42: CDHack * Nick: <[Ice_TeaM_KenT]andrei> , IP: <95.72.65.42> , SteamID: <STEAM_0:4:1099879795>
+L 12/29/2010 - 19:44:30: CDHack * Nick: <CL*|PRO|*[awp]> , IP: <95.24.164.131> , SteamID: <STEAM_0:4:360480115>
+L 12/30/2010 - 10:53:16: CDHack * Nick: <Zomi> , IP: <93.81.15.115> , SteamID: <STEAM_0:4:1831459314>
+L 12/30/2010 - 13:21:29: CDHack * Nick: <BoT/PrO> , IP: <188.163.76.176> , SteamID: <STEAM_0:4:210247810>
+L 12/30/2010 - 13:26:47: CDHack * Nick: <Player [CS-HLDS.RU]> , IP: <188.134.42.79> , SteamID: <STEAM_0:4:1933259266>
+L 12/30/2010 - 17:13:14: CDHack * Nick: <Blo blo Blo 9 ne Xyu :D> , IP: <94.181.137.255> , SteamID: <STEAM_0:4:728411123>
+L 12/30/2010 - 18:07:50: CDHack * Nick: <Pro> , IP: <188.226.76.74> , SteamID: <STEAM_0:4:1904738306>
+L 12/30/2010 - 18:10:00: CDHack * Nick: <CS GOD> , IP: <178.64.162.253> , SteamID: <STEAM_0:4:712986885>
+L 12/30/2010 - 23:11:59: CDHack * Nick: <{[Valek.ru]}> , IP: <95.84.63.121> , SteamID: <STEAM_0:4:1748097907>
+L 12/31/2010 - 06:29:11: CDHack * Nick: <<[B]KOHTPE>tm>*T@p@C*> , IP: <87.98.36.11> , SteamID: <STEAM_0:4:1362903159>
+L 12/31/2010 - 12:28:52: CDHack * Nick: <Lexx> , IP: <178.252.65.17> , SteamID: <STEAM_0:4:1544457989>
+L 12/31/2010 - 17:03:10: CDHack * Nick: <m9cko.tm | Kill.Mee :D> , IP: <94.181.132.93> , SteamID: <STEAM_0:4:2053909491>
+L 12/31/2010 - 18:29:32: CDHack * Nick: <VaMpIr> , IP: <93.100.125.51> , SteamID: <STEAM_0:4:1292944242>
+L 01/01/2011 - 16:27:32: CDHack * Nick: <ololo> , IP: <46.147.171.127> , SteamID: <STEAM_0:4:1803270347>
+L 01/01/2011 - 17:06:22: CDHack * Nick: <->Dimka<-> , IP: <91.124.183.95> , SteamID: <STEAM_0:4:2071318385>
+L 01/01/2011 - 17:55:59: CDHack * Nick: <rocnoDuH> , IP: <188.134.34.201> , SteamID: <STEAM_0:4:809447938>
+L 01/01/2011 - 19:40:52: CDHack * Nick: <ZhopoDer> , IP: <84.17.11.114> , SteamID: <STEAM_0:4:1839987190>
+L 01/01/2011 - 21:21:16: CDHack * Nick: <[MaLou krAsaV4uk]-Ka6@N[^_^]> , IP: <89.185.92.235> , SteamID: <STEAM_0:4:553659888>
+L 01/01/2011 - 22:13:06: CDHack * Nick: <vodorod(2)> , IP: <92.252.185.167> , SteamID: <STEAM_0:4:124948338>
+L 01/02/2011 - 14:52:19: CDHack * Nick: <rrr> , IP: <188.187.129.16> , SteamID: <STEAM_0:4:1559145602>
+L 01/03/2011 - 09:12:01: CDHack * Nick: <P1ngui o_O> , IP: <212.21.28.67> , SteamID: <STEAM_0:4:1965063094>
+L 01/03/2011 - 10:42:16: CDHack * Nick: <Se7eN`> , IP: <91.185.36.156> , SteamID: <STEAM_0:4:448540145>
+L 01/03/2011 - 13:17:46: CDHack * Nick: <MS|SveN> , IP: <95.27.233.3> , SteamID: <STEAM_0:4:1432026355>
+L 01/03/2011 - 14:47:59: CDHack * Nick: <>{FISIKA-_- TEAM}>Roso4ka> , IP: <188.134.42.228> , SteamID: <STEAM_0:4:649802242>
+L 01/03/2011 - 14:49:09: CDHack * Nick: <TRON> , IP: <85.26.165.169> , SteamID: <STEAM_0:0:692971521>
+L 01/03/2011 - 14:49:17: CDHack * Nick: <BaceK> , IP: <95.52.79.7> , SteamID: <STEAM_0:4:1460267891>
+L 01/03/2011 - 16:21:15: CDHack * Nick: <PRO))> , IP: <82.209.72.212> , SteamID: <STEAM_0:4:1049238005>
+L 01/03/2011 - 16:26:14: CDHack * Nick: <Russian> , IP: <46.146.104.112> , SteamID: <STEAM_0:4:1822046283>
+L 01/03/2011 - 17:28:38: CDHack * Nick: <|Mr.Aka47|> , IP: <178.67.207.175> , SteamID: <STEAM_0:4:55169157>
+L 01/04/2011 - 04:44:20: CDHack * Nick: <MASTER AWP(NE BANIT6)> , IP: <77.52.117.104> , SteamID: <STEAM_0:4:1620372346>
+L 01/04/2011 - 12:54:41: CDHack * Nick: <weewwe> , IP: <95.52.67.50> , SteamID: <STEAM_0:4:1301277555>
+L 01/04/2011 - 21:06:10: CDHack * Nick: <AKM Lena4a> , IP: <78.132.231.90> , SteamID: <STEAM_0:4:2044572539>
+L 01/04/2011 - 21:32:32: CDHack * Nick: <**Ben.Der#~#R@D.Ree.Gez**> , IP: <193.107.153.98> , SteamID: <STEAM_0:4:1709360316>
+L 01/04/2011 - 22:25:57: CDHack * Nick: <BamBino> , IP: <178.68.19.248> , SteamID: <STEAM_0:4:682087173>
+L 01/05/2011 - 21:16:51: CDHack * Nick: <[war3ft.ru]VFTBO> , IP: <109.169.209.107> , SteamID: <STEAM_0:4:1632019946>
+L 01/05/2011 - 23:16:28: CDHack * Nick: <KenT> , IP: <78.36.189.196> , SteamID: <STEAM_0:4:921756539>
+L 01/06/2011 - 14:25:21: CDHack * Nick: <+18> , IP: <79.142.170.57> , SteamID: <STEAM_0:4:1216034427>
+L 01/07/2011 - 00:30:05: CDHack * Nick: <vodorod(2)> , IP: <85.26.234.137> , SteamID: <STEAM_0:4:274431094>
+L 01/07/2011 - 14:51:44: CDHack * Nick: <vodorod(2)> , IP: <85.26.232.177> , SteamID: <STEAM_0:4:207256694>
+L 01/07/2011 - 17:23:02: CDHack * Nick: <DoZe> , IP: <178.67.101.108> , SteamID: <STEAM_0:4:1654444165>
+L 01/08/2011 - 08:22:54: CDHack * Nick: <Bop_B_3akone> , IP: <95.221.134.114> , SteamID: <STEAM_0:4:1844256755>
+L 01/08/2011 - 09:38:29: CDHack * Nick: <Yarik> , IP: <109.201.80.78> , SteamID: <STEAM_0:4:1938167274>
+L 01/08/2011 - 10:36:47: CDHack * Nick: <vodorod(2)> , IP: <83.149.21.109> , SteamID: <STEAM_0:4:1646574581>
+L 01/08/2011 - 10:54:48: CDHack * Nick: <Young Money> , IP: <213.79.74.196> , SteamID: <STEAM_0:4:915101366>
+L 01/08/2011 - 11:48:39: CDHack * Nick: <Player> , IP: <95.67.174.73> , SteamID: <STEAM_0:4:1886998771>
+L 01/08/2011 - 15:15:57: CDHack * Nick: <0bevan> , IP: <95.53.234.245> , SteamID: <STEAM_0:4:777743347>
+L 01/08/2011 - 16:35:07: CDHack * Nick: <[No-MyAC]Odolf> , IP: <109.238.105.121> , SteamID: <STEAM_0:4:1746568810>
+L 01/08/2011 - 18:19:36: CDHack * Nick: <Gaara> , IP: <109.207.179.162> , SteamID: <STEAM_0:4:100112106>
+L 01/08/2011 - 18:20:37: CDHack * Nick: <Player> , IP: <95.25.85.10> , SteamID: <STEAM_0:4:1367670259>
+L 01/09/2011 - 12:09:33: CDHack * Nick: <ttt> , IP: <85.26.232.226> , SteamID: <STEAM_0:4:635075702>
+L 01/09/2011 - 17:51:29: CDHack * Nick: <DaGGer> , IP: <92.243.181.79> , SteamID: <STEAM_0:4:1937017074>
+L 01/09/2011 - 20:10:00: CDHack * Nick: <[Umdrela] > JOker^SnOoPy/ ?!> , IP: <94.143.246.104> , SteamID: <STEAM_0:4:1624585971>
+L 01/09/2011 - 22:16:01: CDHack * Nick: <***KaBaL***> , IP: <178.126.169.48> , SteamID: <STEAM_0:4:1291505157>
+L 01/09/2011 - 23:30:04: CDHack * Nick: <Mr_BeeN> , IP: <217.150.42.180> , SteamID: <STEAM_0:4:247151152>
+L 01/10/2011 - 20:39:34: CDHack * Nick: <Pro_[Hacker]> , IP: <109.188.237.161> , SteamID: <STEAM_0:4:72920938>
+L 01/11/2011 - 02:19:39: CDHack * Nick: <.::PRO::.> , IP: <94.20.78.60> , SteamID: <STEAM_0:4:1250524019>
+L 01/11/2011 - 15:56:06: CDHack * Nick: <[FRG]^_Haru6aTe/lb> , IP: <178.64.162.137> , SteamID: <STEAM_0:4:276779269>
+L 01/11/2011 - 21:45:51: CDHack * Nick: <shkodnick> , IP: <178.68.145.254> , SteamID: <STEAM_0:4:736547589>
+L 01/11/2011 - 23:17:30: CDHack * Nick: <vodorod(2)> , IP: <89.239.164.83> , SteamID: <STEAM_0:4:2105280240>
+L 01/12/2011 - 08:01:54: CDHack * Nick: <NiCeMegaKiLL> , IP: <178.44.139.129> , SteamID: <STEAM_0:4:342615813>
+L 01/12/2011 - 10:58:05: CDHack * Nick: <ga_ugu_Tbl_Haxyu> , IP: <95.53.165.120> , SteamID: <STEAM_0:4:1761405939>
+L 01/12/2011 - 13:14:37: CDHack * Nick: <[No-MyAC]artem 58 rus> , IP: <85.26.235.144> , SteamID: <STEAM_0:4:484179062>
+L 01/12/2011 - 15:30:40: CDHack * Nick: <KoS> , IP: <95.67.227.201> , SteamID: <STEAM_0:4:811585779>
+L 01/12/2011 - 16:59:18: CDHack * Nick: <Exp ] -=p=- fp [rus]> , IP: <85.140.87.100> , SteamID: <STEAM_0:4:1720039286>
+L 01/12/2011 - 18:24:43: CDHack * Nick: <green)> , IP: <95.68.141.86> , SteamID: <STEAM_0:4:2145964915>
+L 01/12/2011 - 23:05:37: CDHack * Nick: <kekc-pro? >>>> , IP: <81.201.17.16> , SteamID: <STEAM_0:4:1554421236>
+L 01/13/2011 - 01:46:43: CDHack * Nick: <Devil_ChRoN> , IP: <95.52.167.138> , SteamID: <STEAM_0:4:301853555>
+L 01/13/2011 - 06:06:37: CDHack * Nick: <.> , IP: <92.252.181.223> , SteamID: <STEAM_0:4:997494642>
+L 01/13/2011 - 07:06:03: CDHack * Nick: <[war3ft.ru]FLRYS> , IP: <95.71.109.193> , SteamID: <STEAM_0:0:2034700973>
+L 01/13/2011 - 07:29:54: CDHack * Nick: <GOGH> , IP: <195.158.233.127> , SteamID: <STEAM_0:4:1801109053>
+L 01/13/2011 - 13:23:51: CDHack * Nick: <[war3ft.ru]ERPCP> , IP: <94.228.193.10> , SteamID: <STEAM_0:4:1372488563>
+L 01/13/2011 - 15:00:04: CDHack * Nick: <vodorod(2)> , IP: <92.252.138.209> , SteamID: <STEAM_0:4:1013649266>
+L 01/13/2011 - 15:30:37: CDHack * Nick: <Ton4ik> , IP: <95.67.149.181> , SteamID: <STEAM_0:4:241488115>
+L 01/13/2011 - 16:50:51: CDHack * Nick: <green)> , IP: <95.68.140.166> , SteamID: <STEAM_0:4:132666227>
+L 01/13/2011 - 21:37:56: CDHack * Nick: <kim> , IP: <95.53.74.253> , SteamID: <STEAM_0:4:705391603>
+L 01/13/2011 - 22:47:58: CDHack * Nick: <sykaaaa> , IP: <92.62.62.3> , SteamID: <STEAM_0:4:1429302898>
+L 01/14/2011 - 02:00:42: CDHack * Nick: <Maxx> , IP: <217.50.34.202> , SteamID: <STEAM_0:4:834627632>
+L 01/14/2011 - 04:09:20: CDHack * Nick: <Smile> , IP: <91.215.224.10> , SteamID: <STEAM_0:4:1373510385>
+L 01/14/2011 - 10:33:16: CDHack * Nick: <kill=)> , IP: <109.174.10.218> , SteamID: <STEAM_0:4:967517802>
+L 01/14/2011 - 13:55:31: CDHack * Nick: <Deathran|Akim> , IP: <86.110.160.141> , SteamID: <STEAM_0:4:310265463>
+L 01/14/2011 - 15:54:26: CDHack * Nick: <green)> , IP: <95.68.183.114> , SteamID: <STEAM_0:4:1844826995>
+L 01/14/2011 - 21:04:31: CDHack * Nick: <**zBePcKuu` 4uToP**> , IP: <95.53.230.46> , SteamID: <STEAM_0:4:1138584563>
+L 01/14/2011 - 21:42:17: CDHack * Nick: <vodorod(2)> , IP: <92.252.134.4> , SteamID: <STEAM_0:4:1458376562>
+L 01/14/2011 - 21:53:01: CDHack * Nick: <AsKaR_> , IP: <178.91.46.74> , SteamID: <STEAM_0:4:1907973253>
+L 01/16/2011 - 18:25:07: CDHack * Nick: <HybbI!!!> , IP: <94.233.204.42> , SteamID: <STEAM_0:4:1103627763>
+L 01/17/2011 - 01:50:44: CDHack * Nick: <(1)LOLO> , IP: <92.101.53.216> , SteamID: <STEAM_0:4:951370738>
+L 01/17/2011 - 17:54:44: CDHack * Nick: <}I{eka> , IP: <95.30.10.130> , SteamID: <STEAM_0:4:363560563>
+L 01/18/2011 - 00:37:52: CDHack * Nick: <14<anti ===> emo>88> , IP: <83.149.41.111> , SteamID: <STEAM_0:4:1664793589>
+L 01/18/2011 - 07:59:07: CDHack * Nick: <gAVNO!> , IP: <91.219.136.20> , SteamID: <STEAM_0:4:1592401137>
+L 01/18/2011 - 08:02:13: CDHack * Nick: <SKIT> , IP: <91.192.170.13> , SteamID: <STEAM_0:4:1383797105>
+L 01/18/2011 - 17:12:58: CDHack * Nick: <_+DSL+_> , IP: <88.84.205.249> , SteamID: <STEAM_0:4:675863408>
+L 01/18/2011 - 17:47:49: CDHack * Nick: <3ae6aHeL|> , IP: <95.53.169.17> , SteamID: <STEAM_0:4:1551559667>
+L 01/18/2011 - 20:19:16: CDHack * Nick: <GODStm|ANGEL OF HOPE> , IP: <85.234.31.214> , SteamID: <STEAM_0:4:1067549814>
+L 01/19/2011 - 06:28:16: CDHack * Nick: <Smile> , IP: <91.215.224.10> , SteamID: <STEAM_0:4:1373510385>
+L 01/19/2011 - 10:05:13: CDHack * Nick: <-=[SPB]=-  AKTEP  -=[OO7]=-> , IP: <178.66.58.76> , SteamID: <STEAM_0:4:1924354053>
+L 01/19/2011 - 17:04:03: CDHack * Nick: <pro_stem_delix> , IP: <93.81.198.163> , SteamID: <STEAM_0:4:88955378>
+L 01/23/2011 - 12:11:21: CDHack * Nick: <606puk> , IP: <79.98.8.12> , SteamID: <STEAM_0:4:1386889339>
+L 01/23/2011 - 20:01:58: CDHack * Nick: <Gun> , IP: <217.197.232.62> , SteamID: <STEAM_0:4:1272583088>
+L 01/24/2011 - 00:00:36: CDHack * Nick: <BANNED_NAME> , IP: <78.36.178.248> , SteamID: <STEAM_0:4:687301499>
+L 01/24/2011 - 00:08:15: CDHack * Nick: <SiS'ko 29 region> , IP: <92.101.76.26> , SteamID: <STEAM_0:4:1502102514>
+L 01/24/2011 - 15:48:10: CDHack * Nick: <=>YKYPOK<=> , IP: <188.134.40.220> , SteamID: <STEAM_0:4:985281026>
+L 01/24/2011 - 16:12:37: CDHack * Nick: <Happy> , IP: <194.125.254.5> , SteamID: <STEAM_0:4:1448169405>
+L 01/24/2011 - 18:18:02: CDHack * Nick: <>>>(((NoVoiLiKoVo)))<<<D I M A)> , IP: <92.245.37.241> , SteamID: <STEAM_0:4:742165490>
+L 01/24/2011 - 22:26:41: CDHack * Nick: <xuli_gan4uku^tm lLEOPOLD|zcl> , IP: <91.202.222.8> , SteamID: <STEAM_0:4:1354830961>
+L 01/27/2011 - 17:59:58: CDHack * Nick: <BrAT.3eBcA^[B]KyMaPe> , IP: <92.255.199.59> , SteamID: <STEAM_0:0:1229019150>
+L 01/27/2011 - 18:35:26: CDHack * Nick: <Cinotri> , IP: <95.53.217.90> , SteamID: <STEAM_0:4:2042817523>
+L 01/27/2011 - 18:40:04: CDHack * Nick: <bebeto_55ru> , IP: <109.194.127.245> , SteamID: <STEAM_0:4:772903018>
+L 01/27/2011 - 20:09:01: CDHack * Nick: <M@P> , IP: <94.181.203.186> , SteamID: <STEAM_0:4:164342771>
+L 01/29/2011 - 05:31:23: CDHack * Nick: <Fri0n> , IP: <92.101.156.141> , SteamID: <STEAM_0:4:308298738>
+L 01/29/2011 - 11:35:27: CDHack * Nick: <andrei> , IP: <89.252.115.39> , SteamID: <STEAM_0:4:1192726384>
+L 01/29/2011 - 23:24:33: CDHack * Nick: <[Dor] Drugoy> , IP: <95.158.208.50> , SteamID: <STEAM_0:4:1304837747>
+L 01/30/2011 - 18:56:07: CDHack * Nick: <<<SkaNe>> | Ilya.R [cl]> , IP: <178.171.106.202> , SteamID: <STEAM_0:4:832251013>
+L 01/31/2011 - 00:37:44: CDHack * Nick: <[K3]_AGA> , IP: <93.80.209.9> , SteamID: <STEAM_0:4:1346820466>
+L 02/01/2011 - 00:11:59: CDHack * Nick: <CMEPTb c KoCou*> , IP: <94.233.114.178> , SteamID: <STEAM_0:4:228001267>
+L 02/01/2011 - 16:27:45: CDHack * Nick: <(((((IIeHCuOHeP)))))> , IP: <91.192.20.52> , SteamID: <STEAM_0:4:1319375217>
+L 02/01/2011 - 16:53:25: CDHack * Nick: <fok> , IP: <46.147.150.232> , SteamID: <STEAM_0:4:551893195>
+L 02/01/2011 - 18:44:39: CDHack * Nick: <BIN<GO>Team~Dj_cool~> , IP: <95.81.235.139> , SteamID: <STEAM_0:4:291232243>
+L 02/01/2011 - 23:16:01: CDHack * Nick: <[BreaK] - [L]ucker [k]ardo!!> , IP: <90.191.90.55> , SteamID: <STEAM_0:4:1325608689>
+L 02/02/2011 - 16:20:32: CDHack * Nick: <wh> , IP: <79.173.86.214> , SteamID: <STEAM_0:4:1065691131>
+L 02/03/2011 - 02:36:52: CDHack * Nick: <[war3ft.ru]FWPZJ> , IP: <95.53.190.30> , SteamID: <STEAM_0:4:1542548467>
+L 02/03/2011 - 19:48:29: CDHack * Nick: <1111> , IP: <95.81.203.231> , SteamID: <STEAM_0:4:659282419>
+L 02/03/2011 - 22:21:11: CDHack * Nick: <Turbo> , IP: <10.178.201.59> , SteamID: <STEAM_0:4:1229629529>
+L 02/04/2011 - 12:25:00: CDHack * Nick: <Korova> , IP: <94.143.240.12> , SteamID: <STEAM_0:4:1389770483>
+L 02/04/2011 - 14:23:43: CDHack * Nick: <illuzion-skamp> , IP: <87.245.160.4> , SteamID: <STEAM_0:4:1459489783>
+L 02/04/2011 - 17:28:15: CDHack * Nick: <CS^PRO|^AIR NIKE> , IP: <93.185.192.77> , SteamID: <STEAM_0:4:1917726194>
+L 02/04/2011 - 18:35:40: CDHack * Nick: <Demogfds> , IP: <79.133.152.209> , SteamID: <STEAM_0:4:1013068795>
+L 02/04/2011 - 18:58:36: CDHack * Nick: <=3ELIPYPELb=> , IP: <178.66.110.36> , SteamID: <STEAM_0:4:1184452613>
+L 02/04/2011 - 19:46:00: CDHack * Nick: <*Grm>>> , IP: <46.148.134.239> , SteamID: <STEAM_0:4:594361163>
+L 02/04/2011 - 20:29:58: CDHack * Nick: <Noize MC> , IP: <194.213.107.181> , SteamID: <STEAM_0:4:236690365>
+L 02/05/2011 - 15:02:56: CDHack * Nick: <MATR9GA_ALEX> , IP: <95.37.78.37> , SteamID: <STEAM_0:4:1175020531>
+L 02/05/2011 - 18:52:27: CDHack * Nick: <Xepa4uJLa|  Dant1K> , IP: <79.175.3.145> , SteamID: <STEAM_0:4:472884987>
+L 02/05/2011 - 20:08:35: CDHack * Nick: <No Swear> , IP: <91.139.254.250> , SteamID: <STEAM_0:4:701576433>
+L 02/05/2011 - 20:37:34: CDHack * Nick: <Xepa4uJLa|  Dant1K> , IP: <79.175.3.219> , SteamID: <STEAM_0:4:959424251>
+L 02/05/2011 - 20:39:11: CDHack * Nick: <Xepa4uJLa|  Dant1K> , IP: <79.175.3.43> , SteamID: <STEAM_0:4:1093641979>
+L 02/05/2011 - 20:45:37: CDHack * Nick: <SkinHead 14/88> , IP: <188.123.241.195> , SteamID: <STEAM_0:4:894880898>
+L 02/05/2011 - 20:53:31: CDHack * Nick: <LaGGer))*> , IP: <109.61.199.130> , SteamID: <STEAM_0:4:365817834>
+L 02/06/2011 - 04:05:45: CDHack * Nick: <4D | Kind -no sound-> , IP: <109.252.69.247> , SteamID: <STEAM_0:4:789352298>
+L 02/06/2011 - 15:14:29: CDHack * Nick: <gypb> , IP: <92.101.129.244> , SteamID: <STEAM_0:4:787399666>
+L 02/06/2011 - 15:25:22: CDHack * Nick: <SMERTb> , IP: <95.53.132.248> , SteamID: <STEAM_0:4:686582771>
+L 02/06/2011 - 19:27:04: CDHack * Nick: <Sacred Soul> , IP: <188.18.137.161> , SteamID: <STEAM_0:4:74119170>
+L 02/07/2011 - 18:00:12: CDHack * Nick: <Kasper> , IP: <46.146.145.173> , SteamID: <STEAM_0:4:40286283>
+L 02/07/2011 - 18:30:46: CDHack * Nick: <BbIHOC!)> , IP: <95.221.146.138> , SteamID: <STEAM_0:4:300359667>
+L 02/07/2011 - 21:03:08: CDHack * Nick: <Strelok> , IP: <46.146.33.142> , SteamID: <STEAM_0:4:331266123>
+L 02/07/2011 - 22:53:43: CDHack * Nick: <Ozy_61RUS> , IP: <178.76.247.42> , SteamID: <STEAM_0:4:1104533253>
+L 02/08/2011 - 00:13:21: CDHack * Nick: <GrIIm> , IP: <77.79.190.151> , SteamID: <STEAM_0:4:527521530>
+L 02/08/2011 - 09:07:21: CDHack * Nick: <[**Nike*tm*]=Lexa.M*Pro{cto}^4e> , IP: <178.141.12.169> , SteamID: <STEAM_0:4:2635653>
+L 02/08/2011 - 17:38:38: CDHack * Nick: <R@ID*TEPPOPuCT*40*RUS*> , IP: <93.81.154.47> , SteamID: <STEAM_0:4:1130584562>
+L 02/08/2011 - 18:53:34: CDHack * Nick: <petro_> , IP: <77.232.142.141> , SteamID: <STEAM_0:4:308872570>
+L 02/08/2011 - 19:30:58: CDHack * Nick: <::: KENT :::> , IP: <94.232.8.158> , SteamID: <STEAM_0:4:464127347>
+L 02/08/2011 - 19:31:37: CDHack * Nick: <Super terorist> , IP: <94.232.8.147> , SteamID: <STEAM_0:4:489293171>
+L 02/08/2011 - 20:48:31: CDHack * Nick: <~~~~~~~~~~~~~~> , IP: <195.191.158.7> , SteamID: <STEAM_0:4:1465986749>
+L 02/08/2011 - 20:57:38: CDHack * Nick: <BIZON> , IP: <46.146.133.36> , SteamID: <STEAM_0:4:1189918795>
+L 02/09/2011 - 00:32:53: CDHack * Nick: <dober> , IP: <91.77.18.177> , SteamID: <STEAM_0:4:203905009>
+L 02/09/2011 - 09:08:18: CDHack * Nick: <Otec Cs> , IP: <91.194.191.227> , SteamID: <STEAM_0:4:628199537>
+L 02/09/2011 - 13:19:31: CDHack * Nick: <sm[i]Le21rus^_^> , IP: <178.176.97.124> , SteamID: <STEAM_0:4:1788782853>
+L 02/10/2011 - 16:12:02: CDHack * Nick: <vizoom> , IP: <217.172.25.67> , SteamID: <STEAM_0:4:1965205296>
+L 02/10/2011 - 16:41:15: CDHack * Nick: <^KcH[Ex.ProFu]^Xe-Xe*> , IP: <188.16.57.115> , SteamID: <STEAM_0:4:1832057090>
+L 02/10/2011 - 16:53:27: CDHack * Nick: <dup1ex> , IP: <213.88.2.69> , SteamID: <STEAM_0:4:1982815542>
+L 02/10/2011 - 18:20:29: CDHack * Nick: <qp> , IP: <94.137.5.227> , SteamID: <STEAM_0:4:623687155>
+L 02/10/2011 - 18:20:43: CDHack * Nick: <Bac9I> , IP: <92.101.128.230> , SteamID: <STEAM_0:4:669926386>
+L 02/10/2011 - 19:47:27: CDHack * Nick: <GLADIATOR> , IP: <79.126.4.217> , SteamID: <STEAM_0:4:942427771>
+L 02/10/2011 - 19:48:11: CDHack * Nick: <=)> , IP: <109.184.98.164> , SteamID: <STEAM_0:4:111095146>
+L 02/10/2011 - 20:42:31: CDHack * Nick: <[ExTrA^teAM] ZWER> , IP: <94.50.180.170> , SteamID: <STEAM_0:4:32794739>
+L 02/10/2011 - 21:04:46: CDHack * Nick: <.::ALMET MAX::.> , IP: <178.206.214.150> , SteamID: <STEAM_0:4:533009925>
+L 02/10/2011 - 22:20:28: CDHack * Nick: <Van4o> , IP: <217.64.142.11> , SteamID: <STEAM_0:4:1365856560>
+L 02/10/2011 - 22:42:16: CDHack * Nick: <Kavkaz_Gr-Az | PROffi> , IP: <95.53.157.52> , SteamID: <STEAM_0:4:1323363315>
+L 02/11/2011 - 14:13:46: CDHack * Nick: <Gr-Az> , IP: <95.53.202.157> , SteamID: <STEAM_0:4:441150451>
+L 02/11/2011 - 14:15:54: CDHack * Nick: <GAAA!> , IP: <95.53.205.151> , SteamID: <STEAM_0:4:524872691>
+L 02/11/2011 - 16:59:14: CDHack * Nick: <Hy6o XuPo> , IP: <93.120.193.169> , SteamID: <STEAM_0:4:5164402>
+L 02/11/2011 - 18:15:33: CDHack * Nick: <[war3ft.ru]GZDCX> , IP: <92.100.219.73> , SteamID: <STEAM_0:4:1883489138>
+L 02/11/2011 - 20:34:54: CDHack * Nick: <drAgon> , IP: <217.71.235.236> , SteamID: <STEAM_0:4:584831664>
+L 02/11/2011 - 23:33:46: CDHack * Nick: <.:Spirit.Cave:. |>>PERCHI|{<<|> , IP: <178.130.4.44> , SteamID: <STEAM_0:4:1118580741>
+L 02/12/2011 - 00:20:04: CDHack * Nick: <STIHL^ tm| MaLaY.> , IP: <87.251.137.68> , SteamID: <STEAM_0:4:1995082999>
+L 02/12/2011 - 12:40:22: CDHack * Nick: <JIe][@)))> , IP: <188.35.19.10> , SteamID: <STEAM_0:4:1369956482>
+L 02/12/2011 - 13:17:44: CDHack * Nick: <.::ALMET MAX::.> , IP: <178.206.208.216> , SteamID: <STEAM_0:4:952505861>
+L 02/12/2011 - 14:01:56: CDHack * Nick: <splash> , IP: <92.39.220.212> , SteamID: <STEAM_0:4:1052795634>
+L 02/12/2011 - 15:59:32: CDHack * Nick: <{Sindikat.tm} }i{IGAN> , IP: <95.55.144.99> , SteamID: <STEAM_0:4:1701210867>
+L 02/12/2011 - 16:42:47: CDHack * Nick: <Crash-(152russ)> , IP: <93.120.245.187> , SteamID: <STEAM_0:4:156552562>
+L 02/12/2011 - 19:29:58: CDHack * Nick: <GAAA!> , IP: <95.53.159.100> , SteamID: <STEAM_0:4:1726082035>
+L 02/12/2011 - 20:09:29: CDHack * Nick: <[ANTIMAT]Nick deleted> , IP: <178.140.129.190> , SteamID: <STEAM_0:4:200193797>
+L 02/12/2011 - 21:01:29: CDHack * Nick: <KeRRy^^ <3 Bloody_Elf> , IP: <195.191.158.6> , SteamID: <STEAM_0:4:1474375357>
+L 02/12/2011 - 22:05:32: CDHack * Nick: <cfg> , IP: <95.52.203.225> , SteamID: <STEAM_0:4:608955251>
+L 02/13/2011 - 14:38:04: CDHack * Nick: <>Seven.pro<->Vaip<[cl]> , IP: <77.232.142.171> , SteamID: <STEAM_0:4:23659898>
+L 02/13/2011 - 17:46:10: CDHack * Nick: <.::ENIS::.> , IP: <77.28.132.141> , SteamID: <STEAM_0:4:309100410>
+L 02/13/2011 - 20:59:11: CDHack * Nick: <S 41tom> , IP: <95.53.69.91> , SteamID: <STEAM_0:4:2030889971>
+L 02/13/2011 - 21:39:28: CDHack * Nick: <=|Vovka|=> , IP: <91.190.52.4> , SteamID: <STEAM_0:4:1454648945>
+L 02/13/2011 - 22:13:45: CDHack * Nick: <Achtung!!! Slunchik:) :* -->> , IP: <95.83.112.209> , SteamID: <STEAM_0:4:1008097523>
+L 02/13/2011 - 22:45:47: CDHack * Nick: <smile=)))*> , IP: <91.215.224.10> , SteamID: <STEAM_0:4:1373510385>
+L 02/14/2011 - 18:31:25: CDHack * Nick: <.:lCoCiCkA[B]TeCTEl:.{ReSt@rT!}> , IP: <92.62.62.19> , SteamID: <STEAM_0:4:1563520626>
+L 02/14/2011 - 19:10:08: CDHack * Nick: <[No-MyAC]:::^xaxa^:::> , IP: <178.141.78.103> , SteamID: <STEAM_0:4:1728657285>
+L 02/14/2011 - 21:55:37: CDHack * Nick: <+D@nt1k+> , IP: <79.175.3.113> , SteamID: <STEAM_0:4:1815062267>
+L 02/14/2011 - 22:46:31: CDHack * Nick: <shush152))> , IP: <93.120.235.89> , SteamID: <STEAM_0:4:2019282290>
+L 02/15/2011 - 01:01:46: CDHack * Nick: <Slava> , IP: <109.169.138.7> , SteamID: <STEAM_0:4:1466639850>
+L 02/15/2011 - 01:30:05: CDHack * Nick: <yh> , IP: <46.146.31.174> , SteamID: <STEAM_0:4:60930123>
+L 02/15/2011 - 01:35:12: CDHack * Nick: <ALKo_MeN*> , IP: <95.26.123.86> , SteamID: <STEAM_0:4:2140404851>
+L 02/15/2011 - 01:42:24: CDHack * Nick: <GAVNO> , IP: <178.66.119.154> , SteamID: <STEAM_0:0:94575237>
+L 02/15/2011 - 10:23:34: CDHack * Nick: <=DDD^BFMV> , IP: <94.143.240.36> , SteamID: <STEAM_0:4:1188443891>
+L 02/15/2011 - 10:24:10: CDHack * Nick: <4'k e6a :D> , IP: <78.37.55.20> , SteamID: <STEAM_0:4:1588978683>
+L 02/15/2011 - 11:06:40: CDHack * Nick: <killer> , IP: <94.255.74.226> , SteamID: <STEAM_0:4:629870323>
+L 02/15/2011 - 17:43:10: CDHack * Nick: <[m]a[l]x[a]z> , IP: <95.167.27.206> , SteamID: <STEAM_0:4:866362099>
+L 02/15/2011 - 17:57:31: CDHack * Nick: <AK-47> , IP: <46.0.228.78> , SteamID: <STEAM_0:4:1943826763>
+L 02/15/2011 - 20:46:06: CDHack * Nick: <BALABAIKA> , IP: <178.129.178.166> , SteamID: <STEAM_0:4:133640581>
+L 02/15/2011 - 20:46:44: CDHack * Nick: <^777^> , IP: <188.16.70.47> , SteamID: <STEAM_0:4:1124956418>
+L 02/16/2011 - 07:18:43: CDHack * Nick: <killer> , IP: <78.40.81.32> , SteamID: <STEAM_0:4:1149691259>
+L 02/16/2011 - 20:38:33: CDHack * Nick: <^777^> , IP: <90.151.34.218> , SteamID: <STEAM_0:4:968833777>
+L 02/16/2011 - 22:43:36: CDHack * Nick: <NIKE_RUN#22> , IP: <95.72.58.50> , SteamID: <STEAM_0:4:1303598451>
+L 02/17/2011 - 12:05:49: CDHack * Nick: <^GoLd^Strike^> , IP: <95.139.170.28> , SteamID: <STEAM_0:4:1526412531>
+L 02/17/2011 - 23:03:04: CDHack * Nick: <KIROSIN> , IP: <95.29.185.104> , SteamID: <STEAM_0:4:1626537971>
+L 02/19/2011 - 00:49:52: CDHack * Nick: <gfg> , IP: <78.106.102.2> , SteamID: <STEAM_0:4:1436370043>
+L 02/19/2011 - 10:55:15: CDHack * Nick: <KIROSIN> , IP: <93.81.68.25> , SteamID: <STEAM_0:4:1477204466>
+L 02/19/2011 - 10:56:25: CDHack * Nick: <200 gramm> , IP: <78.108.79.39> , SteamID: <STEAM_0:4:1191823227>
+L 02/19/2011 - 11:31:27: CDHack * Nick: <[GBH]-[Perm] visim_(59 rus> , IP: <46.146.182.176> , SteamID: <STEAM_0:4:217397323>
+L 02/19/2011 - 13:06:32: CDHack * Nick: <xupypr [PRO]{AWP}> , IP: <188.168.90.34> , SteamID: <STEAM_0:4:1166222594>
+L 02/19/2011 - 14:40:25: CDHack * Nick: <Dronchik> , IP: <10.140.10.238> , SteamID: <STEAM_0:4:598423385>
+L 02/19/2011 - 17:40:03: CDHack * Nick: <god of war> , IP: <86.62.97.241> , SteamID: <STEAM_0:4:740224631>
+L 02/19/2011 - 18:46:57: CDHack * Nick: <RAZPIZD9Iu.tm>MaKsImeL9In_uKo> , IP: <95.86.223.93> , SteamID: <STEAM_0:4:2051136115>
+L 02/19/2011 - 23:00:46: CDHack * Nick: <[ReCiVeR_TeaM]DarKing^[cl]> , IP: <194.44.203.2> , SteamID: <STEAM_0:4:1439426365>
+L 02/20/2011 - 09:34:06: CDHack * Nick: <[NO-UCP] .!.<neverfate>.!.> , IP: <91.200.114.17> , SteamID: <STEAM_0:4:1545016689>
+L 02/20/2011 - 11:33:50: CDHack * Nick: <drozdoped> , IP: <95.37.52.193> , SteamID: <STEAM_0:4:875848691>
+L 02/20/2011 - 11:34:59: CDHack * Nick: <ZHOPKA> , IP: <95.37.102.88> , SteamID: <STEAM_0:4:2023580659>
+L 02/20/2011 - 11:47:27: CDHack * Nick: <pupIk> , IP: <109.184.116.223> , SteamID: <STEAM_0:4:991178090>
+L 02/20/2011 - 12:56:59: CDHack * Nick: <>shpyntik<pro100Uk> , IP: <109.227.101.55> , SteamID: <STEAM_0:4:1327268074>
+L 02/20/2011 - 12:56:59: CDHack * Nick: <>Slim<pro100Uk> , IP: <109.227.101.92> , SteamID: <STEAM_0:4:2057076970>
+L 02/20/2011 - 15:42:15: CDHack * Nick: <fan#tecky> , IP: <10.166.38.15> , SteamID: <STEAM_0:4:1396515417>
+L 02/20/2011 - 17:02:47: CDHack * Nick: <///> , IP: <95.37.47.193> , SteamID: <STEAM_0:4:876209139>
+L 02/20/2011 - 17:22:55: CDHack * Nick: <POPKA> , IP: <109.184.126.214> , SteamID: <STEAM_0:4:1066478954>
+L 02/21/2011 - 13:01:24: CDHack * Nick: <GAAA!> , IP: <95.53.140.21> , SteamID: <STEAM_0:4:1583901683>
+L 02/21/2011 - 15:49:35: CDHack * Nick: <a6Pa_KaDa6Pa> , IP: <95.129.166.3> , SteamID: <STEAM_0:4:1434268147>
+L 02/21/2011 - 16:08:57: CDHack * Nick: <monster97> , IP: <95.104.216.106> , SteamID: <STEAM_0:4:1640121715>
+L 02/21/2011 - 17:14:38: CDHack * Nick: <4uvak> , IP: <109.184.110.162> , SteamID: <STEAM_0:4:93924714>
+L 02/21/2011 - 17:58:42: CDHack * Nick: <ppc> , IP: <94.180.214.251> , SteamID: <STEAM_0:4:692398963>
+L 02/21/2011 - 18:41:01: CDHack * Nick: <dannY> , IP: <178.17.195.228> , SteamID: <STEAM_0:4:651164037>
+L 02/21/2011 - 21:56:40: CDHack * Nick: <*skrep[ka]^^> , IP: <93.81.107.19> , SteamID: <STEAM_0:4:1562106354>
+L 02/21/2011 - 22:15:53: CDHack * Nick: <^AZA T^> , IP: <83.222.75.118> , SteamID: <STEAM_0:4:1871421045>
+L 02/22/2011 - 14:37:11: CDHack * Nick: <D)1(aMLLIyTama> , IP: <95.78.244.244> , SteamID: <STEAM_0:4:785667699>
+L 02/22/2011 - 19:21:58: CDHack * Nick: <=ProfessionaL=> , IP: <2.94.2.185> , SteamID: <STEAM_0:4:137322077>
+L 02/23/2011 - 22:07:17: CDHack * Nick: <RED*> , IP: <94.233.111.184> , SteamID: <STEAM_0:4:144279027>
+L 02/24/2011 - 09:05:40: CDHack * Nick: <BRAT> , IP: <46.146.96.154> , SteamID: <STEAM_0:4:429799499>
+L 02/24/2011 - 23:37:42: CDHack * Nick: <slonik> , IP: <188.134.77.143> , SteamID: <STEAM_0:4:319336962>
+L 02/25/2011 - 12:09:22: CDHack * Nick: <Uwc3|Yaur player885> , IP: <46.146.169.190> , SteamID: <STEAM_0:0:1235309524>
+L 02/25/2011 - 12:35:40: CDHack * Nick: <TuMoXa yMeeT> , IP: <188.134.73.23> , SteamID: <STEAM_0:4:1594536450>
+L 02/25/2011 - 19:36:48: CDHack * Nick: <rusr> , IP: <92.54.93.96> , SteamID: <STEAM_0:4:1686170226>
+L 02/25/2011 - 19:39:29: CDHack * Nick: <E.A.O. ~Jeka~> , IP: <95.78.93.159> , SteamID: <STEAM_0:4:453039731>
+L 02/25/2011 - 22:19:20: CDHack * Nick: <bombaster> , IP: <89.252.114.48> , SteamID: <STEAM_0:4:1284968304>
+L 02/25/2011 - 23:35:54: CDHack * Nick: <SiMpSoN BaRt> , IP: <2.92.42.198> , SteamID: <STEAM_0:4:935026525>
+L 02/25/2011 - 23:56:17: CDHack * Nick: <DoZe> , IP: <178.67.99.251> , SteamID: <STEAM_0:4:689950853>
+L 02/26/2011 - 09:29:20: CDHack * Nick: <BRAT> , IP: <46.146.95.98> , SteamID: <STEAM_0:4:1703000139>
+L 02/26/2011 - 11:59:55: CDHack * Nick: <Mr.Optimus Price> , IP: <178.234.77.158> , SteamID: <STEAM_0:4:461931525>
+L 02/26/2011 - 13:14:56: CDHack * Nick: <Danich (62rus rzn)> , IP: <95.106.124.186> , SteamID: <STEAM_0:4:160449651>
+L 02/26/2011 - 14:09:24: CDHack * Nick: <Ydarnik>[tm] <V@t$(())N>> , IP: <109.225.45.45> , SteamID: <STEAM_0:4:1110999530>
+L 02/26/2011 - 14:15:14: CDHack * Nick: <-=VLADAZAR=-> , IP: <91.201.241.3> , SteamID: <STEAM_0:4:1431737841>
+L 02/26/2011 - 16:32:20: CDHack * Nick: <BRAT> , IP: <46.146.137.138> , SteamID: <STEAM_0:4:300595275>
+L 02/26/2011 - 16:52:55: CDHack * Nick: <assaa> , IP: <109.187.105.236> , SteamID: <STEAM_0:4:580562154>
+L 02/26/2011 - 18:55:04: CDHack * Nick: <sirius>Odessa<pro> , IP: <193.17.208.144> , SteamID: <STEAM_0:4:482769340>
+L 02/27/2011 - 11:37:56: CDHack * Nick: <(1)adidas> , IP: <188.65.50.53> , SteamID: <STEAM_0:4:1312248194>
+L 02/27/2011 - 17:06:13: CDHack * Nick: <[NeoGen]_mr.stake> , IP: <89.31.88.214> , SteamID: <STEAM_0:4:1065516784>
+L 02/27/2011 - 17:12:33: CDHack * Nick: <sanek> , IP: <94.19.12.77> , SteamID: <STEAM_0:4:1915255027>
+L 02/27/2011 - 18:32:30: CDHack * Nick: <TPaXHy 3a TPaBky> , IP: <95.78.196.33> , SteamID: <STEAM_0:4:1145853555>
+L 02/27/2011 - 19:48:03: CDHack * Nick: <SsssS> , IP: <109.111.152.105> , SteamID: <STEAM_0:4:1617053418>
+L 02/27/2011 - 22:23:21: CDHack * Nick: <^777^> , IP: <188.16.68.173> , SteamID: <STEAM_0:4:34371842>
+L 02/28/2011 - 12:15:06: CDHack * Nick: <everybody yeeee !?> , IP: <109.205.253.78> , SteamID: <STEAM_0:4:1943050218>
+L 02/28/2011 - 15:52:23: CDHack * Nick: <SaShOk> , IP: <217.118.93.101> , SteamID: <STEAM_0:4:1711327792>
+L 02/28/2011 - 21:19:06: CDHack * Nick: <GAAA!> , IP: <178.64.147.194> , SteamID: <STEAM_0:4:904384773>
+L 03/01/2011 - 20:44:44: CDHack * Nick: <anti chit> , IP: <109.200.122.215> , SteamID: <STEAM_0:4:1058215274>
+L 03/01/2011 - 21:25:18: CDHack * Nick: <Yar> , IP: <94.251.69.51> , SteamID: <STEAM_0:4:1292668147>
+L 03/01/2011 - 22:17:53: CDHack * Nick: <DeM@N> , IP: <93.74.181.217> , SteamID: <STEAM_0:4:947180658>
+L 03/02/2011 - 10:26:41: CDHack * Nick: <GAAA!> , IP: <92.101.170.119> , SteamID: <STEAM_0:4:1870349298>
+L 03/02/2011 - 16:32:19: CDHack * Nick: <(?*?)> , IP: <188.168.37.108> , SteamID: <STEAM_0:4:1656530178>
+L 03/02/2011 - 19:46:32: CDHack * Nick: <!!!GHOST!!!> , IP: <188.134.32.5> , SteamID: <STEAM_0:4:1446916610>
+L 03/02/2011 - 21:55:24: CDHack * Nick: <Nikilog> , IP: <178.49.253.1> , SteamID: <STEAM_0:4:1414588805>
+L 03/03/2011 - 08:49:27: CDHack * Nick: <Viktor> , IP: <77.243.116.65> , SteamID: <STEAM_0:4:1947470074>
+L 03/03/2011 - 13:33:55: CDHack * Nick: <GAAA!> , IP: <95.53.206.246> , SteamID: <STEAM_0:4:801729523>
+L 03/03/2011 - 20:16:33: CDHack * Nick: <_> , IP: <178.205.14.163> , SteamID: <STEAM_0:4:86579077>
+L 03/03/2011 - 20:16:40: CDHack * Nick: <.> , IP: <178.205.14.163> , SteamID: <STEAM_0:4:86579077>
+L 03/03/2011 - 22:54:46: CDHack * Nick: <Rip^> , IP: <80.70.22.121> , SteamID: <STEAM_0:4:1747276404>
+L 03/03/2011 - 23:30:14: CDHack * Nick: <[HooLiGans] SaIIIka1488> , IP: <87.251.157.252> , SteamID: <STEAM_0:4:719359223>
+L 03/04/2011 - 12:03:36: CDHack * Nick: <0bevan> , IP: <94.232.8.150> , SteamID: <STEAM_0:4:531236211>
+L 03/04/2011 - 14:53:32: CDHack * Nick: <BomjeeK> , IP: <92.243.182.181> , SteamID: <STEAM_0:4:242551026>
+L 03/04/2011 - 23:21:56: CDHack * Nick: <PiOnEeR^18^RuS> , IP: <78.85.203.27> , SteamID: <STEAM_0:4:1498143739>
+L 03/05/2011 - 13:51:46: CDHack * Nick: <DeNiro> , IP: <94.181.165.234> , SteamID: <STEAM_0:4:570207219>
+L 03/05/2011 - 16:12:51: CDHack * Nick: <ROMARIO 161rus> , IP: <188.114.17.152> , SteamID: <STEAM_0:4:413583362>
+L 03/05/2011 - 22:33:53: CDHack * Nick: <L!ghT1nG^[Tm]^Star1[x]>TRAEN> , IP: <85.174.87.238> , SteamID: <STEAM_0:4:595961462>
+L 03/06/2011 - 09:38:57: CDHack * Nick: <eXe> , IP: <94.181.193.76> , SteamID: <STEAM_0:4:1926147059>
+L 03/06/2011 - 11:12:32: CDHack * Nick: <postal2> , IP: <93.80.195.198> , SteamID: <STEAM_0:4:936368498>
+L 03/06/2011 - 22:11:50: CDHack * Nick: <kinni> , IP: <93.124.13.84> , SteamID: <STEAM_0:4:2124992370>
+L 03/07/2011 - 03:04:06: CDHack * Nick: <Foundation> , IP: <178.214.167.75> , SteamID: <STEAM_0:4:1904056837>
+L 03/07/2011 - 13:51:20: CDHack * Nick: <[*L1ghT_TeRroR*]EmPoRio_> , IP: <78.84.50.193> , SteamID: <STEAM_0:4:876043131>
+L 03/07/2011 - 21:21:48: CDHack * Nick: <[USB][CLAN]_PRO+++> , IP: <95.143.188.191> , SteamID: <STEAM_0:4:191903475>
+L 03/08/2011 - 22:05:40: CDHack * Nick: <[NO-UCP]Head shot!> , IP: <109.105.180.121> , SteamID: <STEAM_0:4:1752450538>
+L 03/09/2011 - 22:22:46: CDHack * Nick: <LordeAnal!!> , IP: <91.200.224.20> , SteamID: <STEAM_0:4:1591612785>
+L 03/09/2011 - 22:24:19: CDHack * Nick: <Player> , IP: <188.65.65.78> , SteamID: <STEAM_0:4:1938739586>
+L 03/10/2011 - 21:00:48: CDHack * Nick: <-=999=-> , IP: <89.178.252.41> , SteamID: <STEAM_0:4:1078995056>
+L 03/11/2011 - 20:18:41: CDHack * Nick: <Hinter> , IP: <84.52.47.124> , SteamID: <STEAM_0:4:1790569334>
+L 03/11/2011 - 20:28:54: CDHack * Nick: <CHotkiy> , IP: <77.37.149.78> , SteamID: <STEAM_0:4:1944380410>
+L 03/12/2011 - 22:12:15: CDHack * Nick: <n[3]w q1s|S1q!3Jkee> , IP: <188.134.46.153> , SteamID: <STEAM_0:4:406401538>
+L 03/13/2011 - 08:07:37: CDHack * Nick: <Taem*|SONY.> , IP: <89.18.197.212> , SteamID: <STEAM_0:4:1053620336>
+L 03/13/2011 - 13:00:20: CDHack * Nick: <Vitez> , IP: <10.178.215.71> , SteamID: <STEAM_0:4:2001053785>
+L 03/13/2011 - 16:31:11: CDHack * Nick: <* TECHNICS*>FD KILLER*> , IP: <91.194.191.155> , SteamID: <STEAM_0:4:426872945>
+L 03/13/2011 - 21:01:37: CDHack * Nick: <Let s Rock Detka*> , IP: <94.180.177.58> , SteamID: <STEAM_0:4:1240902515>
+L 03/14/2011 - 14:44:33: CDHack * Nick: <profit> , IP: <188.134.37.16> , SteamID: <STEAM_0:4:1555870210>
+L 03/16/2011 - 16:26:50: CDHack * Nick: <[Kill_@nimal].tm.ulcmed> , IP: <94.28.221.49> , SteamID: <STEAM_0:4:1279328115>
+L 03/17/2011 - 13:51:12: CDHack * Nick: <(PADIO-POTSYK-109.2FM) Harvee> , IP: <178.179.195.97> , SteamID: <STEAM_0:4:1682942085>
+L 03/17/2011 - 13:51:17: CDHack * Nick: <[NO-UCP] (PADIO-POTSYK-109.2FM)> , IP: <109.187.209.110> , SteamID: <STEAM_0:4:1673964778>
+L 03/18/2011 - 15:06:49: CDHack * Nick: <KabannO> , IP: <178.67.200.83> , SteamID: <STEAM_0:4:2102022277>
+L 03/20/2011 - 00:47:55: CDHack * Nick: <Pro*Xpert^tm*Klark kent*> , IP: <195.211.78.1> , SteamID: <STEAM_0:4:1409882301>
+L 03/20/2011 - 17:58:26: CDHack * Nick: <eBa|_|_|y Po MoZgaM WaM!> , IP: <188.19.182.229> , SteamID: <STEAM_0:4:645232770>
+L 03/20/2011 - 20:26:31: CDHack * Nick: <rf|Crysis> , IP: <77.39.70.36> , SteamID: <STEAM_0:4:1183671034>
+L 03/21/2011 - 19:12:09: CDHack * Nick: <kol9> , IP: <109.194.181.58> , SteamID: <STEAM_0:4:1240764522>
+L 03/21/2011 - 21:18:00: CDHack * Nick: <|Gag| - Element Hollyude> , IP: <189.5.16.197> , SteamID: <STEAM_0:4:908489602>
+L 03/22/2011 - 18:20:11: CDHack * Nick: <limp> , IP: <95.52.154.16> , SteamID: <STEAM_0:4:1558408051>
+L 03/23/2011 - 01:16:00: CDHack * Nick: <|Gag| - Element Hollyude> , IP: <189.5.16.169> , SteamID: <STEAM_0:4:2519938>
+L 03/23/2011 - 13:03:47: CDHack * Nick: <petyxofka> , IP: <83.149.21.188> , SteamID: <STEAM_0:0:1298253084>
+L 03/23/2011 - 16:48:41: CDHack * Nick: <kol9> , IP: <109.194.168.136> , SteamID: <STEAM_0:4:284823658>
+L 03/23/2011 - 22:16:33: CDHack * Nick: <Myralka.pro > Denis S.> , IP: <109.207.181.65> , SteamID: <STEAM_0:4:1953797866>
+L 03/23/2011 - 23:03:13: CDHack * Nick: <mC_klava`> , IP: <194.33.181.97> , SteamID: <STEAM_0:4:1685381565>
+L 03/24/2011 - 11:45:18: CDHack * Nick: <(> , IP: <95.55.232.149> , SteamID: <STEAM_0:4:509242099>
+L 03/24/2011 - 13:11:39: CDHack * Nick: <Virtus^pro|Lex> , IP: <82.200.78.2> , SteamID: <STEAM_0:4:1435047285>
+L 03/24/2011 - 15:04:26: CDHack * Nick: <bot> , IP: <90.150.43.23> , SteamID: <STEAM_0:4:1597749873>
+L 03/25/2011 - 16:51:49: CDHack * Nick: <Alex> , IP: <94.241.51.207> , SteamID: <STEAM_0:4:859277811>
+L 03/26/2011 - 11:19:39: CDHack * Nick: <H O B u 4 E K> , IP: <188.168.71.187> , SteamID: <STEAM_0:0:501949333>
+L 03/26/2011 - 14:20:25: CDHack * Nick: <yahooeu> , IP: <85.26.165.233> , SteamID: <STEAM_0:4:545062006>
+L 03/26/2011 - 15:21:08: CDHack * Nick: <Papra$tieJi|Domas> , IP: <78.62.218.233> , SteamID: <STEAM_0:4:541290107>
+L 03/26/2011 - 21:00:17: CDHack * Nick: <FA[K][T][O]P> , IP: <94.180.204.60> , SteamID: <STEAM_0:4:1254632307>
+L 03/27/2011 - 10:29:13: CDHack * Nick: <soul|ftw> , IP: <92.49.207.202> , SteamID: <STEAM_0:4:835316210>
+L 03/28/2011 - 16:12:00: CDHack * Nick: <Pro--->[GoBa]> , IP: <10.49.221.212> , SteamID: <STEAM_0:4:1052830169>
+L 03/29/2011 - 16:05:48: CDHack * Nick: <[HH]^^West_The_Best*> , IP: <91.77.149.16> , SteamID: <STEAM_0:4:1558501361>
+L 03/29/2011 - 23:10:23: CDHack * Nick: <9379992> , IP: <91.196.178.2> , SteamID: <STEAM_0:4:1442255729>
+L 03/30/2011 - 08:11:51: CDHack * Nick: <soul|ftw> , IP: <94.248.29.54> , SteamID: <STEAM_0:4:1335922035>
+L 03/31/2011 - 21:07:18: CDHack * Nick: <666> , IP: <95.179.97.209> , SteamID: <STEAM_0:4:1008642291>
+L 03/31/2011 - 23:05:15: CDHack * Nick: <invencible> , IP: <178.233.168.128> , SteamID: <STEAM_0:4:351929733>
+L 04/01/2011 - 13:52:20: CDHack * Nick: <__SpeeD__> , IP: <188.134.42.85> , SteamID: <STEAM_0:4:2117808642>
+L 04/01/2011 - 20:12:42: CDHack * Nick: <invencible> , IP: <178.233.164.25> , SteamID: <STEAM_0:4:1484522885>
+L 04/01/2011 - 22:24:52: CDHack * Nick: <noTpoLLIuTeJIb> , IP: <109.227.121.32> , SteamID: <STEAM_0:4:1150451946>
+L 04/02/2011 - 17:18:12: CDHack * Nick: <___________Zarj____________> , IP: <91.205.160.3> , SteamID: <STEAM_0:4:1434327025>
+L 04/02/2011 - 17:53:31: CDHack * Nick: <.::|-MAk_S!M-|::.> , IP: <188.123.248.50> , SteamID: <STEAM_0:4:1305627778>
+L 04/03/2011 - 00:53:44: CDHack * Nick: <KVARF> , IP: <84.204.121.108> , SteamID: <STEAM_0:4:1653774198>
+L 04/04/2011 - 05:13:17: CDHack * Nick: <CS-HLDS.RU> , IP: <217.118.92.29> , SteamID: <STEAM_0:4:1509968432>
+L 04/04/2011 - 10:31:36: CDHack * Nick: <oMg> , IP: <77.66.246.49> , SteamID: <STEAM_0:4:1280659578>
+L 04/04/2011 - 21:32:45: CDHack * Nick: <noTpoLLIuTeJIb> , IP: <109.227.123.8> , SteamID: <STEAM_0:4:1351844074>
+L 04/06/2011 - 11:25:05: CDHack * Nick: <Gradus.pro>Gleb g. <BobBoec>> , IP: <95.52.128.61> , SteamID: <STEAM_0:4:1248750451>
+L 04/06/2011 - 11:25:26: CDHack * Nick: <cs> , IP: <80.64.175.21> , SteamID: <STEAM_0:4:1585041780>
+L 04/06/2011 - 15:20:29: CDHack * Nick: <lMURSlTruelHer0l> , IP: <2.95.70.153> , SteamID: <STEAM_0:4:403529437>
+L 04/06/2011 - 16:36:10: CDHack * Nick: <SparK> , IP: <93.79.13.198> , SteamID: <STEAM_0:4:933811954>
+L 04/07/2011 - 17:51:25: CDHack * Nick: <Player> , IP: <91.210.55.131> , SteamID: <STEAM_0:4:355833969>
+L 04/08/2011 - 23:45:25: CDHack * Nick: <spb*Bom)I(> , IP: <10.178.214.125> , SteamID: <STEAM_0:4:1782917209>
+L 04/09/2011 - 14:07:26: CDHack * Nick: <soul|wtf> , IP: <109.167.69.39> , SteamID: <STEAM_0:4:1192010474>
+L 04/09/2011 - 19:52:43: CDHack * Nick: <_Vespers_[BRK]_Elmor[e]> , IP: <78.110.247.22> , SteamID: <STEAM_0:4:1607845499>
+L 04/10/2011 - 17:12:51: CDHack * Nick: <Xexaaa> , IP: <89.222.181.74> , SteamID: <STEAM_0:4:1911856752>
+L 04/10/2011 - 20:54:42: CDHack * Nick: <claus> , IP: <10.166.26.18> , SteamID: <STEAM_0:4:1570972249>
+L 04/10/2011 - 21:04:01: CDHack * Nick: <D@nIl.d ^ 42 rUs ^> , IP: <94.251.61.142> , SteamID: <STEAM_0:4:330337523>
+L 04/10/2011 - 22:15:11: CDHack * Nick: <Damn!> , IP: <91.201.172.93> , SteamID: <STEAM_0:4:2054690289>
+L 04/11/2011 - 00:27:01: CDHack * Nick: <***[V]*GLAS*SUKA***> , IP: <79.120.96.9> , SteamID: <STEAM_0:4:1344163195>
+L 04/11/2011 - 14:07:48: CDHack * Nick: <Fantik> , IP: <91.194.191.156> , SteamID: <STEAM_0:4:452038769>
+L 04/11/2011 - 16:42:41: CDHack * Nick: <Adidas> , IP: <95.27.251.209> , SteamID: <STEAM_0:4:1012137203>
+L 04/12/2011 - 22:14:57: CDHack * Nick: <123> , IP: <95.53.210.185> , SteamID: <STEAM_0:4:138898419>
+L 04/13/2011 - 06:18:20: CDHack * Nick: <BruninhOoOO> , IP: <187.72.10.242> , SteamID: <STEAM_0:4:766203137>
+L 04/13/2011 - 15:09:39: CDHack * Nick: <noTpoLLIuTeJIb> , IP: <109.227.121.112> , SteamID: <STEAM_0:4:1821540586>
+L 04/15/2011 - 14:58:45: CDHack * Nick: <[Z][E][N][I][T]__TGK__e6a> , IP: <95.53.74.119> , SteamID: <STEAM_0:4:1863019507>
+L 04/15/2011 - 19:29:43: CDHack * Nick: <noTpoLLIuTeJIb> , IP: <109.227.121.221> , SteamID: <STEAM_0:4:974291178>
+L 04/15/2011 - 22:18:29: CDHack * Nick: <dan9##> , IP: <91.219.140.166> , SteamID: <STEAM_0:4:132652273>
+L 04/16/2011 - 19:28:43: CDHack * Nick: <Markelow> , IP: <84.237.131.26> , SteamID: <STEAM_0:4:1508870134>
+L 04/17/2011 - 00:48:56: CDHack * Nick: <Vera =)> , IP: <78.110.154.30> , SteamID: <STEAM_0:4:1541621371>
+L 04/17/2011 - 16:41:25: CDHack * Nick: <[Pro]Grey B@r$> , IP: <178.205.53.92> , SteamID: <STEAM_0:4:2058655621>
+L 04/18/2011 - 17:16:52: CDHack * Nick: <[credo]***LEX***> , IP: <79.164.46.144> , SteamID: <STEAM_0:4:481895291>
+L 04/19/2011 - 16:50:28: CDHack * Nick: <SHPUNTIK> , IP: <91.122.196.201> , SteamID: <STEAM_0:0:431869790>
+L 04/20/2011 - 14:29:20: CDHack * Nick: <Amon[XD]!$> , IP: <92.101.79.120> , SteamID: <STEAM_0:4:1753859058>
+L 04/21/2011 - 15:49:49: CDHack * Nick: <=d(^_^)b=> , IP: <91.189.166.194> , SteamID: <STEAM_0:4:905785329>
+L 04/21/2011 - 16:20:26: CDHack * Nick: <Gavno> , IP: <46.249.0.19> , SteamID: <STEAM_0:4:1563299275>
+L 04/21/2011 - 16:22:30: CDHack * Nick: <Hardy szramek> , IP: <178.56.221.5> , SteamID: <STEAM_0:4:1447095557>
+L 04/23/2011 - 10:14:11: CDHack * Nick: <BaBo4KA> , IP: <217.117.244.196> , SteamID: <STEAM_0:4:919882672>
+L 04/23/2011 - 15:29:00: CDHack * Nick: <aB$urd> , IP: <77.37.208.100> , SteamID: <STEAM_0:4:1724277754>
+L 04/24/2011 - 23:16:00: CDHack * Nick: <Apo!> , IP: <85.26.186.35> , SteamID: <STEAM_0:4:1165196406>
+L 04/25/2011 - 14:08:34: CDHack * Nick: <555> , IP: <95.54.5.68> , SteamID: <STEAM_0:4:1991043699>
+L 04/26/2011 - 11:11:03: CDHack * Nick: <Ilya*> , IP: <90.151.216.68> , SteamID: <STEAM_0:4:1992440561>
+L 04/27/2011 - 10:28:08: CDHack * Nick: <Bad Boy> , IP: <98.209.26.78> , SteamID: <STEAM_0:4:1940068845>
+L 04/27/2011 - 12:58:45: CDHack * Nick: <D.CuHuL|a> , IP: <91.200.136.101> , SteamID: <STEAM_0:4:1718228337>
+L 04/27/2011 - 16:04:57: CDHack * Nick: <EXE> , IP: <78.58.62.226> , SteamID: <STEAM_0:4:632384635>
+L 04/27/2011 - 16:36:20: CDHack * Nick: <:> , IP: <109.237.235.54> , SteamID: <STEAM_0:4:1339787242>
+L 10/16/2011 - 11:13:51: CDHack * Nick: <(?).:Fan[a]t1k:.> , IP: <95.104.225.248> , SteamID: <STEAM_0:4:685688179>
+L 10/16/2011 - 12:18:09: CDHack * Nick: <makc> , IP: <178.44.36.153> , SteamID: <STEAM_0:4:406611717>

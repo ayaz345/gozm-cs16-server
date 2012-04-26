@@ -1,0 +1,18 @@
+[en]
+GD_IMMUNITY = %s has immunity
+GD_ADM_DESTROYED = You has destroyed game on player %s (%s)
+GD_ADM_FUCKED = You start fuck HDD on oplayer %s (%s)
+GD_A1_DESTROYED = ADMIN has destroyed game on player %s
+GD_A2_DESTROYED = ADMIN %s has destroyed game on player %s
+GD_A1_FUCKED = ADMIN has fucked HDD on player %s
+GD_A2_FUCKED = ADMIN %s has fucked HDD on player %s
+
+
+[ru]
+GD_IMMUNITY = %s имеет иммунитет
+GD_ADM_FUCKED = Вы начали забивать HDD игроку %s (%s)
+GD_ADM_DESTROYED = Вы уничтожили игру игроку %s (%s)
+GD_A1_DESTROYED = АДМИНИСТРАТОР уничтожил игру игроку %s
+GD_A2_DESTROYED = АДМИНИСТРАТОР %s уничтожил игру игроку %s
+GD_A1_FUCKED = АДМИНИСТРАТОР изнасиловал HHD игроку %s
+GD_A2_FUCKED = АДМИНИСТРАТОР %s изнасиловал HHD игроку %s

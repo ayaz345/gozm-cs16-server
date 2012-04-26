@@ -1,0 +1,25 @@
+L 05/10/2011 - 00:31:04: Start of error session.
+L 05/10/2011 - 00:31:04: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110510.log")
+L 05/10/2011 - 00:31:04: [MySQL] Invalid handle: 0
+L 05/10/2011 - 00:31:04: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 05/10/2011 - 00:31:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 05/10/2011 - 00:38:18: Start of error session.
+L 05/10/2011 - 00:38:18: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110510.log")
+L 05/10/2011 - 00:38:18: [MySQL] Invalid handle: 0
+L 05/10/2011 - 00:38:18: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 05/10/2011 - 00:38:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 05/10/2011 - 00:52:42: Start of error session.
+L 05/10/2011 - 00:52:42: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110510.log")
+L 05/10/2011 - 00:52:42: [MySQL] Invalid handle: 0
+L 05/10/2011 - 00:52:42: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 05/10/2011 - 00:52:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 05/10/2011 - 00:59:32: Start of error session.
+L 05/10/2011 - 00:59:32: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110510.log")
+L 05/10/2011 - 00:59:32: [MySQL] Invalid handle: 0
+L 05/10/2011 - 00:59:32: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 05/10/2011 - 00:59:32: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 05/10/2011 - 06:00:14: Start of error session.
+L 05/10/2011 - 06:00:14: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110510.log")
+L 05/10/2011 - 06:00:14: [MySQL] Invalid handle: 0
+L 05/10/2011 - 06:00:14: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 05/10/2011 - 06:00:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

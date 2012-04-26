@@ -1,0 +1,3 @@
+This file should be placed in a folder called logs.
+If not then hlguard is not correctly installed.
+This file can safely be deleted once hlguard is succesfully installed.

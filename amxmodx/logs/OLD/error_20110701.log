@@ -1,0 +1,10 @@
+L 07/01/2011 - 06:31:13: Start of error session.
+L 07/01/2011 - 06:31:13: Info (map "cs_estate") (file "addons/amxmodx/logs/error_20110701.log")
+L 07/01/2011 - 06:31:13: [MySQL] Invalid handle: 0
+L 07/01/2011 - 06:31:13: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 07/01/2011 - 06:31:13: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 07/01/2011 - 21:01:24: Start of error session.
+L 07/01/2011 - 21:01:24: Info (map "cs_estate") (file "addons/amxmodx/logs/error_20110701.log")
+L 07/01/2011 - 21:01:24: [MySQL] Invalid handle: 0
+L 07/01/2011 - 21:01:24: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 07/01/2011 - 21:01:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

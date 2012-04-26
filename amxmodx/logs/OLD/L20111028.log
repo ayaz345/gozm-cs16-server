@@ -1,0 +1,549 @@
+L 10/28/2011 - 00:06:50: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 00:06:50: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 00:06:50: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 00:06:50: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 00:19:55: -------- Mapchange to zm_303 --------
+L 10/28/2011 - 00:19:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 00:20:00: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 00:20:00: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 00:20:00: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 00:20:00: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 00:40:35: -------- Mapchange to zm_decline2k --------
+L 10/28/2011 - 00:40:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 00:40:40: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 00:40:40: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 00:40:40: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 00:40:40: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 01:03:25: -------- Mapchange to zm_fdust2x2 --------
+L 10/28/2011 - 01:03:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 01:03:31: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 01:03:31: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 01:03:31: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 01:03:31: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 01:26:29: -------- Mapchange to 016 --------
+L 10/28/2011 - 01:26:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 01:26:33: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 01:26:33: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 01:26:33: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 01:26:33: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 01:59:01: -------- Mapchange to zm_neris --------
+L 10/28/2011 - 01:59:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 01:59:05: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 01:59:05: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 01:59:05: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 01:59:05: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 02:19:04: -------- Mapchange to zm_dust_brick_b1_fx --------
+L 10/28/2011 - 02:19:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 02:39:19: -------- Mapchange to zm_alfresco_v2 --------
+L 10/28/2011 - 02:39:21: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 02:45:02: -------- Mapchange to awp_city --------
+L 10/28/2011 - 02:45:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 02:54:57: -------- Mapchange to awp_city --------
+L 10/28/2011 - 02:54:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:04:04: -------- Mapchange to ze_lift_escape_b5 --------
+L 10/28/2011 - 03:04:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:07:03: -------- Mapchange to awp_city --------
+L 10/28/2011 - 03:07:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:18:59: -------- Mapchange to awp_city --------
+L 10/28/2011 - 03:19:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:29:09: -------- Mapchange to awp_city --------
+L 10/28/2011 - 03:29:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:39:04: -------- Mapchange to awp_city --------
+L 10/28/2011 - 03:39:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:48:59: -------- Mapchange to awp_city --------
+L 10/28/2011 - 03:49:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 03:58:48: -------- Mapchange to awp_city --------
+L 10/28/2011 - 03:58:50: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 04:07:40: -------- Mapchange to 016 --------
+L 10/28/2011 - 04:07:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 04:10:40: -------- Mapchange to awp_city --------
+L 10/28/2011 - 04:10:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 04:20:35: -------- Mapchange to awp_city --------
+L 10/28/2011 - 04:20:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 04:30:30: -------- Mapchange to awp_city --------
+L 10/28/2011 - 04:30:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 04:48:10: -------- Mapchange to awp_city --------
+L 10/28/2011 - 04:48:12: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 05:02:31: -------- Mapchange to zm_zbek --------
+L 10/28/2011 - 05:02:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 05:05:31: -------- Mapchange to awp_city --------
+L 10/28/2011 - 05:05:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 05:15:26: -------- Mapchange to awp_city --------
+L 10/28/2011 - 05:15:28: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 05:20:34: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 05:20:34: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 05:20:34: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 10/28/2011 - 05:20:34: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 05:30:36: -------- Mapchange to awp_city --------
+L 10/28/2011 - 05:30:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 05:30:39: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 05:30:39: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 05:30:39: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 10/28/2011 - 05:30:39: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 05:43:20: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 05:43:20: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 05:43:20: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 10/28/2011 - 05:43:20: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 05:53:28: -------- Mapchange to awp_city --------
+L 10/28/2011 - 05:53:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 05:53:31: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 05:53:31: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 05:53:31: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 10/28/2011 - 05:53:31: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 06:00:12: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:00:14: -------- Mapchange to 016 --------
+L 10/28/2011 - 06:00:17: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:03:15: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:03:17: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:13:10: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:13:12: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:23:06: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:23:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:32:27: -------- Mapchange to zm_666_brick --------
+L 10/28/2011 - 06:32:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:36:36: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:36:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:46:31: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:46:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 06:56:26: -------- Mapchange to awp_city --------
+L 10/28/2011 - 06:56:28: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 07:15:36: -------- Mapchange to awp_city --------
+L 10/28/2011 - 07:15:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 07:23:57: -------- Mapchange to zm_fdust2x2 --------
+L 10/28/2011 - 07:23:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 07:26:57: -------- Mapchange to awp_city --------
+L 10/28/2011 - 07:26:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 07:35:49: -------- Mapchange to zm_deadly_assault --------
+L 10/28/2011 - 07:35:50: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 07:40:53: -------- Mapchange to awp_city --------
+L 10/28/2011 - 07:40:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 07:52:03: -------- Mapchange to awp_city --------
+L 10/28/2011 - 07:52:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 08:09:52: -------- Mapchange to zm_xata --------
+L 10/28/2011 - 08:09:54: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 08:30:09: -------- Mapchange to zm_dust_brick_b1_fx --------
+L 10/28/2011 - 08:30:11: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 08:48:27: -------- Mapchange to awp_city --------
+L 10/28/2011 - 08:48:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 08:59:31: -------- Mapchange to zm_666_brick --------
+L 10/28/2011 - 08:59:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 09:32:16: -------- Mapchange to zm_alfresco_v2 --------
+L 10/28/2011 - 09:32:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 10:04:26: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:04:26: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:04:26: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:04:26: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:05:02: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:05:02: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:05:02: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:05:02: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:07:50: -------- Mapchange to 016 --------
+L 10/28/2011 - 10:07:51: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 10:07:54: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:07:54: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:07:54: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:07:54: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:07:55: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:07:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:07:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:07:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:30:30: [admin_amxbans.amxx] Login: "Dimka<131><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 10/28/2011 - 10:40:14: -------- Mapchange to ze_egypt --------
+L 10/28/2011 - 10:40:16: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 10:40:20: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:40:20: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:40:20: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:40:20: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:40:22: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:40:22: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:40:22: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:40:22: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:44:16: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:44:16: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:44:16: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:44:16: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:54:16: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 10:54:16: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 10:54:16: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 10:54:16: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 10:55:38: -------- Mapchange to zm_fdust2x2 --------
+L 10/28/2011 - 10:55:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 11:16:09: -------- Mapchange to ze_lift_escape_b5 --------
+L 10/28/2011 - 11:16:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 11:32:57: -------- Mapchange to zm_deadly_assault --------
+L 10/28/2011 - 11:32:58: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 11:45:17: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 11:45:17: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 11:45:17: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 11:45:17: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 11:53:45: -------- Mapchange to ze_jurassicpark --------
+L 10/28/2011 - 11:53:47: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 11:53:51: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 11:53:51: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 11:53:51: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 11:53:51: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 11:56:44: [admin_amxbans.amxx] Login: "Narkot1k<205><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.95.140")
+L 10/28/2011 - 11:57:52: [admin_amxbans.amxx] Login: "Kenny<206><STEAM_0:0:963405193><>" became an admin (account "Kenny") (access "abcdefgijmnopqtu") (address "87.253.20.88")
+L 10/28/2011 - 11:57:58: [admin_amxbans.amxx] Login: "Narkot1k<207><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.95.140")
+L 10/28/2011 - 11:58:04: [admincmd.amxx] Cmd: "Kenny<206><STEAM_0:0:963405193><>" ask for players list
+L 10/28/2011 - 12:08:57: -------- Mapchange to zm_caca --------
+L 10/28/2011 - 12:08:57: [admin_amxbans.amxx] Login: "Narkot1k<207><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.95.140")
+L 10/28/2011 - 12:08:58: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 12:09:02: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 12:09:02: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 12:09:02: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 12:09:02: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 12:17:27: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 12:17:27: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 12:17:27: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 12:17:27: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 12:18:08: [voteban.amxx] Voteban starter Narkot1k against ***WERWOLF*** STEAM_0:0:42353601
+L 10/28/2011 - 12:18:23: [voteban.amxx] [AMXX] The voteban dit not sucseed.
+L 10/28/2011 - 12:18:38: [voteban.amxx] Voteban starter Narkot1k against ***WERWOLF*** STEAM_0:0:42353601
+L 10/28/2011 - 12:18:53: [voteban.amxx] [AMXX] BANNED: ***WERWOLF***, STARTER: Narkot1k
+L 10/28/2011 - 12:18:54: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned ***WERWOLF***<STEAM_0:0:42353601> for 15 minutes (15 minutes). Reason: VIP->Narkot1k.
+L 10/28/2011 - 12:30:47: -------- Mapchange to zm_cpl_mill_kamp --------
+L 10/28/2011 - 12:30:48: [admin_amxbans.amxx] Login: "Narkot1k<207><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.95.140")
+L 10/28/2011 - 12:30:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 12:30:53: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 12:30:53: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 12:30:53: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 12:30:53: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 12:51:02: -------- Mapchange to zm_decline2k --------
+L 10/28/2011 - 12:51:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 13:04:53: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 13:04:53: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 13:04:53: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 13:04:53: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 13:11:54: -------- Mapchange to zm_alfresco_v2 --------
+L 10/28/2011 - 13:11:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 13:11:59: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 13:11:59: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 13:11:59: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 13:11:59: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 13:21:55: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 13:21:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 13:21:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 10/28/2011 - 13:21:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 13:32:59: -------- Mapchange to zm_666_brick --------
+L 10/28/2011 - 13:33:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 10/28/2011 - 13:33:06: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 14:04:43: -------- Mapchange to zm_fdust2x2 --------
+L 10/28/2011 - 14:04:45: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 14:04:50: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 14:04:50: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 14:04:50: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 14:04:50: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 14:09:06: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 14:09:06: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 14:09:06: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 14:09:06: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 14:27:01: -------- Mapchange to ze_egypt --------
+L 10/28/2011 - 14:27:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 14:27:11: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 14:27:11: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 14:27:11: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 14:27:11: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 14:27:21: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 14:27:21: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 14:27:21: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 14:27:21: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 14:35:15: [admin_amxbans.amxx] Login: "Kenny<393><STEAM_0:0:963405193><>" became an admin (account "Kenny") (access "abcdefgijmnopqtu") (address "87.253.20.88")
+L 10/28/2011 - 14:35:21: [admin_amxbans.amxx] Login: "Kenny<394><STEAM_0:0:963405193><>" became an admin (account "Kenny") (access "abcdefgijmnopqtu") (address "87.253.20.88")
+L 10/28/2011 - 14:36:17: [admincmd.amxx] Cmd: "Kenny<394><STEAM_0:0:963405193><>" ask for players list
+L 10/28/2011 - 14:43:28: -------- Mapchange to 016 --------
+L 10/28/2011 - 14:43:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 14:43:37: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 14:43:37: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 14:43:37: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 14:43:37: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 15:16:17: -------- Mapchange to zm_deadly_assault --------
+L 10/28/2011 - 15:16:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 15:37:05: -------- Mapchange to ze_lift_escape_b5 --------
+L 10/28/2011 - 15:37:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 15:52:34: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 15:52:34: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 15:52:34: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 15:52:34: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 15:53:02: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 15:53:02: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 15:53:02: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 15:53:02: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 15:54:12: -------- Mapchange to zm_dust_brick_b1_fx --------
+L 10/28/2011 - 15:54:13: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 15:54:20: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 15:54:20: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 15:54:20: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 15:54:20: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 15:54:37: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 15:54:37: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 15:54:37: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 15:54:37: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 15:54:57: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 15:54:57: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 15:54:57: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 15:54:57: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:14:37: -------- Mapchange to zm_caca --------
+L 10/28/2011 - 16:14:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 16:14:46: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:14:46: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:14:46: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 16:14:46: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:21:01: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:21:01: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:21:01: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 16:21:01: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:30:27: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:30:27: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:30:27: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 16:30:27: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:37:47: -------- Mapchange to ze_jurassicpark --------
+L 10/28/2011 - 16:37:48: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 16:37:55: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:37:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:37:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 16:37:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 16:37:56: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:38:38: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:38:38: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:38:38: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 16:38:38: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:47:06: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:47:06: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:47:06: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 16:47:06: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:54:05: -------- Mapchange to zm_alfresco_v2 --------
+L 10/28/2011 - 16:54:06: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 16:54:13: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:10:31: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<583><STEAM_0:4:903898611><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.156.194")
+L 10/28/2011 - 17:16:01: -------- Mapchange to zm_fdust2x2 --------
+L 10/28/2011 - 17:16:01: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<583><STEAM_0:4:903898611><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.156.194")
+L 10/28/2011 - 17:16:02: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 17:16:08: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:16:08: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:16:08: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 17:16:08: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:16:09: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:16:09: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:16:09: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:16:09: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:16:42: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:16:42: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:16:42: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:16:42: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:36:30: -------- Mapchange to zm_cpl_mill_kamp --------
+L 10/28/2011 - 17:36:31: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<583><STEAM_0:4:903898611><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.156.194")
+L 10/28/2011 - 17:36:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 17:36:39: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:36:39: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:36:39: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 17:36:39: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:39:27: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against Qw!1mort!! STEAM_0:0:1932607417
+L 10/28/2011 - 17:39:42: [voteban.amxx] [AMXX] BANNED: Qw!1mort!!, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 10/28/2011 - 17:39:43: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Qw!1mort!!<STEAM_0:0:1932607417> for 15 minutes (15 minutes). Reason: VIP->Zloy-Tupoy-Buhoy [Str,RUS].
+L 10/28/2011 - 17:45:45: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:45:45: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:45:45: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:45:45: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:46:20: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:46:20: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:46:20: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:46:20: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:49:06: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:49:06: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:49:06: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:49:06: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:53:55: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:53:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:53:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:53:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:56:59: -------- Mapchange to 016 --------
+L 10/28/2011 - 17:57:00: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<583><STEAM_0:4:903898611><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.156.194")
+L 10/28/2011 - 17:57:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 17:57:07: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:57:07: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:57:07: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:57:07: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:57:17: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 17:57:17: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 17:57:17: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 17:57:17: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 17:58:06: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<663><STEAM_0:4:1773422067><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "95.105.52.122")
+L 10/28/2011 - 18:01:19: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 18:01:19: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 18:01:19: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 10/28/2011 - 18:01:19: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 18:29:53: -------- Mapchange to ze_egypt --------
+L 10/28/2011 - 18:29:54: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<663><STEAM_0:4:1773422067><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "95.105.52.122")
+L 10/28/2011 - 18:29:54: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 18:29:57: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<707><STEAM_0:4:1773422067><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "95.105.52.122")
+L 10/28/2011 - 18:32:55: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 18:32:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 18:32:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 18:32:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 18:32:58: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 18:32:58: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 18:32:58: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 18:32:58: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 18:45:51: -------- Mapchange to zm_303 --------
+L 10/28/2011 - 18:45:52: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<707><STEAM_0:4:1773422067><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "95.105.52.122")
+L 10/28/2011 - 18:45:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 18:45:59: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 18:45:59: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 18:45:59: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Bantime expir' at line 1 (1064)
+L 10/28/2011 - 18:45:59: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 18:55:15: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 18:55:15: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 18:55:15: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 18:55:15: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 19:01:54: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against Qw!1mort!! STEAM_0:0:1932607417
+L 10/28/2011 - 19:02:09: [voteban.amxx] [AMXX] BANNED: Qw!1mort!!, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 10/28/2011 - 19:02:10: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Qw!1mort!!<STEAM_0:0:1932607417> for 15 minutes (15 minutes). Reason: VIP->Zloy-Tupoy-Buhoy [Str,RUS].
+L 10/28/2011 - 19:08:52: -------- Mapchange to ze_lift_escape_b5 --------
+L 10/28/2011 - 19:08:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 19:08:59: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 19:08:59: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 19:08:59: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 19:08:59: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 19:27:08: -------- Mapchange to zm_666_brick --------
+L 10/28/2011 - 19:27:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 19:45:19: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 19:45:19: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 19:45:19: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 19:45:19: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 19:57:39: -------- Mapchange to ze_jurassicpark --------
+L 10/28/2011 - 19:57:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 19:57:47: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 19:57:47: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 19:57:47: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 19:57:47: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 20:14:54: -------- Mapchange to zm_deadly_assault --------
+L 10/28/2011 - 20:14:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 20:15:02: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 20:33:35: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 20:33:35: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 20:33:35: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 20:33:35: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 20:36:42: -------- Mapchange to zm_alfresco_v2 --------
+L 10/28/2011 - 20:36:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 20:55:40: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 20:56:42: -------- Mapchange to zm_cpl_mill_kamp --------
+L 10/28/2011 - 20:56:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 20:56:50: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 20:56:50: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 20:56:50: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 20:56:50: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 21:15:02: [admin_amxbans.amxx] Login: "Den1s<937><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 21:18:44: -------- Mapchange to zm_dwarf --------
+L 10/28/2011 - 21:18:44: [admin_amxbans.amxx] Login: "Den1s<937><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 21:18:45: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 21:18:50: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 21:18:50: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 21:18:50: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 21:18:50: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 21:28:06: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 21:28:06: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 21:28:06: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 21:28:06: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 21:39:42: -------- Mapchange to 016 --------
+L 10/28/2011 - 21:39:42: [admin_amxbans.amxx] Login: "Den1s<937><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 21:39:43: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 21:39:50: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 21:39:50: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 21:39:50: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxba' at line 1 (1064)
+L 10/28/2011 - 21:39:50: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 21:43:16: [admin_amxbans.amxx] Login: "Kenny<970><STEAM_0:0:963405193><>" became an admin (account "Kenny") (access "abcdefgijmnopqtu") (address "87.253.18.73")
+L 10/28/2011 - 21:43:30: [admincmd.amxx] Cmd: "Kenny<970><STEAM_0:0:963405193><>" ask for players list
+L 10/28/2011 - 22:09:49: -------- Mapchange to ze_egypt --------
+L 10/28/2011 - 22:09:51: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 22:19:30: [admin_amxbans.amxx] Login: "Narkot1k<1012><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.92.227")
+L 10/28/2011 - 22:19:33: [admin_amxbans.amxx] Login: "Narkot1k<1013><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.92.227")
+L 10/28/2011 - 22:26:38: -------- Mapchange to zm_303 --------
+L 10/28/2011 - 22:26:38: [admin_amxbans.amxx] Login: "Narkot1k<1013><STEAM_0:0:1967094010><>" became an admin (account "Narkot1k") (access "t") (address "95.220.92.227")
+L 10/28/2011 - 22:26:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 22:31:10: [voteban.amxx] Voteban starter Narkot1k against the Chemodan clan STEAM_0:0:299207520
+L 10/28/2011 - 22:31:25: [voteban.amxx] [AMXX] BANNED: the Chemodan clan, STARTER: Narkot1k
+L 10/28/2011 - 22:31:26: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned the Chemodan clan<STEAM_0:0:299207520> for 15 minutes (15 minutes). Reason: VIP->Narkot1k.
+L 10/28/2011 - 22:48:05: -------- Mapchange to zm_fdust2x2 --------
+L 10/28/2011 - 22:48:06: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 22:52:37: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 22:52:37: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 22:52:37: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 22:52:37: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 23:09:06: -------- Mapchange to zm_caca --------
+L 10/28/2011 - 23:09:08: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 23:09:14: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 23:09:14: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 23:09:14: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 23:09:14: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 23:16:03: [admin_amxbans.amxx] Login: "|228| 6yJIb6aIII<1098><STEAM_0:0:1292803525><>" became an admin (account "|228| 6yJIb6aIII") (access "t") (address "178.123.112.110")
+L 10/28/2011 - 23:21:42: [admin_amxbans.amxx] Login: "koplo<1101><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 23:21:48: [admin_amxbans.amxx] Login: "koplo<1102><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 23:28:03: [voteban.amxx] Voteban starter |228| 6yJIb6aIII against MaCHeTe STEAM_0:0:750440509
+L 10/28/2011 - 23:28:18: [voteban.amxx] [AMXX] BANNED: MaCHeTe, STARTER: |228| 6yJIb6aIII
+L 10/28/2011 - 23:28:19: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned MaCHeTe<STEAM_0:0:750440509> for 15 minutes (15 minutes). Reason: VIP->|228| 6yJIb6aIII.
+L 10/28/2011 - 23:31:51: -------- Mapchange to zm_xata --------
+L 10/28/2011 - 23:31:52: [admin_amxbans.amxx] Login: "koplo<1102><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 23:31:52: [admin_amxbans.amxx] Login: "|228| 6yJIb6aIII<1098><STEAM_0:0:1292803525><>" became an admin (account "|228| 6yJIb6aIII") (access "t") (address "178.123.112.110")
+L 10/28/2011 - 23:31:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 23:31:57: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 23:31:57: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 23:31:57: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxbans' at line 1 (1064)
+L 10/28/2011 - 23:31:57: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 23:38:22: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 23:38:22: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 23:38:22: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 23:38:22: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 23:45:54: [admin_amxbans.amxx] Login: "~dark_light<1120><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "t") (address "178.121.182.182")
+L 10/28/2011 - 23:50:27: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 23:50:27: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 23:50:27: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 23:50:27: [amxbans.amxx] [Amxbans] Query statement: 
+L 10/28/2011 - 23:53:02: -------- Mapchange to ze_lift_escape_b5 --------
+L 10/28/2011 - 23:53:03: [admin_amxbans.amxx] Login: "koplo<1102><STEAM_0:0:889229784><>" became an admin (account "91.192.190.142") (access "abcdefghijklmnopqstu") (address "91.192.190.142")
+L 10/28/2011 - 23:53:03: [admin_amxbans.amxx] Login: "|228| 6yJIb6aIII<1098><STEAM_0:0:1292803525><>" became an admin (account "|228| 6yJIb6aIII") (access "t") (address "178.123.112.110")
+L 10/28/2011 - 23:53:03: [admin_amxbans.amxx] Login: "~dark_light<1120><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "t") (address "178.121.182.182")
+L 10/28/2011 - 23:53:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 10/28/2011 - 23:53:08: [amxbans.amxx] [Amxbans] Query failed!
+L 10/28/2011 - 23:53:08: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 10/28/2011 - 23:53:08: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxb' at line 1 (1064)
+L 10/28/2011 - 23:53:08: [amxbans.amxx] [Amxbans] Query statement: 

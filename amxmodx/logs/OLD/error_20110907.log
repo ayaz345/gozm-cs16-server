@@ -1,0 +1,7 @@
+L 09/07/2011 - 23:35:45: Start of error session.
+L 09/07/2011 - 23:35:45: Info (map "cs_estate") (file "addons/amxmodx/logs/error_20110907.log")
+L 09/07/2011 - 23:35:45: [AMXX] Displaying debug trace (plugin "biohazard.amxx")
+L 09/07/2011 - 23:35:45: [AMXX] Run time error 4: index out of bounds 
+L 09/07/2011 - 23:35:45: [AMXX]    [0] biohazard.sma::fnGetCTs (line 670)
+L 09/07/2011 - 23:35:45: [AMXX]    [1] biohazard.sma::check_round (line 617)
+L 09/07/2011 - 23:35:45: [AMXX]    [2] biohazard.sma::client_disconnect (line 588)

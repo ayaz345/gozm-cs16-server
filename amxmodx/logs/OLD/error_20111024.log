@@ -1,0 +1,5 @@
+L 10/24/2011 - 20:08:38: Start of error session.
+L 10/24/2011 - 20:08:38: Info (map "awp_city") (file "addons/amxmodx/logs/error_20111024.log")
+L 10/24/2011 - 20:08:38: [MySQL] Invalid handle: 0
+L 10/24/2011 - 20:08:38: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 10/24/2011 - 20:08:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

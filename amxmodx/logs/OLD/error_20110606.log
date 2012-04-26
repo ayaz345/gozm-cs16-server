@@ -1,0 +1,5 @@
+L 06/06/2011 - 01:12:21: Start of error session.
+L 06/06/2011 - 01:12:21: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110606.log")
+L 06/06/2011 - 01:12:21: [MySQL] Invalid handle: 0
+L 06/06/2011 - 01:12:21: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 06/06/2011 - 01:12:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

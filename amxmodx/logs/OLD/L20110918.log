@@ -1,0 +1,462 @@
+L 09/18/2011 - 00:03:14: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_caca") (map#2 "") (map#3 "") (map#4 "")
+L 09/18/2011 - 00:03:26: [mapsmenu.amxx] Vote: Voting successful. Map will be changed to zm_caca
+L 09/18/2011 - 00:03:27: [mapsmenu.amxx] Vote: Result refused
+L 09/18/2011 - 00:05:05: [mapsmenu.amxx] Cmd: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" changelevel "zm_caca"
+L 09/18/2011 - 00:05:08: -------- Mapchange to zm_caca --------
+L 09/18/2011 - 00:05:09: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "78.36.138.0")
+L 09/18/2011 - 00:05:09: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 00:06:33: [admin_amxbans.amxx] Login: "Euforia<2313><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 00:21:51: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" slay "-=HARON=-<2288><STEAM_0:0:1836943333><>"
+L 09/18/2011 - 00:24:39: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_dwarf") (map#3 "zm_xata") (map#4 "zm_decline2k")
+L 09/18/2011 - 00:24:51: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 00:25:12: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_666_brick") (map#3 "") (map#4 "")
+L 09/18/2011 - 00:25:25: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 00:26:48: -------- Mapchange to zm_666_brick --------
+L 09/18/2011 - 00:26:49: [admin_amxbans.amxx] Login: "Euforia<2313><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 00:26:49: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<2290><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "78.36.138.0")
+L 09/18/2011 - 00:26:50: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 00:49:02: -------- Mapchange to zm_cpl_mill_kamp --------
+L 09/18/2011 - 00:49:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 00:59:54: -------- Mapchange to zm_fdust2x2 --------
+L 09/18/2011 - 00:59:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 01:22:35: -------- Mapchange to ze_train_back_lg --------
+L 09/18/2011 - 01:22:37: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 01:27:55: -------- Mapchange to zm_neris --------
+L 09/18/2011 - 01:27:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 01:49:24: -------- Mapchange to ze_egypt --------
+L 09/18/2011 - 01:49:25: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 02:05:39: -------- Mapchange to ze_lift_escape_b5 --------
+L 09/18/2011 - 02:05:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 02:11:46: -------- Mapchange to 016 --------
+L 09/18/2011 - 02:11:48: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 03:27:15: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 03:27:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 03:37:11: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 03:37:14: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 03:50:07: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 03:50:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 03:59:58: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 04:00:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:09:54: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 04:09:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:18:16: -------- Mapchange to zm_fdust2x2 --------
+L 09/18/2011 - 04:18:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:21:16: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 04:21:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:38:12: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 04:38:15: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:46:35: -------- Mapchange to ze_lift_escape_b5 --------
+L 09/18/2011 - 04:46:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:49:34: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 04:49:37: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 04:59:30: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 04:59:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 05:09:26: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 05:09:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 05:19:22: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 05:19:25: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 05:33:18: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 05:33:21: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 05:44:17: -------- Mapchange to zm_cpl_mill_kamp --------
+L 09/18/2011 - 05:44:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 05:47:16: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 05:47:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 06:04:57: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 06:05:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 06:16:38: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 06:16:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 06:26:34: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 06:26:37: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 06:36:30: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 06:36:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 06:46:26: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 06:46:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 06:56:22: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 06:56:25: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 07:17:22: -------- Mapchange to 016 --------
+L 09/18/2011 - 07:17:24: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 07:27:05: -------- Mapchange to zm_cpl_mill_kamp --------
+L 09/18/2011 - 07:27:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 07:34:48: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 07:34:48: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 07:34:48: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 07:34:48: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 07:50:34: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 07:50:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 07:58:56: -------- Mapchange to zm_houses --------
+L 09/18/2011 - 07:58:58: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 08:02:34: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 08:02:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 08:18:17: -------- Mapchange to zm_caca --------
+L 09/18/2011 - 08:18:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 08:24:00: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 08:24:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 08:38:22: -------- Mapchange to cs_militia --------
+L 09/18/2011 - 08:38:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 08:45:09: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 08:45:11: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 09:01:05: -------- Mapchange to cs_estate --------
+L 09/18/2011 - 09:01:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 09:09:27: -------- Mapchange to zm_xata --------
+L 09/18/2011 - 09:09:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 09:31:37: -------- Mapchange to ze_jurassicpark --------
+L 09/18/2011 - 09:31:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 09:49:33: -------- Mapchange to 016 --------
+L 09/18/2011 - 09:49:34: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 10:16:10: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 10:16:10: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 10:16:10: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 10:16:10: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 10:22:38: -------- Mapchange to zm_666_brick --------
+L 09/18/2011 - 10:22:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 10:22:44: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 10:22:44: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 10:22:44: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 10:22:44: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 10:43:03: -------- Mapchange to ze_lift_escape_b5 --------
+L 09/18/2011 - 10:43:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 10:43:08: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 10:43:08: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 10:43:08: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 10:43:08: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 10:58:39: -------- Mapchange to zm_caca --------
+L 09/18/2011 - 10:58:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 10:58:44: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 10:58:44: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 10:58:44: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 10:58:44: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 11:19:05: -------- Mapchange to zm_neris --------
+L 09/18/2011 - 11:19:06: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 11:19:10: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 11:19:10: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 11:19:10: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 11:19:10: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 11:19:13: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 11:19:13: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 11:19:13: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 11:19:13: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 11:41:00: -------- Mapchange to ze_egypt --------
+L 09/18/2011 - 11:41:02: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 11:44:21: [admin_amxbans.amxx] Login: "holder_x2<2740><STEAM_0:4:498321008><>" became an admin (account "holder_x2") (access "t") (address "89.110.59.146")
+L 09/18/2011 - 11:44:37: [admin_amxbans.amxx] Login: "holder_x2<2741><STEAM_0:4:498321008><>" became an admin (account "holder_x2") (access "t") (address "89.110.59.146")
+L 09/18/2011 - 11:47:41: [voteban.amxx] Voteban starter holder_x2 against [S.W.A.T]_Jahmal STEAM_0:0:299207520
+L 09/18/2011 - 11:47:56: [voteban.amxx] [AMXX] BANNED: [S.W.A.T]_Jahmal, STARTER: holder_x2
+L 09/18/2011 - 11:47:57: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> забанил [S.W.A.T]_Jahmal<STEAM_0:0:299207520> на 15 минут (15 минут). Причина: VIP->holder_x2.
+L 09/18/2011 - 11:56:02: -------- Mapchange to zm_303 --------
+L 09/18/2011 - 11:56:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 12:14:20: [admin_amxbans.amxx] Login: "Euforia<2791><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 12:26:59: -------- Mapchange to zm_dwarf --------
+L 09/18/2011 - 12:27:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 12:47:00: -------- Mapchange to cs_militia --------
+L 09/18/2011 - 12:47:05: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 12:58:43: [admin_amxbans.amxx] Login: "Euforia<2863><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 13:01:41: -------- Mapchange to zm_fdust2x2 --------
+L 09/18/2011 - 13:01:43: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 13:21:40: -------- Mapchange to zm_666_brick --------
+L 09/18/2011 - 13:21:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 13:29:29: [admin_amxbans.amxx] Login: "Euforia<2911><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 13:41:53: -------- Mapchange to 016 --------
+L 09/18/2011 - 13:41:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 13:46:55: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<2935><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 13:47:09: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against FF .:VOLOD'KA:. FF STEAM_0:4:678301554
+L 09/18/2011 - 13:47:24: [voteban.amxx] [AMXX] BANNED: FF .:VOLOD'KA:. FF, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 09/18/2011 - 13:47:25: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> забанил FF .:VOLOD�KA:. FF<STEAM_0:4:678301554> на 15 минут (15 минут). Причина: VIP->Zloy-Tupoy-Buhoy [Str,RUS].
+L 09/18/2011 - 14:12:51: -------- Mapchange to ze_lift_escape_b5 --------
+L 09/18/2011 - 14:12:52: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 14:22:11: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<2983><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 14:28:35: -------- Mapchange to ze_jurassicpark --------
+L 09/18/2011 - 14:28:37: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 14:35:03: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3012><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 14:37:58: [admin_amxbans.amxx] Login: "~Helena~<3018><STEAM_0:4:1770016618><>" became an admin (account "~Helena~") (access "at") (address "109.124.92.122")
+L 09/18/2011 - 14:41:31: [voteban.amxx] ADMIN banned __________f_r{@}E-R__________ 91.189.165.84
+L 09/18/2011 - 14:51:17: -------- Mapchange to zm_cpl_mill_kamp --------
+L 09/18/2011 - 14:51:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 15:12:45: -------- Mapchange to zm_caca --------
+L 09/18/2011 - 15:12:47: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 15:26:03: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3088><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 15:27:00: [admincmd.amxx] Cmd: "4ebu[RUSH]ka<3088><STEAM_0:0:2107967446><>" change nick to "nomat" "=(Sosi huy nepsihuy)=<3081><STEAM_0:0:1302026044><>"
+L 09/18/2011 - 15:31:27: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 15:31:27: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 15:31:27: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 09/18/2011 - 15:31:27: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 15:34:31: -------- Mapchange to zm_neris --------
+L 09/18/2011 - 15:34:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 15:34:39: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 15:34:39: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 15:34:39: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 09/18/2011 - 15:34:39: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 15:40:02: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 15:43:57: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_fdust2x2") (map#2 "zm_xata") (map#3 "zm_caca") (map#4 "ze_egypt")
+L 09/18/2011 - 15:44:09: [mapsmenu.amxx] Vote: Voting successful. Map will be changed to zm_fdust2x2
+L 09/18/2011 - 15:44:13: [mapsmenu.amxx] Vote: Result refused
+L 09/18/2011 - 15:46:45: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_dwarf") (map#3 "zm_xata") (map#4 "zm_caca")
+L 09/18/2011 - 15:46:57: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 15:54:43: -------- Mapchange to zm_303 --------
+L 09/18/2011 - 15:54:44: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 15:54:45: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 15:54:52: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 15:54:52: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 15:54:52: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 09/18/2011 - 15:54:52: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 16:02:11: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_dwarf") (map#3 "zm_xata") (map#4 "zm_caca")
+L 09/18/2011 - 16:02:23: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 16:02:59: [plmenu.amxx] Kick: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" kick "<<PRO>><3118><STEAM_0:4:391419377><>"
+L 09/18/2011 - 16:04:07: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_dwarf") (map#2 "zm_caca") (map#3 "zm_neris") (map#4 "")
+L 09/18/2011 - 16:04:19: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 16:04:50: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_caca") (map#3 "") (map#4 "")
+L 09/18/2011 - 16:05:02: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 16:05:06: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_caca") (map#3 "") (map#4 "")
+L 09/18/2011 - 16:05:18: [mapsmenu.amxx] Vote: Voting failed
+L 09/18/2011 - 16:07:01: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_neris") (map#2 "zm_caca") (map#3 "") (map#4 "")
+L 09/18/2011 - 16:07:13: [mapsmenu.amxx] Vote: Voting successful. Map will be changed to zm_neris
+L 09/18/2011 - 16:07:15: [mapsmenu.amxx] Vote: Result accepted
+L 09/18/2011 - 16:07:17: -------- Mapchange to zm_neris --------
+L 09/18/2011 - 16:07:18: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 16:07:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 16:07:25: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 16:07:25: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 16:07:25: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 09/18/2011 - 16:07:25: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 16:07:42: [mapsmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" changelevel "zm_caca"
+L 09/18/2011 - 16:07:44: -------- Mapchange to zm_caca --------
+L 09/18/2011 - 16:07:46: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 16:07:46: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 16:07:53: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 16:07:53: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 16:07:53: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 09/18/2011 - 16:07:53: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 16:13:39: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>"
+L 09/18/2011 - 16:13:40: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "k0Hb<3115><STEAM_0:1:21077142><>"
+L 09/18/2011 - 16:13:40: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "k0Hb<3115><STEAM_0:1:21077142><>"
+L 09/18/2011 - 16:15:35: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>"
+L 09/18/2011 - 16:15:35: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>"
+L 09/18/2011 - 16:15:35: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>"
+L 09/18/2011 - 16:15:36: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>"
+L 09/18/2011 - 16:15:36: [plmenu.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" slap with 0 damage "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>"
+L 09/18/2011 - 16:17:58: [admincmd.amxx] Cmd: "4ebu[RUSH]ka<3114><STEAM_0:0:2107967446><>" change nick to "nomat" "=(sosi huy nepsihuy)=<3101><STEAM_0:0:1302026044><>"
+L 09/18/2011 - 16:22:41: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3166><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 16:23:54: [mapsmenu.amxx] Vote: "4ebu[RUSH]ka<3166><STEAM_0:0:2107967446><>" vote maps (map#1 "zm_decline2k") (map#2 "") (map#3 "") (map#4 "")
+L 09/18/2011 - 16:24:06: [mapsmenu.amxx] Vote: Voting successful. Map will be changed to zm_decline2k
+L 09/18/2011 - 16:24:06: [mapsmenu.amxx] Vote: Result accepted
+L 09/18/2011 - 16:24:08: -------- Mapchange to zm_decline2k --------
+L 09/18/2011 - 16:24:10: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3166><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 16:24:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 16:33:42: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3188><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 16:34:59: [amxbans.amxx] 4ebu[RUSH]ka<3188><STEAM_0:0:2107967446><SPECTATOR> забанил igorXDzzy<STEAM_0:4:579863414> на 3 дней (4320 минут). Причина: Cheating.
+L 09/18/2011 - 16:37:59: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3193><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "abcdefgijmnopqtu") (address "95.54.82.180")
+L 09/18/2011 - 16:44:09: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3200><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 16:44:15: -------- Mapchange to ze_egypt --------
+L 09/18/2011 - 16:44:16: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3200><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 16:44:17: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 16:44:20: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3203><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 17:01:12: -------- Mapchange to zm_666_brick --------
+L 09/18/2011 - 17:01:13: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3203><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 17:01:14: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 17:05:16: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3263><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 17:24:20: -------- Mapchange to cs_militia --------
+L 09/18/2011 - 17:24:25: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3263><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 17:24:26: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 17:32:09: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against Skill Me STEAM_0:0:1747068599
+L 09/18/2011 - 17:32:24: [voteban.amxx] [AMXX] BANNED: Skill Me, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 09/18/2011 - 17:32:25: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> забанил Skill Me<STEAM_0:0:1747068599> на 15 минут (15 минут). Причина: VIP->Zloy-Tupoy-Buhoy [Str,RUS].
+L 09/18/2011 - 17:34:12: [admin_amxbans.amxx] Login: "Euforia<3301><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:34:42: [admin_amxbans.amxx] Login: "Euforia<3302><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:34:48: [admin_amxbans.amxx] Login: "Euforia<3303><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:41:31: [admin_amxbans.amxx] Login: "Euforia<3315><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:44:55: -------- Mapchange to zm_alfresco_v2 --------
+L 09/18/2011 - 17:44:56: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3263><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 17:44:56: [admin_amxbans.amxx] Login: "Euforia<3315><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:44:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 17:44:59: [admin_amxbans.amxx] Login: "Euforia<3321><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:52:29: -------- Mapchange to zm_fdust2x2 --------
+L 09/18/2011 - 17:52:29: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3263><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 17:52:29: [admin_amxbans.amxx] Login: "Euforia<3321><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 17:52:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 18:04:39: [admin_amxbans.amxx] Login: "Euforia<3352><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 18:13:08: -------- Mapchange to zm_303 --------
+L 09/18/2011 - 18:13:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 18:23:39: -------- Mapchange to zm_dwarf --------
+L 09/18/2011 - 18:23:40: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 18:36:51: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3387><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 18:38:26: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3389><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 18:39:06: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 18:39:06: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 18:39:06: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 18:39:06: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 18:39:53: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against iSpirit STEAM_0:0:2070235627
+L 09/18/2011 - 18:40:08: [voteban.amxx] [AMXX] BANNED: iSpirit, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 09/18/2011 - 18:40:09: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> забанил unknown_STEAM_0:0:2070235627<STEAM_0:0:2070235627> на 15 минут (15 минут). Причина: VIP->Zloy-Tupoy-Buhoy [Str,RUS].
+L 09/18/2011 - 18:41:25: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3398><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 18:43:42: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3404><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 18:43:50: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 18:43:50: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 18:43:50: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 18:43:50: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 18:46:23: -------- Mapchange to zm_houses --------
+L 09/18/2011 - 18:46:23: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3404><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 18:46:23: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3398><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 18:46:24: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 18:46:26: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3407><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 18:46:30: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 18:46:30: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 18:46:30: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 18:46:30: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 18:48:12: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 18:48:12: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 18:48:12: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 18:48:12: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 18:53:10: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 18:53:10: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 18:53:10: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 18:53:10: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 19:03:11: -------- Mapchange to 016 --------
+L 09/18/2011 - 19:03:12: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3398><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 19:03:12: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3407><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 19:03:13: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 19:03:18: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 19:03:18: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 19:03:18: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 19:03:18: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 19:05:06: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3436><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 19:09:28: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against v_1 STEAM_0:4:1128518762
+L 09/18/2011 - 19:09:43: [voteban.amxx] [AMXX] BANNED: v_1, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 09/18/2011 - 19:09:44: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> забанил v_1<STEAM_0:4:1128518762> на 15 минут (15 минут). Причина: VIP->Zloy-Tupoy-Buhoy [Str,RUS].
+L 09/18/2011 - 19:19:39: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 19:19:39: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 19:19:39: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 19:19:39: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 19:23:13: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 19:23:13: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 19:23:13: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 19:23:13: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 19:27:01: -------- Mapchange to ze_lift_escape_b5 --------
+L 09/18/2011 - 19:27:02: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3407><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 19:27:02: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3436><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 19:27:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 19:27:07: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 19:27:07: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 19:27:07: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 19:27:07: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 19:42:22: -------- Mapchange to zm_666_brick --------
+L 09/18/2011 - 19:42:23: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3436><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 19:42:23: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3407><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 19:42:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 20:02:59: -------- Mapchange to cs_militia --------
+L 09/18/2011 - 20:03:03: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3407><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:03:04: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 20:03:34: [admin_amxbans.amxx] Login: "Euforia<3542><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 20:16:25: -------- Mapchange to zm_vendetta --------
+L 09/18/2011 - 20:16:26: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3407><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:16:26: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3554><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:16:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 20:16:53: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3558><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:19:00: [admin_amxbans.amxx] Login: "Euforia<3567><STEAM_0:0:1365425199><>" became an admin (account "Euforia") (access "t") (address "188.123.245.19")
+L 09/18/2011 - 20:21:37: -------- Mapchange to ze_jurassicpark --------
+L 09/18/2011 - 20:21:38: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3558><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:21:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 20:42:39: -------- Mapchange to ze_train_back_lg --------
+L 09/18/2011 - 20:42:40: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3558><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:42:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 20:42:51: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3589><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:54:32: -------- Mapchange to zm_caca --------
+L 09/18/2011 - 20:54:33: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |G-man<3589><STEAM_0:0:299692916><>" became an admin (account "F1-[G]amin[G] |G-man") (access "t") (address "194.0.68.126")
+L 09/18/2011 - 20:54:34: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 20:58:13: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 20:58:13: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 20:58:13: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 20:58:13: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:01:02: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3626><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 21:10:37: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:10:37: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:10:37: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:10:37: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:12:15: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against iSpirit STEAM_0:0:2070235627
+L 09/18/2011 - 21:12:30: [voteban.amxx] [AMXX] BANNED: iSpirit, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 09/18/2011 - 21:16:06: -------- Mapchange to zm_fdust2x2 --------
+L 09/18/2011 - 21:16:07: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3626><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 21:16:08: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 21:16:11: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:16:11: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:16:11: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:16:11: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:16:21: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:16:21: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:16:21: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:16:21: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:17:47: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:17:47: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:17:47: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:17:47: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:22:24: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:22:24: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:22:24: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:22:24: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:23:09: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:23:09: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:23:09: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:23:09: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:23:11: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3646><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "t") (address "95.54.82.180")
+L 09/18/2011 - 21:23:17: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:23:17: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:23:17: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:23:17: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:26:49: [admin_amxbans.amxx] Login: "4ebu[RUSH]ka<3649><STEAM_0:0:2107967446><>" became an admin (account "4ebu[RUSH]ka") (access "t") (address "95.54.82.180")
+L 09/18/2011 - 21:30:12: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:30:12: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:30:12: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:30:12: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:37:41: -------- Mapchange to zm_dwarf --------
+L 09/18/2011 - 21:37:43: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 21:37:47: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:37:47: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:37:47: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:37:47: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:37:56: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:37:56: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:37:56: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:37:56: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:55:33: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:55:33: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:55:33: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:55:33: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:57:24: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:57:24: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:57:24: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:57:24: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 21:58:48: -------- Mapchange to zm_neris --------
+L 09/18/2011 - 21:58:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 21:58:52: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 21:58:52: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 21:58:52: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 21:58:52: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 22:20:08: -------- Mapchange to zm_666_brick --------
+L 09/18/2011 - 22:20:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 22:20:13: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 22:20:13: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 22:20:13: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 22:20:13: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 22:40:22: -------- Mapchange to ze_egypt --------
+L 09/18/2011 - 22:40:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 22:40:26: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 22:40:26: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 22:40:26: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 22:40:26: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 22:40:28: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 22:40:28: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 22:40:28: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 22:40:28: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 22:49:24: -------- Mapchange to zm_decline2k --------
+L 09/18/2011 - 22:49:26: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 22:49:29: [amxbans.amxx] [Amxbans] Запрос провален!
+L 09/18/2011 - 22:49:29: [amxbans.amxx] [Amxbans] Ошибка, адрес: 18
+L 09/18/2011 - 22:49:29: [amxbans.amxx] [Amxbans] Сообщение: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 (1064)
+L 09/18/2011 - 22:49:29: [amxbans.amxx] [Amxbans] Статус запроса: 
+L 09/18/2011 - 23:10:00: -------- Mapchange to zm_303 --------
+L 09/18/2011 - 23:10:01: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 23:40:42: -------- Mapchange to zm_alfresco_v2 --------
+L 09/18/2011 - 23:40:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 подключен
+L 09/18/2011 - 23:47:11: [admin_amxbans.amxx] Login: "Dimka<3735><STEAM_0:0:1236438227><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 09/18/2011 - 23:48:17: [admin_amxbans.amxx] Login: "Zloy-Tupoy-Buhoy [Str,RUS]<3733><STEAM_0:4:1216570867><>" became an admin (account "Zloy-Tupoy-Buhoy [Str,RUS]") (access "t") (address "94.41.90.56")
+L 09/18/2011 - 23:54:00: [voteban.amxx] Voteban starter Zloy-Tupoy-Buhoy [Str,RUS] against Narkot1k STEAM_0:1:36059700
+L 09/18/2011 - 23:54:15: [voteban.amxx] [AMXX] BANNED: Narkot1k, STARTER: Zloy-Tupoy-Buhoy [Str,RUS]
+L 09/18/2011 - 23:54:16: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> забанил Narkot1k<STEAM_0:1:36059700> на 15 минут (15 минут). Причина: VIP->Zloy-Tupoy-Buhoy [Str,RUS].

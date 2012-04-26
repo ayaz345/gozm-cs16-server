@@ -1,0 +1,179 @@
+[en]
+WARN1 = IIoKa3 WWW aDpeCoB 3aIIpeIIIeH!!!
+WARN2 = MaxumaJIbly c4eT IIpeDyIIpeCHDeHyU IIpeBblWeH
+WARN3 = IIoKa3 IP aDpeCoB 3aIIpeIIIeH!!!
+INFO_GLOB = PeKJIaMa 3aIIpeWeHa!!!
+INFO1 = BpeM9: %d MuHyT
+INFO2 = HaKa3aH 3a PeKJIaMy
+INFO3 = There aren`t any exceptions.
+WORD_ADVERT = PeKJIaMa
+WORD_EXCEPT = UckJIl-04eHu9
+WORD_REASON = IIpu4uHa
+
+[ru]
+WARN1 = IIoKa3 WWW aDpeCoB 3aIIpeIIIeH!!!
+WARN2 = MaxumaJIbly c4eT IIpeDyIIpeCHDeHyU IIpeBblWeH
+WARN3 = IIoKa3 IP aDpeCoB 3aIIpeIIIeH!!!
+INFO_GLOB = PeKJIaMa 3aIIpeWeHa!!!
+INFO1 = BpeM9: %d MuHyT
+INFO2 = HaKa3aH 3a PeKJIaMy
+INFO3 = There aren`t any exceptions.
+WORD_ADVERT = PeKJIaMa
+WORD_EXCEPT = UckJIl-04eHu9
+WORD_REASON = IIpu4uHa
+
+[pl]
+WARN1 = Nie reklamuj stron ani serwerow na czacie lub w nicku.
+WARN2 = Osiagnieto maksymalna liczbe wyjatkow.
+WARN3 = Prosimy zmienic nick!^nNie uzywaj formy adresu strony czy serwera
+INFO_GLOB = Zapamietaj! Nie powinienes reklamowac niczego na czacie czy w nicku.
+INFO1 = Czas: %d minut(y)
+INFO2 = ukarany za reklame
+INFO3 = Nie okreslono wyjatkow.
+WORD_ADVERT = Reklama
+WORD_EXCEPT = Wyjatki
+WORD_REASON = Powod
+
+[de]
+WARN1 = Setze keine Werbung in den Chat order deinen Nick! 
+WARN2 = Maximale Anzahl an Verwarnungen erreicht!
+WARN3 = Bitte aender deinen Namen! ^nBenutze keine Domain/Server Namen
+INFO_GLOB = Achtung! Unterlasse Werbung in deinem Nickname oder Chat!
+INFO1 = Zeit: %d Minute(n)
+INFO2 = Bestrafung fuer Werbung
+INFO3 = Es gibt keine Ausnahmen.
+WORD_ADVERT = Werbung
+WORD_EXCEPT = ausser
+WORD_REASON = Grund
+
+[es]
+WARN1 = No poner publicidad en el chat o nick
+WARN2 = Máximo número de excepciones alcanzadas!
+WARN3 = Por favor, cambia tu nombre!^nNo uses dominio/servidor
+INFO_GLOB = Recuerda! No debes poner publicidad en chat o nick
+INFO1 = Tiempo: %d minuto(s)
+INFO2 = castigado por anuncio
+INFO3 = No hay ninguna excepción
+WORD_ADVERT = Publicidad
+WORD_EXCEPT = Excepciones
+WORD_REASON = Motivo 
+
+[ru]
+WARN1 = Ne delajte reklamu v chate ili v svoem nicke!
+WARN2 = Maksimalnoe 4islo narushenij dostignuto!
+WARN3 = Pozalujsta smenite svoj nick!^nNe vstavljate tuda sajtq/servera
+INFO_GLOB = Zapomni! Ti nedolzen stavit reklamu v nick i pisat v chate!
+INFO1 = Vremja: %d minut
+INFO2 = nakazan za reklamu
+INFO3 = Netu nikakih narushenij
+WORD_ADVERT = Reklama
+WORD_EXCEPT = Narushenije
+WORD_REASON = Prichina  
+
+[bp]
+WARN1 = Nao faca publicidade no chat nem no nick
+WARN2 = Limite de exepcoes atingido!
+WARN3 = Por favor muda o nome!^nNao uses do servidor de
+INFO_GLOB = Atencao! Nao deves fazer publicidade no nick nem no chat
+INFO1 = Tempo: %d minuto(s)
+INFO2 = Punido por fazer publicidade
+INFO3 = Nao ha exepcoes.
+WORD_ADVERT = Publicidade
+WORD_EXCEPT = Exepcoes
+WORD_REASON = Motivo 
+
+[hu]
+WARN1 = Ne hirdess a neveddel vagy a chatben!
+WARN2 = Elerted a maximalis kivetelek szamat!
+WARN3 = Valtoztasd meg a neved!^nNe hasznalj domain vagy szerver nevet!
+INFO_GLOB = Emlekezz! Nem rakhatsz a nevedbe semmien hirdetest!
+INFO1 = Ido: %d perc
+INFO2 = megbuntetve reklamozasert
+INFO3 = Egy kivetel sincs.
+WORD_ADVERT = Reklamozas
+WORD_EXCEPT = Kivetel
+WORD_REASON = Ok 
+
+[lt]
+WARN1 = Nereklamuokite pokalbyje arba varde
+WARN2 = Pasiektas maksimalus isimciu skaicius!
+WARN3 = Prasome pasikeisti varda!^nNenaudokite domeno/serverio formos
+INFO_GLOB = Atsiminkite! Jus neturetumete reklamuoti pokalbyje ar varde
+INFO1 = Laikas: %d minute(s)
+INFO2 = nubaustas uz reklamavima
+INFO3 = Nera jokiu isimciu.
+WORD_ADVERT = Reklamos
+WORD_EXCEPT = Isimtys
+WORD_REASON = Priezastis
+
+[ro]
+WARN1 = Nu fa reclama in chat sau cu nickul
+WARN2 = Numar maxim de exceptii!
+WARN3 = Schimba-ti nickul!^nNu iti pune in nick domeniul
+INFO_GLOB = Nu uita! Nu ai voie sa faci reclama in chat sau cu nickul tau
+INFO1 = Timp: %d minut(e)
+INFO2 = pedepsit pentru reclama
+INFO3 = Nu sunt exceptii.
+WORD_ADVERT = Reclama
+WORD_EXCEPT = Exceptii
+WORD_REASON = Motiv 
+
+[bg]
+WARN1 = Ne pravete reklama v chata ili v imeto si!
+WARN2 = Maksimalniat broi narushenia e dostignat!
+WARN3 = Molia smenete si imeto!^nNe slagaite saitove ili sarvari v nego
+INFO_GLOB = Zapomni! Ne triabva da pravish reklama v chata ili v imeto si!
+INFO1 = Vreme: %d minuta/i
+INFO2 = nakazan zaradi reklama
+INFO3 = Niama narushenia
+WORD_ADVERT = Reklama
+WORD_EXCEPT = Narushenie
+WORD_REASON = Prichina
+
+[nl]
+WARN1 = Schrijf geen reclame in de chat of je naam
+WARN2 = Maximum uitzonderingen bereikt!
+WARN3 = Gelieve je naam te veranderen!^nGebruik geen website/server.
+INFO_GLOB = Denk eraan! Je zou beter geen reclame in de chat of je naam zetten!
+INFO1 = Time: %d minu(u)t(en)
+INFO2 = Gestraft voor reclame!
+INFO3 = Er zijn geen uitzonderingen.
+WORD_ADVERT = Reclame
+WORD_EXCEPT = Uitzondering
+WORD_REASON = Reden 
+
+[fr]
+WARN1 = Ne mets pas de publicite dans le chat ou pseudo
+WARN2 = Le nombre max d'exceptions est atteint !
+WARN3 = Merci de changer ton nom !^nN'utilise pas de nom de domaine/serveur
+INFO_GLOB = Rappel ! Tu ne dois pas mettre de publicite dans le chat ou pseudo
+INFO1 = Duree : %d minute(s)
+INFO2 = puni pour publicite
+INFO3 = Il n'y a aucunes exceptions.
+WORD_ADVERT = Publicite
+WORD_EXCEPT = Exceptions
+WORD_REASON = Raison
+
+[ua]
+WARN1 = Ne robit` reklamy v 4ati ta svoemy niky!
+WARN2 = Dosjagnyta maksumal`na kil`kist` poruwen`!
+WARN3 = Zminit` sviy nik!^nNe vstabliaite tydu adres saity abo servery!
+INFO_GLOB = Zapamjataj! Tu ne povunen stavutu reklamy v nik abo pusatu ii v 4at!
+INFO1 = 4as: %d Hvulun
+INFO2 = Pokaranui za reklamy
+INFO3 = Nemaje nijakuh poruwen`
+WORD_ADVERT = Reklama
+WORD_EXCEPT = Poruwennja
+WORD_REASON = Pru4una 
+
+[sk]
+WARN1 = Nepouzivaj reklamu v chate ani v mene
+WARN2 = Maximalny pocet vynimiek bol dosiahnuty!
+WARN3 = Prosim zmen si meno!^nNepouzivaj meno vo forme domeny ani servera
+INFO_GLOB = Zapamataj si! Nepouzivaj v chate ani v mene ziadnu reklamu
+INFO1 = Cas: %d minut(a/y)
+INFO2 = potrestany za reklamu
+INFO3 = Neexistuju ziadne vynimky.
+WORD_ADVERT = Reklama		
+WORD_EXCEPT = Vynimka
+WORD_REASON = Dovod

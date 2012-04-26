@@ -1,0 +1,1099 @@
+L 04/22/2012 - 00:04:16: -------- Mapchange to zm_south_escape_b2 --------
+L 04/22/2012 - 00:04:17: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 00:04:17: [admin_amxbans.amxx] Login: "Dimka<6264><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 00:04:17: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<6244><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.194.134")
+L 04/22/2012 - 00:04:17: [admin_amxbans.amxx] Login: "~dark_light<6270><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 00:04:18: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 00:04:32: [admin_amxbans.amxx] Login: "Lutini<6282><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 00:07:31: [pbk.amxx] "<mashka777><6239><STEAM_0:0:218431355><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 00:09:21: [pbk.amxx] "<how to go on living?><6233><STEAM_0:0:1924579479><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 00:09:25: [admin_amxbans.amxx] Login: "ryceBu4<6296><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 00:11:16: [pbk.amxx] "<zugunruhe - Smaksman><6290><STEAM_0:0:1543631><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 00:11:28: [admin_amxbans.amxx] Login: "4e-N<6301><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.234.3")
+L 04/22/2012 - 00:11:33: [admin_amxbans.amxx] Login: "Celldweller<6302><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.169.208")
+L 04/22/2012 - 00:12:53: [voteban.amxx] Voteban starter ~dark_light against Ferg STEAM_0:0:831757727
+L 04/22/2012 - 00:13:08: [voteban.amxx] [AMXX] BANNED: Ferg, STARTER: ~dark_light
+L 04/22/2012 - 00:13:09: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Ferg<STEAM_0:0:831757727> for 30 minutes (30 minutes). Reason: VIP->~dark_light.
+L 04/22/2012 - 00:19:24: [plmenu.amxx] Cmd: "~dark_light<6270><STEAM_0:0:743756224><>" slay "~dark_light<6270><STEAM_0:0:743756224><>"
+L 04/22/2012 - 00:23:34: -------- Mapchange to zm_abbac --------
+L 04/22/2012 - 00:23:35: [admin_amxbans.amxx] Login: "ryceBu4<6296><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 00:23:35: [admin_amxbans.amxx] Login: "Dimka<6264><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 00:23:35: [admin_amxbans.amxx] Login: "Lutini<6282><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 00:23:35: [admin_amxbans.amxx] Login: "4e-N<6301><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.234.3")
+L 04/22/2012 - 00:23:35: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<6244><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.194.134")
+L 04/22/2012 - 00:23:35: [admin_amxbans.amxx] Login: "~dark_light<6270><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 00:23:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 00:39:10: [voteban.amxx] Voteban starter Lutini against Ssaky STEAM_0:0:1479017372
+L 04/22/2012 - 00:39:16: [plmenu.amxx] Cmd: "~dark_light<6270><STEAM_0:0:743756224><>" slay "Ssaky<6308><STEAM_0:0:1479017372><>"
+L 04/22/2012 - 00:39:25: [voteban.amxx] [AMXX] BANNED: Ssaky, STARTER: Lutini
+L 04/22/2012 - 00:39:26: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Ssaky<STEAM_0:0:1479017372> for 30 minutes (30 minutes). Reason: VIP->Lutini.
+L 04/22/2012 - 00:43:29: [plmenu.amxx] Cmd: "~dark_light<6270><STEAM_0:0:743756224><>" slay "LooKiD<6155><STEAM_ID_LAN><>"
+L 04/22/2012 - 00:44:30: -------- Mapchange to ze_egypt --------
+L 04/22/2012 - 00:44:31: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 00:44:31: [admin_amxbans.amxx] Login: "Lutini<6282><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 00:44:31: [admin_amxbans.amxx] Login: "Dimka<6264><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 00:44:31: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<6244><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.194.134")
+L 04/22/2012 - 00:44:31: [admin_amxbans.amxx] Login: "ryceBu4<6296><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 00:44:31: [admin_amxbans.amxx] Login: "~dark_light<6270><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 00:44:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 00:44:33: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<6325><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.194.134")
+L 04/22/2012 - 00:44:34: [admin_amxbans.amxx] Login: "Lutini<6327><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 00:44:35: [admin_amxbans.amxx] Login: "~dark_light<6334><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 00:44:35: [admin_amxbans.amxx] Login: "Dimka<6336><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 00:44:35: [admin_amxbans.amxx] Login: "ryceBu4<6337><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 00:44:46: [admin_amxbans.amxx] Login: "Dimka<6336><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 00:47:23: [amxbans.amxx] Dimka<6336><STEAM_0:0:44643826><TERRORIST> banned Moskvin ?!<STEAM_0:0:43678884> for 1 hour (60 minutes). Reason: Mat.
+L 04/22/2012 - 00:48:22: [admincmd.amxx] Cmd: "Dimka<6336><STEAM_0:0:44643826><>" server console (cmdline "amx_destroy cherbu")
+L 04/22/2012 - 00:48:29: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned chERBU!~<STEAM_0:1:43733722> for 2 weeks (20160 minutes). Reason: 15" "Game Destroyer".
+L 04/22/2012 - 00:48:50: [pbk.amxx] "<mascot Marley^^><6349><STEAM_0:1:47875970><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 00:52:06: [voteban.amxx] Voteban starter Lutini against 911 STEAM_0:0:901137403
+L 04/22/2012 - 00:52:21: [voteban.amxx] [AMXX] BANNED: 911, STARTER: Lutini
+L 04/22/2012 - 00:52:22: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned 911<STEAM_0:0:901137403> for 30 minutes (30 minutes). Reason: VIP->Lutini.
+L 04/22/2012 - 00:59:45: [pbk.amxx] "<F1-[G]amin[G] |IIPOBOKATOP><6371><STEAM_ID_LAN><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 01:02:35: [pbk.amxx] "<Traktorist Petrovich><6335><STEAM_0:0:1699032679><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:02:40: [pbk.amxx] "<Traktorist Petrovich><6335><STEAM_0:0:1699032679><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:03:21: [admincmd.amxx] Cmd: "Dimka<6336><STEAM_0:0:44643826><>" server console (cmdline "amx_nextmap zm_dust_brick_b1_fx")
+L 04/22/2012 - 01:06:31: -------- Mapchange to zm_dust_brick_b1_fx --------
+L 04/22/2012 - 01:06:31: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 01:06:32: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<6325><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.194.134")
+L 04/22/2012 - 01:06:32: [admin_amxbans.amxx] Login: "Dimka<6336><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 01:06:32: [admin_amxbans.amxx] Login: "Lutini<6327><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 01:06:32: [admin_amxbans.amxx] Login: "ryceBu4<6337><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 01:06:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 01:11:45: [pbk.amxx] "<VoLk14_KoHaH><6342><STEAM_0:0:153190916><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:16:15: [pbk.amxx] "<STORM|Sorry?><6390><STEAM_0:0:1837079479><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 01:18:26: [pbk.amxx] "<Angel )))><6391><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 01:26:54: -------- Mapchange to zm_fdust2x2 --------
+L 04/22/2012 - 01:26:55: [admin_amxbans.amxx] Login: "ryceBu4<6337><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 01:26:55: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<6325><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.194.134")
+L 04/22/2012 - 01:26:55: [admin_amxbans.amxx] Login: "Dimka<6336><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 01:26:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 01:29:44: [pbk.amxx] "<VoLk14_KoHaH><6389><STEAM_0:0:153190916><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:41:09: [pbk.amxx] "<Lutini [elitnii bom}|{]><6327><STEAM_0:0:415503635><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 01:41:38: [admin_amxbans.amxx] Login: "Lutini<6414><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 01:43:44: [pbk.amxx] "<01><6399><STEAM_0:0:628465817><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:43:44: [pbk.amxx] "<miha><6374><STEAM_0:0:628465817><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:47:34: [pbk.amxx] "<Tequila><6387><STEAM_0:0:766843818><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:49:04: [pbk.amxx] "<01><6415><STEAM_0:0:628465817><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:49:42: -------- Mapchange to zm_desolation_house --------
+L 04/22/2012 - 01:49:43: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 01:49:43: [admin_amxbans.amxx] Login: "ryceBu4<6337><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 01:49:43: [admin_amxbans.amxx] Login: "Lutini<6414><STEAM_0:0:415503635><>" became an admin (account "Lutini") (access "t") (address "176.14.188.216")
+L 04/22/2012 - 01:49:44: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 01:51:46: [admin_amxbans.amxx] Login: "Topaz<6427><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 01:52:02: [pbk.amxx] "<Muroga_Hyouma><6402><STEAM_0:0:85054058><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 01:57:07: [pbk.amxx] "<mm.tm > IIuT_6yJIb ;>><6422><STEAM_0:0:833442994><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:12:39: -------- Mapchange to zm_666_brick --------
+L 04/22/2012 - 02:12:40: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 02:12:40: [admin_amxbans.amxx] Login: "Topaz<6427><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 02:12:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 02:22:14: [pbk.amxx] "<ZONVI999><6411><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:22:19: [pbk.amxx] "<ZONVI999><6411><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:22:24: [pbk.amxx] "<ZONVI999><6411><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:22:29: [pbk.amxx] "<ZONVI999><6411><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:22:34: [pbk.amxx] "<ZONVI999><6411><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:25:49: [pbk.amxx] "<miha><6429><STEAM_0:0:628465817><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:28:34: [pbk.amxx] "<Ultr Kil><6423><STEAM_0:0:628465817><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:28:39: [pbk.amxx] "<Ultr Kil><6423><STEAM_0:0:628465817><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:28:44: [pbk.amxx] "<Ultr Kil><6423><STEAM_0:0:628465817><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:33:13: -------- Mapchange to zm_snow_s1h_v2 --------
+L 04/22/2012 - 02:33:14: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 02:33:15: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 02:50:03: [pbk.amxx] "<XYU teBe B pot><6449><STEAM_0:0:1232605860><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:50:58: [pbk.amxx] "<poxui pluyshem><6448><STEAM_0:0:1232605860><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 02:54:22: -------- Mapchange to zm_xata --------
+L 04/22/2012 - 02:54:24: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 03:00:23: [admin_amxbans.amxx] Login: "Dimka<6475><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 03:14:37: -------- Mapchange to zm_caca --------
+L 04/22/2012 - 03:14:38: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 03:14:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 03:35:51: -------- Mapchange to 016 --------
+L 04/22/2012 - 03:35:52: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 03:35:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 03:41:06: [pbk.amxx] "<Biktor Garanovich><6496><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 03:57:01: -------- Mapchange to ze_jurassicpark --------
+L 04/22/2012 - 03:57:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 04:17:11: -------- Mapchange to zm_decline2k --------
+L 04/22/2012 - 04:17:13: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 04:19:41: [pbk.amxx] "<SPB><6529><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 04:20:31: [pbk.amxx] "<sMaIl*><6480><STEAM_0:0:1839653415><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 04:38:09: -------- Mapchange to zm_abbac --------
+L 04/22/2012 - 04:38:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 04:47:13: [pbk.amxx] "<chERBU!~><6530><STEAM_0:1:43733722><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 04:47:18: [pbk.amxx] "<chERBU!~><6530><STEAM_0:1:43733722><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 04:47:23: [pbk.amxx] "<chERBU!~><6530><STEAM_0:1:43733722><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 04:55:38: [pbk.amxx] "<Ultr Kil><6545><STEAM_0:0:628465817><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 04:58:37: -------- Mapchange to zm_house_2011 --------
+L 04/22/2012 - 04:58:39: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 05:18:39: -------- Mapchange to zm_monsterhouse --------
+L 04/22/2012 - 05:18:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 05:30:54: [pbk.amxx] "<Moskvin ?!><6542><STEAM_0:0:43678884><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 05:39:13: -------- Mapchange to zm_dust_siege_final --------
+L 04/22/2012 - 05:39:15: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 05:50:33: [pbk.amxx] "<Termineitor><6594><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 06:00:12: -------- Mapchange to cs_mansion --------
+L 04/22/2012 - 06:00:18: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 06:00:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 06:12:21: -------- Mapchange to zm_kill_duster_2 --------
+L 04/22/2012 - 06:12:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 06:34:23: -------- Mapchange to zm_street_new --------
+L 04/22/2012 - 06:34:25: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 06:40:13: [pbk.amxx] "<Valdo><36><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 06:41:03: [pbk.amxx] "<~>_)(_C_r_A_z_Y_)(_<~><47><STEAM_0:0:215763161><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 06:56:33: -------- Mapchange to zm_snow_s1h_v2 --------
+L 04/22/2012 - 06:56:34: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 06:56:35: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 07:16:03: [pbk.amxx] "<Dark_knight911><91><STEAM_0:0:1763677387><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 07:19:08: -------- Mapchange to zm_fdust2x2 --------
+L 04/22/2012 - 07:19:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 07:21:38: [pbk.amxx] "<Grib><110><STEAM_0:0:326564258><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 07:39:28: [pbk.amxx] "<F1-[G]amin[G] |Narko Kent><97><STEAM_0:0:694808668><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 07:39:53: [pbk.amxx] "<Valdo><54><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 07:40:08: -------- Mapchange to zm_666_brick --------
+L 04/22/2012 - 07:40:09: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 07:40:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 07:43:23: [pbk.amxx] "<Valdo><142><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 08:01:12: -------- Mapchange to zm_houses --------
+L 04/22/2012 - 08:01:14: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 08:15:37: [pbk.amxx] "<mm.tm > IIuT_6yJIb ;>><161><STEAM_0:0:833442994><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:16:25: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<182><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 08:19:52: [pbk.amxx] "<**XOREK**><170><STEAM_0:0:556723658><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:21:31: -------- Mapchange to zm_electro_house --------
+L 04/22/2012 - 08:21:32: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 08:21:32: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<182><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 08:21:33: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 08:23:46: [pbk.amxx] "<otkyda vi cvalilicd><191><STEAM_0:0:1571031803><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:26:31: [pbk.amxx] "<[Caxapok]><156><STEAM_0:0:1305931421><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:33:36: [pbk.amxx] "<24><197><STEAM_0:0:91457088><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:38:01: [pbk.amxx] "<___SpArTaK___><186><STEAM_0:0:1208680994><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:40:31: [pbk.amxx] "<[Caxapok]><209><STEAM_0:0:1305931421><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:44:09: -------- Mapchange to zm_zonecs --------
+L 04/22/2012 - 08:44:10: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 08:44:10: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<182><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 08:44:11: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 08:48:27: [voteban.amxx] Voteban starter F1-[G]amin[G] |Mr.Pr9niK against PROsto4ok STEAM_ID_LAN
+L 04/22/2012 - 08:48:42: [voteban.amxx] [AMXX] BANNED: PROsto4ok, STARTER: F1-[G]amin[G] |Mr.Pr9niK
+L 04/22/2012 - 08:48:43: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned KpyTRK<STEAM_ID_LAN> for 30 minutes (30 minutes). Reason: VIP->F1-[G]amin[G] |Mr.Pr9niK.
+L 04/22/2012 - 08:51:19: [pbk.amxx] "<PROsto4ok><226><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:51:24: [pbk.amxx] "<PROsto4ok><226><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:51:29: [pbk.amxx] "<PROsto4ok><226><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:58:28: [voteban.amxx] Voteban starter F1-[G]amin[G] |Mr.Pr9niK against [Caxapok] STEAM_0:0:1305931421
+L 04/22/2012 - 08:58:29: [pbk.amxx] "<[Caxapok]><216><STEAM_0:0:1305931421><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 08:58:43: [voteban.amxx] [AMXX] BANNED: [Caxapok], STARTER: F1-[G]amin[G] |Mr.Pr9niK
+L 04/22/2012 - 08:58:44: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned unknown_STEAM_0:0:1305931421<STEAM_0:0:1305931421> for 30 minutes (30 minutes). Reason: VIP->F1-[G]amin[G] |Mr.Pr9niK.
+L 04/22/2012 - 08:58:52: [voteban.amxx] Voteban starter F1-[G]amin[G] |Mr.Pr9niK against Happy> [tm] | OJIEHb STEAM_0:0:1506415880
+L 04/22/2012 - 08:59:07: [voteban.amxx] [AMXX] BANNED: Happy> [tm] | OJIEHb, STARTER: F1-[G]amin[G] |Mr.Pr9niK
+L 04/22/2012 - 08:59:08: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Happy> [tm] | OJIEHb<STEAM_0:0:1506415880> for 30 minutes (30 minutes). Reason: VIP->F1-[G]amin[G] |Mr.Pr9niK.
+L 04/22/2012 - 09:04:25: -------- Mapchange to zm_south_escape_b2 --------
+L 04/22/2012 - 09:04:26: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 09:04:26: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<182><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 09:04:27: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 09:24:45: [pbk.amxx] "<(o_O)Doosi(O_O)><271><STEAM_0:0:1070730903><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:25:50: -------- Mapchange to zm_house_2011 --------
+L 04/22/2012 - 09:25:52: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 09:28:40: [pbk.amxx] "<XuTpuK><322><STEAM_0:0:1986440821><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 09:28:48: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:28:48: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:28:48: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''B' at line 1 (1064)
+L 04/22/2012 - 09:28:48: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:28:55: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:28:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:28:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''B' at line 1 (1064)
+L 04/22/2012 - 09:28:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:32:40: [pbk.amxx] "<EKBest|tm|**max 15# **><234><STEAM_0:0:2102682200><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:37:13: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:37:13: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:37:13: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 09:37:13: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:37:25: [pbk.amxx] "<[MultiKill] ?!><338><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:37:45: [pbk.amxx] "<hokoladnbIi_mihka><300><STEAM_0:0:901139513><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:39:25: [pbk.amxx] "<Valdo><329><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:41:30: [pbk.amxx] "<NegaTiV><316><STEAM_0:0:736684077><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:45:40: [pbk.amxx] "<**Kenny**><315><STEAM_0:0:1965312490><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:45:45: [pbk.amxx] "<**Kenny**><315><STEAM_0:0:1965312490><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:45:50: [pbk.amxx] "<**Kenny**><315><STEAM_0:0:1965312490><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:47:12: -------- Mapchange to ze_egypt --------
+L 04/22/2012 - 09:47:12: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 09:47:13: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 09:47:20: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:47:20: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:47:20: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''B' at line 1 (1064)
+L 04/22/2012 - 09:47:20: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:47:23: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:47:23: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:47:23: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 09:47:23: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:47:24: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:47:24: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:47:24: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''B' at line 1 (1064)
+L 04/22/2012 - 09:47:24: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:47:26: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:47:26: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:47:26: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 09:47:26: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:52:11: [pbk.amxx] "<[Caxapok]><358><STEAM_0:0:1305931421><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 09:52:18: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 09:52:18: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 09:52:18: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''B' at line 1 (1064)
+L 04/22/2012 - 09:52:18: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 09:55:36: [pbk.amxx] "<[MultiKill] ?!><370><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:06:41: [pbk.amxx] "<[MultiKill] ?!><406><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:06:48: [admin_amxbans.amxx] Login: "ryceBu4<412><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 10:06:52: [admin_amxbans.amxx] Login: "ryceBu4<413><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 10:07:57: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<415><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:08:03: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<416><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:08:42: [pbk.amxx] "<kostrov><407><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:08:42: [pbk.amxx] "<mm.tm > IIuT_6yJIb ;>><401><STEAM_0:0:833442994><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:09:28: -------- Mapchange to 016 --------
+L 04/22/2012 - 10:09:29: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 10:09:29: [admin_amxbans.amxx] Login: "ryceBu4<413><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 10:09:29: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<416><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:09:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 10:09:37: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 10:09:37: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 10:09:37: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''B' at line 1 (1064)
+L 04/22/2012 - 10:09:37: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 10:13:36: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<426><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:14:08: [pbk.amxx] "<Mister X><396><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:16:56: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<434><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:19:43: [pbk.amxx] "<[MultiKill] ?!><435><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 10:21:56: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 10:21:56: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 10:21:56: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 10:21:56: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 10:22:18: [pbk.amxx] "<[MultiKill] ?!><437><STEAM_ID_LAN><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 10:25:48: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 10:25:48: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 10:25:48: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 10:25:48: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 10:27:58: [pbk.amxx] "<bak$ bannY><376><STEAM_0:1:43733722><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:32:17: -------- Mapchange to ze_jurassicpark --------
+L 04/22/2012 - 10:32:18: [admin_amxbans.amxx] Login: "ryceBu4<413><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 10:32:18: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<434><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:32:19: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 10:32:26: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 10:32:26: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 10:32:26: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 10:32:26: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 10:34:46: [plmenu.amxx] Kick: "ryceBu4<413><STEAM_0:0:360750727><>" kick "Raul_Smith<414><STEAM_ID_LAN><>"
+L 04/22/2012 - 10:35:06: [voteban.amxx] Voteban starter F1-[G]amin[G] |Mr.Pr9niK against Agent 007>Raul_Smith STEAM_ID_LAN
+L 04/22/2012 - 10:35:21: [voteban.amxx] [AMXX] BANNED: Agent 007>Raul_Smith, STARTER: F1-[G]amin[G] |Mr.Pr9niK
+L 04/22/2012 - 10:35:22: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Agent 007>Raul_Smith<STEAM_ID_LAN> for 30 minutes (30 minutes). Reason: VIP->F1-[G]amin[G] |Mr.Pr9niK.
+L 04/22/2012 - 10:37:52: [pbk.amxx] "<Men><460><STEAM_0:0:992613049><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:39:18: -------- Mapchange to zm_dust_siege_final --------
+L 04/22/2012 - 10:39:19: [admin_amxbans.amxx] Login: "ryceBu4<413><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 10:39:19: [admin_amxbans.amxx] Login: "F1-[G]amin[G] |Mr.Pr9niK<434><STEAM_0:0:1360403837><>" became an admin (account "F1-[G]amin[G] |Mr.Pr9niK") (access "t") (address "92.37.247.163")
+L 04/22/2012 - 10:39:20: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 10:39:26: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 10:39:26: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 10:39:26: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 10:39:26: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 10:41:43: [pbk.amxx] "<XuTpuK><481><STEAM_0:0:1986440821><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 10:48:28: [pbk.amxx] "<.:neADEKBAT:.><493><STEAM_0:0:358511048><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:48:33: [pbk.amxx] "<.:neADEKBAT:.><493><STEAM_0:0:358511048><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:48:38: [pbk.amxx] "<.:neADEKBAT:.><493><STEAM_0:0:358511048><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:53:53: [pbk.amxx] "<Frick><499><STEAM_0:0:439134219><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:54:50: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 10:54:50: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 10:54:50: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 10:54:50: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 10:54:53: [pbk.amxx] "<vampir)1><433><STEAM_0:0:1345457260><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:55:08: [pbk.amxx] "<OFNC~BY NAZ1R><501><STEAM_0:0:464663587><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:55:13: [pbk.amxx] "<OFNC~BY NAZ1R><501><STEAM_0:0:464663587><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:55:18: [pbk.amxx] "<OFNC~BY NAZ1R><501><STEAM_0:0:464663587><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 10:56:27: [voteban.amxx] Voteban starter F1-[G]amin[G] |Mr.Pr9niK against Happy> [tm] | OJIEHb STEAM_0:0:1506415880
+L 04/22/2012 - 10:56:42: [voteban.amxx] [AMXX] BANNED: Happy> [tm] | OJIEHb, STARTER: F1-[G]amin[G] |Mr.Pr9niK
+L 04/22/2012 - 11:03:03: [pbk.amxx] "<Neo><503><STEAM_0:0:903725059><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:05:33: [pbk.amxx] "<Terminator><468><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:06:13: [pbk.amxx] "<griha negr><516><STEAM_0:0:329561013><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:06:45: [admin_amxbans.amxx] Login: "4e-N<526><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.234.3")
+L 04/22/2012 - 11:07:21: [admincmd.amxx] Cmd: "4e-N<526><STEAM_0:0:1836044300><>" ask for players list
+L 04/22/2012 - 11:09:08: [pbk.amxx] "<Terminator><524><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:09:51: -------- Mapchange to zm_cpl_mill_kamp --------
+L 04/22/2012 - 11:09:53: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 11:10:00: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 11:10:00: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 11:10:00: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 11:10:00: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 11:16:16: [pbk.amxx] "<Agent 007>Raul_Smith><534><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 11:19:11: [pbk.amxx] "<Terminator><551><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:24:46: [pbk.amxx] "<Doc><541><STEAM_0:0:87373497><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:28:26: [pbk.amxx] "<NoBuk:.!?><539><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:31:36: [pbk.amxx] "<[MultiKill] ?!><562><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:33:07: -------- Mapchange to zm_fdust2x2 --------
+L 04/22/2012 - 11:33:09: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 11:35:32: [pbk.amxx] "<t1dy^tm > Ne0><537><STEAM_0:0:1366804034><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:35:37: [pbk.amxx] "<Doc><571><STEAM_0:0:87373497><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 11:35:42: [pbk.amxx] "<Doc><571><STEAM_0:0:87373497><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 11:35:47: [pbk.amxx] "<Doc><571><STEAM_0:0:87373497><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 11:41:12: [pbk.amxx] "<Maksim><530><STEAM_0:1:50125990><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:42:27: [pbk.amxx] "<[MultiKill] vampir)1><580><STEAM_0:0:1345457260><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 11:43:07: [pbk.amxx] "<noOBS-tm**Underkable**><504><STEAM_0:0:831827985><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:43:17: [pbk.amxx] "<[MultiKill] ?!><581><STEAM_ID_LAN><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 11:48:32: [pbk.amxx] "<SaHiL><585><STEAM_0:0:1789485618><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 11:52:02: [pbk.amxx] "<INT+1><582><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 11:53:39: -------- Mapchange to zm_decline2k --------
+L 04/22/2012 - 11:53:41: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 12:07:55: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 12:07:55: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 12:07:55: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 12:07:55: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 12:12:39: [pbk.amxx] "<Raul_Smith><545><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 12:16:22: -------- Mapchange to zm_abbac --------
+L 04/22/2012 - 12:16:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 12:16:31: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 12:16:31: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 12:16:31: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 12:16:31: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 12:17:26: [pbk.amxx] "<GUF><629><STEAM_0:0:1363843813><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 12:18:36: [pbk.amxx] "<mashka777><599><STEAM_0:0:218431355><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 12:24:36: [pbk.amxx] "<[MultiKill] ?!><645><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 12:28:16: [pbk.amxx] "<[MultiKill] ?!><652><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 12:35:36: [pbk.amxx] "<DeL><578><STEAM_0:0:386111288><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 12:37:40: -------- Mapchange to zm_kill_duster_2 --------
+L 04/22/2012 - 12:37:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 12:40:00: [pbk.amxx] "<DeL><665><STEAM_0:0:386111288><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 12:41:10: [pbk.amxx] "<Doc><669><STEAM_0:0:87373497><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 12:45:15: [pbk.amxx] "<kostrov><655><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 12:58:28: -------- Mapchange to zm_houses --------
+L 04/22/2012 - 12:58:30: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 13:04:03: [pbk.amxx] "<_CCCP_><704><STEAM_0:0:836568580><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:11:35: [admin_amxbans.amxx] Login: "Topaz<712><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 13:18:57: -------- Mapchange to zm_caca --------
+L 04/22/2012 - 13:18:58: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 13:18:58: [admin_amxbans.amxx] Login: "Topaz<712><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 13:18:59: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 13:22:19: [admin_amxbans.amxx] Login: "~dark_light<729><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 13:27:12: [pbk.amxx] "<dee dee><731><STEAM_0:0:2033070978><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 13:30:57: [voteban.amxx] Voteban starter Topaz against St:^_^:<==Ro[bb]en* STEAM_ID_LAN
+L 04/22/2012 - 13:31:12: [voteban.amxx] [AMXX] BANNED: St:^_^:<==Ro[bb]en*, STARTER: Topaz
+L 04/22/2012 - 13:31:13: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Raul_Smith<STEAM_ID_LAN> for 30 minutes (30 minutes). Reason: VIP->Topaz.
+L 04/22/2012 - 13:31:17: [pbk.amxx] "<VoLk14_KoHaH><621><STEAM_0:0:153190916><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:34:12: [pbk.amxx] "<VoLk14_KoHaH><739><STEAM_0:0:153190916><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 13:35:13: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned GolD^Low Skill T-T~w0w~(cl)<STEAM_0:0:1034163380> for 2 weeks (20160 minutes). Reason: 15" "Game Destroyer".
+L 04/22/2012 - 13:35:25: [admin_amxbans.amxx] Login: "Dimka<753><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 13:37:22: [pbk.amxx] "<{III}-{o}-{K}><625><STEAM_0:0:589605468><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:38:17: [pbk.amxx] "<[ZM]WINDA><726><STEAM_0:0:1978454345><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:38:37: [pbk.amxx] "<lyntik><755><STEAM_0:0:1170515146><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 13:40:58: -------- Mapchange to zm_dd --------
+L 04/22/2012 - 13:40:59: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 13:40:59: [admin_amxbans.amxx] Login: "Topaz<712><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 13:40:59: [admin_amxbans.amxx] Login: "Dimka<753><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 13:40:59: [admin_amxbans.amxx] Login: "~dark_light<729><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 13:41:00: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 13:43:28: [pbk.amxx] "<CCCP><767><STEAM_0:0:546004906><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:45:43: [pbk.amxx] "<[ZM]WINDA><770><STEAM_0:0:1978454345><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:49:43: [pbk.amxx] "<[ZM]WINDA><783><STEAM_0:0:1978454345><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 13:50:53: [pbk.amxx] "<dee dee><778><STEAM_0:0:2033070978><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:50:58: [pbk.amxx] "<dee dee><778><STEAM_0:0:2033070978><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:51:03: [pbk.amxx] "<dee dee><778><STEAM_0:0:2033070978><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 13:56:13: [admin_amxbans.amxx] Login: "Dimka<797><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 14:00:16: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "amx_nextmap ze_jurassicpark")
+L 04/22/2012 - 14:01:49: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" slay "dee dee<798><STEAM_0:0:2033070978><>"
+L 04/22/2012 - 14:02:30: -------- Mapchange to ze_jurassicpark --------
+L 04/22/2012 - 14:02:31: [admin_amxbans.amxx] Login: "Dimka<797><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 14:02:31: [admin_amxbans.amxx] Login: "Topaz<712><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 14:02:31: [admin_amxbans.amxx] Login: "~dark_light<729><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 14:02:31: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 14:06:25: [pbk.amxx] "<mashka777><796><STEAM_0:0:218431355><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:06:35: [pbk.amxx] "<Doc><771><STEAM_0:0:87373497><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:08:11: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" slay "stepashka<804><STEAM_0:0:972628665><>"
+L 04/22/2012 - 14:08:33: [amxbans.amxx] Dimka<797><STEAM_0:0:44643826><CT> banned dee dee<STEAM_0:0:2033070978> for 1 day (1440 minutes). Reason: lox.
+L 04/22/2012 - 14:08:35: [pbk.amxx] "<ADiik><824><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 14:08:50: [pbk.amxx] "<STORM|Ymko><825><STEAM_0:0:2083448570><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 14:10:21: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 300")
+L 04/22/2012 - 14:10:27: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 200")
+L 04/22/2012 - 14:10:40: [pbk.amxx] "<Mr*Fedor><808><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:10:41: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 800")
+L 04/22/2012 - 14:11:25: [pbk.amxx] "<STORM|Ymko><833><STEAM_0:0:2083448570><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 14:12:02: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 200 ")
+L 04/22/2012 - 14:12:40: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 800 ")
+L 04/22/2012 - 14:14:02: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 200 ")
+L 04/22/2012 - 14:14:07: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_gravity 800 ")
+L 04/22/2012 - 14:15:28: [voteban.amxx] Voteban starter ~dark_light against Loki STEAM_ID_LAN
+L 04/22/2012 - 14:15:43: [voteban.amxx] [AMXX] BANNED: Loki, STARTER: ~dark_light
+L 04/22/2012 - 14:15:44: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned -Frag^Cs[Tm]wtf>? =D<STEAM_ID_LAN> for 30 minutes (30 minutes). Reason: VIP->~dark_light.
+L 04/22/2012 - 14:17:03: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slay "Loki<820><STEAM_ID_LAN><>"
+L 04/22/2012 - 14:17:09: [plmenu.amxx] Kick: "~dark_light<729><STEAM_0:0:743756224><>" kick "Loki<820><STEAM_ID_LAN><>"
+L 04/22/2012 - 14:17:53: [amxbans.amxx] ~dark_light<729><STEAM_0:0:743756224><TERRORIST> banned Loki<STEAM_ID_LAN> for 1 hour (60 minutes). Reason: noob.
+L 04/22/2012 - 14:21:00: [pbk.amxx] "<[F]MMZ><851><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:21:14: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" slay "david<664><STEAM_0:0:652348610><>"
+L 04/22/2012 - 14:22:30: -------- Mapchange to zm_house_2011 --------
+L 04/22/2012 - 14:22:31: [admin_amxbans.amxx] Login: "Dimka<797><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 14:22:31: [admin_amxbans.amxx] Login: "~dark_light<729><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 14:22:31: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 14:24:47: [amxbans.amxx] Dimka<797><STEAM_0:0:44643826><TERRORIST> banned /A/-gaming|Paha<STEAM_0:0:1677697825> for 15 minutes (15 minutes). Reason: Mat.
+L 04/22/2012 - 14:24:56: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" transfer "Dimka<797><STEAM_0:0:44643826><>" (team "TERRORIST")
+L 04/22/2012 - 14:25:10: [plmenu.amxx] Kick: "~dark_light<729><STEAM_0:0:743756224><>" kick "Dark|Loki<865><STEAM_0:0:559525199><>"
+L 04/22/2012 - 14:26:50: [pbk.amxx] "<zik><866><STEAM_0:0:1268232367><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:28:56: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" transfer "Dimka<797><STEAM_0:0:44643826><>" (team "TERRORIST")
+L 04/22/2012 - 14:29:40: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:40: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:40: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:43: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:43: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:44: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:44: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:44: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:44: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:50: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:50: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:29:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:30:38: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" transfer "Dimka<797><STEAM_0:0:44643826><>" (team "CT")
+L 04/22/2012 - 14:32:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "{III}-{o}-{K}<760><STEAM_0:0:589605468><>"
+L 04/22/2012 - 14:32:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:55: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:32:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:00: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:00: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:00: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:00: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:01: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:01: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:01: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:01: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:01: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:03: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:03: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:03: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:05: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:05: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:05: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:05: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:05: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:06: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:06: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:06: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:06: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:09: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:09: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:09: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:10: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:10: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:10: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:11: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:11: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:11: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:12: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:12: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:12: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:12: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:13: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:14: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:14: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:14: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:14: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:15: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:15: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:15: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:27: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:27: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:27: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:27: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:28: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:28: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:31: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:33: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:33: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:33: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:34: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:34: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:34: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:34: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:34: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:35: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:35: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:36: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:36: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:36: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:36: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:37: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:37: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:37: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:37: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:38: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:38: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:39: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:39: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:39: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:39: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:39: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:40: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:40: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:40: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:41: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:43: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:43: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:43: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:43: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:46: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:47: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:48: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:49: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:50: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:50: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:50: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:51: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:53: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:54: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:55: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:56: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:56: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:57: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:58: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:33:59: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:01: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:08: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:09: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:34:09: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:35:50: [admin_amxbans.amxx] Login: "Topaz<899><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 14:37:40: [pbk.amxx] "<STORM|Ymko><895><STEAM_0:0:2083448570><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 14:40:45: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slay "SyReX<867><STEAM_ID_LAN><>"
+L 04/22/2012 - 14:43:42: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slay "SyReX<867><STEAM_ID_LAN><>"
+L 04/22/2012 - 14:44:22: [plmenu.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" slay "aimbot<897><STEAM_0:0:25354220><>"
+L 04/22/2012 - 14:44:27: -------- Mapchange to zm_666_brick --------
+L 04/22/2012 - 14:44:28: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 14:44:28: [admin_amxbans.amxx] Login: "Dimka<797><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 14:44:28: [admin_amxbans.amxx] Login: "Topaz<899><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 14:44:28: [admin_amxbans.amxx] Login: "~dark_light<729><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 14:44:29: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 14:47:52: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slay "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:48:09: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slay "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:48:47: [pbk.amxx] "<Sa1nt-Maxa4yxecc[+]18><912><STEAM_0:0:1544741275><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:54:57: [pbk.amxx] "<aimbot><897><STEAM_0:0:25354220><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 14:59:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:59:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:59:02: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:59:03: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:59:03: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slap with 0 damage "~dark_light<729><STEAM_0:0:743756224><>"
+L 04/22/2012 - 14:59:09: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" server console (cmdline "sv_ignoregrenaderadio 1")
+L 04/22/2012 - 15:06:14: [plmenu.amxx] Cmd: "~dark_light<729><STEAM_0:0:743756224><>" slay "SyReX<867><STEAM_ID_LAN><>"
+L 04/22/2012 - 15:06:25: [voteban.amxx] Voteban starter ~dark_light against SyReX STEAM_ID_LAN
+L 04/22/2012 - 15:06:40: [voteban.amxx] [AMXX] The voteban dit not sucseed.
+L 04/22/2012 - 15:07:18: [amxbans.amxx] ~dark_light<729><STEAM_0:0:743756224><TERRORIST> banned SyReX<STEAM_ID_LAN> for 1 hour (60 minutes). Reason: Noob.
+L 04/22/2012 - 15:07:36: -------- Mapchange to zm_south_escape_b2 --------
+L 04/22/2012 - 15:07:37: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 15:07:37: [admin_amxbans.amxx] Login: "Dimka<797><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 15:07:37: [admin_amxbans.amxx] Login: "~dark_light<729><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 15:07:38: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 15:10:24: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<958><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 15:17:25: [admincmd.amxx] Cmd: "Dimka<797><STEAM_0:0:44643826><>" ask for players list
+L 04/22/2012 - 15:23:46: [pbk.amxx] "<14789><953><STEAM_0:0:1138326032><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 15:28:01: -------- Mapchange to zm_electro_house --------
+L 04/22/2012 - 15:28:02: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 15:28:02: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<958><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 15:28:03: [admin_amxbans.amxx] Login: "Dimka<797><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 15:28:03: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 15:30:46: [pbk.amxx] "<.:neADEKBAT:.><971><STEAM_0:0:358511048><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 15:30:46: [pbk.amxx] "<GHOST^ 74 RUS><973><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 15:36:26: [pbk.amxx] "<[MultiKill] ?!><986><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 15:42:46: [pbk.amxx] "<Agent 007>Raul_Smith><909><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 15:43:36: [pbk.amxx] "<[MultiKill] ?!><989><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 15:47:51: [pbk.amxx] "<.:neADEKBAT:.><998><STEAM_0:0:358511048><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 15:48:22: -------- Mapchange to zm_cpl_mill_kamp --------
+L 04/22/2012 - 15:48:22: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<958><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 15:48:23: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 15:48:27: [admin_amxbans.amxx] Login: "Celldweller<1005><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 15:52:53: [admin_amxbans.amxx] Login: "Dimka<1016><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 15:55:30: [plmenu.amxx] Cmd: "Dimka<1016><STEAM_0:0:44643826><>" transfer "Dimka<1016><STEAM_0:0:44643826><>" (team "TERRORIST")
+L 04/22/2012 - 15:56:51: [pbk.amxx] "<[PRIME TIME]ZOMBIE><992><STEAM_0:0:434052252><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 15:57:16: [pbk.amxx] "<LaMeR><917><STEAM_0:0:701509362><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 15:58:22: [plmenu.amxx] Cmd: "Dimka<1016><STEAM_0:0:44643826><>" transfer "Dimka<1016><STEAM_0:0:44643826><>" (team "TERRORIST")
+L 04/22/2012 - 15:59:18: [plmenu.amxx] Cmd: "Dimka<1016><STEAM_0:0:44643826><>" transfer "Dimka<1016><STEAM_0:0:44643826><>" (team "CT")
+L 04/22/2012 - 16:02:11: [voteban.amxx] Voteban starter Dimka against LaMeR STEAM_0:0:701509362
+L 04/22/2012 - 16:02:26: [voteban.amxx] [AMXX] The voteban dit not sucseed.
+L 04/22/2012 - 16:04:11: [pbk.amxx] "<[MultiKill] ?!><996><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:10:06: -------- Mapchange to zm_dust_siege_final --------
+L 04/22/2012 - 16:10:07: [admin_amxbans.amxx] Login: "Dimka<1016><STEAM_0:0:44643826><>" became an admin (account "Dimka") (access "abcdefghijklmnopqrstu") (address "172.23.65.13")
+L 04/22/2012 - 16:10:07: [admin_amxbans.amxx] Login: "Celldweller<1005><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 16:10:08: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 16:13:21: [pbk.amxx] "<Tequila><1006><STEAM_0:0:766843818><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:13:46: [pbk.amxx] "<ktif9><1007><STEAM_0:0:1233416681><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 16:15:06: [pbk.amxx] "<LaMeR><1020><STEAM_0:0:701509362><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:18:29: [voteban.amxx] Voteban starter Celldweller against St:^_^:<==Ro[bb]en* STEAM_ID_LAN
+L 04/22/2012 - 16:18:44: [voteban.amxx] [AMXX] BANNED: St:^_^:<==Ro[bb]en*, STARTER: Celldweller
+L 04/22/2012 - 16:18:45: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned Olympus Bot<STEAM_ID_LAN> for 30 minutes (30 minutes). Reason: VIP->Celldweller.
+L 04/22/2012 - 16:20:28: [amxbans.amxx] Dimka<1016><STEAM_0:0:44643826><TERRORIST> banned St:^_^:<==Ro[bb]en*<STEAM_ID_LAN> for 1 hour (60 minutes). Reason: BLOCK.
+L 04/22/2012 - 16:33:14: -------- Mapchange to zm_fdust2x2 --------
+L 04/22/2012 - 16:33:16: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 16:34:09: [pbk.amxx] "<[13]DoNBaSS_[HAEMHUK]><1054><STEAM_0:0:84152063><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:34:14: [pbk.amxx] "<[13]DoNBaSS_[HAEMHUK]><1054><STEAM_0:0:84152063><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:34:19: [pbk.amxx] "<[13]DoNBaSS_[HAEMHUK]><1054><STEAM_0:0:84152063><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:37:54: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1062><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 16:37:55: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1063><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 16:40:54: [pbk.amxx] "<stepashka><1061><STEAM_0:0:972628665><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:43:39: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 16:45:14: [pbk.amxx] "<demgok><1057><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:46:34: [pbk.amxx] "<XuTpuK><925><STEAM_0:0:1986440821><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:47:44: [voteban.amxx] Voteban starter = ACTION EXPRESS = against test STEAM_0:0:44643826
+L 04/22/2012 - 16:47:59: [voteban.amxx] [AMXX] BANNED: test, STARTER: = ACTION EXPRESS =
+L 04/22/2012 - 16:48:01: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned test<STEAM_0:0:44643826> for 30 minutes (30 minutes). Reason: VIP->= ACTION EXPRESS =.
+L 04/22/2012 - 16:48:44: [pbk.amxx] "<4ecn0k><1075><STEAM_0:0:487243911><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:49:34: [voteban.amxx] Voteban starter = ACTION EXPRESS = against test STEAM_0:0:44643826
+L 04/22/2012 - 16:49:49: [voteban.amxx] [AMXX] BANNED: test, STARTER: = ACTION EXPRESS =
+L 04/22/2012 - 16:49:50: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned test<STEAM_0:0:44643826> for 30 minutes (30 minutes). Reason: VIP->= ACTION EXPRESS =.
+L 04/22/2012 - 16:54:42: [amxbans.amxx] = ACTION EXPRESS =<1063><STEAM_0:0:2105366972><TERRORIST> banned [ZOMBIE 35 RUS] -=barmalei=-<STEAM_0:0:1473206957> for 15 minutes (15 minutes). Reason: }|{ecTko JIaraeT.
+L 04/22/2012 - 16:56:34: -------- Mapchange to zm_neris --------
+L 04/22/2012 - 16:56:35: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1063><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 16:56:35: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 16:56:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 16:58:24: [pbk.amxx] "<sav4ik^^><1087><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 16:59:14: [pbk.amxx] "<Agent 007>Raul_Smith><1089><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 17:00:34: [pbk.amxx] "<GHOST^ 74 RUS><1065><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:17:34: -------- Mapchange to 016 --------
+L 04/22/2012 - 17:17:35: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 17:17:35: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1063><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 17:17:35: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 17:17:36: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 17:20:34: [pbk.amxx] "<XuTpuK><1124><STEAM_0:0:1986440821><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:23:59: [pbk.amxx] "<Valdo><1097><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:27:39: [pbk.amxx] "<Terminator><1137><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:31:36: [admin_amxbans.amxx] Login: "Topaz<1140><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 17:33:22: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1063><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 17:36:32: [admin_amxbans.amxx] Login: "~dark_light<1143><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 17:37:01: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 17:38:49: [pbk.amxx] "<SASHA><1120><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:39:08: -------- Mapchange to zm_caca --------
+L 04/22/2012 - 17:39:08: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 17:39:09: [admin_amxbans.amxx] Login: "Topaz<1140><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 17:39:09: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1063><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 17:39:09: [admin_amxbans.amxx] Login: "~dark_light<1143><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 17:39:09: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 17:41:26: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 17:43:45: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 17:43:45: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 17:43:45: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 17:43:45: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 17:45:25: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 17:45:25: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 17:45:25: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 17:45:25: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 17:49:32: [pbk.amxx] "<[V]><1096><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:51:43: [pbk.amxx] "<[Dead]ZOMBIE><1019><STEAM_0:0:434052252><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:57:07: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 17:57:42: [pbk.amxx] "<Terminator><1141><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 17:59:40: -------- Mapchange to zm_houses --------
+L 04/22/2012 - 17:59:41: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1063><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "46.164.195.250")
+L 04/22/2012 - 17:59:41: [admin_amxbans.amxx] Login: "Topaz<1140><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 17:59:41: [admin_amxbans.amxx] Login: "~dark_light<1143><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 17:59:42: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 17:59:48: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 17:59:48: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 17:59:48: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 17:59:48: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 18:00:25: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 18:00:25: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 18:00:25: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 18:00:25: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 18:01:42: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 18:03:21: [amxbans.amxx] ~dark_light<1143><STEAM_0:0:743756224><TERRORIST> banned LLIauTaH Tpy6a LLIaTaTeJIb<STEAM_0:0:2105366972> for 7 hours and 30 minutes (450 minutes). Reason: sam_poprosil.
+L 04/22/2012 - 18:04:53: [amxbans.amxx] ~dark_light<1143><STEAM_0:0:743756224><TERRORIST> UnBanned LLIauTaH Tpy6a LLIaTaTeJIb<STEAM_0:0:2105366972>.
+L 04/22/2012 - 18:05:07: [amxbans.amxx] ~dark_light<1143><STEAM_0:0:743756224><CT> banned unknown_STEAM_0:0:2105366972<STEAM_0:0:2105366972> for 5 hours and 30 minutes (330 minutes). Reason: sam_prosil.
+L 04/22/2012 - 18:05:34: [amxbans.amxx] ~dark_light<1143><STEAM_0:0:743756224><TERRORIST> UnBanned unknown_STEAM_0:0:2105366972<STEAM_0:0:2105366972>.
+L 04/22/2012 - 18:06:53: [plmenu.amxx] Kick: "Celldweller<1070><STEAM_0:0:1924579479><>" kick "SASHA<1168><STEAM_ID_LAN><>"
+L 04/22/2012 - 18:13:15: [voteban.amxx] Voteban starter Celldweller against Happy> [tm] | OJIEHb STEAM_0:0:1506415880
+L 04/22/2012 - 18:13:30: [voteban.amxx] [AMXX] BANNED: Happy> [tm] | OJIEHb, STARTER: Celldweller
+L 04/22/2012 - 18:15:50: [pbk.amxx] "<mascot Marley^^><1181><STEAM_0:1:47875970><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:16:40: [pbk.amxx] "<[V]><1161><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:17:45: [pbk.amxx] "<[Dead] adidas><1135><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:19:05: [pbk.amxx] "<[PRIME TIME]ZOMBIE><1164><STEAM_0:0:434052252><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:20:24: [amxbans.amxx] ~dark_light<1143><STEAM_0:0:743756224><TERRORIST> banned Cdelaniy B CCCP<STEAM_ID_LAN> for 1 hour (60 minutes). Reason: lagger.
+L 04/22/2012 - 18:20:42: [amxbans.amxx] ~dark_light<1143><STEAM_0:0:743756224><TERRORIST> banned [ZOMBIE 35 RUS] -=barmalei=-<STEAM_0:0:1473206957> for 1 hour (60 minutes). Reason: lagger.
+L 04/22/2012 - 18:22:44: -------- Mapchange to zm_house_2011 --------
+L 04/22/2012 - 18:22:44: [admin_amxbans.amxx] Login: "Topaz<1140><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 18:22:44: [admin_amxbans.amxx] Login: "~dark_light<1143><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 18:22:44: [admin_amxbans.amxx] Login: "Celldweller<1070><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 18:22:45: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 18:24:28: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:24:33: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:24:38: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:24:43: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:24:48: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:24:53: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:24:58: [pbk.amxx] "<Raul_Smith><1106><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:25:58: [pbk.amxx] "<Menos Grante><1192><STEAM_0:0:1330195586><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:26:03: [pbk.amxx] "<Menos Grante><1192><STEAM_0:0:1330195586><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:26:08: [pbk.amxx] "<Menos Grante><1192><STEAM_0:0:1330195586><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:29:48: [pbk.amxx] "<tommy ept><1200><STEAM_0:0:29394248><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:29:57: [amxbans.amxx] [Amxbans] Query failed!
+L 04/22/2012 - 18:29:57: [amxbans.amxx] [Amxbans] Threaded query error, location: 18
+L 04/22/2012 - 18:29:57: [amxbans.amxx] [Amxbans] Message: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''amxban' at line 1 (1064)
+L 04/22/2012 - 18:29:57: [amxbans.amxx] [Amxbans] Query statement: 
+L 04/22/2012 - 18:32:53: [admin_amxbans.amxx] Login: "never have sound<1213><STEAM_0:0:935121570><>" became an admin (account "never have sound") (access "t") (address "213.88.114.209")
+L 04/22/2012 - 18:33:13: [pbk.amxx] "<Traktorist Petrovich><1142><STEAM_0:0:1699032679><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:34:27: [admin_amxbans.amxx] Login: "Celldweller<1217><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 18:34:38: [pbk.amxx] "<come to papa awe><1211><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:35:18: [pbk.amxx] "<PROsto4ok><1198><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:35:48: [pbk.amxx] "<Traktorist Petrovich><1215><STEAM_0:0:1699032679><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:37:18: [pbk.amxx] "<come to papa awe><1219><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:39:58: [voteban.amxx] Voteban starter Topaz against Happy> [tm] | OJIEHb STEAM_0:0:1506415880
+L 04/22/2012 - 18:40:13: [voteban.amxx] [AMXX] BANNED: Happy> [tm] | OJIEHb, STARTER: Topaz
+L 04/22/2012 - 18:40:13: [pbk.amxx] "<come to papa awe><1225><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:41:27: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1227><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 18:41:56: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 18:42:43: [pbk.amxx] "<come to papa awe><1226><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:43:10: -------- Mapchange to zm_monsterhouse --------
+L 04/22/2012 - 18:43:11: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1227><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 18:43:11: [admin_amxbans.amxx] Login: "Topaz<1140><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 18:43:11: [admin_amxbans.amxx] Login: "never have sound<1213><STEAM_0:0:935121570><>" became an admin (account "never have sound") (access "t") (address "213.88.114.209")
+L 04/22/2012 - 18:43:11: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 18:43:12: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 18:45:45: [pbk.amxx] "<come to papa awe><1233><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:49:20: [pbk.amxx] "<come to papa awe><1251><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:49:45: [pbk.amxx] "<[Dead] adidas><1207><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 18:52:00: [pbk.amxx] "<come to papa awe><1260><STEAM_0:1:36659042><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:53:35: [pbk.amxx] "<Der Ficker><1263><STEAM_0:0:10401985><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:53:59: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 18:55:50: [pbk.amxx] "<x!RauBeR>>Alexei.@V@T@R-><1269><STEAM_0:0:1977675087><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 18:59:55: [pbk.amxx] "<Terminator><1275><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:00:00: [pbk.amxx] "<Terminator><1275><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:03:00: [pbk.amxx] "<[Dead] adidas><1261><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:04:15: [pbk.amxx] "<SASHA><1179><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:04:20: [pbk.amxx] "<SASHA><1179><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:04:25: [pbk.amxx] "<SASHA><1179><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:05:50: -------- Mapchange to zm_decline2k --------
+L 04/22/2012 - 19:05:50: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1227><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 19:05:50: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 19:05:50: [admin_amxbans.amxx] Login: "never have sound<1213><STEAM_0:0:935121570><>" became an admin (account "never have sound") (access "t") (address "213.88.114.209")
+L 04/22/2012 - 19:05:50: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 19:05:51: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 19:14:04: [pbk.amxx] "<OxPaHa TpAkToPa  (CaP w0w~)><1273><STEAM_0:0:823472498><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:14:09: [pbk.amxx] "<OxPaHa TpAkToPa  (CaP w0w~)><1273><STEAM_0:0:823472498><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:14:14: [pbk.amxx] "<OxPaHa TpAkToPa  (CaP w0w~)><1273><STEAM_0:0:823472498><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:14:19: [pbk.amxx] "<OxPaHa TpAkToPa  (CaP w0w~)><1273><STEAM_0:0:823472498><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:27:36: [admin_amxbans.amxx] Login: "4e-N<1312><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 19:27:41: [admin_amxbans.amxx] Login: "4e-N<1313><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 19:28:22: [admincmd.amxx] Cmd: "4e-N<1313><STEAM_0:0:1836044300><>" ask for players list
+L 04/22/2012 - 19:29:05: -------- Mapchange to zm_kill_duster_2 --------
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1227><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "4e-N<1313><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "never have sound<1213><STEAM_0:0:935121570><>" became an admin (account "never have sound") (access "t") (address "213.88.114.209")
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "4e-N<1313><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 19:29:06: [admin_amxbans.amxx] Login: "never have sound<1315><STEAM_0:0:935121570><>" became an admin (account "never have sound") (access "t") (address "213.88.114.209")
+L 04/22/2012 - 19:29:07: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 19:31:50: [pbk.amxx] "<KpuMuHaJI_B_MaKgoHaJIgCe><1227><STEAM_0:0:352547479><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 19:32:24: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1338><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 19:34:25: [pbk.amxx] "<KpuMuHaJI_B_MaKgoHaJIgCe><1338><STEAM_0:0:352547479><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 19:35:28: [amxbans.amxx] 4e-N<1313><STEAM_0:0:1836044300><SPECTATOR> banned [Dead] adidas<STEAM_ID_LAN> for 2 weeks (20160 minutes). Reason: ugu Cnu/ o6xog 6aHOB.
+L 04/22/2012 - 19:38:50: [pbk.amxx] "<**bot**><1337><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 19:41:20: [pbk.amxx] "<**bot**><1343><STEAM_ID_LAN><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 19:41:40: [pbk.amxx] "<chERBU!~><1344><STEAM_0:1:43733722><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 19:45:48: [admincmd.amxx] Cmd: "4e-N<1313><STEAM_0:0:1836044300><>" slay "Pro[102_rus](Gleb)<1345><STEAM_0:0:2013074790><>"
+L 04/22/2012 - 19:46:22: [admincmd.amxx] Kick: "4e-N<1313><STEAM_0:0:1836044300><>" kick "Xateks<1329><STEAM_ID_LAN><>" (reason "")
+L 04/22/2012 - 19:48:15: [admincmd.amxx] Cmd: "4e-N<1313><STEAM_0:0:1836044300><>" slay "Pro[102_rus](Gleb)<1345><STEAM_0:0:2013074790><>"
+L 04/22/2012 - 19:48:52: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1356><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 19:50:08: -------- Mapchange to zm_666_brick --------
+L 04/22/2012 - 19:50:09: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 19:50:09: [admin_amxbans.amxx] Login: "4e-N<1313><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 19:50:09: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1356><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 19:50:09: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 19:50:09: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 19:50:10: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 19:52:28: [pbk.amxx] "<leks><1361><STEAM_0:0:763207328><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 19:58:34: [amxbans.amxx] 4e-N<1313><STEAM_0:0:1836044300><SPECTATOR> banned [SPB Team] 333!!!<STEAM_ID_LAN> for 8 hours (480 minutes). Reason: }I{AJIo6bI HA 6JIOku.
+L 04/22/2012 - 19:58:43: [pbk.amxx] "<~panda**><1301><STEAM_0:0:561128111><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:05:28: [pbk.amxx] "<Team A | maloy32rus><1364><STEAM_0:0:46992197><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:05:33: [pbk.amxx] "<Team A | maloy32rus><1364><STEAM_0:0:46992197><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:11:33: [pbk.amxx] "<NooB><1380><STEAM_0:0:1438411241><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:11:38: [pbk.amxx] "<NooB><1380><STEAM_0:0:1438411241><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:11:49: -------- Mapchange to ze_jurassicpark --------
+L 04/22/2012 - 20:11:50: [admin_amxbans.amxx] Login: "4e-N<1313><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 20:11:50: [admin_amxbans.amxx] Login: "KpuMuHaJI_B_MaKgoHaJIgCe<1356><STEAM_0:0:352547479><>" became an admin (account "KpuMuHaJI_B_MaKgoHaJIgCe") (access "t") (address "178.130.42.13")
+L 04/22/2012 - 20:11:50: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 20:11:50: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 20:11:50: [admin_amxbans.amxx] Login: "4e-N<1393><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 20:11:51: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 20:14:24: [plmenu.amxx] Cmd: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" transfer "bander<1357><STEAM_ID_LAN><>" (team "TERRORIST")
+L 04/22/2012 - 20:14:24: [plmenu.amxx] Cmd: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" transfer "Deadly_Bullet<1398><STEAM_0:0:60344295><>" (team "TERRORIST")
+L 04/22/2012 - 20:19:39: [pbk.amxx] "<R><1401><STEAM_0:0:637192739><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:22:49: [pbk.amxx] "<~panda**><1404><STEAM_0:0:561128111><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 20:31:43: [plmenu.amxx] Cmd: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" transfer "+<1429><STEAM_ID_LAN><>" (team "CT")
+L 04/22/2012 - 20:32:46: -------- Mapchange to zm_zbek --------
+L 04/22/2012 - 20:32:47: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 20:32:47: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1270><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 20:32:47: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1435><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 20:32:48: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 20:34:21: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 20:42:03: [plmenu.amxx] Cmd: "= ACTION EXPRESS =<1435><STEAM_0:0:2105366972><>" transfer "orewek:D<1446><STEAM_0:0:1935444604><>" (team "CT")
+L 04/22/2012 - 20:42:06: [admin_amxbans.amxx] Login: "~dark_light<1454><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 20:44:40: [plmenu.amxx] Cmd: "= ACTION EXPRESS =<1435><STEAM_0:0:2105366972><>" transfer "orewek:D<1446><STEAM_0:0:1935444604><>" (team "CT")
+L 04/22/2012 - 20:46:20: [plmenu.amxx] Cmd: "= ACTION EXPRESS =<1435><STEAM_0:0:2105366972><>" transfer "orewek:D<1446><STEAM_0:0:1935444604><>" (team "CT")
+L 04/22/2012 - 20:55:44: -------- Mapchange to zm_fdust2x2 --------
+L 04/22/2012 - 20:55:44: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1435><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 20:55:44: [admin_amxbans.amxx] Login: "Celldweller<1228><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 20:55:44: [admin_amxbans.amxx] Login: "~dark_light<1454><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 20:55:45: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1467><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 20:55:45: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 20:56:38: [voteban.amxx] Voteban starter ~dark_light against artem777 STEAM_0:0:1160500933
+L 04/22/2012 - 20:56:53: [voteban.amxx] [AMXX] BANNED: artem777, STARTER: ~dark_light
+L 04/22/2012 - 20:56:54: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned artem777<STEAM_0:0:1160500933> for 30 minutes (30 minutes). Reason: VIP->~dark_light.
+L 04/22/2012 - 20:59:28: [pbk.amxx] "<.><1444><STEAM_0:0:901137403><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:01:26: [amxbans.amxx] Celldweller<1228><STEAM_0:0:1924579479><TERRORIST> banned [ZOMBIE 35 RUS] -=barmalei=-<STEAM_0:0:1473206957> for 2 weeks (20160 minutes). Reason: SpeedHack.
+L 04/22/2012 - 21:03:43: [pbk.amxx] "<Aquico><1477><STEAM_0:0:47129157><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 21:06:08: [pbk.amxx] "<Moskvin ?!><1463><STEAM_0:0:43678884><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:14:28: [admin_amxbans.amxx] Login: "Celldweller<1493><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 21:17:13: [voteban.amxx] Voteban starter ~dark_light against T o r n a d o STEAM_0:0:1257994838
+L 04/22/2012 - 21:17:28: [voteban.amxx] [AMXX] BANNED: T o r n a d o, STARTER: ~dark_light
+L 04/22/2012 - 21:17:29: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned unknown_STEAM_0:0:1257994838<STEAM_0:0:1257994838> for 30 minutes (30 minutes). Reason: VIP->~dark_light.
+L 04/22/2012 - 21:18:55: -------- Mapchange to zm_xata --------
+L 04/22/2012 - 21:18:55: [admin_amxbans.amxx] Login: "~dark_light<1454><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "93.84.148.18")
+L 04/22/2012 - 21:18:55: [admin_amxbans.amxx] Login: "Celldweller<1493><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 21:18:56: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 21:26:29: [pbk.amxx] "<lols><1504><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:26:59: [pbk.amxx] "<Moskvin ?!><1525><STEAM_0:0:43678884><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 21:27:14: [pbk.amxx] "<Maksim><1474><STEAM_0:1:50125990><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:30:19: [pbk.amxx] "<bad robot><1516><STEAM_0:1:31107462><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:30:34: [pbk.amxx] "<Moskvin ?!><1533><STEAM_0:0:43678884><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 21:30:39: [pbk.amxx] "<Maksim><1534><STEAM_0:1:50125990><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 21:34:34: [pbk.amxx] "<Moskvin ?!><1544><STEAM_0:0:43678884><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 21:36:49: [pbk.amxx] "<[HAEMHUK]><1449><STEAM_0:0:84152063><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:39:44: -------- Mapchange to zm_dd --------
+L 04/22/2012 - 21:39:45: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 21:39:45: [admin_amxbans.amxx] Login: "Celldweller<1493><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 21:39:46: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 21:44:39: [pbk.amxx] "<[BBS]Talisman|Katya><1565><STEAM_0:0:1817774469><UNASSIGNED>" was kicked for failing to choose a team within 2 minutes.
+L 04/22/2012 - 21:49:18: [admin_amxbans.amxx] Login: "4e-N<1579><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 21:50:46: [amxbans.amxx] 4e-N<1579><STEAM_0:0:1836044300><SPECTATOR> banned INT+1<STEAM_ID_LAN> for 3 days (4320 minutes). Reason: MuKPOfoH offau�, BCe BPEM9 OgHO u TO}I{E.
+L 04/22/2012 - 21:51:49: [pbk.amxx] "<Termineitor><1568><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 21:54:10: [amxbans.amxx] 4e-N<1579><STEAM_0:0:1836044300><SPECTATOR> banned klon LEONID<STEAM_0:0:1531270174> for 3 days (4320 minutes). Reason: HEogHOKPATHbIE OCKOP6JIEHu9/nPEgynPE}I{gaJIC9.
+L 04/22/2012 - 21:57:22: [admincmd.amxx] Cmd: "4e-N<1579><STEAM_0:0:1836044300><>" slay "Maksim<1545><STEAM_0:1:50125990><>"
+L 04/22/2012 - 21:59:31: [admincmd.amxx] Cmd: "Celldweller<1493><STEAM_0:0:1924579479><>" slay "Celldweller<1493><STEAM_0:0:1924579479><>"
+L 04/22/2012 - 22:00:30: -------- Mapchange to zm_caca --------
+L 04/22/2012 - 22:00:31: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 22:00:31: [admin_amxbans.amxx] Login: "4e-N<1579><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 22:00:31: [admin_amxbans.amxx] Login: "Celldweller<1493><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 22:00:31: [admin_amxbans.amxx] Login: "4e-N<1599><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 22:00:32: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 22:07:05: [pbk.amxx] "</IyKa><1588><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 22:16:50: [pbk.amxx] "<VoLk14_KoHaH><1569><STEAM_0:0:153190916><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 22:20:25: [pbk.amxx] "<[F]MMZ><1615><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 22:21:35: [pbk.amxx] "<VoLk14_KoHaH><1622><STEAM_0:0:153190916><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 22:22:56: -------- Mapchange to zm_house_2011 --------
+L 04/22/2012 - 22:22:57: [admin_amxbans.amxx] Login: "4e-N<1599><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 22:22:57: [admin_amxbans.amxx] Login: "Celldweller<1493><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 22:22:57: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 22:26:09: [admincmd.amxx] Cmd: "4e-N<1599><STEAM_0:0:1836044300><>" slay "-=CERBER=-<1603><STEAM_0:0:1212753993><>"
+L 04/22/2012 - 22:29:34: [amxbans.amxx] 4e-N<1599><STEAM_0:0:1836044300><SPECTATOR> banned INT+1<STEAM_ID_LAN> for 2 weeks (20160 minutes). Reason: O6XOg 6AHA.
+L 04/22/2012 - 22:29:51: [pbk.amxx] "<-=CERBER=-><1603><STEAM_0:0:1212753993><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 22:32:46: [pbk.amxx] "<.:neADEKBAT:.><1647><STEAM_0:0:358511048><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 22:35:16: [amxbans.amxx] 4e-N<1599><STEAM_0:0:1836044300><SPECTATOR> banned eS^Craw | `af1k #         /A/<STEAM_0:0:1369886976> for 1 hour (60 minutes). Reason: SpamName.
+L 04/22/2012 - 22:35:29: [admin_amxbans.amxx] Login: "~dark_light<1654><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "178.121.184.10")
+L 04/22/2012 - 22:45:53: -------- Mapchange to zm_snow_s1h_v2 --------
+L 04/22/2012 - 22:45:54: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 22:45:54: [admin_amxbans.amxx] Login: "4e-N<1599><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 22:45:54: [admin_amxbans.amxx] Login: "~dark_light<1654><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "178.121.184.10")
+L 04/22/2012 - 22:45:54: [admin_amxbans.amxx] Login: "Celldweller<1493><STEAM_0:0:1924579479><>" became an admin (account "Celldweller") (access "abcdefijmnopqtu") (address "178.127.216.225")
+L 04/22/2012 - 22:45:54: [admin_amxbans.amxx] Login: "4e-N<1664><STEAM_0:0:1836044300><>" became an admin (account "4e-N") (access "abcdefijmnopqtu") (address "78.37.222.176")
+L 04/22/2012 - 22:45:55: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 22:51:43: [pbk.amxx] "<Terminator><1667><STEAM_ID_LAN><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 23:00:47: [admin_amxbans.amxx] Login: "Can'ka+An'ka)<1685><STEAM_0:0:44554979><>" became an admin (account "STEAM_0:0:44554979") (access "abcdefgijmnopqstu") (address "95.86.245.130")
+L 04/22/2012 - 23:01:15: [admincmd.amxx] Cmd: "~dark_light<1654><STEAM_0:0:743756224><>" ask for players list
+L 04/22/2012 - 23:04:05: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1686><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 23:05:23: [pbk.amxx] "<[F]MMZ><1672><STEAM_ID_LAN><CT>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 23:06:47: -------- Mapchange to zm_dust_siege_final --------
+L 04/22/2012 - 23:06:48: [admin_amxbans.amxx] Login: "Can'ka+An'ka)<1685><STEAM_0:0:44554979><>" became an admin (account "STEAM_0:0:44554979") (access "abcdefgijmnopqstu") (address "95.86.245.130")
+L 04/22/2012 - 23:06:48: [admin_amxbans.amxx] Login: "~dark_light<1654><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "178.121.184.10")
+L 04/22/2012 - 23:06:49: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 23:08:39: [admincmd.amxx] Cmd: "Can'ka+An'ka)<1685><STEAM_0:0:44554979><>" ask for players list
+L 04/22/2012 - 23:09:12: [pbk.amxx] "<roBHopo}|{uu xyenJIeT><1692><STEAM_0:0:2105366972><SPECTATOR>" was kicked for spectating longer than 2 minutes.
+L 04/22/2012 - 23:10:37: [voteban.amxx] Voteban starter ~dark_light against artem777 STEAM_0:0:1160500933
+L 04/22/2012 - 23:10:52: [voteban.amxx] [AMXX] BANNED: artem777, STARTER: ~dark_light
+L 04/22/2012 - 23:10:54: [amxbans.amxx]  Зомби сервер (x_x(O_o)x_x) Go Zombie !!!<0><><> banned artem777<STEAM_0:0:1160500933> for 30 minutes (30 minutes). Reason: VIP->~dark_light.
+L 04/22/2012 - 23:15:45: [admin_amxbans.amxx] Login: "Fedya Chirik<1715><STEAM_ID_LAN><>" became an admin (account "212.55.104.156") (access "abcdefgijmnoprstu") (address "212.55.104.156")
+L 04/22/2012 - 23:16:35: [plmenu.amxx] Kick: "Fedya Chirik<1715><STEAM_ID_LAN><>" kick "soy pepe<1699><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:17:57: [pbk.amxx] "<Aleks><1634><STEAM_0:0:2008690353><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 23:18:21: [admin_amxbans.amxx] Login: "ryceBu4<1719><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 23:20:36: [admincmd.amxx] Cmd: "Fedya Chirik<1715><STEAM_ID_LAN><>" change nick to "KaIIutaH_AMepuka" "roBHopo}|{uu xyenJIeT<1700><STEAM_0:0:2105366972><>"
+L 04/22/2012 - 23:23:52: [pbk.amxx] "<Sa1nt-Maxa4yxecc[+]18><1684><STEAM_0:0:1544741275><TERRORIST>" was kicked for being AFK longer than 45 seconds.
+L 04/22/2012 - 23:28:06: -------- Mapchange to ze_egypt --------
+L 04/22/2012 - 23:28:07: [walkguard.amxx] no zone-file found
+L 04/22/2012 - 23:28:07: [admin_amxbans.amxx] Login: "ryceBu4<1719><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 23:28:07: [admin_amxbans.amxx] Login: "Fedya Chirik<1715><STEAM_ID_LAN><>" became an admin (account "212.55.104.156") (access "abcdefgijmnoprstu") (address "212.55.104.156")
+L 04/22/2012 - 23:28:07: [admin_amxbans.amxx] Login: "~dark_light<1654><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "178.121.184.10")
+L 04/22/2012 - 23:28:08: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 23:28:09: [admin_amxbans.amxx] Login: "ryceBu4<1727><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 23:28:09: [admin_amxbans.amxx] Login: "Fedya Chirik<1731><STEAM_ID_LAN><>" became an admin (account "212.55.104.156") (access "abcdefgijmnoprstu") (address "212.55.104.156")
+L 04/22/2012 - 23:28:13: [admin_amxbans.amxx] Login: "~dark_light<1741><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "178.121.184.10")
+L 04/22/2012 - 23:35:49: [plmenu.amxx] Cmd: "~dark_light<1741><STEAM_0:0:743756224><>" slay "^@^ak-47 *Real-6i4*<1757><STEAM_0:0:1171113900><>"
+L 04/22/2012 - 23:35:49: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1726><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 23:36:10: [amxbans.amxx] ~dark_light<1741><STEAM_0:0:743756224><TERRORIST> banned ^@^ak-47 *Real-6i4*<STEAM_0:0:1171113900> for 1 hour (60 minutes). Reason: Noob.
+L 04/22/2012 - 23:36:21: [admin_amxbans.amxx] Login: "Topaz<1761><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 23:36:25: [admin_amxbans.amxx] Login: "Topaz<1763><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 23:42:41: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slay "Omg no cry bot's :D<1762><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:43:05: [amxbans.amxx] ryceBu4<1727><STEAM_0:0:360750727><CT> banned 3a6aHb MeH9 k xy9M<STEAM_0:0:2105366972> for 8 hours (480 minutes). Reason: Noob.
+L 04/22/2012 - 23:43:36: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1774><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 23:44:18: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1778><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 23:44:20: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1779><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 23:44:29: [admin_amxbans.amxx] Login: "= ACTION EXPRESS =<1781><STEAM_0:0:2105366972><>" became an admin (account "= ACTION EXPRESS =") (access "abcdefijmnopqtu") (address "92.244.224.101")
+L 04/22/2012 - 23:49:12: -------- Mapchange to zm_decline2k --------
+L 04/22/2012 - 23:49:13: [admin_amxbans.amxx] Login: "ryceBu4<1727><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 23:49:13: [admin_amxbans.amxx] Login: "Fedya Chirik<1731><STEAM_ID_LAN><>" became an admin (account "212.55.104.156") (access "abcdefgijmnoprstu") (address "212.55.104.156")
+L 04/22/2012 - 23:49:13: [admin_amxbans.amxx] Login: "Topaz<1763><STEAM_0:0:1460434637><>" became an admin (account "Topaz") (access "t") (address "91.194.111.250")
+L 04/22/2012 - 23:49:13: [admin_amxbans.amxx] Login: "~dark_light<1741><STEAM_0:0:743756224><>" became an admin (account "~dark_light") (access "abcdefgijmnoprstu") (address "178.121.184.10")
+L 04/22/2012 - 23:49:13: [admin_amxbans.amxx] Login: "ryceBu4<1793><STEAM_0:0:360750727><>" became an admin (account "ryceBu4") (access "abcdefijmnopqtu") (address "93.100.152.179")
+L 04/22/2012 - 23:49:14: [amxbans.amxx] [AMXBANS] AMXBans 5.0 is online
+L 04/22/2012 - 23:51:15: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:18: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:18: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:18: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:18: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:19: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:19: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:19: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:19: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:19: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:20: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:20: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:20: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:20: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:20: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:20: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:21: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:21: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:21: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:21: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:23: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:23: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:34: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:34: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:34: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:35: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:35: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:38: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:38: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:38: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:38: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:38: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:39: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:45: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:45: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:45: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:45: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:46: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:46: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:46: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:46: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:51:46: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "Fedya Chirik<1731><STEAM_ID_LAN><>"
+L 04/22/2012 - 23:56:11: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"
+L 04/22/2012 - 23:56:37: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"
+L 04/22/2012 - 23:57:21: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"
+L 04/22/2012 - 23:57:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"
+L 04/22/2012 - 23:57:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"
+L 04/22/2012 - 23:57:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"
+L 04/22/2012 - 23:57:22: [plmenu.amxx] Cmd: "Fedya Chirik<1731><STEAM_ID_LAN><>" slap with 0 damage "VoLk14_KoHaH<1771><STEAM_0:0:153190916><>"

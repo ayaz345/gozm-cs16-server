@@ -1,0 +1,103 @@
+[en]
+ABUSE_MENU = Report player
+REASON_1 = Skywalking
+REASON_2 = Reapeted TK/TD
+REASON_3 = Spawnkilling
+REASON_4 = Wallhack
+REASON_5 = Aimbot
+REASON_6 = Speedhack
+REASON_7 = Bad language
+REASON_8 = Swearing
+ARTITLE = ~~~~~~~~~~~~  Abuse report  ~~~~~~~~~~~~~~
+LINE = ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REPORTED = You have reported %s for %s
+ADMIN_ACTION = the admins will look in to this and take action if needed
+REPORTEDBY = %s has reported you for %s
+REPORTS_DELETED = All reports were deleted
+USER_DELETED = Reports on user with steamid %s were deleted
+USERID_DELETED = Reports on user with db id %d were deleted
+NO_REPORTS = There is currently no reports
+COMMAND_DISABLED = That command is disabled
+USAGE_SHOW = Usage:  amx_showreports <motd> <console>
+USAGE_DELETE = Usage:  amx_deletereports <all> <steamid> <dbid>
+
+TITLE = DB Id | Reporter name | Reporter steamid | Reported name | Reported steamid | Reason | Servername | Date
+
+ANNOUNCEMSG = say !report to report abusive players
+CONNECTION_FAILED = [AR] Connection failed: [%d] %s
+QUERY_FAILED = [AR] Query failed: [%d] %s
+TCONNECTION_FAILED = [AR] Connection failed!
+TQUERY_FAILED = [AR] Query failed!
+TQUERY_ERROR = [AR] Threaded query error, location: %d
+TQUERY_MSG = [AR] Message: %s (%d)
+TQUERY_STATEMENT = [AR] Query statement: %s
+NEXT_REPORT = You must wait %d seconds before you can report another player again.
+
+
+[sv]
+ABUSE_MENU = Rapportera spelare
+REASON_1 = Skywalking
+REASON_2 = Reapeted TK/TD
+REASON_3 = Spawnkilling
+REASON_4 = Wallhack
+REASON_5 = Aimbot
+REASON_6 = Speedhack
+REASON_7 = Bad language
+REASON_8 = Swearing
+ARTITLE = ~~~~~~~~~~~~  Abuse report  ~~~~~~~~~~~~~~
+LINE = ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REPORTED = Du har rapporterat %s f'o'r %s
+ADMIN_ACTION = serverns admins kommer att kolla upp det
+REPORTEDBY = %s har rapporterat dig f'o'r %s
+REPORTS_DELETED = Alla rapporter raderades
+USER_DELETED = All rapporter pa steamid %s raderades
+USERID_DELETED = Alla rapporter pa db id %d raderades
+NO_REPORTS = Det finns inga rapporter just nu
+COMMAND_DISABLED = Det kommandot 'a'r avst'a'ngt just nu
+USAGE_SHOW = Usage:  amx_showreports <motd> <console>
+USAGE_DELETE = Usage:  amx_deletereports <all> <steamid> <dbid>
+TITLE = DB Id | Rapport'o'r | Rapport'o'rens steamid | Rapporterad | Rapporterades steamid | Anledning | Servernamn | Datum
+ANNOUNCEMSG = s'a'g !report f'o'r att rapportera ^nspelare som beteer sig illa
+CONNECTION_FAILED = [AR] Anslutning till databasen misslyckades: [%d] %s
+QUERY_FAILED = [AR] Misslyckades med fragan till databasen: [%d] %s
+TCONNECTION_FAILED = [AR] Misslyckades med att koppla upp mot databasen!
+TQUERY_FAILED = [AR] Misslyckades med frågan till databasen!
+TQUERY_ERROR = [AR] Threaded query fel, plats: %d
+TQUERY_MSG = [AR] Meddelande: %s (%d)
+TQUERY_STATEMENT = [AR] Query statement: %s
+NEXT_REPORT = Du maste v'a'nta %d sekunder innan du rapportera n'a'sta spelare.
+
+[de]
+ABUSE_MENU = Melde einen Spieler
+REASON_1 = Skywalking
+REASON_2 = Wiederholtes TK/TD
+REASON_3 = Spawnkilling
+REASON_4 = Wallhack
+REASON_5 = Aimbot
+REASON_6 = Speedhack
+REASON_7 = Bad language
+REASON_8 = Beleidigung/Beschimpfung
+ARTITLE = ~~~~~~~~~~~~ Abuse report ~~~~~~~~~~~~~~
+LINE = ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REPORTED = Du hast %s gemeldet wegen %s
+ADMIN_ACTION = Die Admins werden sich die Sache genauer anschauen und falls nötig, handeln.
+REPORTEDBY = %s hat dich gemeldet wegen %s
+REPORTS_DELETED = Alle Meldungen wurde gelöscht
+USER_DELETED = Meldungen für Spieler mit Steamid %s wurden gelöscht
+USERID_DELETED = Meldungen für Spieler mit Datenbank Id %d wurden gelöscht
+NO_REPORTS = Es gibt im Moment keine Meldungen
+COMMAND_DISABLED = Dieser Befehl ist deaktiviert
+USAGE_SHOW = Usage:  amx_showreports <motd> <console>
+USAGE_DELETE = Usage:  amx_deletereports <all> <steamid> <dbid>
+TITLE = DB Id | Melder Name | Melder Steamid | Gemeldeter Name | Gemeldete Steamid | Grund | Servername | Datum
+ANNOUNCEMSG = sag !report um störende Spieler zu melden
+CONNECTION_FAILED = [AR] Verbindung fehlgeschlagen: [%d] %s
+QUERY_FAILED = [AR] Abfrage fehlgeschlagen: [%d] %s
+TCONNECTION_FAILED = [AR] Verbindung fehlgeschlagen!
+TQUERY_FAILED = [AR] Abfrage fehlgeschlagen!
+TQUERY_ERROR = [AR] Verlegte-Abfrage Fehler, Ort: %d
+TQUERY_MSG = [AR] Nachricht: %s (%d)
+TQUERY_STATEMENT = [AR] Ausgabe der Abfrage: %s
+NEXT_REPORT = Du must noch %d Sekunden warten, bevor du einen anderen Spieler melden kannst.
+
+

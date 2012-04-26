@@ -1,0 +1,562 @@
+L 06/18/2010 - 18:14:48: Log file started (file "cstrike/addons/amxmodx/configs/csf_anticheat/logs/csf_ac_speedhack.log") (game "cstrike") (amx "1.8.1.3746")
+L 06/18/2010 - 18:14:48: SpeedHack * Nick: <L1ttle> , IP: <91.78.226.227> , SteamID: <STEAM_0:0:255674453> , Ping: <36> , Map: <de_dust2002>
+L 06/18/2010 - 18:14:56: SpeedHack * Nick: <L1ttle> , IP: <91.78.226.227> , SteamID: <STEAM_0:0:255674453> , Ping: <39> , Map: <de_dust2002>
+L 06/20/2010 - 22:33:13: SpeedHack * Nick: <9|> , IP: <91.193.140.43> , SteamID: <STEAM_0:4:1097339377> , Ping: <53> , Map: <awp_india>
+L 06/21/2010 - 09:39:19: SpeedHack * Nick: <~~~___~~~> , IP: <85.112.121.156> , SteamID: <STEAM_0:4:445827446> , Ping: <27> , Map: <cs_italy>
+L 06/24/2010 - 22:28:57: SpeedHack * Nick: <ZloyMark> , IP: <93.181.215.136> , SteamID: <STEAM_0:4:281390066> , Ping: <24> , Map: <de_inferno>
+L 06/25/2010 - 18:34:37: SpeedHack * Nick: <Missl3BeDo4k@^^> , IP: <94.233.202.77> , SteamID: <STEAM_0:0:1426941988> , Ping: <124> , Map: <cs_office>
+L 06/25/2010 - 19:07:14: SpeedHack * Nick: <Fanat> , IP: <91.214.97.251> , SteamID: <STEAM_0:0:1304343560> , Ping: <22> , Map: <de_dust2>
+L 06/25/2010 - 20:04:02: SpeedHack * Nick: <AWP> , IP: <109.197.248.37> , SteamID: <STEAM_0:4:1179784170> , Ping: <38> , Map: <de_inferno>
+L 06/26/2010 - 11:38:21: SpeedHack * Nick: <S~p~O~r~T~s~M~e~N_666> , IP: <89.204.91.52> , SteamID: <STEAM_0:4:1317246832> , Ping: <71> , Map: <awp_india>
+L 07/12/2010 - 08:54:28: SpeedHack * Nick: <LOK DOK> , IP: <89.204.109.159> , SteamID: <STEAM_0:4:454596464> , Ping: <76> , Map: <de_dust2>
+L 07/12/2010 - 08:54:35: SpeedHack * Nick: <LOK DOK> , IP: <89.204.109.159> , SteamID: <STEAM_0:4:454596464> , Ping: <83> , Map: <de_dust2>
+L 07/14/2010 - 17:15:10: SpeedHack * Nick: <Mr.Aqua> , IP: <92.54.74.147> , SteamID: <STEAM_0:4:487287410> , Ping: <59> , Map: <cs_pf_dust>
+L 07/15/2010 - 02:47:14: SpeedHack * Nick: <no cheat just skill> , IP: <89.169.100.6> , SteamID: <STEAM_0:4:1469851120> , Ping: <26> , Map: <de_cbble>
+L 07/16/2010 - 10:34:49: SpeedHack * Nick: <PROCheater> , IP: <85.26.233.18> , SteamID: <STEAM_0:4:1574632566> , Ping: <190> , Map: <cs_italy>
+L 07/16/2010 - 15:56:49: SpeedHack * Nick: <VeNDeTTa!!!> , IP: <89.204.87.76> , SteamID: <STEAM_0:4:1921357680> , Ping: <102> , Map: <aim_ak-colt>
+L 07/19/2010 - 18:00:41: SpeedHack * Nick: <I{yIIeP> , IP: <94.41.38.175> , SteamID: <STEAM_0:0:1081416862> , Ping: <36> , Map: <de_dust2>
+L 07/19/2010 - 21:39:21: SpeedHack * Nick: <Fors UA> , IP: <91.124.58.18> , SteamID: <STEAM_0:4:1572032369> , Ping: <2255> , Map: <awp_india>
+L 07/20/2010 - 14:13:11: SpeedHack * Nick: <[war3ft.ru]IXIRC> , IP: <90.151.215.202> , SteamID: <STEAM_0:0:688480416> , Ping: <88> , Map: <de_inferno>
+L 07/21/2010 - 17:01:26: SpeedHack * Nick: <I{yIIeP> , IP: <94.41.75.219> , SteamID: <STEAM_0:0:1081416862> , Ping: <48> , Map: <awp_india>
+L 07/21/2010 - 17:55:29: SpeedHack * Nick: <*Rumyan> , IP: <91.185.59.194> , SteamID: <STEAM_0:4:900967921> , Ping: <87> , Map: <cs_italy>
+L 07/21/2010 - 23:41:10: SpeedHack * Nick: <VERBOVANNUY_PROSVETITEL> , IP: <92.39.229.70> , SteamID: <STEAM_0:0:15548112> , Ping: <9> , Map: <de_cpl_strike>
+L 07/23/2010 - 04:23:15: SpeedHack * Nick: <unnamed> , IP: <89.232.105.186> , SteamID: <STEAM_0:4:161121648> , Ping: <68> , Map: <de_dust2>
+L 07/24/2010 - 13:50:14: SpeedHack * Nick: <Show?> , IP: <81.33.209.135> , SteamID: <STEAM_0:4:390521332> , Ping: <141> , Map: <awp_india>
+L 07/25/2010 - 11:56:15: SpeedHack * Nick: <Hell^Fire.tm> .::Angel ::.<> , IP: <77.236.66.252> , SteamID: <STEAM_0:4:714016634> , Ping: <73> , Map: <awp_india>
+L 07/26/2010 - 08:40:37: SpeedHack * Nick: <[p47]kill> , IP: <94.180.27.59> , SteamID: <STEAM_0:0:1166528044> , Ping: <59> , Map: <de_dust2>
+L 07/26/2010 - 12:12:22: SpeedHack * Nick: <wlad^^> , IP: <78.36.132.167> , SteamID: <STEAM_0:0:435491312> , Ping: <72> , Map: <de_dust2>
+L 07/26/2010 - 19:22:14: SpeedHack * Nick: <^[@HUNTER@]^<TEAM>||BlacK_WayT|> , IP: <91.202.241.132> , SteamID: <STEAM_0:4:383161457> , Ping: <79> , Map: <de_inferno>
+L 07/29/2010 - 10:31:17: SpeedHack * Nick: <hamster> , IP: <109.194.38.55> , SteamID: <STEAM_0:4:1329401962> , Ping: <15> , Map: <de_train>
+L 07/31/2010 - 00:36:31: SpeedHack * Nick: <bZ>Toni Montana> , IP: <109.229.65.90> , SteamID: <STEAM_0:0:624207194> , Ping: <45> , Map: <de_dust2x2>
+L 07/31/2010 - 01:42:01: SpeedHack * Nick: <ftp.> , IP: <90.157.14.58> , SteamID: <STEAM_0:4:1235828721> , Ping: <45> , Map: <de_dust2>
+L 07/31/2010 - 05:09:56: SpeedHack * Nick: <Sheikki> , IP: <91.154.103.201> , SteamID: <STEAM_0:0:17561289> , Ping: <76> , Map: <de_dust2>
+L 08/01/2010 - 17:50:57: SpeedHack * Nick: <<<_Madara(*  )+>>> , IP: <93.127.100.111> , SteamID: <STEAM_0:4:1662799602> , Ping: <101> , Map: <de_dust2>
+L 08/04/2010 - 01:05:29: SpeedHack * Nick: <M9cNik> , IP: <188.187.2.159> , SteamID: <STEAM_0:4:456076418> , Ping: <58> , Map: <aim_ak-colt>
+L 08/04/2010 - 15:56:33: SpeedHack * Nick: <IIIOKOJIADKA> , IP: <95.72.52.46> , SteamID: <STEAM_0:4:1135891827> , Ping: <27> , Map: <awp_india>
+L 08/04/2010 - 15:56:41: SpeedHack * Nick: <IIIOKOJIADKA> , IP: <95.72.52.46> , SteamID: <STEAM_0:4:1135891827> , Ping: <49> , Map: <awp_india>
+L 08/04/2010 - 16:05:06: SpeedHack * Nick: <.:: aWp pro TM^ .:: A.C.A.B^> , IP: <89.232.105.201> , SteamID: <STEAM_0:0:296192889> , Ping: <78> , Map: <awp_india>
+L 08/04/2010 - 16:13:16: SpeedHack * Nick: <hedin> , IP: <91.192.20.67> , SteamID: <STEAM_0:0:1028533691> , Ping: <28> , Map: <awp_india>
+L 08/04/2010 - 16:13:28: SpeedHack * Nick: <hedin> , IP: <91.192.20.67> , SteamID: <STEAM_0:0:1028533691> , Ping: <60> , Map: <awp_india>
+L 08/04/2010 - 19:00:47: SpeedHack * Nick: <007> , IP: <85.192.190.18> , SteamID: <STEAM_0:4:1576079734> , Ping: <63> , Map: <awp_india>
+L 08/05/2010 - 23:18:34: SpeedHack * Nick: <[Unregistered]EOLHY> , IP: <91.78.144.62> , SteamID: <STEAM_0:4:1273386609> , Ping: <39> , Map: <de_dust>
+L 08/07/2010 - 16:06:11: SpeedHack * Nick: <c01t> , IP: <94.28.236.46> , SteamID: <STEAM_0:4:1138261875> , Ping: <86> , Map: <de_dust>
+L 08/14/2010 - 21:41:24: SpeedHack * Nick: <Gav-Pro(|{iLLeR)> , IP: <89.232.105.77> , SteamID: <STEAM_0:0:2032948691> , Ping: <99> , Map: <de_cbble>
+L 08/14/2010 - 23:50:12: SpeedHack * Nick: <MIXA> , IP: <91.122.34.46> , SteamID: <STEAM_0:0:290306337> , Ping: <25> , Map: <awp_india>
+L 08/14/2010 - 23:50:17: SpeedHack * Nick: <MIXA> , IP: <91.122.34.46> , SteamID: <STEAM_0:0:290306337> , Ping: <24> , Map: <awp_india>
+L 08/17/2010 - 11:21:19: SpeedHack * Nick: <NooBs> , IP: <91.122.49.132> , SteamID: <STEAM_0:4:381078641> , Ping: <34> , Map: <de_train>
+L 08/17/2010 - 12:12:53: SpeedHack * Nick: <asd> , IP: <91.193.168.128> , SteamID: <STEAM_0:4:351932913> , Ping: <26> , Map: <de_dust2>
+L 08/17/2010 - 16:21:26: SpeedHack * Nick: <*Rumyan> , IP: <91.185.52.254> , SteamID: <STEAM_0:4:733228529> , Ping: <94> , Map: <awp_india>
+L 08/18/2010 - 04:28:24: SpeedHack * Nick: <ANGEL> , IP: <109.108.55.114> , SteamID: <STEAM_0:0:1493177262> , Ping: <52> , Map: <de_dust2x2>
+L 08/20/2010 - 03:12:34: SpeedHack * Nick: <A1F (UA) LVIV> , IP: <91.124.108.40> , SteamID: <STEAM_0:4:1083723633> , Ping: <129> , Map: <de_Dust2x2>
+L 08/20/2010 - 03:13:54: SpeedHack * Nick: <Player> , IP: <91.122.203.170> , SteamID: <STEAM_0:0:1771222644> , Ping: <57> , Map: <de_Dust2x2>
+L 08/21/2010 - 02:59:01: SpeedHack * Nick: <[p47]areS> , IP: <91.124.20.169> , SteamID: <STEAM_0:4:2379633> , Ping: <124> , Map: <de_dust>
+L 08/21/2010 - 06:02:23: SpeedHack * Nick: <LOX 3000> , IP: <188.133.202.203> , SteamID: <STEAM_0:0:1026580884> , Ping: <85> , Map: <de_dust>
+L 08/21/2010 - 23:02:46: SpeedHack * Nick: <SubFocus> , IP: <91.205.65.166> , SteamID: <STEAM_0:4:126785521> , Ping: <179> , Map: <de_dust2x2>
+L 08/22/2010 - 20:38:09: SpeedHack * Nick: <V-City[Clan]-> , IP: <92.101.160.212> , SteamID: <STEAM_0:0:660220359> , Ping: <21> , Map: <de_dust2x2>
+L 08/24/2010 - 22:29:56: SpeedHack * Nick: <headshot> , IP: <91.204.176.20> , SteamID: <STEAM_0:4:1593186161> , Ping: <39> , Map: <de_dust2>
+L 08/25/2010 - 15:26:02: SpeedHack * Nick: <Dj Smash> , IP: <78.29.57.235> , SteamID: <STEAM_0:4:556990459> , Ping: <46> , Map: <de_dust2>
+L 08/28/2010 - 13:23:25: SpeedHack * Nick: <xAlBicoolvodx> , IP: <91.189.33.20> , SteamID: <STEAM_0:4:1589555185> , Ping: <55> , Map: <de_dust>
+L 08/29/2010 - 17:21:36: SpeedHack * Nick: <cs.theabyss.ru> , IP: <46.70.148.127> , SteamID: <STEAM_0:4:1801736779> , Ping: <198> , Map: <de_train>
+L 08/29/2010 - 17:21:47: SpeedHack * Nick: <cs.theabyss.ru> , IP: <46.70.148.127> , SteamID: <STEAM_0:4:1801736779> , Ping: <167> , Map: <de_train>
+L 08/29/2010 - 17:25:41: SpeedHack * Nick: <***HKGM***> , IP: <46.70.43.147> , SteamID: <STEAM_0:4:490459723> , Ping: <170> , Map: <de_train>
+L 08/29/2010 - 23:36:08: SpeedHack * Nick: <GRINGO!> , IP: <94.188.42.33> , SteamID: <STEAM_0:0:521070457> , Ping: <32> , Map: <de_nuke>
+L 08/30/2010 - 11:12:02: SpeedHack * Nick: <--==DeMzEr==--> , IP: <89.232.105.17> , SteamID: <STEAM_0:0:1908853592> , Ping: <72> , Map: <awp_india>
+L 08/30/2010 - 11:12:06: SpeedHack * Nick: <--==DeMzEr==--> , IP: <89.232.105.17> , SteamID: <STEAM_0:0:1908853592> , Ping: <64> , Map: <awp_india>
+L 08/30/2010 - 17:01:43: SpeedHack * Nick: <[--+HAY+EM+--]> , IP: <46.70.153.3> , SteamID: <STEAM_0:4:1432539723> , Ping: <168> , Map: <de_cbble>
+L 08/30/2010 - 22:06:41: SpeedHack * Nick: <:]> , IP: <95.88.82.104> , SteamID: <STEAM_0:1:18148281> , Ping: <70> , Map: <de_dust2>
+L 09/04/2010 - 17:42:06: SpeedHack * Nick: <qpenix> , IP: <109.194.144.234> , SteamID: <STEAM_0:0:664780387> , Ping: <65> , Map: <de_inferno>
+L 09/05/2010 - 19:50:20: SpeedHack * Nick: <keks> , IP: <93.159.243.48> , SteamID: <STEAM_0:0:92041099> , Ping: <117> , Map: <de_dust>
+L 09/08/2010 - 22:56:30: SpeedHack * Nick: <KaPuTaH*FLaMuHgo> , IP: <178.217.96.1> , SteamID: <STEAM_0:0:1096229345> , Ping: <28> , Map: <de_dust2>
+L 09/11/2010 - 00:00:42: SpeedHack * Nick: <VINDIZELb> , IP: <91.76.154.13> , SteamID: <STEAM_0:4:1382242161> , Ping: <55> , Map: <de_dust2>
+L 09/14/2010 - 12:28:58: SpeedHack * Nick: <=[No-Css]=> , IP: <188.18.189.8> , SteamID: <STEAM_0:0:2109918045> , Ping: <93> , Map: <de_dust2x2>
+L 09/14/2010 - 22:49:28: SpeedHack * Nick: <lehko> , IP: <78.25.28.6> , SteamID: <STEAM_0:4:1470135803> , Ping: <69> , Map: <aim_ak-colt>
+L 09/19/2010 - 06:55:33: SpeedHack * Nick: <IIIpam> , IP: <188.168.17.128> , SteamID: <VALVE_0:4:346465538> , Ping: <42> , Map: <de_dust2x2>
+L 09/19/2010 - 09:53:35: SpeedHack * Nick: <Mb|LO> , IP: <91.146.46.76> , SteamID: <STEAM_0:4:1924741233> , Ping: <61> , Map: <de_dust2x2>
+L 09/22/2010 - 02:12:40: SpeedHack * Nick: <GGG> , IP: <91.196.63.110> , SteamID: <STEAM_0:4:1672582001> , Ping: <61> , Map: <de_dust>
+L 09/26/2010 - 06:06:24: SpeedHack * Nick: <Diablo> , IP: <91.103.153.241> , SteamID: <STEAM_0:4:744669937> , Ping: <13> , Map: <cs_italy>
+L 09/27/2010 - 23:36:56: SpeedHack * Nick: <o6bl4Hblu Hy6uk .)> , IP: <91.192.131.5> , SteamID: <STEAM_0:0:492741905> , Ping: <30> , Map: <de_dust2x2>
+L 09/28/2010 - 13:37:30: SpeedHack * Nick: <roma000> , IP: <91.122.67.201> , SteamID: <STEAM_0:4:806341745> , Ping: <106> , Map: <de_dust>
+L 09/28/2010 - 17:52:57: SpeedHack * Nick: <MeTro>|<hunk45> , IP: <95.129.166.133> , SteamID: <STEAM_0:4:377303539> , Ping: <47> , Map: <aim_ak-colt>
+L 09/29/2010 - 22:09:46: SpeedHack * Nick: <CLaR^Lord De Seis> , IP: <109.92.228.249> , SteamID: <STEAM_0:4:677142378> , Ping: <152> , Map: <de_nuke>
+L 09/30/2010 - 18:06:04: SpeedHack * Nick: <>_<> , IP: <91.149.147.232> , SteamID: <STEAM_0:4:552057841> , Ping: <56> , Map: <aim_ak-colt>
+L 10/01/2010 - 12:43:20: SpeedHack * Nick: <S.T.A.L.K.E.R> , IP: <91.124.68.213> , SteamID: <STEAM_0:4:1040994161> , Ping: <106> , Map: <de_train>
+L 10/03/2010 - 18:11:52: SpeedHack * Nick: <blockme!Iamcheater> , IP: <188.168.110.43> , SteamID: <STEAM_0:4:1092166914> , Ping: <52> , Map: <de_cbble>
+L 10/05/2010 - 11:42:31: SpeedHack * Nick: <Night Edition User> , IP: <91.122.49.132> , SteamID: <STEAM_0:4:381078641> , Ping: <27> , Map: <aim_ak-colt>
+L 10/06/2010 - 02:15:12: SpeedHack * Nick: <NooB> , IP: <93.84.176.42> , SteamID: <STEAM_0:0:769355816> , Ping: <76> , Map: <de_dust2>
+L 10/07/2010 - 20:57:15: SpeedHack * Nick: <Xukapy<<reu>>> , IP: <91.192.68.111> , SteamID: <STEAM_0:4:1661735281> , Ping: <15> , Map: <de_dust2>
+L 10/07/2010 - 20:57:25: SpeedHack * Nick: <Xukapy<<reu>>> , IP: <91.192.68.111> , SteamID: <STEAM_0:4:1661735281> , Ping: <19> , Map: <de_dust2>
+L 10/08/2010 - 12:17:50: SpeedHack * Nick: <oks1G> , IP: <91.192.20.52> , SteamID: <STEAM_0:4:1319375217> , Ping: <32> , Map: <de_nuke>
+L 10/08/2010 - 14:16:54: SpeedHack * Nick: <NooB> , IP: <93.85.136.53> , SteamID: <STEAM_0:0:769355816> , Ping: <70> , Map: <cs_assault>
+L 10/09/2010 - 04:51:51: SpeedHack * Nick: <LooKsZonE> , IP: <91.122.167.194> , SteamID: <STEAM_0:4:905825393> , Ping: <11> , Map: <de_dust2>
+L 10/10/2010 - 18:33:49: SpeedHack * Nick: <walle> , IP: <81.198.190.55> , SteamID: <STEAM_0:0:1062411440> , Ping: <61> , Map: <awp_india>
+L 10/11/2010 - 02:07:12: SpeedHack * Nick: <-=Experienced=-|Tm*.i.W@R.i.*> , IP: <91.146.55.110> , SteamID: <STEAM_0:0:1774072751> , Ping: <34> , Map: <de_dust2x2>
+L 10/22/2010 - 20:50:36: SpeedHack * Nick: <HOMIE> , IP: <91.211.144.1> , SteamID: <STEAM_0:4:1415977201> , Ping: <24> , Map: <de_dust2>
+L 10/22/2010 - 20:50:41: SpeedHack * Nick: <HOMIE> , IP: <91.211.144.1> , SteamID: <STEAM_0:4:1415977201> , Ping: <13> , Map: <de_dust2>
+L 10/24/2010 - 23:43:23: SpeedHack * Nick: <CmeTana> , IP: <78.81.11.240> , SteamID: <STEAM_0:4:749459963> , Ping: <21> , Map: <de_nuke>
+L 10/25/2010 - 04:22:41: SpeedHack * Nick: <mal6w> , IP: <95.73.132.143> , SteamID: <STEAM_0:0:2043168219> , Ping: <46> , Map: <cs_assault>
+L 10/28/2010 - 18:57:32: SpeedHack * Nick: <1tus> , IP: <95.54.23.127> , SteamID: <STEAM_0:4:1797646963> , Ping: <35> , Map: <de_nuke>
+L 10/29/2010 - 13:51:42: SpeedHack * Nick: <NaRe5> , IP: <95.154.116.125> , SteamID: <STEAM_0:0:637420865> , Ping: <163> , Map: <de_dust2>
+L 10/30/2010 - 04:00:17: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <12> , Map: <cs_militia>
+L 10/30/2010 - 04:00:20: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <23> , Map: <cs_militia>
+L 10/30/2010 - 04:05:44: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <30> , Map: <cs_militia>
+L 10/30/2010 - 04:05:54: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <22> , Map: <cs_militia>
+L 10/30/2010 - 04:06:04: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <13> , Map: <cs_militia>
+L 10/30/2010 - 04:06:34: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <20> , Map: <cs_militia>
+L 10/30/2010 - 04:07:10: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <30> , Map: <cs_militia>
+L 10/30/2010 - 04:07:33: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <25> , Map: <cs_militia>
+L 10/30/2010 - 04:07:59: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <26> , Map: <cs_militia>
+L 10/30/2010 - 04:08:13: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <18> , Map: <cs_militia>
+L 10/30/2010 - 04:09:01: SpeedHack * Nick: <}I{UB4UK> , IP: <91.192.92.5> , SteamID: <STEAM_0:0:1764147390> , Ping: <30> , Map: <cs_militia>
+L 10/30/2010 - 14:11:38: SpeedHack * Nick: <Player> , IP: <95.55.94.92> , SteamID: <STEAM_0:0:1363070262> , Ping: <40> , Map: <de_inferno>
+L 10/30/2010 - 14:55:08: SpeedHack * Nick: <XuMuK> , IP: <78.81.19.78> , SteamID: <STEAM_0:4:1940380155> , Ping: <21> , Map: <de_train>
+L 10/30/2010 - 22:01:19: SpeedHack * Nick: <FBI> , IP: <95.72.95.53> , SteamID: <STEAM_0:4:1308743027> , Ping: <108> , Map: <awp_india>
+L 10/30/2010 - 22:01:30: SpeedHack * Nick: <FBI> , IP: <95.72.95.53> , SteamID: <STEAM_0:4:1308743027> , Ping: <97> , Map: <awp_india>
+L 10/30/2010 - 22:10:43: SpeedHack * Nick: <Game::PRO::Tut*Karsar> , IP: <212.21.21.51> , SteamID: <STEAM_0:4:1294269366> , Ping: <91> , Map: <de_train>
+L 10/31/2010 - 12:22:25: SpeedHack * Nick: <MyName> , IP: <94.243.249.8> , SteamID: <STEAM_0:4:1355974899> , Ping: <18> , Map: <awp_india>
+L 11/01/2010 - 11:29:13: SpeedHack * Nick: <Xyu> , IP: <95.110.26.21> , SteamID: <STEAM_0:4:1579370099> , Ping: <62> , Map: <35hp_2>
+L 11/01/2010 - 16:55:03: SpeedHack * Nick: <Russian-Cheaters.com> , IP: <217.10.38.34> , SteamID: <STEAM_0:4:1170043952> , Ping: <30> , Map: <de_dust2>
+L 11/03/2010 - 14:01:49: SpeedHack * Nick: <DXD ywgefuewfuwebfuwwefhnwe> , IP: <95.73.192.124> , SteamID: <STEAM_0:4:1791907315> , Ping: <57> , Map: <awp_india>
+L 11/03/2010 - 18:24:51: SpeedHack * Nick: <___41_______> , IP: <109.69.28.190> , SteamID: <STEAM_0:0:569599434> , Ping: <39> , Map: <awp_india>
+L 11/04/2010 - 02:39:14: SpeedHack * Nick: <Miami> , IP: <89.223.25.108> , SteamID: <STEAM_0:4:1654824688> , Ping: <6> , Map: <de_train>
+L 11/05/2010 - 04:32:47: SpeedHack * Nick: <Bofe2> , IP: <91.187.121.99> , SteamID: <STEAM_0:4:1695722737> , Ping: <100> , Map: <cs_italy>
+L 11/05/2010 - 13:42:56: SpeedHack * Nick: <Skill.side>BodyLol> , IP: <92.100.244.56> , SteamID: <STEAM_0:4:1221870450> , Ping: <47> , Map: <De_Dust2>
+L 11/05/2010 - 13:43:05: SpeedHack * Nick: <Skill.side>BodyLol> , IP: <92.100.244.56> , SteamID: <STEAM_0:4:1221870450> , Ping: <54> , Map: <De_Dust2>
+L 11/05/2010 - 14:00:36: SpeedHack * Nick: <hen shot> , IP: <83.69.3.78> , SteamID: <STEAM_0:0:1936888595> , Ping: <66> , Map: <de_dust2x2>
+L 11/06/2010 - 12:18:45: SpeedHack * Nick: <hsTM ' Crim :)> , IP: <91.192.153.34> , SteamID: <STEAM_0:4:1172476273> , Ping: <75> , Map: <cs_assault>
+L 11/06/2010 - 12:18:46: SpeedHack * Nick: <@KUN@M@T@T@> , IP: <79.173.80.124> , SteamID: <STEAM_0:0:1969201223> , Ping: <40> , Map: <cs_assault>
+L 11/06/2010 - 12:19:16: SpeedHack * Nick: <@KUN@M@T@T@> , IP: <79.173.80.124> , SteamID: <STEAM_0:0:1969201223> , Ping: <13> , Map: <cs_assault>
+L 11/07/2010 - 11:36:11: SpeedHack * Nick: <)> , IP: <93.178.65.197> , SteamID: <STEAM_0:0:1567018300> , Ping: <13> , Map: <cs_pf_dust>
+L 11/07/2010 - 16:19:13: SpeedHack * Nick: <CMEPTb> , IP: <94.79.44.134> , SteamID: <STEAM_0:0:1565133473> , Ping: <29> , Map: <de_clan1_mill>
+L 11/08/2010 - 06:03:53: SpeedHack * Nick: <Player> , IP: <188.19.51.254> , SteamID: <STEAM_0:4:733476994> , Ping: <114> , Map: <de_dust2>
+L 11/08/2010 - 22:56:55: SpeedHack * Nick: <Parawyt> , IP: <95.54.90.136> , SteamID: <STEAM_0:0:98908717> , Ping: <64> , Map: <35hp_2>
+L 11/11/2010 - 16:18:27: SpeedHack * Nick: <deathNote> , IP: <90.48.130.126> , SteamID: <STEAM_0:0:2326404> , Ping: <106> , Map: <de_inferno>
+L 11/12/2010 - 20:25:25: SpeedHack * Nick: <>_<> , IP: <78.106.150.80> , SteamID: <STEAM_0:4:2095400059> , Ping: <61> , Map: <awp_india>
+L 11/13/2010 - 21:51:21: SpeedHack * Nick: <JusMan-_^0ne> , IP: <95.153.89.144> , SteamID: <STEAM_0:0:2108967121> , Ping: <135> , Map: <de_dust>
+L 11/14/2010 - 10:12:28: SpeedHack * Nick: <1Kn1fe!!111> , IP: <95.153.80.112> , SteamID: <STEAM_0:0:2108967121> , Ping: <120> , Map: <de_clan1_mill>
+L 11/14/2010 - 12:13:17: SpeedHack * Nick: <File> , IP: <188.186.48.100> , SteamID: <STEAM_0:4:1723214850> , Ping: <82> , Map: <awp_india>
+L 11/14/2010 - 19:51:04: SpeedHack * Nick: <.:[ProGamers]:.pm^^oO> , IP: <193.111.127.38> , SteamID: <VALVE_0:4:1200735932> , Ping: <85> , Map: <de_dust2>
+L 11/14/2010 - 20:31:29: SpeedHack * Nick: <[OZ]Client> , IP: <81.16.127.23> , SteamID: <STEAM_0:4:1595013492> , Ping: <30> , Map: <de_inferno>
+L 11/14/2010 - 20:37:51: SpeedHack * Nick: <1Kn1fe!!111> , IP: <77.235.115.196> , SteamID: <STEAM_0:0:2108967121> , Ping: <152> , Map: <de_inferno>
+L 11/15/2010 - 17:57:23: SpeedHack * Nick: <.::[Pro]Imperia || G@JI^^> , IP: <46.42.58.153> , SteamID: <STEAM_0:4:406021195> , Ping: <47> , Map: <cs_pf_dust>
+L 11/15/2010 - 17:58:05: SpeedHack * Nick: <1Kn1fe!!111> , IP: <77.235.105.65> , SteamID: <STEAM_0:0:2108967121> , Ping: <119> , Map: <cs_pf_dust>
+L 11/15/2010 - 19:27:05: SpeedHack * Nick: <Strelok> , IP: <95.110.90.69> , SteamID: <STEAM_0:4:1979926131> , Ping: <58> , Map: <35hp_2>
+L 11/17/2010 - 10:25:59: SpeedHack * Nick: <kostet> , IP: <92.39.65.33> , SteamID: <STEAM_0:0:1974142067> , Ping: <36> , Map: <de_dust2x2>
+L 11/18/2010 - 07:17:06: SpeedHack * Nick: <|pRo|-Edik> , IP: <83.149.36.181> , SteamID: <STEAM_0:0:1901663727> , Ping: <137> , Map: <de_dust2>
+L 11/18/2010 - 12:03:03: SpeedHack * Nick: <tm.Timati.Andrey.Pro.1.0.0> , IP: <84.109.120.112> , SteamID: <STEAM_0:0:469463002> , Ping: <149> , Map: <de_dust2>
+L 11/19/2010 - 00:26:53: SpeedHack * Nick: <Sky> , IP: <188.113.44.181> , SteamID: <STEAM_0:4:238569858> , Ping: <84> , Map: <de_dust2>
+L 11/19/2010 - 16:29:47: SpeedHack * Nick: <Player> , IP: <91.78.255.182> , SteamID: <STEAM_0:4:265410161> , Ping: <28> , Map: <de_dust2>
+L 11/19/2010 - 22:35:56: SpeedHack * Nick: <Lol> , IP: <178.65.78.228> , SteamID: <STEAM_0:4:646533509> , Ping: <44> , Map: <de_nuke>
+L 11/22/2010 - 10:49:07: SpeedHack * Nick: <Player> , IP: <92.124.126.5> , SteamID: <STEAM_0:4:1443975026> , Ping: <42> , Map: <awp_india>
+L 11/23/2010 - 04:47:04: SpeedHack * Nick: <[All-CS.Net.Ru] User> , IP: <94.137.26.30> , SteamID: <STEAM_0:0:1304563536> , Ping: <78> , Map: <de_dust2x2>
+L 11/23/2010 - 19:44:18: SpeedHack * Nick: <[Cs-4-live]NiKe K.)> , IP: <178.67.62.133> , SteamID: <STEAM_0:4:372330629> , Ping: <42> , Map: <awp_india>
+L 11/24/2010 - 14:34:44: SpeedHack * Nick: <|Gold_StarS|st1w> , IP: <81.18.128.118> , SteamID: <STEAM_0:4:1877899380> , Ping: <34> , Map: <de_dust2>
+L 11/24/2010 - 16:24:15: SpeedHack * Nick: <[All-CS.Net.Ru] User> , IP: <188.128.6.54> , SteamID: <STEAM_0:0:770328982> , Ping: <50> , Map: <de_inferno>
+L 11/25/2010 - 07:20:41: SpeedHack * Nick: <ZlodeY GEMOROI PYLUT> , IP: <95.191.168.23> , SteamID: <STEAM_0:0:1027374729> , Ping: <61> , Map: <de_dust2x2>
+L 11/25/2010 - 20:36:36: SpeedHack * Nick: <^<^(PrO)MaStErS(PrO)^>^K.e.N.T*> , IP: <93.124.104.142> , SteamID: <STEAM_0:4:328879986> , Ping: <147> , Map: <de_dust2x2>
+L 11/26/2010 - 12:27:15: SpeedHack * Nick: <BALOOOOOD9|> , IP: <94.137.27.127> , SteamID: <STEAM_0:0:1304563536> , Ping: <65> , Map: <de_dust2x2>
+L 11/26/2010 - 18:15:54: SpeedHack * Nick: <=}:::::>S@T<:::::{=TbI IIYDAP> , IP: <89.250.230.86> , SteamID: <STEAM_0:4:2145193072> , Ping: <83> , Map: <de_dust2x2>
+L 11/26/2010 - 18:18:11: SpeedHack * Nick: <=}:::::>S@T<:::::{4ERT> , IP: <89.250.230.173> , SteamID: <STEAM_0:4:39652464> , Ping: <64> , Map: <de_dust2x2>
+L 11/26/2010 - 19:22:07: SpeedHack * Nick: <BALOOOOOD9|> , IP: <178.74.76.6> , SteamID: <STEAM_0:0:1304563536> , Ping: <69> , Map: <de_dust2x2>
+L 11/27/2010 - 11:54:42: SpeedHack * Nick: <BALOOOOOD9|> , IP: <94.137.11.249> , SteamID: <STEAM_0:0:1304563536> , Ping: <77> , Map: <awp_india>
+L 11/27/2010 - 12:50:22: SpeedHack * Nick: <.> , IP: <78.111.53.73> , SteamID: <STEAM_0:4:1882507003> , Ping: <108> , Map: <awp_india>
+L 11/27/2010 - 13:37:47: SpeedHack * Nick: <BaJIePa :D> , IP: <62.122.71.213> , SteamID: <STEAM_0:4:1041091651> , Ping: <60> , Map: <de_dust2x2>
+L 11/27/2010 - 13:37:49: SpeedHack * Nick: <axm> , IP: <62.122.71.212> , SteamID: <STEAM_0:4:1049480259> , Ping: <63> , Map: <de_dust2x2>
+L 11/27/2010 - 14:32:32: SpeedHack * Nick: <TROLL> , IP: <95.30.94.199> , SteamID: <STEAM_0:0:1761731307> , Ping: <35> , Map: <de_dust2>
+L 11/27/2010 - 17:07:03: SpeedHack * Nick: <.::[KW]StReEt RaCeR::.> , IP: <78.25.162.8> , SteamID: <STEAM_0:0:1639943585> , Ping: <15> , Map: <de_inferno>
+L 11/27/2010 - 17:07:12: SpeedHack * Nick: <.::[KW]StReEt RaCeR::.> , IP: <78.25.162.8> , SteamID: <STEAM_0:0:1639943585> , Ping: <31> , Map: <de_inferno>
+L 11/27/2010 - 19:57:12: SpeedHack * Nick: <DED BAC EbET> , IP: <89.250.230.56> , SteamID: <STEAM_0:4:1222446192> , Ping: <92> , Map: <de_dust2x2>
+L 11/27/2010 - 19:58:58: SpeedHack * Nick: <DEDbI BAC TPAXyT> , IP: <89.250.230.97> , SteamID: <STEAM_0:4:1683819632> , Ping: <92> , Map: <de_dust2x2>
+L 11/27/2010 - 22:06:02: SpeedHack * Nick: <hunter> , IP: <89.112.67.27> , SteamID: <STEAM_0:0:163888246> , Ping: <35> , Map: <awp_india>
+L 11/28/2010 - 00:22:43: SpeedHack * Nick: <anti wh> , IP: <78.36.132.84> , SteamID: <STEAM_0:4:2129421179> , Ping: <55> , Map: <awp_india>
+L 11/28/2010 - 07:46:05: SpeedHack * Nick: <HAOS> , IP: <89.250.230.99> , SteamID: <STEAM_0:4:1700596848> , Ping: <54> , Map: <de_inferno>
+L 11/28/2010 - 13:30:06: SpeedHack * Nick: <bashkimi> , IP: <91.187.122.253> , SteamID: <STEAM_0:4:705899761> , Ping: <218> , Map: <de_inferno>
+L 11/28/2010 - 13:51:19: SpeedHack * Nick: <onL1ne*team | Red Bull Energy> , IP: <213.231.25.52> , SteamID: <STEAM_0:4:1319273142> , Ping: <75> , Map: <de_inferno>
+L 11/29/2010 - 07:20:21: SpeedHack * Nick: <6ATAPeu`Ka[B]KaPMaHe> , IP: <46.42.33.53> , SteamID: <STEAM_0:0:1361402890> , Ping: <91> , Map: <de_dust2>
+L 11/29/2010 - 13:01:01: SpeedHack * Nick: <HAOS> , IP: <89.250.230.85> , SteamID: <STEAM_0:4:2120027248> , Ping: <62> , Map: <de_inferno>
+L 11/30/2010 - 02:43:01: SpeedHack * Nick: <[Hy6aM_XaHa]=TaTaRiN=> , IP: <217.118.83.173> , SteamID: <STEAM_0:0:1235921149> , Ping: <182> , Map: <de_inferno>
+L 11/30/2010 - 18:03:10: SpeedHack * Nick: <[OnE]_JS0_E6Y_KoPoB:> , IP: <93.100.57.73> , SteamID: <STEAM_0:0:225714806> , Ping: <12> , Map: <de_inferno>
+L 12/01/2010 - 12:15:49: SpeedHack * Nick: <HAOS> , IP: <89.250.230.191> , SteamID: <STEAM_0:4:190647408> , Ping: <46> , Map: <de_dust2>
+L 12/01/2010 - 12:25:42: SpeedHack * Nick: <HAOS> , IP: <89.250.230.135> , SteamID: <STEAM_0:4:391974000> , Ping: <61> , Map: <de_dust2>
+L 12/01/2010 - 13:38:22: SpeedHack * Nick: <kekc> , IP: <94.41.51.24> , SteamID: <STEAM_0:4:1488446963> , Ping: <48> , Map: <awp_india>
+L 12/01/2010 - 22:45:42: SpeedHack * Nick: <Infidel-[tm]~Yellow SmileY> , IP: <93.185.240.123> , SteamID: <STEAM_0:4:1767255538> , Ping: <78> , Map: <awp_india>
+L 12/02/2010 - 06:45:53: SpeedHack * Nick: <HAOS> , IP: <89.250.230.37> , SteamID: <STEAM_0:4:1180503152> , Ping: <85> , Map: <de_dust2x2>
+L 12/02/2010 - 14:26:39: SpeedHack * Nick: <{LOCb}[KONb] u PET9> , IP: <109.195.168.253> , SteamID: <STEAM_0:0:354980915> , Ping: <57> , Map: <de_dust2>
+L 12/03/2010 - 08:23:56: SpeedHack * Nick: <[4uT^Team] -=MaZaHaKa=-> , IP: <95.79.99.164> , SteamID: <STEAM_0:4:111138547> , Ping: <78> , Map: <de_dust2x2>
+L 12/03/2010 - 09:17:56: SpeedHack * Nick: <XEPOMAHT> , IP: <178.129.61.37> , SteamID: <STEAM_0:0:1769867188> , Ping: <98> , Map: <de_dust2x2>
+L 12/03/2010 - 17:35:48: SpeedHack * Nick: <Energy|LLIuz{@}HyTb|u> , IP: <109.187.84.155> , SteamID: <STEAM_0:4:419704042> , Ping: <51> , Map: <de_dust2x2>
+L 12/04/2010 - 06:41:48: SpeedHack * Nick: <=)> , IP: <89.232.105.66> , SteamID: <STEAM_0:4:1973060976> , Ping: <61> , Map: <de_inferno>
+L 12/04/2010 - 20:35:28: SpeedHack * Nick: <mag> , IP: <178.67.41.51> , SteamID: <STEAM_0:0:1232944347> , Ping: <40> , Map: <awp_india>
+L 12/04/2010 - 20:35:35: SpeedHack * Nick: <mag> , IP: <178.67.41.51> , SteamID: <STEAM_0:0:1232944347> , Ping: <31> , Map: <awp_india>
+L 12/05/2010 - 16:43:41: SpeedHack * Nick: <[All-CS.Net.Ru] User> , IP: <89.232.105.70> , SteamID: <STEAM_0:0:487987760> , Ping: <25> , Map: <de_dust2>
+L 12/05/2010 - 18:13:19: SpeedHack * Nick: <L2> , IP: <95.52.187.74> , SteamID: <STEAM_0:0:1434950997> , Ping: <91> , Map: <de_dust2>
+L 12/05/2010 - 18:36:51: SpeedHack * Nick: <123> , IP: <87.254.155.242> , SteamID: <STEAM_0:4:769887863> , Ping: <88> , Map: <de_inferno>
+L 12/06/2010 - 07:07:21: SpeedHack * Nick: <k9leon`> , IP: <95.165.190.12> , SteamID: <STEAM_0:0:1985545382> , Ping: <47> , Map: <de_dust2x2>
+L 12/06/2010 - 19:04:01: SpeedHack * Nick: <^[@HUNTER@]^<TEAM>||Black_WayT|> , IP: <91.202.241.251> , SteamID: <STEAM_0:4:693539953> , Ping: <71> , Map: <de_dust2x2>
+L 12/06/2010 - 19:58:52: SpeedHack * Nick: <PAHuC> , IP: <78.138.170.208> , SteamID: <STEAM_0:4:1023095931> , Ping: <84> , Map: <de_dust2x2>
+L 12/08/2010 - 04:04:45: SpeedHack * Nick: <F.A.[v]R?! l -_-RODY-_-CS-_-> , IP: <2.61.22.149> , SteamID: <STEAM_0:0:969773823> , Ping: <86> , Map: <de_dust2>
+L 12/08/2010 - 17:38:42: SpeedHack * Nick: <{o.p.g}_[Dima.I]> , IP: <212.57.158.240> , SteamID: <STEAM_0:0:636593436> , Ping: <57> , Map: <awp_india>
+L 12/08/2010 - 17:39:42: SpeedHack * Nick: <{o.p.g}_[Dima.I]> , IP: <212.57.158.240> , SteamID: <STEAM_0:0:636593436> , Ping: <31> , Map: <awp_india>
+L 12/08/2010 - 17:40:01: SpeedHack * Nick: <{o.p.g}_[Dima.I]> , IP: <212.57.158.240> , SteamID: <STEAM_0:0:636593436> , Ping: <61> , Map: <awp_india>
+L 12/09/2010 - 08:03:50: SpeedHack * Nick: <HAOS> , IP: <89.250.230.58> , SteamID: <STEAM_0:4:1239223408> , Ping: <64> , Map: <de_dust2x2>
+L 12/10/2010 - 06:31:17: SpeedHack * Nick: <HAOS> , IP: <89.250.230.96> , SteamID: <STEAM_0:4:1692208240> , Ping: <52> , Map: <de_dust2x2>
+L 12/10/2010 - 06:40:15: SpeedHack * Nick: <HAOS> , IP: <89.250.230.24> , SteamID: <STEAM_0:4:1490881648> , Ping: <58> , Map: <de_dust2x2>
+L 12/10/2010 - 06:48:49: SpeedHack * Nick: <HAOS> , IP: <89.250.230.147> , SteamID: <STEAM_0:4:492637296> , Ping: <67> , Map: <de_dust2x2>
+L 12/10/2010 - 08:05:58: SpeedHack * Nick: <russian FUUCK YEEEAAHHHHHH> , IP: <88.201.182.15> , SteamID: <STEAM_0:0:1696164248> , Ping: <25> , Map: <de_dust2x2>
+L 12/10/2010 - 08:58:21: SpeedHack * Nick: <HAOS> , IP: <89.250.230.161> , SteamID: <STEAM_0:4:73206896> , Ping: <48> , Map: <awp_india>
+L 12/10/2010 - 09:07:26: SpeedHack * Nick: <HAOS> , IP: <89.250.230.83> , SteamID: <STEAM_0:4:2103250032> , Ping: <59> , Map: <awp_india>
+L 12/10/2010 - 14:36:47: SpeedHack * Nick: <777> , IP: <94.181.19.105> , SteamID: <STEAM_0:0:91415436> , Ping: <75> , Map: <de_dust2x2>
+L 12/10/2010 - 15:22:28: SpeedHack * Nick: <HAOS> , IP: <89.250.230.77> , SteamID: <STEAM_0:4:1918700656> , Ping: <184> , Map: <de_inferno>
+L 12/12/2010 - 03:38:53: SpeedHack * Nick: <n9iTka> , IP: <78.36.146.77> , SteamID: <STEAM_0:4:1919378299> , Ping: <47> , Map: <de_dust2>
+L 12/12/2010 - 06:56:58: SpeedHack * Nick: <Chervonec___::xXx::> , IP: <10.178.212.29> , SteamID: <STEAM_0:4:1514416217> , Ping: <4> , Map: <de_dust2x2>
+L 12/12/2010 - 09:18:45: SpeedHack * Nick: <mr> , IP: <94.232.238.198> , SteamID: <STEAM_0:0:701139273> , Ping: <105> , Map: <de_dust2x2>
+L 12/13/2010 - 07:44:06: SpeedHack * Nick: <HAOS> , IP: <89.250.230.140> , SteamID: <STEAM_0:4:316476528> , Ping: <46> , Map: <de_dust2>
+L 12/13/2010 - 07:44:14: SpeedHack * Nick: <HAOS> , IP: <89.250.230.140> , SteamID: <STEAM_0:4:316476528> , Ping: <57> , Map: <de_dust2>
+L 12/13/2010 - 08:58:22: SpeedHack * Nick: <Dak kak tak???> , IP: <92.101.59.20> , SteamID: <STEAM_0:4:1588839410> , Ping: <67> , Map: <de_inferno>
+L 12/13/2010 - 22:14:05: SpeedHack * Nick: <The_Stupid_Day> , IP: <109.184.121.50> , SteamID: <STEAM_0:4:1301458282> , Ping: <46> , Map: <de_dust2x2>
+L 12/14/2010 - 15:35:53: SpeedHack * Nick: <Kollarek> , IP: <92.100.254.205> , SteamID: <STEAM_0:0:1809427899> , Ping: <49> , Map: <awp_india>
+L 12/14/2010 - 15:36:02: SpeedHack * Nick: <Kollarek> , IP: <92.100.254.205> , SteamID: <STEAM_0:0:1809427899> , Ping: <47> , Map: <awp_india>
+L 12/17/2010 - 08:48:30: SpeedHack * Nick: <R_______________mix :)> , IP: <90.151.90.204> , SteamID: <STEAM_0:0:1170184290> , Ping: <80> , Map: <de_dust2x2>
+L 12/17/2010 - 14:49:08: SpeedHack * Nick: <L@ky> , IP: <92.100.177.6> , SteamID: <STEAM_0:0:1704946446> , Ping: <20> , Map: <de_dust2>
+L 12/17/2010 - 16:32:15: SpeedHack * Nick: <=( (KD)> , IP: <188.17.70.150> , SteamID: <STEAM_0:4:529365378> , Ping: <129> , Map: <de_dust2x2>
+L 12/17/2010 - 16:55:14: SpeedHack * Nick: <{ CS New Team-LeGends } gufik> , IP: <95.73.101.225> , SteamID: <STEAM_0:0:1762129678> , Ping: <71> , Map: <de_dust2>
+L 12/18/2010 - 00:16:27: SpeedHack * Nick: <St_Mishka> , IP: <178.34.41.167> , SteamID: <STEAM_0:0:162769950> , Ping: <51> , Map: <de_inferno>
+L 12/18/2010 - 11:56:35: SpeedHack * Nick: <Super> , IP: <77.79.167.82> , SteamID: <STEAM_0:0:926913927> , Ping: <56> , Map: <awp_india>
+L 12/19/2010 - 03:55:58: SpeedHack * Nick: <oJloJlo_KpuBeTkO> , IP: <109.252.223.227> , SteamID: <STEAM_0:0:160787873> , Ping: <148> , Map: <de_dust2x2>
+L 12/19/2010 - 03:56:07: SpeedHack * Nick: <oJloJlo_KpuBeTkO> , IP: <109.252.223.227> , SteamID: <STEAM_0:0:160787873> , Ping: <60> , Map: <de_dust2x2>
+L 12/19/2010 - 04:02:06: SpeedHack * Nick: <[fsk]*Vano=))> , IP: <91.197.4.6> , SteamID: <STEAM_0:4:1470895089> , Ping: <62> , Map: <awp_india>
+L 12/19/2010 - 04:02:12: SpeedHack * Nick: <[fsk]*Vano=))> , IP: <91.197.4.6> , SteamID: <STEAM_0:4:1470895089> , Ping: <57> , Map: <awp_india>
+L 12/20/2010 - 09:07:50: SpeedHack * Nick: <DmuTpuu> , IP: <178.216.72.182> , SteamID: <STEAM_0:0:1435581117> , Ping: <17> , Map: <awp_india>
+L 12/20/2010 - 10:28:02: SpeedHack * Nick: <bbb666> , IP: <178.68.150.69> , SteamID: <STEAM_0:4:1986351877> , Ping: <36> , Map: <awp_india>
+L 12/20/2010 - 16:29:41: SpeedHack * Nick: <SuperMan> , IP: <62.220.34.42> , SteamID: <STEAM_0:4:1103044419> , Ping: <40> , Map: <de_dust2>
+L 12/20/2010 - 20:41:39: SpeedHack * Nick: <[p47]9 4iter> , IP: <91.124.128.210> , SteamID: <STEAM_0:4:1039028081> , Ping: <204> , Map: <de_dust2>
+L 12/22/2010 - 22:26:01: SpeedHack * Nick: <Barabashka> , IP: <91.203.67.13> , SteamID: <STEAM_0:4:1376752881> , Ping: <78> , Map: <de_dust2x2>
+L 12/23/2010 - 03:30:54: SpeedHack * Nick: <KoP> , IP: <217.66.146.82> , SteamID: <STEAM_0:4:2112311344> , Ping: <105> , Map: <awp_india>
+L 12/23/2010 - 10:03:10: SpeedHack * Nick: <RelaxING^tm l Pe6eHok <> , IP: <94.78.243.247> , SteamID: <STEAM_0:0:2044176640> , Ping: <103> , Map: <awp_india>
+L 12/23/2010 - 10:06:54: SpeedHack * Nick: <RelaxING^tm | TeMp <> , IP: <95.156.90.88> , SteamID: <STEAM_0:0:299007454> , Ping: <82> , Map: <awp_india>
+L 12/23/2010 - 11:02:48: SpeedHack * Nick: <[ANTIMAT]Nick deleted> , IP: <95.30.5.107> , SteamID: <STEAM_0:4:1630338675> , Ping: <30> , Map: <de_dust2>
+L 12/23/2010 - 18:35:11: SpeedHack * Nick: <Ex^Po.TmM@O> , IP: <91.193.151.114> , SteamID: <STEAM_0:0:755938626> , Ping: <55> , Map: <de_dust2x2>
+L 12/23/2010 - 21:39:19: SpeedHack * Nick: <CblTE Ku/79TKOM !|  ^_^> , IP: <78.155.203.164> , SteamID: <STEAM_0:0:167735460> , Ping: <14> , Map: <de_dust2>
+L 12/23/2010 - 21:39:24: SpeedHack * Nick: <CblTE Ku/79TKOM !|  ^_^> , IP: <78.155.203.164> , SteamID: <STEAM_0:0:167735460> , Ping: <29> , Map: <de_dust2>
+L 12/23/2010 - 22:08:41: SpeedHack * Nick: <CblTE Ku/79TKOM !|[Ivan Gomaz]> , IP: <92.53.80.115> , SteamID: <STEAM_0:0:1910711746> , Ping: <13> , Map: <awp_india>
+L 12/24/2010 - 08:54:56: SpeedHack * Nick: <I CRAPPED MYSELF> , IP: <82.140.202.135> , SteamID: <STEAM_0:0:1777440550> , Ping: <20> , Map: <de_dust2x2>
+L 12/25/2010 - 07:23:38: SpeedHack * Nick: <HAOS> , IP: <89.250.230.155> , SteamID: <STEAM_0:4:425528432> , Ping: <41> , Map: <awp_india>
+L 12/25/2010 - 07:26:21: SpeedHack * Nick: <HAOS> , IP: <89.250.230.54> , SteamID: <STEAM_0:4:1339886704> , Ping: <67> , Map: <awp_india>
+L 12/25/2010 - 07:26:26: SpeedHack * Nick: <HAOS> , IP: <89.250.230.54> , SteamID: <STEAM_0:4:1339886704> , Ping: <51> , Map: <awp_india>
+L 12/25/2010 - 07:26:32: SpeedHack * Nick: <HAOS> , IP: <89.250.230.54> , SteamID: <STEAM_0:4:1339886704> , Ping: <65> , Map: <awp_india>
+L 12/25/2010 - 20:14:48: SpeedHack * Nick: <[Der3|{uE_nsb|_tm] puzan4ik> , IP: <78.108.79.76> , SteamID: <STEAM_0:0:1528554014> , Ping: <54> , Map: <awp_india>
+L 12/27/2010 - 07:08:08: SpeedHack * Nick: <.:|Adidas|:.<>sAw<>:)> , IP: <91.191.29.134> , SteamID: <STEAM_0:4:396406513> , Ping: <108> , Map: <de_dust2x2>
+L 12/27/2010 - 09:06:12: SpeedHack * Nick: <KONSTANTIN*39rus*masters.pro*> , IP: <78.36.219.205> , SteamID: <STEAM_0:0:1368056878> , Ping: <38> , Map: <de_dust2x2>
+L 12/28/2010 - 14:30:55: SpeedHack * Nick: <AdiiAssassin> , IP: <91.187.121.121> , SteamID: <STEAM_0:4:1746054385> , Ping: <104> , Map: <awp_india>
+L 12/28/2010 - 14:31:04: SpeedHack * Nick: <AdiiAssassin> , IP: <91.187.121.121> , SteamID: <STEAM_0:4:1746054385> , Ping: <108> , Map: <awp_india>
+L 12/28/2010 - 17:46:38: SpeedHack * Nick: <fglrx> , IP: <92.62.62.17> , SteamID: <STEAM_0:0:1717669335> , Ping: <14> , Map: <awp_india>
+L 12/29/2010 - 00:05:42: SpeedHack * Nick: <Elite teAm|bon4ye> , IP: <82.81.45.35> , SteamID: <STEAM_0:0:1091975348> , Ping: <132> , Map: <de_dust2>
+L 12/29/2010 - 00:16:44: SpeedHack * Nick: <[No-MyAC]Anechka(O_o)> , IP: <95.53.68.206> , SteamID: <STEAM_0:4:864840691> , Ping: <48> , Map: <de_dust2>
+L 12/29/2010 - 00:26:45: SpeedHack * Nick: <Firgat> , IP: <78.138.170.172> , SteamID: <STEAM_0:0:962395117> , Ping: <50> , Map: <de_dust2>
+L 12/29/2010 - 14:35:30: SpeedHack * Nick: <masHA> , IP: <91.206.126.247> , SteamID: <STEAM_0:0:1216886494> , Ping: <17> , Map: <de_inferno>
+L 12/29/2010 - 14:35:41: SpeedHack * Nick: <masHA> , IP: <91.206.126.247> , SteamID: <STEAM_0:0:1216886494> , Ping: <32> , Map: <de_inferno>
+L 12/30/2010 - 08:54:57: SpeedHack * Nick: <D-Marko> , IP: <94.180.94.173> , SteamID: <STEAM_0:4:33631091> , Ping: <74> , Map: <de_dust2x2>
+L 12/30/2010 - 08:55:30: SpeedHack * Nick: <DIE tm|P.R.O.> , IP: <89.189.169.41> , SteamID: <STEAM_0:0:627137803> , Ping: <89> , Map: <de_dust2x2>
+L 12/30/2010 - 18:19:06: SpeedHack * Nick: <[ANTIMAT]Nick deleted> , IP: <95.179.93.61> , SteamID: <STEAM_0:0:501451852> , Ping: <60> , Map: <de_dust2x2>
+L 12/30/2010 - 18:19:13: SpeedHack * Nick: <[ANTIMAT]Nick deleted> , IP: <95.179.93.61> , SteamID: <STEAM_0:0:501451852> , Ping: <61> , Map: <de_dust2x2>
+L 01/03/2011 - 01:49:09: SpeedHack * Nick: <.::S[u]T::.> , IP: <95.110.102.120> , SteamID: <STEAM_0:0:1299360176> , Ping: <65> , Map: <de_dust2x2>
+L 01/03/2011 - 02:05:31: SpeedHack * Nick: <trus> , IP: <46.150.233.208> , SteamID: <STEAM_0:4:1020967499> , Ping: <79> , Map: <de_dust2x2>
+L 01/03/2011 - 07:10:55: SpeedHack * Nick: <bad_bous~[clan]-OTmaROzaK> , IP: <82.200.226.89> , SteamID: <STEAM_0:0:1706787589> , Ping: <97> , Map: <de_inferno>
+L 01/03/2011 - 12:27:42: SpeedHack * Nick: <vivp> , IP: <91.185.16.139> , SteamID: <STEAM_0:4:287714801> , Ping: <86> , Map: <awp_india>
+L 01/03/2011 - 15:34:43: SpeedHack * Nick: <vaska davai *ASA*> , IP: <109.161.58.11> , SteamID: <STEAM_0:0:1138403086> , Ping: <9> , Map: <awp_india>
+L 01/04/2011 - 18:42:44: SpeedHack * Nick: <PINIGIN> , IP: <94.188.54.230> , SteamID: <STEAM_0:0:704149565> , Ping: <23> , Map: <de_dust2x2>
+L 01/04/2011 - 21:27:13: SpeedHack * Nick: <JusMan-_^0ne> , IP: <217.150.37.109> , SteamID: <STEAM_0:0:1063224392> , Ping: <33> , Map: <de_dust2>
+L 01/04/2011 - 21:29:10: SpeedHack * Nick: <JusMan-_^0ne> , IP: <217.150.37.109> , SteamID: <STEAM_0:0:1063224392> , Ping: <64> , Map: <de_dust2>
+L 01/05/2011 - 05:46:49: SpeedHack * Nick: <:D> , IP: <109.201.71.177> , SteamID: <STEAM_0:0:700096341> , Ping: <28> , Map: <awp_india>
+L 01/05/2011 - 05:47:00: SpeedHack * Nick: <:D> , IP: <109.201.71.177> , SteamID: <STEAM_0:0:700096341> , Ping: <7> , Map: <awp_india>
+L 01/05/2011 - 16:21:43: SpeedHack * Nick: <911> , IP: <109.169.170.250> , SteamID: <STEAM_0:4:704325098> , Ping: <96> , Map: <de_dust2>
+L 01/06/2011 - 03:23:09: SpeedHack * Nick: <4*I*T*E*R> , IP: <89.178.15.168> , SteamID: <STEAM_0:0:711595068> , Ping: <10> , Map: <awp_india>
+L 01/06/2011 - 03:23:13: SpeedHack * Nick: <4*I*T*E*R> , IP: <89.178.15.168> , SteamID: <STEAM_0:0:711595068> , Ping: <8> , Map: <awp_india>
+L 01/06/2011 - 07:12:52: SpeedHack * Nick: <XAXOL> , IP: <85.26.235.247> , SteamID: <STEAM_0:4:794557558> , Ping: <119> , Map: <awp_india>
+L 01/06/2011 - 07:47:14: SpeedHack * Nick: <XAMELION> , IP: <85.26.235.112> , SteamID: <STEAM_0:4:1826356342> , Ping: <125> , Map: <de_dust2x2>
+L 01/06/2011 - 08:08:29: SpeedHack * Nick: <Oleg 22> , IP: <85.26.235.99> , SteamID: <STEAM_0:4:1700527222> , Ping: <116> , Map: <de_dust2x2>
+L 01/06/2011 - 08:21:15: SpeedHack * Nick: <!!!KOSKA DAUCH!!!!> , IP: <85.26.235.211> , SteamID: <STEAM_0:4:1029438582> , Ping: <129> , Map: <de_dust2x2>
+L 01/07/2011 - 14:03:57: SpeedHack * Nick: <__________________> , IP: <87.253.30.157> , SteamID: <STEAM_0:4:438374391> , Ping: <49> , Map: <awp_india>
+L 01/08/2011 - 02:23:13: SpeedHack * Nick: <Night> , IP: <84.204.34.168> , SteamID: <STEAM_0:4:12523382> , Ping: <2> , Map: <de_dust2>
+L 01/08/2011 - 10:02:24: SpeedHack * Nick: <{KILL){NooB}> , IP: <212.113.225.20> , SteamID: <STEAM_0:0:1432021058> , Ping: <74> , Map: <awp_india>
+L 01/08/2011 - 16:54:51: SpeedHack * Nick: <IIcux> , IP: <91.199.153.60> , SteamID: <STEAM_0:4:1256362737> , Ping: <9> , Map: <awp_india>
+L 01/10/2011 - 17:59:13: SpeedHack * Nick: <4IPOLINO> , IP: <93.100.141.57> , SteamID: <STEAM_0:0:629207750> , Ping: <3> , Map: <awp_india>
+L 01/10/2011 - 18:18:20: SpeedHack * Nick: <<Virus-Pro> Mr> , IP: <178.65.163.129> , SteamID: <STEAM_0:0:601861399> , Ping: <46> , Map: <awp_india>
+L 01/11/2011 - 21:35:59: SpeedHack * Nick: <[No-MyAC]^^EmoBoy^^> , IP: <95.169.135.127> , SteamID: <STEAM_0:0:1613985370> , Ping: <58> , Map: <awp_india>
+L 01/11/2011 - 23:24:13: SpeedHack * Nick: <H00L> , IP: <95.215.254.54> , SteamID: <STEAM_0:4:1339103987> , Ping: <17> , Map: <de_dust2>
+L 01/12/2011 - 18:38:04: SpeedHack * Nick: <Francya> , IP: <95.71.53.157> , SteamID: <STEAM_0:0:225440925> , Ping: <26> , Map: <de_dust2>
+L 01/13/2011 - 05:20:18: SpeedHack * Nick: <,> , IP: <80.237.103.240> , SteamID: <STEAM_0:0:966823344> , Ping: <48> , Map: <de_dust2x2>
+L 01/13/2011 - 08:08:55: SpeedHack * Nick: <000000> , IP: <46.28.100.20> , SteamID: <STEAM_0:4:1587314507> , Ping: <75> , Map: <de_dust2x2>
+L 01/13/2011 - 10:01:08: SpeedHack * Nick: <U.S.S. ENTERPRISE> , IP: <95.30.144.125> , SteamID: <STEAM_0:0:1761731307> , Ping: <36> , Map: <de_dust2x2>
+L 01/13/2011 - 21:28:24: SpeedHack * Nick: <POINT> , IP: <94.232.13.65> , SteamID: <STEAM_0:0:1360699172> , Ping: <18> , Map: <awp_india>
+L 01/14/2011 - 21:50:45: SpeedHack * Nick: <porno_master:*(_o_).!.> , IP: <95.32.166.93> , SteamID: <STEAM_0:0:829439487> , Ping: <107> , Map: <awp_india>
+L 01/15/2011 - 10:49:14: SpeedHack * Nick: <KCEPOKC> , IP: <91.207.142.160> , SteamID: <STEAM_0:0:1132039978> , Ping: <85> , Map: <de_dust2>
+L 01/16/2011 - 09:56:30: SpeedHack * Nick: <[Shot In Ass*:D] |tm|>GVost> , IP: <95.135.48.236> , SteamID: <STEAM_0:0:2031759862> , Ping: <99> , Map: <de_inferno>
+L 01/17/2011 - 21:07:24: SpeedHack * Nick: <EdVaRd NaV'I> , IP: <95.67.171.22> , SteamID: <STEAM_0:4:1610338547> , Ping: <64> , Map: <de_dust2x2>
+L 01/18/2011 - 04:34:35: SpeedHack * Nick: <MARIO> , IP: <95.37.44.230> , SteamID: <STEAM_0:0:222360111> , Ping: <16> , Map: <de_dust2x2>
+L 01/18/2011 - 19:00:52: SpeedHack * Nick: <Nesquik> , IP: <94.231.148.54> , SteamID: <STEAM_0:4:1340343027> , Ping: <17> , Map: <de_dust2x2>
+L 01/19/2011 - 04:09:28: SpeedHack * Nick: <Musik*> , IP: <109.173.126.12> , SteamID: <STEAM_0:4:1385244650> , Ping: <26> , Map: <de_dust2x2>
+L 01/19/2011 - 04:10:08: SpeedHack * Nick: <Musik*> , IP: <109.173.126.12> , SteamID: <STEAM_0:4:1385244650> , Ping: <26> , Map: <de_dust2x2>
+L 01/19/2011 - 04:10:17: SpeedHack * Nick: <Musik*> , IP: <109.173.126.12> , SteamID: <STEAM_0:4:1385244650> , Ping: <20> , Map: <de_dust2x2>
+L 01/19/2011 - 04:11:31: SpeedHack * Nick: <Musik*> , IP: <109.173.126.12> , SteamID: <STEAM_0:4:1385244650> , Ping: <47> , Map: <de_dust2x2>
+L 01/19/2011 - 04:11:44: SpeedHack * Nick: <Musik*> , IP: <109.173.126.12> , SteamID: <STEAM_0:4:1385244650> , Ping: <17> , Map: <de_dust2x2>
+L 01/19/2011 - 04:12:01: SpeedHack * Nick: <Musik*> , IP: <109.173.126.12> , SteamID: <STEAM_0:4:1385244650> , Ping: <25> , Map: <de_dust2x2>
+L 01/23/2011 - 18:36:58: SpeedHack * Nick: <iGoR9NbI4> , IP: <172.22.84.148> , SteamID: <STEAM_0:0:166440319> , Ping: <80> , Map: <de_dust2>
+L 01/23/2011 - 20:14:34: SpeedHack * Nick: <^NeoR^> , IP: <95.53.14.122> , SteamID: <STEAM_0:0:956525306> , Ping: <21> , Map: <awp_india>
+L 01/24/2011 - 06:18:45: SpeedHack * Nick: <Pro NOOB 2> , IP: <92.126.36.211> , SteamID: <STEAM_0:4:1027362418> , Ping: <96> , Map: <awp_india>
+L 01/24/2011 - 20:49:11: SpeedHack * Nick: <megaNOOB> , IP: <94.50.141.116> , SteamID: <STEAM_0:0:1695142238> , Ping: <152> , Map: <awp_india>
+L 01/25/2011 - 09:59:26: SpeedHack * Nick: <Mc m4a1> , IP: <178.74.95.86> , SteamID: <STEAM_0:4:2139214853> , Ping: <63> , Map: <de_inferno>
+L 01/25/2011 - 14:26:26: SpeedHack * Nick: <hacker> , IP: <91.122.128.229> , SteamID: <STEAM_0:0:22834311> , Ping: <28> , Map: <gg_mini_dust2>
+L 01/25/2011 - 14:47:12: SpeedHack * Nick: <25/17> , IP: <2.60.229.225> , SteamID: <STEAM_0:0:1963419247> , Ping: <59> , Map: <gg_mini_dust2>
+L 01/25/2011 - 15:51:35: SpeedHack * Nick: <///Zeus///> , IP: <178.47.176.54> , SteamID: <STEAM_0:4:1341548165> , Ping: <76> , Map: <gg_fy_deagle_dustworld>
+L 01/25/2011 - 21:53:52: SpeedHack * Nick: <.zip> , IP: <95.25.67.106> , SteamID: <STEAM_0:4:1636826611> , Ping: <108> , Map: <fy_pool_day>
+L 01/26/2011 - 15:11:19: SpeedHack * Nick: <~^007^~> , IP: <212.57.145.150> , SteamID: <STEAM_0:4:535227830> , Ping: <43> , Map: <gg_aim_killer>
+L 01/26/2011 - 18:05:01: SpeedHack * Nick: <BBBBBBBBB> , IP: <85.175.44.107> , SteamID: <STEAM_0:4:1631069942> , Ping: <123> , Map: <gg_bombworld>
+L 01/27/2011 - 16:01:36: SpeedHack * Nick: <Na'vi Roman K.> , IP: <213.87.74.82> , SteamID: <STEAM_0:0:1437192185> , Ping: <140> , Map: <fy_snow2006>
+L 01/28/2011 - 11:53:49: SpeedHack * Nick: <pavel> , IP: <90.151.16.1> , SteamID: <STEAM_0:4:1411791601> , Ping: <109> , Map: <gg_aim_killer>
+L 01/29/2011 - 22:34:54: SpeedHack * Nick: <[ExIt-Clan.Net.Ru] HeKuT> , IP: <46.147.161.117> , SteamID: <STEAM_0:0:627425196> , Ping: <77> , Map: <gg_italia>
+L 01/30/2011 - 11:56:37: SpeedHack * Nick: <(}i{eka)    M4A1         pRo> , IP: <78.85.49.158> , SteamID: <STEAM_0:4:464968699> , Ping: <51> , Map: <gg_4one_dusty>
+L 01/31/2011 - 13:40:59: SpeedHack * Nick: <[All-CS.Net.Ru] User> , IP: <91.78.223.45> , SteamID: <STEAM_0:0:1462565137> , Ping: <11> , Map: <gg_4one_dusty>
+L 01/31/2011 - 13:53:01: SpeedHack * Nick: <*33* 3D *=>K.O#Player> , IP: <109.73.192.175> , SteamID: <STEAM_0:4:55465450> , Ping: <102> , Map: <gg_4one_dusty>
+L 02/02/2011 - 10:59:23: SpeedHack * Nick: <HITMAN> , IP: <94.75.60.203> , SteamID: <STEAM_0:0:1836466380> , Ping: <86> , Map: <gg_aim_killer>
+L 02/02/2011 - 18:49:49: SpeedHack * Nick: <Treyk> , IP: <213.149.7.56> , SteamID: <STEAM_0:0:1107075021> , Ping: <54> , Map: <cs_16fighter>
+L 02/05/2011 - 20:55:11: SpeedHack * Nick: <gg> , IP: <109.167.131.48> , SteamID: <STEAM_0:4:1290773226> , Ping: <12> , Map: <gg_aim_killer>
+L 02/06/2011 - 01:51:42: SpeedHack * Nick: <MiR[tm] | FF*> , IP: <92.55.21.100> , SteamID: <STEAM_0:0:757538154> , Ping: <102> , Map: <de_dust2x2>
+L 02/06/2011 - 10:25:16: SpeedHack * Nick: <BUILD> , IP: <83.220.65.26> , SteamID: <STEAM_0:4:1502519157> , Ping: <62> , Map: <gg_33_lab>
+L 02/06/2011 - 20:12:15: SpeedHack * Nick: <rainur> , IP: <178.206.6.85> , SteamID: <STEAM_0:0:701562854> , Ping: <59> , Map: <de_dust2x2>
+L 02/06/2011 - 20:12:27: SpeedHack * Nick: <rainur> , IP: <178.206.6.85> , SteamID: <STEAM_0:0:701562854> , Ping: <65> , Map: <de_dust2x2>
+L 02/07/2011 - 20:11:10: SpeedHack * Nick: <[Scroll Lock]> , IP: <46.0.4.63> , SteamID: <STEAM_0:4:1261203787> , Ping: <81> , Map: <gg_bombworld>
+L 02/08/2011 - 09:17:52: SpeedHack * Nick: <<mavirik>> , IP: <91.198.212.29> , SteamID: <STEAM_0:0:94737599> , Ping: <94> , Map: <de_dust2x2>
+L 02/08/2011 - 22:04:00: SpeedHack * Nick: <IIpu3epByaP> , IP: <95.64.234.227> , SteamID: <STEAM_0:0:1594597878> , Ping: <49> , Map: <gg_fy_iceworld_1337>
+L 02/09/2011 - 08:31:36: SpeedHack * Nick: <@@##HAgJIbIu*##@@> , IP: <78.37.250.137> , SteamID: <STEAM_0:4:273900539> , Ping: <39> , Map: <gg_4one_dusty>
+L 02/10/2011 - 18:14:13: SpeedHack * Nick: <FreeDoM> , IP: <92.243.183.13> , SteamID: <STEAM_0:4:1383434482> , Ping: <88> , Map: <gg_4one_dusty>
+L 02/11/2011 - 11:27:51: SpeedHack * Nick: <ExE-DeaD-[Damon]> , IP: <89.189.169.45> , SteamID: <STEAM_0:4:1115336688> , Ping: <61> , Map: <gg_mini_dust2>
+L 02/11/2011 - 16:48:24: SpeedHack * Nick: <_-_*$*@*n*4*e*$*_-_> , IP: <95.134.208.112> , SteamID: <STEAM_0:4:1824928371> , Ping: <116> , Map: <de_dust2x2>
+L 02/12/2011 - 04:23:54: SpeedHack * Nick: <[MC]TePoPuST> , IP: <95.134.173.243> , SteamID: <STEAM_0:4:762884723> , Ping: <102> , Map: <gg_mini_dust2>
+L 02/12/2011 - 12:23:55: SpeedHack * Nick: <=LaGeR=> , IP: <94.181.207.91> , SteamID: <STEAM_0:4:2034871283> , Ping: <82> , Map: <gg_4one_dusty>
+L 02/12/2011 - 18:17:06: SpeedHack * Nick: <gg.ewar.lt:27015> , IP: <109.169.247.231> , SteamID: <STEAM_0:4:659924458> , Ping: <35> , Map: <gg_fy_ski>
+L 02/12/2011 - 18:57:55: SpeedHack * Nick: <v.l.a.d.o.4.e.k> , IP: <95.67.218.250> , SteamID: <STEAM_0:0:22077512> , Ping: <50> , Map: <de_dust2x2>
+L 02/13/2011 - 09:45:15: SpeedHack * Nick: <[Golden axe] Dmitrich> , IP: <109.108.53.17> , SteamID: <STEAM_0:4:1546962794> , Ping: <30> , Map: <de_dust2x2>
+L 02/13/2011 - 13:18:45: SpeedHack * Nick: <Mc_VodkA_31rus> , IP: <109.62.129.47> , SteamID: <STEAM_0:0:831006521> , Ping: <48> , Map: <de_dust2x2>
+L 02/13/2011 - 17:42:04: SpeedHack * Nick: <Ka/7yCTa> , IP: <95.29.27.147> , SteamID: <STEAM_0:0:1895962782> , Ping: <100> , Map: <gg_bombworld>
+L 02/13/2011 - 18:01:15: SpeedHack * Nick: <[Golden axe] Dmitrich> , IP: <109.108.48.55> , SteamID: <STEAM_0:4:1328957290> , Ping: <110> , Map: <gg_fy_iceworld_1337>
+L 02/14/2011 - 20:40:41: SpeedHack * Nick: <MAMA GOVORIT 4TO OSOBENI> , IP: <2.94.63.109> , SteamID: <STEAM_0:0:897687902> , Ping: <27> , Map: <de_dust2x2>
+L 02/16/2011 - 17:21:16: SpeedHack * Nick: <[Golden axe] Dmitrich> , IP: <88.85.190.79> , SteamID: <STEAM_0:4:1936808944> , Ping: <32> , Map: <gg_4one_dusty>
+L 02/17/2011 - 14:25:19: SpeedHack * Nick: <fusk o_O> , IP: <92.101.45.85> , SteamID: <STEAM_0:0:22576102> , Ping: <64> , Map: <cs_16fighter>
+L 02/17/2011 - 14:25:27: SpeedHack * Nick: <fusk o_O> , IP: <92.101.45.85> , SteamID: <STEAM_0:0:22576102> , Ping: <50> , Map: <cs_16fighter>
+L 02/19/2011 - 20:42:31: SpeedHack * Nick: <[Golden axe] Dmitrich> , IP: <88.85.177.99> , SteamID: <STEAM_0:4:1702288368> , Ping: <44> , Map: <cs_16fighter>
+L 02/20/2011 - 12:16:42: SpeedHack * Nick: <_-_*$*@*n*4*e*$*_-_> , IP: <95.134.152.12> , SteamID: <STEAM_0:4:1390555763> , Ping: <178> , Map: <cs_pf_dust>
+L 02/20/2011 - 15:15:24: SpeedHack * Nick: <marat> , IP: <83.234.207.137> , SteamID: <STEAM_0:4:273253493> , Ping: <63> , Map: <fy_adrenalin>
+L 02/20/2011 - 16:59:58: SpeedHack * Nick: <[Golden axe] Dmitrich> , IP: <109.108.33.109> , SteamID: <STEAM_0:4:1648281450> , Ping: <78> , Map: <gg_crazyjump_quin>
+L 02/21/2011 - 22:30:39: SpeedHack * Nick: <Nestle> , IP: <92.101.125.22> , SteamID: <STEAM_0:0:249041831> , Ping: <62> , Map: <gg_bombworld>
+L 02/22/2011 - 00:31:27: SpeedHack * Nick: <lol> , IP: <188.55.194.70> , SteamID: <STEAM_0:0:1807210831> , Ping: <158> , Map: <gg_crazyjump_quin>
+L 02/22/2011 - 14:09:51: SpeedHack * Nick: <[Golden axe] Dmitrich> , IP: <212.124.22.66> , SteamID: <STEAM_0:4:1973767990> , Ping: <54> , Map: <fy_inferno>
+L 02/24/2011 - 15:01:41: SpeedHack * Nick: <ERA. elite                  /A/> , IP: <178.64.160.169> , SteamID: <STEAM_0:4:8278277> , Ping: <28> , Map: <de_dust2x2>
+L 02/24/2011 - 15:40:19: SpeedHack * Nick: <[All-CS.Net.Ru] User> , IP: <91.77.233.198> , SteamID: <STEAM_0:0:1462565137> , Ping: <49> , Map: <gg_fy_ski>
+L 02/25/2011 - 16:43:45: SpeedHack * Nick: <DEDofKILL> , IP: <85.140.54.163> , SteamID: <STEAM_0:0:1362291018> , Ping: <40> , Map: <de_dust2x2>
+L 02/25/2011 - 19:39:41: SpeedHack * Nick: <Doctor_Who?> , IP: <94.41.162.1> , SteamID: <STEAM_0:0:1500946771> , Ping: <83> , Map: <cs_16fighter>
+L 02/26/2011 - 02:18:37: SpeedHack * Nick: <[RePublic]EasyBot[EST]> , IP: <82.181.76.233> , SteamID: <STEAM_0:4:537406453> , Ping: <34> , Map: <gg_fy_ski>
+L 02/26/2011 - 10:51:40: SpeedHack * Nick: <KpuBeTko> , IP: <109.165.13.42> , SteamID: <STEAM_0:4:1101571050> , Ping: <81> , Map: <de_dust2x2>
+L 02/26/2011 - 13:20:25: SpeedHack * Nick: <lOw#-n0bAsick> , IP: <109.95.226.98> , SteamID: <STEAM_0:4:1709137642> , Ping: <32> , Map: <fy_pool_day>
+L 02/27/2011 - 03:12:02: SpeedHack * Nick: <[T.a.II.k.u] IIaIIa IIcux> , IP: <109.197.139.119> , SteamID: <STEAM_0:0:1039843886> , Ping: <29> , Map: <gg_mini_dust2>
+L 02/27/2011 - 03:26:27: SpeedHack * Nick: <228> , IP: <93.80.210.17> , SteamID: <STEAM_0:4:1548179826> , Ping: <6> , Map: <de_dust2x2>
+L 02/28/2011 - 13:20:20: SpeedHack * Nick: <Ultra> , IP: <95.158.200.62> , SteamID: <STEAM_0:4:1271545459> , Ping: <98> , Map: <gg_aim_killer>
+L 02/28/2011 - 14:48:20: SpeedHack * Nick: <com> , IP: <46.148.60.36> , SteamID: <STEAM_0:4:1185954635> , Ping: <40> , Map: <gg_mini_dust2>
+L 02/28/2011 - 17:29:51: SpeedHack * Nick: <Virtus.pro > SaJlaaaT> , IP: <94.19.8.52> , SteamID: <STEAM_0:4:1319794931> , Ping: <34> , Map: <gg_fy_ski>
+L 02/28/2011 - 18:28:17: SpeedHack * Nick: <!> , IP: <95.30.11.163> , SteamID: <STEAM_0:4:86769267> , Ping: <30> , Map: <fy_inferno>
+L 02/28/2011 - 23:21:42: SpeedHack * Nick: <|No|> , IP: <89.178.188.186> , SteamID: <STEAM_0:0:570350677> , Ping: <7> , Map: <gg_fy_iceworld_1337>
+L 03/03/2011 - 08:31:11: SpeedHack * Nick: <L@DA 99> , IP: <92.101.183.31> , SteamID: <STEAM_0:0:1569311700> , Ping: <14> , Map: <de_dust2x2>
+L 03/04/2011 - 21:48:37: SpeedHack * Nick: <eto ya> , IP: <89.222.164.97> , SteamID: <STEAM_0:4:1685855856> , Ping: <20> , Map: <cs_pf_dust>
+L 03/05/2011 - 18:43:17: SpeedHack * Nick: <MoMoMo> , IP: <94.180.41.220> , SteamID: <STEAM_0:0:1161943430> , Ping: <154> , Map: <gg_fy_iceworld_1337>
+L 03/05/2011 - 18:47:47: SpeedHack * Nick: <ses> , IP: <94.181.67.57> , SteamID: <STEAM_0:0:1475199670> , Ping: <83> , Map: <gg_fy_iceworld_1337>
+L 03/05/2011 - 22:35:01: SpeedHack * Nick: <HeaD[$]hOt*{MaStEr}*NEKIT> , IP: <109.229.38.248> , SteamID: <STEAM_0:4:683475946> , Ping: <246> , Map: <gg_fy_ski>
+L 03/06/2011 - 09:24:48: SpeedHack * Nick: <shot 15/24> , IP: <94.180.17.15> , SteamID: <STEAM_0:0:1161943430> , Ping: <75> , Map: <gg_aim_ag_texture_city_cs16>
+L 03/06/2011 - 13:27:59: SpeedHack * Nick: <[All-CS.Net.Ru] Admin - Chitak> , IP: <188.235.147.5> , SteamID: <STEAM_0:0:491255541> , Ping: <124> , Map: <gg_fy_ski>
+L 03/06/2011 - 22:52:39: SpeedHack * Nick: <Kloun> , IP: <94.181.68.132> , SteamID: <STEAM_0:4:378285043> , Ping: <68> , Map: <cs_16fighter>
+L 03/06/2011 - 22:52:44: SpeedHack * Nick: <Kloun> , IP: <94.181.68.132> , SteamID: <STEAM_0:4:378285043> , Ping: <66> , Map: <cs_16fighter>
+L 03/07/2011 - 00:57:18: SpeedHack * Nick: <Elemet> , IP: <93.90.109.231> , SteamID: <STEAM_0:0:1705188461> , Ping: <43> , Map: <fy_skyworld>
+L 03/08/2011 - 15:52:46: SpeedHack * Nick: <Moro#> , IP: <94.181.73.136> , SteamID: <STEAM_0:4:277523443> , Ping: <60> , Map: <fy_inferno>
+L 03/09/2011 - 17:35:53: SpeedHack * Nick: <Deag!e^_> , IP: <94.180.14.242> , SteamID: <STEAM_0:0:1161943430> , Ping: <81> , Map: <gg_bombworld>
+L 03/09/2011 - 18:00:48: SpeedHack * Nick: <Svit@ls> , IP: <95.28.17.129> , SteamID: <STEAM_0:0:1469353000> , Ping: <12> , Map: <de_dust2x2>
+L 03/09/2011 - 18:00:58: SpeedHack * Nick: <Svit@ls> , IP: <95.28.17.129> , SteamID: <STEAM_0:0:1469353000> , Ping: <26> , Map: <de_dust2x2>
+L 03/11/2011 - 18:08:34: SpeedHack * Nick: <xD> , IP: <109.62.174.12> , SteamID: <STEAM_0:0:1709715920> , Ping: <47> , Map: <cs_pf_dust>
+L 03/12/2011 - 20:54:34: SpeedHack * Nick: <DEDE> , IP: <78.37.192.51> , SteamID: <STEAM_0:0:966305187> , Ping: <90> , Map: <gg_4one_dusty>
+L 03/13/2011 - 14:06:27: SpeedHack * Nick: <Rq ` Rainkoz`{C}> , IP: <212.253.45.36> , SteamID: <STEAM_0:4:1186500534> , Ping: <145> , Map: <cs_pf_dust>
+L 03/13/2011 - 14:06:34: SpeedHack * Nick: <Rq ` Rainkoz`{C}> , IP: <212.253.45.36> , SteamID: <STEAM_0:4:1186500534> , Ping: <104> , Map: <cs_pf_dust>
+L 03/14/2011 - 17:20:17: SpeedHack * Nick: <LEXA-AK-47.cfg.**116RUS**> , IP: <178.207.55.176> , SteamID: <STEAM_0:0:1225780480> , Ping: <76> , Map: <de_dust2x2>
+L 03/14/2011 - 17:20:24: SpeedHack * Nick: <LEXA-AK-47.cfg.**116RUS**> , IP: <178.207.55.176> , SteamID: <STEAM_0:0:1225780480> , Ping: <97> , Map: <de_dust2x2>
+L 03/15/2011 - 09:24:02: SpeedHack * Nick: <<<<.:$RUSLAN$:.>>>> , IP: <92.240.208.27> , SteamID: <STEAM_0:0:1710533205> , Ping: <28> , Map: <gg_crazyjump_quin>
+L 03/17/2011 - 16:38:03: SpeedHack * Nick: <Gamer.pro>DiMa> , IP: <95.53.35.209> , SteamID: <STEAM_0:0:1497065376> , Ping: <51> , Map: <de_dust2x2>
+L 03/20/2011 - 19:56:14: SpeedHack * Nick: <Wegas> , IP: <91.193.207.37> , SteamID: <STEAM_0:0:1621249169> , Ping: <19> , Map: <gg_aim_ag_texture_city_cs16>
+L 03/21/2011 - 13:49:18: SpeedHack * Nick: <ZerO> , IP: <178.90.150.8> , SteamID: <STEAM_0:0:1775785545> , Ping: <95> , Map: <fy_pool_day>
+L 03/23/2011 - 17:55:53: SpeedHack * Nick: <Kr[as].pro>ALLiGaToR> , IP: <88.147.206.74> , SteamID: <STEAM_0:0:968965987> , Ping: <98> , Map: <gg_bombworld>
+L 03/23/2011 - 21:06:58: SpeedHack * Nick: <kosos> , IP: <95.52.101.63> , SteamID: <STEAM_0:0:2039263127> , Ping: <43> , Map: <fy_pool_day>
+L 03/24/2011 - 17:52:35: SpeedHack * Nick: <cocaJl y adm MoHo c 4uToM> , IP: <95.53.6.235> , SteamID: <STEAM_0:4:556624883> , Ping: <19> , Map: <gg_crazyjump_quin>
+L 03/26/2011 - 14:24:17: SpeedHack * Nick: <Vi noobi> , IP: <92.255.217.198> , SteamID: <STEAM_0:0:1562430131> , Ping: <54> , Map: <gg_aim_killer>
+L 03/27/2011 - 12:51:09: SpeedHack * Nick: <[NonSteam]zWzDarkFablezWz> , IP: <91.200.136.141> , SteamID: <STEAM_0:4:308942193> , Ping: <71> , Map: <gg_bombworld>
+L 03/28/2011 - 16:17:16: SpeedHack * Nick: <(1)Player> , IP: <95.53.191.76> , SteamID: <STEAM_0:4:1928457203> , Ping: <47> , Map: <gg_fy_ski>
+L 03/28/2011 - 17:13:33: SpeedHack * Nick: <-=TAN9|=-> , IP: <91.122.205.209> , SteamID: <STEAM_0:0:1641370042> , Ping: <81> , Map: <de_dust2x2>
+L 03/28/2011 - 20:09:27: SpeedHack * Nick: <keria> , IP: <91.193.69.116> , SteamID: <STEAM_0:4:1854706161> , Ping: <93> , Map: <gg_fy_iceworld_1337>
+L 03/31/2011 - 20:18:47: SpeedHack * Nick: <*Gorlovka*`> , IP: <91.219.140.81> , SteamID: <STEAM_0:0:1361136797> , Ping: <88> , Map: <gg_fy_iceworld_1337>
+L 03/31/2011 - 22:35:56: SpeedHack * Nick: <Arena Knife 47|Georg> , IP: <95.24.18.184> , SteamID: <STEAM_0:4:145194355> , Ping: <28> , Map: <de_dust2x2>
+L 04/02/2011 - 01:00:52: SpeedHack * Nick: <[True]SlimE> , IP: <94.228.201.146> , SteamID: <STEAM_0:4:499811187> , Ping: <7> , Map: <cs_16fighter>
+L 04/03/2011 - 00:01:07: SpeedHack * Nick: <True> , IP: <89.23.13.115> , SteamID: <STEAM_0:0:493414123> , Ping: <37> , Map: <gg_aim_killer>
+L 04/03/2011 - 15:20:43: SpeedHack * Nick: <As'gO{cS}*Alex52> , IP: <93.120.207.165> , SteamID: <STEAM_0:4:105500018> , Ping: <53> , Map: <gg_fy_iceworld_1337>
+L 04/05/2011 - 09:27:39: SpeedHack * Nick: <<SANTA>> , IP: <93.124.14.8> , SteamID: <STEAM_0:0:696567840> , Ping: <60> , Map: <fy_pool_day>
+L 04/05/2011 - 19:34:28: SpeedHack * Nick: <.:E[X]Trime:.> , IP: <90.150.126.66> , SteamID: <STEAM_0:0:493458283> , Ping: <71> , Map: <de_dust2x2>
+L 04/06/2011 - 19:37:58: SpeedHack * Nick: <unnamed> , IP: <95.78.85.196> , SteamID: <STEAM_0:0:697941421> , Ping: <4> , Map: <fy_anywhere>
+L 04/07/2011 - 19:13:25: SpeedHack * Nick: <[TomGame]*tm| *_*SmaILe*_*> , IP: <212.124.29.172> , SteamID: <STEAM_0:4:44093238> , Ping: <60> , Map: <gg_fy_ski>
+L 04/08/2011 - 16:39:17: SpeedHack * Nick: <[TomGame]*tm| (:SmaILe:)> , IP: <88.85.181.46> , SteamID: <STEAM_0:4:1140120560> , Ping: <79> , Map: <gg_aim_killer>
+L 04/10/2011 - 14:26:16: SpeedHack * Nick: <PUMA> , IP: <91.185.16.151> , SteamID: <STEAM_0:4:522595825> , Ping: <205> , Map: <cs_16fighter>
+L 04/10/2011 - 21:19:37: SpeedHack * Nick: <LOL> , IP: <77.79.57.175> , SteamID: <STEAM_0:4:53663482> , Ping: <104> , Map: <gg_aim_killer>
+L 04/13/2011 - 18:17:02: SpeedHack * Nick: <Natasha> , IP: <188.123.231.21> , SteamID: <STEAM_0:0:922701079> , Ping: <39> , Map: <gg_aim_ag_texture_city_cs16>
+L 04/14/2011 - 19:26:09: SpeedHack * Nick: <bashbabi> , IP: <91.77.222.7> , SteamID: <STEAM_0:0:1835391645> , Ping: <28> , Map: <cs_16fighter>
+L 04/15/2011 - 11:42:33: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:47:01: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <31> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:48:10: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <4> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:48:21: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <9> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:49:17: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <99> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:49:23: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <33> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:49:31: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:49:40: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <18> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:49:53: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <9> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:50:41: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <37> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:50:48: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:50:58: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <34> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:51:28: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <13> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:51:34: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <31> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:51:39: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <35> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:51:51: SpeedHack * Nick: <bashbabi> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <4> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:55:27: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <37> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:55:34: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <32> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:55:37: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <30> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:56:01: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <31> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:56:07: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <23> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:56:12: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <22> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:57:34: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <32> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:57:52: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <24> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:58:11: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:58:47: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <28> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:59:07: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <34> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:59:41: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <35> , Map: <gg_fy_ski>
+L 04/15/2011 - 11:59:52: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:00:40: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <39> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:01:23: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <29> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:01:34: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <28> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:01:38: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <14> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:01:47: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <15> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:01:51: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <20> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:02:04: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <27> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:02:19: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <24> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:02:48: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <20> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:02:53: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <38> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:03:04: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <22> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:03:09: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:03:30: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <50> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:03:39: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <20> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:03:44: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <35> , Map: <gg_fy_ski>
+L 04/15/2011 - 12:04:11: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <23> , Map: <gg_fy_ski>
+L 04/15/2011 - 13:43:20: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <24> , Map: <de_dust2x2>
+L 04/15/2011 - 13:43:30: SpeedHack * Nick: <[war3ft.ru]HFVBG> , IP: <91.77.165.0> , SteamID: <STEAM_0:0:1835391645> , Ping: <14> , Map: <de_dust2x2>
+L 04/15/2011 - 17:46:53: SpeedHack * Nick: <Machuka> , IP: <188.235.70.144> , SteamID: <STEAM_0:0:929489843> , Ping: <15> , Map: <gg_crazyjump_quin>
+L 04/15/2011 - 17:47:02: SpeedHack * Nick: <Machuka> , IP: <188.235.70.144> , SteamID: <STEAM_0:0:929489843> , Ping: <34> , Map: <gg_crazyjump_quin>
+L 04/16/2011 - 11:21:23: SpeedHack * Nick: <-=[Extreme]=-pro{Xupypr}> , IP: <195.216.170.4> , SteamID: <STEAM_0:0:831614258> , Ping: <28> , Map: <gg_skycompound>
+L 04/18/2011 - 16:29:11: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <20> , Map: <de_dust2x2>
+L 04/18/2011 - 16:29:22: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <68> , Map: <de_dust2x2>
+L 04/18/2011 - 16:31:34: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <22> , Map: <de_dust2x2>
+L 04/18/2011 - 16:32:42: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <de_dust2x2>
+L 04/18/2011 - 16:33:06: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <17> , Map: <de_dust2x2>
+L 04/18/2011 - 16:33:51: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <67> , Map: <de_dust2x2>
+L 04/18/2011 - 16:34:11: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <de_dust2x2>
+L 04/18/2011 - 16:34:19: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <28> , Map: <de_dust2x2>
+L 04/18/2011 - 16:34:30: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <27> , Map: <de_dust2x2>
+L 04/18/2011 - 16:34:46: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <de_dust2x2>
+L 04/18/2011 - 16:35:10: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <75> , Map: <de_dust2x2>
+L 04/18/2011 - 16:35:46: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <21> , Map: <de_dust2x2>
+L 04/18/2011 - 16:36:56: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <73> , Map: <de_dust2x2>
+L 04/18/2011 - 16:38:21: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <32> , Map: <de_dust2x2>
+L 04/18/2011 - 16:38:49: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <30> , Map: <de_dust2x2>
+L 04/18/2011 - 16:39:27: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <61> , Map: <de_dust2x2>
+L 04/18/2011 - 16:39:52: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <31> , Map: <de_dust2x2>
+L 04/18/2011 - 16:40:38: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <de_dust2x2>
+L 04/18/2011 - 16:41:32: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <68> , Map: <de_dust2x2>
+L 04/18/2011 - 16:42:00: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <de_dust2x2>
+L 04/18/2011 - 16:42:08: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <72> , Map: <de_dust2x2>
+L 04/18/2011 - 16:42:42: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <64> , Map: <de_dust2x2>
+L 04/18/2011 - 16:44:13: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <67> , Map: <de_dust2x2>
+L 04/18/2011 - 16:44:37: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <28> , Map: <de_dust2x2>
+L 04/18/2011 - 16:45:01: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <60> , Map: <de_dust2x2>
+L 04/18/2011 - 16:45:31: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <63> , Map: <de_dust2x2>
+L 04/18/2011 - 16:46:35: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <88> , Map: <de_dust2x2>
+L 04/18/2011 - 16:47:56: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <de_dust2x2>
+L 04/18/2011 - 16:48:54: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <63> , Map: <de_dust2x2>
+L 04/18/2011 - 16:49:44: SpeedHack * Nick: <Respect.IzZoCs.CoM - Destroy> , IP: <91.77.217.136> , SteamID: <STEAM_0:0:1835391645> , Ping: <61> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:20:26: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <47> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:20:41: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <31> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:05: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <66> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:20: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:32: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <47> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:35: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <21> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:40: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <29> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:45: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <32> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:26:54: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <21> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:27:00: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <24> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:27:16: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:27:43: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <15> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:27:58: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:28:06: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <15> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:28:19: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <28> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:28:35: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <23> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:28:44: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <73> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:29:19: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <22> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:29:43: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:29:53: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <18> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:30:02: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:30:07: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:30:31: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <15> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:30:59: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <26> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:31:15: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <60> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:31:41: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <16> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:31:57: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <11> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:32:10: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <25> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:32:17: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:32:25: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <32> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:32:58: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <23> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:33:02: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <19> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:33:28: SpeedHack * Nick: <9 pota> , IP: <91.77.212.124> , SteamID: <STEAM_0:0:1835391645> , Ping: <24> , Map: <gg_mini_dust2>
+L 04/19/2011 - 14:49:15: SpeedHack * Nick: <9 pota> , IP: <91.77.173.91> , SteamID: <STEAM_0:0:1835391645> , Ping: <77> , Map: <gg_fy_ski>
+L 04/19/2011 - 19:24:17: SpeedHack * Nick: <.::V1to*911::.> , IP: <89.23.9.242> , SteamID: <STEAM_0:0:1060102506> , Ping: <22> , Map: <de_dust2x2>
+L 04/21/2011 - 01:38:13: SpeedHack * Nick: <[Pr1Zr@k]> , IP: <78.36.150.140> , SteamID: <STEAM_0:4:317023099> , Ping: <40> , Map: <de_dust2x2>
+L 04/21/2011 - 12:18:18: SpeedHack * Nick: <mag> , IP: <212.34.99.104> , SteamID: <STEAM_0:4:1621090358> , Ping: <36> , Map: <de_dust2x2>
+L 04/23/2011 - 16:18:27: SpeedHack * Nick: <pidr 4amzzzzzzziii> , IP: <91.214.97.249> , SteamID: <STEAM_0:4:673094257> , Ping: <154> , Map: <gg_amelos>
+L 04/23/2011 - 16:18:33: SpeedHack * Nick: <pidr 4amzzzzzzziii> , IP: <91.214.97.249> , SteamID: <STEAM_0:4:673094257> , Ping: <20> , Map: <gg_amelos>
+L 04/25/2011 - 16:12:47: SpeedHack * Nick: <AK_47> , IP: <46.55.53.186> , SteamID: <STEAM_0:4:162851531> , Ping: <75> , Map: <gg_mini_dust2>
+L 04/26/2011 - 13:51:07: SpeedHack * Nick: <[OXH]^tm.~Greka> , IP: <91.209.51.117> , SteamID: <STEAM_0:0:567010583> , Ping: <35> , Map: <fy_dare>
+L 04/26/2011 - 19:52:21: SpeedHack * Nick: <GUFIK> , IP: <46.146.190.221> , SteamID: <STEAM_0:4:980498507> , Ping: <46> , Map: <fy_inferno>
+L 10/13/2011 - 21:34:58: SpeedHack * Nick: <BORODA4.A.RADIONOVI4> , IP: <91.204.212.254> , SteamID: <STEAM_0:0:292066112> , Ping: <95> , Map: <ze_jurassicpark>
+L 10/15/2011 - 01:45:51: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <89> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 01:48:05: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <94> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 01:49:08: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <102> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 01:49:23: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <87> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 01:50:42: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <91> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 01:54:00: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <95> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 01:57:48: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <128> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 02:04:37: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <91> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 02:05:02: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <95> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 02:09:48: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <81> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 02:10:33: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <93> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 02:11:03: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <85> , Map: <zm_alfresco_v2>
+L 10/15/2011 - 02:27:20: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <94> , Map: <zm_dust_brick_b1_fx>
+L 10/15/2011 - 02:30:06: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <91> , Map: <zm_dust_brick_b1_fx>
+L 10/15/2011 - 02:30:44: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <91> , Map: <zm_dust_brick_b1_fx>
+L 10/15/2011 - 02:31:51: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <96> , Map: <zm_dust_brick_b1_fx>
+L 10/15/2011 - 02:37:40: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <90> , Map: <zm_dust_brick_b1_fx>
+L 10/15/2011 - 03:02:07: SpeedHack * Nick: <proster> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <95> , Map: <zm_neris>
+L 10/15/2011 - 03:05:51: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <95> , Map: <zm_neris>
+L 10/15/2011 - 03:44:31: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <91> , Map: <ze_egypt>
+L 10/15/2011 - 03:47:06: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <104> , Map: <ze_egypt>
+L 10/15/2011 - 04:20:46: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <104> , Map: <ze_egypt>
+L 10/15/2011 - 04:36:37: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <97> , Map: <zm_303>
+L 10/15/2011 - 05:56:40: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <93> , Map: <zm_caca>
+L 10/15/2011 - 06:01:16: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <93> , Map: <zm_caca>
+L 10/15/2011 - 06:01:20: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <110> , Map: <zm_caca>
+L 10/15/2011 - 06:24:33: SpeedHack * Nick: <Slavka> , IP: <90.190.211.17> , SteamID: <STEAM_0:4:1548201585> , Ping: <82> , Map: <zm_decline2k>

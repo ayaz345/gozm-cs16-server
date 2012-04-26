@@ -1,0 +1,368 @@
+L 06/02/2011 - 00:16:42: Start of error session.
+L 06/02/2011 - 00:16:42: Info (map "zm_neris") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 00:16:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 00:16:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 01:15:17: Start of error session.
+L 06/02/2011 - 01:15:17: Info (map "de_cbble") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 01:15:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 01:15:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 01:21:30: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 01:21:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 02:35:17: Start of error session.
+L 06/02/2011 - 02:35:17: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 02:35:17: [MySQL] Invalid handle: 0
+L 06/02/2011 - 02:35:17: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 06/02/2011 - 02:35:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 02:48:24: Start of error session.
+L 06/02/2011 - 02:48:24: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 02:48:24: [MySQL] Invalid handle: 0
+L 06/02/2011 - 02:48:24: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
+L 06/02/2011 - 02:48:24: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 05:21:08: Start of error session.
+L 06/02/2011 - 05:21:08: Info (map "cs_estate") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 05:21:08: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 05:21:08: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 05:22:41: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 05:22:41: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:05:55: Start of error session.
+L 06/02/2011 - 08:05:55: Info (map "ze_jurassickpark3_lg") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 08:05:55: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:05:55: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:22:04: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:22:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:24:14: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:24:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:25:58: Start of error session.
+L 06/02/2011 - 08:25:58: Info (map "de_westwood") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 08:25:58: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:25:58: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:25:58: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:25:58: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:27:45: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:27:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:29:27: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:29:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:31:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:31:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:32:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:32:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:34:08: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:34:08: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:37:21: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:37:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:40:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:40:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:42:44: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:42:44: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:45:40: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:45:40: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:51:36: Start of error session.
+L 06/02/2011 - 08:51:36: Info (map "zm_303") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 08:51:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:51:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:51:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:51:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:54:57: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:54:57: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 08:58:10: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 08:58:10: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 09:01:31: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 09:01:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 09:03:26: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 09:03:26: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 09:06:47: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 09:06:47: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 09:10:27: Start of error session.
+L 06/02/2011 - 09:10:27: Info (map "zm_202") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 09:10:27: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 09:10:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 09:10:27: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 09:10:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 09:13:48: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 09:13:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 10:11:34: Start of error session.
+L 06/02/2011 - 10:11:34: Info (map "zm_dust_base_fin") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 10:11:34: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 10:11:34: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 10:14:47: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 10:14:47: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 10:17:18: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 10:17:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 10:27:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 10:27:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 10:38:14: Start of error session.
+L 06/02/2011 - 10:38:14: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 10:38:14: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 10:38:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 11:15:09: Start of error session.
+L 06/02/2011 - 11:15:09: Info (map "cs_office") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 11:15:09: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 11:15:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 11:37:14: Start of error session.
+L 06/02/2011 - 11:37:14: Info (map "ze_jurassickpark3_lg") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 11:37:14: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 11:37:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 11:52:21: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 11:52:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:02:46: Start of error session.
+L 06/02/2011 - 12:02:46: Info (map "zm_neris") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 12:02:46: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:02:46: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:09:20: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:09:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:16:02: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:16:02: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:21:42: Start of error session.
+L 06/02/2011 - 12:21:42: Info (map "de_dust") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 12:21:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:21:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:24:48: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:24:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:55:00: Start of error session.
+L 06/02/2011 - 12:55:00: Info (map "zm_army") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 12:55:00: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:55:00: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:55:00: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:55:00: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 12:58:21: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 12:58:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:01:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:01:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:02:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:02:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:19:42: Start of error session.
+L 06/02/2011 - 13:19:42: Info (map "zm_dust_brick_b1") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 13:19:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:19:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:45:06: Start of error session.
+L 06/02/2011 - 13:45:06: Info (map "zm_202") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 13:45:06: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:45:06: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:48:15: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:48:15: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:48:15: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:48:15: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:51:36: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:51:36: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 13:59:43: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 13:59:43: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:32:29: Start of error session.
+L 06/02/2011 - 14:32:29: Info (map "awp_city") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 14:32:29: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:32:29: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:36:37: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:36:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:38:45: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:38:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:45:43: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:45:43: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:54:17: Start of error session.
+L 06/02/2011 - 14:54:17: Info (map "zm_desolation_house") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 14:54:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:54:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:54:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:54:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 14:58:21: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 14:58:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:01:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:01:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:01:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:01:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:01:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:01:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:06:00: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:06:00: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:11:12: Start of error session.
+L 06/02/2011 - 15:11:12: Info (map "cs_office") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 15:11:12: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:11:12: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:13:03: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:13:03: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:15:44: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:15:44: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:17:40: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:17:40: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:17:40: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:17:40: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:24:08: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:24:08: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:26:40: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:26:40: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:34:28: Start of error session.
+L 06/02/2011 - 15:34:28: Info (map "zm_fdust2x2") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 15:34:28: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:34:28: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:37:49: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:37:49: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:41:10: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:41:10: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:44:31: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:44:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:52:10: Start of error session.
+L 06/02/2011 - 15:52:10: Info (map "zm_simple_b1") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 15:52:10: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:52:10: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:53:31: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:53:31: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:56:04: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:56:04: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 15:58:14: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 15:58:14: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:08:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:08:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:10:08: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:10:08: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:12:45: Start of error session.
+L 06/02/2011 - 16:12:45: Info (map "zm_dust_base_fin") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 16:12:45: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:12:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:12:45: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:12:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:12:45: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:12:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:14:09: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:14:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:14:09: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:14:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:16:09: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:16:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:18:20: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:18:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:22:53: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:22:53: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:33:49: Start of error session.
+L 06/02/2011 - 16:33:49: Info (map "zm_303") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 16:33:49: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:33:49: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:55:17: Start of error session.
+L 06/02/2011 - 16:55:17: Info (map "zm_202") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 16:55:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:55:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 16:55:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 16:55:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:13:21: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:13:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:17:47: Start of error session.
+L 06/02/2011 - 17:17:47: Info (map "cs_militia") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 17:17:47: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:17:47: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:17:47: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:17:47: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:22:05: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:22:05: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:22:05: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:22:05: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:29:57: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:29:57: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:33:18: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:33:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:35:59: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:35:59: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 17:43:57: Start of error session.
+L 06/02/2011 - 17:43:57: Info (map "awp_city") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 17:43:57: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 17:43:57: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:05:02: Start of error session.
+L 06/02/2011 - 18:05:02: Info (map "zm_xata") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 18:05:02: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:05:02: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:18:18: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:18:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:18:18: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:18:18: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:23:05: Start of error session.
+L 06/02/2011 - 18:23:05: Info (map "de_westwood") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 18:23:05: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:23:05: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:25:37: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:25:37: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:31:44: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:31:44: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:33:03: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:33:03: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:34:17: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:34:17: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:37:38: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:37:38: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:44:48: Start of error session.
+L 06/02/2011 - 18:44:48: Info (map "de_dust") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 18:44:48: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:44:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:48:47: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:48:47: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:50:27: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:50:27: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 18:52:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 18:52:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 19:05:39: Start of error session.
+L 06/02/2011 - 19:05:39: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 19:05:39: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 19:05:39: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 19:55:42: Start of error session.
+L 06/02/2011 - 19:55:42: Info (map "zm_army") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 19:55:42: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 19:55:42: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 20:52:20: Start of error session.
+L 06/02/2011 - 20:52:20: Info (map "zm_fdust2x2") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 20:52:20: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 20:52:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:13:30: Start of error session.
+L 06/02/2011 - 21:13:30: Info (map "zm_houses") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 21:13:30: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:13:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:32:01: Start of error session.
+L 06/02/2011 - 21:32:01: Info (map "zm_neris") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 21:32:01: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:32:01: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:42:48: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:42:48: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:46:09: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:46:09: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:49:30: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:49:30: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:52:51: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:52:51: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:55:20: Start of error session.
+L 06/02/2011 - 21:55:20: Info (map "zm_dust_base_fin") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 21:55:20: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:55:20: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 21:57:49: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 21:57:49: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:08:33: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:08:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:08:33: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:08:33: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:11:54: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:11:54: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:11:54: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:11:54: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:14:57: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:14:57: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:14:57: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:14:57: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:18:01: Start of error session.
+L 06/02/2011 - 22:18:01: Info (map "zm_202") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 22:18:01: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:18:01: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:18:01: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:18:01: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:18:01: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:18:01: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:21:23: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:21:23: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:24:44: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:24:44: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:40:11: Start of error session.
+L 06/02/2011 - 22:40:11: Info (map "zm_xata") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 22:40:11: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:40:11: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:43:32: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:43:32: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 22:52:54: Start of error session.
+L 06/02/2011 - 22:52:54: Info (map "zm_fdust2x2") (file "addons/amxmodx/logs/error_20110602.log")
+L 06/02/2011 - 22:52:54: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 22:52:54: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 23:08:59: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 23:08:59: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).
+L 06/02/2011 - 23:12:21: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 06/02/2011 - 23:12:21: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

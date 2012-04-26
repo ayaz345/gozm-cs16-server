@@ -1,0 +1,4 @@
+L 04/19/2012 - 20:04:56: Start of error session.
+L 04/19/2012 - 20:04:56: Info (map "zm_cpl_mill_kamp") (file "addons/amxmodx/logs/error_20120419.log")
+L 04/19/2012 - 20:04:56: [AMXX] Run time error 4 (plugin "biohazard.amxx") - debug not enabled!
+L 04/19/2012 - 20:04:56: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

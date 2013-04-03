@@ -1,0 +1,17 @@
+gfx/env/city_daybk.tga
+gfx/env/city_daydn.tga
+gfx/env/city_dayft.tga
+gfx/env/city_daylf.tga
+gfx/env/city_dayrt.tga
+gfx/env/city_dayup.tga
+models/zm_machine_yard2/ddk.mdl
+models/zm_machine_yard2/ddk_grass.mdl
+models/zm_machine_yard2/ddk_light01.mdl
+models/zm_machine_yard2/ddk_oil02.mdl
+models/zm_machine_yard2/ddk_oil03.mdl
+models/zm_machine_yard2/ddk_tree_02_6.mdl
+models/zm_machine_yard2/ddk_truck01.mdl
+sound/zm_machine_yard2/fog_pipe2.wav
+sound/zm_machine_yard2/water.wav
+sound/zm_machine_yard2/wind02.wav
+sprites/glow01.spr

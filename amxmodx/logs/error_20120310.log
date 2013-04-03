@@ -1,5 +1,0 @@
-L 03/10/2012 - 18:19:50: Start of error session.
-L 03/10/2012 - 18:19:50: Info (map "zm_electro_dust_v1") (file "addons/amxmodx/logs/error_20120310.log")
-L 03/10/2012 - 18:19:50: [ENGINE] Invalid player 20
-L 03/10/2012 - 18:19:50: [AMXX] Run time error 10 (plugin "admin_gag_mute.amxx") (native "set_speak") - debug not enabled!
-L 03/10/2012 - 18:19:50: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

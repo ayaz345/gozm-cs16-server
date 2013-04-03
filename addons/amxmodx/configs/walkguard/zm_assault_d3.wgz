@@ -1,0 +1,19 @@
+; V1 - WalkGuard Zone-File
+; <zonename> <position (x/y/z)> <mins (x/y/z)> <maxs (x/y/z)> [<parameter>] 
+;
+;
+; parameter
+;
+;   - wgz_camper    <time>
+;   - wgz_camper_t1 <time>
+;   - wgz_camper_t2 <time>
+;   - wgz_camper_t3 <time>
+;   - wgz_camper_t4 <time>
+;
+
+wgz_block_all 701.4 1633.4 -313.7 -30. -30. -30. 30. 30. 30.
+wgz_block_all 704.9 1123.8 -301.2 -30. -30. -40. 30. 30. 40.
+wgz_block_all 163.6 -374.2 -237.8 -30. -30. -30. 30. 30. 30.
+wgz_block_all 436.2 -378.2 -69.4 -15. -185. -70. 15. 185. 70.
+wgz_block_all -183.8 1524.2 -377.0 -6. -111. -48. 6. 111. 48.
+wgz_block_all -101.4 1651.4 -379.9 -88. -10. -50. 88. 10. 50.

@@ -1,5 +1,0 @@
-L 05/08/2011 - 15:52:45: Start of error session.
-L 05/08/2011 - 15:52:45: Info (map "zm_escapetrain_fxd") (file "addons/amxmodx/logs/error_20110508.log")
-L 05/08/2011 - 15:52:45: [MySQL] Invalid handle: 0
-L 05/08/2011 - 15:52:45: [AMXX] Run time error 10 (plugin "amxbans.amxx") (native "SQL_FreeHandle") - debug not enabled!
-L 05/08/2011 - 15:52:45: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

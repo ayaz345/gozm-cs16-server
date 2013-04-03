@@ -1,0 +1,23 @@
+﻿<html>
+<head>
+<style type="text/css">
+body	{
+	background-color: #000000;
+	font-family:Verdana,Tahoma;
+		}
+</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1257" />
+</head>
+<font size="4" color="#e0a518"><b><center>Что дает VIP?</center></b></font><br />
+<font size="3" color="#c0c0ff">
+<UL>
+<LI TYPE=square>Бан через команду /voteban</LI><br>
+<LI TYPE=square></LI>Привязка собственного ника<br>
+<LI TYPE=square></LI>Голос считается за 2<br>
+<LI TYPE=square></LI>Иммунитет<br>
+<br /><br>
+<font size="3" color="#c0c0ff">Заявку можно оставить в группе vkontakte:</font>
+<font size="3" color=#00c000><strong>vk.com/bbs.unet</strong></font><br><br><br><br><br><br><br>
+<font size="4" color="#ffffff"><center>Зомби сервер</center></font><br />
+</body>
+</html>

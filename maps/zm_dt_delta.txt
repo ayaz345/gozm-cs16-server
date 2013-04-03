@@ -1,0 +1,24 @@
+zm_dt_delta made by Emu - Not a emo
+
+Map prefferably used to Zombie-mod 4.1+ and/or Biohazard
+
+Software Used:
+
+Valve hammer editor 3,4
+ZHLT Compiler by "Zoner"
+cs-expert-tom.fgd file
+Half life:CS 1.6 by VALVe
+Various .wad files
+--------------------------------------------
+ZOMBIES:
+
+find and infect/kill all human residents.
+
+HUMANS:
+
+kill all the zombies who are trying to
+infect/kill you, give no mercy.
+
+
+- Visit http//:www.fpsbanana.com and be a part of the great community.
+

@@ -1,8 +1,0 @@
-Time data:
-1280754785
-Flags:
-_abcd_
-Player name:
-nean
-Reason:
-[Spam]

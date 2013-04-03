@@ -1,0 +1,33 @@
+{
+    "name" : "dp_traffic_block",
+    "library" : "dproto",
+        "arguments"  :
+    [
+        {
+            "type" : "char"
+        },
+        {
+            "type" : "char"
+        },
+        {
+            "type" : "char"
+        }
+    ],
+    "identifiers" :
+    [
+        {
+            "os" : "windows",
+            "dp_version": "0.9.87",
+            "value" : [0x8b, 0x4C, "*", "*", 0x53, 0x8A, "*", 0x8D, "*", "*", "*", 0x50, 0x51]
+        },
+        {
+            "os" : "windows",
+            "dp_version": "0.9.179",
+            "value" :[0x55,0x8B,0xEC,0x8B,"*","*",0x53,0x8A,"*",0x8D,"*","*",0x50,0x51]
+        },
+        {
+            "os" : "linux",
+            "value" : [0x53,0x83,"*","*",0x0F]
+        }
+    ]
+}

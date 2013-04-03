@@ -1,5 +1,0 @@
-L 05/02/2011 - 21:42:02: Start of error session.
-L 05/02/2011 - 21:42:02: Info (map "zm_army") (file "addons/amxmodx/logs/error_20110502.log")
-L 05/02/2011 - 21:42:02: [FAKEMETA] Invalid entity
-L 05/02/2011 - 21:42:02: [AMXX] Run time error 10 (plugin "damager.amxx") (native "pev") - debug not enabled!
-L 05/02/2011 - 21:42:02: [AMXX] To enable debug mode, add "debug" after the plugin name in plugins.ini (without quotes).

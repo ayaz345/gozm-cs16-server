@@ -1,0 +1,11 @@
+zm_south_escape - Zombie
+by Java (javik@yandex.ru)
+
+Counter-Terrorists: People should escape from Zombie
+And to fly on the helicopter.
+
+Terrorists: Zombie should kill all people.
+
+Other Notes: Run-Run-Run
+
+(Press FIRE to continue)

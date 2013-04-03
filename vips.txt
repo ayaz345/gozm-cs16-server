@@ -1,0 +1,24 @@
+﻿<html>
+<head>
+<style type="text/css">
+body	{
+	background-color: #000000;
+	font-family:Verdana,Tahoma;
+		}
+</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1257" />
+</head>
+<font size="4" color="#e0a518"><b><center>VIP-игроки:</center></b></font><br />
+<font size="3" color="#c0c0ff">
+<UL>
+1. ~Helena~ <br>
+2. 4ebu[RUSH]ka <br>
+3. holder_x2 <br>
+4. [BlackWolf]Camelot <br>
+5. Kenny <br>
+6. Euforia <br>
+7. Zloy-Tupoy-Buhoy [Str,RUS] <br>
+8. P1Tu <br>
+<br />
+</body>
+</html>

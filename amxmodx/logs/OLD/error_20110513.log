@@ -1,6 +1,0 @@
-L 05/13/2011 - 06:06:34: Start of error session.
-L 05/13/2011 - 06:06:34: Info (map "016_rmk") (file "addons/amxmodx/logs/error_20110513.log")
-L 05/13/2011 - 06:06:34: [MySQL] Invalid handle: 0
-L 05/13/2011 - 06:06:34: [AMXX] Displaying debug trace (plugin "amxbans.amxx")
-L 05/13/2011 - 06:06:34: [AMXX] Run time error 10: native error (native "SQL_FreeHandle")
-L 05/13/2011 - 06:06:34: [AMXX]    [0] amxbans.sma::plugin_end (line 618)

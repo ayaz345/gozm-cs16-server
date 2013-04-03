@@ -1,8 +1,0 @@
-Time data:
-1279482590
-Flags:
-_abcd_
-Player name:
-b Despl
-Reason:
-[Spam]

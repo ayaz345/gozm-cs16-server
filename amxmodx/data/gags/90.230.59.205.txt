@@ -1,8 +1,0 @@
-Time data:
-1273169619
-Flags:
-_abcd_
-Player name:
-KILLE
-Reason:
-[Spam]

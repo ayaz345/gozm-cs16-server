@@ -1,8 +1,0 @@
-Time data:
-1281893800
-Flags:
-_abcd_
-Player name:
-ownapok
-Reason:
-[Spam]

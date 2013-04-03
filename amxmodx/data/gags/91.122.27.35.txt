@@ -1,8 +1,0 @@
-Time data:
-1275833070
-Flags:
-_abcd_
-Player name:
-t3sla
-Reason:
-[Spam]

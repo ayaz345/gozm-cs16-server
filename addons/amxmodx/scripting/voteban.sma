@@ -237,7 +237,7 @@ public ActualBan(Selected,VBStarter)
 			{
 				server_cmd("amx_ban %d %s VIP %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[Selected], ga_PlayerName[VBStarter])
 				log_amx("[VB] ban.ip: %s, ban.name: %s", ga_PlayerIP[Selected], ga_PlayerName[Selected])
-				log_amx("[VB] flags: %d, ADMIN_USER: %d, ADMIN_RCON: %d", flags, ADMIN_USER, ADMIN_RCON)
+				log_amx("[VB] flags: %d, ADMIN_USER: %d, IF-STATE: %s", flags, ADMIN_USER, flags & ADMIN_USER ? "True" : "False")
 				set_task(10.0, "double_ban", Selected, param, 1)
 			}
 		}

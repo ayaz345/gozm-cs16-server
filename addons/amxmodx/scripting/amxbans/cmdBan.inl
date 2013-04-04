@@ -88,6 +88,10 @@ public cmdBan(id, level, cid)
 	{
 		get_user_authid(player, player_steamid, 49)
 		get_user_ip(player, player_ip, 29, 1)
+		
+		//// MINE
+		server_cmd("addip %d %s", iBanLength, player_ip)
+		log_amx("[AMXBANS EXTRA] Banned %s", player_ip)
 	}
 	else
 	{

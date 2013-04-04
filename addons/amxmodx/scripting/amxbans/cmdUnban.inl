@@ -73,6 +73,10 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 			SQL_ReadResult(query, 9, ban_type, 9)
 			SQL_ReadResult(query, 10, server_ip, 29)
 			SQL_ReadResult(query, 11, server_name, 99)
+			
+			//// MINE
+			server_cmd("removeip %s", player_ip)
+			log_amx("[AMXBANS EXTRA] UnBanned %s", player_ip)
 
 			current_time_int = get_systime(0)
 			ban_created_int = str_to_num(ban_created)

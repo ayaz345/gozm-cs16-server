@@ -549,10 +549,10 @@ public actionKickMenu(id, key)
 			show_activity_key("ADMIN_KICK_1", "ADMIN_KICK_2", name, name2);
 
 			
-//			server_cmd("kick #%d", userid2)
-//			server_exec()
-			if(!(get_user_flags(player) & ADMIN_RCON))
-				client_cmd(player, "Connect 91.192.189.63:27015")
+			server_cmd("kick #%d", userid2)
+			server_exec()
+//			if(!(get_user_flags(player) & ADMIN_RCON))
+//				client_cmd(player, "Connect 91.192.189.63:27015")
 
 			displayKickMenu(id, g_menuPosition[id])
 		}

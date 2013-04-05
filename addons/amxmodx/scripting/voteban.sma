@@ -233,7 +233,7 @@ public ActualBan(Selected,VBStarter)
 			param[0] = Selected
 			flags = get_user_flags(Selected)
 			// ADMIN_RCON flag doesn't work here
-			if(flags)
+			if(flags & ADMIN_USER)
 			{
 				server_cmd("amx_ban %d %s VIP %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[Selected], ga_PlayerName[VBStarter])
 				log_amx("[VB] ban.ip: %s, ban.name: %s", ga_PlayerIP[Selected], ga_PlayerName[Selected])

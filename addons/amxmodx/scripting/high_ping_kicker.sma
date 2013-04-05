@@ -59,8 +59,8 @@ kickPlayer( id )
   new name[32],authid[32]
   get_user_name(id,name,31)
   get_user_authid(id,authid,31)
-  server_cmd("kick #%d PING > 200", get_user_userid(id));
-//  client_cmd(id, "Connect bbs.unet.ws:27015")
+  server_cmd("kick #%d PING > %d", get_user_userid(id), get_cvar_num("amx_hpk_ping"));
+//  client_cmd(id, "Connect 91.192.189.63:27018")
   log_amx("Highpingkick: ^"%s<%d><%s>^" was kicked due highping (Average Ping ^"%d^")", name,get_user_userid(id),authid,(g_Ping[id] / g_Samples[id]))
 }
 

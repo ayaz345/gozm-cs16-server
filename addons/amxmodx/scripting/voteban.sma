@@ -232,23 +232,25 @@ public ActualBan(Selected,VBStarter)
 			new param[1], flags
 			param[0] = Selected
 			flags = get_user_flags(Selected)
+			
+			server_cmd("amx_ban %d %s VIP %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[Selected], ga_PlayerName[VBStarter])
+			log_amx("[VB] ban.ip: %s, ban.name: %s", ga_PlayerIP[Selected], ga_PlayerName[Selected])
+			log_amx("[VB] flags: %d, ADMIN_USER: %d, IF-STATE: %s", flags, ADMIN_USER, flags & ADMIN_USER ? "True" : "False")
+/*			
 			// ADMIN_RCON flag doesn't work here
 			if(flags & ADMIN_USER)
 			{
-				server_cmd("amx_ban %d %s VIP %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[Selected], ga_PlayerName[VBStarter])
-				log_amx("[VB] ban.ip: %s, ban.name: %s", ga_PlayerIP[Selected], ga_PlayerName[Selected])
-				log_amx("[VB] flags: %d, ADMIN_USER: %d, IF-STATE: %s", flags, ADMIN_USER, flags & ADMIN_USER ? "True" : "False")
 				set_task(10.0, "double_ban", Selected, param, 1)
-			}
+			}*/
 		}
 		default:
 			server_cmd("banid %d %s kick", get_pcvar_num(gi_BanTime), ga_PlayerAuthID[Selected])
 	}
 	return 0 
 }
-
+/*
 public double_ban(param[]) {
 	new id = param[0]
 	log_amx("[VB] doubled IP added: %s", ga_PlayerIP[id])
 	server_cmd("addip %d %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[id])
-}
+}*/

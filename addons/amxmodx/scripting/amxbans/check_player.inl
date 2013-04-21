@@ -167,7 +167,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
 	
 	
 				if ( get_pcvar_num(amxbans_debug) == 1 )
-					log_amx("[AMXBANS DEBUG] BID:<%d> Player:<%s> <%s> connected and got kicked, because of an active ban", bid, player_nick, player_steamid)
+					log_amx("[AMXBANS DEBUG] BID:<%d> Player:<%s> <%s> connected and got kicked, because of an active ban, reason: %s", bid, player_nick, player_steamid, ban_reason)
 	
 				new id_str[3]
 				num_to_str(id,id_str,3)

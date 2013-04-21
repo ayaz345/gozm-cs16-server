@@ -64,6 +64,7 @@ new g_steamidorusername[50] // Only used if the player is not on the server.
 new g_ban_reason[256]
 new g_ban_type[4] // String that contains "S" for steamID ban and "SI" for IP ban
 new bool:g_being_banned[33]
+new ga_PlayerIP[33][16]
 
 // For the cmdUnban.inl
 new g_player_nick[50]

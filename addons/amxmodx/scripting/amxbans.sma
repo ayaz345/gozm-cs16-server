@@ -254,7 +254,7 @@ public plugin_init()
 	register_cvar("amxbans_version", VERSION, FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
 
 	amxbans_cmd_sql = register_cvar("amxbans_cmd_sql", "0") // A custom plugin that is not released yet so dont touch this cvar.
-	amxbans_debug = register_cvar("amxbans_debug", "0") // Set this to 1 to enable debug
+	amxbans_debug = register_cvar("amxbans_debug", "1") // Set this to 1 to enable debug
 	server_nick = register_cvar("amxbans_servernick", "") // Set this cvar to what the adminname should be if the server make the ban.
 																											  // Ie. amxbans_servernick "My Great server" put this in server.cfg or amxx.cfg
 	ban_evenif_disconn = register_cvar("amxbans_ban_evenif_disconnected", "0") // 1 enabled and 0 disabled ban of players not in server
@@ -444,7 +444,9 @@ public get_admin_mole_access_flag()
 */
 public locate_player(id, identifier[])
 {
-
+    if ( get_pcvar_num(amxbans_debug) == 1 )
+        log_amx("[AMXBANS DEBUG] identifier: %s", identifier)
+    
 	g_ban_type = "S"
 
 	// Check based on steam ID

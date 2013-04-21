@@ -54,8 +54,8 @@ MSG_11 = You were been banned at least once. Dont let it happen again!
 MSG_12 = You have %s left.
 MSG_13 = Nick: %s
 KICK_MESSAGE = You are BANNED. Check console!
-MSG_MOTD_2 = <body><img src="http://bbs.unet.ws/cs_dlres/4/banned.jpg" align="center"> </body>
-MSG_MOTD_1 = <body><img src="http://bbs.unet.ws/cs_dlres/4/banned.jpg" align="center"> </body>
+MSG_MOTD_2 = <body><img src="http://fast.forteam.ru/179761/banned.jpg" align="center"> </body>
+MSG_MOTD_1 = <body><img src="http://fast.forteam.ru/179761/banned.jpg" align="center"> </body>
 UNABAN_STEAMID_ONLY = Only STEAMIDs can be unbanned
 AMX_FIND_RESULT_5 = Ban is expired
 PLAYER_BANNED_BEFORE = [AMXBANS]<%s> %s banned %i time(s) before.

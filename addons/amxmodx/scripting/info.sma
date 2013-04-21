@@ -1,7 +1,7 @@
 #include <amxmodx>
 #include <colored_print>
 
-new zombie_server[] = ""
+new zombie_server[] = "77.220.185.29:27051"
 new zombie_group[] = "vk.com/go_zombie"
 new public_server[] = "77.220.185.29:27051"
 

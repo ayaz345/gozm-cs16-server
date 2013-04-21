@@ -317,14 +317,14 @@ public plugin_precache()
 	cvar_shootobjects = register_cvar("bh_shootobjects", "1")
 	cvar_pushpwr_weapon = register_cvar("bh_pushpwr_weapon", "3.0")
 	cvar_pushpwr_zombie = register_cvar("bh_pushpwr_zombie", "3.0")
-	cvar_nvgcolor_hum[0] = register_cvar("bh_nvg_color_hum_r", "2")
+	cvar_nvgcolor_hum[0] = register_cvar("bh_nvg_color_hum_r", "0")
 	cvar_nvgcolor_hum[1] = register_cvar("bh_nvg_color_hum_g", "30")
 	cvar_nvgcolor_hum[2] = register_cvar("bh_nvg_color_hum_b", "30")
 	cvar_nvgcolor_zm[0] = register_cvar("bh_nvg_color_zm_r", "0")
-	cvar_nvgcolor_zm[1] = register_cvar("bh_nvg_color_zm_g", "15")
+	cvar_nvgcolor_zm[1] = register_cvar("bh_nvg_color_zm_g", "150")
 	cvar_nvgcolor_zm[2] = register_cvar("bh_nvg_color_zm_b", "2")
-	cvar_nvgcolor_spec[0] = register_cvar("bh_nvg_color_spec_r", "0")
-	cvar_nvgcolor_spec[1] = register_cvar("bh_nvg_color_spec_g", "0")
+	cvar_nvgcolor_spec[0] = register_cvar("bh_nvg_color_spec_r", "30")
+	cvar_nvgcolor_spec[1] = register_cvar("bh_nvg_color_spec_g", "30")
 	cvar_nvgcolor_spec[2] = register_cvar("bh_nvg_color_spec_b", "0")	
 	cvar_nvgradius = register_cvar("bh_nvg_radius", "255")
 	
@@ -397,7 +397,7 @@ public plugin_init()
 	register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
 	register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
 	register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-//	register_clcmd("redirect_players", "cmd_redirect")
+	register_clcmd("redirect_players", "cmd_redirect")
 	register_clcmd("nightvision", "nightvision")
 	
 	register_menu("Equipment", 1023, "action_equip")
@@ -597,22 +597,23 @@ public recordDemo(param[])
   
 public client_disconnect(id)
 {
-	if (is_user_alive(id)) check_round(id)
+    if (is_user_alive(id)) check_round(id)
 
-	remove_task(TASKID_STRIPNGIVE + id)
-	remove_task(TASKID_UPDATESCR + id)
-	remove_task(TASKID_SPAWNDELAY + id)
-	remove_task(TASKID_WEAPONSMENU + id)
-	remove_task(TASKID_CHECKSPAWN + id)
-	remove_task(TASKID_RESTOREFADE + id)
+    remove_task(TASKID_STRIPNGIVE + id)
+    remove_task(TASKID_UPDATESCR + id)
+    remove_task(TASKID_SPAWNDELAY + id)
+    remove_task(TASKID_WEAPONSMENU + id)
+    remove_task(TASKID_CHECKSPAWN + id)
+    remove_task(TASKID_RESTOREFADE + id)
+    remove_task(TASKID_SHOWCLEAN + id)
+    remove_task(TASKID_SHOWINFECT + id)
 
-	g_disconnected[id] = true
-	remove_user_model(g_modelent[id])
-	stop_changing_name[id] = false
-	activate_nv[id] = false
+    g_disconnected[id] = true
+    remove_user_model(g_modelent[id])
+    stop_changing_name[id] = false
 	
-	console_cmd (id, "rate 5000")
-	console_cmd (id, "voice_scale 1")
+    remove_task(TASKID_NIGHTVISION + id)
+    activate_nv[id] = false
 }
 
 check_round(leaving_player)
@@ -798,7 +799,7 @@ public cmd_dropuser(id, level, cid)
 	
 	return PLUGIN_HANDLED_MAIN
 }
-/*
+
 public cmd_redirect(id, level, cid)
 {
 	for(id = 1; id <= g_maxplayers; id++)
@@ -808,7 +809,7 @@ public cmd_redirect(id, level, cid)
 	}
 	return PLUGIN_HANDLED_MAIN
 }
-*/
+
 public msg_teaminfo(msgid, dest, id)
 {
 	if(!g_gamestarted)
@@ -1032,7 +1033,7 @@ public msg_clcorpse(msgid, dest, id)
 
 public nightvision(id)
 {
-	if(is_user_connected(id) && is_user_alive(id))
+	if(is_user_connected(id))
 	{
 		if(activate_nv[id])
 		{
@@ -1053,39 +1054,37 @@ public nightvision(id)
 public set_user_nv(taskid)
 {
 	new id = taskid - TASKID_NIGHTVISION
-	if(is_user_alive(id))
+	
+	static origin[3]
+	get_user_origin(id, origin)
+	
+	message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, id)
+	write_byte(TE_DLIGHT)
+	write_coord(origin[0])
+	write_coord(origin[1])
+	write_coord(origin[2])
+	write_byte(get_pcvar_num(cvar_nvgradius))	// radius 
+	if(!(is_user_alive(id)))
 	{
-		static origin[3]
-		get_user_origin(id, origin)
-		
-		message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, id)
-		write_byte(TE_DLIGHT)
-		write_coord(origin[0])
-		write_coord(origin[1])
-		write_coord(origin[2])
-		write_byte(get_pcvar_num(cvar_nvgradius))	// radius 
-		if(!(is_user_alive(id)))
-		{
-			write_byte(get_pcvar_num(cvar_nvgcolor_spec[0]))		// red 
-			write_byte(get_pcvar_num(cvar_nvgcolor_spec[1]))		// green 
-			write_byte(get_pcvar_num(cvar_nvgcolor_spec[2]))		// blue 
-		}
-		else if(g_zombie[id])
-		{
-			write_byte(get_pcvar_num(cvar_nvgcolor_zm[0]))		// red 
-			write_byte(get_pcvar_num(cvar_nvgcolor_zm[1]))		// green
-			write_byte(get_pcvar_num(cvar_nvgcolor_zm[2]))		// blue 
-		}
-		else 
-		{
-			write_byte(get_pcvar_num(cvar_nvgcolor_hum[0]))		// red
-			write_byte(get_pcvar_num(cvar_nvgcolor_hum[1]))		// green
-			write_byte(get_pcvar_num(cvar_nvgcolor_hum[2]))		// blue
-		}
-		write_byte(2)
-		write_byte(0)
-		message_end()
+		write_byte(get_pcvar_num(cvar_nvgcolor_spec[0]))		// red 
+		write_byte(get_pcvar_num(cvar_nvgcolor_spec[1]))		// green 
+		write_byte(get_pcvar_num(cvar_nvgcolor_spec[2]))		// blue 
 	}
+	else if(g_zombie[id])
+	{
+		write_byte(get_pcvar_num(cvar_nvgcolor_zm[0]))		// red 
+		write_byte(get_pcvar_num(cvar_nvgcolor_zm[1]))		// green
+		write_byte(get_pcvar_num(cvar_nvgcolor_zm[2]))		// blue 
+	}
+	else 
+	{
+		write_byte(get_pcvar_num(cvar_nvgcolor_hum[0]))		// red
+		write_byte(get_pcvar_num(cvar_nvgcolor_hum[1]))		// green
+		write_byte(get_pcvar_num(cvar_nvgcolor_hum[2]))		// blue
+	}
+	write_byte(2)
+	write_byte(0)
+	message_end()
 }
 
 public logevent_round_start()
@@ -1684,60 +1683,72 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
 
 public bacon_killed_player(victim, killer, shouldgib)
 {
-	if(!is_user_alive(killer) || g_zombie[killer] || !g_zombie[victim])
-		return HAM_IGNORED
+    remove_task(TASKID_NIGHTVISION + victim)
+    activate_nv[victim] = false
+    
+//    colored_print(0, "killer: %d", killer)
+    if(!is_user_alive(killer) || killer < 1 || killer > 32) {
+        fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
+    }
+
+    if(!is_user_alive(killer) || g_zombie[killer] || !g_zombie[victim])
+        return HAM_IGNORED
 	
-	static killbonus
-	killbonus = get_pcvar_num(cvar_killbonus)
+    static killbonus
+    killbonus = get_pcvar_num(cvar_killbonus)
 	
-	if(killbonus)
-		set_pev(killer, pev_frags, pev(killer, pev_frags) + float(killbonus))
-	if(get_user_weapon(killer) == CSW_KNIFE)
-		set_pev(killer, pev_frags, pev(killer, pev_frags) + 3.0)
+    if(killbonus)
+        set_pev(killer, pev_frags, pev(killer, pev_frags) + float(killbonus))
+    if(get_user_weapon(killer) == CSW_KNIFE)
+        set_pev(killer, pev_frags, pev(killer, pev_frags) + 3.0)
 	
-	static killreward
-	killreward = get_pcvar_num(cvar_killreward)
+    static killreward
+    killreward = get_pcvar_num(cvar_killreward)
 	
-	if(!killreward) 
-		return HAM_IGNORED
+    if(!killreward) 
+        return HAM_IGNORED
 	
-	static weapon, maxclip, ent, weaponname[32]
-	switch(killreward)
-	{
-		case 1: 
-		{
-			weapon = get_user_weapon(killer)
-			maxclip = g_weapon_ammo[weapon][MAX_CLIP]
-			if(maxclip)
-			{
-				get_weaponname(weapon, weaponname, 31)
-				ent = find_ent_by_owner(-1, weaponname, killer)
+    static weapon, maxclip, ent, weaponname[32]
+    switch(killreward)
+    {
+        case 1: 
+        {
+            weapon = get_user_weapon(killer)
+            maxclip = g_weapon_ammo[weapon][MAX_CLIP]
+            if(maxclip)
+            {
+                get_weaponname(weapon, weaponname, 31)
+                ent = find_ent_by_owner(-1, weaponname, killer)
 					
-				cs_set_weapon_ammo(ent, maxclip)
-			}
-		}
-		case 2:
-		{
-			if(!user_has_weapon(killer, CSW_HEGRENADE))
-				give_item(killer, "weapon_hegrenade")
-		}
-		case 3:
-		{
-			weapon = get_user_weapon(killer)
-			maxclip = g_weapon_ammo[weapon][MAX_CLIP]
-			if(maxclip)
-			{
-				get_weaponname(weapon, weaponname, 31)
-				ent = find_ent_by_owner(-1, weaponname, killer)
+                cs_set_weapon_ammo(ent, maxclip)
+            }
+        }
+        case 2:
+        {
+            if(!user_has_weapon(killer, CSW_HEGRENADE))
+                give_item(killer, "weapon_hegrenade")
+        }
+        case 3:
+        {
+            weapon = get_user_weapon(killer)
+            maxclip = g_weapon_ammo[weapon][MAX_CLIP]
+            if(maxclip)
+            {
+                get_weaponname(weapon, weaponname, 31)
+                ent = find_ent_by_owner(-1, weaponname, killer)
 					
-				cs_set_weapon_ammo(ent, maxclip)
-			}
+                cs_set_weapon_ammo(ent, maxclip)
+            }
 				
-			if(!user_has_weapon(killer, CSW_HEGRENADE))
-				give_item(killer, "weapon_hegrenade")
-		}
-	}
-	return HAM_IGNORED
+            if(!user_has_weapon(killer, CSW_HEGRENADE))
+                give_item(killer, "weapon_hegrenade")
+        }
+    }
+    
+//    if(g_zombie[victim] && fnGetZombies() == 1)
+//        set_task(0.5, "task_balanceteam", TASKID_BALANCETEAM)
+    
+    return HAM_IGNORED
 }
 
 public bacon_spawn_player_post(id)
@@ -2159,38 +2170,46 @@ public task_startround()
 
 public task_balanceteam()
 {
-	static players[3][32], count[3]
-	get_players(players[TEAM_UNASSIGNED], count[TEAM_UNASSIGNED])
+//    client_print(0, print_console, "***")
+//    client_print(0, print_console, "doing balance...")
+    static players[3][32], count[3]
+    get_players(players[TEAM_UNASSIGNED], count[TEAM_UNASSIGNED])
 	
-	count[TEAM_TERRORIST] = 0
-	count[TEAM_CT] = 0
+    count[TEAM_TERRORIST] = 0
+    count[TEAM_CT] = 0
 	
-	static i, id, team
-	for(i = 0; i < count[TEAM_UNASSIGNED]; i++)
-	{
-		id = players[TEAM_UNASSIGNED][i] 
-		team = fm_get_user_team(id)
+    static i, id, team
+    for(i = 0; i < count[TEAM_UNASSIGNED]; i++)
+    {
+        id = players[TEAM_UNASSIGNED][i] 
+        team = fm_get_user_team(id)
 		
-		if(team == TEAM_TERRORIST || team == TEAM_CT)
-			players[team][count[team]++] = id
-	}
+        if(team == TEAM_TERRORIST || team == TEAM_CT)
+            players[team][count[team]++] = id
+    }
 
-	if(abs(count[TEAM_TERRORIST] - count[TEAM_CT]) <= 1) 
-		return
+//    client_print(0, print_console, "TER: %d, CT: %d", count[TEAM_TERRORIST], count[TEAM_CT])
+    if(abs(count[TEAM_TERRORIST] - count[TEAM_CT]) <= 1) 
+        return
 
-	static maxplayers
-	maxplayers = (count[TEAM_TERRORIST] + count[TEAM_CT]) / 2
+//    client_print(0, print_console, "keep doing...")
+    static maxplayers
+    maxplayers = (count[TEAM_TERRORIST] + count[TEAM_CT]) / 2
 	
-	if(count[TEAM_TERRORIST] > maxplayers)
-	{
-		for(i = 0; i < (count[TEAM_TERRORIST] - maxplayers); i++)
-			cs_set_team(players[TEAM_TERRORIST][i], TEAM_CT)
-	}
-	else
-	{
-		for(i = 0; i < (count[TEAM_CT] - maxplayers); i++)
-			cs_set_team(players[TEAM_CT][i], TEAM_TERRORIST)
-	}
+//    client_print(0, print_console, "average: %d", maxplayers)
+    if(count[TEAM_TERRORIST] > maxplayers)
+    {
+        client_print(0, print_console, "if-state")
+        for(i = 0; i < (count[TEAM_TERRORIST] - maxplayers); i++)
+            cs_set_team(players[TEAM_TERRORIST][i], TEAM_CT)
+    }
+    else
+    {
+//        client_print(0, print_console, "else-state")
+        for(i = 0; i < (count[TEAM_CT] - maxplayers); i++)
+            cs_set_team(players[TEAM_CT][i], TEAM_TERRORIST)
+    }
+//    client_print(0, print_console, "***")
 }
 
 public task_botclient_pdata(id) 

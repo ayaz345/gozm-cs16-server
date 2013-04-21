@@ -88,10 +88,14 @@ public cmdBan(id, level, cid)
 	{
 		get_user_authid(player, player_steamid, 49)
 		get_user_ip(player, player_ip, 29, 1)
+		get_user_ip(player, ga_PlayerIP[player], 15, 1)
 		
 		//// MINE
-		server_cmd("addip %d %s", iBanLength, player_ip)
-		log_amx("[AMXBANS EXTRA] Banned %s", player_ip)
+		new param[2]
+		param[0] = player
+		param[1] = iBanLength
+//		log_amx("[AMXBANS EXTRA] To check: ip - %s; length - %d", player_ip, iBanLength)
+		set_task(10.0, "double_ban", player, param, 1)
 	}
 	else
 	{
@@ -179,6 +183,14 @@ public cmdBan(id, level, cid)
 	SQL_ThreadQuery(g_SqlX, "cmd_ban_", query, data, 3)
 	
 	return PLUGIN_HANDLED
+}
+
+public double_ban(param[]) {
+	new id = param[0]
+	new iBanLength = param[1]
+	
+	server_cmd("addip %d %s", iBanLength, ga_PlayerIP[id])
+//	log_amx("[AMXBANS EXTRA] Banned %s", ga_PlayerIP[id])
 }
 
 public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)

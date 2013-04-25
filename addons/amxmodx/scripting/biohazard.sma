@@ -1687,7 +1687,7 @@ public bacon_killed_player(victim, killer, shouldgib)
     activate_nv[victim] = false
     
 //    colored_print(0, "killer: %d", killer)
-    if(!is_user_alive(killer) || killer < 1 || killer > 32) {
+    if(!is_user_connected(killer)) {
         fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
     }
 

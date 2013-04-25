@@ -154,11 +154,12 @@ public plugin_init()
 	register_menucmd(g_menuChooseMap, MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9|MENU_KEY_0, "vote_handleChoice");
 
 	register_clcmd("say", "cmd_say", -1);
-	register_clcmd("say nextmap", "cmd_nextmap", 0, "- displays nextmap");
-	register_clcmd("say currentmap", "cmd_currentmap", 0, "- display current map");
-	register_clcmd("say ff", "cmd_ff", 0, "- display friendly fire status");	// grrface
-	register_clcmd("votemap", "cmd_HL1_votemap");
-	register_clcmd("listmaps", "cmd_HL1_listmaps");
+    register_clcmd("say_team", "cmd_say", -1);
+    register_clcmd("say nextmap", "cmd_nextmap", 0, "- displays nextmap");
+    register_clcmd("say currentmap", "cmd_currentmap", 0, "- display current map");
+    register_clcmd("say ff", "cmd_ff", 0, "- display friendly fire status");	// grrface
+    register_clcmd("votemap", "cmd_HL1_votemap");
+    register_clcmd("listmaps", "cmd_HL1_listmaps");
 
 	register_concmd("gal_startvote", "cmd_startVote", ADMIN_MAP);
 	register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
@@ -1275,7 +1276,7 @@ public nomination_list(id)
 				
 				if (++mapCnt == 4)	// list 4 maps per chat line
 				{
-					client_print(0, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+					client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
 					mapCnt = 0;
 					msg[0] = 0;
 				}
@@ -1288,11 +1289,11 @@ public nomination_list(id)
 	}
 	if (msg[0])
 	{
-		client_print(0, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+		client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
 	}
 	else
 	{
-		client_print(0, print_chat, "%L: %L", LANG_PLAYER, "GAL_NOMINATIONS", LANG_PLAYER, "NONE");
+		client_print(id, print_chat, "%L: %L", LANG_PLAYER, "GAL_NOMINATIONS", LANG_PLAYER, "NONE");
 	}
 
 //	set_hudmessage(255, 0, 90, 0.80, 0.20, 0, 1.0, 12.0, 0.1, 0.1, -1);

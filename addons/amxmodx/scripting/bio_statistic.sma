@@ -14,7 +14,7 @@
 #define AUTHOR "Dimka"
 
 //#define ZP_STATS_DEBUG
-#define QUERY_DEBUG
+//#define QUERY_DEBUG
  
 #define column(%1) SQL_FieldNameToNum(query, %1)
 
@@ -274,8 +274,8 @@ public ClientAuthorized_QueryHandler(FailState, Handle:query, error[], err, data
 public client_disconnect(id)
 {
 	
-	if (!g_UserDBId[id] || !g_UserPutInServer[id])	
-		return
+    if (!g_UserDBId[id] || !g_UserPutInServer[id])	
+        return
 /*
 	new unquoted_name[32], name[32]
 	get_user_name(id,unquoted_name,31)
@@ -291,7 +291,11 @@ public client_disconnect(id)
 
 	SQL_QueryAndIgnore(g_SQL_Connection, g_Query)
 */
-	g_UserDBId[id] = 0
+    g_UserDBId[id] = 0
+    
+    new i
+    for (i = 0; i < ME_NUM; i++)
+		g_Me[id][i] = 0
 }
 
 public event_infect(id, infector)
@@ -401,7 +405,7 @@ public fw_HamKilled(id, attacker, shouldgib)
 	
 	new type, player = attacker
 	
-	if (g_UserDBId[id])
+	if (g_UserDBId[id] && is_user_connected(attacker))
 	{
 		format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `death` = `death` + 1 WHERE `id`=%d;", g_UserDBId[id])
 		SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
@@ -506,12 +510,17 @@ public show_hp(id)
 
 public show_me(id)
 {
-	if (g_Me[id][ME_DMG] || g_Me[id][ME_KILLS] || g_Me[id][ME_INFECT])
-	{
-		colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 damage", g_Me[id][ME_DMG])
-	}
-	else
-		colored_print(id, "^x04 ***^x01 You have no hits")
+    if (g_Me[id][ME_DMG] && !is_user_zombie(id))
+    {
+        colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 damage", g_Me[id][ME_DMG])
+    }
+    else if (g_Me[id][ME_INFECT] && is_user_zombie(id))
+    {
+        colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 infection%s", 
+            g_Me[id][ME_INFECT], g_Me[id][ME_INFECT] > 1 ? "s" : "")
+    }
+    else
+        colored_print(id, "^x04 ***^x01 You have no hits")
 }
 
 public show_rank(id, unquoted_whois[])

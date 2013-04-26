@@ -44,8 +44,6 @@ new Handle:g_SQL_Connection, Handle:g_SQL_Tuple
 
 new g_Query[3024]
 
-new g_CvarAllowHp, g_CvarAllowMe
-new g_CvarShowBest
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 
 new g_CvarAuthType, g_CvarExcludingNick
@@ -73,11 +71,6 @@ public plugin_init()
 	
 	register_cvar("zp_web_stats_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
 	
-	g_CvarAllowHp = register_cvar("zp_stats_allow_hp", "1")
-	g_CvarAllowMe = register_cvar("zp_stats_allow_me", "1")
-	
-	g_CvarShowBest = register_cvar("zp_stats_show_best_players", "1")
-	
 	g_CvarAuthType = register_cvar("zp_stats_auth_type", "3")
 		
 	g_CvarExcludingNick = register_cvar("zp_stats_ignore_nick", "[unreg]")
@@ -87,7 +80,7 @@ public plugin_init()
 	
 	RegisterHam(Ham_Killed, "player", "fw_HamKilled")
 	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage", 1)
-	RegisterHam(Ham_CS_RoundRespawn, "player", "fw_CS_RoundRespawn", 1)
+//	RegisterHam(Ham_CS_RoundRespawn, "player", "fw_CS_RoundRespawn", 1)
 	
 	register_logevent("logevent_endRound", 2, "1=Round_End")
 	
@@ -137,7 +130,7 @@ public client_authorized(id)
 {
 	g_UserPutInServer[id] = false
 	
-	fw_CS_RoundRespawn(id)
+	reset_player_statistic(id)
 	
 	g_StartTime[id] = get_systime()
 	
@@ -293,8 +286,7 @@ public client_disconnect(id)
 */
     g_UserDBId[id] = 0
     
-    new i
-    for (i = 0; i < ME_NUM; i++)
+    for (new i = 0; i < ME_NUM; i++)
 		g_Me[id][i] = 0
 }
 
@@ -338,51 +330,51 @@ public logevent_endRound()
 {
 	if (get_playersnum())
 	{
-		if (get_pcvar_num(g_CvarShowBest))
-		{
-			new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0, maxKillsId = 0
-			new maxInfectName[32], maxDmgName[32], maxKillsName[32]
-			new extraMaxInfectNum = 0, maxInfectList[32]
-			get_players(players, playersNum, "ch")
-			for (i = 0; i < playersNum; i++)
-			{
-				if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT]) {
-					maxInfectId = i
-					extraMaxInfectNum = 0
-					maxInfectList[extraMaxInfectNum] = i
-				}
-				else if (g_Me[players[i]][ME_INFECT] == g_Me[players[maxInfectId]][ME_INFECT] && (i != 0)) {
-					extraMaxInfectNum++
-					maxInfectList[extraMaxInfectNum] = i
-				}
-				if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG]) {
-					maxDmgId = i
-				}
-				if (g_Me[players[i]][ME_KILLS] > g_Me[players[maxKillsId]][ME_KILLS])
-					maxKillsId = i	
-			}
-			
-			maxInfectId = maxInfectList[random_num(0, extraMaxInfectNum)]
-			get_user_name(players[maxInfectId], maxInfectName, 31)
-			get_user_name(players[maxDmgId], maxDmgName, 31)
-			get_user_name(players[maxKillsId], maxKillsName, 31)
-			
-			if (g_Me[players[maxInfectId]][ME_INFECT] || 
-				g_Me[players[maxKillsId]][ME_KILLS] ||
-				g_Me[players[maxDmgId]][ME_DMG])
-			{
-				for (i = 0; i < playersNum; i++)
-				{
-					colored_print(players[i], "^x04======================================")
-					colored_print(players[i], "^x04***^x01 Best Human:^x04 %s^x01  ->  [^x03  %d^x01 dmg  ]",
-						maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
-					if (g_Me[players[maxInfectId]][ME_INFECT])
-						colored_print(players[i], "^x04***^x01 Best Zombie:^x04 %s^x01  ->  [^x03  %d^x01 infection%s  ]",
-							maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
-							(g_Me[players[maxInfectId]][ME_INFECT] > 1) ? "s" : "")
-				}
-			}
-		}
+        new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0, maxKillsId = 0
+        new maxInfectName[32], maxDmgName[32], maxKillsName[32]
+        new extraMaxInfectNum = 0, maxInfectList[32]
+        get_players(players, playersNum, "ch")
+        for (i = 0; i < playersNum; i++)
+        {
+            if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT]) {
+                maxInfectId = i
+                extraMaxInfectNum = 0
+                maxInfectList[extraMaxInfectNum] = i
+            }
+            else if (g_Me[players[i]][ME_INFECT] == g_Me[players[maxInfectId]][ME_INFECT] && (i != 0)) {
+                extraMaxInfectNum++
+                maxInfectList[extraMaxInfectNum] = i
+            }
+            if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG]) {
+                maxDmgId = i
+            }
+            if (g_Me[players[i]][ME_KILLS] > g_Me[players[maxKillsId]][ME_KILLS])
+                maxKillsId = i	
+        }
+        
+        maxInfectId = maxInfectList[random_num(0, extraMaxInfectNum)]
+        get_user_name(players[maxInfectId], maxInfectName, 31)
+        get_user_name(players[maxDmgId], maxDmgName, 31)
+        get_user_name(players[maxKillsId], maxKillsName, 31)
+        
+        if (g_Me[players[maxInfectId]][ME_INFECT] || 
+            g_Me[players[maxKillsId]][ME_KILLS] ||
+            g_Me[players[maxDmgId]][ME_DMG])
+        {
+            for (i = 0; i < playersNum; i++)
+            {
+                colored_print(players[i], "^x04======================================")
+                colored_print(players[i], "^x04***^x01 Best Human:^x04 %s^x01  ->  [^x03  %d^x01 dmg  ]",
+                    maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
+                if (g_Me[players[maxInfectId]][ME_INFECT])
+                    colored_print(players[i], "^x04***^x01 Best Zombie:^x04 %s^x01  ->  [^x03  %d^x01 infection%s  ]",
+                        maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
+                        (g_Me[players[maxInfectId]][ME_INFECT] > 1) ? "s" : "")
+            }
+        }
+        
+        for (i = 0; i < playersNum; i++)
+            reset_player_statistic(players[i])
 	}
 }
 
@@ -454,7 +446,7 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 	}
 }
 
-public fw_CS_RoundRespawn(id)
+public reset_player_statistic(id)
 {
 	new i
 	for (i = 0; i < KILLER_NUM; i++)
@@ -474,10 +466,10 @@ public handleSay(id)
 	new arg2[32]
 	
 	strbreak(args, arg1, charsmax(arg1), arg2, charsmax(arg2))
-	if (get_pcvar_num(g_CvarAllowHp) && equal(arg1,"/hp"))
+	if (equal(arg1,"/hp"))
 		show_hp(id)
 	else
-	if (get_pcvar_num(g_CvarAllowMe) && equal(arg1,"/me"))
+	if (equal(arg1,"/me"))
 		show_me(id)	
 	else
 	if (equal(arg1,"/rank"))

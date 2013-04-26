@@ -802,12 +802,31 @@ public cmd_dropuser(id, level, cid)
 
 public cmd_redirect(id, level, cid)
 {
-	for(id = 1; id <= g_maxplayers; id++)
-	{
-		if(!(get_user_flags(id) & ADMIN_BAN))
-			client_cmd(id, "Connect 77.220.185.29:27051")
-	}
-	return PLUGIN_HANDLED_MAIN
+    new arg1[4], arg2[16], arg3[6]
+    new players_num, server_address[16], server_port[6]
+    read_argv(1, arg1, 3)
+    read_argv(2, arg2, 15)
+    read_argv(3, arg3, 5)
+    
+    players_num = str_to_num(arg1)
+    if(players_num == 0)
+        players_num = g_maxplayers
+    server_address = arg2
+    if(!server_address[0])
+        server_address = "77.220.185.29"
+    server_port = arg3
+    if(!server_port[0])
+        server_port = "27051"
+        
+    client_print(id, print_console, "arg1=%d, arg2=%s, arg3=%s", players_num, server_address, server_port)
+    client_print(id, print_console, "Connect %s:%s", server_address, server_port)
+
+    for(id = 1; id <= players_num; id++)
+    {
+        if(!(get_user_flags(id) & ADMIN_BAN))
+            client_cmd(id, "Connect %s:%s", server_address, server_port)
+    }
+    return PLUGIN_HANDLED_MAIN
 }
 
 public msg_teaminfo(msgid, dest, id)

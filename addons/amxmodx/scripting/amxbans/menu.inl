@@ -242,28 +242,33 @@ public setCustomBanReason(id,level,cid)
 /* id is the player banning, not player being banned :] */
 banUser(id,banReason[])
 {
-	new player = g_bannedPlayer
+    new player = g_bannedPlayer
 
-	new name[32], name2[32], authid[32],authid2[32]
-	get_user_name(player,name2,31)
-	get_user_authid(player,authid2,31)
-	get_user_authid(id,authid,31)
-	get_user_name(id,name,31)
+    new name[32], name2[32], authid[32],authid2[32], ip[16]
+    get_user_name(player,name2,31)
+    get_user_authid(player,authid2,31)
+    get_user_authid(id,authid,31)
+    get_user_name(id,name,31)
+    get_user_ip(player, ip, 15, 1)
 
-	/* lan */
-	if ( equal("4294967295", authid2)
-	  || equal("HLTV", authid2)
-	  || equal("STEAM_ID_LAN",authid2)
-	  || equal("VALVE_ID_LAN",authid2)
-	  || equal("STEAM_ID_PENDING",authid2)
-	  || equal("VALVE_ID_PENDING",authid2))
-	{
-		new ipa[32]
-		get_user_ip(player,ipa,31,1)
-		console_cmd(id,"amx_banip %d %s %s" ,g_menuSettings[id],ipa,banReason)
-	}
-	else
-		console_cmd(id,"amx_ban %d %s %s" ,g_menuSettings[id],authid2,banReason)
+    /* lan */
+    if ( equal("4294967295", authid2)
+        || equal("HLTV", authid2)
+        || equal("STEAM_ID_LAN",authid2)
+        || equal("VALVE_ID_LAN",authid2)
+        || equal("STEAM_ID_PENDING",authid2)
+        || equal("VALVE_ID_PENDING",authid2))
+    {
+        new ipa[32]
+        get_user_ip(player,ipa,31,1)
+        console_cmd(id,"amx_banip %d %s %s" ,g_menuSettings[id],ipa,banReason)
+    }
+    else
+    {
+//        console_cmd(id,"amx_ban %d %s %s" ,g_menuSettings[id],authid2,banReason)
+        console_cmd(id,"amx_ban %d %s %s" ,g_menuSettings[id], ip, banReason)
+//        log_amx("[!! AMXBANS DEBUG] amx_ban %d %s %s + ip:%s" ,g_menuSettings[id],authid2,banReason, ip)
+    }
 }
 
 

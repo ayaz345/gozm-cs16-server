@@ -62,31 +62,30 @@ new g_text[5096]
 
 public plugin_init() 
 {
-	register_plugin(PLUGIN, VERSION, AUTHOR)
+    register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-	g_CvarHost = register_cvar("zp_stats_host", "89.20.147.155")
-	g_CvarDB = register_cvar("zp_stats_db", "b179761")
-	g_CvarUser = register_cvar("zp_stats_user", "u179761")
-	g_CvarPassword = register_cvar("zp_stats_password", "Iqalebeq")
+    g_CvarHost = register_cvar("zp_stats_host", "89.20.147.155")
+    g_CvarDB = register_cvar("zp_stats_db", "b179761")
+    g_CvarUser = register_cvar("zp_stats_user", "u179761")
+    g_CvarPassword = register_cvar("zp_stats_password", "Iqalebeq")
 	
-	register_cvar("zp_web_stats_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
+    register_cvar("bio_statistics_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
 	
-	g_CvarAuthType = register_cvar("zp_stats_auth_type", "3")
+    g_CvarAuthType = register_cvar("zp_stats_auth_type", "3")
 		
-	g_CvarExcludingNick = register_cvar("zp_stats_ignore_nick", "[unreg]")
+    g_CvarExcludingNick = register_cvar("zp_stats_ignore_nick", "[unreg]")
 	
-	register_clcmd("say", "handleSay")
-	register_clcmd("say_team", "handleSay")
+    register_clcmd("say", "handleSay")
+    register_clcmd("say_team", "handleSay")
 	
-	RegisterHam(Ham_Killed, "player", "fw_HamKilled")
-	RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage", 1)
-//	RegisterHam(Ham_CS_RoundRespawn, "player", "fw_CS_RoundRespawn", 1)
+    RegisterHam(Ham_Killed, "player", "fw_HamKilled")
+    RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage", 1)
 	
-	register_logevent("logevent_endRound", 2, "1=Round_End")
+    register_event("HLTV", "event_newround", "a", "1=0", "2=0")
+    register_logevent("logevent_endRound", 2, "1=Round_End")
 	
-	register_dictionary("time.txt")
-	register_dictionary("zp_web_stats.txt")
-	
+    register_dictionary("time.txt")
+    register_dictionary("zp_web_stats.txt")
 }
 
 public plugin_cfg()
@@ -193,7 +192,7 @@ public client_authorized(id)
 	}
 	
 	format(g_Query,charsmax(g_Query),"SELECT `id` FROM `zp_players` \
-			WHERE `%s`='%s' %s;", whereis, uniqid, condition)
+			WHERE BINARY `%s`='%s' %s;", whereis, uniqid, condition)
 	
 	new data[2]
 	data[0] = id
@@ -269,21 +268,7 @@ public client_disconnect(id)
 	
     if (!g_UserDBId[id] || !g_UserPutInServer[id])	
         return
-/*
-	new unquoted_name[32], name[32]
-	get_user_name(id,unquoted_name,31)
-	SQL_QuoteString(g_SQL_Connection , name, 31, unquoted_name)
-	
-	setc(g_UserName[id], 31, 0)
-	
-	new max_len =  charsmax(g_Query)
-		
-	format(g_Query, max_len, "UPDATE `zp_players` SET \
-		`nick`='%s' WHERE `id`=%d;", 
-		name, g_UserDBId[id])
-
-	SQL_QueryAndIgnore(g_SQL_Connection, g_Query)
-*/
+        
     g_UserDBId[id] = 0
     
     for (new i = 0; i < ME_NUM; i++)
@@ -372,10 +357,16 @@ public logevent_endRound()
                         (g_Me[players[maxInfectId]][ME_INFECT] > 1) ? "s" : "")
             }
         }
+	}
+}
+
+public event_newround()
+{
+        new players[32], playersNum, i
         
+        get_players(players, playersNum, "ch")
         for (i = 0; i < playersNum; i++)
             reset_player_statistic(players[i])
-	}
 }
 
 public fw_HamKilled(id, attacker, shouldgib)

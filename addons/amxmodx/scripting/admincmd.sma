@@ -1008,20 +1008,20 @@ public cmdRcon(id, level, cid)
 
 public cmdWho(id, level, cid)
 {
-	if (!cmd_access(id, level, cid, 1))
-		return PLUGIN_HANDLED
+    if (!cmd_access(id, level, cid, 1))
+        return PLUGIN_HANDLED
 
-	new players[32], inum, cl_on_server[64], ip[15], name[32], flags, sflags[32]
-	new lAccess[16], usrid
+    new players[32], inum, cl_on_server[64], ip[15], name[32], flags, sflags[32]
+    new lAccess[16], usrid
 	
-	format(lAccess, 15, "%L", id, "ACCESS")
+    format(lAccess, 15, "%L", id, "ACCESS")
 	
-	get_players(players, inum)
-	format(cl_on_server, 63, "%L", id, "CLIENTS_ON_SERVER")
-	console_print(id, "^n%s:^n #      %-17.15s %-23s %s", cl_on_server, "nick", "IP adress", lAccess)
+    get_players(players, inum)
+    format(cl_on_server, 63, "%L", id, "CLIENTS_ON_SERVER")
+    console_print(id, "^n%s:^n #      %-17.15s %-23s %s", cl_on_server, "nick", "IP adress", lAccess)
 	
-	for (new a = 0; a < inum; ++a)
-	{
+    for (new a = 0; a < inum; ++a)
+    {
 		get_user_ip(players[a], ip, 15, 1)
 		usrid = get_user_userid(players[a]) 
 		get_user_name(players[a], name, 31)
@@ -1036,14 +1036,15 @@ public cmdWho(id, level, cid)
 			}
 		}
 		console_print(id, "%d   %-16.15s %-20s %s", usrid, name, ip, sflags)
-	}
+    }
 	
-	console_print(id, "%L", id, "TOTAL_NUM", inum)
-	get_user_ip(id, ip, 15, 1)
-	get_user_name(id, name, 31)
-	log_amx("Cmd: ^"%s<%d><%s><>^" ask for players list", name, get_user_userid(id), ip) 
+    console_print(id, "%L", id, "TOTAL_NUM", inum)
+    get_user_ip(id, ip, 15, 1)
+    get_user_name(id, name, 31)
+    if(!(get_user_flags(id) & ADMIN_RCON))
+        log_amx("Cmd: ^"%s<%d><%s><>^" ask for players list", name, get_user_userid(id), ip) 
 	
-	return PLUGIN_HANDLED
+    return PLUGIN_HANDLED
 }
 
 public randomize()

@@ -2218,7 +2218,7 @@ public task_balanceteam()
 //    client_print(0, print_console, "average: %d", maxplayers)
     if(count[TEAM_TERRORIST] > maxplayers)
     {
-        client_print(0, print_console, "if-state")
+//        client_print(0, print_console, "if-state")
         for(i = 0; i < (count[TEAM_TERRORIST] - maxplayers); i++)
             cs_set_team(players[TEAM_TERRORIST][i], TEAM_CT)
     }

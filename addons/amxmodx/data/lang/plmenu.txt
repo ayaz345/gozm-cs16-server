@@ -6,6 +6,7 @@ BAN_FOR_MIN = Ban for %d minutes
 BAN_PERM = Ban permanently
 SLAP_SLAY_MENU = Slap/Slay Menu
 SLAP_WITH_DMG = Slap with %d damage
+SLAP = Slap
 SLAY = Slay
 KICK_MENU = Kick Menu
 ADMIN_TRANSF_1 = ADMIN: transfer %s to %s

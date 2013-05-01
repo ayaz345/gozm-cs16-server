@@ -23,10 +23,4 @@ CREATE TABLE IF NOT EXISTS `zp_players` (
   `survivor` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `nick` (`nick`,`ip`,`steam_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `zp_server_players` (
-  `id_player` int(10) unsigned NOT NULL,
-  `server` varchar(25) NOT NULL,
-  UNIQUE KEY `id_player` (`id_player`)
-)DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

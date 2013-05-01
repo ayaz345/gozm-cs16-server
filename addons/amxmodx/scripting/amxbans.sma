@@ -241,7 +241,7 @@ public plugin_init()
 
 	register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu") //Changed this line to make this menu come up instead of the normal amxx ban menu
 	register_clcmd("amxbans_custombanreason", "setCustomBanReason", ADMIN_BAN, "- configures custom ban message")
-	register_clcmd("amx_banhistorymenu", "cmdBanhistoryMenu", ADMIN_BAN, "- displays banhistorymenu")
+	register_clcmd("amx_banhistorymenu", "cmdBanhistoryMenu", ADMIN_LEVEL_H, "- displays banhistorymenu")
 	
 	register_menucmd(register_menuid("Ban Menu"), 1023, "actionBanMenu")
 	register_menucmd(register_menuid("Ban Reason Menu"), 1023, "actionBanMenuReason")
@@ -447,54 +447,54 @@ public locate_player(id, identifier[])
     if ( get_pcvar_num(amxbans_debug) == 1 )
         log_amx("[AMXBANS DEBUG] identifier: %s", identifier)
     
-	g_ban_type = "S"
+    g_ban_type = "S"
 
-	// Check based on steam ID
-	new player = find_player("c", identifier)
+    // Check based on steam ID
+    new player = find_player("c", identifier)
 
-	// Check based on a partial non-case sensitive name
-	if (!player) {
-		player = find_player("bl", identifier)
-	}
+    // Check based on a partial non-case sensitive name
+    if (!player) {
+        player = find_player("bl", identifier)
+    }
 
-	if (!player) {
-		// Check based on IP address
-		player = find_player("d", identifier)
+    if (!player) {
+        // Check based on IP address
+        player = find_player("d", identifier)
 
-		if ( player )
-			g_ban_type = "SI"
-	}
+        if ( player )
+            g_ban_type = "SI"
+    }
 
-	// Check based on user ID
-	if ( !player && identifier[0]=='#' && identifier[1] ) {
-		player = find_player("k",str_to_num(identifier[1]))
-	}
+    // Check based on user ID
+    if ( !player && identifier[0]=='#' && identifier[1] ) {
+        player = find_player("k",str_to_num(identifier[1]))
+    }
 
-	if ( player )
-	{
-		/* Check for immunity */
-		if (get_user_flags(player) & ADMIN_IMMUNITY) {
-			new name[32]
-			get_user_name(player, name, 31)
-			if( id == 0 )
-				server_print("[AMXBANS] Client ^"%s^" has immunity", name)
-			else
-				console_print(id,"[AMXBANS] Client ^"%s^" has immunity", name)
-			return -1
-		}
-		/* Check for a bot */
-		else if (is_user_bot(player)) {
-			new name[32]
-			get_user_name(player, name, 31)
-			if( id == 0 )
-				server_print("[AMXBANS] Client ^"%s^" is a bot", name)
-			else
-				console_print(id,"[AMXBANS] Client ^"%s^" is a bot", name)
-			return -1
-		}
+    if ( player )
+    {
+        /* Check for immunity */
+        if (get_user_flags(player) & ADMIN_IMMUNITY) {
+            new name[32]
+            get_user_name(player, name, 31)
+            if( id == 0 )
+                server_print("[AMXBANS] Client ^"%s^" has immunity", name)
+            else
+                console_print(id,"[AMXBANS] Client ^"%s^" has immunity", name)
+            return -1
+        }
+        /* Check for a bot */
+        else if (is_user_bot(player)) {
+            new name[32]
+            get_user_name(player, name, 31)
+            if( id == 0 )
+                server_print("[AMXBANS] Client ^"%s^" is a bot", name)
+            else
+                console_print(id,"[AMXBANS] Client ^"%s^" is a bot", name)
+            return -1
+        }
 
-	}
-	return player
+    }
+    return player
 }
 
 public setHighBantimes()

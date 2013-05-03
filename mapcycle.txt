@@ -12,13 +12,11 @@ zm_kill_duster_2
 zm_desolation_house
 zm_house_2011
 zm_street_new
-zm_monsterhouse
 zm_snow_s1h_v2
 zm_abbac
 ze_lift_escape_b5
 zm_arabica
 zm_mansion_mba
-zm_machine_yard2
 ze_jurassicpark_v2
 zm_assault_d3
 016
@@ -28,10 +26,12 @@ zm_toxic_house
 zm_lila_panic
 zm_[vv]hope
 zm_die_hard_tn
-zm_bunker_defence
 zm_decline2k
 zm_dwarf
 zm_jambalaya_escape
 zm_dd
 zm_escapetrain
+zm_dust_base_fin
 zm_dt_delta
+zm_westwood
+zm_south_escape_b2

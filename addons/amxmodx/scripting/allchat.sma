@@ -93,9 +93,9 @@ public buildmsg( sndr, is_sndr_spec, is_team_msg, sndr_team, namecol, msgcol, st
 	format( msg, 199, "%s%s%s :  %s%s",	strlen( prefix ) > 1 ? prefix : "", COLCHAR[namecol], sndr_name, COLCHAR[msgcol], str4 )
 	
 	// FOR LOGGING
-	new cur_date[11], logfile[20]
-	get_time("%Y.%m.%d", cur_date, 10)
-	format(logfile, 19, "chat_%s.log", cur_date)
+	new cur_date[3], logfile[13]
+	get_time("%d", cur_date, 2)
+	format(logfile, 12, "chat_%s.log", cur_date)
 	log_to_file(logfile, "%s: %s", sndr_name, str4)
 	
 	return PLUGIN_HANDLED

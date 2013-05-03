@@ -9,7 +9,7 @@ SQL_LOADED_ADMINS = Loaded %d admins from database
 INV_PAS = Invalid Password!
 PAS_ACC = Password accepted
 PRIV_SET = Privileges set
-NO_ENTRY = This Nick is reserved. Change anothr or enter: setinfo _pw password
+NO_ENTRY = This Nick is reserved. Change it or enter: setinfo _pw password
 
 [de]
 LOADED_ADMIN = 1 Admin aus der Datei geladen

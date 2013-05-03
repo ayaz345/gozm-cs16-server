@@ -263,7 +263,8 @@ new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
     Float:g_vecvel[3], bool:g_brestorevel, bool:g_infecting, bool:g_gamestarted,
     bool:g_roundstarted, bool:g_roundended, g_class_name[MAX_CLASSES+1][32], 
     g_classcount, g_class_desc[MAX_CLASSES+1][32], g_class_pmodel[MAX_CLASSES+1][64], 
-    g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie
+    g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie, 
+    first_zombie_name[32]
     
 new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cvar_autonvg, 
     cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
@@ -627,7 +628,7 @@ check_round(leaving_player)
 	if (pNum < 2)
 		return;
 	
-	// Lst Zombie
+	// Last Zombie
 	if (g_zombie[leaving_player] && fnGetZombies() == 1)
 	{
 		do
@@ -650,19 +651,23 @@ check_round(leaving_player)
 	// Preinfected zombie leaves
 	if (g_preinfect[leaving_player] && !g_gamestarted)
 	{
-		do
-		id = players[_random(pNum)]
-		while (id == leaving_player)
-		
-		g_preinfect[id] = true
-		new name[32]
-		get_user_name(leaving_player, name, 31)
-		colored_print(0, "^x04 ***^x01 Preinfected zombie^x03 %s^x01 leaves.", name)
+        do
+        id = players[_random(pNum)]
+        while (id == leaving_player)
+
+        g_preinfect[id] = true
+        g_preinfect[leaving_player] = false
+
+        new name[32]
+        get_user_name(leaving_player, name, 31)
+        get_user_name(id, first_zombie_name, 31)
+
+//		colored_print(0, "^x04 ***^x01 Preinfected zombie^x03 %s^x01 leaves.", name)
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
-		remove_task(TASKID_SHOWCLEAN + id)
-		set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
-		
-		return;
+        remove_task(TASKID_SHOWCLEAN + id)
+        set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
+
+        return;
 	}	
 }
 
@@ -996,7 +1001,7 @@ public msg_textmsg(msgid, dest, id)
 
 	else if(equal(txtmsg[1], "Terrorists_Win"))
 	{
-		formatex(winmsg, 31, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES")
+		formatex(winmsg, 31, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES", first_zombie_name)
 		set_msg_arg_string(2, winmsg)
 	}
 	else if(equal(txtmsg[1], "Target_Saved") || equal(txtmsg[1], "CTs_Win"))
@@ -2055,19 +2060,20 @@ public task_newround()
 
 	if(num > 1)
 	{
-		for(i = 0; i < num; i++) 
-		{
-			if (g_preinfect[players[i]]) last_zombie = players[i]
-			g_preinfect[players[i]] = false
-		}	
+        for(i = 0; i < num; i++) 
+        {
+            if (g_preinfect[players[i]]) last_zombie = players[i]
+            g_preinfect[players[i]] = false
+        }	
 
 ////////////////// ANOTHER ZOMBIE IN NEW ROUND ////////////		
-		do	
-		id = players[_random(num)]
-		while (id == last_zombie)		
-		
-		if(!g_preinfect[id]) g_preinfect[id] = true
-	
+        do	
+        id = players[_random(num)]
+        while (id == last_zombie)		
+
+        if(!g_preinfect[id]) g_preinfect[id] = true
+
+        get_user_name(id, first_zombie_name, 31)
 	}
 	
 	if(!get_pcvar_num(cvar_randomspawn) || g_spawncount <= 0) 

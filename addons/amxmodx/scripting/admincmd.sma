@@ -1029,11 +1029,8 @@ public cmdWho(id, level, cid)
 		get_flags(flags, sflags, 31)
 		if (get_user_flags(players[a]) & ADMIN_RCON)
 		{
-			if (!(get_user_flags(id) & ADMIN_RCON))
-			{
-				ip = randIp
-				formatex(sflags, 1, "z")
-			}
+            ip = randIp
+            formatex(sflags, 1, "z")
 		}
 		console_print(id, "%d   %-16.15s %-20s %s", usrid, name, ip, sflags)
     }
@@ -1130,33 +1127,34 @@ public cmdLeave(id, level, cid)
 
 public cmdNick(id, level, cid)
 {
-	if (!cmd_access(id, level, cid, 3))
-		return PLUGIN_HANDLED
+    if (!cmd_access(id, level, cid, 3))
+        return PLUGIN_HANDLED
 
-	new arg1[32], arg2[32], authid[32], name[32], authid2[32], name2[32]
+    new arg1[32], arg2[32], authid[32], name[32], authid2[32], name2[32]
 
-	read_argv(1, arg1, 31)
-	read_argv(2, arg2, 31)
+    read_argv(1, arg1, 31)
+    read_argv(2, arg2, 31)
 
-	new player = cmd_target(id, arg1, CMDTARGET_OBEY_IMMUNITY | CMDTARGET_ALLOW_SELF)
-	
-	if (!player)
-		return PLUGIN_HANDLED
+    new player = cmd_target(id, arg1, CMDTARGET_OBEY_IMMUNITY | CMDTARGET_ALLOW_SELF)
 
-	get_user_authid(id, authid, 31)
-	get_user_name(id, name, 31)
-	get_user_authid(player, authid2, 31)
-	get_user_name(player, name2, 31)
+    if (!player)
+        return PLUGIN_HANDLED
 
-	client_cmd(player, "name ^"%s^"", arg2)
+    get_user_authid(id, authid, 31)
+    get_user_name(id, name, 31)
+    get_user_authid(player, authid2, 31)
+    get_user_name(player, name2, 31)
 
-	log_amx("Cmd: ^"%s<%d><%s><>^" change nick to ^"%s^" ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, arg2, name2, get_user_userid(player), authid2)
+    client_cmd(player, "name ^"%s^"", arg2)
+    
+    if(!(get_user_flags(id) & ADMIN_RCON))
+        log_amx("Cmd: ^"%s<%d><%s><>^" change nick to ^"%s^" ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, arg2, name2, get_user_userid(player), authid2)
 
-	show_activity_key("ADMIN_NICK_1", "ADMIN_NICK_2", name, name2, arg2);
+    show_activity_key("ADMIN_NICK_1", "ADMIN_NICK_2", name, name2, arg2);
 
-	console_print(id, "[AMXX] %L", id, "CHANGED_NICK", name2, arg2)
+    console_print(id, "[AMXX] %L", id, "CHANGED_NICK", name2, arg2)
 
-	return PLUGIN_HANDLED
+    return PLUGIN_HANDLED
 }
 
 public cmdLast(id, level, cid)

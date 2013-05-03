@@ -87,57 +87,62 @@ public floodlist()
 
 public checkip(message[])
 {
-	new len=255
-	new temp_right[256],temp_left[256],conn_ip[256],temp_right2[256],temp_left2[256],conn_name[256]
-	formatex( Msg,charsmax( Msg ),"%s", message );
-	split(Msg, temp_left, len, temp_right, len, "^" connected, address ^"")
-	split(Msg, temp_left2, len, temp_right2, len, "^"")
-	strtok(temp_right, conn_ip, len, temp_right, len, ':')
-	strtok(temp_right2, conn_name, len, temp_right2, len, '<')
-	log_to_file("connections.log", "noflood => %s, %s", conn_name, conn_ip)
-	new mintime
-	new replace_index
-	mintime=get_systime()
-	for (new i=0;i<5;i++)
-	{
-		if (time_list[i]<mintime )
-		{
-			mintime=time_list[i]
-			replace_index=i
-		}	
-	}
-	new ipwarn
-	ipwarn=false
-	for(new i=0; i<5; i++)
-	{	
-		if (equal(conn_ip,ip_list[i]) && !equal(conn_ip,""))
-		{
-			if ((get_systime()-time_list[i])<CONN_TIME_IP)
-			{
-				warn_list[i]=warn_list[i]+1
-				if(warn_list[i]>MAX_WARN)
-				{
-					//log_amx("Ban %d %d ",halflife_time ( ), get_systime())
-					//log_amx("[NOFLOOD] Connection flood detected from ip %s",conn_ip)
-					//server_cmd("addip 0.0 %s; writeip;",conn_ip)
-					server_cmd("addip 120.0 %s;",conn_ip)
-					log_to_file("NO_FLOOD.log", "STD: %s", conn_ip)
-				}
-			}
-			else
-			{
-				if ((get_systime()-time_list[i])>RST_WARN_TIME_IP) 
-					warn_list[i]=0
-			}
-			time_list[i]=get_systime()
-			ipwarn=true
-			break
-		}
-	}
-	if(!ipwarn)
-	{
-		warn_list[replace_index]=0
-		time_list[replace_index]=get_systime()
-		copy(ip_list[replace_index],15,conn_ip)
-	}
+    new len=255
+    new temp_right[256],temp_left[256],conn_ip[256],temp_right2[256],temp_left2[256],conn_name[256]
+    formatex( Msg,charsmax( Msg ),"%s", message );
+    split(Msg, temp_left, len, temp_right, len, "^" connected, address ^"")
+    split(Msg, temp_left2, len, temp_right2, len, "^"")
+    strtok(temp_right, conn_ip, len, temp_right, len, ':')
+    strtok(temp_right2, conn_name, len, temp_right2, len, '<')
+
+    new week_number[3], logfile[19]
+    get_time("%W", week_number, 2)
+    format(logfile, 18, "connections_%s.log", week_number)
+    log_to_file(logfile, "noflood => %s, %s", conn_name, conn_ip)
+
+    new mintime
+    new replace_index
+    mintime=get_systime()
+    for (new i=0;i<5;i++)
+    {
+        if (time_list[i]<mintime )
+        {
+            mintime=time_list[i]
+            replace_index=i
+        }	
+    }
+    new ipwarn
+    ipwarn=false
+    for(new i=0; i<5; i++)
+    {	
+        if (equal(conn_ip,ip_list[i]) && !equal(conn_ip,""))
+        {
+            if ((get_systime()-time_list[i])<CONN_TIME_IP)
+            {
+                warn_list[i]=warn_list[i]+1
+                if(warn_list[i]>MAX_WARN)
+                {
+                    //log_amx("Ban %d %d ",halflife_time ( ), get_systime())
+                    //log_amx("[NOFLOOD] Connection flood detected from ip %s",conn_ip)
+                    //server_cmd("addip 0.0 %s; writeip;",conn_ip)
+                    server_cmd("addip 120.0 %s;",conn_ip)
+                    log_to_file("NO_FLOOD.log", "STD: %s", conn_ip)
+                }
+            }
+            else
+            {
+                if ((get_systime()-time_list[i])>RST_WARN_TIME_IP) 
+                    warn_list[i]=0
+            }
+            time_list[i]=get_systime()
+            ipwarn=true
+            break
+        }
+    }
+    if(!ipwarn)
+    {
+        warn_list[replace_index]=0
+        time_list[replace_index]=get_systime()
+        copy(ip_list[replace_index],15,conn_ip)
+    }
 }

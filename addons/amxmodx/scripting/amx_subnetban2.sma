@@ -18,44 +18,50 @@ public client_putinserver(id)
 public check_subnet(id)
 {
 	if (!is_user_bot(id)) {
-		
-		new subnetmsg[512]
-		new readdata[50]
-		new sipaddr1[16]
-		new sipaddr2[16]
-		new len, pos
-		new userip[16]
-		new userauth[32]
-		new mode = get_cvar_num("amx_subnet_mode")
-		new allowed = 0
-		get_user_ip(id,userip,16,1)
-		get_user_authid(id, userauth, 31)
-		get_cvar_string("amx_subnet_msg", subnetmsg, 512)
-		while(read_file("addons/amxmodx/configs/ips.ini",pos++,readdata,50,len)) {
-			if(readdata[0] == ';' || readdata[0] == '#') continue
-			replace(readdata, 50, "/", " ")
-			parse(readdata, sipaddr1, 16, sipaddr2, 16)
-			switch(mode)
-			{
-				case 1:
-				{
-					if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_USER)) && !((get_user_flags(id) & ADMIN_RESERVATION)) && ((containi(userauth, "LAN")!=-1) || (containi(userauth, "PENDING")!=-1)))
-					server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
-				}
-				case 2:
-				{
-					if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_RCON)) && !((get_user_flags(id) & ADMIN_LEVEL_H)))
-					server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
-				}
-				case 3:
-				{
-					if ((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2)))
-					allowed = 1;
-				}
-			}
-		}
-		if((mode==3) && (allowed==0) && !((get_user_flags(id) & ADMIN_USER)) && !((get_user_flags(id) & ADMIN_RESERVATION)))
-		server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
+        new subnetmsg[512]
+        new readdata[50]
+        new sipaddr1[16]
+        new sipaddr2[16]
+        new len, pos
+        new userip[16]
+        new userauth[32]
+        new name[32]
+        new mode = get_cvar_num("amx_subnet_mode")
+        new allowed = 0
+        get_user_ip(id,userip,16,1)
+        get_user_authid(id, userauth, 31)
+        get_user_name(id, name, 31)
+        get_cvar_string("amx_subnet_msg", subnetmsg, 512)
+        while(read_file("addons/amxmodx/configs/ips.ini",pos++,readdata,50,len)) {
+            if(readdata[0] == ';' || readdata[0] == '#') continue
+            replace(readdata, 50, "/", " ")
+            parse(readdata, sipaddr1, 16, sipaddr2, 16)
+            switch(mode)
+            {
+                case 1:
+                {
+                    if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_USER)) && !((get_user_flags(id) & ADMIN_RESERVATION)) && ((containi(userauth, "LAN")!=-1) || (containi(userauth, "PENDING")!=-1)))
+                    server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
+                }
+                case 2:
+                {
+                    if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_RCON)) && !((get_user_flags(id) & ADMIN_LEVEL_H)))
+                    server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
+
+                    new week_number[3], logfile[19]
+                    get_time("%W", week_number, 2)
+                    format(logfile, 18, "connections_%s.log", week_number)
+                    log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
+                }
+                case 3:
+                {
+                    if ((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2)))
+                    allowed = 1;
+                }
+            }
+        }
+        if((mode==3) && (allowed==0) && !((get_user_flags(id) & ADMIN_USER)) && !((get_user_flags(id) & ADMIN_RESERVATION)))
+        server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
 	} else {
 		set_user_flags(id,read_flags("z"))
 	}

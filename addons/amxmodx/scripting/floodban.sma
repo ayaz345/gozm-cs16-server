@@ -72,13 +72,15 @@ public plugin_end()
     num_to_str(temp_cell, week_number[1], 1)
     
     format(next_logfile, 18, "connections_%s.log", week_number)
-    log_amx("[CLEANER]: %s", next_logfile)
+//    log_amx("[CLEANER]: %s", next_logfile)
     
-    new directory[32], file[32]
+    new directory[32], file[50]
     get_basedir(directory, 31)
     format(directory, 31, "%s/logs", directory)
-    format(file, 31, "%s/%s", directory, next_logfile)
-    log_amx("[CLEANER]:file %s", file)
+    format(file, 49, "%s/%s", directory, next_logfile)
+//    log_amx("[CLEANER]:next_logfile [%s]", next_logfile)
+//    log_amx("[CLEANER]:directory [%s]", directory)
+    log_amx("[CLEANER]: %s", file)
     
     if(file_exists(next_logfile))
     {

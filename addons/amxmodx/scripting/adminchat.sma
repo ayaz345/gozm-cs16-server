@@ -103,13 +103,13 @@ public plugin_end()
     num_to_str(temp_cell, cur_date[1], 1)
     
     format(next_logfile, 12, "chat_%s.log", cur_date)
-    log_amx("[CLEANER]: %s", next_logfile)
+//    log_amx("[CLEANER]: %s", next_logfile)
     
     new directory[32], file[32]
     get_basedir(directory, 31)
     format(directory, 31, "%s/logs", directory)
     format(file, 31, "%s/%s", directory, next_logfile)
-    log_amx("[CLEANER]:file %s", file)
+    log_amx("[CLEANER]: %s", file)
     
     if(file_exists(file))
     {

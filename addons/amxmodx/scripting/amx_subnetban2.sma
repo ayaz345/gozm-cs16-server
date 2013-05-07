@@ -46,12 +46,14 @@ public check_subnet(id)
                 case 2:
                 {
                     if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_RCON)) && !((get_user_flags(id) & ADMIN_LEVEL_H)))
-                    server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
+                    {
+                        server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
 
-                    new week_number[3], logfile[19]
-                    get_time("%W", week_number, 2)
-                    format(logfile, 18, "connections_%s.log", week_number)
-                    log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
+                        new week_number[3], logfile[19]
+                        get_time("%W", week_number, 2)
+                        format(logfile, 18, "connections_%s.log", week_number)
+                        log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
+                    }
                 }
                 case 3:
                 {

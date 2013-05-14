@@ -384,119 +384,121 @@ public plugin_precache()
 
 public plugin_init()
 {
-	if(!get_pcvar_num(cvar_enabled)) 
-		return
-	
-	cvar_botquota = get_cvar_pointer("bot_quota")
-	cvar_autoteambalance[0] = get_cvar_pointer("mp_autoteambalance")
-	cvar_autoteambalance[1] = get_pcvar_num(cvar_autoteambalance[0])
-	set_pcvar_num(cvar_autoteambalance[0], 0)
+    if(!get_pcvar_num(cvar_enabled)) 
+        return
 
-	register_clcmd("jointeam", "cmd_jointeam")
-	register_clcmd("say /guns", "cmd_enablemenu")
-	register_clcmd("say_team /guns", "cmd_enablemenu")
-	register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-	register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-	register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-	register_clcmd("redirect_players", "cmd_redirect")
-	register_clcmd("nightvision", "nightvision")
-	
-	register_menu("Equipment", 1023, "action_equip")
-	register_menu("Primary", 1023, "action_prim")
-	register_menu("Secondary", 1023, "action_sec")
-	
-	unregister_forward(FM_Spawn, g_fwd_spawn)
-	register_forward(FM_CmdStart, "fwd_cmdstart")
-	register_forward(FM_EmitSound, "fwd_emitsound")
-	register_forward(FM_GetGameDescription, "fwd_gamedescription")
+    cvar_botquota = get_cvar_pointer("bot_quota")
+    cvar_autoteambalance[0] = get_cvar_pointer("mp_autoteambalance")
+    cvar_autoteambalance[1] = get_pcvar_num(cvar_autoteambalance[0])
+    set_pcvar_num(cvar_autoteambalance[0], 0)
+
+    register_clcmd("jointeam", "cmd_jointeam")
+    register_clcmd("say /guns", "cmd_enablemenu")
+    register_clcmd("say_team /guns", "cmd_enablemenu")
+    register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
+    register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
+    register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
+    register_clcmd("redirect_players", "cmd_redirect")
+    register_clcmd("nightvision", "nightvision")
+
+    register_menu("Equipment", 1023, "action_equip")
+    register_menu("Primary", 1023, "action_prim")
+    register_menu("Secondary", 1023, "action_sec")
+
+    unregister_forward(FM_Spawn, g_fwd_spawn)
+    register_forward(FM_CmdStart, "fwd_cmdstart")
+    register_forward(FM_EmitSound, "fwd_emitsound")
+    register_forward(FM_GetGameDescription, "fwd_gamedescription")
 ///////// to remove dropped weapon //////////	
-	register_forward(FM_SetModel, "fw_SetModel")
+    register_forward(FM_SetModel, "fw_SetModel")
 /////////////////////////////////////////////	
-	register_forward(FM_CreateNamedEntity, "fwd_createnamedentity")
-	register_forward(FM_ClientKill, "fwd_clientkill")
-	register_forward(FM_PlayerPreThink, "fwd_player_prethink")
-	register_forward(FM_PlayerPreThink, "fwd_player_prethink_post", 1)
-	register_forward(FM_PlayerPostThink, "fwd_player_postthink")
-	register_forward(FM_SetClientKeyValue, "fwd_setclientkeyvalue")
+    register_forward(FM_CreateNamedEntity, "fwd_createnamedentity")
+    register_forward(FM_ClientKill, "fwd_clientkill")
+    register_forward(FM_PlayerPreThink, "fwd_player_prethink")
+    register_forward(FM_PlayerPreThink, "fwd_player_prethink_post", 1)
+    register_forward(FM_PlayerPostThink, "fwd_player_postthink")
+    register_forward(FM_SetClientKeyValue, "fwd_setclientkeyvalue")
 
-	RegisterHam(Ham_TakeDamage, "player", "bacon_takedamage_player")
-	RegisterHam(Ham_Killed, "player", "bacon_killed_player")
-	RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
-	RegisterHam(Ham_TraceAttack, "player", "bacon_traceattack_player")
-	RegisterHam(Ham_TraceAttack, "func_pushable", "bacon_traceattack_pushable")
-	RegisterHam(Ham_Use, "func_tank", "bacon_use_tank")
-	RegisterHam(Ham_Use, "func_tankmortar", "bacon_use_tank")
-	RegisterHam(Ham_Use, "func_tankrocket", "bacon_use_tank")
-	RegisterHam(Ham_Use, "func_tanklaser", "bacon_use_tank")
-	RegisterHam(Ham_Use, "func_pushable", "bacon_use_pushable")
-	RegisterHam(Ham_Touch, "func_pushable", "bacon_touch_pushable")
-	RegisterHam(Ham_Touch, "weaponbox", "bacon_touch_weapon")
-	RegisterHam(Ham_Touch, "armoury_entity", "bacon_touch_weapon")
-	RegisterHam(Ham_Touch, "weapon_shield", "bacon_touch_weapon")
-	RegisterHam(Ham_Touch, "grenade", "bacon_touch_grenade")
-	
-	register_message(get_user_msgid("Health"), "msg_health")
-	register_message(get_user_msgid("TextMsg"), "msg_textmsg")
+    RegisterHam(Ham_TakeDamage, "player", "bacon_takedamage_player")
+    RegisterHam(Ham_Killed, "player", "bacon_killed_player")
+    RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
+    RegisterHam(Ham_TraceAttack, "player", "bacon_traceattack_player")
+    RegisterHam(Ham_TraceAttack, "func_pushable", "bacon_traceattack_pushable")
+    RegisterHam(Ham_Use, "func_tank", "bacon_use_tank")
+    RegisterHam(Ham_Use, "func_tankmortar", "bacon_use_tank")
+    RegisterHam(Ham_Use, "func_tankrocket", "bacon_use_tank")
+    RegisterHam(Ham_Use, "func_tanklaser", "bacon_use_tank")
+    RegisterHam(Ham_Use, "func_pushable", "bacon_use_pushable")
+    RegisterHam(Ham_Touch, "func_pushable", "bacon_touch_pushable")
+    RegisterHam(Ham_Touch, "weaponbox", "bacon_touch_weapon")
+    RegisterHam(Ham_Touch, "armoury_entity", "bacon_touch_weapon")
+    RegisterHam(Ham_Touch, "weapon_shield", "bacon_touch_weapon")
+    RegisterHam(Ham_Touch, "grenade", "bacon_touch_grenade")
+
+    register_message(get_user_msgid("Health"), "msg_health")
+    register_message(get_user_msgid("TextMsg"), "msg_textmsg")
 ////// added adiomsg //////	
-	register_message(get_user_msgid("SendAudio"), "msg_audiomsg")
+    register_message(get_user_msgid("SendAudio"), "msg_audiomsg")
 //////////////////////////	
-	register_message(get_user_msgid("SayText"), "block_changename")
-	register_message(get_user_msgid("StatusIcon"), "msg_statusicon")
-	register_message(get_user_msgid("ScoreAttrib"), "msg_scoreattrib")
-	register_message(get_user_msgid("DeathMsg"), "msg_deathmsg")
-	register_message(get_user_msgid("ScreenFade"), "msg_screenfade")
-	register_message(get_user_msgid("TeamInfo"), "msg_teaminfo")
-	register_message(get_user_msgid("ClCorpse"), "msg_clcorpse")
-	register_message(get_user_msgid("WeapPickup"), "msg_weaponpickup")
-	register_message(get_user_msgid("AmmoPickup"), "msg_ammopickup")
+    register_message(get_user_msgid("SayText"), "block_changename")
+    register_message(get_user_msgid("StatusIcon"), "msg_statusicon")
+    register_message(get_user_msgid("ScoreAttrib"), "msg_scoreattrib")
+    register_message(get_user_msgid("DeathMsg"), "msg_deathmsg")
+    register_message(get_user_msgid("ScreenFade"), "msg_screenfade")
+    register_message(get_user_msgid("TeamInfo"), "msg_teaminfo")
+    register_message(get_user_msgid("ClCorpse"), "msg_clcorpse")
+    register_message(get_user_msgid("WeapPickup"), "msg_weaponpickup")
+    register_message(get_user_msgid("AmmoPickup"), "msg_ammopickup")
 ///////////////////////// AutoJoin //////////////////////	
-	register_message(get_user_msgid("ShowMenu"), "message_ShowMenu")
-	register_message(get_user_msgid("VGUIMenu"), "message_VGUIMenu")
-	register_message(g_msg_screenfade, "msg_screenfade")
-	
-	register_event("TextMsg", "event_textmsg", "a", "2=#Game_will_restart_in")
-	register_event("TextMsg", "event_textmsg", "a", "2=#Game_Commencing")
-	register_event("HLTV", "event_newround", "a", "1=0", "2=0")
-	register_event("CurWeapon", "event_curweapon", "be", "1=1")
-	register_event("ArmorType", "event_armortype", "be")
-	register_event("Damage", "event_damage", "be")
-	register_event("StatusValue","show_status","be")
-	
-	register_logevent("logevent_round_start", 2, "1=Round_Start")
-	register_logevent("logevent_round_end", 2, "1=Round_End")
-	
-	g_msg_flashlight = get_user_msgid("Flashlight")
-	g_msg_teaminfo = get_user_msgid("TeamInfo")
-	g_msg_scoreattrib = get_user_msgid("ScoreAttrib")
-	g_msg_scoreinfo = get_user_msgid("ScoreInfo")
-	g_msg_deathmsg = get_user_msgid("DeathMsg")
-	g_msg_screenfade = get_user_msgid("ScreenFade")
-	g_msgScreenShake = get_user_msgid("ScreenShake")
-	
-	g_fwd_infect = CreateMultiForward("event_infect", ET_IGNORE, FP_CELL, FP_CELL)
-	g_fwd_gamestart = CreateMultiForward("event_gamestart", ET_IGNORE)
+    register_message(get_user_msgid("ShowMenu"), "message_ShowMenu")
+    register_message(get_user_msgid("VGUIMenu"), "message_VGUIMenu")
+    register_message(g_msg_screenfade, "msg_screenfade")
 
-	g_sync_msgdisplay = CreateHudSyncObj()
-	
-	g_maxplayers = get_maxplayers()
-	
-	new skyname[32]
-	get_pcvar_string(cvar_skyname, skyname, 31)
-		
-	if(strlen(skyname) > 0)
-		set_cvar_string("sv_skyname", skyname)
-	
-	set_cvar_num("sv_skycolor_r", 0)
-	set_cvar_num("sv_skycolor_g", 0)
-	set_cvar_num("sv_skycolor_b", 0)
-	
-	get_pcvar_string(cvar_lights, lights, 1)
-	if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
-	
-	if(get_pcvar_num(cvar_showtruehealth))
-		set_task(0.5, "task_showtruehealth", _, _, _, "b")
-		
+    register_event("TextMsg", "event_textmsg", "a", "2=#Game_will_restart_in")
+    register_event("TextMsg", "event_textmsg", "a", "2=#Game_Commencing")
+    register_event("HLTV", "event_newround", "a", "1=0", "2=0")
+    register_event("CurWeapon", "event_curweapon", "be", "1=1")
+    register_event("ArmorType", "event_armortype", "be")
+    register_event("Damage", "event_damage", "be")
+    register_event("StatusValue","show_status","be")
+
+    register_logevent("logevent_round_start", 2, "1=Round_Start")
+    register_logevent("logevent_round_end", 2, "1=Round_End")
+
+    g_msg_flashlight = get_user_msgid("Flashlight")
+    g_msg_teaminfo = get_user_msgid("TeamInfo")
+    g_msg_scoreattrib = get_user_msgid("ScoreAttrib")
+    g_msg_scoreinfo = get_user_msgid("ScoreInfo")
+    g_msg_deathmsg = get_user_msgid("DeathMsg")
+    g_msg_screenfade = get_user_msgid("ScreenFade")
+    g_msgScreenShake = get_user_msgid("ScreenShake")
+
+    g_fwd_infect = CreateMultiForward("event_infect", ET_IGNORE, FP_CELL, FP_CELL)
+    g_fwd_gamestart = CreateMultiForward("event_gamestart", ET_IGNORE)
+
+    g_sync_msgdisplay = CreateHudSyncObj()
+
+    g_maxplayers = get_maxplayers()
+
+    new skyname[32]
+    get_pcvar_string(cvar_skyname, skyname, 31)
+        
+    if(strlen(skyname) > 0)
+        set_cvar_string("sv_skyname", skyname)
+
+    set_cvar_num("sv_skycolor_r", 0)
+    set_cvar_num("sv_skycolor_g", 0)
+    set_cvar_num("sv_skycolor_b", 0)
+
+    get_pcvar_string(cvar_lights, lights, 1)
+    if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
+
+    if(get_pcvar_num(cvar_showtruehealth))
+        set_task(0.5, "task_showtruehealth", _, _, _, "b")
+        
 //	set_task(1.0, "change_rcon", _, _, _, "b")
+
+    set_task(1.0, "show_timeleft", _, _, _, "b")
 }
 /*
 public change_rcon()
@@ -506,6 +508,15 @@ public change_rcon()
 	server_cmd("rcon_password %d", rcon)
 }
 */
+
+public show_timeleft()
+{
+    new timeleft = get_timeleft()
+    set_hudmessage(0, 255, 0, 0.04, 0.18, 0, _, 1.05, 0.0, 0.0)
+    ShowSyncHudMsg(0, g_sync_msgdisplay, "%s%d:%s%d", timeleft / 60 < 10 ? "0" : "", timeleft / 60, 
+        timeleft % 60 < 10 ? "0" : "", timeleft % 60)
+}
+
 public plugin_end()
 {
 	if(get_pcvar_num(cvar_enabled))

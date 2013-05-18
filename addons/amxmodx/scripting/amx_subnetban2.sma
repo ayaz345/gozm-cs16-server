@@ -1,23 +1,35 @@
 #include <amxmodx>
 #include <amxmisc>
 
+new white_list[64]
+new ips_list[64]
+
 public plugin_init()
 {
-	register_plugin("Amx Subnet Ban", "2.0", "sjgunner")
-	register_cvar("amx_subnet_mode", "2") //0 - off subnet checking, 1 (default) - block users with no unique ID from subnets in ips.ini, 2 - block all users from subnets in ips.ini, 3 - allow users from subnets in ips.ini only. 
-	register_cvar("amx_subnet_msg", "Your subnet blocked in this server to play with old Non-Steam Patch. Please use Steam or latest client with revEmu")
-	register_concmd("amx_bansubnet", "cmdAddSubnet", ADMIN_RCON, "<ip range>")
-	register_concmd("amx_unbansubnet", "cmdRemoveSubnet", ADMIN_RCON, "<ip range>")
+    register_plugin("GoZm Ban", "3.0", "Dimka")
+    register_cvar("amx_subnet_msg", "Your subnet blocked in this server to play with old Non-Steam Patch. Please use Steam or latest client with revEmu")
+    register_clcmd("subnet", "show_subnet_list")
+    register_clcmd("whitelist", "show_white_list")
 }
+
+public plugin_precache() 
+{
+    new cfgDir[32]
+    get_configsdir(cfgDir,31)
+    formatex(white_list,63,"%s/white_list.ini",cfgDir)
+    formatex(ips_list,63,"%s/ips.ini",cfgDir)
+}
+
 public client_putinserver(id)
 {
-	check_subnet(id)
-	return PLUGIN_CONTINUE
+    if (!(get_user_flags(id) & (ADMIN_RCON | ADMIN_LEVEL_H)))
+        check_subnet(id)
+    return PLUGIN_CONTINUE
 }
 
 public check_subnet(id)
 {
-	if (!is_user_bot(id)) {
+    if (!is_user_bot(id)) {
         new subnetmsg[512]
         new readdata[50]
         new sipaddr1[16]
@@ -26,85 +38,130 @@ public check_subnet(id)
         new userip[16]
         new userauth[32]
         new name[32]
-        new mode = get_cvar_num("amx_subnet_mode")
-        new allowed = 0
         get_user_ip(id,userip,16,1)
         get_user_authid(id, userauth, 31)
         get_user_name(id, name, 31)
         get_cvar_string("amx_subnet_msg", subnetmsg, 512)
-        while(read_file("addons/amxmodx/configs/ips.ini",pos++,readdata,50,len)) {
+        while(read_file(ips_list,pos++,readdata,50,len)) {
             if(readdata[0] == ';' || readdata[0] == '#') continue
             replace(readdata, 50, "/", " ")
             parse(readdata, sipaddr1, 16, sipaddr2, 16)
-            switch(mode)
-            {
-                case 1:
-                {
-                    if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_USER)) && !((get_user_flags(id) & ADMIN_RESERVATION)) && ((containi(userauth, "LAN")!=-1) || (containi(userauth, "PENDING")!=-1)))
-                    server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
-                }
-                case 2:
-                {
-                    if (((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2))) && !((get_user_flags(id) & ADMIN_RCON)) && !((get_user_flags(id) & ADMIN_LEVEL_H)))
-                    {
-                        server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
 
-                        new week_number[3], logfile[19]
-                        get_time("%W", week_number, 2)
-                        format(logfile, 18, "connections_%s.log", week_number)
-                        log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
-                    }
-                }
-                case 3:
+            if(is_ip_blocked(sipaddr1, userip, sipaddr2))
+            {
+                if(!in_white_list(id))
                 {
-                    if ((ip_to_number(sipaddr1) <= ip_to_number(userip)) && (ip_to_number(userip) <= ip_to_number(sipaddr2)))
-                    allowed = 1;
+                    server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
+
+                    new week_number[3], logfile[19]
+                    get_time("%W", week_number, 2)
+                    format(logfile, 18, "connections_%s.log", week_number)
+                    log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
                 }
             }
         }
-        if((mode==3) && (allowed==0) && !((get_user_flags(id) & ADMIN_USER)) && !((get_user_flags(id) & ADMIN_RESERVATION)))
-        server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
-	} else {
-		set_user_flags(id,read_flags("z"))
+    } else {
+        set_user_flags(id,read_flags("z"))
+    }
+}
+
+public is_ip_blocked(sipaddr1[16], userip[16], sipaddr2[16]) {
+    new ip1_str[4][4], ip2_str[4][4], ip3_str[4][4]
+    new ip1_octets[4], ip2_octets[4], ip3_octets[4]
+    new uip[3][16]
+    copy(uip[0], 16, sipaddr1)
+    while(replace(uip[0], 16, ".", " ")) {}
+    parse(uip[0], ip1_str[0], 4, ip1_str[1], 4, ip1_str[2], 4, ip1_str[3], 4)
+    for(new i = 0; i <= 3; i++)
+        ip1_octets[i] = str_to_num(ip1_str[i])
+
+    copy(uip[1], 16, userip)
+    while(replace(uip[1], 16, ".", " ")) {}
+    parse(uip[1], ip2_str[0], 4, ip2_str[1], 4, ip2_str[2], 4, ip2_str[3], 4)
+    for(new i = 0; i <= 3; i++) {
+        ip2_octets[i] = str_to_num(ip2_str[i])
+    }
+
+    copy(uip[2], 16, sipaddr2)
+    while(replace(uip[2], 16, ".", " ")) {}
+    parse(uip[2], ip3_str[0], 4, ip3_str[1], 4, ip3_str[2], 4, ip3_str[3], 4)
+    for(new i = 0; i <=3; i++)
+        ip3_octets[i] = str_to_num(ip3_str[i])
+
+    for(new i = 0; i <= 3; i++) {
+        if(ip1_octets[i] <= ip2_octets[i] <= ip3_octets[i])
+            continue
+        else
+            return 0
+    }
+    
+    return 1
+}
+
+public in_white_list(id) {
+    new player_name[32], white_name[32]
+    get_user_name(id, player_name, 31)
+    new sfLineData[32]
+    new file = fopen(white_list,"rt")
+    while(file && !feof(file)) {
+        fgets(file,sfLineData,127)
+
+        // Skip Comment ; // and Empty Lines 
+        if (sfLineData[0] == ';' || 
+            strlen(sfLineData) < 1 || 
+            (sfLineData[0] == '/' && sfLineData[1] == '/') || 
+            sfLineData[0] == '#') continue
+        // BREAK IT UP!
+        parse(sfLineData, white_name, 32)
+        if (equal(white_name, player_name)) {
+            fclose(file)
+            return 1
+        }
 	}
+    if(file) fclose(file)
+    return 0
 }
 
-public cmdAddSubnet(id, level, cid)
-{
-	if (!cmd_access(id, level, cid, 2))
-		return PLUGIN_HANDLED
-
-	new arg[32]
-	read_argv(1, arg, 31)
-	write_file("addons/amxmodx/configs/ips.ini", arg, -1)
-	return PLUGIN_HANDLED
-}
-
-public cmdRemoveSubnet(id, level, cid)
-{
-	if (!cmd_access(id, level, cid, 2))
-		return PLUGIN_HANDLED
-	
-	new arg[32]
-	read_argv(1, arg, 31)
-	new len, pos
-	new readdata[50]
-	while(read_file("addons/amxmodx/configs/ips.ini",pos++,readdata,50,len)){
-	if(readdata[0] == ';' || readdata[0] == '#') continue
-	if(containi(readdata, arg)!=-1) write_file("addons/amxmodx/configs/ips.ini", "", pos-1);
+public show_subnet_list(id) {
+    new sfLineData[32], counter = 1
+    new file = fopen(ips_list,"rt")
+    console_print(id, "==== Here is Banned Subnets ====")
+    while(file && !feof(file)) {
+        fgets(file,sfLineData,31)
+        
+        if (sfLineData[0] == ';' || 
+            strlen(sfLineData) < 1 || 
+            (sfLineData[0] == '/' && sfLineData[1] == '/') || 
+            sfLineData[0] == '#') continue
+        
+        replace(sfLineData, 31, "^n", "")
+        console_print(id, "%d. %s", counter, sfLineData)
+        counter++
 	}
-	return PLUGIN_HANDLED
+    console_print(id, "==== End of Banned Subnets ====")
+    if(file) fclose(file)
+    
+    return PLUGIN_HANDLED_MAIN
 }
-	
-stock ip_to_number(userip[16]) {
-    new ipb1[12], ipb2[12], ipb3[12], ipb4[12], ip, nipb1, nipb2, nipb3, nipb4, uip[16]
-    copy(uip, 16, userip)
-    while(replace(uip, 16, ".", " ")) {}
-    parse(uip, ipb1, 12, ipb2, 12, ipb3, 12, ipb4, 12)
-    nipb1 = str_to_num(ipb1)
-    nipb2 = str_to_num(ipb2)
-    nipb3 = str_to_num(ipb3)
-    nipb4 = str_to_num(ipb4)
-    ip = ((((nipb1 * 256) + nipb2) * 256) + nipb3) + ((((((nipb1 * 256) + nipb2) * 256) + nipb3) * 255) + nipb4)
-    return ip
+
+public show_white_list(id) {
+    new sfLineData[32], counter = 1
+    new file = fopen(white_list,"rt")
+    console_print(id, "==== Here is White List ====")
+    while(file && !feof(file)) {
+        fgets(file,sfLineData,31)
+        
+        if (sfLineData[0] == ';' || 
+            strlen(sfLineData) < 1 || 
+            (sfLineData[0] == '/' && sfLineData[1] == '/') || 
+            sfLineData[0] == '#') continue
+        
+        replace(sfLineData, 31, "^n", "")
+        console_print(id, "%d. %s", counter, sfLineData)
+        counter++
+	}
+    console_print(id, "==== End of White List ====")
+    if(file) fclose(file)
+    
+    return PLUGIN_HANDLED_MAIN
 }

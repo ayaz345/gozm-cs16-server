@@ -64,6 +64,7 @@
 #define ID_RESTOREFADE (taskid - TASKID_RESTOREFADE)
 #define TASKID_SHOWCLEAN 667
 #define TASKID_SHOWINFECT 668
+#define TASKID_SHOWTIMELEFT 669
 
 #define EQUIP_PRI (1<<0)
 #define EQUIP_SEC (1<<1)
@@ -498,7 +499,7 @@ public plugin_init()
         
 //	set_task(1.0, "change_rcon", _, _, _, "b")
 
-    set_task(1.0, "show_timeleft", _, _, _, "b")
+    start_timeleft_task()
 }
 /*
 public change_rcon()
@@ -509,7 +510,11 @@ public change_rcon()
 }
 */
 
-public show_timeleft()
+public start_timeleft_task() {
+    set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
+}
+
+public show_timeleft(taskid)
 {
     new timeleft = get_timeleft()
     set_hudmessage(0, 255, 0, 0.04, 0.18, 0, _, 1.05, 0.0, 0.0)
@@ -2147,55 +2152,57 @@ public task_newround()
 
 public task_initround()
 {
-	static zombiecount, newzombie
-	zombiecount = 0
-	newzombie = 0
+    static zombiecount, newzombie
+    zombiecount = 0
+    newzombie = 0
 
-	static players[32], num, i, id
-	get_players(players, num, "a")
+    static players[32], num, i, id
+    get_players(players, num, "a")
 
-	for(i = 0; i < num; i++) if(g_preinfect[players[i]])
-	{
-		newzombie = players[i]
-		zombiecount++
-	}
-	
-	if(zombiecount > 1) 
-		newzombie = 0
-	else if(zombiecount < 1) 
-		newzombie = players[_random(num)]
-	
-	for(i = 0; i < num; i++)
-	{
-		id = players[i]
-		
-		remove_task(TASKID_SHOWCLEAN + id)
-		remove_task(TASKID_SHOWINFECT + id)
-		
-		if(id == newzombie || g_preinfect[id])
-			infect_user(id, 0)
-		else
-		{
-			cs_set_team(id, TEAM_CT)
-			add_delay(id, "update_team")
-		}
-	}
-	
-	set_hudmessage(_, _, _, _, _, 1)
-	if(newzombie)
-	{
-		static name[32]
-		get_user_name(newzombie, name, 31)
-		
-		ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD", name)
-		client_print(0, print_console, "!!!WARNING!!! %s is Infected!", name)
-	}
-	else
-	{
-		ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD2")
-	}
-	
-	set_task(0.51, "task_startround", TASKID_STARTROUND)
+    for(i = 0; i < num; i++) if(g_preinfect[players[i]])
+    {
+        newzombie = players[i]
+        zombiecount++
+    }
+
+    if(zombiecount > 1) 
+        newzombie = 0
+    else if(zombiecount < 1) 
+        newzombie = players[_random(num)]
+
+    for(i = 0; i < num; i++)
+    {
+        id = players[i]
+        
+        remove_task(TASKID_SHOWCLEAN + id)
+        remove_task(TASKID_SHOWINFECT + id)
+        
+        if(id == newzombie || g_preinfect[id])
+            infect_user(id, 0)
+        else
+        {
+            cs_set_team(id, TEAM_CT)
+            add_delay(id, "update_team")
+        }
+    }
+
+    remove_task(TASKID_SHOWTIMELEFT)
+    set_hudmessage(_, _, _, _, _, 1)
+    if(newzombie)
+    {
+        static name[32]
+        get_user_name(newzombie, name, 31)
+        
+        ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD", name)
+        client_print(0, print_console, "!!!WARNING!!! %s is Infected!", name)
+    }
+    else
+    {
+        ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD2")
+    }
+
+    set_task(5.0, "start_timeleft_task")
+    set_task(0.51, "task_startround", TASKID_STARTROUND)
 }
 
 public task_startround()

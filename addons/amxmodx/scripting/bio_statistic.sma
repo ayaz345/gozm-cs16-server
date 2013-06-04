@@ -121,13 +121,12 @@ public plugin_cfg()
 
 public plugin_end()
 {
-/*
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
     new now = get_systime()
     new inactive_period = now - max_inactive_days*24*60*60
 
     format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
-            WHERE `last_leave` > %d;", inactive_period)
+            WHERE `last_leave` < %d;", inactive_period)
     
     #if defined QUERY_DEBUG
         new now = get_systime()
@@ -138,7 +137,7 @@ public plugin_end()
             log_amx("[WEBSTATS] Request <plugin_end> took %d seconds", get_systime() - now)
         }
     #endif
-*/
+
 	SQL_FreeHandle(g_SQL_Tuple)
 	SQL_FreeHandle(g_SQL_Connection)
 }

@@ -519,7 +519,17 @@ public show_timeleft(taskid)
     new timeleft = get_timeleft()
     set_hudmessage(0, 255, 0, 0.04, 0.18, 0, _, 1.05, 0.0, 0.0)
     ShowSyncHudMsg(0, g_sync_msgdisplay, "%s%d:%s%d", timeleft / 60 < 10 ? "0" : "", timeleft / 60, 
-        timeleft % 60 < 10 ? "0" : "", timeleft % 60)
+                timeleft % 60 < 10 ? "0" : "", timeleft % 60)
+/*    
+    new playersNum, players[32]
+    get_players(players, playersNum)
+    for (new i = 0; i < playersNum; i++) {
+        if(is_user_connected(players[i])) {
+            ShowSyncHudMsg(players[i], g_sync_msgdisplay, "%s%d:%s%d", timeleft / 60 < 10 ? "0" : "", timeleft / 60, 
+                timeleft % 60 < 10 ? "0" : "", timeleft % 60)
+        }
+    }
+*/
 }
 
 public plugin_end()
@@ -1009,7 +1019,7 @@ public msg_textmsg(msgid, dest, id)
 	if(get_msg_arg_int(1) != 4)
 		return PLUGIN_CONTINUE
 	
-	static txtmsg[25], winmsg[32]
+	static txtmsg[25], winmsg[64]
 	get_msg_arg_string(2, txtmsg, 24)
 	
 	if(equal(txtmsg[1], "Game_bomb_drop"))
@@ -1017,12 +1027,12 @@ public msg_textmsg(msgid, dest, id)
 
 	else if(equal(txtmsg[1], "Terrorists_Win"))
 	{
-		formatex(winmsg, 31, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES", first_zombie_name)
+		formatex(winmsg, 63, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES", first_zombie_name)
 		set_msg_arg_string(2, winmsg)
 	}
 	else if(equal(txtmsg[1], "Target_Saved") || equal(txtmsg[1], "CTs_Win"))
 	{
-		formatex(winmsg, 31, "%L", LANG_SERVER, "WIN_TXT_SURVIVORS")
+		formatex(winmsg, 63, "%L", LANG_SERVER, "WIN_TXT_SURVIVORS")
 		set_msg_arg_string(2, winmsg)
 	}
 	return PLUGIN_CONTINUE
@@ -1093,38 +1103,40 @@ public nightvision(id)
 
 public set_user_nv(taskid)
 {
-	new id = taskid - TASKID_NIGHTVISION
-	
-	static origin[3]
-	get_user_origin(id, origin)
-	
-	message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, id)
-	write_byte(TE_DLIGHT)
-	write_coord(origin[0])
-	write_coord(origin[1])
-	write_coord(origin[2])
-	write_byte(get_pcvar_num(cvar_nvgradius))	// radius 
-	if(!(is_user_alive(id)))
-	{
-		write_byte(get_pcvar_num(cvar_nvgcolor_spec[0]))		// red 
-		write_byte(get_pcvar_num(cvar_nvgcolor_spec[1]))		// green 
-		write_byte(get_pcvar_num(cvar_nvgcolor_spec[2]))		// blue 
-	}
-	else if(g_zombie[id])
-	{
-		write_byte(get_pcvar_num(cvar_nvgcolor_zm[0]))		// red 
-		write_byte(get_pcvar_num(cvar_nvgcolor_zm[1]))		// green
-		write_byte(get_pcvar_num(cvar_nvgcolor_zm[2]))		// blue 
-	}
-	else 
-	{
-		write_byte(get_pcvar_num(cvar_nvgcolor_hum[0]))		// red
-		write_byte(get_pcvar_num(cvar_nvgcolor_hum[1]))		// green
-		write_byte(get_pcvar_num(cvar_nvgcolor_hum[2]))		// blue
-	}
-	write_byte(2)
-	write_byte(0)
-	message_end()
+    new id = taskid - TASKID_NIGHTVISION
+    if(!is_user_connected(id))
+        return
+
+    static origin[3]
+    get_user_origin(id, origin)
+
+    message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, id)
+    write_byte(TE_DLIGHT)
+    write_coord(origin[0])
+    write_coord(origin[1])
+    write_coord(origin[2])
+    write_byte(get_pcvar_num(cvar_nvgradius))	// radius 
+    if(!(is_user_alive(id)))
+    {
+        write_byte(get_pcvar_num(cvar_nvgcolor_spec[0]))		// red 
+        write_byte(get_pcvar_num(cvar_nvgcolor_spec[1]))		// green 
+        write_byte(get_pcvar_num(cvar_nvgcolor_spec[2]))		// blue 
+    }
+    else if(g_zombie[id])
+    {
+        write_byte(get_pcvar_num(cvar_nvgcolor_zm[0]))		// red 
+        write_byte(get_pcvar_num(cvar_nvgcolor_zm[1]))		// green
+        write_byte(get_pcvar_num(cvar_nvgcolor_zm[2]))		// blue 
+    }
+    else 
+    {
+        write_byte(get_pcvar_num(cvar_nvgcolor_hum[0]))		// red
+        write_byte(get_pcvar_num(cvar_nvgcolor_hum[1]))		// green
+        write_byte(get_pcvar_num(cvar_nvgcolor_hum[2]))		// blue
+    }
+    write_byte(2)
+    write_byte(0)
+    message_end()
 }
 
 public logevent_round_start()

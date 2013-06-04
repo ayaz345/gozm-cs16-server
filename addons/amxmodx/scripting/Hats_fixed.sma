@@ -36,15 +36,17 @@ new P_AdminOnly
 new P_FileHat
 
 public plugin_init() {
-	register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
-	register_logevent("event_roundstart", 	2,	"1=Round_Start")
-	
-	register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
-	register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
-	register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
-	
-	P_AdminOnly		= register_cvar("hat_adminonly",	"1")	//Only admins can use the menu
-	P_FileHat		= register_cvar("hat_file", 		"1")	//Load hats from file as player connects	
+    register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
+    register_logevent("event_roundstart", 	2,	"1=Round_Start")
+
+    register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
+    register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
+    register_clcmd("say_team /hats",	"ShowMenu", -1, 	"Shows Knife menu")
+    register_clcmd("hat_test", "hat_test")
+    register_clcmd("hat_test_remove", "hat_test_remove")
+
+    P_AdminOnly		= register_cvar("hat_adminonly",	"1")	//Only admins can use the menu
+    P_FileHat		= register_cvar("hat_file", 		"1")	//Load hats from file as player connects	
 }
 
 public ShowMenu(id) {
@@ -129,14 +131,17 @@ public plugin_precache() {
 	formatex(UsersHats,63,"%s/UsersHats.ini",cfgDir)
 	command_load()
 	new tmpfile [101]
+//	log_amx("[%s] =============================", PLUG_TAG)
 	for (new i = 1; i < TotalHats; ++i) {
 		format(tmpfile, 100, "%s/%s", modelpath, HATMDL[i])
 		if (file_exists (tmpfile)) {
+//			log_amx("[%s] Precached: %d. %s", PLUG_TAG, i, tmpfile)
 			precache_model(tmpfile)
 		} else {
-			log_amx("[%s] Failed to precache %s", PLUG_TAG, tmpfile)
+			log_amx("[%s] Failed to precache: %d. %s", PLUG_TAG, i, tmpfile)
 		}
 	}
+//	log_amx("[%s] -----------------------------", PLUG_TAG)
 }
 
 public client_putinserver(id) {
@@ -144,6 +149,13 @@ public client_putinserver(id) {
 		load_hat_from_file(id)
 	}
 	return PLUGIN_CONTINUE
+}
+
+public client_disconnect(id) {
+    if(g_HatEnt[id] > 0) {
+        fm_set_entity_visibility(g_HatEnt[id], 0)
+        g_HatEnt[id] = 0
+    }
 }
 
 public event_roundstart() {
@@ -253,6 +265,7 @@ public command_load() {
 			}
 			TotalHats += 1
 			if(TotalHats >= MAX_HATS) {
+				log_amx("[%s] Break command_load()", PLUG_TAG)
 				break
 			}
 		}
@@ -302,7 +315,7 @@ public load_hat_from_file(id) {
 		
 		// BREAK IT UP!
 		parse(sfLineData, PLAYERNAME[TotalPlayers], 32, hat_name, 25, hat_model, 3)
-		if ((containi(PLAYERNAME[TotalPlayers], player_name) != -1)) {
+		if (equal(PLAYERNAME[TotalPlayers], player_name)) {
 			fclose(file)
 			Set_Hat(id, str_to_num(hat_model), -1)
 			return
@@ -322,4 +335,30 @@ public add_delay(index, const task[])
 		case 13..18: set_task(0.4, task, index)
 		case 19..24: set_task(0.5, task, index)
 	}
+}
+
+public hat_test(id) {
+    new players[32]
+    new playersNum
+    new name[32]
+    new player
+    
+    get_players(players, playersNum, "ach")
+    for (new i = 0; i < playersNum; i++) {
+        player = players[i]
+        get_user_name(player, name, 31)
+        console_print(id, "%s: %d", name, g_HatEnt[player])
+    }
+}
+
+public hat_test_remove(id) {
+    new players[32]
+    new playersNum
+    new player
+    
+    get_players(players, playersNum, "ach")
+    for (new i = 0; i < playersNum; i++) {
+        player = players[i]
+        fm_set_entity_visibility(g_HatEnt[player], 0)
+    }
 }

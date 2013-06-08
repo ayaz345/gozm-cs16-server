@@ -10,6 +10,19 @@ public plugin_init()
 	register_clcmd("say_team","check_player_msg")
 }
 
+public client_putinserver(id)
+{
+    new nickname[32]
+    get_user_name(id, nickname, sizeof(nickname)-1)
+    
+    if( containi(nickname, ".ru") != -1 ||
+        containi(nickname, ".com") != -1 ||
+        containi(nickname, ".lv") != -1 ||
+        containi(nickname, ".net") != -1)
+        
+        set_user_info(id, "name", "Sorry for spam in my nick =(")
+}
+
 // Checks the message for spam
 bool:is_invalid(const text[])
 {
@@ -58,3 +71,4 @@ public check_player_msg(id)
 		
 	return PLUGIN_CONTINUE
 }
+

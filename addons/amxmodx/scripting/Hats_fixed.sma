@@ -42,8 +42,6 @@ public plugin_init() {
     register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
     register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
     register_clcmd("say_team /hats",	"ShowMenu", -1, 	"Shows Knife menu")
-    register_clcmd("hat_test", "hat_test")
-    register_clcmd("hat_test_remove", "hat_test_remove")
 
     P_AdminOnly		= register_cvar("hat_adminonly",	"1")	//Only admins can use the menu
     P_FileHat		= register_cvar("hat_file", 		"1")	//Load hats from file as player connects	
@@ -131,17 +129,14 @@ public plugin_precache() {
 	formatex(UsersHats,63,"%s/UsersHats.ini",cfgDir)
 	command_load()
 	new tmpfile [101]
-//	log_amx("[%s] =============================", PLUG_TAG)
 	for (new i = 1; i < TotalHats; ++i) {
 		format(tmpfile, 100, "%s/%s", modelpath, HATMDL[i])
 		if (file_exists (tmpfile)) {
-//			log_amx("[%s] Precached: %d. %s", PLUG_TAG, i, tmpfile)
 			precache_model(tmpfile)
 		} else {
 			log_amx("[%s] Failed to precache: %d. %s", PLUG_TAG, i, tmpfile)
 		}
 	}
-//	log_amx("[%s] -----------------------------", PLUG_TAG)
 }
 
 public client_putinserver(id) {
@@ -335,30 +330,4 @@ public add_delay(index, const task[])
 		case 13..18: set_task(0.4, task, index)
 		case 19..24: set_task(0.5, task, index)
 	}
-}
-
-public hat_test(id) {
-    new players[32]
-    new playersNum
-    new name[32]
-    new player
-    
-    get_players(players, playersNum, "ach")
-    for (new i = 0; i < playersNum; i++) {
-        player = players[i]
-        get_user_name(player, name, 31)
-        console_print(id, "%s: %d", name, g_HatEnt[player])
-    }
-}
-
-public hat_test_remove(id) {
-    new players[32]
-    new playersNum
-    new player
-    
-    get_players(players, playersNum, "ach")
-    for (new i = 0; i < playersNum; i++) {
-        player = players[i]
-        fm_set_entity_visibility(g_HatEnt[player], 0)
-    }
 }

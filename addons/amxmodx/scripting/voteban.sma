@@ -28,8 +28,8 @@ new LastTime
 public plugin_init()
 {
   register_plugin("voteban menu","1.2","hjvl")
-  register_clcmd("say /voteban","SayIt" )
-  register_clcmd("say_team /voteban","SayIt" )
+  register_clcmd("say","SayIt" )
+  register_clcmd("say_team","SayIt" )
   register_menucmd(register_menuid("ChoosePlayer"), 1023, "ChooseMenu")
   register_menucmd(register_menuid("VoteMenu"), 1023, "CountVotes")
 
@@ -44,90 +44,97 @@ public plugin_init()
 
 public SayIt(id)
 {
-	if(get_user_flags(id) & ADMIN_LEVEL_H)
-	{
-		new Elapsed = get_systime(0) - LastTime
-		new Delay = 16
+    static say_args[11]
+    read_args(say_args, 10)
+    remove_quotes(say_args)
 
-		if(Delay > Elapsed)
-		{
-			colored_print(id,"^x04 ***^x01 Voting in progress!")
-			return 0
-		}
-	
-		get_players( ga_PlayerID, gi_TotalPlayers )
-		for(i=0; i<gi_TotalPlayers; i++)
-		{
-			new TempID = ga_PlayerID[i]
+    if(say_args[0] == '/' && containi(say_args, "voteban") != -1)
+    {
+        if(get_user_flags(id) & ADMIN_LEVEL_H)
+        {
+            new Elapsed = get_systime(0) - LastTime
+            new Delay = 16
 
-			if(TempID == id)
-				gi_VoteStarter=i
+            if(Delay > Elapsed)
+            {
+                colored_print(id,"^x04 ***^x01 Voting in progress!")
+                return 0
+            }
 
-			get_user_name( TempID, ga_PlayerName[i], 31 )
-			get_user_authid( TempID, ga_PlayerAuthID[i], 34 )
-			get_user_ip( TempID, ga_PlayerIP[i], 15, 1 )
-		}
+            get_players( ga_PlayerID, gi_TotalPlayers )
+            for(i=0; i<gi_TotalPlayers; i++)
+            {
+                new TempID = ga_PlayerID[i]
 
-		gi_MenuPosition = 0
-		ShowPlayerMenu(id)
-		return 0
-	}
-	
-	else
-	{
-		colored_print(id,"^x04***^x01 Only VIP-players can use ^x04/voteban^x01!")
-		return 0
-	}
-	return 0
+                if(TempID == id)
+                    gi_VoteStarter=i
+
+                get_user_name( TempID, ga_PlayerName[i], 31 )
+                get_user_authid( TempID, ga_PlayerAuthID[i], 34 )
+                get_user_ip( TempID, ga_PlayerIP[i], 15, 1 )
+            }
+
+            gi_MenuPosition = 0
+            ShowPlayerMenu(id)
+            return PLUGIN_HANDLED_MAIN
+        }
+        else
+        {
+            colored_print(id,"^x04***^x01 Only VIP-players can use ^x04voteban")
+            return PLUGIN_HANDLED_MAIN
+        }
+    }
+
+    return PLUGIN_CONTINUE
 }
 
 public ShowPlayerMenu(id)
 {
-	if(gi_MenuPosition < 0)  
-		return
+    if(gi_MenuPosition < 0)  
+        return
 
-  	new start = gi_MenuPosition * 8
-  	if(start >= gi_TotalPlayers)
-    		start = gi_MenuPosition
+    new start = gi_MenuPosition * 8
+    if(start >= gi_TotalPlayers)
+            start = gi_MenuPosition
 
-  	new end = start + 8
-	if(end > gi_TotalPlayers)
-    		end = gi_TotalPlayers
-	
-	static menubody[512]	
-  	new len = format(menubody, 511, "Players to BAN: ^n^n")
+    new end = start + 8
+    if(end > gi_TotalPlayers)
+            end = gi_TotalPlayers
 
-	static name[32]
-	
-	new b = 0, i
-	new keys = MENU_KEY_0
-	
-  	for(new a = start; a < end; ++a)
-	{
-		i = ga_PlayerID[a]
-		get_user_name(i, name, 31)
-		
-		if( i == id || get_user_flags(i) & ADMIN_LEVEL_H)
-		{
-			++b
-			len += format(menubody[len], 511 - len, "\d#  %s\w^n", name)
-		}
-		else
-		{
-			keys |= (1<<b)
-			len += format(menubody[len], 511 - len, "%d. %s\w^n", ++b, name)
-		}
-	}
+    static menubody[512]	
+    new len = format(menubody, 511, "Players to BAN: ^n^n")
 
-  	if(end != gi_TotalPlayers) 
-	{
-    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Next", gi_MenuPosition ? "Back" : "Exit")
-    		keys |= MENU_KEY_9
-  	}
-  	else
-		format(menubody[len], 511-len, "^n0. %s", gi_MenuPosition ? "Back" : "Exit")
-	
-  	show_menu(id, keys, menubody, 20, "ChoosePlayer")
+    static name[32]
+
+    new b = 0, i
+    new keys = MENU_KEY_0
+
+    for(new a = start; a < end; ++a)
+    {
+        i = ga_PlayerID[a]
+        get_user_name(i, name, 31)
+
+        if( i == id || get_user_flags(i) & ADMIN_LEVEL_H)
+        {
+            ++b
+            len += format(menubody[len], 511 - len, "\d#  %s\w^n", name)
+        }
+        else
+        {
+            keys |= (1<<b)
+            len += format(menubody[len], 511 - len, "%d. %s\w^n", ++b, name)
+        }
+    }
+
+    if(end != gi_TotalPlayers) 
+    {
+            format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Next", gi_MenuPosition ? "Back" : "Exit")
+            keys |= MENU_KEY_9
+    }
+    else
+        format(menubody[len], 511-len, "^n0. %s", gi_MenuPosition ? "Back" : "Exit")
+
+    show_menu(id, keys, menubody, 20, "ChoosePlayer")
 }
 
 public ChooseMenu(id, key)
@@ -168,14 +175,8 @@ public ChooseMenu(id, key)
 				return 0
 			}
 		}
-/*	  
-		colored_print(id, "^x04 ***^x01 %s", invul[gi_Sellection])
-		colored_print(id, "^x04 ***^x01 %s", ga_PlayerAuthID[gi_Sellection])
-		colored_print(id, "^x04 ***^x01 Last %d", gi_LastTime[gi_Sellection])
-		colored_print(id, "^x04 ***^x01 Elapsed %d", get_systime(0) - gi_LastTime[gi_Sellection])
-*/			
+        
 		run_vote()
-		return 0
     }
   }
   return PLUGIN_HANDLED
@@ -183,18 +184,18 @@ public ChooseMenu(id, key)
 
 public run_vote()
 {
-  log_amx("[VB] Voteban starter %s against %s %s", ga_PlayerName[gi_VoteStarter], ga_PlayerName[gi_Sellection], ga_PlayerAuthID[gi_Sellection])
-  format(ga_MenuData,(MAX_menudata-1),"Ban \r%s \wfor \y%d \wminutes?^n^n1. Yup!^n2. No!!!",ga_PlayerName[gi_Sellection], get_pcvar_num(gi_BanTime))
-  ga_Choice[0] = 0
-  ga_Choice[1] = 0
-  show_menu( 0, (1<<0)|(1<<1), ga_MenuData, 15, "VoteMenu" )
-  set_task(15.0,"outcom")
-  return 0
+    format(ga_MenuData,(MAX_menudata-1),"Ban \r%s \wfor \y%d \wminutes?^n^n1. Yup!^n2. No!!!",ga_PlayerName[gi_Sellection], get_pcvar_num(gi_BanTime))
+    ga_Choice[0] = 0
+    ga_Choice[1] = 0
+
+    show_menu(0, (1<<0)|(1<<1), ga_MenuData, 15, "VoteMenu")
+    show_menu(gi_Sellection, 0, "^n", 1)
+    set_task(15.0,"outcom")
+    return PLUGIN_HANDLED
 }
 
 public CountVotes(id, key)
 {
-//	if(key>2)
 	++ga_Choice[key]
 	return PLUGIN_HANDLED
 }

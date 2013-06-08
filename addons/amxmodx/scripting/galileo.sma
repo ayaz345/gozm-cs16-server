@@ -118,42 +118,42 @@ new cvar_soundsMute;
 
 public plugin_init()
 {
-	// build version information
-	new jnk[1], version[8], rev[8];
-	parse(PLUGIN_VERSION, version, sizeof(version)-1, jnk, sizeof(jnk)-1, rev, sizeof(rev)-1, jnk, sizeof(jnk)-1);
-	new pluginVersion[16];
-	formatex(pluginVersion, sizeof(pluginVersion)-1, "%s.%s", version, rev);
+    // build version information
+    new jnk[1], version[8], rev[8];
+    parse(PLUGIN_VERSION, version, sizeof(version)-1, jnk, sizeof(jnk)-1, rev, sizeof(rev)-1, jnk, sizeof(jnk)-1);
+    new pluginVersion[16];
+    formatex(pluginVersion, sizeof(pluginVersion)-1, "%s.%s", version, rev);
 
-	register_plugin("Galileo", pluginVersion, "Brad Jones");
-	
-	register_cvar("gal_version", pluginVersion, FCVAR_SERVER|FCVAR_SPONLY);
-	set_cvar_string("gal_version", pluginVersion);
-	
-	register_cvar("gal_server_starting", "1", FCVAR_SPONLY);
-	cvar_emptyCycle = register_cvar("gal_in_empty_cycle", "0", FCVAR_SPONLY);
+    register_plugin("Galileo", pluginVersion, "Brad Jones");
 
-	register_cvar("gal_debug", "0");
+    register_cvar("gal_version", pluginVersion, FCVAR_SERVER|FCVAR_SPONLY);
+    set_cvar_string("gal_version", pluginVersion);
 
-	register_dictionary("common.txt");
-	register_dictionary("nextmap.txt");
-	register_dictionary("galileo.txt");
+    register_cvar("gal_server_starting", "1", FCVAR_SPONLY);
+    cvar_emptyCycle = register_cvar("gal_in_empty_cycle", "0", FCVAR_SPONLY);
 
-	if (module_exists("cstrike"))
-	{
-		register_event("HLTV", "event_round_start", "a", "1=0", "2=0");
-	}
-	else if (module_exists("dodx"))
-	{
-		register_event("RoundState", "event_round_start", "a", "1=1");
-	}
+    register_cvar("gal_debug", "0");
 
-	register_event("TextMsg", "event_game_commencing", "a", "2=#Game_Commencing", "2=#Game_will_restart_in");
-	register_event("30", "event_intermission", "a");
+    register_dictionary("common.txt");
+    register_dictionary("nextmap.txt");
+    register_dictionary("galileo.txt");
 
-	g_menuChooseMap = register_menuid(MENU_CHOOSEMAP);
-	register_menucmd(g_menuChooseMap, MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9|MENU_KEY_0, "vote_handleChoice");
+    if (module_exists("cstrike"))
+    {
+        register_event("HLTV", "event_round_start", "a", "1=0", "2=0");
+    }
+    else if (module_exists("dodx"))
+    {
+        register_event("RoundState", "event_round_start", "a", "1=1");
+    }
 
-	register_clcmd("say", "cmd_say", -1);
+    register_event("TextMsg", "event_game_commencing", "a", "2=#Game_Commencing", "2=#Game_will_restart_in");
+    register_event("30", "event_intermission", "a");
+
+    g_menuChooseMap = register_menuid(MENU_CHOOSEMAP);
+    register_menucmd(g_menuChooseMap, MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9|MENU_KEY_0, "vote_handleChoice");
+
+    register_clcmd("say", "cmd_say", -1);
     register_clcmd("say_team", "cmd_say", -1);
     register_clcmd("say nextmap", "cmd_nextmap", 0, "- displays nextmap");
     register_clcmd("say currentmap", "cmd_currentmap", 0, "- display current map");
@@ -161,56 +161,56 @@ public plugin_init()
     register_clcmd("votemap", "cmd_HL1_votemap");
     register_clcmd("listmaps", "cmd_HL1_listmaps");
 
-	register_concmd("gal_startvote", "cmd_startVote", ADMIN_MAP);
-	register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
+    register_concmd("gal_startvote", "cmd_startVote", ADMIN_MAP);
+    register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
 
-	register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
-	cvar_extendmapMax				=	register_cvar("amx_extendmap_max", "35");
-	cvar_extendmapStep			=	register_cvar("amx_extendmap_step", "15");
-	
-	cvar_cmdVotemap 				= register_cvar("gal_cmd_votemap", "0");
-	cvar_cmdListmaps				= register_cvar("gal_cmd_listmaps", "1");
+    register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
+    cvar_extendmapMax				=	register_cvar("amx_extendmap_max", "35");
+    cvar_extendmapStep			=	register_cvar("amx_extendmap_step", "15");
 
-	cvar_listmapsPaginate	 	= register_cvar("gal_listmaps_paginate", "10");
-	
-	cvar_banRecent					= register_cvar("gal_banrecent", "6");
-	cvar_banRecentStyle			= register_cvar("gal_banrecentstyle", "1");
+    cvar_cmdVotemap 				= register_cvar("gal_cmd_votemap", "0");
+    cvar_cmdListmaps				= register_cvar("gal_cmd_listmaps", "1");
 
-	cvar_endOnRound					= register_cvar("gal_endonround", "1");
-	cvar_endOfMapVote				= register_cvar("gal_endofmapvote", "1");
+    cvar_listmapsPaginate	 	= register_cvar("gal_listmaps_paginate", "10");
 
-	cvar_emptyWait					=	register_cvar("gal_emptyserver_wait", "2");
-	cvar_emptyMapFile				= register_cvar("gal_emptyserver_mapfile", "emptycycle.txt");
+    cvar_banRecent					= register_cvar("gal_banrecent", "6");
+    cvar_banRecentStyle			= register_cvar("gal_banrecentstyle", "1");
 
-	cvar_srvStart						= register_cvar("gal_srv_start", "4");
+    cvar_endOnRound					= register_cvar("gal_endonround", "1");
+    cvar_endOfMapVote				= register_cvar("gal_endofmapvote", "1");
 
-	cvar_rtvCommands				= register_cvar("gal_rtv_commands", "2");
-	cvar_rtvWait	  				= register_cvar("gal_rtv_wait", "3");
-	cvar_rtvRatio						= register_cvar("gal_rtv_ratio", "0.50");
-	cvar_rtvReminder				= register_cvar("gal_rtv_reminder", "0");
+    cvar_emptyWait					=	register_cvar("gal_emptyserver_wait", "2");
+    cvar_emptyMapFile				= register_cvar("gal_emptyserver_mapfile", "emptycycle.txt");
 
-	cvar_nomPlayerAllowance	= register_cvar("gal_nom_playerallowance", "1");
-	cvar_nomMapFile					= register_cvar("gal_nom_mapfile", "mapcycle.txt");
-	cvar_nomPrefixes				= register_cvar("gal_nom_prefixes", "0");
-	cvar_nomQtyUsed					= register_cvar("gal_nom_qtyused", "0");
-	
-	cvar_voteWeight 				= register_cvar("gal_vote_weight", "2");
-	cvar_voteWeightFlags		= register_cvar("gal_vote_weightflags", "t");
-	cvar_voteMapFile				= register_cvar("gal_vote_mapfile", "mapcycle.txt");
-	cvar_voteDuration				= register_cvar("gal_vote_duration", "10");
-	cvar_voteExpCountdown		= register_cvar("gal_vote_expirationcountdown", "1");
-	cvar_voteMapChoiceCnt		=	register_cvar("gal_vote_mapchoices", "3");
-	cvar_voteAnnounceChoice	= register_cvar("gal_vote_announcechoice", "1");
-	cvar_voteStatus					=	register_cvar("gal_vote_showstatus", "1");
-	cvar_voteStatusType			= register_cvar("gal_vote_showstatustype", "1");
-	cvar_voteUniquePrefixes = register_cvar("gal_vote_uniqueprefixes", "0");
-	
-	cvar_runoffEnabled			= register_cvar("gal_runoff_enabled", "0");
-	cvar_runoffDuration			= register_cvar("gal_runoff_duration", "10");
-	
-	cvar_soundsMute					= register_cvar("gal_sounds_mute", "0");
-	
-	//set_task(1.0, "dbg_test",_,_,_,"a", 15);
+    cvar_srvStart						= register_cvar("gal_srv_start", "4");
+
+    cvar_rtvCommands				= register_cvar("gal_rtv_commands", "2");
+    cvar_rtvWait	  				= register_cvar("gal_rtv_wait", "3");
+    cvar_rtvRatio						= register_cvar("gal_rtv_ratio", "0.50");
+    cvar_rtvReminder				= register_cvar("gal_rtv_reminder", "0");
+
+    cvar_nomPlayerAllowance	= register_cvar("gal_nom_playerallowance", "1");
+    cvar_nomMapFile					= register_cvar("gal_nom_mapfile", "mapcycle.txt");
+    cvar_nomPrefixes				= register_cvar("gal_nom_prefixes", "0");
+    cvar_nomQtyUsed					= register_cvar("gal_nom_qtyused", "0");
+
+    cvar_voteWeight 				= register_cvar("gal_vote_weight", "2");
+    cvar_voteWeightFlags		= register_cvar("gal_vote_weightflags", "t");
+    cvar_voteMapFile				= register_cvar("gal_vote_mapfile", "mapcycle.txt");
+    cvar_voteDuration				= register_cvar("gal_vote_duration", "10");
+    cvar_voteExpCountdown		= register_cvar("gal_vote_expirationcountdown", "1");
+    cvar_voteMapChoiceCnt		=	register_cvar("gal_vote_mapchoices", "3");
+    cvar_voteAnnounceChoice	= register_cvar("gal_vote_announcechoice", "1");
+    cvar_voteStatus					=	register_cvar("gal_vote_showstatus", "1");
+    cvar_voteStatusType			= register_cvar("gal_vote_showstatustype", "1");
+    cvar_voteUniquePrefixes = register_cvar("gal_vote_uniqueprefixes", "0");
+
+    cvar_runoffEnabled			= register_cvar("gal_runoff_enabled", "0");
+    cvar_runoffDuration			= register_cvar("gal_runoff_duration", "10");
+
+    cvar_soundsMute					= register_cvar("gal_sounds_mute", "0");
+
+    //set_task(1.0, "dbg_test",_,_,_,"a", 15);
 }
 
 public dbg_fakeVotes()
@@ -949,20 +949,28 @@ public cmd_say(id)
 			}
 			else if (get_pcvar_num(cvar_nomPlayerAllowance))
 			{
-				if (equali(arg1, "noms"))
-				{
-					nomination_list(id);
-					return PLUGIN_HANDLED;
-				}
-				else
-				{
-					idxMap = map_getIdx(arg1);
-					if (idxMap >= 0)
-					{
-						nomination_toggle(id, idxMap);
-						return PLUGIN_HANDLED;
-					}
-				}
+                new first_symbols[5];
+                read_args(first_symbols, 4);
+                if(equali(first_symbols[1], "zm_") || equali(first_symbols[1], "ze_"))
+                {
+                    new shot_piece_of_mapname[7];
+                    read_args(shot_piece_of_mapname, 6);
+                    nomination_attempt(id, shot_piece_of_mapname[1]);
+                }
+                else if (equali(arg1, "noms"))
+                {
+                    nomination_list(id);
+                    return PLUGIN_HANDLED;
+                }
+                else
+                {
+                    idxMap = map_getIdx(arg1);
+                    if (idxMap >= 0)
+                    {
+                        nomination_toggle(id, idxMap);
+                        return PLUGIN_HANDLED;
+                    }
+                }
 			}
 		}
 		else if (get_pcvar_num(cvar_nomPlayerAllowance)) // "say <nominate|nom|cancel> <map>"

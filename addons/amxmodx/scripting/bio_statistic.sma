@@ -90,44 +90,41 @@ public plugin_init()
 
 public plugin_cfg()
 {
-	new cfgdir[32]
-	get_configsdir(cfgdir, charsmax(cfgdir))
-	server_cmd("exec %s/zp_web_stats.cfg", cfgdir)
-	
-	new host[32], db[32], user[32], password[32]
-	get_pcvar_string(g_CvarHost, host, 31)
-	get_pcvar_string(g_CvarDB, db, 31)
-	get_pcvar_string(g_CvarUser, user, 31)
-	get_pcvar_string(g_CvarPassword, password, 31)
-	
-	g_SQL_Tuple = SQL_MakeDbTuple(host,user,password,db)
-	
-	new err, error[256]
-	g_SQL_Connection = SQL_Connect(g_SQL_Tuple, err, error, charsmax(error))
-	
-	if(g_SQL_Connection != Empty_Handle)
-	{
-		log_amx("%L",LANG_SERVER, "CONNECT_SUCSESSFUL")
-	}
-	else
-	{
-		log_amx("%L",LANG_SERVER, "CONNECT_ERROR", err, error)
-		pause("a")
-	}
-	
-	format(g_Query,charsmax(g_Query),"SET NAMES utf8;")
-	SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-}
+    new cfgdir[32]
+    get_configsdir(cfgdir, charsmax(cfgdir))
+    server_cmd("exec %s/zp_web_stats.cfg", cfgdir)
 
-public plugin_end()
-{
+    new host[32], db[32], user[32], password[32]
+    get_pcvar_string(g_CvarHost, host, 31)
+    get_pcvar_string(g_CvarDB, db, 31)
+    get_pcvar_string(g_CvarUser, user, 31)
+    get_pcvar_string(g_CvarPassword, password, 31)
+
+    g_SQL_Tuple = SQL_MakeDbTuple(host,user,password,db)
+
+    new err, error[256]
+    g_SQL_Connection = SQL_Connect(g_SQL_Tuple, err, error, charsmax(error))
+
+    if(g_SQL_Connection != Empty_Handle)
+    {
+        log_amx("%L",LANG_SERVER, "CONNECT_SUCSESSFUL")
+    }
+    else
+    {
+        log_amx("%L",LANG_SERVER, "CONNECT_ERROR", err, error)
+        pause("a")
+    }
+
+    format(g_Query,charsmax(g_Query),"SET NAMES utf8;")
+    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
     new now = get_systime()
     new inactive_period = now - max_inactive_days*24*60*60
 
     format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
             WHERE `last_leave` < %d;", inactive_period)
-    
+
     #if defined QUERY_DEBUG
         new now = get_systime()
     #endif
@@ -137,7 +134,10 @@ public plugin_end()
             log_amx("[WEBSTATS] Request <plugin_end> took %d seconds", get_systime() - now)
         }
     #endif
+}
 
+public plugin_end()
+{
 	SQL_FreeHandle(g_SQL_Tuple)
 	SQL_FreeHandle(g_SQL_Connection)
 }

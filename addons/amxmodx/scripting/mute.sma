@@ -209,22 +209,25 @@ public block_gagged(id)
 
 public CMD_GagPlayer(VIP, VictimID) 
 {
-	if ((get_user_flags(VictimID) & ADMIN_LEVEL_H) && VictimID != VIP)  
-		return PLUGIN_HANDLED;
-		
-	new s_Flags[4],AdminName[32],VictimName[32],flags
-	format(s_Flags,7,"abc")
-	
-	flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
-	g_GagPlayers[VictimID] = flags
+    if ((get_user_flags(VictimID) & ADMIN_LEVEL_H) && VictimID != VIP)  
+        return PLUGIN_HANDLED;
+        
+    if (!is_user_connected(VictimID))  
+        return PLUGIN_HANDLED;
+        
+    new s_Flags[4],AdminName[32],VictimName[32],flags
+    format(s_Flags,7,"abc")
 
-	set_speak(VictimID, SPEAK_MUTED)
-	
-	get_user_name(VIP,AdminName,31)
-	get_user_name(VictimID,VictimName,31)
-	colored_print(0,"^x04*** ^x03 %s^x01 has been muted by %s",VictimName, AdminName) 
-	
-	return PLUGIN_HANDLED
+    flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
+    g_GagPlayers[VictimID] = flags
+
+    set_speak(VictimID, SPEAK_MUTED)
+
+    get_user_name(VIP,AdminName,31)
+    get_user_name(VictimID,VictimName,31)
+    colored_print(0,"^x04*** ^x03 %s^x01 has been muted by %s",VictimName, AdminName) 
+
+    return PLUGIN_HANDLED
 } 
 
 public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via console command )
@@ -284,7 +287,7 @@ public client_disconnect(id)
 
 stock UnGagPlayer(id) // This code is what removes the gag.
 { 
-	if(g_GagPlayers[id] & 4)	// Unmutes the player if he had voicecomm muted.
+	if((g_GagPlayers[id] & 4) && is_user_connected(id))	// Unmutes the player if he had voicecomm muted.
 	{
 		set_speak(id, SPEAK_ALL)
 	}

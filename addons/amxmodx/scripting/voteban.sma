@@ -189,7 +189,8 @@ public run_vote()
     ga_Choice[1] = 0
 
     show_menu(0, (1<<0)|(1<<1), ga_MenuData, 15, "VoteMenu")
-    show_menu(gi_Sellection, 0, "^n", 1)
+    if(is_user_connected(gi_Sellection))
+        show_menu(gi_Sellection, 0, "^n", 1)
     set_task(15.0,"outcom")
     return PLUGIN_HANDLED
 }
@@ -207,7 +208,7 @@ public outcom()
 		
 	if( ga_Choice[0] > ga_Choice[1] )
 	{
-		colored_print(0,"^x03%s ^x01is BANNED for ^x04%d ^x01minutes!   >>     ^x03%d^x01 for   |   ^x03%d^x01 against   ", ga_PlayerName[gi_Sellection], get_pcvar_num(gi_BanTime), ga_Choice[0], ga_Choice[1])      
+		colored_print(0,"^x03%s ^x01is BANNED by %s!   >>     ^x03%d^x01 for   |   ^x03%d^x01 against   ", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], ga_Choice[0], ga_Choice[1])      
 		log_amx("[VB] BANNED: %s, STARTER: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter])
 		ActualBan(gi_Sellection,gi_VoteStarter)
 	}

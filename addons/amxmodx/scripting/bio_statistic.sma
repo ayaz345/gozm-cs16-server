@@ -832,7 +832,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     setc(g_text, max_len, 0)
 
     new zombiekills, humankills, infect, name[32], rank, infected, death
-    new Float:res
+    new Float:res, skill
     new len
 
     while (SQL_MoreResults(query))
@@ -845,9 +845,10 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         death = SQL_ReadResult(query, column("death"))
         rank = SQL_ReadResult(query, column("rank"))
         res = float(zombiekills + humankills + infect) / float(death + infected + 100)
+        skill = floatround(res*1000)
         
-        format(g_text, max_len, "<tr><td>%d<td>%s<td>%d<td>%d<td>%d<td>%d<td>%0.2f<td>%s",
-            rank, name, zombiekills, infect, death, infected, res, g_text)
+        format(g_text, max_len, "<tr><td>%d<td>%s<td>%d<td>%d<td>%d<td>%d<td>%d<td>%s",
+            rank, name, zombiekills, infect, death, infected, skill, g_text)
         
         SQL_NextRow(query)
     }

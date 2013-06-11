@@ -1,11 +1,10 @@
 #include <amxmodx>
-//#include <amxmisc>
 #include <regex>
 #include <colored_print>
 
 public plugin_init()
 {
-	register_plugin("Anti-Spam", "1.0", "Dumka")
+	register_plugin("Anti-Spam", "1.2", "Dumka")
 	register_clcmd("say","check_player_msg")
 	register_clcmd("say_team","check_player_msg")
 }
@@ -15,12 +14,24 @@ public client_putinserver(id)
     new nickname[32]
     get_user_name(id, nickname, sizeof(nickname)-1)
     
+    new corrected_names[6][30] = {
+        "[no_spam] Nick deleted",
+        "[no_spam] My shiny new nick!",
+        "[no_spam] Im a tomato",
+        "[no_spam] I love GoZombie!",
+        "[no_spam] Pif-Paf",
+        "[no_spam] Bot"
+    }
+    new random_name = random_num(0, 5)
+    
     if( containi(nickname, ".ru") != -1 ||
         containi(nickname, ".com") != -1 ||
         containi(nickname, ".lv") != -1 ||
-        containi(nickname, ".net") != -1)
+        containi(nickname, ".net") != -1 ||
+        containi(nickname, ".ua") != -1 ||
+        containi(nickname, ".su") != -1 )
         
-        set_user_info(id, "name", "Sorry for spam in my nick =(")
+        set_user_info(id, "name", corrected_names[random_name])
 }
 
 // Checks the message for spam

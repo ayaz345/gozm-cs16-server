@@ -608,13 +608,16 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
     new name[32]
     new rank
+    new Float:res, skill
 
     if (SQL_MoreResults(query))
     {
     	SQL_ReadResult(query, column("nick"), name, 31)
     	rank = SQL_ReadResult(query, column("rank"))
+        SQL_ReadResult(query, column("skill"), res)
+        skill = floatround(res*1000)
     		
-    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 place!",  name, rank)
+    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 place with %d skill!", name, rank, skill)
     } 
     else
     	colored_print(id, "^x04***^x03 %s^x01 should KILL MORE!", whois)
@@ -676,7 +679,7 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     new name[32], ip[32], steam_id[32]
     new len
     new infect, zombiekills
-    new death, infected, rank, total, Float:skill, first_zombie
+    new death, infected, rank, total, Float:res, first_zombie, skill
 
     if (SQL_MoreResults(query))
     {
@@ -689,7 +692,9 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     	death = SQL_ReadResult(query, column("death"))
     	infected = SQL_ReadResult(query, column("infected"))
     	rank = SQL_ReadResult(query, column("rank"))
-    	SQL_ReadResult(query, column("skill"), skill)		
+    	SQL_ReadResult(query, column("skill"), res)
+        
+        skill = floatround(res*1000)
     	total = SQL_ReadResult(query, column("total"))
     	
     	replace_all(name, 32, ">", "gt;")
@@ -699,6 +704,8 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     	format(lStats, 31, "%L", id, "STATS")
     	new lRank[32]
     	format(lRank, 31, "%L", id, "RANK_STATS")
+        new lSkill[32]
+        format(lSkill, 31, "%L", id, "RESULT")
     	new lInfect[32]
     	format(lInfect, 31, "%L", id, "INFECT_STATS")
     	new lZKills[32]
@@ -714,8 +721,8 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     		
     	new max_len = charsmax(g_text)
     	len = format(g_text, max_len, "<html><head><meta http-equiv=^"Content-Type^" content=^"text/html; charset=utf-8^" /></head><body bgcolor=#000000>")
-    	len += format(g_text[len], max_len - len, "%s %s:<table style=^"color: #FFB000^"><tr><td>%s</td><td>%d/%d</td></tr><tr><td>%s</td><td>%d</td>",
-    		lStats, name, lRank, rank, total, lInfect, infect)
+    	len += format(g_text[len], max_len - len, "%s %s:<table style=^"color: #FFB000^"><tr><td>%s</td><td>%d/%d</td></tr><tr><td>%s</td><td>%d</td><tr><td>%s</td><td>%d</td>",
+    		lStats, name, lRank, rank, total, lSkill, skill, lInfect, infect)
     	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr>",
     		lZKills, zombiekills)
     	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr><tr><td>%s</td><td>%d</td></tr>",

@@ -1,0 +1,52 @@
+{
+    "name"       : "SV_FullUpdate_f",
+    "library"    : "engine",
+    "arguments"  :
+    [
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        },
+        {
+            "type" : "int"
+        }
+    ],
+    "identifiers":
+    [
+        {
+            "os"    : "windows",
+            "value" : [0x55,0x8B,0xEC,0x51,0x83,0x3D,"*","*","*","*","*",0x75]
+        },
+        {
+            "os"    : "linux",
+            "value" : "SV_FullUpdate_f"
+        }
+    ]
+}
+

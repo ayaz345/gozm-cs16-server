@@ -219,12 +219,15 @@ public Item_PostFrame(iEnt)
 
 SendWeaponAnim(id, iAnim)
 {
-	set_pev(id, pev_weaponanim, iAnim)
+    if(!is_user_connected(id))
+        return
 
-	message_begin(MSG_ONE_UNRELIABLE, SVC_WEAPONANIM, _, id)
-	write_byte(iAnim)
-	write_byte(pev(id,pev_body))
-	message_end()
+    set_pev(id, pev_weaponanim, iAnim)
+
+    message_begin(MSG_ONE_UNRELIABLE, SVC_WEAPONANIM, _, id)
+    write_byte(iAnim)
+    write_byte(pev(id,pev_body))
+    message_end()
 }
 
 public Shotgun_WeaponIdle( iEnt )

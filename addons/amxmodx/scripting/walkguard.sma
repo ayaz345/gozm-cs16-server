@@ -493,34 +493,37 @@ public FX_Box(Float:sizemin[3], Float:sizemax[3], color[3], life) {
 }
 
 public FX_Line(start[3], stop[3], color[3], brightness) {
-	message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, editor) 
-	
-	write_byte( TE_BEAMPOINTS ) 
-	
-	write_coord(start[0]) 
-	write_coord(start[1])
-	write_coord(start[2])
-	
-	write_coord(stop[0])
-	write_coord(stop[1])
-	write_coord(stop[2])
-	
-	write_short( spr_dot )
-	
-	write_byte( 1 )	// framestart 
-	write_byte( 1 )	// framerate 
-	write_byte( 4 )	// life in 0.1's 
-	write_byte( 5 )	// width
-	write_byte( 0 ) 	// noise 
-	
-	write_byte( color[0] )   // r, g, b 
-	write_byte( color[1] )   // r, g, b 
-	write_byte( color[2] )   // r, g, b 
-	
-	write_byte( brightness )  	// brightness 
-	write_byte( 0 )   	// speed 
-	
-	message_end() 
+    if(!is_user_connected(editor))
+        return
+
+    message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, editor) 
+
+    write_byte( TE_BEAMPOINTS ) 
+
+    write_coord(start[0]) 
+    write_coord(start[1])
+    write_coord(start[2])
+
+    write_coord(stop[0])
+    write_coord(stop[1])
+    write_coord(stop[2])
+
+    write_short( spr_dot )
+
+    write_byte( 1 )	// framestart 
+    write_byte( 1 )	// framerate 
+    write_byte( 4 )	// life in 0.1's 
+    write_byte( 5 )	// width
+    write_byte( 0 ) 	// noise 
+
+    write_byte( color[0] )   // r, g, b 
+    write_byte( color[1] )   // r, g, b 
+    write_byte( color[2] )   // r, g, b 
+
+    write_byte( brightness )  	// brightness 
+    write_byte( 0 )   	// speed 
+
+    message_end() 
 }
 
 public DrawLine(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, color[3]) {

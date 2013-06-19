@@ -163,6 +163,7 @@ public plugin_init()
 
     register_concmd("gal_startvote", "cmd_startVote", ADMIN_MAP);
     register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
+    register_concmd("recentmaps", "cmd_listrecent");
 
     register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
     cvar_extendmapMax				=	register_cvar("amx_extendmap_max", "35");
@@ -551,12 +552,16 @@ public cmd_listrecent(id)
 	{
 		case 1:
 		{
-			new msg[101], msgIdx;
-			for (new idx = 0; idx < g_cntRecentMap; ++idx)
-			{
-				msgIdx += format(msg[msgIdx], sizeof(msg)-1-msgIdx, ", %s", g_recentMap[idx]);
-			}	
-			client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_MAP_RECENTMAPS", msg[2]);	
+            new msg[101], msgIdx;
+
+            console_print(id, "==== Recently played ====");
+            for (new idx = 0; idx < g_cntRecentMap; ++idx)
+            {
+                msgIdx += format(msg[msgIdx], sizeof(msg)-1-msgIdx, ", %s", g_recentMap[idx]);
+                console_print(id, "%s", g_recentMap[idx]);
+            }	
+//			client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_MAP_RECENTMAPS", msg[2]);
+            client_print(id, print_chat, "Check your console to see recent maps");
 		}
 		case 2:
 		{
@@ -2875,10 +2880,13 @@ stock percent(is, of)
 
 print_color(id, text[])
 {
-	message_begin(MSG_ONE, get_user_msgid("SayText"), {0, 0, 0}, id);
-	write_byte(id);
-	write_string(text);
-	message_end();
+    if(is_user_connected(id))
+    {
+        message_begin(MSG_ONE, get_user_msgid("SayText"), {0, 0, 0}, id);
+        write_byte(id);
+        write_string(text);
+        message_end();
+    }
 }	
 
 map_restoreOriginalTimeLimit()

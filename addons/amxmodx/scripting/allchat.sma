@@ -57,10 +57,13 @@ public col_changer( msg_id, msg_dest, rcvr )
 				
 				for( new i=0; i < num; i++ )
 				{
-					message_begin( MSG_ONE, get_user_msgid( "SayText" ), _, players[i] )
-					write_byte( sndr )
-					write_string( msg )
-					message_end()
+                    if(is_user_connected(players[i]))
+                    {
+                        message_begin( MSG_ONE, get_user_msgid( "SayText" ), _, players[i] )
+                        write_byte( sndr )
+                        write_string( msg )
+                        message_end()
+                    }
 				}
 					
 				alv_sndr = sndr

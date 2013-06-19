@@ -42,11 +42,14 @@ colored_print(target, const message[], any:...)
 	}
 	else
 	{
-		vformat(buffer, charsmax(buffer), message, 3)
-		
-		message_begin(MSG_ONE, get_user_msgid("SayText"), _, target)
-		write_byte(target)
-		write_string(buffer)
-		message_end()
+        if (is_user_connected(target))
+        {
+            vformat(buffer, charsmax(buffer), message, 3)
+
+            message_begin(MSG_ONE, get_user_msgid("SayText"), _, target)
+            write_byte(target)
+            write_string(buffer)
+            message_end()
+        }
 	}
 }

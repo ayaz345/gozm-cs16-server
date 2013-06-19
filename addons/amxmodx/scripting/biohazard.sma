@@ -1959,14 +1959,16 @@ public task_spawned(taskid)
 }
 
 public task_showinfected(taskid) {
-	new id = taskid - TASKID_SHOWINFECT
-	set_dhudmessage(255, 0, 0, 0.425, 0.88, 0, _, 0.2, 0.1)
-	show_dhudmessage(id, "[ INFECTED ]")
+    new id = taskid - TASKID_SHOWINFECT
+    set_dhudmessage(255, 0, 0, 0.425, 0.88, 0, _, 0.2, 0.1)
+    if(is_user_connected(id))
+        show_dhudmessage(id, "[ INFECTED ]")
 }
 public task_showclean(taskid) {
-	new id = taskid - TASKID_SHOWCLEAN
-	set_dhudmessage(0, 255, 0, 0.44, 0.88, 0, _, 0.7, 0.1)
-	show_dhudmessage(id, "[ CLEAN ]")
+    new id = taskid - TASKID_SHOWCLEAN
+    set_dhudmessage(0, 255, 0, 0.44, 0.88, 0, _, 0.7, 0.1)
+    if(is_user_connected(id))
+        show_dhudmessage(id, "[ CLEAN ]")
 }
 
 public task_checkspawn(taskid)
@@ -2309,7 +2311,7 @@ public update_team(id)
 
 public infect_user(victim, attacker)
 {
-	if(!is_user_alive(victim))
+	if(!is_user_alive(victim) || !is_user_connected(victim))
 		return
 
 	message_begin(MSG_ONE, g_msg_screenfade, _, victim)
@@ -2355,7 +2357,7 @@ public inf(param[])
 
 public cure_user2(id)
 {
-	if(!is_user_alive(id)) 
+	if(!is_user_alive(id) || !is_user_connected(id)) 
 		return
 
 	g_zombie[id] = false
@@ -2396,7 +2398,7 @@ public cure_user2(id)
 
 public cure_user(id)
 {
-	if(!is_user_alive(id)) 
+	if(!is_user_alive(id) || !is_user_connected(id)) 
 		return
 
 	g_zombie[id] = false
@@ -2843,7 +2845,7 @@ stock str_count(str[], searchchar)
 
 set_zombie_attibutes(index)
 {
-	if(!is_user_alive(index)) 
+	if(!is_user_alive(index) || !is_user_connected(index)) 
 		return
 
 	g_zombie[index] = true

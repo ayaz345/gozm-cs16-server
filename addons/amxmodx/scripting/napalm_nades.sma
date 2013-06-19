@@ -650,7 +650,7 @@ napalm_explode(ent)
 	while ((victim = engfunc(EngFunc_FindEntityInSphere, victim, originF, g_radius)) != 0)
 	{
 		// Only effect alive players
-		if (!is_user_alive(victim))
+		if (!is_user_alive(victim) || !is_user_connected(victim))
 			continue;
 		
 		//MINE

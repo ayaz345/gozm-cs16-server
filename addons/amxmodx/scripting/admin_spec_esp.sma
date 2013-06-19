@@ -718,45 +718,51 @@ public addVec(Float:Vec1[3],Float:Vec2[3]){
 // all messages are sent with MSG_ONE_UNRELIABLE flag to avoid overflow in case of very low esp_timer setting and much targets
 
 public make_TE_BEAMPOINTS(id,color,Float:Vec1[3],Float:Vec2[3],width,target_team,brightness){
-	message_begin(MSG_ONE_UNRELIABLE ,SVC_TEMPENTITY,{0,0,0},id) //message begin
-	write_byte(0)
-	write_coord(floatround(Vec1[0])) // start position
-	write_coord(floatround(Vec1[1]))
-	write_coord(floatround(Vec1[2]))
-	write_coord(floatround(Vec2[0])) // end position
-	write_coord(floatround(Vec2[1]))
-	write_coord(floatround(Vec2[2]))
-	write_short(laser) // sprite index
-	write_byte(3) // starting frame
-	write_byte(0) // frame rate in 0.1's
-	write_byte(floatround(get_cvar_float("esp_timer")*10)) // life in 0.1's
-	write_byte(width) // line width in 0.1's
-	write_byte(0) // noise amplitude in 0.01's
-	write_byte(esp_colors[color][0])
-	write_byte(esp_colors[color][1])
-	write_byte(esp_colors[color][2])
-	write_byte(brightness) // brightness)
-	write_byte(0) // scroll speed in 0.1's
-	message_end()
+    if(!is_user_connected(id))
+        return
+
+    message_begin(MSG_ONE_UNRELIABLE ,SVC_TEMPENTITY,{0,0,0},id) //message begin
+    write_byte(0)
+    write_coord(floatround(Vec1[0])) // start position
+    write_coord(floatround(Vec1[1]))
+    write_coord(floatround(Vec1[2]))
+    write_coord(floatround(Vec2[0])) // end position
+    write_coord(floatround(Vec2[1]))
+    write_coord(floatround(Vec2[2]))
+    write_short(laser) // sprite index
+    write_byte(3) // starting frame
+    write_byte(0) // frame rate in 0.1's
+    write_byte(floatround(get_cvar_float("esp_timer")*10)) // life in 0.1's
+    write_byte(width) // line width in 0.1's
+    write_byte(0) // noise amplitude in 0.01's
+    write_byte(esp_colors[color][0])
+    write_byte(esp_colors[color][1])
+    write_byte(esp_colors[color][2])
+    write_byte(brightness) // brightness)
+    write_byte(0) // scroll speed in 0.1's
+    message_end()
 }
 
 public make_TE_BEAMENTPOINT(id,Float:target_origin[3],width,target_team){
-	message_begin(MSG_ONE_UNRELIABLE,SVC_TEMPENTITY,{0,0,0},id)
-	write_byte(1)
-	write_short(id)
-	write_coord(floatround(target_origin[0]))
-	write_coord(floatround(target_origin[1]))
-	write_coord(floatround(target_origin[2]))
-	write_short(laser)
-	write_byte(1)		
-	write_byte(1)
-	write_byte(floatround(get_cvar_float("esp_timer")*10))
-	write_byte(width)
-	write_byte(0)
-	write_byte(team_colors[target_team][0])
-	write_byte(team_colors[target_team][1])
-	write_byte(team_colors[target_team][2])
-	write_byte(255)
-	write_byte(0)
-	message_end()
+    if(!is_user_connected(id))
+        return
+        
+    message_begin(MSG_ONE_UNRELIABLE,SVC_TEMPENTITY,{0,0,0},id)
+    write_byte(1)
+    write_short(id)
+    write_coord(floatround(target_origin[0]))
+    write_coord(floatround(target_origin[1]))
+    write_coord(floatround(target_origin[2]))
+    write_short(laser)
+    write_byte(1)		
+    write_byte(1)
+    write_byte(floatround(get_cvar_float("esp_timer")*10))
+    write_byte(width)
+    write_byte(0)
+    write_byte(team_colors[target_team][0])
+    write_byte(team_colors[target_team][1])
+    write_byte(team_colors[target_team][2])
+    write_byte(255)
+    write_byte(0)
+    message_end()
 }

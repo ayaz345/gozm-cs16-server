@@ -1,95 +1,95 @@
 public cmdBan(id, level, cid)
 {
-	/* Checking if the admin has the right access */
-	if (!cmd_access(id,level,cid,3))
-		return PLUGIN_HANDLED
-
-	
-	new bool:serverCmd = false
-	/* Determine if this was a server command or a command issued by a player in the game */
-	if ( id == 0 )
-		serverCmd = true;
-	
-	new text[128], steamidorusername[50], ban_length[50]
-	read_args(text, 127)
-	parse(text, ban_length, 49, steamidorusername, 49)
-	
-	/* Check so the ban command has the right format */
-	if( !is_str_num(ban_length) || read_argc() < 4 )
-	{
-		client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_BAN_SYNTAX")
-
-		return PLUGIN_HANDLED
-	}
-	
-	new length1 = strlen(ban_length)
-	new length2 = strlen(steamidorusername)
-	new length = length1 + length2
-	length+=2
-
-	new reason[128]
-	read_args(reason,127)
-	format(g_ban_reason, 255, "%s", reason[length])
-	
-	replace_all(g_ban_reason, 255, "\", "")
-	replace_all(g_ban_reason, 255, "'", "´")
-	
-	new iBanLength = str_to_num(ban_length)
-	new cTimeLength[128]
-	
-	if (iBanLength > 0)
-		get_time_length(id, iBanLength, timeunit_minutes, cTimeLength, 127)
-	else
-		format(cTimeLength, 127, "%L", LANG_PLAYER, "TIME_ELEMENT_PERMANENTLY")
-
-	// This stops admins from banning perm in console if not adminflag n
-	if(!(get_user_flags(id)&ADMIN_RCON) && iBanLength == 0)
-	{
-		client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"NOT_BAN_PERMANENT")
-		
-		return PLUGIN_HANDLED
-	}
-
-	// This stops admins from banning more than 600 min in console if not adminflag n
-	if(!(get_user_flags(id)&ADMIN_RCON) && iBanLength > get_pcvar_num(consoleBanMax))
-	{
-		client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"BAN_MAX", get_pcvar_num(consoleBanMax))
-		
-		return PLUGIN_HANDLED
-	}
-	
-	/* Try to find the player that should be banned */
-	new player = locate_player(id, steamidorusername)
-
-	/* Player is a BOT or has immunity */
-	if (player == -1)
-		return PLUGIN_HANDLED
-		
-	///// MINE
-	if (get_user_flags(player) & ADMIN_RCON)
-		return PLUGIN_HANDLED
-		
-	if(g_being_banned[player]) //triggered error http://amxbans.net/forums/viewtopic.php?p=3468#3468
-	{
-		if ( get_pcvar_num(amxbans_debug) == 1 )
-			log_amx("[AMXBANS DEBUG Blocking doubleban(g_being_banned)] Playerid: %d BanLenght: %s Reason: %s", player, ban_length, g_ban_reason)
-			
-		return PLUGIN_HANDLED
-	}
-	
-	g_being_banned[player] = true
-	
-	if ( get_pcvar_num(amxbans_debug) == 1 )
-		log_amx("[cmdBan function 1]Playerid: %d", player)
+    /* Checking if the admin has the right access */
+    if (!cmd_access(id,level,cid,3))
+        return PLUGIN_HANDLED
 
 
-	new player_steamid[50], player_ip[30]
-	if (player)
-	{
+    new bool:serverCmd = false
+    /* Determine if this was a server command or a command issued by a player in the game */
+    if ( id == 0 )
+        serverCmd = true;
+
+    new text[128], steamidorusername[50], ban_length[50]
+    read_args(text, 127)
+    parse(text, ban_length, 49, steamidorusername, 49)
+
+    /* Check so the ban command has the right format */
+    if( !is_str_num(ban_length) || read_argc() < 4 )
+    {
+        client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_BAN_SYNTAX")
+
+        return PLUGIN_HANDLED
+    }
+
+    new length1 = strlen(ban_length)
+    new length2 = strlen(steamidorusername)
+    new length = length1 + length2
+    length+=2
+
+    new reason[128]
+    read_args(reason,127)
+    format(g_ban_reason, 255, "%s", reason[length])
+
+    replace_all(g_ban_reason, 255, "\", "")
+    replace_all(g_ban_reason, 255, "'", "´")
+
+    new iBanLength = str_to_num(ban_length)
+    new cTimeLength[128]
+
+    if (iBanLength > 0)
+        get_time_length(id, iBanLength, timeunit_minutes, cTimeLength, 127)
+    else
+        format(cTimeLength, 127, "%L", LANG_PLAYER, "TIME_ELEMENT_PERMANENTLY")
+
+    // This stops admins from banning perm in console if not adminflag n
+    if(!(get_user_flags(id)&ADMIN_RCON) && iBanLength == 0)
+    {
+        client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"NOT_BAN_PERMANENT")
+        
+        return PLUGIN_HANDLED
+    }
+
+    // This stops admins from banning more than 600 min in console if not adminflag n
+    if(!(get_user_flags(id)&ADMIN_RCON) && iBanLength > get_pcvar_num(consoleBanMax))
+    {
+        client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"BAN_MAX", get_pcvar_num(consoleBanMax))
+        
+        return PLUGIN_HANDLED
+    }
+
+    /* Try to find the player that should be banned */
+    new player = locate_player(id, steamidorusername)
+
+    /* Player is a BOT or has immunity */
+    if (player == -1)
+        return PLUGIN_HANDLED
+        
+    ///// MINE
+    if (get_user_flags(player) & ADMIN_RCON)
+        return PLUGIN_HANDLED
+        
+    if(g_being_banned[player]) //triggered error http://amxbans.net/forums/viewtopic.php?p=3468#3468
+    {
+        if ( get_pcvar_num(amxbans_debug) == 1 )
+            log_amx("[AMXBANS DEBUG Blocking doubleban(g_being_banned)] Playerid: %d BanLenght: %s Reason: %s", player, ban_length, g_ban_reason)
+            
+        return PLUGIN_HANDLED
+    }
+
+    g_being_banned[player] = true
+
+    if ( get_pcvar_num(amxbans_debug) == 1 )
+        log_amx("[cmdBan function 1]Playerid: %d", player)
+
+
+    new player_steamid[50], player_ip[30]
+    if (player)
+    {
         get_user_authid(player, player_steamid, 49)
         get_user_ip(player, player_ip, 29, 1)
         get_user_ip(player, ga_PlayerIP[player], 15, 1)
-		
+        
         //// MINE
         new param[2]
         param[0] = player
@@ -97,93 +97,104 @@ public cmdBan(id, level, cid)
         if ( get_pcvar_num(amxbans_debug) == 1 )
             log_amx("[! AMXBANS EXTRA] To check: ip - %s; length - %d", player_ip, iBanLength)
         set_task(10.0, "double_ban", player, param, 2)
-	}
-	else
-	{
-		// Must make that false to be able to ban another player not on the server
-		// Players that aren't in the server always get id = 0
-		g_being_banned[0] = false
-		
-		/* Get the steamID from the commandline even if it cant be found on the server
-		That steamID will be inserted to the DB, if the string contains STEAM_ and if ban_evenif_disconnected == 1 */
-		if ( contain(steamidorusername, "STEAM_") != -1 && get_pcvar_num(ban_evenif_disconn) == 1 )
-		{
-			format(player_steamid, 49, "%s", steamidorusername)
-			format(player_ip, 29, "unknown_%s", player_steamid)
-			
-			// This is an extra check so it is impossible to make doublebans on a STEAM_ID
-			// This is a fix when players are not present in the server.
-			if ( equal(steamidorusername, g_steamidorusername) )
-			{
-				if (serverCmd)
-					server_print("[AMXXBANS] SteamID %s is already being banned",g_steamidorusername)
-				else
-					console_print(id, "[AMXXBANS] SteamID %s is already being banned",g_steamidorusername)
-	
-				if ( get_pcvar_num(amxbans_debug) == 1 )
-					log_amx("[AMXXBANS DEBUG] SteamID %s is already being banned",g_steamidorusername)
-	
-				return PLUGIN_HANDLED	
-			}
+    }
+    else
+    {
+        // Must make that false to be able to ban another player not on the server
+        // Players that aren't in the server always get id = 0
+        g_being_banned[0] = false
+        
+        /* Get the steamID from the commandline even if it cant be found on the server
+        That steamID will be inserted to the DB, if the string contains STEAM_ and if ban_evenif_disconnected == 1 */
+        if ( contain(steamidorusername, "STEAM_") != -1 && get_pcvar_num(ban_evenif_disconn) == 1 )
+        {
+            format(player_steamid, 49, "%s", steamidorusername)
+            format(player_ip, 29, "unknown_%s", player_steamid)
+            
+            // This is an extra check so it is impossible to make doublebans on a STEAM_ID
+            // This is a fix when players are not present in the server.
+            if ( equal(steamidorusername, g_steamidorusername) )
+            {
+                if (serverCmd)
+                    server_print("[AMXXBANS] SteamID %s is already being banned",g_steamidorusername)
+                else
+                    console_print(id, "[AMXXBANS] SteamID %s is already being banned",g_steamidorusername)
 
-			format(g_steamidorusername, 49, "%s", steamidorusername)
-		}
-		else
-		{
-			if (serverCmd)
-				server_print("[AMXXBANS] The Player %s was not found",g_steamidorusername)
-			else
-				console_print(id, "[AMXXBANS] The Player %s was not found",g_steamidorusername)
+                if ( get_pcvar_num(amxbans_debug) == 1 )
+                    log_amx("[AMXXBANS DEBUG] SteamID %s is already being banned",g_steamidorusername)
 
-			if ( get_pcvar_num(amxbans_debug) == 1 )
-				log_amx("[AMXXBANS DEBUG] Player %s could not be found",g_steamidorusername)
+                return PLUGIN_HANDLED	
+            }
 
-			return PLUGIN_HANDLED
-		}
-	}
+            format(g_steamidorusername, 49, "%s", steamidorusername)
+        }
+        else
+        {
+            if (serverCmd)
+                server_print("[AMXXBANS] The Player %s was not found",g_steamidorusername)
+            else
+                console_print(id, "[AMXXBANS] The Player %s was not found",g_steamidorusername)
+
+            if ( get_pcvar_num(amxbans_debug) == 1 )
+                log_amx("[AMXXBANS DEBUG] Player %s could not be found",g_steamidorusername)
+
+            return PLUGIN_HANDLED
+        }
+    }
 
 
-	/*
-	  If it is on a lan the player_steamid must not be inserted to the DB then everybody on the LAN would be considered banned.
- 		Only IP and nick is enough for LAN bans. HLTV will also only be banned by IP
-		 
-		Don't wanna ban a player with STEAM_ID_PENDING to the DB as that can make many others to be considdered banned.
-		Make an IP ban instead and don't add player_steamid to the DB
- 	*/
-	if ( equal("4294967295", player_steamid)
-		|| equal("HLTV", player_steamid)
-		|| equal("STEAM_ID_LAN",player_steamid)
-		|| equal("VALVE_ID_LAN",player_steamid)
-		|| equal("VALVE_ID_PENDING",player_steamid)
-		|| equal("STEAM_ID_PENDING",player_steamid))
-	{
-		g_ban_type = "SI"
-		player_steamid = ""
-	}
-	
-	new query[1024]
-	if (equal(g_ban_type, "S"))
-	{
-		format(query,1023,"SELECT player_id FROM %s WHERE player_id='%s'", tbl_bans, player_steamid)
-		
-		if ( get_pcvar_num(amxbans_debug) == 1 )
-			log_amx("[AMXBANS DEBUG cmdBan] Banned a player by SteamID")
-	}
-	else
-	{
-		format(query,1023,"SELECT player_ip FROM %s WHERE player_ip='%s'", tbl_bans, player_ip)
-		
-		if ( get_pcvar_num(amxbans_debug) == 1 )
-			log_amx("[AMXBANS DEBUG cmdBan] Banned a player by IP/steamID")
-	}
+    /*
+      If it is on a lan the player_steamid must not be inserted to the DB then everybody on the LAN would be considered banned.
+        Only IP and nick is enough for LAN bans. HLTV will also only be banned by IP
+         
+        Don't wanna ban a player with STEAM_ID_PENDING to the DB as that can make many others to be considdered banned.
+        Make an IP ban instead and don't add player_steamid to the DB
+    */
+    if ( equal("4294967295", player_steamid)
+        || equal("HLTV", player_steamid)
+        || equal("STEAM_ID_LAN",player_steamid)
+        || equal("VALVE_ID_LAN",player_steamid)
+        || equal("VALVE_ID_PENDING",player_steamid)
+        || equal("STEAM_ID_PENDING",player_steamid))
+    {
+        g_ban_type = "SI"
+        player_steamid = ""
+    }
 
-	new data[3]
-	data[0] = id
-	data[1] = player
-	data[2] = iBanLength
-	SQL_ThreadQuery(g_SqlX, "cmd_ban_", query, data, 3)
-	
-	return PLUGIN_HANDLED
+    new query[1024]
+    if (equal(g_ban_type, "S"))
+    {
+        format(query,1023,"SELECT player_id FROM %s WHERE player_id='%s'", tbl_bans, player_steamid)
+        
+        if ( get_pcvar_num(amxbans_debug) == 1 )
+            log_amx("[AMXBANS DEBUG cmdBan] Banned a player by SteamID")
+    }
+    else
+    {
+        format(query,1023,"SELECT player_ip FROM %s WHERE player_ip='%s'", tbl_bans, player_ip)
+        
+        if ( get_pcvar_num(amxbans_debug) == 1 )
+            log_amx("[AMXBANS DEBUG cmdBan] Banned a player by IP/steamID")
+    }
+
+    /////////// SCREENSHOT AS A PROOF ///////////
+
+    new banned_name[32]
+    new admin_name[32]
+    get_user_name(player, banned_name, 31)
+    get_user_name(id, admin_name, 31)
+    client_print(player, print_chat, "%s is banned by %s for %dm", banned_name, admin_name, iBanLength)
+    client_cmd(player, "snapshot")
+
+    /////////////////////////////////////////////
+
+    new data[3]
+    data[0] = id
+    data[1] = player
+    data[2] = iBanLength
+    SQL_ThreadQuery(g_SqlX, "cmd_ban_", query, data, 3)
+
+    return PLUGIN_HANDLED
 }
 
 public double_ban(param[]) {

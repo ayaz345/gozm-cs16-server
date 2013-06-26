@@ -220,7 +220,12 @@ public Item_PostFrame(iEnt)
 SendWeaponAnim(id, iAnim)
 {
     if(!is_user_connected(id))
+    {
+        new name[32]
+        get_user_name(id, name, 31)
+        log_amx("SendWeaponAnim is sent to NOT connected player %s", name)
         return
+    }
 
     set_pev(id, pev_weaponanim, iAnim)
 

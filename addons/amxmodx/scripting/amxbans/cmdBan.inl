@@ -345,9 +345,13 @@ public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)
             g_ban_type = "SI"
             player_steamid = ""
         }
+        
+        new mapname[32]
+        get_mapname(mapname,31)
 
         new query[512]
-        format(query, 511, "INSERT INTO `%s` (player_id,player_ip,player_nick,admin_ip,admin_id,admin_nick,ban_type,ban_reason,ban_created,ban_length,server_name,server_ip) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%i','%s','%s','%s:%s')", tbl_bans, player_steamid, player_ip, player_nick, admin_ip, admin_steamid, admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name, g_ip, g_port)
+        format(query, 511, "INSERT INTO `%s` (player_id,player_ip,player_nick,admin_ip,admin_id,admin_nick,ban_type,ban_reason,ban_created,ban_length,server_name,server_ip,map_name) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%i','%s','%s','%s:%s','%s')", tbl_bans, player_steamid, player_ip, player_nick, admin_ip, admin_steamid, admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name, g_ip, g_port, mapname)
+//        log_amx("BAN_QUERY: %s", query)
         
         new data[3]
         data[0] = id

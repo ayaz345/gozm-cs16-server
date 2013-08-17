@@ -14,7 +14,7 @@ background-color: #000000;
 </style>
 </head>
 <body>
-<iframe src="http://multreactor.ru/motd/rules.html" width="100%" height="2470" align="left">
+<iframe src="http://multreactor.ru/motd/admvip.html" width="100%" height="2470" align="left">
     Ваш браузер не поддерживает плавающие фреймы!
  </iframe>
 </body>

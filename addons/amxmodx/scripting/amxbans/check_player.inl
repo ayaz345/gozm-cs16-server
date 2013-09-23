@@ -85,18 +85,22 @@ public prebanned_check_(failstate, Handle:query, error[], errnum, data[], size)
 
 public check_player(id)
 {
-	new player_steamid[32], player_ip[20]
-	get_user_authid(id, player_steamid, 31)
-	get_user_ip(id, player_ip, 19, 1)
+    new player_steamid[32], player_ip[20]
+    get_user_authid(id, player_steamid, 31)
+    get_user_ip(id, player_ip, 19, 1)
 
-	new query[4096]
-	new data[1]
-	format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_id='%s' OR player_ip='%s'",tbl_bans, player_steamid, player_ip)
-											 
-	data[0] = id
-	SQL_ThreadQuery(g_SqlX, "check_player_", query, data, 1)
-	
-	return PLUGIN_HANDLED
+    new query[4096]
+    new data[1]
+    log_amx("!!! BANNED STEAM: %s", player_steamid)
+    if(equal(player_steamid, "STEAM_ID_LAN"))
+        format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_ip='%s'",tbl_bans, player_ip)
+    else
+        format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_id='%s' OR player_ip='%s'",tbl_bans, player_steamid, player_ip)
+                                             
+    data[0] = id
+    SQL_ThreadQuery(g_SqlX, "check_player_", query, data, 1)
+
+    return PLUGIN_HANDLED
 }
 
 public check_player_(failstate, Handle:query, error[], errnum, data[], size)

@@ -64,7 +64,7 @@ public plugin_init()
 {
     register_plugin(PLUGIN, VERSION, AUTHOR)
 	
-    g_CvarHost = register_cvar("zp_stats_host", "89.20.147.155")
+    g_CvarHost = register_cvar("zp_stats_host", "195.128.158.196")
     g_CvarDB = register_cvar("zp_stats_db", "b179761")
     g_CvarUser = register_cvar("zp_stats_user", "u179761")
     g_CvarPassword = register_cvar("zp_stats_password", "Iqalebeq")

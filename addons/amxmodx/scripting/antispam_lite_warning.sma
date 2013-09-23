@@ -51,6 +51,13 @@ bool:is_invalid(const text[])
         regex_free(regex)
         return true
     }
+    
+    regex = regex_match(text, "27[0-9][0-9][0-9]", num, error, 49)
+    if(regex >= REGEX_OK)
+    {
+        regex_free(regex)
+        return true
+    }
 
     if (containi(text, "ICQ") != -1)
         return true

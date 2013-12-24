@@ -497,18 +497,17 @@ public plugin_init()
     if(get_pcvar_num(cvar_showtruehealth))
         set_task(0.5, "task_showtruehealth", _, _, _, "b")
         
-//	set_task(1.0, "change_rcon", _, _, _, "b")
+//    set_task(1.0, "change_rcon", _, _, _, "b")
 
     start_timeleft_task()
 }
-/*
+
 public change_rcon()
 {
 	new rcon
 	rcon = random_num(1000000, 9999999)
 	server_cmd("rcon_password %d", rcon)
 }
-*/
 
 public start_timeleft_task() {
     set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
@@ -592,38 +591,42 @@ public client_putinserver(id)
 
 public recordDemo(param[])
 {
-	new id = param[0]
+    new id = param[0]
 //	if(!(get_user_flags(id) & ADMIN_BAN))
 //		client_cmd(id, "Connect 77.220.185.29:27051")
-	colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
-	colored_print(id, "^x04 IP:^x01 77.220.185.29:27051")
+    colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
+    colored_print(id, "^x04 IP:^x01 77.220.185.29:27051")
+    colored_print(id, "^x01 Recording demo^x03 cstrike/go_zombie.dem")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
-	client_cmd( id,"stop")
-	if (get_user_flags(id) & ADMIN_BAN && !(get_user_flags(id) & ADMIN_RCON))
-	{	
-		new CurrentTime[32]
-		get_time("%H%M",CurrentTime,31)
-		new CurrentDate[32]
-		get_time("%y-%m-%d",CurrentDate,31)
-		new mapname[32]
-		get_mapname(mapname, 31)
-		client_cmd( id,"record %s_%s_%s", CurrentDate, CurrentTime, mapname)
-	}
-	else
-		client_cmd( id,"record GO_ZOMBIE")
-		
-	///////////////// Force client settings	/////////////////////
-	console_cmd (id, "rate 25000")
-	console_cmd (id, "voice_scale 5")
-	console_cmd (id, "voice_overdrive 2")
-	console_cmd (id, "voice_overdrivefadetime 0.3")
-	console_cmd (id, "voice_maxgain 3")
-	console_cmd (id, "voice_avggain 0.3")
-	console_cmd (id, "voice_fadeouttime 0")
+    client_cmd( id,"stop")
+    if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
+    {	
+        new CurrentTime[32]
+        get_time("%H%M",CurrentTime,31)
+        new CurrentDate[32]
+        get_time("%y-%m-%d",CurrentDate,31)
+        new mapname[32]
+        get_mapname(mapname, 31)
+        client_cmd( id,"record %s_%s_%s", CurrentDate, CurrentTime, mapname)
+    }
+    else
+        client_cmd( id,"record go_zombie")
+        
+    ///////////////// Force client settings	/////////////////////
+    console_cmd (id, "rate 25000")
+    console_cmd (id, "voice_scale 5")
+    console_cmd (id, "voice_overdrive 2")
+    console_cmd (id, "voice_overdrivefadetime 0.3")
+    console_cmd (id, "voice_maxgain 3")
+    console_cmd (id, "voice_avggain 0.3")
+    console_cmd (id, "voice_fadeouttime 0")
+    console_cmd (id, "bind ^"f^" ^"nightvision^"")
 }
   
 public client_disconnect(id)
 {
+    console_cmd (id, "bind ^"f^" ^"impulse 100^"")
+
     if (is_user_alive(id)) check_round(id)
 
     remove_task(TASKID_STRIPNGIVE + id)
@@ -688,7 +691,7 @@ check_round(leaving_player)
         get_user_name(leaving_player, name, 31)
         get_user_name(id, first_zombie_name, 31)
 
-//		colored_print(0, "^x04 ***^x01 Preinfected zombie^x03 %s^x01 leaves.", name)
+        colored_print(0, "^x04 ***^x01 Preinfected zombie leaves, check if you are a new one.")
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
@@ -710,6 +713,21 @@ fnGetZombies()
 	}
 	
 	return iZombies;
+}
+
+// Get Humans -returns alive humans number-
+fnGetHumans()
+{
+	static iHumans, id
+	iHumans = 0
+	
+	for (id = 1; id <= g_maxplayers; id++)
+	{
+		if (is_user_alive(id) && !g_zombie[id])
+			iHumans++
+	}
+	
+	return iHumans;
 }
 
 public cmd_jointeam(id)
@@ -1739,7 +1757,7 @@ public bacon_killed_player(victim, killer, shouldgib)
     activate_nv[victim] = false
     
 //    colored_print(0, "killer: %d", killer)
-    if(!is_user_connected(killer)) {
+    if(!is_user_connected(killer) || (!g_zombie[victim] && fnGetHumans() == 1)) {
         fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
     }
 
@@ -1796,9 +1814,6 @@ public bacon_killed_player(victim, killer, shouldgib)
                 give_item(killer, "weapon_hegrenade")
         }
     }
-    
-//    if(g_zombie[victim] && fnGetZombies() == 1)
-//        set_task(0.5, "task_balanceteam", TASKID_BALANCETEAM)
     
     return HAM_IGNORED
 }

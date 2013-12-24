@@ -91,7 +91,6 @@ public check_player(id)
 
     new query[4096]
     new data[1]
-    log_amx("!!! BANNED STEAM: %s", player_steamid)
     if(equal(player_steamid, "STEAM_ID_LAN"))
         format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_ip='%s'",tbl_bans, player_ip)
     else
@@ -151,6 +150,14 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             // A ban was found for the connecting player!! Lets see how long it is or if it has expired
             if ((ban_length_int == 0) || (ban_created ==0) || (ban_created+ban_length_int > current_time_int))
             {
+                // LOGGING
+                new has_ip[20], has_steam[32], has_name[32]
+                get_user_authid(id, has_steam, 31)
+                get_user_ip(id, has_ip, 19, 1)
+                get_user_name(id, has_name, 31)
+                //log_amx("!!! BANNED STEAM: %s", has_steam)
+                //log_amx("!!! BANNED IPADR: %s", has_ip)
+                //log_amx("!!! BANNED NAME: %s", has_name)
                 
                 new complain_url[256]
                 get_pcvar_string(complainurl ,complain_url,255)
@@ -186,6 +193,10 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             }
             else // The ban has expired
             {
+                new has_name[32]
+                get_user_name(id, has_name, 31)
+                //log_amx("!!! %s HAS BEEN PURED", has_name)
+            
                 client_cmd(id, "echo [AMXBANS] %L",LANG_PLAYER,"MSG_11")
 
                 new unban_created = get_systime(0)

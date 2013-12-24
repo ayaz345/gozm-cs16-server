@@ -309,7 +309,7 @@ public load_hat_from_file(id) {
 		if (sfLineData[0] == ';' || strlen(sfLineData) < 1 || (sfLineData[0] == '/' && sfLineData[1] == '/')) continue
 		
 		// BREAK IT UP!
-		parse(sfLineData, PLAYERNAME[TotalPlayers], 32, hat_name, 25, hat_model, 3)
+		parse(sfLineData, PLAYERNAME[TotalPlayers], 33, hat_name, 25, hat_model, 3)
 		if (equal(PLAYERNAME[TotalPlayers], player_name)) {
 			fclose(file)
 			Set_Hat(id, str_to_num(hat_model), -1)

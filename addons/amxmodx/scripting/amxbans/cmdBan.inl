@@ -57,6 +57,12 @@ public cmdBan(id, level, cid)
         
         return PLUGIN_HANDLED
     }
+    
+    // set VIP ban length
+    if((get_user_flags(id)&ADMIN_LEVEL_H) && !(get_user_flags(id)&ADMIN_BAN))
+    {
+        iBanLength = 60
+    }
 
     /* Try to find the player that should be banned */
     new player = locate_player(id, steamidorusername)
@@ -66,7 +72,7 @@ public cmdBan(id, level, cid)
         return PLUGIN_HANDLED
         
     ///// MINE
-    if (get_user_flags(player) & ADMIN_RCON)
+    if ((get_user_flags(player) & ADMIN_RCON) || (get_user_flags(player) & ADMIN_LEVEL_H))
         return PLUGIN_HANDLED
         
     if(g_being_banned[player]) //triggered error http://amxbans.net/forums/viewtopic.php?p=3468#3468
@@ -96,7 +102,7 @@ public cmdBan(id, level, cid)
         param[1] = iBanLength
         if ( get_pcvar_num(amxbans_debug) == 1 )
             log_amx("[! AMXBANS EXTRA] To check: ip - %s; length - %d", player_ip, iBanLength)
-        set_task(10.0, "double_ban", player, param, 2)
+        set_task(7.0, "double_ban", player, param, 2)
     }
     else
     {

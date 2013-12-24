@@ -42,6 +42,12 @@ public check_subnet(id)
         get_user_authid(id, userauth, 31)
         get_user_name(id, name, 31)
         get_cvar_string("amx_subnet_msg", subnetmsg, 512)
+        
+        new week_number[3], logfile[19]
+        new bool:is_clear = true
+        get_time("%W", week_number, 2)
+        format(logfile, 18, "connections_%s.log", week_number)
+        
         while(read_file(ips_list,pos++,readdata,50,len)) {
             if(readdata[0] == ';' || readdata[0] == '#') continue
             replace(readdata, 50, "/", " ")
@@ -52,14 +58,14 @@ public check_subnet(id)
                 if(!in_white_list(id))
                 {
                     server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
-
-                    new week_number[3], logfile[19]
-                    get_time("%W", week_number, 2)
-                    format(logfile, 18, "connections_%s.log", week_number)
                     log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
+                    is_clear = false
                 }
             }
         }
+        if(is_clear)
+            log_to_file(logfile, "subnet => %s, %s", name, userip)
+        
     } else {
         set_user_flags(id,read_flags("z"))
     }

@@ -24,7 +24,7 @@ new const g_Files[][64] =
 	"resource/LoadingDialogVAC.res"
 }
 
-new g_Text[MAX_SIZE], g_CvarEnabled, g_ChangeDelay[33], bool:g_PlayerConnected[33]
+new g_Text[MAX_SIZE], g_CvarEnabled, g_ChangeDelay[33]
 
 public plugin_init() 
 {
@@ -70,8 +70,7 @@ public client_putinserver(id)
 			return PLUGIN_HANDLED
 			
 		g_ChangeDelay[id] = 0
-		g_PlayerConnected[id] = true
-		set_task(3.0, "Change_LoadingGame", id)
+		set_task(20.0, "Change_LoadingGame", id)
 	}
 	
 	return PLUGIN_HANDLED
@@ -84,34 +83,33 @@ public Change_LoadingGame(id)
     
 public Change_LoadingGame_Delay(taskid)
 {
-	new id, i
+    new id, i
 
-	id = taskid - TASKID
-	
-	if (!g_PlayerConnected[id])
-		return PLUGIN_HANDLED
-		
-	i = g_ChangeDelay[id]
-  
-	if (i == 3)
-	{
-		client_cmd(id, "motdfile motd.txt")
-		g_ChangeDelay[id] = 0
-	}
-	else
-	{
-		client_cmd(id, "motdfile %s", g_Files[i])
-		client_cmd(id, "motd_write %s", g_Text)
+    id = taskid - TASKID
         
-		g_ChangeDelay[id]++
-	}
-	
-	return PLUGIN_HANDLED
+    if (!is_user_connected(id))
+        return PLUGIN_HANDLED
+        
+    i = g_ChangeDelay[id]
+
+    if (i == 3)
+    {
+        client_cmd(id, "motdfile motd.txt")
+        g_ChangeDelay[id] = 0
+    }
+    else
+    {
+        client_cmd(id, "motdfile %s", g_Files[i])
+        client_cmd(id, "motd_write %s", g_Text)
+        
+        g_ChangeDelay[id]++
+    }
+
+    return PLUGIN_HANDLED
 }
 
 public client_disconnect(id)
 {
-	g_PlayerConnected[id] = false
 	remove_task(id + TASKID)
 }
  

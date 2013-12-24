@@ -12,7 +12,7 @@ new g_menuposition[MaxPlayers+1]
 new g_menuplayers[MaxPlayers+1][32]
 new g_menuplayersnum[MaxPlayers+1]
 
-new mutedIp[30][16]
+new mutedIp[64][16]
 new muted_num = 1
 
 public plugin_init() 
@@ -114,8 +114,9 @@ public action_mutemenu(id, key)
 		case 9: display_mutemenu(id, --g_menuposition[id])
 		default: 
 		{
-			new player = g_menuplayers[id][g_menuposition[id] * 8 + key]
-			CMD_GagPlayer(id, player)
+            new player = g_menuplayers[id][g_menuposition[id] * 8 + key]
+            CMD_GagPlayer(id, player)
+            display_mutemenu(id, g_menuposition[id])
     	}
   	}
 	return PLUGIN_HANDLED

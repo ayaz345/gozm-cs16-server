@@ -188,6 +188,8 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                     log_amx("[AMXBANS DEBUG] Delayed Kick-TASK ID1: <%d>  ID2: <%s>", id, id_str)
 
                 set_task(3.5,"delayed_kick",0,id_str,3)
+                log_amx("=== Log with delayed kick (see 3.5s after): ===")
+                log_amx("id:%d, id_str:%s, bid:%d, db_nick:%s, game_nick:%s", id, id_str, bid, player_nick, has_name)
 
                 return PLUGIN_HANDLED
             }

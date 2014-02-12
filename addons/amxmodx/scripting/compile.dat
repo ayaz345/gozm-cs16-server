@@ -3,9 +3,9 @@ Age=1031274496
 [pbk.sma]
 Age=1084707744
 [biohazard.sma]
-Age=1134101250
+Age=1144831054
 [amxbans.sma]
-Age=1122174131
+Age=1145550346
 [admin_amxbans.sma]
 Age=1117978661
 [admin_gag_mute.sma]
@@ -17,7 +17,7 @@ Age=1118013527
 [allchat.sma]
 Age=1121190840
 [amx_subnetban2.sma]
-Age=1133652630
+Age=1143868370
 [commencing_prevent.sma]
 Age=1089384736
 [anti_bhop_script.sma]
@@ -39,7 +39,7 @@ Age=1112737929
 [floodban.sma]
 Age=1112259659
 [galileo.sma]
-Age=1121192975
+Age=1145578770
 [Hats_fixed.sma]
 Age=1128599835
 [health_left.sma]
@@ -47,7 +47,7 @@ Age=1078394880
 [high_ping_kicker.sma]
 Age=1097074332
 [info.sma]
-Age=1125219997
+Age=1145577847
 [mapsmenu.sma]
 Age=1031274496
 [miscstats.sma]
@@ -65,7 +65,7 @@ Age=1031274496
 [VIP.sma]
 Age=1109629610
 [voteban.sma]
-Age=1134083836
+Age=1145605044
 [walkguard.sma]
 Age=1121191995
 [weapons_maxclip.sma]
@@ -77,4 +77,10 @@ Age=1118264548
 [loading_banner.sma]
 Age=1127743891
 [bio_statistic.sma]
-Age=1133652004
+Age=1143251817
+[customhpk_control.sma]
+Age=1145482740
+[showkeys.sma]
+Age=1145774114
+[specinfo.sma]
+Age=1145812086

@@ -945,15 +945,20 @@ public cmd_say(id)
 		new idxMap;
 
 		// if the chat line contains 1 word, it could be a map or a one-word command
-		if (arg2[0] == 0) // "say [rtv|rockthe<anything>vote]"
+		if (arg2[0] == 0) // "say [rtv|rockthe<anything>vote] or [NEW] nominate for all list of maps"
 		{
-			if ((get_pcvar_num(cvar_rtvCommands) & RTV_CMD_SHORTHAND && (equali(arg1, "rtv") || equali(arg1, "/rtv"))) || ((get_pcvar_num(cvar_rtvCommands) & RTV_CMD_DYNAMIC && equali(arg1, "rockthe", 7) && equali(arg1[strlen(arg1)-4], "vote"))))
-			{
-				vote_rock(id);
-				return PLUGIN_HANDLED;
-			}
-			else if (get_pcvar_num(cvar_nomPlayerAllowance))
-			{
+            if ((get_pcvar_num(cvar_rtvCommands) & RTV_CMD_SHORTHAND && (equali(arg1, "rtv") || equali(arg1, "/rtv"))) || ((get_pcvar_num(cvar_rtvCommands) & RTV_CMD_DYNAMIC && equali(arg1, "rockthe", 7) && equali(arg1[strlen(arg1)-4], "vote"))))
+            {
+                vote_rock(id);
+                return PLUGIN_HANDLED;
+            }
+            else if (equali(arg1, "nominate"))
+            {
+                nomination_attempt(id, "_");  // every map name contains 'underscore'
+                return PLUGIN_HANDLED;
+            }
+            else if (get_pcvar_num(cvar_nomPlayerAllowance))
+            {
                 new first_symbols[5];
                 read_args(first_symbols, 4);
                 if(equali(first_symbols[1], "zm_") || equali(first_symbols[1], "ze_"))
@@ -961,6 +966,7 @@ public cmd_say(id)
                     new shot_piece_of_mapname[7];
                     read_args(shot_piece_of_mapname, 6);
                     nomination_attempt(id, shot_piece_of_mapname[1]);
+                    return PLUGIN_HANDLED;
                 }
                 else if (equali(arg1, "noms"))
                 {
@@ -976,7 +982,7 @@ public cmd_say(id)
                         return PLUGIN_HANDLED;
                     }
                 }
-			}
+            }
 		}
 		else if (get_pcvar_num(cvar_nomPlayerAllowance)) // "say <nominate|nom|cancel> <map>"
 		{
@@ -1064,11 +1070,11 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
 		default:
 		{
 			// this is kinda sexy; we put up a menu of the matches for them to pick the right one
-			client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES", nomination);
-			if (matchCnt == MAX_NOM_MATCH_CNT)
-			{
-				client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES_MAX", MAX_NOM_MATCH_CNT, MAX_NOM_MATCH_CNT);
-			}
+			//client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES", nomination);
+			//if (matchCnt == MAX_NOM_MATCH_CNT)
+			//{
+			//	client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES_MAX", MAX_NOM_MATCH_CNT, MAX_NOM_MATCH_CNT);
+			//}
 			menu_display(id, g_nominationMatchesMenu[id]);
 		}
 	}

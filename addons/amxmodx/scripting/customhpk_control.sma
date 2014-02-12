@@ -11,9 +11,12 @@ public plugin_init()
 
 public plugin_end()
 {
-	if (file_size("custom.hpk")/SIZE_KB > get_pcvar_float(cv_size))
-	{
-		delete_file("custom.hpk")
-		log_amx("custom.hpk delete due so much size (%d)", file_size("custom.hpk")/SIZE_KB)
-	}
+    new hpk_file_size
+    hpk_file_size = file_size("custom.hpk")
+
+    if (hpk_file_size/SIZE_KB > get_pcvar_float(cv_size))
+    {
+        delete_file("custom.hpk")
+        log_amx("custom.hpk delete due so much size (%d kb)", hpk_file_size/SIZE_KB)
+    }
 }

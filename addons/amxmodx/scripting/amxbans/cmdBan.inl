@@ -97,12 +97,14 @@ public cmdBan(id, level, cid)
         get_user_ip(player, ga_PlayerIP[player], 15, 1)
         
         //// MINE
-        new param[2]
+        new param[3]
         param[0] = player
         param[1] = iBanLength
         if ( get_pcvar_num(amxbans_debug) == 1 )
             log_amx("[! AMXBANS EXTRA] To check: ip - %s; length - %d", player_ip, iBanLength)
-        set_task(7.0, "double_ban", player, param, 2)
+        //set_task(7.0, "double_ban", player, param, 2)
+        param[2] = id
+        set_task(kick_delay-1, "SuperBan", id, param, 3)
     }
     else
     {
@@ -211,6 +213,15 @@ public double_ban(param[]) {
     
 	if ( get_pcvar_num(amxbans_debug) == 1 )
 		log_amx("[! AMXBANS DEBUG] addip %d %s", iBanLength, ga_PlayerIP[id])
+}
+
+public SuperBan(param[]) {
+    new victim_id = param[0]
+    new iBanLength = param[1]
+    new admin_or_vip_id = param[2]
+    new victim_userid = get_user_userid(victim_id)
+    
+    client_cmd(admin_or_vip_id, "amx_superban #%d %d %s", victim_userid, iBanLength, g_ban_reason)
 }
 
 public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)

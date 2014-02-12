@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `zp_players` (
   `suicide` int(11) NOT NULL default '0',
   `death` int(11) NOT NULL default '0',
   `infected` int(11) NOT NULL default '0',
+  `extra` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `nick` (`nick`,`ip`,`steam_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

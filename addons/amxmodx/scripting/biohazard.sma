@@ -286,101 +286,102 @@ new bool:g_zombie[25], bool:g_falling[25], bool:g_disconnected[25], bool:g_block
 
 public plugin_precache()
 {
-	register_plugin("Biohazard", VERSION, "cheap_suit")
-	register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
-	set_cvar_string("bh_version", VERSION)
-	
-	cvar_enabled = register_cvar("bh_enabled", "1")
+    //server_cmd("maxplayers 32")
+    register_plugin("Biohazard", VERSION, "cheap_suit")
+    register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
+    set_cvar_string("bh_version", VERSION)
 
-	if(!get_pcvar_num(cvar_enabled)) 
-		return
-	
-	cvar_gamedescription = register_cvar("bh_gamedescription", "[ ZOMBIE BIO ]")
-	cvar_skyname = register_cvar("bh_skyname", "")
-	cvar_lights = register_cvar("bh_lights", "m")
-	cvar_starttime = register_cvar("bh_starttime", "15.0")
-	cvar_buytime = register_cvar("bh_buytime", "30")
-	cvar_randomspawn = register_cvar("bh_randomspawn", "1")
-	cvar_punishsuicide = register_cvar("bh_punishsuicide", "0")
-	cvar_autonvg = register_cvar("bh_autonvg", "0")
-	cvar_painshockfree = register_cvar("bh_painshockfree", "1")
-	cvar_knockback = register_cvar("bh_knockback", "1")
-	cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
-	cvar_obeyarmor = register_cvar("bh_obeyarmor", "0")
-	cvar_weaponsmenu = register_cvar("bh_weaponsmenu", "1")
-	cvar_ammo = register_cvar("bh_ammo", "1")
-	cvar_maxzombies = register_cvar("bh_maxzombies", "23")
-	cvar_flashbang = register_cvar("bh_flashbang", "1")
-	cvar_impactexplode = register_cvar("bh_impactexplode", "1")
-	cvar_showtruehealth = register_cvar("bh_showtruehealth", "1")
-	cvar_zombie_class = register_cvar("bh_zombie_class", "0")
-	cvar_killbonus = register_cvar("bh_kill_bonus", "1")
-	cvar_killreward = register_cvar("bh_kill_reward", "2")
-	cvar_shootobjects = register_cvar("bh_shootobjects", "1")
-	cvar_pushpwr_weapon = register_cvar("bh_pushpwr_weapon", "3.0")
-	cvar_pushpwr_zombie = register_cvar("bh_pushpwr_zombie", "3.0")
-	cvar_nvgcolor_hum[0] = register_cvar("bh_nvg_color_hum_r", "0")
-	cvar_nvgcolor_hum[1] = register_cvar("bh_nvg_color_hum_g", "30")
-	cvar_nvgcolor_hum[2] = register_cvar("bh_nvg_color_hum_b", "30")
-	cvar_nvgcolor_zm[0] = register_cvar("bh_nvg_color_zm_r", "0")
-	cvar_nvgcolor_zm[1] = register_cvar("bh_nvg_color_zm_g", "150")
-	cvar_nvgcolor_zm[2] = register_cvar("bh_nvg_color_zm_b", "2")
-	cvar_nvgcolor_spec[0] = register_cvar("bh_nvg_color_spec_r", "30")
-	cvar_nvgcolor_spec[1] = register_cvar("bh_nvg_color_spec_g", "30")
-	cvar_nvgcolor_spec[2] = register_cvar("bh_nvg_color_spec_b", "0")	
-	cvar_nvgradius = register_cvar("bh_nvg_radius", "255")
-	
-	new file[64]
-	get_configsdir(file, 63)
-	format(file, 63, "%s/bh_cvars.cfg", file)
-	
-	if(file_exists(file)) 
-		server_cmd("exec %s", file)
-	
-	new mapname[32]
-	get_mapname(mapname, 31)
-	register_spawnpoints(mapname)
-		
-	register_zombieclasses("bh_zombieclass.ini")
-	register_dictionary("biohazard.txt")
-	
-	precache_model(DEFAULT_PMODEL)
-	precache_model(DEFAULT_WMODEL)
-	
-	new i
-	for(i = 0; i < g_classcount; i++)
-	{
-		precache_model(g_class_pmodel[i])
-		precache_model(g_class_wmodel[i])
-	}
-	
-	for(i = 0; i < sizeof g_zombie_miss_sounds; i++)
-		precache_sound(g_zombie_miss_sounds[i])
-	
-	for(i = 0; i < sizeof g_zombie_hit_sounds; i++) 
-		precache_sound(g_zombie_hit_sounds[i])
-	
-	for(i = 0; i < sizeof g_scream_sounds; i++) 
-		precache_sound(g_scream_sounds[i])
-	
-	for(i = 0; i < sizeof g_zombie_die_sounds; i++)
-		precache_sound(g_zombie_die_sounds[i])
-	
-	g_fwd_spawn = register_forward(FM_Spawn, "fwd_spawn")
-	
-	g_buyzone = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "func_buyzone"))
-	if(g_buyzone) 
-	{
-		dllfunc(DLLFunc_Spawn, g_buyzone)
-		set_pev(g_buyzone, pev_solid, SOLID_NOT)
-	}
-	
-	new ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_bomb_target"))
-	if(ent) 
-	{
-		dllfunc(DLLFunc_Spawn, ent)
-		set_pev(ent, pev_solid, SOLID_NOT)
-	}
+    cvar_enabled = register_cvar("bh_enabled", "1")
+
+    if(!get_pcvar_num(cvar_enabled)) 
+        return
+
+    cvar_gamedescription = register_cvar("bh_gamedescription", "[ ZOMBIE BIO ]")
+    cvar_skyname = register_cvar("bh_skyname", "")
+    cvar_lights = register_cvar("bh_lights", "m")
+    cvar_starttime = register_cvar("bh_starttime", "15.0")
+    cvar_buytime = register_cvar("bh_buytime", "30")
+    cvar_randomspawn = register_cvar("bh_randomspawn", "1")
+    cvar_punishsuicide = register_cvar("bh_punishsuicide", "0")
+    cvar_autonvg = register_cvar("bh_autonvg", "0")
+    cvar_painshockfree = register_cvar("bh_painshockfree", "1")
+    cvar_knockback = register_cvar("bh_knockback", "1")
+    cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
+    cvar_obeyarmor = register_cvar("bh_obeyarmor", "0")
+    cvar_weaponsmenu = register_cvar("bh_weaponsmenu", "1")
+    cvar_ammo = register_cvar("bh_ammo", "1")
+    cvar_maxzombies = register_cvar("bh_maxzombies", "23")
+    cvar_flashbang = register_cvar("bh_flashbang", "1")
+    cvar_impactexplode = register_cvar("bh_impactexplode", "1")
+    cvar_showtruehealth = register_cvar("bh_showtruehealth", "1")
+    cvar_zombie_class = register_cvar("bh_zombie_class", "0")
+    cvar_killbonus = register_cvar("bh_kill_bonus", "1")
+    cvar_killreward = register_cvar("bh_kill_reward", "2")
+    cvar_shootobjects = register_cvar("bh_shootobjects", "1")
+    cvar_pushpwr_weapon = register_cvar("bh_pushpwr_weapon", "3.0")
+    cvar_pushpwr_zombie = register_cvar("bh_pushpwr_zombie", "3.0")
+    cvar_nvgcolor_hum[0] = register_cvar("bh_nvg_color_hum_r", "0")
+    cvar_nvgcolor_hum[1] = register_cvar("bh_nvg_color_hum_g", "30")
+    cvar_nvgcolor_hum[2] = register_cvar("bh_nvg_color_hum_b", "30")
+    cvar_nvgcolor_zm[0] = register_cvar("bh_nvg_color_zm_r", "0")
+    cvar_nvgcolor_zm[1] = register_cvar("bh_nvg_color_zm_g", "150")
+    cvar_nvgcolor_zm[2] = register_cvar("bh_nvg_color_zm_b", "2")
+    cvar_nvgcolor_spec[0] = register_cvar("bh_nvg_color_spec_r", "30")
+    cvar_nvgcolor_spec[1] = register_cvar("bh_nvg_color_spec_g", "30")
+    cvar_nvgcolor_spec[2] = register_cvar("bh_nvg_color_spec_b", "0")	
+    cvar_nvgradius = register_cvar("bh_nvg_radius", "255")
+
+    new file[64]
+    get_configsdir(file, 63)
+    format(file, 63, "%s/bh_cvars.cfg", file)
+
+    if(file_exists(file)) 
+        server_cmd("exec %s", file)
+
+    new mapname[32]
+    get_mapname(mapname, 31)
+    register_spawnpoints(mapname)
+        
+    register_zombieclasses("bh_zombieclass.ini")
+    register_dictionary("biohazard.txt")
+
+    precache_model(DEFAULT_PMODEL)
+    precache_model(DEFAULT_WMODEL)
+
+    new i
+    for(i = 0; i < g_classcount; i++)
+    {
+        precache_model(g_class_pmodel[i])
+        precache_model(g_class_wmodel[i])
+    }
+
+    for(i = 0; i < sizeof g_zombie_miss_sounds; i++)
+        precache_sound(g_zombie_miss_sounds[i])
+
+    for(i = 0; i < sizeof g_zombie_hit_sounds; i++) 
+        precache_sound(g_zombie_hit_sounds[i])
+
+    for(i = 0; i < sizeof g_scream_sounds; i++) 
+        precache_sound(g_scream_sounds[i])
+
+    for(i = 0; i < sizeof g_zombie_die_sounds; i++)
+        precache_sound(g_zombie_die_sounds[i])
+
+    g_fwd_spawn = register_forward(FM_Spawn, "fwd_spawn")
+
+    g_buyzone = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "func_buyzone"))
+    if(g_buyzone) 
+    {
+        dllfunc(DLLFunc_Spawn, g_buyzone)
+        set_pev(g_buyzone, pev_solid, SOLID_NOT)
+    }
+
+    new ent = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_bomb_target"))
+    if(ent) 
+    {
+        dllfunc(DLLFunc_Spawn, ent)
+        set_pev(ent, pev_solid, SOLID_NOT)
+    }
 }
 
 public plugin_init()
@@ -691,7 +692,7 @@ check_round(leaving_player)
         get_user_name(leaving_player, name, 31)
         get_user_name(id, first_zombie_name, 31)
 
-        colored_print(0, "^x04 ***^x01 Preinfected zombie leaves, check if you are a new one.")
+        colored_print(0, "^x04 ***^x01 Preinfected zombie %s leaves.", name)
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
@@ -716,7 +717,7 @@ fnGetZombies()
 }
 
 // Get Humans -returns alive humans number-
-fnGetHumans()
+public fnGetHumans()
 {
 	static iHumans, id
 	iHumans = 0
@@ -1111,7 +1112,7 @@ public nightvision(id)
 		
 		else if(!(activate_nv[id]))
 		{
-			set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+			set_task(0.05, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
 			activate_nv[id] = true
 		}
 	}
@@ -1756,8 +1757,8 @@ public bacon_killed_player(victim, killer, shouldgib)
     remove_task(TASKID_NIGHTVISION + victim)
     activate_nv[victim] = false
     
-//    colored_print(0, "killer: %d", killer)
-    if(!is_user_connected(killer) || (!g_zombie[victim] && fnGetHumans() == 1)) {
+    if(!is_user_connected(killer)) //|| (!g_zombie[victim] && fnGetHumans() == 0))
+    {
         fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
     }
 

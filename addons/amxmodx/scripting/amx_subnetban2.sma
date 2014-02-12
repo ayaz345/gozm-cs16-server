@@ -58,13 +58,13 @@ public check_subnet(id)
                 if(!in_white_list(id))
                 {
                     server_cmd("kick #%d ^"%s^"", get_user_userid(id), subnetmsg);
-                    log_to_file(logfile, "subnet => %s, %s failed to connect", name, userip)
+                    log_to_file(logfile, "%s | %s | %s - FAILED to connect", name, userip, userauth)
                     is_clear = false
                 }
             }
         }
         if(is_clear)
-            log_to_file(logfile, "subnet => %s, %s", name, userip)
+            log_to_file(logfile, "%s | %s | %s", name, userip, userauth)
         
     } else {
         set_user_flags(id,read_flags("z"))

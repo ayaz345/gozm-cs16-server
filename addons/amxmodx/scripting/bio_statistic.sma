@@ -51,7 +51,9 @@ new g_CvarAuthType, g_CvarExcludingNick, g_CvarMaxInactiveDays
 
 new g_damagedealt[33]
 
-new const g_types[][]={"first_zombie", "infect", "zombiekills", "humankills", "nemkills", "survkills", "suicide"}
+new const g_types[][] = {
+    "first_zombie", "infect", "zombiekills", "humankills", "nemkills", "survkills", "suicide", "extra"
+}
 	
 new g_Killers[33][KILLER_NUM]
 new g_Me[33][ME_NUM]
@@ -399,6 +401,13 @@ public logevent_endRound()
                         maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
                         (g_Me[players[maxInfectId]][ME_INFECT] > 1) ? "s" : "")
             }
+            
+            // extra
+            format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d;", g_UserDBId[players[maxInfectId]])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+            
+            format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d;", g_UserDBId[players[maxDmgId]])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
 	}
 }
@@ -455,9 +464,11 @@ public fw_HamKilled(id, attacker, shouldgib)
             type = 2
 
             if(get_user_weapon(attacker) == CSW_KNIFE)
-                killer_frags = 5
-            else
-                killer_frags = 2
+            {
+                // extra
+                format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `extra` = `extra` + 5 WHERE `id`=%d;", g_UserDBId[player])
+                SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+            }
         }
     }
 
@@ -567,7 +578,7 @@ public show_rank(id, unquoted_whois[])
     {
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills` + `humankills`) / (`infected` + `death` + 500)) AS `skill` \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d;", 
             g_UserDBId[id])
     }
@@ -575,7 +586,7 @@ public show_rank(id, unquoted_whois[])
     {
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills` + `humankills`) / (`infected` + `death` + 500)) AS `skill` \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
             WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' LIMIT 1;", 
             whois, whois)
@@ -641,7 +652,7 @@ public show_stats(id, unquoted_whois[])
     {
     	format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
     		(SELECT *, (@_c := @_c + 1) AS `rank`, \
-    		((`infect` + `zombiekills` + `humankills`) / (`infected` + `death` + 500)) AS `skill` \
+    		((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` \
     		ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d;", 
     		g_UserDBId[id])
@@ -650,7 +661,7 @@ public show_stats(id, unquoted_whois[])
     {
     	format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
     		(SELECT *, (@_c := @_c + 1) AS `rank`, \
-    		((`infect` + `zombiekills` + `humankills`) / (`infected` + `death` + 500)) AS `skill` \
+    		((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
     		WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
     		LIMIT 1;", 
@@ -685,7 +696,7 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     new name[32], ip[32], steam_id[32]
     new len
     new infect, zombiekills
-    new death, infected, rank, total, Float:res, first_zombie, skill
+    new death, infected, rank, total, Float:res, first_zombie, skill, extra
 
     if (SQL_MoreResults(query))
     {
@@ -698,6 +709,7 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     	death = SQL_ReadResult(query, column("death"))
     	infected = SQL_ReadResult(query, column("infected"))
     	rank = SQL_ReadResult(query, column("rank"))
+        extra = SQL_ReadResult(query, column("extra"))
     	SQL_ReadResult(query, column("skill"), res)
         
         skill = floatround(res*1000)
@@ -724,6 +736,8 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     	format(lInfected, 31, "%L", id, "INFECTED")
     	new lFirstZombie[32]
     	format(lFirstZombie, 31, "%L", id, "FIRST_ZOMBIE")
+        new lExtra[32]
+        format(lExtra, 31, "%L", id, "EXTRA")
     		
     	new max_len = charsmax(g_text)
     	len = format(g_text, max_len, "<html><head><meta http-equiv=^"Content-Type^" content=^"text/html; charset=utf-8^" /></head><body bgcolor=#000000>")
@@ -735,6 +749,8 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     		lDeath, death, lInfected, infected)
     	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr>",
     		lFirstZombie, first_zombie)
+        len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr>",
+    		lExtra, extra)
     	
     	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr>",
     		"IP", ip, "Steam ID", steam_id)
@@ -793,9 +809,9 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
 
     new top = data[2]
     format(g_Query, charsmax(g_Query), "SELECT `nick`, `zombiekills`, `humankills`, \
-            `infect`, `death`, `infected`, `rank` FROM \
+            `infect`, `death`, `infected`, `rank`, `extra` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills` + `humankills`) / (`infected` + `death` + 500)) AS `skill` \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` \
             ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= %d ORDER BY `rank` DESC LIMIT 15;", 
             top)
@@ -844,7 +860,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     setc(g_text, max_len, 0)
 
-    new zombiekills, humankills, infect, name[32], rank, infected, death
+    new zombiekills, humankills, infect, name[32], rank, infected, death, extra
     new Float:res, skill
     new len
 
@@ -857,7 +873,8 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         infected = SQL_ReadResult(query, column("infected"))
         death = SQL_ReadResult(query, column("death"))
         rank = SQL_ReadResult(query, column("rank"))
-        res = float(zombiekills + humankills + infect) / float(death + infected + 500)
+        extra = SQL_ReadResult(query, column("extra"))
+        res = float(zombiekills*2 + humankills + infect + extra) / float(death + infected + 300)
         skill = floatround(res*1000)
         
         format(g_text, max_len, "<tr><td>%d<td>%s<td>%d<td>%d<td>%d<td>%d<td>%d<td>%s",

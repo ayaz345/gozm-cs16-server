@@ -44,51 +44,61 @@ public plugin_init()
 
 public ShowAdminInfo(id)
 {
-	show_motd(id, "admin.txt", "ADMINS")
+    show_motd(id, "admin.txt", "ADMINS")
+    return PLUGIN_HANDLED
 }
 
 public ShowServer(id)
 {
-	colored_print(0,"^x01 IP adress:^x04 %s", zombie_server);
+    colored_print(0,"^x01 IP adress:^x04 %s", zombie_server);
+    return PLUGIN_HANDLED
 }
 
 public AllServers(id)
 {
-	colored_print(0,"^x01 Zombie:^x04 %s", zombie_server);
+    colored_print(0,"^x01 Zombie:^x04 %s", zombie_server);
 //	colored_print(0,"^x01 Public:^x04 %s", public_server);
+    return PLUGIN_HANDLED
 }
 
 public SwitchServer(id)
 {
-	console_cmd(id, "Connect %s", public_server)
+    console_cmd(id, "Connect %s", public_server)
+    return PLUGIN_HANDLED
 }
 
 public ShowRules(id)
 {
-	show_motd(id, "rules.txt", "RULES")
+    show_motd(id, "rules.txt", "RULES")
+    return PLUGIN_HANDLED
 }
 
 public ShowBans(id)
 {
-	show_motd(id, "bans.txt", "BANS")
+    show_motd(id, "bans.txt", "BANS")
+    return PLUGIN_HANDLED
 }
 
 public ShowMenu(id)
 {
-	show_motd(id, "menu.txt", "MENU")
+    show_motd(id, "menu.txt", "MENU")
+    return PLUGIN_HANDLED
 }
 
 public ShowBlackList(id)
 {
-	show_motd(id, "4s.txt", "Black List")
+    show_motd(id, "4s.txt", "Black List")
+    return PLUGIN_HANDLED
 }
 
 public ShowClassic(id)
 {
-	colored_print(id,"^x01 This is^x04 classic^x01 zombie server");
+    colored_print(id,"^x01 This is^x04 classic^x01 zombie server");
+    return PLUGIN_HANDLED
 }
 
 public ShowBanHistory(id)
 {
     client_cmd(id, "amx_banhistorymenu")
+    return PLUGIN_HANDLED
 }

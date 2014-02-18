@@ -69,7 +69,10 @@ bool:is_invalid(const text[])
         return true
         
     if (equali(text[strlen(text)-4], "108^""))
-        return true	
+        return true
+        
+    if (equali(text, "/xmenu"))
+        return true
 
     return false
 }

@@ -5,6 +5,10 @@
 #define MAX_players 32
 #define MAX_menudata 1024
 
+#define MPROP_BACKNAME  2
+#define MPROP_NEXTNAME  3
+#define MPROP_EXITNAME  4
+
 new ga_PlayerName[MAX_players][32]
 new ga_PlayerAuthID[MAX_players][35]
 new ga_PlayerID[MAX_players]
@@ -17,7 +21,6 @@ new gi_TotalPlayers
 new i
 //pcvars
 new gi_BanTime
-new gi_BanType
 
 new ban_reason[128]
 
@@ -30,7 +33,6 @@ public plugin_init()
     register_menucmd(register_menuid("ChoosePlayer"), 1023, "ChooseMenu")
 
     gi_BanTime=register_cvar("amxx_voteban_bantime","30")
-    gi_BanType=register_cvar("amxx_voteban_type","1")
 }
 
 public SayIt(id)
@@ -104,7 +106,7 @@ public ShowPlayerMenu(id)
             end = gi_TotalPlayers
 
     static menubody[512]	
-    new len = format(menubody, 511, "Players to BAN: ^n^n")
+    new len = format(menubody, 511, "Players to \rBAN: \w^n^n")
 
     static name[32]
 
@@ -161,11 +163,56 @@ public ChooseMenu(id, key)
     default:
     {
         gi_Sellection=gi_MenuPosition+key
-//        log_amx("[VB] preparing to Messagemode...")
-        client_cmd(ga_PlayerID[gi_VoteStarter], "messagemode VIP_REASON")
+        chooseBanReason(id)
     }
   }
   return PLUGIN_HANDLED
+}
+
+public chooseBanReason(id)
+{
+    new i_Menu = menu_create("\yChoose Reason", "reason_menu_handler" )
+
+    menu_additem(i_Menu, "WallHack", "20160")
+    menu_additem(i_Menu, "SpeedHack & AIM", "40320")
+    menu_additem(i_Menu, "Block", "15")
+    menu_additem(i_Menu, "Reconnect", "15")
+    menu_additem(i_Menu, "Razbil kamni/doski", "15")
+    menu_additem(i_Menu, "Mat", "60")
+    menu_additem(i_Menu, "Obxod", "1440")
+    menu_additem(i_Menu, "Nick", "10")
+    menu_additem(i_Menu, "Microphone", "30")
+    menu_additem(i_Menu, "Black List", "40320")
+    menu_additem(i_Menu, "Noob", "30")
+    menu_additem(i_Menu, "Custom", "1")
+    
+    menu_setprop(i_Menu, 2, "Back")
+    menu_setprop(i_Menu, 3, "Next")
+    menu_setprop(i_Menu, 4, "Close")
+
+    menu_display(id, i_Menu, 0)
+
+    return PLUGIN_HANDLED
+}
+
+public reason_menu_handler(id, menu, item)
+{
+    if (item == MENU_EXIT)
+    {
+        menu_destroy(menu)
+        return PLUGIN_HANDLED
+    }
+
+    new s_Data[6], s_Name[64], i_Access, i_Callback
+    menu_item_getinfo(menu, item, i_Access, s_Data, charsmax(s_Data), s_Name, charsmax(s_Name), i_Callback)
+    new ban_length = str_to_num(s_Data)
+    
+    if(ban_length == 1)
+        client_cmd(ga_PlayerID[gi_VoteStarter], "messagemode VIP_REASON")
+    else
+        ActualBan(ban_length, s_Name)
+
+    return PLUGIN_HANDLED; 
 }
 
 public setCustomBanReason(id,level,cid)
@@ -174,42 +221,25 @@ public setCustomBanReason(id,level,cid)
     read_argv(1, szReason, 127)
     copy(ban_reason, 127, szReason)
     if(strlen(ban_reason) == 0) {
-//        log_amx("[VB] unknown ban reason")
-//        ban_reason = "unknown"
         colored_print(id,"^x04***^x01 Empty ban reason! Not a deal.")
         return PLUGIN_HANDLED
     }
-    
-//    log_amx("[VB] Victim name: %s, Victim ip: %s", ga_PlayerName[gi_Sellection], ga_PlayerIP[gi_Sellection])
-//    log_amx("[VB] VIP reason: %s, VIP name: %s", ban_reason, ga_PlayerName[gi_VoteStarter])
-//    log_amx("[VB] gi_VoteStarter: %d, func_id: %d", gi_VoteStarter, id)
-    ActualBan(gi_Sellection, gi_VoteStarter)
-//    set_task(4.0, "additionalBan", id)
+
+    ActualBan(get_pcvar_num(gi_BanTime), ban_reason)
 
     return PLUGIN_HANDLED
 }
 
 public additionalBan() {
-//    server_cmd("addip %d %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[gi_Sellection])
     client_cmd(ga_PlayerID[gi_VoteStarter], "amx_superban #%d %d %s", ga_PlayerUserID[gi_Sellection], get_pcvar_num(gi_BanTime), ban_reason)
-//    log_amx("[VB] addIp: %s", ga_PlayerIP[gi_Sellection])
 }
 
-public ActualBan(Selected,VBStarter)
+public ActualBan(time, reason[])
 {
-    new Type = get_pcvar_num(gi_BanType) 
-    switch(Type)
-    {
-        case 1:
-            server_cmd("addip %d %s", get_pcvar_num(gi_BanTime), ga_PlayerIP[Selected])
-        case 2:
-        {
-//            log_amx("[VB] client_command: amx_ban %d %s %s", ga_PlayerIP[Selected], ga_PlayerName[Selected], ban_reason)
-            client_cmd(ga_PlayerID[VBStarter], "amx_ban %d #%d %s", get_pcvar_num(gi_BanTime), ga_PlayerUserID[Selected], ban_reason)
-        }
-        default:
-            server_cmd("banid %d %s kick", get_pcvar_num(gi_BanTime), ga_PlayerAuthID[Selected])
-    }
-    colored_print(0,"^x03%s ^x01is BANNED by %s! Reason: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], ban_reason)
+    client_cmd(ga_PlayerID[gi_VoteStarter], "amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
+//    colored_print(0, "ALL: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
+//    colored_print(ga_PlayerID[gi_VoteStarter], "ID: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
+
+    colored_print(0,"^x03%s ^x01is BANNED by %s! Reason: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
     return 0
 }

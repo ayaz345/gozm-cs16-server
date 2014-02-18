@@ -596,8 +596,9 @@ public recordDemo(param[])
 //	if(!(get_user_flags(id) & ADMIN_BAN))
 //		client_cmd(id, "Connect 77.220.185.29:27051")
     colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
-    colored_print(id, "^x04 IP:^x01 77.220.185.29:27051")
-    colored_print(id, "^x01 Recording demo^x03 cstrike/go_zombie.dem")
+    colored_print(id, "^x01 IP:^x01 77.220.185.29:27051")
+    colored_print(id, "^x01 Recording demo^x03 go_zombie.dem")
+    colored_print(id, "^x01 GoZm Menu:^x04 F3")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
     client_cmd( id,"stop")
     if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
@@ -622,6 +623,7 @@ public recordDemo(param[])
     console_cmd (id, "voice_avggain 0.3")
     console_cmd (id, "voice_fadeouttime 0")
     console_cmd (id, "bind ^"f^" ^"nightvision^"")
+    console_cmd (id, "bind ^"F3^" ^"gozm_menu^"")
 }
   
 public client_disconnect(id)
@@ -743,11 +745,12 @@ public cmd_jointeam(id)
 	
 public cmd_enablemenu(id)
 {	
-	if(get_pcvar_num(cvar_weaponsmenu))
-	{
-		client_print(id, print_chat, "%L", id, g_showmenu[id] == false ? "MENU_REENABLED" : "MENU_ALENABLED")
-		g_showmenu[id] = true
-	}
+    if(get_pcvar_num(cvar_weaponsmenu))
+    {
+        client_print(id, print_chat, "%L", id, g_showmenu[id] == false ? "MENU_REENABLED" : "MENU_ALENABLED")
+        g_showmenu[id] = true
+    }
+    return PLUGIN_HANDLED
 }
 
 public cmd_infectuser(id, level, cid)

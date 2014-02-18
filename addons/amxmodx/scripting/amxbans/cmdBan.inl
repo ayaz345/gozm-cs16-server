@@ -59,10 +59,11 @@ public cmdBan(id, level, cid)
     }
     
     // set VIP ban length
-    if((get_user_flags(id)&ADMIN_LEVEL_H) && !(get_user_flags(id)&ADMIN_BAN))
+    /*if((get_user_flags(id)&ADMIN_LEVEL_H) && !(get_user_flags(id)&ADMIN_BAN))
     {
         iBanLength = 60
     }
+    */
 
     /* Try to find the player that should be banned */
     new player = locate_player(id, steamidorusername)

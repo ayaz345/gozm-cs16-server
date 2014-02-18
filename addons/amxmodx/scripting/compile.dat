@@ -3,7 +3,7 @@ Age=1031274496
 [pbk.sma]
 Age=1084707744
 [biohazard.sma]
-Age=1144831054
+Age=1146229121
 [amxbans.sma]
 Age=1145550346
 [admin_amxbans.sma]
@@ -23,7 +23,7 @@ Age=1089384736
 [anti_bhop_script.sma]
 Age=1087965909
 [antispam_lite_warning.sma]
-Age=1078657024
+Age=1145968737
 [cmdmenu.sma]
 Age=1031274496
 [cs_maxspeed_api.sma]
@@ -65,7 +65,7 @@ Age=1031274496
 [VIP.sma]
 Age=1109629610
 [voteban.sma]
-Age=1145605044
+Age=1146232647
 [walkguard.sma]
 Age=1121191995
 [weapons_maxclip.sma]
@@ -84,3 +84,7 @@ Age=1145482740
 Age=1145774114
 [specinfo.sma]
 Age=1145812086
+[test.sma]
+Age=1146200817
+[gozm_menu.sma]
+Age=1146262151

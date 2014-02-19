@@ -202,7 +202,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             new unbanning_nick[50]
             get_user_name(id, unbanning_nick, 49)
             trim(unbanning_nick)
-            
+
             log_amx("UNB: %s, ADM: %s, %s", unbanning_nick, admin_nick, equal(unbanning_nick, admin_nick) ? "T" : "F")
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {
@@ -211,74 +211,80 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             }
             client_cmd(id, "amx_unsuperban %s", player_ip)
 
-			current_time_int = get_systime(0)
-			ban_created_int = str_to_num(ban_created)
-			
-			/* Check how many minutes have gone since the ban was created */
-			new banned_minutes_ago = (current_time_int - ban_created_int)/60
-			new banned_ago_str[128], banned_ago_str2[128]
-			get_time_length(id, get_pcvar_num(max_time_gone_to_unban), timeunit_minutes, banned_ago_str, 127)
-			get_time_length(id, banned_minutes_ago, timeunit_minutes, banned_ago_str2, 127)
-				
-			if (banned_minutes_ago > get_pcvar_num(max_time_gone_to_unban) && !(get_user_flags(id)&get_higher_ban_time_admin_flag()) )
-			{
-				client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"UNBAN_TO_OLD_BAN", banned_ago_str)
-				client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"UNBAN_TO_OLD_BAN2", banned_ago_str2)
-	
-				return PLUGIN_HANDLED
-			}
-	
-			client_print(id,print_console," ")
-			client_print(id,print_console,"[AMXBANS] =================")
-			client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_2", bid, g_player_nick)
-			client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_3", admin_nick, g_admin_steamid, ban_reason)
-			client_print(id,print_console,"[AMXBANS] =================")
-			client_print(id,print_console," ")
+            current_time_int = get_systime(0)
+            ban_created_int = str_to_num(ban_created)
 
-			server_print(" ")
-			server_print("[AMXBANS] =================")
-			server_print("[AMXBANS] %L",LANG_SERVER,"AMX_FIND_RESULT_2", bid, g_player_nick)
-			server_print("[AMXBANS] %L",LANG_SERVER,"AMX_FIND_RESULT_3", admin_nick, g_admin_steamid, ban_reason)
-			server_print("[AMXBANS] =================")
-			server_print(" ")
-				
-			
-			new unban_admin_steamid[32]
-			if (!serverCmd)
-			{
-				get_user_authid(id, unban_admin_steamid, 31)
-				get_user_team(id, g_unban_admin_team, 9)
-				get_user_name(id, g_unban_admin_nick, 99)
-			}
-			else
-			{
-				/* If the server does the ban you cant get any steam_ID or team */
-				unban_admin_steamid = ""
-				g_unban_admin_team = ""
-		
-				/* This is so you can have a shorter name for the servers hostname.
-				Some servers hostname can be very long b/c of sponsors and that will make the ban list on the web bad */
-				new servernick[100]
-				get_pcvar_string(server_nick, servernick, 99)
-				if (strlen(servernick))
-					g_unban_admin_nick = servernick
-				else
-					get_cvar_string("hostname", g_unban_admin_nick, 99)
-					
-			}
-			
-			new unban_created = get_systime(0)
-			
-			new query[512]
-			format(query, 511, "INSERT INTO `%s` (player_id,player_ip,player_nick,admin_id,admin_nick,ban_type,ban_reason,ban_created,ban_length,server_ip,server_name,unban_created,unban_reason,unban_admin_nick) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%i','UnBanned in Game','%s %s')",tbl_banhist,g_unban_player_steamid,player_ip,g_player_nick,g_admin_steamid,admin_nick,ban_type,ban_reason,ban_created,ban_length,server_ip,server_name,unban_created, g_unban_admin_nick, unban_admin_steamid)
-			
-			new data[2]
-			data[0] = id
-			data[1] = bid
-			SQL_ThreadQuery(g_SqlX, "cmd_unban_insert", query, data, 2)
-			
-			if ( get_pcvar_num(amxbans_debug) == 1 )
-				log_amx("[AMXBANS DEBUG] UNBAN IN GAME: INSERT INTO `%s` (VALUES('%s','%s','%s', '%s')",tbl_banhist,g_unban_player_steamid,g_player_nick,ban_length, g_unban_admin_nick)
+            /* Check how many minutes have gone since the ban was created */
+            new banned_minutes_ago = (current_time_int - ban_created_int)/60
+            new banned_ago_str[128], banned_ago_str2[128]
+            get_time_length(id, get_pcvar_num(max_time_gone_to_unban), timeunit_minutes, banned_ago_str, 127)
+            get_time_length(id, banned_minutes_ago, timeunit_minutes, banned_ago_str2, 127)
+                
+            if (banned_minutes_ago > get_pcvar_num(max_time_gone_to_unban) && !(get_user_flags(id)&get_higher_ban_time_admin_flag()) )
+            {
+                client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"UNBAN_TO_OLD_BAN", banned_ago_str)
+                client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"UNBAN_TO_OLD_BAN2", banned_ago_str2)
+
+                return PLUGIN_HANDLED
+            }
+
+            client_print(id,print_console," ")
+            client_print(id,print_console,"[AMXBANS] =================")
+            client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_2", bid, g_player_nick)
+            client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_3", admin_nick, g_admin_steamid, ban_reason)
+            client_print(id,print_console,"[AMXBANS] =================")
+            client_print(id,print_console," ")
+
+            server_print(" ")
+            server_print("[AMXBANS] =================")
+            server_print("[AMXBANS] %L",LANG_SERVER,"AMX_FIND_RESULT_2", bid, g_player_nick)
+            server_print("[AMXBANS] %L",LANG_SERVER,"AMX_FIND_RESULT_3", admin_nick, g_admin_steamid, ban_reason)
+            server_print("[AMXBANS] =================")
+            server_print(" ")
+
+            new unban_admin_steamid[32]
+            if (!serverCmd)
+            {
+                get_user_authid(id, unban_admin_steamid, 31)
+                get_user_team(id, g_unban_admin_team, 9)
+                get_user_name(id, g_unban_admin_nick, 99)
+            }
+            else
+            {
+                /* If the server does the ban you cant get any steam_ID or team */
+                unban_admin_steamid = ""
+                g_unban_admin_team = ""
+
+                /* This is so you can have a shorter name for the servers hostname.
+                Some servers hostname can be very long b/c of sponsors and that will make the ban list on the web bad */
+                new servernick[100]
+                get_pcvar_string(server_nick, servernick, 99)
+                if (strlen(servernick))
+                    g_unban_admin_nick = servernick
+                else
+                    get_cvar_string("hostname", g_unban_admin_nick, 99)
+            }
+
+            new unban_created = get_systime(0)
+
+            new query[512]
+            format(query, 511, "INSERT INTO `%s` \
+                (player_id,player_ip,player_nick,admin_id,admin_nick,ban_type,\
+                ban_reason,ban_created,ban_length,server_ip,server_name,\
+                unban_created,unban_reason,unban_admin_nick) \
+                VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%i','UnBanned in Game','%s %s')",
+                tbl_banhist,g_unban_player_steamid,player_ip,g_player_nick,
+                g_admin_steamid,admin_nick,ban_type,ban_reason,ban_created,
+                ban_length,server_ip,server_name,unban_created, g_unban_admin_nick, 
+                unban_admin_steamid)
+
+            new data[2]
+            data[0] = id
+            data[1] = bid
+            SQL_ThreadQuery(g_SqlX, "cmd_unban_insert", query, data, 2)
+
+            if ( get_pcvar_num(amxbans_debug) == 1 )
+                log_amx("[AMXBANS DEBUG] UNBAN IN GAME: INSERT INTO `%s` (VALUES('%s','%s','%s', '%s')",tbl_banhist,g_unban_player_steamid,g_player_nick,ban_length, g_unban_admin_nick)
 		}
 	}
 	return PLUGIN_HANDLED

@@ -13,7 +13,12 @@ public cmdUnBan(id,level,cid)
     read_args(steamid_or_nick, 50)
     trim(steamid_or_nick)
 
-    if ( contain(steamid_or_nick, "STEAM_") != -1 )
+    if (equal(steamid_or_nick, "STEAM_ID_LAN"))
+    {
+        client_print(id, print_chat, "Can't unban STEAM_ID_LAN")
+        return PLUGIN_HANDLED
+    }
+    else if (contain(steamid_or_nick, "STEAM_") != -1)
     {
         g_unban_player_steamid = steamid_or_nick
     }
@@ -27,7 +32,6 @@ public cmdUnBan(id,level,cid)
             player_nick,player_ip,player_id,ban_type,server_ip,server_name \
             FROM `%s` WHERE player_nick LIKE '%%%s%%'", 
             tbl_bans, steamid_or_nick)
-        log_amx("NICK: %s", query)
             
         data[0] = id
         SQL_ThreadQuery(g_SqlX, "cmd_unban_by_nick", query, data, 1)
@@ -43,7 +47,6 @@ public cmdUnBan(id,level,cid)
         player_nick,player_ip,player_id,ban_type,server_ip,server_name \
         FROM `%s` WHERE player_id='%s'", 
         tbl_bans, g_unban_player_steamid)
-    log_amx("STEAM: %s", query)
     
     data[0] = id
     SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
@@ -118,8 +121,8 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
         }
         else
         {
-            client_print(id, print_chat, "Too many output results: %d", res_count)
-            client_print(id, print_chat, "Try to clarify nickname", g_unban_player_steamid)
+            client_print(id, print_chat, "*** Too many output results: %d", res_count)
+            client_print(id, print_chat, "*** Try to clarify nickname", g_unban_player_steamid)
             return PLUGIN_HANDLED
         }
     }
@@ -203,10 +206,9 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             get_user_name(id, unbanning_nick, 49)
             trim(unbanning_nick)
 
-            log_amx("UNB: %s, ADM: %s, %s", unbanning_nick, admin_nick, equal(unbanning_nick, admin_nick) ? "T" : "F")
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {
-                client_print(id, print_chat, "STOP! It's not your ban.")
+                client_print(id, print_chat, "It's not your ban!")
                 return PLUGIN_HANDLED
             }
             client_cmd(id, "amx_unsuperban %s", player_ip)

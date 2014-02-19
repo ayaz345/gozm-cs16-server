@@ -1,32 +1,156 @@
 
 /*
-     This function will UnBan by steamID amx_unban <STEAMID>   
+     This function will UnBan by steamID amx_unban <STEAMID or NICKNAME>   
 */
 
 public cmdUnBan(id,level,cid)
 {
-	if (!cmd_access(id,level,cid,3))
-		return PLUGIN_HANDLED
+    if(!(get_user_flags(id) & level))
+        return PLUGIN_HANDLED
 
+    new steamid_or_nick[50]
 
-	read_args(g_unban_player_steamid, 50)
-	trim(g_unban_player_steamid)
+    read_args(steamid_or_nick, 50)
+    trim(steamid_or_nick)
 
- 	if ( contain(g_unban_player_steamid, "STEAM_") == -1 )
-	{
-		client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"UNABAN_STEAMID_ONLY")
+    if ( contain(steamid_or_nick, "STEAM_") != -1 )
+    {
+        g_unban_player_steamid = steamid_or_nick
+    }
+    else
+    {
+        new query[512]
+        new data[1]
 
-		return PLUGIN_HANDLED
-	}
-	
-	new query[512]
-	new data[1]
+        format(query, 511, "SELECT \
+            bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
+            player_nick,player_ip,player_id,ban_type,server_ip,server_name \
+            FROM `%s` WHERE player_nick LIKE '%%%s%%'", 
+            tbl_bans, steamid_or_nick)
+        log_amx("NICK: %s", query)
+            
+        data[0] = id
+        SQL_ThreadQuery(g_SqlX, "cmd_unban_by_nick", query, data, 1)
 
-	format(query, 511, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,player_nick,player_ip,player_id,ban_type,server_ip,server_name FROM `%s` WHERE player_id='%s'", tbl_bans, g_unban_player_steamid)
-	data[0] = id
-	SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
-	
-	return PLUGIN_HANDLED
+        return PLUGIN_HANDLED
+    }
+    
+    new query[512]
+    new data[1]
+
+    format(query, 511, "SELECT \
+        bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
+        player_nick,player_ip,player_id,ban_type,server_ip,server_name \
+        FROM `%s` WHERE player_id='%s'", 
+        tbl_bans, g_unban_player_steamid)
+    log_amx("STEAM: %s", query)
+    
+    data[0] = id
+    SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
+
+    return PLUGIN_HANDLED
+}
+
+public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
+{
+    new id = data[0]
+
+    if (failstate)
+    {
+        new szQuery[256]
+        MySqlX_ThreadError( szQuery, error, errnum, failstate, 11 )
+    }
+    else
+    {
+        new res_count = SQL_NumResults(query)
+        
+        if(!res_count)
+        {
+            client_print(id, print_console, "[AMXBANS] Player with that part of nickname is NOT found in bans")
+            server_print("[AMXBANS] Player with that part of nickname is NOT found in bans")
+
+            return PLUGIN_HANDLED
+        }
+        else if(res_count == 1)
+        {
+            new player_steamid[50]
+            SQL_ReadResult(query, column("player_id"), player_steamid, 49)
+            
+            new query[512]
+            new data[1]
+
+            format(query, 511, "SELECT \
+                bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
+                player_nick,player_ip,player_id,ban_type,server_ip,server_name \
+                FROM `%s` WHERE player_id='%s'", 
+                tbl_bans, player_steamid)
+            
+            data[0] = id
+            SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
+
+            return PLUGIN_HANDLED
+        }
+        else if(1 < res_count <= 7)
+        {
+            new i_Menu = menu_create("\yUnban Menu", "unban_menu_handler" )
+            new c
+            
+            for(c=1; c<=res_count; c++)
+            {
+                new player_name[32]
+                new player_steamid[50]
+            
+                SQL_ReadResult(query, column("player_nick"), player_name, 31)
+                SQL_ReadResult(query, column("player_id"), player_steamid, 49)
+                
+                menu_additem(i_Menu, player_name, player_steamid)
+                
+                SQL_NextRow(query)
+            }
+            
+            menu_setprop(i_Menu, 2, "Back")
+            menu_setprop(i_Menu, 3, "Next")
+            menu_setprop(i_Menu, 4, "Close")
+
+            menu_display(id, i_Menu, 0)
+
+            return PLUGIN_HANDLED
+        }
+        else
+        {
+            client_print(id, print_chat, "Too many output results: %d", res_count)
+            client_print(id, print_chat, "Try to clarify nickname", g_unban_player_steamid)
+            return PLUGIN_HANDLED
+        }
+    }
+    
+    return PLUGIN_HANDLED
+}
+
+public unban_menu_handler(id, menu, item)
+{
+    if (item == MENU_EXIT)
+    {
+        menu_destroy(menu)
+        return PLUGIN_HANDLED
+    }
+
+    new s_Data[6], s_Name[64], i_Access, i_Callback
+    menu_item_getinfo(menu, item, i_Access, s_Data, charsmax(s_Data), s_Name, charsmax(s_Name), i_Callback)
+    
+    new query[512]
+    new data[1]
+
+    format(query, 511, "SELECT \
+        bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
+        player_nick,player_ip,player_id,ban_type,server_ip,server_name \
+        FROM `%s` WHERE BINARY player_nick='%s'", 
+        tbl_bans, s_Name)
+    
+    data[0] = id
+    SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
+
+    return PLUGIN_HANDLED
 }
 
 public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
@@ -55,28 +179,36 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 		}
 		else
 		{
-			client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_1",g_unban_player_steamid)
-			
-			new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
-			new ban_created_int, current_time_int
-			new player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]
-			
-			new bid = SQL_ReadResult(query, 0)
-			SQL_ReadResult(query, 1, ban_created, 49)
-			SQL_ReadResult(query, 2, ban_length, 49)
-			SQL_ReadResult(query, 3, ban_reason, 254)
-			SQL_ReadResult(query, 4, admin_nick, 99)
-			SQL_ReadResult(query, 5, g_admin_steamid, 49)
-			SQL_ReadResult(query, 6, g_player_nick, 49)
-			SQL_ReadResult(query, 7, player_ip, 29)
-			SQL_ReadResult(query, 8, player_steamid, 49)
-			SQL_ReadResult(query, 9, ban_type, 9)
-			SQL_ReadResult(query, 10, server_ip, 29)
-			SQL_ReadResult(query, 11, server_name, 99)
-			
-			//// MINE
-			//server_cmd("removeip %s", player_ip)
-			//log_amx("[AMXBANS EXTRA] UnBanned %s", player_ip)
+            client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_1",g_unban_player_steamid)
+
+            new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
+            new ban_created_int, current_time_int
+            new player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]
+
+            new bid = SQL_ReadResult(query, 0)
+            SQL_ReadResult(query, 1, ban_created, 49)
+            SQL_ReadResult(query, 2, ban_length, 49)
+            SQL_ReadResult(query, 3, ban_reason, 254)
+            SQL_ReadResult(query, 4, admin_nick, 99)
+            SQL_ReadResult(query, 5, g_admin_steamid, 49)
+            SQL_ReadResult(query, 6, g_player_nick, 49)
+            SQL_ReadResult(query, 7, player_ip, 29)
+            SQL_ReadResult(query, 8, player_steamid, 49)
+            SQL_ReadResult(query, 9, ban_type, 9)
+            SQL_ReadResult(query, 10, server_ip, 29)
+            SQL_ReadResult(query, 11, server_name, 99)
+
+            //// MINE
+            new unbanning_nick[50]
+            get_user_name(id, unbanning_nick, 49)
+            trim(unbanning_nick)
+            
+            log_amx("UNB: %s, ADM: %s, %s", unbanning_nick, admin_nick, equal(unbanning_nick, admin_nick) ? "T" : "F")
+            if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
+            {
+                client_print(id, print_chat, "STOP! It's not your ban.")
+                return PLUGIN_HANDLED
+            }
             client_cmd(id, "amx_unsuperban %s", player_ip)
 
 			current_time_int = get_systime(0)

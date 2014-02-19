@@ -4,6 +4,13 @@
 #define tbl_svrnfo "amx_serverinfo"
 #define tbl_bans "amx_bans"
 #define tbl_banhist "amx_banhistory"
+#define tbl_admins "amx_amxadmins"
+
+#define column(%1) SQL_FieldNameToNum(query, %1)
+
+#define MPROP_BACKNAME  2
+#define MPROP_NEXTNAME  3
+#define MPROP_EXITNAME  4
 
 // For hudmessages
 new g_MyMsgSync

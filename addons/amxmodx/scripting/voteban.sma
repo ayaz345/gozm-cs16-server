@@ -30,6 +30,9 @@ public plugin_init()
     register_clcmd("say","SayIt" )
     register_clcmd("say_team","SayIt" )
     register_clcmd("VIP_REASON", "setCustomBanReason")
+    register_clcmd("amx_unban_by_name", "customUnban")
+    register_clcmd("BANNED_NICKNAME", "unban_by_nickname")
+    
     register_menucmd(register_menuid("ChoosePlayer"), 1023, "ChooseMenu")
 
     gi_BanTime=register_cvar("amxx_voteban_bantime","30")
@@ -237,9 +240,25 @@ public additionalBan() {
 public ActualBan(time, reason[])
 {
     client_cmd(ga_PlayerID[gi_VoteStarter], "amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
-//    colored_print(0, "ALL: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
-//    colored_print(ga_PlayerID[gi_VoteStarter], "ID: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
-
     colored_print(0,"^x03%s ^x01is BANNED by %s! Reason: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
     return 0
+}
+
+public customUnban(id,level,cid) {
+    client_cmd(id, "messagemode BANNED_NICKNAME")
+    return PLUGIN_HANDLED
+}
+
+public unban_by_nickname(id,level,cid)
+{
+    new banned_nickname[32]
+    read_argv(1, banned_nickname, 31)
+    if(strlen(banned_nickname) == 0) {
+        colored_print(id,"^x04***^x01 Empty Nickname! Not a deal.")
+        return PLUGIN_HANDLED
+    }
+
+    client_cmd(id, "amx_unban %s", banned_nickname)
+
+    return PLUGIN_HANDLED
 }

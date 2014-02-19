@@ -79,8 +79,8 @@ public menu_handler(id, menu, item)
             client_cmd(id, "say /top")
         case 9: 
             client_cmd(id, "say /stats")
-        case 10: 
-            client_print(id, print_chat, "amx_unban <steamID>")
+        case 10:
+            client_cmd(id, "amx_unban_by_name")
         case 11: 
             client_cmd(id, "say /speak")
         case 12: 
@@ -110,5 +110,3 @@ public menu_handler(id, menu, item)
 
     return PLUGIN_HANDLED; 
 }
-
-    

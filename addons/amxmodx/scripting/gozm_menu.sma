@@ -1,6 +1,7 @@
 #include <amxmodx>
 
 #define VIP_FLAG ADMIN_LEVEL_H
+#define ADMIN_FLAG ADMIN_BAN
 
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3
@@ -20,16 +21,16 @@ public mainMenu(id)
 
     menu_additem(i_Menu, "Re-Pick Weapons", "1")
     menu_additem(i_Menu, "Nominate Map", "2")
-    menu_additem(i_Menu, "Ban", "3", VIP_FLAG)
-    menu_additem(i_Menu, "Mute", "4", VIP_FLAG)
-    menu_additem(i_Menu, "History", "5", VIP_FLAG)
+    menu_additem(i_Menu, "Ban", "3", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Mute", "4", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "History", "5", VIP_FLAG|ADMIN_FLAG)
     menu_additem(i_Menu, "BanList", "6")
     menu_additem(i_Menu, "Rank", "7")
     menu_additem(i_Menu, "Top Players", "8")
     menu_additem(i_Menu, "Statistics", "9")
-    menu_additem(i_Menu, "UnBan", "10", VIP_FLAG)
-    menu_additem(i_Menu, "UnMute", "11", VIP_FLAG)
-    menu_additem(i_Menu, "Hats", "12", VIP_FLAG)
+    menu_additem(i_Menu, "UnBan", "10", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "UnMute", "11", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Hats", "12", VIP_FLAG|ADMIN_FLAG)
     menu_additem(i_Menu, "List Players", "13")
     menu_additem(i_Menu, "Damage", "14")
     menu_additem(i_Menu, "Time", "15")

@@ -222,7 +222,13 @@ public SuperBan(param[]) {
     new admin_or_vip_id = param[2]
     new victim_userid = get_user_userid(victim_id)
     
-    client_cmd(admin_or_vip_id, "amx_superban #%d %d %s", victim_userid, iBanLength, g_ban_reason)
+    if(is_user_connected(victim_id)) {
+        client_cmd(admin_or_vip_id, "amx_superban #%d %d %s", victim_userid, iBanLength, g_ban_reason)
+        log_amx("SUCCESSFULLY BANNED:")
+    }
+    else
+        log_amx("NOT BANNED (not connected):")
+    log_amx("SB: amx_superban #%d %d %s", victim_userid, iBanLength, g_ban_reason)
 }
 
 public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)

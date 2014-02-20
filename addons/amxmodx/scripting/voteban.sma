@@ -62,11 +62,7 @@ public SayIt(id)
     }
     
     else if(say_args[0] == '/' && equali(say_args, "/ban")) {
-        if(get_user_flags(id) & ADMIN_BAN) {
-            colored_print(id,"^x04***^x01 Use AdminMenu!")
-            return PLUGIN_HANDLED_MAIN
-        }
-        if(get_user_flags(id) & ADMIN_LEVEL_H) {
+        if(get_user_flags(id) & ADMIN_LEVEL_H || get_user_flags(id) & ADMIN_BAN) {
             get_players( ga_PlayerID, gi_TotalPlayers )
             for(i=0; i<gi_TotalPlayers; i++)
             {
@@ -178,15 +174,10 @@ public chooseBanReason(id)
 
     menu_additem(i_Menu, "WallHack", "20160")
     menu_additem(i_Menu, "SpeedHack & AIM", "40320")
-    menu_additem(i_Menu, "Block", "15")
+    menu_additem(i_Menu, "Block", "30")
     menu_additem(i_Menu, "Reconnect", "15")
-    menu_additem(i_Menu, "Razbil kamni/doski", "15")
     menu_additem(i_Menu, "Mat", "60")
-    menu_additem(i_Menu, "Obxod", "1440")
-    menu_additem(i_Menu, "Nick", "10")
-    menu_additem(i_Menu, "Microphone", "30")
-    menu_additem(i_Menu, "Black List", "40320")
-    menu_additem(i_Menu, "Noob", "30")
+    menu_additem(i_Menu, "Auto B-Hop", "10080")
     menu_additem(i_Menu, "Custom", "1")
     
     menu_setprop(i_Menu, 2, "Back")
@@ -241,6 +232,7 @@ public ActualBan(time, reason[])
 {
     client_cmd(ga_PlayerID[gi_VoteStarter], "amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
     colored_print(0,"^x03%s ^x01is BANNED by %s! Reason: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
+    log_amx("VB: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
     return 0
 }
 

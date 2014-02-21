@@ -13,9 +13,14 @@ public cmdUnBan(id,level,cid)
     read_args(steamid_or_nick, 50)
     trim(steamid_or_nick)
 
-    if (equal(steamid_or_nick, "STEAM_ID_LAN"))
+    if (equal(steamid_or_nick, ""))
     {
-        client_print(id, print_chat, "Can't unban STEAM_ID_LAN")
+        client_print(id, print_console, "Usage: amx_unban <STEAM_ID or NICKNAME>")
+        return PLUGIN_HANDLED
+    }
+    else if (equal(steamid_or_nick, "STEAM_ID_LAN"))
+    {
+        colored_print(id, "^x04 ***^x01 Can't unban STEAM_ID_LAN")
         return PLUGIN_HANDLED
     }
     else if (contain(steamid_or_nick, "STEAM_") != -1)
@@ -74,6 +79,7 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
         if(!res_count)
         {
             client_print(id, print_console, "[AMXBANS] Player with that part of nickname is NOT found in bans")
+            colored_print(id, "^x04 ***^x01 Player with that part of nickname is NOT found in bans")
             server_print("[AMXBANS] Player with that part of nickname is NOT found in bans")
 
             return PLUGIN_HANDLED
@@ -106,8 +112,8 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
         }
         else
         {
-            client_print(id, print_chat, "*** Too many output results: %d", res_count)
-            client_print(id, print_chat, "*** Try to clarify nickname", g_unban_player_steamid)
+            colored_print(id, "^x04 ***^x01 Too many output results: %d", res_count)
+            colored_print(id, "^x04 ***^x01 Try to clarify nickname", g_unban_player_steamid)
             return PLUGIN_HANDLED
         }
     }
@@ -199,13 +205,13 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {
-                client_print(id, print_chat, "It's not your ban!")
+                colored_print(id, "^x04 ***^x01 It's not your ban!")
                 log_amx("UNBAN_SELECT: NOT YOUR BAN: U'%s' vs A'%s'", unbanning_nick, admin_nick)
                 return PLUGIN_HANDLED
             }
             log_amx("UNBAN_SELECT: amx_unsuperban %s", player_ip)
             client_cmd(id, "amx_unsuperban %s", player_ip)
-            client_print(id, print_chat, "Successfully UnBanned: %s", g_player_nick)
+            colored_print(id, "^x04 ***^x01 Successfully UnBanned: %s", g_player_nick)
 
             current_time_int = get_systime(0)
             ban_created_int = str_to_num(ban_created)

@@ -192,7 +192,7 @@ public cmdBan(id, level, cid)
     new admin_name[32]
     get_user_name(player, banned_name, 31)
     get_user_name(id, admin_name, 31)
-    client_print(player, print_chat, "%s is banned by %s for %dm", banned_name, admin_name, iBanLength)
+    colored_print(player, "^x04***^x01 %s is banned by %s for %dm", banned_name, admin_name, iBanLength)
     client_cmd(player, "snapshot")
 
     /////////////////////////////////////////////

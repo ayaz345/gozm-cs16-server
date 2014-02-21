@@ -17,6 +17,7 @@ new amxbans_version[] = "amxx_5.0" // This is for the DB
 #include "amxbans/cmdBan.inl"
 #include "amxbans/cmdUnban.inl"
 #include "amxbans/search.inl"
+#include colored_print
 
 // 16k * 4 = 64k stack size
 #pragma dynamic 16384 		// Give the plugin some extra memory to use

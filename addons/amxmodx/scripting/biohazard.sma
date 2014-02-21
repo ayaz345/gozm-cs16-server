@@ -104,12 +104,6 @@
 #define _random(%1) random_num(0, %1 - 1)
 #define AMMOWP_NULL (1<<0 | 1<<CSW_KNIFE | 1<<CSW_FLASHBANG | 1<<CSW_HEGRENADE | 1<<CSW_SMOKEGRENADE | 1<<CSW_C4)
 
-stock const INGAME_JOIN_MSG[] =		"#IG_Team_Select";
-stock const INGAME_JOIN_MSG_SPEC[] =	"#IG_Team_Select_Spect";
-// New VGUI Menus
-stock const VGUI_JOIN_TEAM_NUM =		2;
-const iMaxLen = sizeof(INGAME_JOIN_MSG_SPEC);
-
 enum
 {
 	MAX_CLIP = 0,
@@ -451,13 +445,12 @@ public plugin_init()
     register_message(get_user_msgid("ClCorpse"), "msg_clcorpse")
     register_message(get_user_msgid("WeapPickup"), "msg_weaponpickup")
     register_message(get_user_msgid("AmmoPickup"), "msg_ammopickup")
-///////////////////////// AutoJoin //////////////////////	
-    register_message(get_user_msgid("ShowMenu"), "message_ShowMenu")
-    register_message(get_user_msgid("VGUIMenu"), "message_VGUIMenu")
+
     register_message(g_msg_screenfade, "msg_screenfade")
 
     register_event("TextMsg", "event_textmsg", "a", "2=#Game_will_restart_in")
     register_event("TextMsg", "event_textmsg", "a", "2=#Game_Commencing")
+    register_event("TeamInfo", "join_team", "a")
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
     register_event("CurWeapon", "event_curweapon", "be", "1=1")
     register_event("ArmorType", "event_armortype", "be")
@@ -977,38 +970,6 @@ public msg_health(msg_id, msg_dest, msg_entity)
 	set_msg_arg_int(1, get_msg_argtype(1), 255)
 }
 
-public message_ShowMenu(iMsgid, iDest, id)
-{
-	if (get_user_flags(id) & ADMIN_LEVEL_H || get_user_flags(id) & ADMIN_RCON)
-		return PLUGIN_CONTINUE
-
-	static sMenuCode[iMaxLen];
-	get_msg_arg_string(4, sMenuCode, sizeof(sMenuCode) - 1)
-	
-	if(equal(sMenuCode, INGAME_JOIN_MSG) || equal(sMenuCode, INGAME_JOIN_MSG_SPEC))
-		return PLUGIN_HANDLED
-	return PLUGIN_CONTINUE
-}
-
-public message_VGUIMenu(iMsgid, iDest, id)
-{
-	if (get_user_flags(id) & ADMIN_LEVEL_H || get_user_flags(id) & ADMIN_RCON)
-		return PLUGIN_CONTINUE
-
-	if(get_msg_arg_int(1) != VGUI_JOIN_TEAM_NUM)
-	{
-		return PLUGIN_CONTINUE
-	}
-	
-	static team
-	team = fm_get_user_team(id)
-	if(team == TEAM_TERRORIST || team == TEAM_CT)
-	{
-		return PLUGIN_HANDLED
-	}
-	return PLUGIN_CONTINUE
-}
-
 // Set player's health (from fakemeta_util)
 stock fm_set_user_health(id, health)
 {
@@ -1194,27 +1155,49 @@ public logevent_round_start()
 		}
 	}
 	
-//////////////////// Check for human-terrorist-bug //////////////////////
+    // Check for human-terrorist-bug
 	// after 45 sec connected players cant join game
-	set_task(45.0, "check_terrorist_bug", TASKID_TERBUG)
+	set_task(get_pcvar_float(cvar_starttime)+1.0, "check_terrorist_bug", TASKID_TERBUG)
 }
 
 public check_terrorist_bug()
 {
-	static players[32], num
-	// get ALIVE players
-	get_players(players, num, "a")
-	
-	static i, id, team
-	for(i = 0; i < num; i++)
-	{
-		id = players[i] 
-		team = fm_get_user_team(id)
-		
-		if (team == TEAM_TERRORIST && !g_zombie[id])
-			cs_set_team(id, TEAM_CT)
-	}
+    if (g_roundended)
+        return PLUGIN_CONTINUE
+
+    static players[32], num
+    // get ALIVE players
+    get_players(players, num, "a")
+
+    static i, id, team
+    for(i = 0; i < num; i++)
+    {
+        id = players[i] 
+        team = fm_get_user_team(id)
+        
+        if (team == TEAM_TERRORIST && !g_zombie[id])
+            cs_set_team(id, TEAM_CT)
+    }
+    return PLUGIN_CONTINUE
 }
+
+public join_team(id) {
+    if (g_roundended || !g_gamestarted)
+		return PLUGIN_CONTINUE
+    
+    new id = read_data(1)
+    static user_team[32]
+    static team_terrorist[] = "TERRORIST"
+    read_data(2, user_team, 31)    
+    
+    if(!is_user_connected(id))
+        return PLUGIN_CONTINUE
+    
+    if(equal(user_team, team_terrorist))
+        cs_set_team(id, TEAM_CT)
+            
+    return PLUGIN_CONTINUE
+}  
 
 public logevent_round_end()
 {
@@ -1236,7 +1219,6 @@ public logevent_round_end()
 	remove_task(TASKID_STARTROUND)
 	
 	set_task(0.1, "task_balanceteam", TASKID_BALANCETEAM)
-	set_task(1.0, "task_balanceteam", TASKID_BALANCETEAM)
 }
 
 public event_textmsg()
@@ -2246,8 +2228,6 @@ public task_startround()
 
 public task_balanceteam()
 {
-//    client_print(0, print_console, "***")
-//    client_print(0, print_console, "doing balance...")
     static players[3][32], count[3]
     get_players(players[TEAM_UNASSIGNED], count[TEAM_UNASSIGNED])
 	
@@ -2264,28 +2244,22 @@ public task_balanceteam()
             players[team][count[team]++] = id
     }
 
-//    client_print(0, print_console, "TER: %d, CT: %d", count[TEAM_TERRORIST], count[TEAM_CT])
     if(abs(count[TEAM_TERRORIST] - count[TEAM_CT]) <= 1) 
         return
 
-//    client_print(0, print_console, "keep doing...")
     static maxplayers
     maxplayers = (count[TEAM_TERRORIST] + count[TEAM_CT]) / 2
 	
-//    client_print(0, print_console, "average: %d", maxplayers)
     if(count[TEAM_TERRORIST] > maxplayers)
     {
-//        client_print(0, print_console, "if-state")
         for(i = 0; i < (count[TEAM_TERRORIST] - maxplayers); i++)
             cs_set_team(players[TEAM_TERRORIST][i], TEAM_CT)
     }
     else
     {
-//        client_print(0, print_console, "else-state")
         for(i = 0; i < (count[TEAM_CT] - maxplayers); i++)
             cs_set_team(players[TEAM_CT][i], TEAM_TERRORIST)
     }
-//    client_print(0, print_console, "***")
 }
 
 public task_botclient_pdata(id) 

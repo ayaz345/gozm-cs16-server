@@ -91,7 +91,7 @@ public check_player(id)
 
     new query[4096]
     new data[1]
-    if(equal(player_steamid, "STEAM_ID_LAN"))
+    if(equal(player_steamid, "STEAM_ID_LAN") || equal(player_steamid, ""))
         format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_ip='%s'",tbl_bans, player_ip)
     else
         format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_id='%s' OR player_ip='%s'",tbl_bans, player_steamid, player_ip)
@@ -138,14 +138,11 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             SQL_ReadResult(query, 12, ban_type, 3)
             SQL_ReadResult(query, 13, map_name, 31)
 
-
-            if ( get_pcvar_num(amxbans_debug) == 1 )
+            if (get_pcvar_num(amxbans_debug)==1)
                     log_amx("^nbid: %d ^nwhen: %d ^nlenght: %s ^nreason: %s ^nadmin: %s ^nadminsteamID: %s ^nPlayername %s ^nserver: %s ^nserverip: %s ^nbantype: %s",bid,ban_created,ban_length,ban_reason,admin_nick,admin_steamid,player_nick,server_name,server_ip,ban_type)
 
             new current_time_int = get_systime(0)
             new ban_length_int = str_to_num(ban_length) * 60 // in secs
-
-
 
             // A ban was found for the connecting player!! Lets see how long it is or if it has expired
             if ((ban_length_int == 0) || (ban_created ==0) || (ban_created+ban_length_int > current_time_int))
@@ -177,7 +174,6 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                 client_cmd(id, "echo [AMXBANS] Your DEMO is here: cstrike/go_zombie.dem")
                 client_cmd(id, "echo [AMXBANS] ===============================================")
 
-
                 if ( get_pcvar_num(amxbans_debug) == 1 )
                     log_amx("[AMXBANS DEBUG] BID:<%d> Player:<%s> <%s> connected and got kicked, because of an active ban, reason: %s", bid, player_nick, player_steamid, ban_reason)
 
@@ -188,8 +184,12 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                     log_amx("[AMXBANS DEBUG] Delayed Kick-TASK ID1: <%d>  ID2: <%s>", id, id_str)
 
                 set_task(3.5,"delayed_kick",0,id_str,3)
-                log_amx("=== Log with delayed kick (see 3.5s after): ===")
-                log_amx("id:%d, id_str:%s, bid:%d, db_nick:%s, game_nick:%s", id, id_str, bid, player_nick, has_name)
+                log_amx("CHECK: gm_data:[name: %s, ip: %s, steam: %s]", has_name, has_ip, has_steam)
+                log_amx("CHECK: db_data:[name: %s, ip: %s, steam: %s], bid: %d", player_nick, player_ip, player_steamid, bid)
+                new requested_query[4096]
+                SQL_GetQueryString(query, requested_query, charsmax(requested_query))
+                log_amx("CHECK: query: %s", requested_query)
+                log_amx("CHECK: results: %d", SQL_NumResults(query))
 
                 return PLUGIN_HANDLED
             }

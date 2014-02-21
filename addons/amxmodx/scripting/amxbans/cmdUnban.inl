@@ -66,6 +66,10 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
     else
     {
         new res_count = SQL_NumResults(query)
+        log_amx("UNBAN: res_count: %d", res_count)
+        new requested_query[512]
+        SQL_GetQueryString(query, requested_query, charsmax(requested_query))
+        log_amx("UNBAN: query: %s", requested_query)
         
         if(!res_count)
         {
@@ -74,26 +78,7 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
 
             return PLUGIN_HANDLED
         }
-        else if(res_count == 1)
-        {
-            new player_steamid[50]
-            SQL_ReadResult(query, column("player_id"), player_steamid, 49)
-            
-            new query[512]
-            new data[1]
-
-            format(query, 511, "SELECT \
-                bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
-                player_nick,player_ip,player_id,ban_type,server_ip,server_name \
-                FROM `%s` WHERE player_id='%s'", 
-                tbl_bans, player_steamid)
-            
-            data[0] = id
-            SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
-
-            return PLUGIN_HANDLED
-        }
-        else if(1 < res_count <= 7)
+        else if(res_count <= 7)
         {
             new i_Menu = menu_create("\yUnban Menu", "unban_menu_handler" )
             new c
@@ -172,16 +157,21 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 	}
 	else
 	{
-		
-		if (!SQL_NumResults(query))
-		{
-			client_print(id, print_console, "[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
-			server_print("[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
-	
-			return PLUGIN_HANDLED
-		}
-		else
-		{
+        new res_count = SQL_NumResults(query)
+        log_amx("UNBAN_SELECT: res_count: %d", res_count)
+        new requested_query[512]
+        SQL_GetQueryString(query, requested_query, charsmax(requested_query))
+        log_amx("UNBAN_SELECT: query: %s", requested_query)
+        
+        if (!SQL_NumResults(query))
+        {
+            client_print(id, print_console, "[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
+            server_print("[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
+
+            return PLUGIN_HANDLED
+        }
+        else
+        {
             client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_1",g_unban_player_steamid)
 
             new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
@@ -205,13 +195,17 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             new unbanning_nick[50]
             get_user_name(id, unbanning_nick, 49)
             trim(unbanning_nick)
+            log_amx("UNBAN_SELECT: B.NAME: %s, B.IP: %s", g_player_nick, player_ip)
 
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {
                 client_print(id, print_chat, "It's not your ban!")
+                log_amx("UNBAN_SELECT: NOT YOUR BAN: U'%s' vs A'%s'", unbanning_nick, admin_nick)
                 return PLUGIN_HANDLED
             }
+            log_amx("UNBAN_SELECT: amx_unsuperban %s", player_ip)
             client_cmd(id, "amx_unsuperban %s", player_ip)
+            client_print(id, print_chat, "Successfully UnBanned: %s", g_player_nick)
 
             current_time_int = get_systime(0)
             ban_created_int = str_to_num(ban_created)
@@ -287,7 +281,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 
             if ( get_pcvar_num(amxbans_debug) == 1 )
                 log_amx("[AMXBANS DEBUG] UNBAN IN GAME: INSERT INTO `%s` (VALUES('%s','%s','%s', '%s')",tbl_banhist,g_unban_player_steamid,g_player_nick,ban_length, g_unban_admin_nick)
-		}
+        }
 	}
 	return PLUGIN_HANDLED
 }

@@ -6,7 +6,7 @@
 #include <hamsandwich>
 #include <xs>
 #include <cstrike>
-#include <engine>
+//#include <engine>
 #include <fun>
 #include <cs_player_models_api>
 #include <cs_maxspeed_api>
@@ -1774,7 +1774,7 @@ public bacon_killed_player(victim, killer, shouldgib)
             if(maxclip)
             {
                 get_weaponname(weapon, weaponname, 31)
-                ent = find_ent_by_owner(-1, weaponname, killer)
+                ent = fm_find_ent_by_owner(-1, weaponname, killer)
 					
                 cs_set_weapon_ammo(ent, maxclip)
             }
@@ -1791,7 +1791,7 @@ public bacon_killed_player(victim, killer, shouldgib)
             if(maxclip)
             {
                 get_weaponname(weapon, weaponname, 31)
-                ent = find_ent_by_owner(-1, weaponname, killer)
+                ent = fm_find_ent_by_owner(-1, weaponname, killer)
 					
                 cs_set_weapon_ammo(ent, maxclip)
             }
@@ -2805,7 +2805,7 @@ bacon_strip_weapon(index, weapon[])
 		return 0
 
 	static weaponent
-	weaponent = find_ent_by_owner(-1, weapon, index)
+	weaponent = fm_find_ent_by_owner(-1, weapon, index)
 	
 	if(!weaponent) 
 		return 0

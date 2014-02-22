@@ -49,7 +49,7 @@ public plugin_init()
 	show_prebanned = register_cvar("amxbans_show_prebanned", "1") // Will show if a player has been banned before as amx_chat to admins. 0 to disable
 	show_prebanned_num = register_cvar("amxbans_show_prebanned_num", "2") // How many offences should the player have to notify admins?
 	max_time_to_show_preban = register_cvar("amxbans_max_time_to_show_preban", "9999") // How many days must go if the ban should not count
-	banhistmotd_url = register_cvar("amxbans_banhistmotd_url","http://pathToYour/findex.php?steamid=%s")
+	banhistmotd_url = register_cvar("amxbans_banhistmotd_url","http://pathToYour/findex.php?steamid=%s&ip=%s")
 	show_atacbans = register_cvar("amxbans_show_prebans_from_atac", "1") // neohasses custom to not count or count atac bans in the chat to admins
 	show_name_evenif_mole = register_cvar("amxbans_show_name_evenif_mole", "1")
 	firstBanmenuValue = register_cvar("amxbans_first_banmenu_value", "5")

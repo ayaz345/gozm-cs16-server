@@ -280,26 +280,28 @@ banUser(id,banReason[])
 
 public actionBanhistoryMenu(id, key)
 {
-	switch (key)
-	{
-		case 8: displayBanhistoryMenu(id, ++g_menuPosition[id])
-		case 9: displayBanhistoryMenu(id, --g_menuPosition[id])
-		default:
-		{
-			new authid[32]
-			new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
-			
-			new banhistMOTD_url[256], msg[2048]
-			get_user_authid(player, authid, 31)
+    switch (key)
+    {
+        case 8: displayBanhistoryMenu(id, ++g_menuPosition[id])
+        case 9: displayBanhistoryMenu(id, --g_menuPosition[id])
+        default:
+        {
+            new authid[32]
+            new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
 
-			get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
-			format(msg, 2047, banhistMOTD_url, authid)
+            new banhistMOTD_url[256], msg[2048]
+            new player_ip[20]
+            get_user_authid(player, authid, 31)
+            get_user_ip(id, player_ip, 19, 1)
 
-			show_motd(id, msg, "Banhistory")
-			displayBanhistoryMenu(id, g_menuPosition[id])
-		}
-	}
-	return PLUGIN_HANDLED
+            get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
+            format(msg, 2047, banhistMOTD_url, authid, player_ip)
+
+            show_motd(id, msg, "Banhistory")
+            displayBanhistoryMenu(id, g_menuPosition[id])
+        }
+    }
+    return PLUGIN_HANDLED
 }
 
 displayBanhistoryMenu(id, pos)

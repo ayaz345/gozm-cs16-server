@@ -232,6 +232,7 @@ public ActualBan(time, reason[])
 {
     client_cmd(ga_PlayerID[gi_VoteStarter], "amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
     colored_print(0,"^x03%s ^x01is BANNED by %s! Reason: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
+    log_amx("VB: %s", ga_PlayerName[gi_Sellection])
     log_amx("VB: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
     return 0
 }

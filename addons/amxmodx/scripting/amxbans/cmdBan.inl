@@ -96,16 +96,6 @@ public cmdBan(id, level, cid)
         get_user_authid(player, player_steamid, 49)
         get_user_ip(player, player_ip, 29, 1)
         get_user_ip(player, ga_PlayerIP[player], 15, 1)
-        
-        //// MINE
-        new param[3]
-        param[0] = player
-        param[1] = iBanLength
-        if ( get_pcvar_num(amxbans_debug) == 1 )
-            log_amx("[! AMXBANS EXTRA] To check: ip - %s; length - %d", player_ip, iBanLength)
-        //set_task(7.0, "double_ban", player, param, 2)
-        param[2] = id
-        set_task(kick_delay-1, "SuperBan", id, param, 3)
     }
     else
     {
@@ -216,18 +206,19 @@ public double_ban(param[]) {
 		log_amx("[! AMXBANS DEBUG] addip %d %s", iBanLength, ga_PlayerIP[id])
 }
 
-public SuperBan(param[]) {
-    new victim_id = param[0]
+public SuperBan(victim_id, iBanLength, admin_or_vip_id) {  // param[]
+/*    new victim_id = param[0]
     new iBanLength = param[1]
-    new admin_or_vip_id = param[2]
+    new admin_or_vip_id = param[2] */
     new victim_userid = get_user_userid(victim_id)
-    
-    if(is_user_connected(victim_id)) {
+
+    if(is_user_connected(victim_id) && is_user_connected(admin_or_vip_id)) {
         client_cmd(admin_or_vip_id, "amx_superban #%d %d ^"%s^"", victim_userid, iBanLength, g_ban_reason)
-        log_amx("SUCCESSFULLY BANNED:")
+        log_amx("SUCCESSFULLY BANNED")
     }
-    else
-        log_amx("NOT BANNED (not connected):")
+    else {
+        log_amx("NOT CONNECTED: victim-%d, vip-%d", is_user_connected(victim_id)?1:0, is_user_connected(victim_id)?1:0)
+    }
     log_amx("SB: amx_superban #%d %d ^"%s^"", victim_userid, iBanLength, g_ban_reason)
 }
 
@@ -544,44 +535,56 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 		
 		if (player)
 		{
-			
-			new complain_url[256]
-			get_pcvar_string(complainurl ,complain_url, 255)
-				
-			client_print(player,print_console,"[AMXBANS] ===============================================")				
-			client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_1")
-			client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_7", complain_url)
-			format(ban_motd, 4095, "%L", LANG_PLAYER, "MSG_MOTD_1")	
-			client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_2", g_ban_reason)
-			client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_3", cTimeLengthPlayer)
-			client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_4", player_steamid)
-			client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_5", player_ip)
-			client_print(player,print_console,"[AMXBANS] ===============================================")
-			client_print(player,print_console,"[AMXBANS] Your DEMO is here: cstrike/go_zombie.dem")
-			client_print(player,print_console,"[AMXBANS] ===============================================")
-			
-			new msg[4096], bidstr[10]
-			num_to_str(bid, bidstr, 9)
-			
-			if ( get_pcvar_num(amxbans_debug) == 1 )
-				log_amx("[cmdBan function 6.2]Bidstr: %s URL= %s Kickdelay:%f", bidstr, amxban_motd_url, kick_delay)
+            new complain_url[256]
+            get_pcvar_string(complainurl ,complain_url, 255)
+                
+            client_print(player,print_console,"[AMXBANS] ===============================================")				
+            client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_1")
+            client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_7", complain_url)
+            format(ban_motd, 4095, "%L", LANG_PLAYER, "MSG_MOTD_1")	
+            client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_2", g_ban_reason)
+            client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_3", cTimeLengthPlayer)
+            client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_4", player_steamid)
+            client_print(player,print_console,"[AMXBANS] %L",LANG_PLAYER,"MSG_5", player_ip)
+            client_print(player,print_console,"[AMXBANS] ===============================================")
+            client_print(player,print_console,"[AMXBANS] Your DEMO is here: cstrike/go_zombie.dem")
+            client_print(player,print_console,"[AMXBANS] ===============================================")
 
-			if (equal(amxban_motd_url, ""))
-			{
-					format(msg, 4095, ban_motd)
-			}
-			else
-			{
-				format(msg, 4095, amxban_motd_url, bidstr)
-			}
-	
-			new motdTitle[] = "Banned by Amxbans "
-			add(motdTitle,255,VERSION,0)
-			show_motd(player, msg, motdTitle)
-			
-			new id_str[3]
-			num_to_str(player, id_str, 3)
-			set_task(kick_delay, "delayed_kick", 1, id_str, 3)
+            //new msg[4096]
+            new bidstr[10]
+            num_to_str(bid, bidstr, 9)
+
+            if ( get_pcvar_num(amxbans_debug) == 1 )
+                log_amx("[cmdBan function 6.2]Bidstr: %s URL= %s Kickdelay:%f", bidstr, amxban_motd_url, kick_delay)
+/*
+            if (equal(amxban_motd_url, ""))
+            {
+                    format(msg, 4095, ban_motd)
+            }
+            else
+            {
+                format(msg, 4095, amxban_motd_url, bidstr)
+            }
+
+            new motdTitle[] = "Banned by Amxbans "
+            add(motdTitle,255,VERSION,0)
+            show_motd(player, msg, motdTitle)
+*/
+            new id_str[3]
+            num_to_str(player, id_str, 3)
+            set_task(kick_delay, "delayed_kick", 1, id_str, 3) 
+            
+        //// MINE
+/*          new param[3]
+            param[0] = player
+            param[1] = iBanLength
+            if ( get_pcvar_num(amxbans_debug) == 1 )
+                log_amx("[! AMXBANS EXTRA] To check: ip - %s; length - %d", player_ip, iBanLength)
+            //set_task(7.0, "double_ban", player, param, 2)
+            param[2] = id
+            set_task(kick_delay-1, "SuperBan", id, param, 3)
+*/
+            SuperBan(player, iBanLength, id)
 		}
 		else /* The player was not found in server */
 		{

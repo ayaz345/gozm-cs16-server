@@ -65,7 +65,7 @@ Age=1031274496
 [VIP.sma]
 Age=1109629610
 [voteban.sma]
-Age=1146421429
+Age=1146650902
 [walkguard.sma]
 Age=1121191995
 [weapons_maxclip.sma]
@@ -89,4 +89,6 @@ Age=1146200817
 [gozm_menu.sma]
 Age=1146331748
 [auto_join_on_connect.sma]
-Age=1146459401
+Age=1146655469
+[team_select_handler.sma]
+Age=1146656793

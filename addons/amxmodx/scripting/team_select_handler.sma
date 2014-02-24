@@ -4,15 +4,11 @@
 #define PLUGIN_NAME "ChooseTeam Menu"
 #define PLUGIN_VERSION "0.1"
 #define PLUGIN_AUTHOR "Dimka"
-
 #define AUTO_TEAM_JOIN_DELAY 0.1
-
 #define TEAM_SELECT_VGUI_MENU_ID 2
 #define T_SELECT_VGUI_MENU_ID 26
 #define CT_SELECT_VGUI_MENU_ID 27
-
 #define MPROP_EXITNAME  4
-
 #define MAX_PLAYERS 25
 
 new bool:already_changed[MAX_PLAYERS]
@@ -111,7 +107,7 @@ public draw_menu(id) {
     menu_additem(i_Menu, "-", "2")
     menu_additem(i_Menu, "-", "2")
     menu_additem(i_Menu, "Spectate", "6")
-    menu_setprop(i_Menu, 4, "Disconnect")
+    menu_setprop(i_Menu, 4, "Close")
     menu_display(id, i_Menu, 0)
     
     return PLUGIN_HANDLED
@@ -122,7 +118,6 @@ public menu_handler(id, menu, item)
     if (item == MENU_EXIT)
     {
         menu_destroy(menu)
-        client_cmd(id, "disconnect")
         return PLUGIN_HANDLED
     }
 
@@ -175,7 +170,7 @@ public clcmd_changeteam(id)
 }
 
 public event_newround() {
-    for (new i=1; i<=MAX_PLAYERS; i++)
+    for (new i=0; i<MAX_PLAYERS; i++)
         already_changed[i] = false
 }
 

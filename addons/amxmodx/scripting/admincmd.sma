@@ -557,69 +557,71 @@ public cmdBanIP(id, level, cid)
 
 public cmdSlay(id, level, cid)
 {
-	if (!cmd_access(id, level, cid, 2))
-		return PLUGIN_HANDLED
-	
-	new arg[32]
-	
-	read_argv(1, arg, 31)
-	
-	new player = cmd_target(id, arg, CMDTARGET_OBEY_IMMUNITY | CMDTARGET_ALLOW_SELF | CMDTARGET_ONLY_ALIVE)
-	
-	if (!player)
-		return PLUGIN_HANDLED
-	
-	user_kill(player)
-	
-	new authid[32], name2[32], authid2[32], name[32]
-	
-	get_user_authid(id, authid, 31)
-	get_user_name(id, name, 31)
-	get_user_authid(player, authid2, 31)
-	get_user_name(player, name2, 31)
-	
-	log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
+    if (!cmd_access(id, level, cid, 2))
+        return PLUGIN_HANDLED
 
-	show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
+    new arg[32]
 
-	console_print(id, "[AMXX] %L", id, "CLIENT_SLAYED", name2)
-	
-	return PLUGIN_HANDLED
+    read_argv(1, arg, 31)
+
+    new player = cmd_target(id, arg, CMDTARGET_OBEY_IMMUNITY | CMDTARGET_ALLOW_SELF | CMDTARGET_ONLY_ALIVE)
+
+    if (!player)
+        return PLUGIN_HANDLED
+
+    user_kill(player, 1)
+
+    new authid[32], name2[32], authid2[32], name[32]
+
+    get_user_authid(id, authid, 31)
+    get_user_name(id, name, 31)
+    get_user_authid(player, authid2, 31)
+    get_user_name(player, name2, 31)
+
+    if(!(get_user_flags(id) & ADMIN_RCON))
+        log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
+
+    show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
+
+    console_print(id, "[AMXX] %L", id, "CLIENT_SLAYED", name2)
+
+    return PLUGIN_HANDLED
 }
 
 public cmdSlap(id, level, cid)
 {
-	if (!cmd_access(id, level, cid, 2))
-		return PLUGIN_HANDLED
+    if (!cmd_access(id, level, cid, 2))
+        return PLUGIN_HANDLED
 
-	new arg[32]
-	
-	read_argv(1, arg, 31)
-	new player = cmd_target(id, arg, CMDTARGET_OBEY_IMMUNITY | CMDTARGET_ALLOW_SELF | CMDTARGET_ONLY_ALIVE)
-	
-	if (!player)
-		return PLUGIN_HANDLED
+    new arg[32]
 
-	new spower[32], authid[32], name2[32], authid2[32], name[32]
-	
-	read_argv(2, spower, 31)
-	
-	new damage = str_to_num(spower)
-	
-	user_slap(player, damage)
-	
-	get_user_authid(id, authid, 31)
-	get_user_name(id, name, 31)
-	get_user_authid(player, authid2, 31)
-	get_user_name(player, name2, 31)
-	
-	log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, damage, name2, get_user_userid(player), authid2)
+    read_argv(1, arg, 31)
+    new player = cmd_target(id, arg, CMDTARGET_OBEY_IMMUNITY | CMDTARGET_ALLOW_SELF | CMDTARGET_ONLY_ALIVE)
 
-	show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, damage);
+    if (!player)
+        return PLUGIN_HANDLED
 
-	console_print(id, "[AMXX] %L", id, "CLIENT_SLAPED", name2, damage)
-	
-	return PLUGIN_HANDLED
+    new spower[32], authid[32], name2[32], authid2[32], name[32]
+
+    read_argv(2, spower, 31)
+
+    new damage = str_to_num(spower)
+
+    user_slap(player, damage)
+
+    get_user_authid(id, authid, 31)
+    get_user_name(id, name, 31)
+    get_user_authid(player, authid2, 31)
+    get_user_name(player, name2, 31)
+
+    if(!(get_user_flags(id) & ADMIN_RCON))
+        log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, damage, name2, get_user_userid(player), authid2)
+
+    show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, damage);
+
+    console_print(id, "[AMXX] %L", id, "CLIENT_SLAPED", name2, damage)
+
+    return PLUGIN_HANDLED
 }
 
 public chMap(map[])
@@ -1012,27 +1014,30 @@ public cmdWho(id, level, cid)
         return PLUGIN_HANDLED
 
     new players[32], inum, cl_on_server[64], ip[15], name[32], flags, sflags[32]
-    new lAccess[16], usrid
+    new lAccess[16], usrid, steam_id[32]
 	
     format(lAccess, 15, "%L", id, "ACCESS")
 	
     get_players(players, inum)
     format(cl_on_server, 63, "%L", id, "CLIENTS_ON_SERVER")
-    console_print(id, "^n%s:^n #      %-17.15s %-23s %s", cl_on_server, "nick", "IP adress", lAccess)
+    console_print(id, 
+        "^n%s:^n#          %-24.15s    %-15s       %-15s               %s", 
+        cl_on_server, "Name", "IP adress", "STEAM id", lAccess)
 	
     for (new a = 0; a < inum; ++a)
     {
-		get_user_ip(players[a], ip, 15, 1)
-		usrid = get_user_userid(players[a]) 
-		get_user_name(players[a], name, 31)
-		flags = get_user_flags(players[a])
-		get_flags(flags, sflags, 31)
-		if (get_user_flags(players[a]) & ADMIN_RCON)
-		{
+        get_user_ip(players[a], ip, 15, 1)
+        usrid = get_user_userid(players[a]) 
+        get_user_name(players[a], name, 31)
+        get_user_authid(players[a], steam_id, 31)
+        flags = get_user_flags(players[a])
+        get_flags(flags, sflags, 31)
+        if (get_user_flags(players[a]) & ADMIN_RCON)
+        {
             ip = randIp
             formatex(sflags, 1, "z")
-		}
-		console_print(id, "%d   %-16.15s %-20s %s", usrid, name, ip, sflags)
+        }
+        console_print(id, "%d     %-27.15s%-18s%-18s   %s", usrid, name, ip, steam_id, sflags)
     }
 	
     console_print(id, "%L", id, "TOTAL_NUM", inum)

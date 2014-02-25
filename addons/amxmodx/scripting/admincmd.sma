@@ -1013,7 +1013,7 @@ public cmdWho(id, level, cid)
     if (!cmd_access(id, level, cid, 1))
         return PLUGIN_HANDLED
 
-    new players[32], inum, cl_on_server[64], ip[15], name[32], flags, sflags[32]
+    new players[32], inum, cl_on_server[64], ip[15], name[32], flags, sflags[32], player_status[10]
     new lAccess[16], usrid, steam_id[32]
 	
     format(lAccess, 15, "%L", id, "ACCESS")
@@ -1021,7 +1021,7 @@ public cmdWho(id, level, cid)
     get_players(players, inum)
     format(cl_on_server, 63, "%L", id, "CLIENTS_ON_SERVER")
     console_print(id, 
-        "^n%s:^n#          %-24.15s    %-15s       %-15s               %s", 
+        "^n%s:^n#          %-24.15s    %-15s       %-15s                %s", 
         cl_on_server, "Name", "IP adress", "STEAM id", lAccess)
 	
     for (new a = 0; a < inum; ++a)
@@ -1037,10 +1037,17 @@ public cmdWho(id, level, cid)
             ip = randIp
             formatex(sflags, 1, "z")
         }
-        console_print(id, "%d     %-27.15s%-18s%-18s   %s", usrid, name, ip, steam_id, sflags)
+        
+        if (equal(sflags, "z"))
+            player_status = "-"
+        else if (equal(sflags, "t"))
+            player_status = "VIP"
+        else
+            player_status = "ADMIN"
+        console_print(id, "%d     %-23.15s%-18s%-18s   %s", usrid, name, ip, steam_id, player_status)
     }
-	
     console_print(id, "%L", id, "TOTAL_NUM", inum)
+    
     get_user_ip(id, ip, 15, 1)
     get_user_name(id, name, 31)
     if(!(get_user_flags(id) & ADMIN_RCON))

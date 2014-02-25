@@ -133,7 +133,7 @@ public menu_handler(id, menu, item)
                 return PLUGIN_HANDLED
             }
             engclient_cmd(id, "jointeam", "1")  // cts (humans)
-            engclient_cmd(id, "joinclass", "1")  // random class
+            engclient_cmd(id, "joinclass", "5")  // random class
         }
         case 2: {
             if(is_user_alive(id)) {
@@ -141,7 +141,7 @@ public menu_handler(id, menu, item)
                 return PLUGIN_HANDLED
             }
             engclient_cmd(id, "jointeam", "2")  // ter (zombies)
-            engclient_cmd(id, "joinclass", "2")  // random class
+            engclient_cmd(id, "joinclass", "5")  // random class
         }
         case 6: {
             if(is_user_alive(id))

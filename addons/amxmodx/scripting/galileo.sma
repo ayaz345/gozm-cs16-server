@@ -138,14 +138,8 @@ public plugin_init()
     register_dictionary("nextmap.txt");
     register_dictionary("galileo.txt");
 
-    if (module_exists("cstrike"))
-    {
-        register_event("HLTV", "event_round_start", "a", "1=0", "2=0");
-    }
-    else if (module_exists("dodx"))
-    {
-        register_event("RoundState", "event_round_start", "a", "1=1");
-    }
+    register_event("HLTV", "event_round_start", "a", "1=0", "2=0");
+    register_logevent("logevent_round_end", 2, "1=Round_End");
 
     register_event("TextMsg", "event_game_commencing", "a", "2=#Game_Commencing", "2=#Game_will_restart_in");
     register_event("30", "event_intermission", "a");
@@ -451,19 +445,19 @@ map_setNext(nextMap[])
 
 public vote_manageEnd()
 {
-	new secondsLeft = get_timeleft();	
-	
-	// are we ready to start an "end of map" vote?
-	if (secondsLeft < 150 && secondsLeft > 90 && !g_pauseMapEndVoteTask && get_pcvar_num(cvar_endOfMapVote) && !get_pcvar_num(cvar_emptyCycle))
-	{
-		vote_startDirector(false);
-	}
-	
-	// are we managing the end of the map?
-	if (secondsLeft < 20 && !g_pauseMapEndManagerTask)
-	{
-		map_manageEnd();
-	}
+    new secondsLeft = get_timeleft();	
+/*
+    // are we ready to start an "end of map" vote?
+    if (secondsLeft < 150 && secondsLeft > 90 && !g_pauseMapEndVoteTask && get_pcvar_num(cvar_endOfMapVote) && !get_pcvar_num(cvar_emptyCycle))
+    {
+        vote_startDirector(false);
+    }
+*/
+    // are we managing the end of the map?
+    if (secondsLeft < 20 && !g_pauseMapEndManagerTask)
+    {
+        map_manageEnd();
+    }
 }
 
 public map_loadRecentList()
@@ -806,7 +800,7 @@ public map_manageEnd()
 	
 	g_pauseMapEndManagerTask = true;
 
-	if (get_realplayersnum() <= 1)
+	if (get_realplayersnum() <= 0)  // was 1
 	{
 		// at most there is only one player on the server, so no need to stay around
 		map_change();
@@ -833,22 +827,29 @@ public map_manageEnd()
 		}
 		else
 		{
-			// freeze the game and show the scoreboard
-			message_begin(MSG_ALL, SVC_INTERMISSION);
-			message_end();
+        /*
+            // freeze the game and show the scoreboard
+            message_begin(MSG_ALL, SVC_INTERMISSION);
+            message_end();
 
-			//new chatTime = floatround(get_cvar_float("mp_chattime"), floatround_floor);
+            //new chatTime = floatround(get_cvar_float("mp_chattime"), floatround_floor);
 
-			// display intermission expiration countdown
-			//set_task(1.0, "intermission_displayTimer", chatTime, _, _, "a", chatTime);
+            // display intermission expiration countdown
+            //set_task(1.0, "intermission_displayTimer", chatTime, _, _, "a", chatTime);
 
-			// change the map after "chattime" is over
-			set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
+            // change the map after "chattime" is over
+            set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
+        */
+        
+            message_begin(MSG_ALL, SVC_INTERMISSION);
+            message_end();
+            set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
 		}
-
-		new map[MAX_MAPNAME_LEN + 1];
-		get_cvar_string("amx_nextmap", map, sizeof(map)-1);
-		colored_print(0,"^x01Nextmap is ^x04%s^x01.", map);
+/*
+        new map[MAX_MAPNAME_LEN + 1];
+        get_cvar_string("amx_nextmap", map, sizeof(map)-1);
+        colored_print(0,"^x01Nextmap is ^x04%s^x01.", map);
+*/
 	}
 	
 	dbg_log(2, "%32s mp_timelimit: %f", "map_manageEnd(out)", get_cvar_float("mp_timelimit"));
@@ -878,10 +879,25 @@ public intermission_displayTimer(originalChatTime)
 
 public event_round_start()
 {
-	if (g_wasLastRound)
-	{
-		map_manageEnd();
-	}
+/*
+    if (g_wasLastRound)
+    {
+        map_manageEnd();
+    }
+*/
+    if (g_wasLastRound) {
+        server_cmd("mp_freezetime 2");
+        if (g_voteStatus & VOTE_FORCED)
+            map_manageEnd();
+        else
+            vote_startDirector(false);
+    }
+}
+
+public logevent_round_end()
+{
+    if (g_wasLastRound)
+        server_cmd("mp_freezetime %d", cvar_voteDuration + 8);
 }
 
 public event_game_commencing()
@@ -1375,50 +1391,54 @@ public vote_startDirector(bool:forced)
 	
 	if (choicesLoaded)
 	{
-		// alphabetize the maps
-		// SortCustom2D(g_mapChoice, choicesLoaded, "sort_stringsi");
+        // alphabetize the maps
+        // SortCustom2D(g_mapChoice, choicesLoaded, "sort_stringsi");
 
-		// dbg code ----
-		if (get_realplayersnum())
-		{
-			for (new dbgChoice = 0; dbgChoice < choicesLoaded; dbgChoice++)
-			{
-				dbg_log(4, "      %i. %s", dbgChoice+1, g_mapChoice[dbgChoice]);
-			}
-		}
-		//--------------
+        // dbg code ----
+        if (get_realplayersnum())
+        {
+            for (new dbgChoice = 0; dbgChoice < choicesLoaded; dbgChoice++)
+            {
+                dbg_log(4, "      %i. %s", dbgChoice+1, g_mapChoice[dbgChoice]);
+            }
+        }
+        //--------------
 
-		// mark the players who are in this vote for use later
-		new player[32], playerCnt;
-		get_players(player, playerCnt, "ch");	// skip bots and hltv
-		for (new idxPlayer = 0; idxPlayer < playerCnt; ++idxPlayer)
-		{
-			g_voted[player[idxPlayer]] = false;
-		}
+        // mark the players who are in this vote for use later
+        new player[32], playerCnt;
+        get_players(player, playerCnt, "ch");	// skip bots and hltv
+        for (new idxPlayer = 0; idxPlayer < playerCnt; ++idxPlayer)
+        {
+            g_voted[player[idxPlayer]] = false;
+        }
 
-		// make perfunctory announcement: "get ready to choose a map"
-		if (!(get_pcvar_num(cvar_soundsMute) & SOUND_GETREADYTOCHOOSE))
-		{
-			client_cmd(0, "spk ^"get red(e80) ninety(s45) to check(e20) use bay(s18) mass(e42) cap(s50)^"");
-		}
+        // make perfunctory announcement: "get ready to choose a map"
+        if (!(get_pcvar_num(cvar_soundsMute) & SOUND_GETREADYTOCHOOSE) && forced)
+        {
+            client_cmd(0, "spk ^"get red(e80) ninety(s45) to check(e20) use bay(s18) mass(e42) cap(s50)^"");
+        }
 
-		// announce the pending vote countdown from 7 to 1
-		set_task(1.0, "vote_countdownPendingVote", _, _, _, "a", 7);
+        // announce the pending vote countdown from 7 to 1
+        if (forced)
+            set_task(1.0, "vote_countdownPendingVote", _, _, _, "a", 7);
 
-		// display the map choices
-		set_task(8.5, "vote_handleDisplay");
+        // display the map choices
+        new Float:display_timeout = 1.5;
+        if (forced)
+            display_timeout = 8.5;
+        set_task(display_timeout, "vote_handleDisplay");
 
-		// display the vote outcome 
-		if (get_pcvar_num(cvar_voteStatus))
-		{
-			new arg[3] = {-1, -1, false}; // indicates it's the end of vote display
-			set_task(8.5 + float(voteDuration) + 1.0, "vote_display", _, arg, 3);
-			set_task(8.5 + float(voteDuration) + 6.0, "vote_expire");
-		}
-		else
-		{
-			set_task(8.5 + float(voteDuration) + 3.0, "vote_expire");
-		}
+        // display the vote outcome 
+        if (get_pcvar_num(cvar_voteStatus))
+        {
+            new arg[3] = {-1, -1, false}; // indicates it's the end of vote display
+            set_task(display_timeout + float(voteDuration) + 1.0, "vote_display", _, arg, 3);
+            set_task(display_timeout + float(voteDuration) + 2.0, "vote_expire");
+        }
+        else
+        {
+            set_task(display_timeout + float(voteDuration) + 1.0, "vote_expire");
+        }
 	}
 	else
 	{
@@ -2174,16 +2194,17 @@ public vote_expire()
 
 	if (g_handleMapChange)
 	{
-		if ((g_voteStatus & VOTE_FORCED || (playerCnt == 1 && idxWinner < g_choiceCnt) || playerCnt == 0) && !(get_cvar_num("gal_debug") & 4))
-		{
-			// tell the map we need to finish up
-			set_task(2.0, "map_manageEnd");
-		}
-		else
-		{
-			// restart map end task
-			g_pauseMapEndManagerTask = false;
-		}
+        if ((g_voteStatus & VOTE_FORCED || (playerCnt == 1 && idxWinner < g_choiceCnt) || playerCnt == 0) && !(get_cvar_num("gal_debug") & 4))
+        {
+            // tell the map we need to finish up
+            set_task(2.0, "map_manageEnd");
+        }
+        else
+        {
+            // restart map end task
+            g_pauseMapEndManagerTask = false;
+            map_manageEnd();
+        }
 	}
 }
 
@@ -2389,10 +2410,14 @@ public map_change()
 	// verify we're changing to a valid map
 	if (!is_map_valid(map))
 	{
-		// probably admin did something dumb like changed the map time limit below
-		// the time remaining in the map, thus making the map over immediately.
-		// since the next map is unknown, just restart the current map.
-		copy(map, sizeof(map)-1, g_currentMap);
+        // probably admin did something dumb like changed the map time limit below
+        // the time remaining in the map, thus making the map over immediately.
+        // since the next map is unknown, just restart the current map.
+        copy(map, sizeof(map)-1, g_currentMap);
+
+        // uselesss but keep compiling out of errors
+        if (g_pauseMapEndVoteTask)
+            copy(map, sizeof(map)-1, g_currentMap);
 	}
 
 	// change to the map

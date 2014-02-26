@@ -393,7 +393,7 @@ public logevent_endRound()
         {
             for (i = 0; i < playersNum; i++)
             {
-                colored_print(players[i], "^x04======================================")
+                //colored_print(players[i], "^x04======================================")
                 colored_print(players[i], "^x04***^x01 Best Human:^x04 %s^x01  ->  [^x03  %d^x01 dmg  ]",
                     maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
                 if (g_Me[players[maxInfectId]][ME_INFECT])

@@ -906,7 +906,7 @@ public logevent_round_end()
 {
     if (g_wasLastRound) {
         server_cmd("mp_freezetime %d", cvar_voteDuration + 8);
-        server_cmd("bh_starttime %d", float(cvar_voteDuration + 8 + 5));
+        server_cmd("bh_starttime %d", float(cvar_voteDuration + 8 + 10));
     }
 }
 
@@ -1423,31 +1423,27 @@ public vote_startDirector(bool:forced)
         }
 
         // make perfunctory announcement: "get ready to choose a map"
-        if (!(get_pcvar_num(cvar_soundsMute) & SOUND_GETREADYTOCHOOSE) && forced)
+        if (!(get_pcvar_num(cvar_soundsMute) & SOUND_GETREADYTOCHOOSE))
         {
             client_cmd(0, "spk ^"get red(e80) ninety(s45) to check(e20) use bay(s18) mass(e42) cap(s50)^"");
         }
 
-        // announce the pending vote countdown from 7 to 1
-        if (forced)
-            set_task(1.0, "vote_countdownPendingVote", _, _, _, "a", 7);
+        // announce the pending vote countdown from 3 to 1
+        set_task(1.0, "vote_countdownPendingVote", _, _, _, "a", 3);
 
         // display the map choices
-        new Float:display_timeout = 1.5;
-        if (forced)
-            display_timeout = 8.5;
-        set_task(display_timeout, "vote_handleDisplay");
+        set_task(4.5, "vote_handleDisplay");
 
         // display the vote outcome 
         if (get_pcvar_num(cvar_voteStatus))
         {
             new arg[3] = {-1, -1, false}; // indicates it's the end of vote display
-            set_task(display_timeout + float(voteDuration) + 1.0, "vote_display", _, arg, 3);
-            set_task(display_timeout + float(voteDuration) + 2.0, "vote_expire");
+            set_task(4.5 + float(voteDuration) + 1.0, "vote_display", _, arg, 3);
+            set_task(4.5 + float(voteDuration) + 2.0, "vote_expire");
         }
         else
         {
-            set_task(display_timeout + float(voteDuration) + 1.0, "vote_expire");
+            set_task(4.5 + float(voteDuration) + 1.0, "vote_expire");
         }
 	}
 	else
@@ -1463,7 +1459,7 @@ public vote_startDirector(bool:forced)
 
 public vote_countdownPendingVote()
 {
-	static countdown = 7;
+	static countdown = 3;
 
 	// visual countdown	
 	set_hudmessage(0, 222, 50, -1.0, 0.13, 0, 1.0, 0.94, 0.0, 0.0, -1);

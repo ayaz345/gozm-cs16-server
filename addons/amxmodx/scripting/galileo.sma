@@ -116,6 +116,9 @@ new cvar_runoffEnabled, cvar_runoffDuration;
 new cvar_voteStatus, cvar_voteStatusType;
 new cvar_soundsMute;
 
+new cvar_freezetime;
+new Float:cvar_bh_starttime;
+
 public plugin_init()
 {
     // build version information
@@ -232,77 +235,80 @@ public dbg_fakeVotes()
 
 public plugin_cfg()
 {
-	formatex(DIR_CONFIGS[get_configsdir(DIR_CONFIGS, sizeof(DIR_CONFIGS)-1)], sizeof(DIR_CONFIGS)-1, "/galileo");
-	formatex(DIR_DATA[get_datadir(DIR_DATA, sizeof(DIR_DATA)-1)], sizeof(DIR_DATA)-1, "/galileo");
+    formatex(DIR_CONFIGS[get_configsdir(DIR_CONFIGS, sizeof(DIR_CONFIGS)-1)], sizeof(DIR_CONFIGS)-1, "/galileo");
+    formatex(DIR_DATA[get_datadir(DIR_DATA, sizeof(DIR_DATA)-1)], sizeof(DIR_DATA)-1, "/galileo");
 
-	server_cmd("exec %s/galileo.cfg", DIR_CONFIGS);
-	server_exec();
+    server_cmd("exec %s/galileo.cfg", DIR_CONFIGS);
+    server_exec();
 
-	if (colored_menus())
-	{
-		copy(CLR_RED, 2, "\r");
-		copy(CLR_WHITE, 2, "\w");
-		copy(CLR_YELLOW, 2, "\y");
-	}
+    if (colored_menus())
+    {
+        copy(CLR_RED, 2, "\r");
+        copy(CLR_WHITE, 2, "\w");
+        copy(CLR_YELLOW, 2, "\y");
+    }
 
-	g_rtvWait = get_pcvar_float(cvar_rtvWait);
-	get_pcvar_string(cvar_voteWeightFlags, g_voteWeightFlags, sizeof(g_voteWeightFlags)-1);
-	get_mapname(g_currentMap, sizeof(g_currentMap)-1);
-	g_choiceMax = max(min(MAX_MAPS_IN_VOTE, get_pcvar_num(cvar_voteMapChoiceCnt)), 2);
+    g_rtvWait = get_pcvar_float(cvar_rtvWait);
+    get_pcvar_string(cvar_voteWeightFlags, g_voteWeightFlags, sizeof(g_voteWeightFlags)-1);
+    get_mapname(g_currentMap, sizeof(g_currentMap)-1);
+    g_choiceMax = max(min(MAX_MAPS_IN_VOTE, get_pcvar_num(cvar_voteMapChoiceCnt)), 2);
 //	g_nonOverlapHudSync = CreateHudSyncObj();
-	g_fillerMap = ArrayCreate(32);
-	g_nominationMap = ArrayCreate(32);
+    g_fillerMap = ArrayCreate(32);
+    g_nominationMap = ArrayCreate(32);
 
-	// initialize nominations table
-	nomination_clearAll();
+    // initialize nominations table
+    nomination_clearAll();
 
-	if (get_pcvar_num(cvar_banRecent))
-	{
-		register_clcmd("say recentmaps", "cmd_listrecent", 0);
-		
-		map_loadRecentList();
+    if (get_pcvar_num(cvar_banRecent))
+    {
+        register_clcmd("say recentmaps", "cmd_listrecent", 0);
+        
+        map_loadRecentList();
 
-		if (!(get_cvar_num("gal_server_starting") && get_pcvar_num(cvar_srvStart)))
-		{
-			map_writeRecentList();
-		}
-	}
+        if (!(get_cvar_num("gal_server_starting") && get_pcvar_num(cvar_srvStart)))
+        {
+            map_writeRecentList();
+        }
+    }
 
-	if (get_pcvar_num(cvar_rtvCommands) & RTV_CMD_STANDARD)
-	{
-		register_clcmd("say rockthevote", "cmd_rockthevote", 0);
-	}
+    if (get_pcvar_num(cvar_rtvCommands) & RTV_CMD_STANDARD)
+    {
+        register_clcmd("say rockthevote", "cmd_rockthevote", 0);
+    }
 
-	if (get_pcvar_num(cvar_nomPlayerAllowance))
-	{
-		register_concmd("gal_listmaps", "cmd_listmaps");
-		register_clcmd("say nominations", "cmd_nominations", 0, "- displays current nominations for next map");
+    if (get_pcvar_num(cvar_nomPlayerAllowance))
+    {
+        register_concmd("gal_listmaps", "cmd_listmaps");
+        register_clcmd("say nominations", "cmd_nominations", 0, "- displays current nominations for next map");
 
-		if (get_pcvar_num(cvar_nomPrefixes))
-		{
-			map_loadPrefixList();
-		}
-		map_loadNominationList();
-	}
+        if (get_pcvar_num(cvar_nomPrefixes))
+        {
+            map_loadPrefixList();
+        }
+        map_loadNominationList();
+    }
 
-	new mapName[32];
-	get_mapname(mapName, 31);
-	dbg_log(6, "[%s]", mapName);
-	dbg_log(6, "");
+    new mapName[32];
+    get_mapname(mapName, 31);
+    dbg_log(6, "[%s]", mapName);
+    dbg_log(6, "");
 
-	if (get_cvar_num("gal_server_starting"))
-	{
-		srv_handleStart();
-	}
+    if (get_cvar_num("gal_server_starting"))
+    {
+        srv_handleStart();
+    }
 
-	set_task(10.0, "vote_setupEnd");
+    set_task(10.0, "vote_setupEnd");
 
-	if (get_pcvar_num(cvar_emptyWait))
-	{
-		g_emptyCycleMap = ArrayCreate(32);
-		map_loadEmptyCycleList();
-		set_task(60.0, "srv_initEmptyCheck");
-	}
+    if (get_pcvar_num(cvar_emptyWait))
+    {
+        g_emptyCycleMap = ArrayCreate(32);
+        map_loadEmptyCycleList();
+        set_task(60.0, "srv_initEmptyCheck");
+    }
+
+    cvar_freezetime = get_cvar_num("mp_freezetime");
+    cvar_bh_starttime = get_cvar_float("bh_starttime");
 }
 
 public plugin_end()
@@ -819,7 +825,8 @@ public map_manageEnd()
 			}
 			else
 			{
-				client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
+                //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
+                colored_print(0, "^x04***^x01 Final round! Time has expired.^x04 ***");
 			}
 
 			// prevent the map from ending automatically
@@ -886,7 +893,8 @@ public event_round_start()
     }
 */
     if (g_wasLastRound) {
-        server_cmd("mp_freezetime 2");
+        server_cmd("mp_freezetime %d", cvar_freezetime);
+        server_cmd("bh_starttime %f", cvar_bh_starttime);
         if (g_voteStatus & VOTE_FORCED)
             map_manageEnd();
         else
@@ -896,8 +904,10 @@ public event_round_start()
 
 public logevent_round_end()
 {
-    if (g_wasLastRound)
+    if (g_wasLastRound) {
         server_cmd("mp_freezetime %d", cvar_voteDuration + 8);
+        server_cmd("bh_starttime %d", float(cvar_voteDuration + 8 + 5));
+    }
 }
 
 public event_game_commencing()

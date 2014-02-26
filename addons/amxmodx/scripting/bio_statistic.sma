@@ -14,7 +14,6 @@
 #define AUTHOR "Dimka"
 
 //#define ZP_STATS_DEBUG
-//#define QUERY_DEBUG
  
 #define column(%1) SQL_FieldNameToNum(query, %1)
 
@@ -38,7 +37,6 @@ enum
 new g_StartTime[33]
 new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][32]
 new g_UserDBId[33], g_TotalDamage[33]
-new bool:g_UserPutInServer[33]
 
 new Handle:g_SQL_Connection, Handle:g_SQL_Tuple
 
@@ -127,15 +125,7 @@ public plugin_cfg()
     format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
             WHERE `last_leave` < %d;", inactive_period)
 
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <plugin_end> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public plugin_end()
@@ -146,103 +136,83 @@ public plugin_end()
 
 public client_authorized(id)
 {
-	g_UserPutInServer[id] = false
-	
-	reset_player_statistic(id)
-	
-	g_StartTime[id] = get_systime()
-	
-	g_UserDBId[id] = 0
-	
-	g_TotalDamage[id] = 0
-				
-	g_OldRank[id] = 0			
-	
-	new unquoted_name[32], exluding_nick[32]
-	get_user_name(id,unquoted_name,31)
-	
-	get_pcvar_string(g_CvarExcludingNick, exluding_nick, 31)
-	if (exluding_nick[0] && containi(unquoted_name, exluding_nick) != -1)
-		return
-	
-	SQL_QuoteString(g_SQL_Connection , g_UserName[id], 31, unquoted_name)
-					
-	get_user_authid(id,g_UserAuthID[id],31)
-		
-	get_user_ip(id,g_UserIP[id],31,1)
-	
-	g_damagedealt[id] = 0
-	
-	new uniqid[32]
-	new whereis[10]
-	new condition[40]
-	
-	new auth_type = get_pcvar_num(g_CvarAuthType)
-	if (auth_type == 1)
-	{
-		copy(whereis,9,"steam_id")
-		copy(uniqid,31,g_UserAuthID[id])
-	}
-	else
-	if (auth_type == 2)
-	{
-		copy(whereis,9,"ip")
-		copy(uniqid,31,g_UserIP[id])
-	}
-	else
-	if (auth_type == 3)
-	{
-		copy(whereis,9,"nick")
-		copy(uniqid,31,g_UserName[id])
-	}
-	else
-	{
-		if (equal(g_UserAuthID[id],"STEAM_0:",8))
-		{
-			copy(whereis,9,"steam_id")
-			copy(uniqid,31,g_UserAuthID[id])
-		}
-		else
-		{
-			copy(whereis,9,"ip")
-			copy(uniqid,31,g_UserIP[id])
-			copy(condition, 39, " AND NOT (`steam_id` LIKE 'STEAM_0:%')")
-		}
-	}
-	
-	format(g_Query,charsmax(g_Query),"SELECT `id` FROM `zp_players` \
-			WHERE BINARY `%s`='%s' %s;", whereis, uniqid, condition)
-	
-	new data[2]
-	data[0] = id
-	data[1] = get_user_userid(id)
-    
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
-	SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, 2)
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <authorize> took %d seconds", get_systime() - now)
+    new param[1]
+    param[0] = id
+    auth_player(param)
+}
+
+public auth_player(param[])
+{
+    new id = param[0]
+    g_StartTime[id] = get_systime()
+    g_UserDBId[id] = 0
+    g_TotalDamage[id] = 0		
+    g_OldRank[id] = 0
+    g_damagedealt[id] = 0
+
+    reset_player_statistic(id)
+
+    new unquoted_name[32], exluding_nick[32]
+    get_user_name(id, unquoted_name, 31)
+
+    get_pcvar_string(g_CvarExcludingNick, exluding_nick, 31)
+    if (exluding_nick[0] && containi(unquoted_name, exluding_nick) != -1)
+        return
+
+    SQL_QuoteString(g_SQL_Connection , g_UserName[id], 31, unquoted_name)
+                    
+    get_user_authid(id, g_UserAuthID[id], 31)
+    get_user_ip(id, g_UserIP[id], 31, 1)
+
+    new uniqid[32]
+    new whereis[10]
+    new condition[40]
+    new auth_type = get_pcvar_num(g_CvarAuthType)
+    if (auth_type == 1)
+    {
+        copy(whereis,9,"steam_id")
+        copy(uniqid,31,g_UserAuthID[id])
+    }
+    else
+    if (auth_type == 2)
+    {
+        copy(whereis,9,"ip")
+        copy(uniqid,31,g_UserIP[id])
+    }
+    else
+    if (auth_type == 3)
+    {
+        copy(whereis,9,"nick")
+        copy(uniqid,31,g_UserName[id])
+    }
+    else
+    {
+        if (equal(g_UserAuthID[id],"STEAM_0:",8))
+        {
+            copy(whereis,9,"steam_id")
+            copy(uniqid,31,g_UserAuthID[id])
         }
-    #endif
+        else
+        {
+            copy(whereis,9,"ip")
+            copy(uniqid,31,g_UserIP[id])
+            copy(condition, 39, " AND NOT (`steam_id` LIKE 'STEAM_0:%')")
+        }
+    }
+
+    format(g_Query,charsmax(g_Query),"SELECT `id` FROM `zp_players` \
+            WHERE BINARY `%s`='%s' %s;", whereis, uniqid, condition)
+
+    new data[2]
+    data[0] = id
+    data[1] = get_user_userid(id)
+
+    SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, 2)
 	
 #if defined ZP_STATS_DEBUG
 	log_amx("[ZP] Stats Debug: client %d autorized (Name %s, IP %s, Steam ID %s)", id, g_UserName[id], g_UserIP[id], g_UserAuthID[id])
 #endif
 
-}
-
-public client_putinserver(id)
-{
-	
-#if defined ZP_STATS_DEBUG
-	new name[32]
-	get_user_name(id, name, 31)
-	log_amx("[ZP] Stats Debug: client %s %d put in server (DB id %d)", name, id, g_UserDBId[id])
-#endif
-	
-	g_UserPutInServer[id] = true
 }
 
 public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -268,7 +238,6 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
                     `nick`='%s',\
                     `ip`='%s', `steam_id`='%s';",
                     g_UserName[id], g_UserIP[id], g_UserAuthID[id])
-
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
 	}
 }
@@ -282,10 +251,9 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
     }
     
     new id = data[0]
-    
     if (data[1] != get_user_userid(id))
         return
-
+    
     g_UserDBId[id] = SQL_GetInsertId(query)
 
     #if defined ZP_STATS_DEBUG
@@ -295,11 +263,35 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
     #endif  
 }
 
+public client_infochanged(id)
+{
+    if (!is_user_connected(id))
+        return PLUGIN_CONTINUE
+
+    new newname[32]
+    get_user_info(id, "name", newname, 31)
+    new oldname[32]
+    get_user_name(id, oldname, 31)
+    
+    if (!equal(oldname,newname) && !equal(oldname,""))
+    {
+        new last_leave = get_systime()
+        format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
+        last_leave, g_UserDBId[id])
+        SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+        
+        new param[1]
+        param[0] = id
+        set_task(0.1, "auth_player", id, param, sizeof(param))
+    }
+    return PLUGIN_CONTINUE
+}
+
 public client_disconnect(id)
 {
-    if (!g_UserDBId[id] || !g_UserPutInServer[id])	
+    if (!g_UserDBId[id])	
         return
-    
+
     for (new i = 0; i < ME_NUM; i++)
 		g_Me[id][i] = 0
 
@@ -309,23 +301,11 @@ public client_disconnect(id)
 
     g_UserDBId[id] = 0
     
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <disconnect> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public event_infect(id, infector)
 {
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
-
 	if (infector)
 	{
 		if (g_UserDBId[id])
@@ -348,12 +328,6 @@ public event_infect(id, infector)
 		format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `first_zombie` = `first_zombie` + 1 WHERE `id`=%d;", g_UserDBId[id])
 		SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 	}
-    
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <event_infect> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public logevent_endRound()
@@ -423,10 +397,6 @@ public event_newround()
 
 public fw_HamKilled(id, attacker, shouldgib)
 {
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
-
     if (is_user_alive(attacker) && g_UserDBId[attacker])
     {
         if (is_user_connected(attacker))
@@ -477,12 +447,6 @@ public fw_HamKilled(id, attacker, shouldgib)
         format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `%s` = `%s` + %d WHERE `id`=%d;", g_types[type], g_types[type], killer_frags, g_UserDBId[player])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
-
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <fw_HamKilled> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
@@ -568,10 +532,6 @@ public show_me(id)
 
 public show_rank(id, unquoted_whois[])
 {
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
-
     SQL_QuoteString(g_SQL_Connection , whois, 1023, unquoted_whois)
 
     if (!whois[0])
@@ -597,12 +557,6 @@ public show_rank(id, unquoted_whois[])
     data[1] = get_user_userid(id)
 
     SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, 2)
-
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <show_rank> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -642,10 +596,6 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
 public show_stats(id, unquoted_whois[])
 {
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
-
     SQL_QuoteString(g_SQL_Connection , whois, 1023, unquoted_whois)
 
     if (!whois[0])
@@ -673,12 +623,6 @@ public show_stats(id, unquoted_whois[])
     data[1] = get_user_userid(id)
 
     SQL_ThreadQuery(g_SQL_Tuple, "ShowStats_QueryHandler", g_Query, data, 2)
-
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <show_stats> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -767,22 +711,12 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
 
 public show_top(id, top)
 {
-    #if defined QUERY_DEBUG
-        new now = get_systime()
-    #endif
-
     format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `zp_players`;")
     new data[3]
     data[0] = id
     data[1] = get_user_userid(id)
     data[2] = top
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
-
-    #if defined QUERY_DEBUG
-        if(get_systime() - now > 0) {
-            log_amx("[WEBSTATS] Request <show_top> took %d seconds", get_systime() - now)
-        }
-    #endif
 }
 
 public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)

@@ -233,28 +233,28 @@ public CMD_GagPlayer(VIP, VictimID)
 
 public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via console command )
 {
-	if ((get_user_flags(VictimID) & ADMIN_LEVEL_H) && VictimID != VIP)  
-		return PLUGIN_HANDLED;
-		
-	new AdminName[32],VictimName[32] 
+    if ((get_user_flags(VictimID) & ADMIN_LEVEL_H) && VictimID != VIP)  
+        return PLUGIN_HANDLED;
+        
+    new AdminName[32],VictimName[32] 
 
-	get_user_name(VIP,AdminName,31)		// Gets Admin name
-	get_user_name(VictimID,VictimName,31)
+    get_user_name(VIP,AdminName,31)		// Gets Admin name
+    get_user_name(VictimID,VictimName,31)
 
-	if(!g_GagPlayers[VictimID])		// Checks if player has gagged flag
-	{
-		console_print(VIP,"%s Is Not Gagged & Cannot Be Ungagged.",VictimName)
-		return PLUGIN_HANDLED
-	}
-	
-	colored_print(0,"^x04*** ^x03 %s^x01 can speak, thanks to %s",VictimName,AdminName)
-	
-	new muted_flag
-	muted_flag = get_speak(VictimID)
-	log_amx("MUTE: %s had %d flag", VictimName, muted_flag)
-  	
-	UnGagPlayer(VictimID)		// This is the function that does the actual removal of the gag info
-	return PLUGIN_HANDLED
+    if(!g_GagPlayers[VictimID])		// Checks if player has gagged flag
+    {
+        console_print(VIP,"%s Is Not Gagged & Cannot Be Ungagged.",VictimName)
+        return PLUGIN_HANDLED
+    }
+
+    colored_print(0,"^x04*** ^x03 %s^x01 can speak, thanks to %s",VictimName,AdminName)
+
+    new muted_flag
+    muted_flag = get_speak(VictimID)
+//	log_amx("MUTE: %s had %d flag", VictimName, muted_flag)
+
+    UnGagPlayer(VictimID)		// This is the function that does the actual removal of the gag info
+    return PLUGIN_HANDLED
 }
 
 public client_putinserver(id) 

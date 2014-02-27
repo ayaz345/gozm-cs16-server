@@ -1021,7 +1021,7 @@ public cmdWho(id, level, cid)
     get_players(players, inum)
     format(cl_on_server, 63, "%L", id, "CLIENTS_ON_SERVER")
     console_print(id, 
-        "^n%s:^n#          %-24.15s    %-15s       %-15s                %s", 
+        "^n%s:^n#          %-24.15s    %-15s       %-15s                    %s", 
         cl_on_server, "Name", "IP adress", "STEAM id", lAccess)
 	
     for (new a = 0; a < inum; ++a)
@@ -1044,7 +1044,7 @@ public cmdWho(id, level, cid)
             player_status = "VIP"
         else
             player_status = "ADMIN"
-        console_print(id, "%d     %-23.15s%-18s%-18s   %s", usrid, name, ip, steam_id, player_status)
+        console_print(id, "%d     %-23.15s%-18s%-18s        %s", usrid, name, ip, steam_id, player_status)
     }
     console_print(id, "%L", id, "TOTAL_NUM", inum)
     

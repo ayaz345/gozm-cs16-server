@@ -826,7 +826,7 @@ public map_manageEnd()
 			else
 			{
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
-                colored_print(0, "^x04***^x01 Final round! Time has expired.^x04 ***");
+                colored_print(0, "^x04***^x01 FINAL ROUND! Time has expired.^x04 ***");
 			}
 
 			// prevent the map from ending automatically

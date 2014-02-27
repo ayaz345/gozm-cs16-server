@@ -1,0 +1,14 @@
+// overview description file for zm_zombattack_new.bsp
+
+global 
+{
+	ZOOM	5.96
+	ORIGIN	-109.50 146.50	275.50
+	ROTATED	0
+}
+
+layer 
+{
+	IMAGE	"overviews/zm_zombattack_new.bmp"
+	HEIGHT	-1.00
+}

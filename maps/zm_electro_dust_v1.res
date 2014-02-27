@@ -1,1 +1,1 @@
-sound/zm_electro_dust/muza1.wav
+sound/zm_electro_dust/muza5.wav

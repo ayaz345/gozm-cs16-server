@@ -1,0 +1,14 @@
+models/bigtree.mdl
+models/d1_al.mdl
+models/fakel.mdl
+models/lag_palm240_256.mdl
+models/penta.mdl
+models/pi_tree.mdl
+models/pi_tree1.mdl
+models/pi_tree2.mdl
+models/pi_tree3.mdl
+models/pi_treeb.mdl
+models/pi_twig.mdl
+sprites/fire2.spr
+sound/misc/survive.wav
+sound/misc/survgo.wav

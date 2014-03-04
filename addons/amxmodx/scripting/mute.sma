@@ -248,11 +248,11 @@ public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via con
     }
 
     colored_print(0,"^x04*** ^x03 %s^x01 can speak, thanks to %s",VictimName,AdminName)
-
+/*
     new muted_flag
     muted_flag = get_speak(VictimID)
-//	log_amx("MUTE: %s had %d flag", VictimName, muted_flag)
-
+	log_amx("MUTE: %s had %d flag", VictimName, muted_flag)
+*/
     UnGagPlayer(VictimID)		// This is the function that does the actual removal of the gag info
     return PLUGIN_HANDLED
 }

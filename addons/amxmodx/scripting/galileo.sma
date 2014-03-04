@@ -309,6 +309,7 @@ public plugin_cfg()
 
     cvar_freezetime = get_cvar_num("mp_freezetime");
     cvar_bh_starttime = get_cvar_float("bh_starttime");
+    log_amx("GAL: freeze: %d, bh_start: %f", cvar_freezetime, cvar_bh_starttime);
 }
 
 public plugin_end()
@@ -463,6 +464,7 @@ public vote_manageEnd()
     if (secondsLeft < 20 && !g_pauseMapEndManagerTask)
     {
         map_manageEnd();
+        log_amx("GAL: map_manageEnd is called from vote_manageEnd() (467)");
     }
 }
 
@@ -815,22 +817,23 @@ public map_manageEnd()
 	{
 		if (get_pcvar_num(cvar_endOnRound) && g_wasLastRound == false)
 		{
-			// let the server know it's the last round
-			g_wasLastRound = true;
-			
-			// let the players know it's the last round
-			if (g_voteStatus & VOTE_FORCED)
-			{
-				client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
-			}
-			else
-			{
+            // let the server know it's the last round
+            g_wasLastRound = true;
+            log_amx("GAL: g_wasLastRound is set to true");
+
+            // let the players know it's the last round
+            if (g_voteStatus & VOTE_FORCED)
+            {
+                client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
+            }
+            else
+            {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
                 colored_print(0, "^x04***^x01 FINAL ROUND! Time has expired.^x04 ***");
-			}
+            }
 
-			// prevent the map from ending automatically
-			server_cmd("mp_timelimit 0");
+            // prevent the map from ending automatically
+            server_cmd("mp_timelimit 0");
 		}
 		else
 		{
@@ -895,6 +898,8 @@ public event_round_start()
     if (g_wasLastRound) {
         server_cmd("mp_freezetime %d", cvar_freezetime);
         server_cmd("bh_starttime %f", cvar_bh_starttime);
+        log_amx("GAL: freeze: %d, bh_start: %f - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
+        
         if (g_voteStatus & VOTE_FORCED)
             map_manageEnd();
         else
@@ -905,8 +910,10 @@ public event_round_start()
 public logevent_round_end()
 {
     if (g_wasLastRound) {
-        server_cmd("mp_freezetime %d", cvar_voteDuration + 8);
-        server_cmd("bh_starttime %d", float(cvar_voteDuration + 8 + 10));
+        new vote_duration = get_pcvar_num(cvar_voteDuration);
+        server_cmd("mp_freezetime %d", vote_duration + 8);
+        server_cmd("bh_starttime %d", float(vote_duration + 8 + 10));
+        log_amx("GAL: freeze: %d, bh_start: %f - ROUND END", vote_duration + 8, float(vote_duration + 8 + 10));
     }
 }
 
@@ -1423,7 +1430,7 @@ public vote_startDirector(bool:forced)
         }
 
         // make perfunctory announcement: "get ready to choose a map"
-        if (!(get_pcvar_num(cvar_soundsMute) & SOUND_GETREADYTOCHOOSE))
+        if (!(get_pcvar_num(cvar_soundsMute) & SOUND_GETREADYTOCHOOSE) && forced)
         {
             client_cmd(0, "spk ^"get red(e80) ninety(s45) to check(e20) use bay(s18) mass(e42) cap(s50)^"");
         }
@@ -2204,12 +2211,14 @@ public vote_expire()
         {
             // tell the map we need to finish up
             set_task(2.0, "map_manageEnd");
+            log_amx("GAL: map_manageEnd is called from IF (2214)");
         }
         else
         {
             // restart map end task
             g_pauseMapEndManagerTask = false;
             map_manageEnd();
+            log_amx("GAL: map_manageEnd is called from ELSE (2221)");
         }
 	}
 }

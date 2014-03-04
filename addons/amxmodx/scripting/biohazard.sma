@@ -253,7 +253,8 @@ new const g_teaminfo[][] =
 
 new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
     g_sync_msgdisplay, g_fwd_spawn, g_fwd_result, g_fwd_infect, g_fwd_gamestart,
-    g_msg_flashlight, g_msg_teaminfo, g_msg_scoreattrib, g_msg_scoreinfo, 
+    //g_msg_flashlight, 
+    g_msg_teaminfo, g_msg_scoreattrib, g_msg_scoreinfo, 
     g_msg_deathmsg , g_msg_screenfade, g_msgScreenShake, Float:g_buytime,  Float:g_spawns[MAX_SPAWNS+1][9],
     Float:g_vecvel[3], bool:g_brestorevel, bool:g_infecting, bool:g_gamestarted,
     bool:g_roundstarted, bool:g_roundended, g_class_name[MAX_CLASSES+1][32], 
@@ -430,6 +431,7 @@ public plugin_init()
     RegisterHam(Ham_Touch, "armoury_entity", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "weapon_shield", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "grenade", "bacon_touch_grenade")
+    RegisterHam(Ham_Player_ImpulseCommands, "player", "handle_flashlight", false)
 
     register_message(get_user_msgid("Health"), "msg_health")
     register_message(get_user_msgid("TextMsg"), "msg_textmsg")
@@ -460,7 +462,7 @@ public plugin_init()
     register_logevent("logevent_round_start", 2, "1=Round_Start")
     register_logevent("logevent_round_end", 2, "1=Round_End")
 
-    g_msg_flashlight = get_user_msgid("Flashlight")
+//    g_msg_flashlight = get_user_msgid("Flashlight")
     g_msg_teaminfo = get_user_msgid("TeamInfo")
     g_msg_scoreattrib = get_user_msgid("ScoreAttrib")
     g_msg_scoreinfo = get_user_msgid("ScoreInfo")
@@ -510,7 +512,7 @@ public start_timeleft_task() {
 public show_timeleft(taskid)
 {
     new timeleft = get_timeleft()
-    set_hudmessage(0, 255, 0, 0.04, 0.18, 0, _, 1.05, 0.0, 0.0)
+    set_hudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.05, 0.0, 0.0)
     ShowSyncHudMsg(0, g_sync_msgdisplay, "%s%d:%s%d", timeleft / 60 < 10 ? "0" : "", timeleft / 60, 
                 timeleft % 60 < 10 ? "0" : "", timeleft % 60)
 /*    
@@ -593,7 +595,7 @@ public recordDemo(param[])
     colored_print(id, "^x01 Recording demo^x03 go_zombie.dem")
     colored_print(id, "^x01 GoZm Menu:^x04 F3")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
-    client_cmd( id,"stop")
+    client_cmd(id,"stop")
     if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
     {	
         new CurrentTime[32]
@@ -605,9 +607,10 @@ public recordDemo(param[])
         client_cmd( id,"record %s_%s_%s", CurrentDate, CurrentTime, mapname)
     }
     else
-        client_cmd( id,"record go_zombie")
+        client_cmd(id,"record go_zombie")
         
     ///////////////// Force client settings	/////////////////////
+/*
     console_cmd (id, "rate 25000")
     console_cmd (id, "voice_scale 5")
     console_cmd (id, "voice_overdrive 2")
@@ -616,12 +619,13 @@ public recordDemo(param[])
     console_cmd (id, "voice_avggain 0.3")
     console_cmd (id, "voice_fadeouttime 0")
     console_cmd (id, "bind ^"f^" ^"nightvision^"")
-    console_cmd (id, "bind ^"F3^" ^"gozm_menu^"")
+*/
+    client_cmd(id, "bind ^"F3^" ^"gozm_menu^"")
 }
-  
+
 public client_disconnect(id)
 {
-    console_cmd (id, "bind ^"f^" ^"impulse 100^"")
+//    console_cmd (id, "bind ^"f^" ^"impulse 100^"")
 
     if (is_user_alive(id)) check_round(id)
 
@@ -1076,7 +1080,7 @@ public nightvision(id)
 		
 		else if(!(activate_nv[id]))
 		{
-			set_task(0.05, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+			set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
 			activate_nv[id] = true
 		}
 	}
@@ -1674,6 +1678,29 @@ public bacon_touch_grenade(ent, world)
 	return HAM_IGNORED
 }
 
+public handle_flashlight(id)
+{
+    if(pev(id, pev_impulse) == IMPULSE_FLASHLIGHT) // game gonna take it in account and switch flashlight on or off 
+    { 
+        // if you want to block, set impulse to 0 
+        set_pev(id, pev_impulse, 0)
+        
+        if (task_exists(TASKID_NIGHTVISION + id))
+        {
+            remove_task(TASKID_NIGHTVISION + id)
+            activate_nv[id] = false
+        }
+        else
+        {
+            set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+            activate_nv[id] = true
+        }
+        
+        return HAM_HANDLED
+    }
+    return HAM_IGNORED
+}
+
 public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damagetype)
 {
 	if(damagetype & DMG_GENERIC)
@@ -1967,7 +1994,7 @@ public task_showinfected(taskid) {
 }
 public task_showclean(taskid) {
     new id = taskid - TASKID_SHOWCLEAN
-    set_dhudmessage(0, 255, 0, 0.44, 0.88, 0, _, 0.7, 0.1)
+    set_dhudmessage(0, 255, 0, 0.445, 0.88, 0, _, 0.7, 0.1)
     if(is_user_connected(id))
         show_dhudmessage(id, "[ CLEAN ]")
 }
@@ -2369,21 +2396,6 @@ public cure_user2(id)
 	cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
 	cs_reset_player_maxspeed(id)
 
-//////////////////// TURN OFF FLASHLIGHT ////////////////////	
-	static effects
-	effects = pev(id, pev_effects)
-	
-	if(effects & EF_DIMLIGHT)
-	{
-		message_begin(MSG_ONE, g_msg_flashlight, _, id)
-		write_byte(0)
-		write_byte(100)
-		message_end()
-		
-		set_pev(id, pev_effects, effects & ~EF_DIMLIGHT)
-	}
-//////////////////////////////////////////////////////////////	
-	
 	equipweapon(id, EQUIP_ALL)
 
 	cs_set_team(id, TEAM_CT)
@@ -2408,21 +2420,6 @@ public cure_user(id)
 	cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
 	cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
 	cs_reset_player_maxspeed(id)
-
-//////////////////// TURN OFF FLASHLIGHT ////////////////////	
-	static effects
-	effects = pev(id, pev_effects)
-	
-	if(effects & EF_DIMLIGHT)
-	{
-		message_begin(MSG_ONE, g_msg_flashlight, _, id)
-		write_byte(0)
-		write_byte(100)
-		message_end()
-		
-		set_pev(id, pev_effects, effects & ~EF_DIMLIGHT)
-	}
-//////////////////////////////////////////////////////////////	
 }
 
 public drop_user(id)
@@ -2891,19 +2888,6 @@ set_zombie_attibutes(index)
 	
 	if(get_pcvar_num(cvar_autonvg)) 
 		engclient_cmd(index, "nightvision")
-	
-	static effects
-	effects = pev(index, pev_effects)
-	
-	if(effects & EF_DIMLIGHT)
-	{
-		message_begin(MSG_ONE, g_msg_flashlight, _, index)
-		write_byte(0)
-		write_byte(100)
-		message_end()
-		
-		set_pev(index, pev_effects, effects & ~EF_DIMLIGHT)
-	}
 }
 
 bool:allow_infection()

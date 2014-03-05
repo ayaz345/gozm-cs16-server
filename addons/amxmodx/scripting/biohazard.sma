@@ -403,7 +403,7 @@ public plugin_init()
     register_menu("Secondary", 1023, "action_sec")
 
     unregister_forward(FM_Spawn, g_fwd_spawn)
-    register_forward(FM_CmdStart, "fwd_cmdstart")
+//    register_forward(FM_CmdStart, "fwd_cmdstart")
     register_forward(FM_EmitSound, "fwd_emitsound")
     register_forward(FM_GetGameDescription, "fwd_gamedescription")
 ///////// to remove dropped weapon //////////	

@@ -8,7 +8,7 @@
 #include <cstrike>
 //#include <engine>
 #include <fun>
-#include <cs_player_models_api>
+//#include <cs_player_models_api> - problem with HATS
 #include <cs_maxspeed_api>
 #include <cs_team_changer>
 #include <cs_weap_models_api>
@@ -268,11 +268,13 @@ new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cva
 	cvar_punishsuicide, cvar_showtruehealth,
     cvar_obeyarmor, cvar_impactexplode,
     cvar_knockback, cvar_knockback_dist, cvar_ammo,
-	cvar_killreward, cvar_painshockfree, cvar_zombie_class,
+	cvar_killreward, cvar_zombie_class,
     cvar_shootobjects, cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
     
-new bool:g_zombie[25], bool:g_falling[25], bool:g_disconnected[25], bool:g_blockmodel[25], 
+new bool:g_zombie[25], 
+//    bool:g_falling[25], 
+    bool:g_disconnected[25], bool:g_blockmodel[25], 
     bool:g_showmenu[25], bool:g_menufailsafe[25], bool:g_preinfect[25], 
     bool:g_suicide[25], g_mutate[25], g_victim[25],
     g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
@@ -299,7 +301,7 @@ public plugin_precache()
     cvar_randomspawn = register_cvar("bh_randomspawn", "1")
     cvar_punishsuicide = register_cvar("bh_punishsuicide", "0")
     cvar_autonvg = register_cvar("bh_autonvg", "0")
-    cvar_painshockfree = register_cvar("bh_painshockfree", "1")
+//    cvar_painshockfree = register_cvar("bh_painshockfree", "1")
     cvar_knockback = register_cvar("bh_knockback", "1")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_obeyarmor = register_cvar("bh_obeyarmor", "0")
@@ -403,7 +405,7 @@ public plugin_init()
     register_menu("Secondary", 1023, "action_sec")
 
     unregister_forward(FM_Spawn, g_fwd_spawn)
-//    register_forward(FM_CmdStart, "fwd_cmdstart")
+    register_forward(FM_CmdStart, "fwd_cmdstart")
     register_forward(FM_EmitSound, "fwd_emitsound")
     register_forward(FM_GetGameDescription, "fwd_gamedescription")
 ///////// to remove dropped weapon //////////	
@@ -431,7 +433,7 @@ public plugin_init()
     RegisterHam(Ham_Touch, "armoury_entity", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "weapon_shield", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "grenade", "bacon_touch_grenade")
-    RegisterHam(Ham_Player_ImpulseCommands, "player", "handle_flashlight", false)
+//    RegisterHam(Ham_Player_ImpulseCommands, "player", "handle_flashlight", false)
 
     register_message(get_user_msgid("Health"), "msg_health")
     register_message(get_user_msgid("TextMsg"), "msg_textmsg")
@@ -457,7 +459,7 @@ public plugin_init()
     register_event("CurWeapon", "event_curweapon", "be", "1=1")
     register_event("ArmorType", "event_armortype", "be")
     register_event("Damage", "event_damage", "be")
-    register_event("StatusValue","show_status","be")
+//    register_event("StatusValue","show_status","be")
 
     register_logevent("logevent_round_start", 2, "1=Round_Start")
     register_logevent("logevent_round_end", 2, "1=Round_End")
@@ -558,31 +560,33 @@ public client_connect(id)
 	
 public client_putinserver(id)
 {
-	g_showmenu[id] = true
-	g_blockmodel[id] = true
-	g_zombie[id] = false
-	g_preinfect[id] = false
-	g_disconnected[id] = false
-	g_falling[id] = false
-	g_menufailsafe[id] = false
-	g_victim[id] = 0
-	g_mutate[id] = -1
-	g_player_class[id] = 0
-	g_player_weapons[id][0] = -1
-	g_player_weapons[id][1] = -1
-	activate_nv[id] = false
-	
-	if(is_user_bot(id))
-	{
-		if(!g_botclient_pdata && cvar_botquota) 
-		{
-			set_task(0.1, "task_botclient_pdata", id)
-		}	
-	}
+    g_showmenu[id] = true
+    g_blockmodel[id] = true
+    g_zombie[id] = false
+    g_preinfect[id] = false
+    g_disconnected[id] = false
+//    g_falling[id] = false
+    g_menufailsafe[id] = false
+    g_victim[id] = 0
+    g_mutate[id] = -1
+    g_player_class[id] = 0
+    g_player_weapons[id][0] = -1
+    g_player_weapons[id][1] = -1
+    activate_nv[id] = false
 
-	new param[1]
-	param[0] = id 
-	set_task( 7.0 , "recordDemo" , id , param , 1 )
+/*
+    if(is_user_bot(id))
+    {
+        if(!g_botclient_pdata && cvar_botquota) 
+        {
+            set_task(0.1, "task_botclient_pdata", id)
+        }	
+    }
+*/
+
+    new param[1]
+    param[0] = id 
+    set_task(7.0, "recordDemo", id, param, 1)
 }
 
 public recordDemo(param[])
@@ -1128,40 +1132,42 @@ public set_user_nv(taskid)
 
 public logevent_round_start()
 {
-	g_roundended = false
-	g_roundstarted = true
-	
-	if(get_pcvar_num(cvar_weaponsmenu))
-	{
-		static id, team
-		for(id = 1; id <= g_maxplayers; id++) if(is_user_alive(id))
-		{
-			team = fm_get_user_team(id)
-			if(team == TEAM_TERRORIST || team == TEAM_CT)
-			{
-				if(is_user_bot(id)) 
-					bot_weapons(id)
-				else 
-				{
-					if(g_showmenu[id])
-					{
-						add_delay(id, "display_equipmenu")
-						
-						g_menufailsafe[id] = true
-						set_task(10.0, "task_weaponsmenu", TASKID_WEAPONSMENU + id)
-					}
-					else
-					{
-						equipweapon(id, EQUIP_ALL)
-					}
-				}
-			}
-		}
-	}
-	
+    g_roundended = false
+    g_roundstarted = true
+
+    if(get_pcvar_num(cvar_weaponsmenu))
+    {
+        static id, team
+        for(id = 1; id <= g_maxplayers; id++) if(is_user_alive(id))
+        {
+            team = fm_get_user_team(id)
+            if(team == TEAM_TERRORIST || team == TEAM_CT)
+            {
+/*
+                if(is_user_bot(id)) 
+                    bot_weapons(id)
+                else 
+                {
+*/
+                if(g_showmenu[id])
+                {
+                    add_delay(id, "display_equipmenu")
+                    
+                    g_menufailsafe[id] = true
+                    set_task(10.0, "task_weaponsmenu", TASKID_WEAPONSMENU + id)
+                }
+                else
+                {
+                    equipweapon(id, EQUIP_ALL)
+                }
+//                }
+            }
+        }
+    }
+
     // Check for human-terrorist-bug
-	// after 45 sec connected players cant join game
-	set_task(get_pcvar_float(cvar_starttime)+1.0, "check_terrorist_bug", TASKID_TERBUG)
+    // after 45 sec connected players cant join game
+    set_task(get_pcvar_float(cvar_starttime)+1.0, "check_terrorist_bug", TASKID_TERBUG)
 }
 
 public check_terrorist_bug()
@@ -1408,28 +1414,32 @@ public event_damage(victim)
 
 public fwd_player_prethink(id)
 {
-	if(!is_user_alive(id) || !g_zombie[id])
-		return FMRES_IGNORED
-	
-	static flags
-	flags = pev(id, pev_flags)
-	
-	if(flags & FL_ONGROUND)
-	{
-		if(get_pcvar_num(cvar_painshockfree))
-		{
-			pev(id, pev_velocity, g_vecvel)
-			g_brestorevel = true
-		}
-	}
-	else
-	{
-		static Float:fallvelocity
-		pev(id, pev_flFallVelocity, fallvelocity)
-		
-		g_falling[id] = fallvelocity >= 350.0 ? true : false
-	}
-	return FMRES_IGNORED
+    if(!is_user_alive(id) || !g_zombie[id])
+        return FMRES_IGNORED
+
+    static flags
+    flags = pev(id, pev_flags)
+
+    if(flags & FL_ONGROUND)
+    {
+/*
+        if(get_pcvar_num(cvar_painshockfree))
+        {
+*/
+        pev(id, pev_velocity, g_vecvel)
+        g_brestorevel = true
+//        }
+    }
+/*
+    else
+    {
+        static Float:fallvelocity
+        pev(id, pev_flFallVelocity, fallvelocity)
+        
+        g_falling[id] = fallvelocity >= 350.0 ? true : false
+    }
+*/
+    return FMRES_IGNORED
 }
 
 public fwd_player_prethink_post(id)
@@ -1463,15 +1473,15 @@ public fwd_player_prethink_post(id)
 
 public fwd_player_postthink(id)
 { 
-	if(!is_user_alive(id))
-		return FMRES_IGNORED
-	
-	if(pev(id, pev_flags) & FL_ONGROUND)
-	{	
-		set_pev(id, pev_watertype, CONTENTS_WATER)
-		g_falling[id] = false
-	}
-	return FMRES_IGNORED
+    if(!is_user_alive(id))
+        return FMRES_IGNORED
+
+    if(pev(id, pev_flags) & FL_ONGROUND)
+    {	
+        set_pev(id, pev_watertype, CONTENTS_WATER)
+//        g_falling[id] = false
+    }
+    return FMRES_IGNORED
 }
 
 public fwd_emitsound(id, channel, sample[], Float:volume, Float:attn, flag, pitch)
@@ -1509,18 +1519,30 @@ public fwd_emitsound(id, channel, sample[], Float:volume, Float:attn, flag, pitc
 
 public fwd_cmdstart(id, handle, seed)
 {
-	if(!is_user_alive(id) || !g_zombie[id])
-		return FMRES_IGNORED
-	
-	static impulse
-	impulse = get_uc(handle, UC_Impulse)
-	
-	if(impulse == IMPULSE_FLASHLIGHT)
-	{
-		set_uc(handle, UC_Impulse, 0)
-		return FMRES_SUPERCEDE
-	}
-	return FMRES_IGNORED
+//    if(!is_user_alive(id) || !g_zombie[id])
+//        return FMRES_IGNORED
+
+    static impulse
+    impulse = get_uc(handle, UC_Impulse)
+
+    if(impulse == IMPULSE_FLASHLIGHT)
+    {
+        set_uc(handle, UC_Impulse, 0)
+        
+        if (task_exists(TASKID_NIGHTVISION + id))
+        {
+            remove_task(TASKID_NIGHTVISION + id)
+            activate_nv[id] = false
+        }
+        else
+        {
+            set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+            activate_nv[id] = true
+        }
+        
+        return FMRES_SUPERCEDE
+    }
+    return FMRES_IGNORED
 }
 	
 public fwd_spawn(ent)
@@ -1833,35 +1855,35 @@ public bacon_killed_player(victim, killer, shouldgib)
 
 public bacon_spawn_player_post(id)
 {	
-	if(!is_user_alive(id))
-		return HAM_IGNORED
-	
-	static team
-	team = fm_get_user_team(id)
-	
-	if(team != TEAM_TERRORIST && team != TEAM_CT)
-		return HAM_IGNORED
+    if(!is_user_alive(id))
+        return HAM_IGNORED
+
+    static team
+    team = fm_get_user_team(id)
+
+    if(team != TEAM_TERRORIST && team != TEAM_CT)
+        return HAM_IGNORED
 
 ////////////////NightVision//////////////////
-	if(is_user_alive(id)) {
-		remove_task(TASKID_NIGHTVISION + id)
-		activate_nv[id] = false
-	}
-	
-	remove_task(TASKID_SHOWCLEAN + id)
-	remove_task(TASKID_SHOWINFECT + id)
-	
-	stop_changing_name[id] = true
-	
-	if(g_zombie[id])
-		cure_user(id)
-	else if(pev(id, pev_rendermode) == kRenderTransTexture)
-		reset_user_model(id)
-		
-	set_task(0.3, "task_spawned", TASKID_SPAWNDELAY + id)
-	set_task(5.0, "task_checkspawn", TASKID_CHECKSPAWN + id)
-	
-	return HAM_IGNORED
+    if(is_user_alive(id)) {
+        remove_task(TASKID_NIGHTVISION + id)
+        activate_nv[id] = false
+    }
+
+    remove_task(TASKID_SHOWCLEAN + id)
+    remove_task(TASKID_SHOWINFECT + id)
+
+    stop_changing_name[id] = true
+
+    if(g_zombie[id])
+        add_delay(id, "cure_user")
+    else if(pev(id, pev_rendermode) == kRenderTransTexture)
+        add_delay(id, "reset_user_model")
+        
+    set_task(0.3, "task_spawned", TASKID_SPAWNDELAY + id)
+    set_task(5.0, "task_checkspawn", TASKID_CHECKSPAWN + id)
+
+    return HAM_IGNORED
 }
 
 public bacon_touch_pushable(ent, id)
@@ -1949,46 +1971,50 @@ public task_spawned(taskid)
 	
 	if(is_user_alive(id))
 	{
-		if(g_suicide[id])
-		{
-			g_suicide[id] = false
-			
-			user_silentkill(id)
-			remove_task(TASKID_CHECKSPAWN + id)
+        if(g_suicide[id])
+        {
+            g_suicide[id] = false
+            
+            user_silentkill(id)
+            remove_task(TASKID_CHECKSPAWN + id)
 
-			client_print(id, print_chat, "%L", id, "SUICIDEPUNISH_TXT")
-			
-			return
-		}
-		
-		if(get_pcvar_num(cvar_weaponsmenu) && g_roundstarted && g_showmenu[id])
-			is_user_bot(id) ? bot_weapons(id) : display_equipmenu(id)
-		
-		if(!g_gamestarted)
-		{
-			if (g_preinfect[id]) {
-				colored_print(id, "^x01%L ^x03%L", id, "SCAN_RESULTS", id, "SCAN_INFECTED")
-				set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
-			}
-			else {
-				colored_print(id, "^x01%L ^x04%L", id, "SCAN_RESULTS", id, "SCAN_CLEAN")
-				set_task(0.5, "task_showclean", TASKID_SHOWCLEAN + id, _, _, "b")
-			}
-		}
-		else
-		{
-			static team
-			team = fm_get_user_team(id)
-			
-			if(team == TEAM_TERRORIST)
-				cs_set_team(id, TEAM_CT)
-		}
+            client_print(id, print_chat, "%L", id, "SUICIDEPUNISH_TXT")
+            
+            return
+        }
+
+/*
+        if(get_pcvar_num(cvar_weaponsmenu) && g_roundstarted && g_showmenu[id])
+            is_user_bot(id) ? bot_weapons(id) : display_equipmenu(id)
+*/
+        if(get_pcvar_num(cvar_weaponsmenu) && g_roundstarted && g_showmenu[id])
+            display_equipmenu(id)
+
+        if(!g_gamestarted)
+        {
+            if (g_preinfect[id]) {
+                colored_print(id, "^x01%L ^x03%L", id, "SCAN_RESULTS", id, "SCAN_INFECTED")
+                set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
+            }
+            else {
+                colored_print(id, "^x01%L ^x04%L", id, "SCAN_RESULTS", id, "SCAN_CLEAN")
+                set_task(0.5, "task_showclean", TASKID_SHOWCLEAN + id, _, _, "b")
+            }
+        }
+        else
+        {
+            static team
+            team = fm_get_user_team(id)
+            
+            if(team == TEAM_TERRORIST)
+                cs_set_team(id, TEAM_CT)
+        }
 	}
 }
 
 public task_showinfected(taskid) {
     new id = taskid - TASKID_SHOWINFECT
-    set_dhudmessage(255, 0, 0, 0.425, 0.88, 0, _, 0.2, 0.1)
+    set_dhudmessage(255, 0, 0, 0.435, 0.88, 0, _, 0.2, 0.1)
     if(is_user_connected(id))
         show_dhudmessage(id, "[ INFECTED ]")
 }
@@ -2020,7 +2046,7 @@ public task_showtruehealth()
 	
 	static id, Float:health
 	for(id = 1; id <= g_maxplayers; id++) 
-		if(is_user_alive(id) && !is_user_bot(id) && g_zombie[id])
+		if(is_user_alive(id) && g_zombie[id])
 		{
 			pev(id, pev_health, health)
 			show_dhudmessage(id, "HP: %d", floatround(health))
@@ -2377,49 +2403,49 @@ public inf(param[])
 
 public cure_user2(id)
 {
-	if(!is_user_alive(id) || !is_user_connected(id)) 
-		return
+    if(!is_user_alive(id) || !is_user_connected(id)) 
+        return
 
-	g_zombie[id] = false
-	g_falling[id] = false
+    g_zombie[id] = false
+//    g_falling[id] = false
 /*
-	cs_reset_player_model(id)
-	set_user_rendering(id)
-	set_user_gravity(id)
-	cs_reset_player_maxspeed(id)
+    cs_reset_player_model(id)
+    set_user_rendering(id)
+    set_user_gravity(id)
+    cs_reset_player_maxspeed(id)
 */
-	reset_user_model(id)
-	set_pev(id, pev_gravity, 1.0)
-	set_pev(id, pev_health, 100.0)
-	
-	cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
-	cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
-	cs_reset_player_maxspeed(id)
+    reset_user_model(id)
+    set_pev(id, pev_gravity, 1.0)
+    set_pev(id, pev_health, 100.0)
 
-	equipweapon(id, EQUIP_ALL)
+    cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
+    cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
+    cs_reset_player_maxspeed(id)
 
-	cs_set_team(id, TEAM_CT)
+    equipweapon(id, EQUIP_ALL)
+
+    cs_set_team(id, TEAM_CT)
 }
 
 public cure_user(id)
 {
-	if(!is_user_alive(id) || !is_user_connected(id)) 
-		return
+    if(!is_user_alive(id) || !is_user_connected(id)) 
+        return
 
-	g_zombie[id] = false
-	g_falling[id] = false
+    g_zombie[id] = false
+//    g_falling[id] = false
 /*
-	cs_reset_player_model(id)
-	set_user_rendering(id)
-	set_user_gravity(id)
-	cs_reset_player_maxspeed(id)
+    cs_reset_player_model(id)
+    set_user_rendering(id)
+    set_user_gravity(id)
+    cs_reset_player_maxspeed(id)
 */
-	reset_user_model(id)
-	set_pev(id, pev_gravity, 1.0)
-	
-	cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
-	cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
-	cs_reset_player_maxspeed(id)
+    reset_user_model(id)
+    set_pev(id, pev_gravity, 1.0)
+
+    cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
+    cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
+    cs_reset_player_maxspeed(id)
 }
 
 public drop_user(id)
@@ -3006,13 +3032,15 @@ equipweapon(id, weapon)
 
 add_delay(index, const task[])
 {
-	switch(index)
-	{
-		case 1..6:   set_task(0.4, task, index)
-		case 7..12:  set_task(0.6, task, index)
-		case 13..18: set_task(0.8, task, index)
-		case 19..24: set_task(1.0, task, index)
-	}
+    switch(index)
+    {
+        case 1..4: set_task(0.4, task, index)
+        case 5..8: set_task(0.6, task, index)
+        case 9..12: set_task(0.8, task, index)
+        case 13..16: set_task(1.0, task, index)
+        case 17..20: set_task(1.2, task, index)
+        case 21..24: set_task(1.4, task, index)
+    }
 }
 
 // Get User Team

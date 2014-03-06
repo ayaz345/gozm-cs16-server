@@ -1,10 +1,10 @@
-[en]
+﻿[en]
 SCAN_CLEAN = CLEAN!
 SCAN_INFECTED = INFECTED!
 SCAN_RESULTS = [BIOSCAN] Result: You're
 INFECTED_TXT = [BIOSCAN] %s is Infected!
 INFECTED_TXT2 = [BIOSCAN] The infection has spread!
-INFECTED_HUD = !!!WARNING!!!^n%s is Infected!
+INFECTED_HUD = %s	is	Zombie!!!
 INFECTED_HUD2 = !!!WARNING!!!^nThe infection has spread!
 MUTATION_HUD = You have mutated to a %s!
 WIN_TXT_ZOMBIES = Zombies win, thanks to %s!

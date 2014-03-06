@@ -597,7 +597,7 @@ public recordDemo(param[])
     colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
     colored_print(id, "^x01 IP:^x01 77.220.185.29:27051")
     colored_print(id, "^x01 Recording demo^x03 go_zombie.dem")
-    colored_print(id, "^x01 GoZm Menu:^x04 F3")
+    colored_print(id, "^x01 GoZm Menu:^x04 F3^x01 or^x04 M")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
     client_cmd(id,"stop")
     if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
@@ -1940,30 +1940,34 @@ public bacon_traceattack_pushable(ent, attacker, Float:damage, Float:direction[3
 	
 	return HAM_HANDLED
 }
-/*
+
 public client_infochanged(id)
 {
-	new newname[32]
-	get_user_info(id, "name", newname,31)
-	new oldname[32]
-	get_user_name(id,oldname,31)
-	
-	if (equal(newname,"Game Destroyed"))
-	{
-		colored_print(id,"^x04***^x03 %s^x01 bye-bye, bitch =*", oldname)
-		set_user_info(id,"name",oldname)
-		return PLUGIN_HANDLED
-	}
+    if  (!is_user_connected(id))
+        return PLUGIN_CONTINUE
 
-	if (stop_changing_name[id] && !equal(oldname,newname) && !(get_user_flags(id) & ADMIN_LEVEL_H))
-	{
-		colored_print(id,"^x04***^x01 Changing names is not allowed!")
-		set_user_info(id,"name",oldname)
-		return PLUGIN_HANDLED
-	}
-	return PLUGIN_CONTINUE
-}
+    new newname[32]
+    get_user_info(id, "name", newname,31)
+    new oldname[32]
+    get_user_name(id, oldname, 31)
+
+    if (equal(newname,"Game Destroyed"))
+    {
+        colored_print(id,"^x04***^x03 %s^x01 bye-bye, bitch =*", oldname)
+        set_user_info(id,"name",oldname)
+        return PLUGIN_HANDLED
+    }
+/*
+    if (stop_changing_name[id] && !equal(oldname,newname) && !(get_user_flags(id) & ADMIN_LEVEL_H))
+    {
+        colored_print(id,"^x04***^x01 Changing names is not allowed!")
+        set_user_info(id,"name",oldname)
+        return PLUGIN_HANDLED
+    }
 */
+    return PLUGIN_CONTINUE
+}
+
 public task_spawned(taskid)
 {
 	static id

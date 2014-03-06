@@ -1,4 +1,5 @@
 #include <amxmodx>
+#include <cs_team_changer>
 
 #define VIP_FLAG ADMIN_LEVEL_H
 #define ADMIN_FLAG ADMIN_BAN
@@ -38,6 +39,8 @@ public mainMenu(id)
     menu_additem(i_Menu, "Rules", "17")
     menu_additem(i_Menu, "Vips", "18")
     menu_additem(i_Menu, "Info", "19")
+    menu_additem(i_Menu, "Join Spectators", "20", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Join Game", "21", VIP_FLAG|ADMIN_FLAG)
     
     menu_setprop(i_Menu, 2, "Back")
     menu_setprop(i_Menu, 3, "Next")
@@ -106,6 +109,18 @@ public menu_handler(id, menu, item)
             client_print(id, print_chat, "3om6u cepBep (x_x(O_o)x_x) Go Zombie !!!")
             client_print(id, print_chat, "77.220.185.29:27051")
             client_print(id, print_chat, "vk.com/go_zombie")
+        }
+        case 20:
+        {
+            user_kill(id, 1)
+            cs_set_team(id, TEAM_SPECTATOR)
+        }
+        case 21:
+        {
+            if(!is_user_alive(id))
+                cs_set_team(id, TEAM_CT)
+            else
+                menu_destroy(menu)
         }
     }
 

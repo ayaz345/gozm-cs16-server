@@ -46,10 +46,6 @@ public SayIt(id)
 
     if(say_args[0] == '/' && containi(say_args, "voteban") != -1)
     {
-        if(get_user_flags(id) & ADMIN_BAN) {
-            colored_print(id,"^x04***^x01 Use AdminMenu!")
-            return PLUGIN_HANDLED_MAIN
-        }
         if(get_user_flags(id) & ADMIN_LEVEL_H) {
             colored_print(id,"^x04***^x01 Use^x04 /ban")
             return PLUGIN_HANDLED_MAIN
@@ -58,9 +54,7 @@ public SayIt(id)
             colored_print(id,"^x04***^x01 Only VIP-players can use^x04 /voteban")
             return PLUGIN_HANDLED_MAIN
         }
-        
     }
-    
     else if(say_args[0] == '/' && equali(say_args, "/ban")) {
         if(get_user_flags(id) & ADMIN_LEVEL_H || get_user_flags(id) & ADMIN_BAN) {
             get_players( ga_PlayerID, gi_TotalPlayers )

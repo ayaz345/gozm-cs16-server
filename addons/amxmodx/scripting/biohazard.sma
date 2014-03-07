@@ -2024,7 +2024,7 @@ public task_showinfected(taskid) {
 }
 public task_showclean(taskid) {
     new id = taskid - TASKID_SHOWCLEAN
-    set_dhudmessage(0, 255, 0, 0.445, 0.88, 0, _, 0.7, 0.1)
+    set_dhudmessage(0, 255, 0, 0.45, 0.88, 0, _, 0.7, 0.1)
     if(is_user_connected(id))
         show_dhudmessage(id, "[ CLEAN ]")
 }
@@ -2050,7 +2050,7 @@ public task_showtruehealth()
 	
 	static id, Float:health
 	for(id = 1; id <= g_maxplayers; id++) 
-		if(is_user_alive(id) && g_zombie[id])
+		if(is_user_alive(id) && g_zombie[id] && !g_roundended)
 		{
 			pev(id, pev_health, health)
 			show_dhudmessage(id, "HP: %d", floatround(health))

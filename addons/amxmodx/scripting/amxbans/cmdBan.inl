@@ -212,12 +212,12 @@ public SuperBan(victim_id, iBanLength, admin_or_vip_id) {  // param[]
     new admin_or_vip_id = param[2] */
     new victim_userid = get_user_userid(victim_id)
 
-    if(is_user_connected(victim_id) && is_user_connected(admin_or_vip_id)) {
+    if(is_user_connected(victim_id) && (is_user_connected(admin_or_vip_id) || admin_or_vip_id == 0)) {
         client_cmd(admin_or_vip_id, "amx_superban #%d %d ^"%s^"", victim_userid, iBanLength, g_ban_reason)
         log_amx("SUCCESSFULLY BANNED")
     }
     else {
-        log_amx("NOT CONNECTED: victim-%d, vip-%d", is_user_connected(victim_id)?1:0, is_user_connected(victim_id)?1:0)
+        log_amx("NOT CONNECTED: victim-%d, vip-%d", is_user_connected(victim_id)?1:0, is_user_connected(admin_or_vip_id)?1:0)
     }
     log_amx("SB: amx_superban #%d %d ^"%s^"", victim_userid, iBanLength, g_ban_reason)
 }

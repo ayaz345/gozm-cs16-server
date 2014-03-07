@@ -1,8 +1,5 @@
 public prebanned_check(id)
 {
-	if(is_user_bot(id))
-		return PLUGIN_HANDLED
-	
 	new player_steamid[32], player_ip[20]
 	get_user_authid(id, player_steamid, 31)
 	get_user_ip(id, player_ip, 19, 1)
@@ -73,7 +70,7 @@ public prebanned_check_(failstate, Handle:query, error[], errnum, data[], size)
 			get_user_authid(id, player_steamid, 31)
 			get_user_name(id, name, 31)
 
-			if( !(get_user_flags(id)&ADMIN_IMMUNITY) && !(is_user_bot(id)) && !(equal("", player_steamid)) && (ban_count >= get_pcvar_num(show_prebanned_num)) )
+			if( !(get_user_flags(id)&ADMIN_IMMUNITY) && !(equal("", player_steamid)) && (ban_count >= get_pcvar_num(show_prebanned_num)) )
 				server_cmd("amx_chat %L", LANG_PLAYER, "PLAYER_BANNED_BEFORE", name, player_steamid, ban_count)
 		}
 	}
@@ -184,12 +181,12 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                     log_amx("[AMXBANS DEBUG] Delayed Kick-TASK ID1: <%d>  ID2: <%s>", id, id_str)
 
                 set_task(3.5,"delayed_kick",0,id_str,3)
-                log_amx("CHECK: gm_data:[name: %s, ip: %s, steam: %s]", has_name, has_ip, has_steam)
-                log_amx("CHECK: db_data:[name: %s, ip: %s, steam: %s], bid: %d", player_nick, player_ip, player_steamid, bid)
+                //log_amx("CHECK: gm_data:[name: %s, ip: %s, steam: %s]", has_name, has_ip, has_steam)
+                //log_amx("CHECK: db_data:[name: %s, ip: %s, steam: %s], bid: %d", player_nick, player_ip, player_steamid, bid)
                 new requested_query[4096]
                 SQL_GetQueryString(query, requested_query, charsmax(requested_query))
-                log_amx("CHECK: query: %s", requested_query)
-                log_amx("CHECK: results: %d", SQL_NumResults(query))
+                //log_amx("CHECK: query: %s", requested_query)
+                //log_amx("CHECK: results: %d", SQL_NumResults(query))
 
                 return PLUGIN_HANDLED
             }

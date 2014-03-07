@@ -329,26 +329,14 @@ displayBanhistoryMenu(id, pos)
 
 	for (new a = start; a < end; ++a)
 	{
-		i = g_menuPlayers[id][a]
-		get_user_name(i, name, 31)
+        i = g_menuPlayers[id][a]
+        get_user_name(i, name, 31)
 
-		if (is_user_bot(i))
-		{
-			++b
-
-			if (g_coloredMenus)
-				len += format(menuBody[len], 511-len, "\d%d. %s\w^n", b, name)
-			else
-				len += format(menuBody[len], 511-len, "#. %s^n", name)
-		} 
-		else
-		{
-			keys |= (1<<b)
-			if (get_user_flags(i) & ADMIN_LEVEL_H)
-			   len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\w^n" : "%d. %s *   %s^n", ++b, name)
-			else
-			    len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s\w^n" : "%d. %s   %s^n", ++b, name)
-		}
+        keys |= (1<<b)
+        if (get_user_flags(i) & ADMIN_LEVEL_H)
+           len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\w^n" : "%d. %s *   %s^n", ++b, name)
+        else
+            len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s\w^n" : "%d. %s   %s^n", ++b, name)
 	}
 	if (end != g_menuPlayersNum[id])
 	{

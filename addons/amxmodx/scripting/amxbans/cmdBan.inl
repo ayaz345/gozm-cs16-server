@@ -669,8 +669,6 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				
 				for (idx=0; idx<playerCount; idx++)
 				{
-					if (is_user_hltv(players[idx]) || is_user_bot(players[idx])) continue // Dont count HLTV or bots as players
-					
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
 					format(message,191,"%L", players[idx],"PUBLIC_BAN_ANNOUNCE", player_nick, cTimeLengthPlayer, g_ban_reason)
 					
@@ -691,8 +689,6 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				
 				for (idx=0; idx<playerCount; idx++)
 				{
-					if (is_user_hltv(players[idx]) || is_user_bot(players[idx])) continue // Dont count HLTV or bots as players
-					
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
 					format(message,191,"%L", players[idx],"PUBLIC_BAN_ANNOUNCE_PERM", player_nick, g_ban_reason)
 					
@@ -716,8 +712,6 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				
 				for (idx=0; idx<playerCount; idx++)
 				{
-					if (is_user_hltv(players[idx]) || is_user_bot(players[idx])) continue // Dont count HLTV or bots as players
-					
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
 					format(message,191, "%L", players[idx], "PUBLIC_BAN_ANNOUNCE_2", player_nick, cTimeLengthPlayer, g_ban_reason, admin_nick)
 	
@@ -738,8 +732,6 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				
 				for (idx=0; idx<playerCount; idx++)
 				{
-					if (is_user_hltv(players[idx]) || is_user_bot(players[idx])) continue // Dont count HLTV or bots as players
-					
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
 					format(message,191, "%L", players[idx], "PUBLIC_BAN_ANNOUNCE_2_PERM", player_nick, g_ban_reason, admin_nick)
 					

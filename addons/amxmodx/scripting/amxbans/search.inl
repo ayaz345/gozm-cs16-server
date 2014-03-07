@@ -146,20 +146,7 @@ public amx_findex(id,level,cid)
 
 			return PLUGIN_HANDLED
 		}
-		else if (is_user_bot(player))
-		{
-			client_print(id,print_console,"[AMXX] %L",LANG_PLAYER,"IS_BOT")
-
-
-			return PLUGIN_HANDLED
-		}
-		else if (is_user_hltv(player))
-		{
-			client_print(id,print_console,"[AMXX] %L",LANG_PLAYER,"IS_HLTV")
-			
-
-			return PLUGIN_HANDLED
-		}
+        
 		get_user_authid(player, player_steamid, 50)
 
 	}

@@ -272,7 +272,7 @@ public locate_player(id, identifier[])
                 console_print(id,"[AMXBANS] Client ^"%s^" has immunity", name)
             return -1
         }
-        /* Check for a bot */
+/*
         else if (is_user_bot(player)) {
             new name[32]
             get_user_name(player, name, 31)
@@ -282,7 +282,7 @@ public locate_player(id, identifier[])
                 console_print(id,"[AMXBANS] Client ^"%s^" is a bot", name)
             return -1
         }
-
+*/
     }
     return player
 }

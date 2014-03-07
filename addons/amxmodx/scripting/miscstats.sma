@@ -76,7 +76,7 @@ new g_LastAnnounce
 new g_roundCount
 new Float:g_doubleKill
 new g_doubleKillId
-new g_friend[33]
+//new g_friend[33]
 new g_firstBlood
 new g_center1_sync
 new g_announce_sync
@@ -175,7 +175,7 @@ public plugin_init()
 	register_event("TextMsg", "eRestart", "a", "2&#Game_C", "2&#Game_w")
 	register_event("SendAudio", "eEndRound", "a", "2&%!MRAD_terwin", "2&%!MRAD_ctwin", "2&%!MRAD_rounddraw")
 	register_event("RoundTime", "eNewRound", "bc")
-	register_event("StatusValue", "setTeam", "be", "1=1")
+//	register_event("StatusValue", "setTeam", "be", "1=1")
 	register_event("StatusValue", "showStatus", "be", "1=2", "2!0")
 	register_event("StatusValue", "hideStatus", "be", "1=1", "2=0")
 
@@ -530,37 +530,27 @@ public hideStatus(id)
 	}
 }
 
+/*
 public setTeam(id)
 	g_friend[id] = read_data(2)
+*/
 
 public showStatus(id)
 {
-	if(!is_user_bot(id) && is_user_connected(id) && PlayerName) 
+	if(is_user_connected(id) && PlayerName) 
 	{
-		new name[32], pid = read_data(2)
-	
-		get_user_name(pid, name, 31)
-		new color1 = 0, color2 = 0
-	
-		if (get_user_team(pid) == 1)
-			color1 = 255
-		else
-			color2 = 255
-		
-		if (g_friend[id] == 1)	// friend
-		{
-			new clip, ammo, wpnid = get_user_weapon(pid, clip, ammo)
-			new wpnname[32]
-		
-			if (wpnid)
-				xmod_get_wpnname(wpnid, wpnname, 31)
-		
-			set_hudmessage(color1, 50, color2, -1.0, 0.60, 1, 0.01, 3.0, 0.01, 0.01, -1)
-			ShowSyncHudMsg(id, g_status_sync, "%s -- %d HP / %d AP / %s", name, get_user_health(pid), get_user_armor(pid), wpnname)
-		} else {
-			set_hudmessage(color1, 50, color2, -1.0, 0.60, 1, 0.01, 3.0, 0.01, 0.01, -1)
-			ShowSyncHudMsg(id, g_status_sync, "%s", name)
-		}
+        new name[32], pid = read_data(2)
+
+        get_user_name(pid, name, 31)
+        new color1 = 0, color2 = 0
+
+        if (get_user_team(pid) == 1)
+            color1 = 255
+        else
+            color2 = 255
+
+        set_hudmessage(color1, 50, color2, -1.0, 0.60, 1, 0.01, 3.0, 0.01, 0.01, -1)
+        ShowSyncHudMsg(id, g_status_sync, "%s", name)
 	}
 }
 

@@ -854,6 +854,7 @@ public map_manageEnd()
             message_begin(MSG_ALL, SVC_INTERMISSION);
             message_end();
             set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
+            log_amx("GAL: SCOREBOARD");
 		}
 /*
         new map[MAX_MAPNAME_LEN + 1];

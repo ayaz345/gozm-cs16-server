@@ -1,39 +1,3 @@
-/* AMX Mod X - Script
-*
-*	Admin Spectator ESP v1.3
-*	Copyright (C) 2006 by KoST
-*
-*	this plugin along with its compiled version can de downloaded here:
-*	http://www.amxmodx.org/forums/viewtopic.php?t=24787	
-*	
-*
-*  This program is free software; you can redistribute it and/or
-*  modify it under the terms of the GNU General Public License
-*  as published by the Free Software Foundation; either version 2
-*  of the License, or (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*  or download here: http://www.gnu.org/licenses/gpl.txt
-*
-*  In addition, as a special exception, the author gives permission to
-*  link the code of this program with the Half-Life Game Engine ("HL
-*  Engine") and Modified Game Libraries ("MODs") developed by Valve,
-*  L.L.C ("Valve"). You must obey the GNU General Public License in all
-*  respects for all of the code used other than the HL Engine and MODs
-*  from Valve. If you modify this file, you may extend this exception
-*  to your version of the file, but you are not obligated to do so. If
-*  you do not wish to do so, delete this exception statement from your
-*  version.
-*/
-//--------------------------------------------------------------------------------------------------
-
 #include <amxmodx>
 #include <engine>
 
@@ -75,7 +39,8 @@ new bool:admin_options[33][10] // individual esp options
 new bool:is_in_menu[33] // has esp menu open
 
 // CVARS
-new p_esp, p_esp_timer, p_esp_allow_all, p_esp_disable_default_keys
+new p_esp_timer
+new Float:c_esp_timer
 
 // weapon strings
 new weapons[30][10]={"None","P228","Scout","HE","XM1014","C4",
@@ -90,40 +55,38 @@ public plugin_precache(){
 }
 
 public plugin_init(){
-	register_plugin(PLUGIN,VERSION,AUTHOR)
-	server_print("^n^t%s v%s, Copyright (C) 2006 by %s^n",PLUGIN,VERSION,AUTHOR)
-	
-	// cvars
-	p_esp = register_cvar("esp","1")
-	p_esp_timer = register_cvar("esp_timer","0.3")
-	p_esp_allow_all = register_cvar("esp_allow_all","0")
-	p_esp_disable_default_keys = register_cvar("esp_disable_default_keys","0")
-	register_cvar("aesp_version",VERSION,FCVAR_SERVER|FCVAR_UNLOGGED|FCVAR_SPONLY)
-	
-	// client commands
-	register_clcmd("esp_menu","cmd_esp_menu",REQUIRED_ADMIN_LEVEL,"Shows ESP Menu")
-	register_clcmd("esp_toggle","cmd_esp_toggle",REQUIRED_ADMIN_LEVEL,"Toggle ESP on/off")
-	register_clcmd("say /esp_menu","cmd_esp_menu",REQUIRED_ADMIN_LEVEL,"Shows ESP Menu")
-	register_clcmd("say /esp_toggle","cmd_esp_toggle",REQUIRED_ADMIN_LEVEL,"Toggle ESP on/off")
-	register_clcmd("esp_settings","cmd_esp_settings",REQUIRED_ADMIN_LEVEL," ESP adasdsassdasd")
-	
-	
-	// events
-	register_event("StatusValue","spec_target","bd","1=2")
-	register_event("SpecHealth2","spec_target","bd")
-	register_event("TextMsg","spec_mode","b","2&#Spec_Mode")
-	register_event("Damage", "event_Damage", "b", "2!0", "3=0", "4!0")
-	register_event("ResetHUD", "reset_hud_alive", "be")
-	
-	
-	// menu
-	new keys=MENU_KEY_0|MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9
-	register_menucmd(register_menuid("Admin Specator ESP"),keys,"menu_esp")
-	
-	max_players=get_maxplayers()
-	
-	// start esp_timer for the first time
-	set_task(1.0,"esp_timer")
+    register_plugin(PLUGIN,VERSION,AUTHOR)
+    server_print("^n^t%s v%s, Copyright (C) 2006 by %s^n",PLUGIN,VERSION,AUTHOR)
+
+    // cvars
+    p_esp_timer = register_cvar("esp_timer","0.3")
+    c_esp_timer = get_pcvar_float(p_esp_timer)
+    register_cvar("aesp_version",VERSION,FCVAR_SERVER|FCVAR_UNLOGGED|FCVAR_SPONLY)
+
+    // client commands
+    register_clcmd("esp_menu","cmd_esp_menu",REQUIRED_ADMIN_LEVEL,"Shows ESP Menu")
+    register_clcmd("esp_toggle","cmd_esp_toggle",REQUIRED_ADMIN_LEVEL,"Toggle ESP on/off")
+    register_clcmd("say /esp_menu","cmd_esp_menu",REQUIRED_ADMIN_LEVEL,"Shows ESP Menu")
+    register_clcmd("say /esp_toggle","cmd_esp_toggle",REQUIRED_ADMIN_LEVEL,"Toggle ESP on/off")
+    register_clcmd("esp_settings","cmd_esp_settings",REQUIRED_ADMIN_LEVEL," ESP adasdsassdasd")
+
+
+    // events
+    register_event("StatusValue","spec_target","bd","1=2")
+    register_event("SpecHealth2","spec_target","bd")
+    register_event("TextMsg","spec_mode","b","2&#Spec_Mode")
+    register_event("Damage", "event_Damage", "b", "2!0", "3=0", "4!0")
+    register_event("ResetHUD", "reset_hud_alive", "be")
+
+
+    // menu
+    new keys=MENU_KEY_0|MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9
+    register_menucmd(register_menuid("Admin Specator ESP"),keys,"menu_esp")
+
+    max_players=get_maxplayers()
+
+    // start esp_timer for the first time
+    set_task(1.0,"esp_timer")
 } 
 
 public reset_hud_alive(id){
@@ -147,13 +110,13 @@ public cmd_esp_settings(id){
 }
 
 public cmd_esp_menu(id){
-	if (admin[id] && get_pcvar_num(p_esp)==1){
+	if (admin[id]){
 		show_esp_menu(id)
 	}
 }
 
 public cmd_esp_toggle(id){
-	if (admin[id] && get_pcvar_num(p_esp)==1){
+	if (admin[id]){
 		change_esp_status(id,!admin_options[id][0])
 	}
 }
@@ -164,11 +127,9 @@ public show_esp_menu(id){
 	new keys=MENU_KEY_0|MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9
 	new onoff[2][]={{"\roff\w"},{"\yon\w"}} // \r=red \y=yellow \w white
 	new text[2][]={{"(use move forward/backward to switch on/off)"},{"(use esp_toggle command to toggle)"}} // \r=red \y=yellow \w white
-	new text_index=get_pcvar_num(p_esp_disable_default_keys)
-	if (text_index!=1) text_index=0
 	format(menu, 300, "Admin Specator ESP^nis %s %s^n^n1. Line is %s^n2. Box is %s^n3. Name is %s^n4. Health/Armor is %s^n5. Weapon is %s^n6. Clip/Ammo is %s^n7. Distance is %s^n8. Show TeamMates is %s^n9. Show AimVector is %s^n^n0. Exit",
 	onoff[admin_options[id][ESP_ON]],
-	text[text_index],
+	text[0],
 	onoff[admin_options[id][ESP_LINE]],
 	onoff[admin_options[id][ESP_BOX]],
 	onoff[admin_options[id][ESP_NAME]],
@@ -235,13 +196,10 @@ public spec_target(id){
 
 public client_putinserver(id){
 	first_person[id]=false
-	if ((get_user_flags(id) & REQUIRED_ADMIN_LEVEL) || 
-		(get_user_flags(id) & ADMIN_LEVEL_H) || 
-		get_pcvar_num(p_esp_allow_all)==1){
+	if (get_user_flags(id) & REQUIRED_ADMIN_LEVEL || get_user_flags(id) & ADMIN_LEVEL_H){
 		admin[id]=true
 		init_admin_options(id)
-		
-		}else{
+	}else{
 		admin[id]=false
 	}
 }
@@ -320,35 +278,34 @@ public change_esp_status(id,bool:on){
 }
 
 public client_PreThink(id){
-	if (!is_user_connected(id)) return PLUGIN_CONTINUE
-	
-	new button=get_user_button(id)
-	if (button==0) return PLUGIN_CONTINUE // saves a lot of cpu
-	
-	new oldbutton=get_user_oldbutton(id)
-	
-	if (button & IN_DUCK){
-		ducking[id]=true
-		}else{
-		ducking[id]=false
-	}
-	
-	if ((get_pcvar_num(p_esp)==1) && (get_pcvar_num(p_esp_disable_default_keys)!=1)){
-		if (admin[id]){
-			if (first_person[id] && !is_user_alive(id)){
-				if ((button & IN_RELOAD) && !(oldbutton & IN_RELOAD)){
-					show_esp_menu(id)
-				}
-				if ((button & IN_FORWARD)  && !(oldbutton & IN_FORWARD) && !admin_options[id][0]){
-					change_esp_status(id,true)
-				}
-				if ((button & IN_BACK)  && !(oldbutton & IN_BACK) && admin_options[id][0]){
-					change_esp_status(id,false)
-				}
-			}
-		}
-	}
-	return PLUGIN_CONTINUE
+    if (!is_user_connected(id)) return PLUGIN_CONTINUE
+
+    new button=get_user_button(id)
+    if (button==0) return PLUGIN_CONTINUE // saves a lot of cpu
+
+    new oldbutton=get_user_oldbutton(id)
+
+    if (button & IN_DUCK){
+        ducking[id]=true
+        }else{
+        ducking[id]=false
+    }
+
+    if (admin[id]){
+        if (first_person[id] && !is_user_alive(id)){
+            if ((button & IN_RELOAD) && !(oldbutton & IN_RELOAD)){
+                show_esp_menu(id)
+            }
+            if ((button & IN_FORWARD)  && !(oldbutton & IN_FORWARD) && !admin_options[id][0]){
+                change_esp_status(id,true)
+            }
+            if ((button & IN_BACK)  && !(oldbutton & IN_BACK) && admin_options[id][0]){
+                change_esp_status(id,false)
+            }
+        }
+    }
+
+    return PLUGIN_CONTINUE
 }
 
 public draw_aim_vector(i,s,len){
@@ -365,12 +322,6 @@ public draw_aim_vector(i,s,len){
 }
 
 public esp_timer(){
-	
-	if (get_pcvar_num(p_esp)!=1) { // if esp is not 1, it is off
-		set_task(1.0,"esp_timer") // check for reactivation in 1 sec intervals
-		return PLUGIN_CONTINUE
-	}
-	
 	for (new i=1;i<=max_players;i++){ // loop through players
 		
 		if (admin_options[i][ESP_ON] && first_person[i] && is_user_connected(i) && admin[i] && (!is_user_alive(i)) && (spec[i]>0) && is_user_alive(spec[i])){ // :)
@@ -521,7 +472,7 @@ public esp_timer(){
 			}
 			if (xp>0.0 && xp<=1.0 && yp>0.0 && yp<=1.0){ // if in visible range
 				// show the player info
-				set_hudmessage(255, 255, 0, floatabs(xp), floatabs(yp), 0, 0.0, get_pcvar_float(p_esp_timer), 0.0, 0.0, 2)
+				set_hudmessage(255, 255, 0, floatabs(xp), floatabs(yp), 0, 0.0, c_esp_timer, 0.0, 0.0, 2)
 				
 				new name[37]=""
 				new tmp[33]
@@ -562,7 +513,7 @@ public esp_timer(){
 			}
 		}
 	}
-	set_task(get_pcvar_float(p_esp_timer),"esp_timer") // keep it going
+	set_task(c_esp_timer, "esp_timer") // keep it going
 	return PLUGIN_CONTINUE	
 }
 
@@ -735,7 +686,7 @@ public make_TE_BEAMPOINTS(id,color,Float:Vec1[3],Float:Vec2[3],width,target_team
     write_short(laser) // sprite index
     write_byte(3) // starting frame
     write_byte(0) // frame rate in 0.1's
-    write_byte(floatround(get_pcvar_float(p_esp_timer)*10)) // life in 0.1's
+    write_byte(floatround(c_esp_timer*10.0)) // life in 0.1's
     write_byte(width) // line width in 0.1's
     write_byte(0) // noise amplitude in 0.01's
     write_byte(esp_colors[color][0])
@@ -759,7 +710,7 @@ public make_TE_BEAMENTPOINT(id,Float:target_origin[3],width,target_team){
     write_short(laser)
     write_byte(1)		
     write_byte(1)
-    write_byte(floatround(get_pcvar_float(p_esp_timer)*10))
+    write_byte(floatround(c_esp_timer*10.0))
     write_byte(width)
     write_byte(0)
     write_byte(team_colors[target_team][0])

@@ -1167,7 +1167,7 @@ public logevent_round_start()
 
     // Check for human-terrorist-bug
     // after 45 sec connected players cant join game
-    set_task(get_pcvar_float(cvar_starttime)+1.0, "check_terrorist_bug", TASKID_TERBUG)
+//    set_task(get_pcvar_float(cvar_starttime)+1.0, "check_terrorist_bug", TASKID_TERBUG)
 }
 
 public check_terrorist_bug()
@@ -1192,16 +1192,13 @@ public check_terrorist_bug()
 }
 
 public join_team(id) {
-    if (g_roundended || !g_gamestarted)
+    if (g_roundended || !g_gamestarted || !is_user_connected(id))
 		return PLUGIN_CONTINUE
     
     new id = read_data(1)
     static user_team[32]
     static team_terrorist[] = "TERRORIST"
-    read_data(2, user_team, 31)    
-    
-    if(!is_user_connected(id))
-        return PLUGIN_CONTINUE
+    read_data(2, user_team, 31)
     
     if(equal(user_team, team_terrorist))
         cs_set_team(id, TEAM_CT)

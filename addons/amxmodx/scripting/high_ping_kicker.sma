@@ -13,17 +13,20 @@
 new g_Ping[33]
 new g_Samples[33]
 
+// CVARS
+new p_amx_hpk_ping, p_amx_hpk_check, p_amx_hpk_tests, p_amx_hpk_delay
+
 public plugin_init()
 {
   register_plugin("High Ping Kicker (Steam)","0.16.2","OLO/shadow")
   register_concmd("amx_hpk","cmdHpk",ADMIN_KICK,"- configures high_ping_kicker plugin")
-  register_cvar("amx_hpk_ping","200")
-  register_cvar("amx_hpk_check","12")
-  register_cvar("amx_hpk_tests","5")
-  register_cvar("amx_hpk_delay","60")
+  p_amx_hpk_ping = register_cvar("amx_hpk_ping","200")
+  p_amx_hpk_check = register_cvar("amx_hpk_check","12")
+  p_amx_hpk_tests = register_cvar("amx_hpk_tests","5")
+  p_amx_hpk_delay = register_cvar("amx_hpk_delay","60")
   
-  if ( get_cvar_num( "amx_hpk_check" ) < 5 ) set_cvar_num( "amx_hpk_check" , 5 )
-  if ( get_cvar_num( "amx_hpk_tests" ) < 3 ) set_cvar_num( "amx_hpk_tests" , 3 )
+  if ( get_pcvar_num( p_amx_hpk_check ) < 5 ) set_cvar_num( "amx_hpk_check" , 5 )
+  if ( get_pcvar_num( p_amx_hpk_tests ) < 3 ) set_cvar_num( "amx_hpk_tests" , 3 )
 }
 
 public client_disconnect(id) 
@@ -31,27 +34,24 @@ public client_disconnect(id)
 
 public client_putinserver(id) 
 {    
-  g_Ping[id] = 0 
-  g_Samples[id] = 0
+    g_Ping[id] = 0 
+    g_Samples[id] = 0
 
-  if ( !is_user_bot(id) ) 
-  {
     new param[1]
     param[0] = id 
-    
-    if (get_cvar_num("amx_hpk_tests") != 0) {
-	    set_task( float(get_cvar_num("amx_hpk_delay")), "taskSetting", id, param , 1)
+
+    if (get_pcvar_num(p_amx_hpk_tests) != 0) {
+        set_task( float(get_pcvar_num(p_amx_hpk_delay)), "taskSetting", id, param , 1)
     }
     else {	    
-    	set_task( float(get_cvar_num( "amx_hpk_tests" )) , "checkPing" , id , param , 1 , "b" )
-	}
-  }
+        set_task( float(get_pcvar_num( p_amx_hpk_tests )) , "checkPing" , id , param , 1 , "b" )
+    }
 } 
 
 public taskSetting(param[]) {
 	new name[32]
 	get_user_name(param[0],name,31)
-	set_task( float(get_cvar_num( "amx_hpk_tests" )) , "checkPing" , param[0] , param , 1 , "b" )
+	set_task( float(get_pcvar_num( p_amx_hpk_tests )) , "checkPing" , param[0] , param , 1 , "b" )
 }
 
 kickPlayer( id ) 
@@ -59,7 +59,7 @@ kickPlayer( id )
   new name[32],authid[32]
   get_user_name(id,name,31)
   get_user_authid(id,authid,31)
-  server_cmd("kick #%d PING > %d", get_user_userid(id), get_cvar_num("amx_hpk_ping"));
+  server_cmd("kick #%d PING > %d", get_user_userid(id), get_pcvar_num(p_amx_hpk_ping));
 //  client_cmd(id, "Connect 91.192.189.63:27018")
   log_amx("Highpingkick: ^"%s<%d><%s>^" was kicked due highping (Average Ping ^"%d^")", name,get_user_userid(id),authid,(g_Ping[id] / g_Samples[id]))
 }
@@ -77,7 +77,7 @@ public checkPing(param[])
   g_Ping[ id ] += p
   ++g_Samples[ id ]
 
-  if ( (g_Samples[ id ] > get_cvar_num( "amx_hpk_tests" )) && (g_Ping[id] / g_Samples[id] > get_cvar_num( "amx_hpk_ping" ))  )    
+  if ( (g_Samples[ id ] > get_pcvar_num( p_amx_hpk_tests )) && (g_Ping[id] / g_Samples[id] > get_pcvar_num( p_amx_hpk_ping ))  )    
     kickPlayer(id) 
 }
 
@@ -119,7 +119,7 @@ public cmdHpk(id,level,cid){
 
 //  console_print(id,"Syntax: amx_hpk <ping to get kicked> <checks before kicks> <time between checks> <delay before first check in sec.>")
 //  console_print(id,"Current High_Ping_Kicker Settings:")
-//  console_print(id,"Maxping: %d  Time between checks: %d Checkcount: %d Delay: %d",get_cvar_num("amx_hpk_ping"),get_cvar_num("amx_hpk_check"),get_cvar_num("amx_hpk_tests"),get_cvar_num("amx_hpk_delay"))
+//  console_print(id,"Maxping: %d  Time between checks: %d Checkcount: %d Delay: %d",get_pcvar_num(p_amx_hpk_ping),get_pcvar_num(p_amx_hpk_check),get_pcvar_num(p_amx_hpk_tests),get_pcvar_num(p_amx_hpk_delay))
   return PLUGIN_HANDLED    
 }
 

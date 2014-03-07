@@ -74,6 +74,9 @@ new view_target[33] // attackers victim
 new bool:admin_options[33][10] // individual esp options
 new bool:is_in_menu[33] // has esp menu open
 
+// CVARS
+new p_esp, p_esp_timer, p_esp_allow_all, p_esp_disable_default_keys
+
 // weapon strings
 new weapons[30][10]={"None","P228","Scout","HE","XM1014","C4",
 	"MAC-10","AUG","Smoke","Elite","Fiveseven",
@@ -91,10 +94,10 @@ public plugin_init(){
 	server_print("^n^t%s v%s, Copyright (C) 2006 by %s^n",PLUGIN,VERSION,AUTHOR)
 	
 	// cvars
-	register_cvar("esp","1")
-	register_cvar("esp_timer","0.3")
-	register_cvar("esp_allow_all","0")
-	register_cvar("esp_disable_default_keys","0")
+	p_esp = register_cvar("esp","1")
+	p_esp_timer = register_cvar("esp_timer","0.3")
+	p_esp_allow_all = register_cvar("esp_allow_all","0")
+	p_esp_disable_default_keys = register_cvar("esp_disable_default_keys","0")
 	register_cvar("aesp_version",VERSION,FCVAR_SERVER|FCVAR_UNLOGGED|FCVAR_SPONLY)
 	
 	// client commands
@@ -144,13 +147,13 @@ public cmd_esp_settings(id){
 }
 
 public cmd_esp_menu(id){
-	if (admin[id] && get_cvar_num("esp")==1){
+	if (admin[id] && get_pcvar_num(p_esp)==1){
 		show_esp_menu(id)
 	}
 }
 
 public cmd_esp_toggle(id){
-	if (admin[id] && get_cvar_num("esp")==1){
+	if (admin[id] && get_pcvar_num(p_esp)==1){
 		change_esp_status(id,!admin_options[id][0])
 	}
 }
@@ -161,7 +164,7 @@ public show_esp_menu(id){
 	new keys=MENU_KEY_0|MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9
 	new onoff[2][]={{"\roff\w"},{"\yon\w"}} // \r=red \y=yellow \w white
 	new text[2][]={{"(use move forward/backward to switch on/off)"},{"(use esp_toggle command to toggle)"}} // \r=red \y=yellow \w white
-	new text_index=get_cvar_num("esp_disable_default_keys")
+	new text_index=get_pcvar_num(p_esp_disable_default_keys)
 	if (text_index!=1) text_index=0
 	format(menu, 300, "Admin Specator ESP^nis %s %s^n^n1. Line is %s^n2. Box is %s^n3. Name is %s^n4. Health/Armor is %s^n5. Weapon is %s^n6. Clip/Ammo is %s^n7. Distance is %s^n8. Show TeamMates is %s^n9. Show AimVector is %s^n^n0. Exit",
 	onoff[admin_options[id][ESP_ON]],
@@ -234,7 +237,7 @@ public client_putinserver(id){
 	first_person[id]=false
 	if ((get_user_flags(id) & REQUIRED_ADMIN_LEVEL) || 
 		(get_user_flags(id) & ADMIN_LEVEL_H) || 
-		get_cvar_num("esp_allow_all")==1){
+		get_pcvar_num(p_esp_allow_all)==1){
 		admin[id]=true
 		init_admin_options(id)
 		
@@ -330,7 +333,7 @@ public client_PreThink(id){
 		ducking[id]=false
 	}
 	
-	if ((get_cvar_num("esp")==1) && (get_cvar_num("esp_disable_default_keys")!=1)){
+	if ((get_pcvar_num(p_esp)==1) && (get_pcvar_num(p_esp_disable_default_keys)!=1)){
 		if (admin[id]){
 			if (first_person[id] && !is_user_alive(id)){
 				if ((button & IN_RELOAD) && !(oldbutton & IN_RELOAD)){
@@ -363,7 +366,7 @@ public draw_aim_vector(i,s,len){
 
 public esp_timer(){
 	
-	if (get_cvar_num("esp")!=1) { // if esp is not 1, it is off
+	if (get_pcvar_num(p_esp)!=1) { // if esp is not 1, it is off
 		set_task(1.0,"esp_timer") // check for reactivation in 1 sec intervals
 		return PLUGIN_CONTINUE
 	}
@@ -518,7 +521,7 @@ public esp_timer(){
 			}
 			if (xp>0.0 && xp<=1.0 && yp>0.0 && yp<=1.0){ // if in visible range
 				// show the player info
-				set_hudmessage(255, 255, 0, floatabs(xp), floatabs(yp), 0, 0.0, get_cvar_float("esp_timer"), 0.0, 0.0, 2)
+				set_hudmessage(255, 255, 0, floatabs(xp), floatabs(yp), 0, 0.0, get_pcvar_float(p_esp_timer), 0.0, 0.0, 2)
 				
 				new name[37]=""
 				new tmp[33]
@@ -559,7 +562,7 @@ public esp_timer(){
 			}
 		}
 	}
-	set_task(get_cvar_float("esp_timer"),"esp_timer") // keep it going
+	set_task(get_pcvar_float(p_esp_timer),"esp_timer") // keep it going
 	return PLUGIN_CONTINUE	
 }
 
@@ -732,7 +735,7 @@ public make_TE_BEAMPOINTS(id,color,Float:Vec1[3],Float:Vec2[3],width,target_team
     write_short(laser) // sprite index
     write_byte(3) // starting frame
     write_byte(0) // frame rate in 0.1's
-    write_byte(floatround(get_cvar_float("esp_timer")*10)) // life in 0.1's
+    write_byte(floatround(get_pcvar_float(p_esp_timer)*10)) // life in 0.1's
     write_byte(width) // line width in 0.1's
     write_byte(0) // noise amplitude in 0.01's
     write_byte(esp_colors[color][0])
@@ -756,7 +759,7 @@ public make_TE_BEAMENTPOINT(id,Float:target_origin[3],width,target_team){
     write_short(laser)
     write_byte(1)		
     write_byte(1)
-    write_byte(floatround(get_cvar_float("esp_timer")*10))
+    write_byte(floatround(get_pcvar_float(p_esp_timer)*10))
     write_byte(width)
     write_byte(0)
     write_byte(team_colors[target_team][0])

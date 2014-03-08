@@ -580,6 +580,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     new name[32]
     new rank
     new Float:res, skill
+    new total
 
     if (SQL_MoreResults(query))
     {
@@ -587,11 +588,12 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     	rank = SQL_ReadResult(query, column("rank"))
         SQL_ReadResult(query, column("skill"), res)
         skill = floatround(res*1000)
+        total = SQL_ReadResult(query, column("total"))
     		
-    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 place with %d skill!", name, rank, skill)
+    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 of %d place with %d skill!", name, rank, total, skill)
     } 
     else
-    	colored_print(id, "^x04***^x03 %s^x01 should KILL MORE!", whois)
+    	colored_print(id, "^x04***^x03 %s^x01 is not found. Check register!", whois)
 }
 
 public show_stats(id, unquoted_whois[])

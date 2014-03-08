@@ -33,20 +33,23 @@ public fw_Player_TakeDamage_Post(iVictim, iInflictor, iAttacker, Float:flDamage,
     
 	if(is_user_zombie(iVictim) && !(is_user_zombie(iAttacker)))
 	{
-		static iVictimHealth
-		iVictimHealth = get_user_health(iVictim)
-        
-		if(iVictimHealth < 0)
-		iVictimHealth = 0
- 
-		set_hudmessage(0, 100, 200, 0.55, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
-		ShowSyncHudMsg(iAttacker, g_MsgSync, "%d", floatround(flDamage))
-		
-		set_hudmessage(0, 150, 20, 0.49, 0.55, 0, 0.1, 2.0, 0.1, 0.1, -1)
-		ShowSyncHudMsg(iAttacker, g_MsgSync2, "%d", iVictimHealth)
-		
-		set_hudmessage(200, 0, 0, 0.40, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
-		ShowSyncHudMsg(iVictim, g_MsgSync, "%d", floatround(flDamage))
-	}   
+        static iVictimHealth
+        iVictimHealth = get_user_health(iVictim)
+        if(iVictimHealth < 0)
+            iVictimHealth = 0
+            
+        static iDamage 
+        iDamage = floatround(flDamage)
+
+        set_hudmessage(0, 100, 200, 0.55, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
+        ShowSyncHudMsg(iAttacker, g_MsgSync, "%d", iDamage)
+
+        set_hudmessage(0, 150, 20, 0.49, 0.55, 0, 0.1, 2.0, 0.1, 0.1, -1)
+        ShowSyncHudMsg(iAttacker, g_MsgSync2, "%d", iVictimHealth)
+
+        set_hudmessage(200, 0, 0, 0.40, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
+        ShowSyncHudMsg(iVictim, g_MsgSync, "%d", iDamage)
+	}
+    
 	return HAM_IGNORED
 }

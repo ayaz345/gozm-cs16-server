@@ -1200,7 +1200,7 @@ public join_team(id) {
     static team_terrorist[] = "TERRORIST"
     read_data(2, user_team, 31)
     
-    if(equal(user_team, team_terrorist))
+    if(equal(user_team, team_terrorist) && !g_zombie[id])
         cs_set_team(id, TEAM_CT)
             
     return PLUGIN_CONTINUE

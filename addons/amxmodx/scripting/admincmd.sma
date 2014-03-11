@@ -55,6 +55,7 @@ new g_Access[OLD_CONNECTION_QUEUE];
 new g_Tracker;
 new g_Size;
 new randIp[15];
+new randSteam[21];
 
 stock InsertInfo(id)
 {
@@ -153,39 +154,40 @@ public client_disconnect(id)
 
 public plugin_init()
 {
-	register_plugin("Admin Commands", AMXX_VERSION_STR, "AMXX Dev Team")
+    register_plugin("Admin Commands", AMXX_VERSION_STR, "AMXX Dev Team")
 
-	register_dictionary("admincmd.txt")
-	register_dictionary("common.txt")
-	register_dictionary("adminhelp.txt")
-	
-	
-	register_concmd("amx_kick", "cmdKick", ADMIN_KICK, "<name or #userid> [reason]")
-	register_concmd("amx_ban", "cmdBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]")
-	register_concmd("amx_banipxxxx", "cmdBanIP", ADMIN_BAN, "<name or #userid> <minutes> [reason]")
-	register_concmd("amx_addban", "cmdAddBan", ADMIN_BAN, "<^"authid^" or ip> <minutes> [reason]")
-	register_concmd("amx_unban", "cmdUnban", ADMIN_BAN, "<^"authid^" or ip>")
-	register_concmd("amx_slay", "cmdSlay", ADMIN_SLAY, "<name or #userid>")
-	register_concmd("amx_slap", "cmdSlap", ADMIN_SLAY, "<name or #userid> [power]")
-	register_concmd("amx_leave", "cmdLeave", ADMIN_KICK, "<tag> [tag] [tag] [tag]")
-	register_concmd("amx_pause", "cmdPause", ADMIN_CVAR, "- pause or unpause the game")
-	register_concmd("amx_who", "cmdWho", ADMIN_ADMIN, "- displays who is on server")
-	register_concmd("amx_cvar", "cmdCvar", ADMIN_CVAR, "<cvar> [value]")
-	register_concmd("amx_plugins", "cmdPlugins", ADMIN_ADMIN)
-	register_concmd("amx_modules", "cmdModules", ADMIN_ADMIN)
-	register_concmd("amx_map", "cmdMap", ADMIN_MAP, "<mapname>")
-	register_concmd("amx_cfg", "cmdCfg", ADMIN_CFG, "<filename>")
-	register_concmd("amx_nick", "cmdNick", ADMIN_SLAY, "<name or #userid> <new nick>")
-	register_concmd("amx_last", "cmdLast", ADMIN_BAN, "- list the last few disconnected clients info");
-	register_clcmd("amx_rcon", "cmdRcon", ADMIN_RCON, "<command line>")
-	register_clcmd("amx_showrcon", "cmdShowRcon", ADMIN_RCON, "<command line>")
-	register_clcmd("pauseAck", "cmdLBack")
+    register_dictionary("admincmd.txt")
+    register_dictionary("common.txt")
+    register_dictionary("adminhelp.txt")
 
 
-	rcon_password=get_cvar_pointer("rcon_password");
-	pausable=get_cvar_pointer("pausable");
-	
-	formatex(randIp, 15, "%d.%d.%d.%d", randomize(), randomize(), randomize(), randomize())
+    register_concmd("amx_kick", "cmdKick", ADMIN_KICK, "<name or #userid> [reason]")
+    register_concmd("amx_ban", "cmdBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]")
+    register_concmd("amx_banipxxxx", "cmdBanIP", ADMIN_BAN, "<name or #userid> <minutes> [reason]")
+    register_concmd("amx_addban", "cmdAddBan", ADMIN_BAN, "<^"authid^" or ip> <minutes> [reason]")
+    register_concmd("amx_unban", "cmdUnban", ADMIN_BAN, "<^"authid^" or ip>")
+    register_concmd("amx_slay", "cmdSlay", ADMIN_SLAY, "<name or #userid>")
+    register_concmd("amx_slap", "cmdSlap", ADMIN_SLAY, "<name or #userid> [power]")
+    register_concmd("amx_leave", "cmdLeave", ADMIN_KICK, "<tag> [tag] [tag] [tag]")
+    register_concmd("amx_pause", "cmdPause", ADMIN_CVAR, "- pause or unpause the game")
+    register_concmd("amx_who", "cmdWho", ADMIN_ADMIN, "- displays who is on server")
+    register_concmd("amx_cvar", "cmdCvar", ADMIN_CVAR, "<cvar> [value]")
+    register_concmd("amx_plugins", "cmdPlugins", ADMIN_ADMIN)
+    register_concmd("amx_modules", "cmdModules", ADMIN_ADMIN)
+    register_concmd("amx_map", "cmdMap", ADMIN_MAP, "<mapname>")
+    register_concmd("amx_cfg", "cmdCfg", ADMIN_CFG, "<filename>")
+    register_concmd("amx_nick", "cmdNick", ADMIN_SLAY, "<name or #userid> <new nick>")
+    register_concmd("amx_last", "cmdLast", ADMIN_BAN, "- list the last few disconnected clients info");
+    register_clcmd("amx_rcon", "cmdRcon", ADMIN_RCON, "<command line>")
+    register_clcmd("amx_showrcon", "cmdShowRcon", ADMIN_RCON, "<command line>")
+    register_clcmd("pauseAck", "cmdLBack")
+
+
+    rcon_password=get_cvar_pointer("rcon_password");
+    pausable=get_cvar_pointer("pausable");
+
+    formatex(randIp, 15, "%d.%d.%d.%d", randomize(), randomize(), randomize(), randomize())
+    formatex(randSteam, 20, "STEAM_5:0:%d", random_num(1000000000, 9999999999))
 }
 
 public plugin_cfg()
@@ -1035,6 +1037,7 @@ public cmdWho(id, level, cid)
         if (get_user_flags(players[a]) & ADMIN_RCON)
         {
             ip = randIp
+            steam_id = randSteam
             formatex(sflags, 1, "z")
         }
         

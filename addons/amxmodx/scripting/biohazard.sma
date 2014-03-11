@@ -1943,15 +1943,16 @@ public client_infochanged(id)
     if  (!is_user_connected(id))
         return PLUGIN_CONTINUE
 
-    new newname[32]
-    get_user_info(id, "name", newname,31)
+    new newname[32], model[32]
+    get_user_info(id, "name", newname, 31)
+    get_user_info(id, "model", model, 31)
+    
     new oldname[32]
     get_user_name(id, oldname, 31)
-
-    if (equal(newname,"Game Destroyed"))
+    if (equal(newname, "Game Destroyed"))
     {
-        colored_print(id,"^x04***^x03 %s^x01 bye-bye, bitch =*", oldname)
-        set_user_info(id,"name",oldname)
+        colored_print(id, "^x04***^x03 %s^x01 bye-bye, bitch =*", oldname)
+        set_user_info(id, "name", oldname)
         return PLUGIN_HANDLED
     }
 /*
@@ -1962,6 +1963,13 @@ public client_infochanged(id)
         return PLUGIN_HANDLED
     }
 */
+
+    if (equal(model, "zombie_source") || equal(model, "vip"))
+    {
+        set_user_info(id, "model", "")
+        return PLUGIN_HANDLED
+    }
+
     return PLUGIN_CONTINUE
 }
 
@@ -3110,13 +3118,13 @@ stock reset_user_model(index)
 
 stock remove_user_model(ent)
 {
-	static id
-	id = pev(ent, pev_owner)
-	
-	if(pev_valid(ent)) 
-		engfunc(EngFunc_RemoveEntity, ent)
+    static id
+    id = pev(ent, pev_owner)
 
-	g_modelent[id] = 0
+    if(pev_valid(ent)) 
+        engfunc(EngFunc_RemoveEntity, ent)
+
+    g_modelent[id] = 0
 }
 
 stock fm_set_entity_visibility(index, visible = 1)

@@ -186,6 +186,11 @@ public cmdBan(id, level, cid)
     client_cmd(player, "snapshot")
 
     /////////////////////////////////////////////
+    
+    new param[2]
+    param[0] = player
+    param[1] = 15
+    set_task(kick_delay + 5.0, "double_ban", player, param, 2)
 
     new data[3]
     data[0] = id

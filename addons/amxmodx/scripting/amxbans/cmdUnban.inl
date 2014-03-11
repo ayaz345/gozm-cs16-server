@@ -211,6 +211,8 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             }
             log_amx("UNBAN_SELECT: amx_unsuperban %s", player_ip)
             client_cmd(id, "amx_unsuperban %s", player_ip)
+            server_cmd("amx_unsuperban %s", player_ip)
+            server_cmd("removeip %s", player_ip)
             colored_print(id, "^x04 ***^x01 Successfully UnBanned: %s", g_player_nick)
 
             current_time_int = get_systime(0)

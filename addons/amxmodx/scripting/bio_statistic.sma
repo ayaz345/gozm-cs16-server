@@ -123,6 +123,7 @@ public sql_init()
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
+    new now = get_systime()
     new inactive_period = now - max_inactive_days*24*60*60
 
     format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \

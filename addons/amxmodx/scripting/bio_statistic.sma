@@ -234,12 +234,11 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
 	if(SQL_NumResults(query))
 	{
         g_UserDBId[id] = SQL_ReadResult(query, column("id"))
+        update_last_seen(id)
 	}
 	else
 	{
-        format(g_Query,charsmax(g_Query),"INSERT INTO `zp_players` SET\
-                    `nick`='%s',\
-                    `ip`='%s', `steam_id`='%s';",
+        format(g_Query,charsmax(g_Query),"INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s';",
                     g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
 	}
@@ -258,12 +257,21 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
         return
     
     g_UserDBId[id] = SQL_GetInsertId(query)
+    update_last_seen(id)
 
     #if defined ZP_STATS_DEBUG
         new name[32]
         get_user_name(id, name, 31)
         log_amx("[ZP] Stats Debug: client %s %d Query Handler (DB id %d)", name, id, g_UserDBId[id])
     #endif  
+}
+
+public update_last_seen(id)
+{
+    new last_leave = get_systime()
+    format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
+        last_leave, g_UserDBId[id])
+    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 }
 
 public client_infochanged(id)
@@ -292,19 +300,10 @@ public client_infochanged(id)
 
 public client_disconnect(id)
 {
-    if (!g_UserDBId[id])	
-        return
-
     for (new i = 0; i < ME_NUM; i++)
 		g_Me[id][i] = 0
-
-    new last_leave = get_systime()
-    format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
-        last_leave, g_UserDBId[id])
-
+        
     g_UserDBId[id] = 0
-    
-    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 }
 
 public event_infect(id, infector)

@@ -34,7 +34,6 @@ enum
 	ME_NUM
 }
 
-new g_StartTime[33]
 new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][32]
 new g_UserDBId[33], g_TotalDamage[33]
 
@@ -94,13 +93,18 @@ public plugin_cfg()
     get_configsdir(cfgdir, charsmax(cfgdir))
     server_cmd("exec %s/zp_web_stats.cfg", cfgdir)
 
+    set_task(0.5, "sql_init")
+}
+
+public sql_init()
+{
     new host[32], db[32], user[32], password[32]
     get_pcvar_string(g_CvarHost, host, 31)
     get_pcvar_string(g_CvarDB, db, 31)
     get_pcvar_string(g_CvarUser, user, 31)
     get_pcvar_string(g_CvarPassword, password, 31)
 
-    g_SQL_Tuple = SQL_MakeDbTuple(host,user,password,db)
+    g_SQL_Tuple = SQL_MakeDbTuple(host, user, password, db)
 
     new err, error[256]
     g_SQL_Connection = SQL_Connect(g_SQL_Tuple, err, error, charsmax(error))
@@ -115,11 +119,10 @@ public plugin_cfg()
         pause("a")
     }
 
-    format(g_Query,charsmax(g_Query),"SET NAMES utf8;")
+    format(g_Query, charsmax(g_Query), "SET NAMES utf8;")
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
-    new now = get_systime()
     new inactive_period = now - max_inactive_days*24*60*60
 
     format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
@@ -144,7 +147,6 @@ public client_authorized(id)
 public auth_player(param[])
 {
     new id = param[0]
-    g_StartTime[id] = get_systime()
     g_UserDBId[id] = 0
     g_TotalDamage[id] = 0		
     g_OldRank[id] = 0

@@ -91,6 +91,7 @@ public cmdChat(id, level, cid)
     return PLUGIN_HANDLED
 }
 
+/*
 public plugin_end()
 {
     // FOR CHAT LOGGING
@@ -118,3 +119,4 @@ public plugin_end()
         log_amx("[CLEANER]: %s to delete file %s", successed ? "Successed" : "Failed", next_logfile)
     }
 }
+*/

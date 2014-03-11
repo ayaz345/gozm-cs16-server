@@ -93,6 +93,7 @@ new g_voteStatus, g_voteDuration, g_votesCast;
 new g_runoffChoice[2];
 new g_vote[512];
 new bool:g_handleMapChange = true;
+new bool:g_skip_task_vote_manageEnd = false;
 
 new g_refreshVoteStatus = true, g_voteTallyType[3], g_snuffDisplay[MAX_PLAYER_CNT + 1];
 
@@ -309,7 +310,7 @@ public plugin_cfg()
 
     cvar_freezetime = get_cvar_num("mp_freezetime");
     cvar_bh_starttime = get_cvar_float("bh_starttime");
-    log_amx("GAL: freeze: %d, bh_start: %f", cvar_freezetime, cvar_bh_starttime);
+//    log_amx("GAL: freeze: %d, bh_start: %f", cvar_freezetime, cvar_bh_starttime);
 }
 
 public plugin_end()
@@ -339,7 +340,7 @@ public vote_setupEnd()
 	// as long as the time limit isn't set to 0, we can manage the end of the map automatically
 	if (g_originalTimelimit)
 	{
-		set_task(15.0, "vote_manageEnd", _, _, _, "b");
+		set_task(10.0, "vote_manageEnd", _, _, _, "b");
 	}
 	
 	dbg_log(2, "%32s mp_timelimit: %f  g_originalTimelimit: %f", "vote_setupEnd(out)", get_cvar_float("mp_timelimit"), g_originalTimelimit);
@@ -452,6 +453,12 @@ map_setNext(nextMap[])
 
 public vote_manageEnd()
 {
+    if (g_skip_task_vote_manageEnd)
+    {
+//        client_print(0, print_chat, "SKIPING");
+        return;
+    }
+
     new secondsLeft = get_timeleft();	
 /*
     // are we ready to start an "end of map" vote?
@@ -461,10 +468,10 @@ public vote_manageEnd()
     }
 */
     // are we managing the end of the map?
-    if (secondsLeft < 20 && !g_pauseMapEndManagerTask)
+    if (secondsLeft < 25 && !g_pauseMapEndManagerTask)
     {
         map_manageEnd();
-        log_amx("GAL: map_manageEnd is called from vote_manageEnd() (467)");
+//        log_amx("GAL: map_manageEnd is called from vote_manageEnd() (467)");
     }
 }
 
@@ -819,7 +826,7 @@ public map_manageEnd()
 		{
             // let the server know it's the last round
             g_wasLastRound = true;
-            log_amx("GAL: g_wasLastRound is set to true");
+//            log_amx("GAL: g_wasLastRound is set to true");
 
             // let the players know it's the last round
             if (g_voteStatus & VOTE_FORCED)
@@ -854,7 +861,7 @@ public map_manageEnd()
             message_begin(MSG_ALL, SVC_INTERMISSION);
             message_end();
             set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
-            log_amx("GAL: SCOREBOARD");
+//            log_amx("GAL: SCOREBOARD");
 		}
 /*
         new map[MAX_MAPNAME_LEN + 1];
@@ -896,10 +903,12 @@ public event_round_start()
         map_manageEnd();
     }
 */
+    g_skip_task_vote_manageEnd = false;
+
     if (g_wasLastRound) {
         server_cmd("mp_freezetime %d", cvar_freezetime);
         server_cmd("bh_starttime %f", cvar_bh_starttime);
-        log_amx("GAL: freeze: %d, bh_start: %f - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
+//        log_amx("GAL: freeze: %d, bh_start: %f - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
         
         if (g_voteStatus & VOTE_FORCED)
             map_manageEnd();
@@ -910,11 +919,13 @@ public event_round_start()
 
 public logevent_round_end()
 {
+    g_skip_task_vote_manageEnd = true;
+    
     if (g_wasLastRound) {
         new vote_duration = get_pcvar_num(cvar_voteDuration);
         server_cmd("mp_freezetime %d", vote_duration + 8);
         server_cmd("bh_starttime %d", float(vote_duration + 8 + 10));
-        log_amx("GAL: freeze: %d, bh_start: %f - ROUND END", vote_duration + 8, float(vote_duration + 8 + 10));
+//        log_amx("GAL: freeze: %d, bh_start: %f - ROUND END", vote_duration + 8, float(vote_duration + 8 + 10));
     }
 }
 
@@ -2212,14 +2223,14 @@ public vote_expire()
         {
             // tell the map we need to finish up
             set_task(2.0, "map_manageEnd");
-            log_amx("GAL: map_manageEnd is called from IF (2214)");
+//            log_amx("GAL: map_manageEnd is called from IF (2214)");
         }
         else
         {
             // restart map end task
             g_pauseMapEndManagerTask = false;
             map_manageEnd();
-            log_amx("GAL: map_manageEnd is called from ELSE (2221)");
+//            log_amx("GAL: map_manageEnd is called from ELSE (2221)");
         }
 	}
 }

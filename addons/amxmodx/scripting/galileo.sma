@@ -468,7 +468,7 @@ public vote_manageEnd()
     }
 */
     // are we managing the end of the map?
-    if (secondsLeft < 25 && !g_pauseMapEndManagerTask)
+    if (secondsLeft < 22 && !g_pauseMapEndManagerTask)
     {
         map_manageEnd();
 //        log_amx("GAL: map_manageEnd is called from vote_manageEnd() (467)");

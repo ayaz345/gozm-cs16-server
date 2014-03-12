@@ -1,9 +1,10 @@
 #include <amxmodx>
 #include <cs_team_changer>
+#include <fakemeta>
 
 #define VIP_FLAG ADMIN_LEVEL_H
 #define ADMIN_FLAG ADMIN_BAN
-
+#define OFFSET_CSMENUCODE	205
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3
 #define MPROP_EXITNAME  4
@@ -18,6 +19,8 @@ public plugin_init()
 
 public mainMenu(id)
 {
+    set_pdata_int(id, OFFSET_CSMENUCODE, 0)  // prevent from showing CS std menu
+
     new i_Menu = menu_create("\yGoZm Menu", "menu_handler" )
 
     menu_additem(i_Menu, "Re-Pick Weapons", "1")

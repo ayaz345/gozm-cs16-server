@@ -93,7 +93,7 @@ public plugin_cfg()
     get_configsdir(cfgdir, charsmax(cfgdir))
     server_cmd("exec %s/zp_web_stats.cfg", cfgdir)
 
-    set_task(0.5, "sql_init")
+    set_task(0.1, "sql_init")
 }
 
 public sql_init()

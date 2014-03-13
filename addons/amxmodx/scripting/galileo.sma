@@ -836,7 +836,7 @@ public map_manageEnd()
             else
             {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
-                colored_print(0, "^x04***^x01 FINAL ROUND! Time has expired.^x04 ***");
+                colored_print(0, "^x04***^x01 FINAL ROUND! Time has expired^x04 ***");
             }
 
             // prevent the map from ending automatically
@@ -923,7 +923,7 @@ public logevent_round_end()
     
     if (g_wasLastRound) {
         new vote_duration = get_pcvar_num(cvar_voteDuration);
-        server_cmd("mp_freezetime %d", vote_duration + 8);
+        server_cmd("mp_freezetime %d", vote_duration + 8 + 1);
         server_cmd("bh_starttime %d", float(vote_duration + 8 + 10));
 //        log_amx("GAL: freeze: %d, bh_start: %f - ROUND END", vote_duration + 8, float(vote_duration + 8 + 10));
     }

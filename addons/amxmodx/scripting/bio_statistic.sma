@@ -308,28 +308,26 @@ public client_disconnect(id)
 
 public event_infect(id, infector)
 {
-	if (infector)
-	{
-		if (g_UserDBId[id])
-		{
-			format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `infected` = `infected` + 1 WHERE `id`=%d;", g_UserDBId[id])
-			SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-		}
-		
-		if (g_UserDBId[infector])
-		{
-			format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `infect` = `infect` + 1 WHERE `id`=%d;", g_UserDBId[infector])
-			SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-		
-			g_Me[infector][ME_INFECT]++
-		}
-			
-	}
-	else if (g_UserDBId[id])
-	{
-		format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `first_zombie` = `first_zombie` + 1 WHERE `id`=%d;", g_UserDBId[id])
-		SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-	}
+    if (infector)
+    {
+        g_Me[infector][ME_INFECT]++
+
+        if (g_UserDBId[id])
+        {
+            format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `infected` = `infected` + 1 WHERE `id`=%d;", g_UserDBId[id])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+        }
+        if (g_UserDBId[infector])
+        {
+            format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `infect` = `infect` + 1 WHERE `id`=%d;", g_UserDBId[infector])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+        }
+    }
+    else if (g_UserDBId[id])
+    {
+        format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `first_zombie` = `first_zombie` + 1 WHERE `id`=%d;", g_UserDBId[id])
+        SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+    }
 }
 
 public logevent_endRound()

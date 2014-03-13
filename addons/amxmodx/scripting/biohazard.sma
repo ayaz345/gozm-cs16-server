@@ -1167,7 +1167,7 @@ public logevent_round_start()
 
     // Check for human-terrorist-bug
     // after 45 sec connected players cant join game
-//    set_task(get_pcvar_float(cvar_starttime)+1.0, "check_terrorist_bug", TASKID_TERBUG)
+    set_task(get_pcvar_float(cvar_starttime)+2.0, "check_terrorist_bug", TASKID_TERBUG)
 }
 
 public check_terrorist_bug()
@@ -1177,22 +1177,20 @@ public check_terrorist_bug()
 
     static players[32], num
     // get ALIVE players
-    get_players(players, num, "a")
+    get_players(players, num, "ae", "TERRORIST")
 
-    static i, id, team
+    static i, id
     for(i = 0; i < num; i++)
     {
-        id = players[i] 
-        team = fm_get_user_team(id)
-        
-        if (team == TEAM_TERRORIST && !g_zombie[id])
+        id = players[i]
+        if (!g_zombie[id])
             cs_set_team(id, TEAM_CT)
     }
     return PLUGIN_CONTINUE
 }
 
-public join_team(id) {
-    if (g_roundended || !g_gamestarted || !is_user_connected(id))
+public join_team() {
+    if (g_roundended || !g_gamestarted)
 		return PLUGIN_CONTINUE
     
     new id = read_data(1)
@@ -2271,7 +2269,7 @@ public task_initround()
         get_user_name(newzombie, name, 31)
         
         ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD", name)
-        client_print(0, print_console, "!!!WARNING!!! %s is Infected!", name)
+        client_print(0, print_console, "%s is Zombie!", name)
     }
     else
     {

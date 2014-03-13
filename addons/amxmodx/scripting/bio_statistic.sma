@@ -19,23 +19,13 @@
 
 enum 
 {
-	KILLER_ID,
-	KILLER_HP,
-	KILLER_ARMOUR,
-	KILLER_NUM
-}
-
-enum 
-{
 	ME_DMG,
-	ME_HIT,
 	ME_INFECT,
-	ME_KILLS,
 	ME_NUM
 }
 
 new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][32]
-new g_UserDBId[33], g_TotalDamage[33]
+new g_UserDBId[33]
 
 new Handle:g_SQL_Connection, Handle:g_SQL_Tuple
 
@@ -46,17 +36,11 @@ new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 
 new g_CvarAuthType, g_CvarExcludingNick, g_CvarMaxInactiveDays
 
-new g_damagedealt[33]
-
 new const g_types[][] = {
     "first_zombie", "infect", "zombiekills", "humankills", "nemkills", "survkills", "suicide", "extra"
 }
-	
-new g_Killers[33][KILLER_NUM]
+
 new g_Me[33][ME_NUM]
-
-new g_OldRank[33]
-
 new g_text[5096]
 
 public plugin_init() 
@@ -149,9 +133,6 @@ public auth_player(param[])
 {
     new id = param[0]
     g_UserDBId[id] = 0
-    g_TotalDamage[id] = 0		
-    g_OldRank[id] = 0
-    g_damagedealt[id] = 0
 
     reset_player_statistic(id)
 
@@ -160,7 +141,7 @@ public auth_player(param[])
 
     get_pcvar_string(g_CvarExcludingNick, exluding_nick, 31)
     if (exluding_nick[0] && containi(unquoted_name, exluding_nick) != -1)
-        return
+        return PLUGIN_CONTINUE
 
     SQL_QuoteString(g_SQL_Connection , g_UserName[id], 31, unquoted_name)
                     
@@ -215,33 +196,34 @@ public auth_player(param[])
 #if defined ZP_STATS_DEBUG
 	log_amx("[ZP] Stats Debug: client %d autorized (Name %s, IP %s, Steam ID %s)", id, g_UserName[id], g_UserIP[id], g_UserAuthID[id])
 #endif
-
+    return PLUGIN_CONTINUE
 }
 
 public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-	if(FailState != TQUERY_SUCCESS)
-	{
-		log_amx("[ZP] ClientAuth_QueryHandler_Part1 error %d, %s", err, error)
-		return
-	}
-	
-	new id = data[0]
-	
-	if (data[1] != get_user_userid(id))
-		return
-	
-	if(SQL_NumResults(query))
-	{
+    if(FailState != TQUERY_SUCCESS)
+    {
+        log_amx("[ZP] ClientAuth_QueryHandler_Part1 error %d, %s", err, error)
+        return PLUGIN_CONTINUE
+    }
+
+    new id = data[0]
+
+    if (data[1] != get_user_userid(id))
+        return PLUGIN_CONTINUE
+
+    if(SQL_NumResults(query))
+    {
         g_UserDBId[id] = SQL_ReadResult(query, column("id"))
         update_last_seen(id)
-	}
-	else
-	{
+    }
+    else
+    {
         format(g_Query,charsmax(g_Query),"INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s';",
                     g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
-	}
+    }
+    return PLUGIN_CONTINUE
 }
 
 public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -249,12 +231,12 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
     if(FailState != TQUERY_SUCCESS)
     {
         log_amx("[ZP] ClientAuth_QueryHandler_Part2 error %d, %s", err, error)
-        return
+        return PLUGIN_CONTINUE
     }
     
     new id = data[0]
     if (data[1] != get_user_userid(id))
-        return
+        return PLUGIN_CONTINUE
     
     g_UserDBId[id] = SQL_GetInsertId(query)
     update_last_seen(id)
@@ -264,6 +246,7 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
         get_user_name(id, name, 31)
         log_amx("[ZP] Stats Debug: client %s %d Query Handler (DB id %d)", name, id, g_UserDBId[id])
     #endif  
+    return PLUGIN_CONTINUE
 }
 
 public update_last_seen(id)
@@ -272,6 +255,7 @@ public update_last_seen(id)
     format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
         last_leave, g_UserDBId[id])
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+    return PLUGIN_CONTINUE
 }
 
 public client_infochanged(id)
@@ -334,8 +318,8 @@ public logevent_endRound()
 {
 	if (get_playersnum())
 	{
-        new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0, maxKillsId = 0
-        new maxInfectName[32], maxDmgName[32], maxKillsName[32]
+        new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0
+        new maxInfectName[32], maxDmgName[32]
         new extraMaxInfectNum = 0, maxInfectList[32]
         get_players(players, playersNum, "ch")
         for (i = 0; i < playersNum; i++)
@@ -352,17 +336,13 @@ public logevent_endRound()
             if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG]) {
                 maxDmgId = i
             }
-            if (g_Me[players[i]][ME_KILLS] > g_Me[players[maxKillsId]][ME_KILLS])
-                maxKillsId = i	
         }
         
         maxInfectId = maxInfectList[random_num(0, extraMaxInfectNum)]
         get_user_name(players[maxInfectId], maxInfectName, 31)
         get_user_name(players[maxDmgId], maxDmgName, 31)
-        get_user_name(players[maxKillsId], maxKillsName, 31)
         
-        if (g_Me[players[maxInfectId]][ME_INFECT] || 
-            g_Me[players[maxKillsId]][ME_KILLS] ||
+        if (g_Me[players[maxInfectId]][ME_INFECT] ||
             g_Me[players[maxDmgId]][ME_DMG])
         {
             for (i = 0; i < playersNum; i++)
@@ -389,7 +369,6 @@ public logevent_endRound()
 public event_newround()
 {
     new players[32], playersNum, i
-    
     get_players(players, playersNum, "ch")
     for (i = 0; i < playersNum; i++)
         reset_player_statistic(players[i])
@@ -397,17 +376,6 @@ public event_newround()
 
 public fw_HamKilled(id, attacker, shouldgib)
 {
-    if (is_user_alive(attacker) && g_UserDBId[attacker])
-    {
-        if (is_user_connected(attacker))
-        {
-            g_Killers[id][KILLER_ID] = attacker
-            g_Killers[id][KILLER_HP] = get_user_health(attacker)
-            g_Killers[id][KILLER_ARMOUR] = get_user_armor(attacker)
-            g_Me[attacker][ME_KILLS] ++
-        }
-    }
-
     new type, player = attacker
     new killer_frags = 1
 
@@ -451,83 +419,68 @@ public fw_HamKilled(id, attacker, shouldgib)
 
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 {
-	if (victim == attacker || !is_user_alive(attacker) || !is_user_connected(victim) || !is_user_zombie(victim))
-		return	
-	
-	if (is_user_alive(attacker) && g_UserDBId[attacker] && !is_user_zombie(attacker))
-	{
-		g_TotalDamage[attacker] += floatround(damage)
-		g_Me[attacker][ME_DMG] += floatround(damage)
-	}
+    if (victim == attacker || !is_user_alive(attacker) || !is_user_connected(victim) || !is_user_zombie(victim))
+        return PLUGIN_CONTINUE	
+
+    if (is_user_alive(attacker) && g_UserDBId[attacker] && !is_user_zombie(attacker))
+    {
+        g_Me[attacker][ME_DMG] += floatround(damage)
+    }
+    return PLUGIN_CONTINUE
 }
 
 public reset_player_statistic(id)
 {
-	new i
-	for (i = 0; i < KILLER_NUM; i++)
-		g_Killers[id][i] = 0
-	for (i = 0; i < ME_NUM; i++)
+	for (new i = 0; i < ME_NUM; i++)
 		g_Me[id][i] = 0
 }
 
 public handleSay(id)
 {
-	new args[64]
-	
-	read_args(args, charsmax(args))
-	remove_quotes(args)
-	
-	new arg1[16]
-	new arg2[32]
-	
-	strbreak(args, arg1, charsmax(arg1), arg2, charsmax(arg2))
-	if (equal(arg1,"/hp"))
-		show_hp(id)
-	else
-	if (equal(arg1,"/me"))
-		show_me(id)	
-	else
-	if (equal(arg1,"/rank"))
-		show_rank(id,arg2)
-	else
-	if (equal(arg1, "/rankstats") || equal(arg1, "/stats"))
-		show_stats(id, arg2)
-	else
-	if (equal(arg1,"/top", 4))
-	{
-		if (arg1[4])
-			show_top(id, str_to_num(arg1[4]))
-		else
-			show_top(id, 15)
-	}
-}
+    new args[64]
 
-public show_hp(id)
-{
-	if (g_Killers[id][KILLER_ID])
-	{
-		new name[32]
-		get_user_name(g_Killers[id][KILLER_ID], name, 31)
-		colored_print(id, "^x04 ***^x01 Killed by^x04 %s^x01 (%d hp)",
-			name, g_Killers[id][KILLER_HP])
-	}
-	else
-		colored_print(id, "^x04 ***^x01 You have no killer.")
+    read_args(args, charsmax(args))
+    remove_quotes(args)
+
+    new arg1[16]
+    new arg2[32]
+
+    strbreak(args, arg1, charsmax(arg1), arg2, charsmax(arg2))
+    if (equal(arg1,"/me"))
+        show_me(id)	
+    else
+    if (equal(arg1,"/rank"))
+        show_rank(id,arg2)
+    else
+    if (equal(arg1, "/rankstats") || equal(arg1, "/stats"))
+        show_stats(id, arg2)
+    else
+    if (equal(arg1,"/top", 4))
+    {
+        if (arg1[4])
+            show_top(id, str_to_num(arg1[4]))
+        else
+            show_top(id, 15)
+    }
+
+    return PLUGIN_HANDLED
 }
 
 public show_me(id)
 {
-    if (g_Me[id][ME_DMG] && !is_user_zombie(id))
+    if (!is_user_zombie(id))
     {
         colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 damage", g_Me[id][ME_DMG])
     }
-    else if (g_Me[id][ME_INFECT] && is_user_zombie(id))
-    {
-        colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 infection%s", 
-            g_Me[id][ME_INFECT], g_Me[id][ME_INFECT] > 1 ? "s" : "")
-    }
     else
-        colored_print(id, "^x04 ***^x01 You have no hits")
+    {
+        colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 infection%s and^x04 %d^x01 damage", 
+            g_Me[id][ME_INFECT],
+            g_Me[id][ME_INFECT] == 1 ? "" : "s",
+            g_Me[id][ME_DMG])
+    }
+    
+    return PLUGIN_HANDLED
 }
 
 public show_rank(id, unquoted_whois[])
@@ -557,6 +510,8 @@ public show_rank(id, unquoted_whois[])
     data[1] = get_user_userid(id)
 
     SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, 2)
+    
+    return PLUGIN_HANDLED
 }
 
 public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -564,14 +519,14 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     if(FailState != TQUERY_SUCCESS)
     {
         log_amx("[ZP] <ShowRank> error %d, %s", err, error)
-        return
+        return PLUGIN_CONTINUE
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
     {
     	log_amx("[WEBSTATS] <ShowRank_QueryHandler> error %d != %d", data[1], get_user_userid(id))
-    	return
+    	return PLUGIN_CONTINUE
     }
     
     new executed_query[1024]
@@ -594,6 +549,8 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     } 
     else
     	colored_print(id, "^x04***^x03 %s^x01 is not found. Check register!", whois)
+        
+    return PLUGIN_CONTINUE
 }
 
 public show_stats(id, unquoted_whois[])
@@ -625,6 +582,8 @@ public show_stats(id, unquoted_whois[])
     data[1] = get_user_userid(id)
 
     SQL_ThreadQuery(g_SQL_Tuple, "ShowStats_QueryHandler", g_Query, data, 2)
+    
+    return PLUGIN_HANDLED
 }
 
 public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -632,12 +591,12 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     if(FailState != TQUERY_SUCCESS)
     {
     	log_amx("[ZP] <ShowStats> error %d, %s", err, error)
-    	return
+    	return PLUGIN_CONTINUE
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
-    	return
+    	return PLUGIN_CONTINUE
 
     new name[32], ip[32], steam_id[32]
     new len
@@ -709,6 +668,8 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     } 
     else
     	client_print(id, print_chat, "%L", id, "NOT_RANKED", whois)
+    
+    return PLUGIN_CONTINUE
 }
 
 public show_top(id, top)
@@ -719,6 +680,8 @@ public show_top(id, top)
     data[1] = get_user_userid(id)
     data[2] = top
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
+    
+    return PLUGIN_HANDLED
 }
 
 public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -726,12 +689,12 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     if(FailState != TQUERY_SUCCESS)
     {
     	log_amx("[ZP] <ShowTop> error %d, %s", err, error)
-    	return
+    	return PLUGIN_CONTINUE
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
-    	return
+    	return PLUGIN_CONTINUE
 
     new count
 
@@ -740,7 +703,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     else
     {
         client_print(id, print_chat, "%L", id, "STATS_NULL")
-        return
+        return PLUGIN_CONTINUE
     }
 
     new top = data[2]
@@ -757,6 +720,8 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     more_data[2] = data[2]
     more_data[3] = count
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part2", g_Query, more_data, 4)
+    
+    return PLUGIN_CONTINUE
 }
 
 public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
@@ -764,12 +729,12 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     if(FailState != TQUERY_SUCCESS)
     {
     	log_amx("[ZP] <ShowTop> error %d, %s", err, error)
-    	return
+    	return PLUGIN_CONTINUE
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
-    	return
+    	return PLUGIN_CONTINUE
 
     new max_len = charsmax(g_text)
 
@@ -840,14 +805,16 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     show_motd(id, g_text, title)
 
     setc(g_text, max_len, 0)
+    
+    return PLUGIN_CONTINUE
 }
 
 public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, Float:querytime)
 {
-	if(FailState != TQUERY_SUCCESS)
-	{
-		log_amx("[ZP] Stats: sql error: %d (%s)", err, error)
-		return
-	}
+    if(FailState != TQUERY_SUCCESS)
+    {
+        log_amx("[ZP] Stats: sql error: %d (%s)", err, error)
+    }
+    return PLUGIN_CONTINUE
 }
 

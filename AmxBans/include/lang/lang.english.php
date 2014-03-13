@@ -196,7 +196,7 @@ define("_PERMBANS","permanent bans");
 define("_TEMPBANS","temporary bans");
 define("_EXPORTRESULT","Export results");
 define("_SOMETHINGWRONG","Something went wrong!");
-define("_NBEXPBANS","No. of expired bans");
+define("_NBEXPBANS","No. of expired bans (AmxBans/Superban)");
 define("_WHATISPRUNING","What is 'pruning'?");
 define("_UNAVAILABLE","Unavailable");
 define("_ERRORAMXBANSDISABLED","AMXBans front-end has been temporarily disabled by the administrator. Please check back soon.");

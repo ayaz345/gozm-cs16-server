@@ -25,7 +25,7 @@ while($result = mysql_fetch_object($resource)) {
 		$amxadmins_info = array(
 			"access"	=> $result->access,
 			"nickname"	=> $result->nickname,
-			"time"		=> date("d-m-Y H:i:s", $result->last_leave)
+			"time"		=> date("d-m-Y [H:i]", $result->last_leave)
 			);
 	
 		$amxadmins_array[] = $amxadmins_info;

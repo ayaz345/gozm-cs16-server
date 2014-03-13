@@ -77,6 +77,10 @@ if ($_POST['autopermban'] == "true") {
 
 if (isset($_POST['submitted']) && $_POST['submitted'] == "true") {
 
+	//Superban
+	$superbans = mysql_query("DELETE FROM `superban` WHERE unbantime < UNIX_TIMESTAMP()") or die(mysql_error());
+	
+
 	//get all bans that need to be pruned...
 	$bans	= mysql_query("SELECT * FROM $config->bans WHERE ban_created + ban_length*60 < UNIX_TIMESTAMP() AND ban_length != 0") or die (mysql_error());
 
@@ -154,6 +158,9 @@ $nextid = $array[Auto_increment] - 1;
 $resource	= mysql_query("SELECT COUNT(bid) AS prune_bans FROM $config->bans WHERE ban_created + ban_length*60 < UNIX_TIMESTAMP() AND ban_length != 0") or die(mysql_error());
 $result		= mysql_fetch_object($resource);
 
+$res2		= mysql_query("SELECT COUNT(banid) AS prune2 FROM `superban` WHERE unbantime < UNIX_TIMESTAMP()") or die(mysql_error());
+$res2		= mysql_fetch_object($res2);
+
 
 /////////////////////////////////////////////////////////////////
 //	Template parsing
@@ -172,6 +179,7 @@ $smarty->assign("section",$section);
 $smarty->assign("dir",$config->document_root);
 $smarty->assign("this",$_SERVER['PHP_SELF']);
 $smarty->assign("bans2prune",$result->prune_bans);
+$smarty->assign("bans2prune2",$res2->prune2);
 
 $smarty->display('main_header.tpl');
 $smarty->display('prune_db.tpl');

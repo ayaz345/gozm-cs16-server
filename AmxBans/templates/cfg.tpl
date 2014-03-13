@@ -205,7 +205,7 @@
 
 		<select name="bans_per_page" style="font-family: verdana, tahoma, arial; font-size: 10px; width: 100px">
 		<option value="10" {if $cfg->bans_per_page == "10"}selected{/if}>10</option>
-		<option value="20" {if $cfg->bans_per_page == "20"}selected{/if}>20</option>
+		<option value="25" {if $cfg->bans_per_page == "25"}selected{/if}>25</option>
 		<option value="30" {if $cfg->bans_per_page == "30"}selected{/if}>30</option>
 		<option value="40" {if $cfg->bans_per_page == "40"}selected{/if}>40</option>
 		<option value="50" {if $cfg->bans_per_page == "50"}selected{/if}>50</option>

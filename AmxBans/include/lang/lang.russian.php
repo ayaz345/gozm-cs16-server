@@ -196,7 +196,7 @@ define("_TEMPBANS","временные");
 define("_EXPORTRESULT","Результат экспорта");
 define("_SOMETHINGWRONG","Что-то пошло не так...");
 define("_DOWNLOAD","скачать");
-define("_NBEXPBANS","Кол.во истекших банов");
+define("_NBEXPBANS","Кол.во истекших банов (AmxBans/Superban)");
 define("_WHATISPRUNING","Что такое 'оптимизация базы'?");
 define("_UNAVAILABLE","Страница не доступна");
 define("_ERRORAMXBANSDISABLED","Страница AMXBans временно отключена администратором. Попробуйте зайти позднее.");

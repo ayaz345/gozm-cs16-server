@@ -49,8 +49,14 @@ $ban_end = "";
 
 if (isset($_POST['action'])) {
 
+    $superban_name = "";
+    $resource = mysql_query("SELECT `player_nick` FROM $config->bans WHERE bid = '".$_POST['bid']."'") or die(mysql_error());
+    $result = mysql_fetch_object($resource);
+    $superban_name = $result->player_nick;
+
 	if ($_POST['action'] == "delete") {
 		$now 	  = date("U");
+        $resource = mysql_query("DELETE FROM `superban` WHERE banname = '$superban_name'") or die(mysql_error());
 		$resource = mysql_query("DELETE FROM $config->bans WHERE bid = '".$_POST['bid']."'") or die(mysql_error());
 		$add_log  = mysql_query("INSERT INTO $config->logs (timestamp, ip, username, action, remarks) VALUES ('$now', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['uid']."', 'delete ban', 'Ban with BanID ".$_POST['bid']." deleted')") or die (mysql_error());
 		$url	  = "$config->document_root";
@@ -231,8 +237,10 @@ if (isset($_POST['action'])) {
 
 		if($_POST['player_ip'] == "") {
 			$resource = mysql_query("UPDATE `$config->bans` SET `player_ip` = NULL, `player_id` = '".$_POST['player_id']."', `player_nick` = '$player_nick', `ban_type` = '".$_POST['ban_type']."', `ban_reason` = '$ban_reason', `ban_length` = '".$_POST['ban_length']."' WHERE `bid` = '".$_POST['bid']."'") or die (mysql_error());
+            $superban = mysql_query("UPDATE `superban` SET `sid` = '".$_POST['player_id']."', `banname` = '$player_nick', `reason` = '$ban_reason', `unbantime` = `bantime` + 60*'".$_POST['ban_length']."' WHERE `banname` = '$superban_name'") or die (mysql_error());
 		} else {
 			$resource = mysql_query("UPDATE `$config->bans` SET `player_ip` = '".$_POST['player_ip']."', `player_id` = '".$_POST['player_id']."', `player_nick` = '$player_nick', `ban_type` = '".$_POST['ban_type']."', `ban_reason` = '$ban_reason', `ban_length` = '".$_POST['ban_length']."' WHERE `bid` = '".$_POST['bid']."'") or die (mysql_error());
+            $superban = mysql_query("UPDATE `superban` SET `ip` = '".$_POST['player_ip']."', `ipcookie` = '".$_POST['player_ip']."', `sid` = '".$_POST['player_id']."', `banname` = '$player_nick', `reason` = '$ban_reason', `unbantime` = `bantime` + 60*'".$_POST['ban_length']."' WHERE `banname` = '$superban_name'") or die (mysql_error());
 		}
 
 		$now = date("U");
@@ -254,6 +262,7 @@ if (isset($_POST['action'])) {
 			
 			$insert_ban = mysql_query("INSERT INTO $config->ban_history (player_ip, player_id, player_nick, admin_ip, admin_id, admin_nick, ban_type, ban_reason, ban_created, ban_length, server_ip, server_name, unban_created, unban_reason, unban_admin_nick) VALUES ('$myban[player_ip]', '$myban[player_id]', '$player_nick', '$myban[admin_ip]', '$myban[admin_id]', '$myban[admin_nick]', '$myban[ban_type]', '$ban_reason', '$myban[ban_created]', '$myban[ban_length]', '$myban[server_ip]', '$myban[server_name]', '$unban_created', '".$_POST['unban_reason']."', '".$_SESSION['uid']."')") or die (mysql_error());
 			$remove_ban = mysql_query("DELETE FROM $config->bans WHERE bid = '".$_POST['bid']."'") or die (mysql_error());
+            $remove_superban = mysql_query("DELETE FROM `superban` WHERE banname = '$player_nick'") or die (mysql_error());
 
 			$now = date("U");
 			$add_log	= mysql_query("INSERT INTO $config->logs (timestamp, ip, username, action, remarks) VALUES ('$now', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['uid']."', 'unban ban', 'Ban with BanID ".$_POST['bid']." unbanned (SteamID $myban[player_id])')") or die (mysql_error());

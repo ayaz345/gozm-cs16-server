@@ -27,8 +27,8 @@ if(isset($_COOKIE["amxbans"])) {
 <div class="line-h"></div-->
 
 <div id="menu">
-	<div class="r"></div>
-	<div class="l"></div>
+	<!--div class="r"></div-->
+	<!--div class="l"></div-->
 	<div class="c">
 		<table cellspacing='1' width='100%'>
 		
@@ -84,7 +84,7 @@ if(isset($_COOKIE["amxbans"])) {
 
 <table border='0' cellpadding='0' cellspacing='0' width='100%'>
   <tr>
-    <td width='100%' valign='top' style='padding: 20px'>
+    <td width='100%' valign='top' style='padding: 0px 20px 20px 20px'>
     <table border='0' cellpadding='0' cellspacing='0' width='100%'>
       
 	<tr>

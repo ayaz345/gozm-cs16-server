@@ -119,7 +119,7 @@ public menu_handler(id, menu, item)
                 cs_set_team(id, TEAM_SPECTATOR)
             else if(get_user_flags(id) & VIP_FLAG || get_user_flags(id) & ADMIN_FLAG)
             {
-                user_kill(id, 1)
+                user_silentkill(id)
                 cs_set_team(id, TEAM_SPECTATOR)
             }
             else

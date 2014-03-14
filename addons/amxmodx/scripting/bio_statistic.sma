@@ -10,7 +10,7 @@
 #pragma dynamic 16384
 
 #define PLUGIN "[BIO] Statistics"
-#define VERSION "0.1"
+#define VERSION "0.9"
 #define AUTHOR "Dimka"
 
 #define TASKID_AUTHORIZE 670
@@ -38,8 +38,6 @@ new whois[1024]
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 new g_CvarMaxInactiveDays
-
-new g_default_freezetime
 
 new const g_types[][] = {
     "first_zombie", "infect", "zombiekills", "humankills", "nemkills", "survkills", "suicide", "extra"
@@ -72,8 +70,6 @@ public plugin_init()
 	
     register_dictionary("time.txt")
     register_dictionary("zp_web_stats.txt")
-    
-    g_default_freezetime = get_cvar_num("mp_freezetime")
 }
 
 public plugin_cfg()
@@ -122,6 +118,7 @@ public sql_init()
 
 public plugin_end()
 {
+    g_connection_established = false
     if(g_SQL_Tuple != Empty_Handle)
         SQL_FreeHandle(g_SQL_Tuple)
     if(g_SQL_Connection != Empty_Handle)
@@ -139,9 +136,6 @@ public client_authorized(id)
 public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
-    new name[32]
-    get_user_name(id, name, 31)
-    log_amx("auth_player called on %s", name)
     g_UserDBId[id] = 0
     
     if (g_connection_established)
@@ -150,11 +144,6 @@ public auth_player(taskid)
         return PLUGIN_CONTINUE
     
     reset_player_statistic(id)
-    
-    new cvar_freezetime
-    cvar_freezetime = get_cvar_num("mp_freezetime")
-    if (cvar_freezetime > g_default_freezetime+2)  // linked with galileo.amxx
-        return PLUGIN_CONTINUE
 
     new unquoted_name[32]
     get_user_name(id, unquoted_name, 31)
@@ -230,6 +219,8 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
 
 public update_last_seen(id)
 {
+    if (!g_connection_established)
+        return PLUGIN_CONTINUE
     new last_leave = get_systime()
     format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
         last_leave, g_UserDBId[id])
@@ -264,9 +255,7 @@ public client_infochanged(id)
 
 public client_disconnect(id)
 {
-    for (new i = 0; i < ME_NUM; i++)
-		g_Me[id][i] = 0
-        
+    reset_player_statistic(id)
     g_UserDBId[id] = 0
 }
 
@@ -416,10 +405,9 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
     if (victim == attacker || !is_user_alive(attacker) || !is_user_connected(victim) || !is_user_zombie(victim))
         return PLUGIN_CONTINUE	
 
-    if (is_user_alive(attacker) && g_UserDBId[attacker] && !is_user_zombie(attacker))
-    {
+    if (is_user_alive(attacker) && !is_user_zombie(attacker))
         g_Me[attacker][ME_DMG] += floatround(damage)
-    }
+    
     return PLUGIN_CONTINUE
 }
 
@@ -463,6 +451,21 @@ public handleSay(id)
             show_top(id, 15)
         return PLUGIN_HANDLED
     }
+    else if (equal(arg1,"/db"))
+    {
+        new playersNum, players[32]
+        get_players(players, playersNum)
+        for (new i = 0; i < playersNum; i++)
+        {
+            if(is_user_connected(players[i]))
+            {
+                new name[32]
+                get_user_name(players[i], name, 31)
+                log_amx("DB:%s=%d", name, g_UserDBId[players[i]])
+            }
+        }
+        return PLUGIN_HANDLED
+    }
 
     return PLUGIN_CONTINUE
 }
@@ -470,9 +473,7 @@ public handleSay(id)
 public show_me(id)
 {
     if (!is_user_zombie(id))
-    {
         colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 damage", g_Me[id][ME_DMG])
-    }
     else
     {
         new client_message[64]

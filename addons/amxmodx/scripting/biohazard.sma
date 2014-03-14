@@ -264,7 +264,7 @@ new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
     
 new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cvar_autonvg, 
     cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
-    cvar_gamedescription, cvar_botquota, cvar_maxzombies, cvar_flashbang, cvar_buytime, 
+    cvar_gamedescription, cvar_botquota, cvar_maxzombies, cvar_flashbang,
 	cvar_punishsuicide, cvar_showtruehealth,
     cvar_obeyarmor, cvar_impactexplode,
     cvar_knockback, cvar_knockback_dist, cvar_ammo,
@@ -297,7 +297,6 @@ public plugin_precache()
     cvar_skyname = register_cvar("bh_skyname", "")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
-    cvar_buytime = register_cvar("bh_buytime", "30")
     cvar_randomspawn = register_cvar("bh_randomspawn", "1")
     cvar_punishsuicide = register_cvar("bh_punishsuicide", "0")
     cvar_autonvg = register_cvar("bh_autonvg", "0")
@@ -748,8 +747,9 @@ public cmd_enablemenu(id)
 {	
     if(get_pcvar_num(cvar_weaponsmenu))
     {
-        client_print(id, print_chat, "%L", id, g_showmenu[id] == false ? "MENU_REENABLED" : "MENU_ALENABLED")
-        g_showmenu[id] = true
+//        client_print(id, print_chat, "%L", id, g_showmenu[id] == false ? "MENU_REENABLED" : "MENU_ALENABLED")
+//        g_showmenu[id] = true
+        display_weaponmenu(id, MENU_PRIMARY, g_menuposition[id] = 0)
     }
     return PLUGIN_HANDLED
 }
@@ -1263,7 +1263,7 @@ public event_newround()
 	g_gamestarted = false
 	
 	static buytime 
-	buytime = get_pcvar_num(cvar_buytime)
+	buytime = get_pcvar_num(cvar_starttime)
 	
 	if(buytime) 
 		g_buytime = buytime + get_gametime()
@@ -1642,7 +1642,7 @@ public bacon_traceattack_player(victim, attacker, Float:damage, Float:direction[
 	
 	// New round starting and friendly fire prevent
 	if (!g_zombie[attacker] && !g_zombie[victim])
-		return HAM_SUPERCEDE;
+		return HAM_IGNORED;  // was HAM_SUPERCEDE
 	
 	// round starts and ends
 	if (!g_gamestarted)
@@ -2490,12 +2490,6 @@ public action_equip(id, key)
 {
 	if(!is_user_alive(id) || g_zombie[id])
 		return PLUGIN_HANDLED
-		
-	if (0 < g_buytime < get_gametime())
-	{
-		colored_print(id, "^x04 ***^x01 Buy time is OFF!")
-		return PLUGIN_HANDLED
-	}
 	
 	switch(key)
 	{
@@ -2505,7 +2499,7 @@ public action_equip(id, key)
 		{
 			g_showmenu[id] = false
 			equipweapon(id, EQUIP_ALL)
-			client_print(id, print_chat, "Print /guns in chat to re-order weapons.")
+			colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
 		}
 	}
 	
@@ -2567,18 +2561,12 @@ public action_prim(id, key)
 {
 	if(!is_user_alive(id) || g_zombie[id])
 		return PLUGIN_HANDLED
-
-	if (0 < g_buytime < get_gametime())
-	{
-		colored_print(id, "^x04 ***^x01 Buy time is OFF!")
-		return PLUGIN_HANDLED
-	}
 		
 	switch(key)
 	{
-    		case 8: display_weaponmenu(id, MENU_PRIMARY, ++g_menuposition[id])
+        case 8: display_weaponmenu(id, MENU_PRIMARY, ++g_menuposition[id])
 		case 9: display_weaponmenu(id, MENU_PRIMARY, --g_menuposition[id])
-    		default:
+        default:
 		{
 			g_player_weapons[id][0] = g_menuposition[id] * 8 + key
 			equipweapon(id, EQUIP_PRI)
@@ -2594,12 +2582,6 @@ public action_sec(id, key)
 {
 	if(!is_user_alive(id) || g_zombie[id])
 		return PLUGIN_HANDLED
-	
-	if (0 < g_buytime < get_gametime())
-	{
-		colored_print(id, "^x04 ***^x01 Buy time is OFF!")
-		return PLUGIN_HANDLED
-	}
 	
 	switch(key) 
 	{
@@ -2976,77 +2958,78 @@ randomly_pick_zombie()
 
 equipweapon(id, weapon)
 {
-	if(!is_user_alive(id)) 
-		return
+    if(!is_user_alive(id)) 
+        return
 
-	static weaponid[2], weaponent, weapname[32]
-	
-	if(weapon & EQUIP_PRI)
-	{
-		weaponent = fm_lastprimary(id)
-		weaponid[1] = get_weaponid(g_primaryweapons[g_player_weapons[id][0]][1])
-		
-		if(pev_valid(weaponent))
-		{
-			weaponid[0] = cs_get_weapon_id(weaponent)
-			if(weaponid[0] != weaponid[1])
-			{
-				get_weaponname(weaponid[0], weapname, 31)
-				bacon_strip_weapon(id, weapname)
-			}
-		}
-		else
-			weaponid[0] = -1
-		
-		if(weaponid[0] != weaponid[1])
-			give_item(id, g_primaryweapons[g_player_weapons[id][0]][1])
-		
-		cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
-	}
+    if (0 < g_buytime < get_gametime())
+        return
 
-	if(weapon & EQUIP_SEC)
-	{
-		weaponent = fm_lastsecondry(id)
-		weaponid[1] = get_weaponid(g_secondaryweapons[g_player_weapons[id][1]][1])
-		
-		if(pev_valid(weaponent))
-		{
-			weaponid[0] = cs_get_weapon_id(weaponent)
-			if(weaponid[0] != weaponid[1])
-			{
-				get_weaponname(weaponid[0], weapname, 31)
-				bacon_strip_weapon(id, weapname)
-			}
-		}
-		else
-			weaponid[0] = -1
-		
-		if(weaponid[0] != weaponid[1])
-			give_item(id, g_secondaryweapons[g_player_weapons[id][1]][1])
-		
-		cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
-	}
-	
-	new mapName[32]
-	get_mapname(mapName,31)
-	if(weapon & EQUIP_GREN && !equal(mapName, "ze_lift_escape_b5"))
-	{
-		static i
-		for(i = 0; i < sizeof g_grenades; i++) if(!user_has_weapon(id, get_weaponid(g_grenades[i])))
-			give_item(id, g_grenades[i])
-	}
+    static weaponid[2], weaponent, weapname[32]
+
+    if(weapon & EQUIP_PRI)
+    {
+        weaponent = fm_lastprimary(id)
+        weaponid[1] = get_weaponid(g_primaryweapons[g_player_weapons[id][0]][1])
+        
+        if(pev_valid(weaponent))
+        {
+            weaponid[0] = cs_get_weapon_id(weaponent)
+            if(weaponid[0] != weaponid[1])
+            {
+                get_weaponname(weaponid[0], weapname, 31)
+                bacon_strip_weapon(id, weapname)
+            }
+        }
+        else
+            weaponid[0] = -1
+        
+        if(weaponid[0] != weaponid[1])
+            give_item(id, g_primaryweapons[g_player_weapons[id][0]][1])
+        
+        cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
+    }
+
+    if(weapon & EQUIP_SEC)
+    {
+        weaponent = fm_lastsecondry(id)
+        weaponid[1] = get_weaponid(g_secondaryweapons[g_player_weapons[id][1]][1])
+        
+        if(pev_valid(weaponent))
+        {
+            weaponid[0] = cs_get_weapon_id(weaponent)
+            if(weaponid[0] != weaponid[1])
+            {
+                get_weaponname(weaponid[0], weapname, 31)
+                bacon_strip_weapon(id, weapname)
+            }
+        }
+        else
+            weaponid[0] = -1
+        
+        if(weaponid[0] != weaponid[1])
+            give_item(id, g_secondaryweapons[g_player_weapons[id][1]][1])
+        
+        cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
+    }
+
+    new mapName[32]
+    get_mapname(mapName,31)
+    if(weapon & EQUIP_GREN && !equal(mapName, "ze_lift_escape_b5"))
+    {
+        static i
+        for(i = 0; i < sizeof g_grenades; i++) if(!user_has_weapon(id, get_weaponid(g_grenades[i])))
+            give_item(id, g_grenades[i])
+    }
 }
 
 add_delay(index, const task[])
 {
     switch(index)
     {
-        case 1..4: set_task(0.4, task, index)
-        case 5..8: set_task(0.6, task, index)
-        case 9..12: set_task(0.8, task, index)
-        case 13..16: set_task(1.0, task, index)
-        case 17..20: set_task(1.2, task, index)
-        case 21..24: set_task(1.4, task, index)
+        case 1..6: set_task(0.4, task, index)
+        case 7..12: set_task(0.6, task, index)
+        case 13..18: set_task(0.8, task, index)
+        case 19..24: set_task(1.0, task, index)
     }
 }
 

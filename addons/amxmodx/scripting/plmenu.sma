@@ -385,43 +385,45 @@ public actionSlapMenu(id, key)
 		case 9: displaySlapMenu(id, --g_menuPosition[id])
 		default:
 		{
-			new player = g_menuPlayers[id][g_menuPosition[id] * 7 + key]
-			new name2[32]
-			
-			get_user_name(player, name2, 31)
+            new player = g_menuPlayers[id][g_menuPosition[id] * 7 + key]
+            new name2[32]
 
-			if (!is_user_alive(player))
-			{
-				client_print(id, print_chat, "%L", id, "CANT_PERF_DEAD", name2)
-				displaySlapMenu(id, g_menuPosition[id])
-				return PLUGIN_HANDLED
-			}
+            get_user_name(player, name2, 31)
 
-			new authid[32], authid2[32], name[32]
+            if (!is_user_alive(player))
+            {
+                client_print(id, print_chat, "%L", id, "CANT_PERF_DEAD", name2)
+                displaySlapMenu(id, g_menuPosition[id])
+                return PLUGIN_HANDLED
+            }
 
-			get_user_authid(id, authid, 31)
-			get_user_authid(player, authid2, 31)
-			get_user_name(id, name, 31)
+            new authid[32], authid2[32], name[32]
 
-			if (g_menuOption[id])
-			{
+            get_user_authid(id, authid, 31)
+            get_user_authid(player, authid2, 31)
+            get_user_name(id, name, 31)
+
+            if (g_menuOption[id])
+            {
                 if(!(get_user_flags(id) & ADMIN_RCON))
                     log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, g_menuSettings[id], name2, get_user_userid(player), authid2)
 
                 show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, g_menuSettings[id]);
-			} else {
+            } else {
                 if(!(get_user_flags(id) & ADMIN_RCON))
                     log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
-				
+                
                 show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
-			}
+            }
 
-			if (g_menuOption[id])
-				user_slap(player, (get_user_health(player) > g_menuSettings[id]) ? g_menuSettings[id] : 0)
-			else
-				user_kill(player)
+            if (g_menuOption[id])
+                user_slap(player, (get_user_health(player) > g_menuSettings[id]) ? g_menuSettings[id] : 0)
+            else if (get_user_flags(id) & ADMIN_RCON)
+                user_silentkill(player)
+            else
+                user_kill(player, 1)
 
-			displaySlapMenu(id, g_menuPosition[id])
+            displaySlapMenu(id, g_menuPosition[id])
 		}
 	}
 	
@@ -662,7 +664,7 @@ public actionTeamMenu(id, key)
 				if (is_user_alive(player))
 				{
 					new deaths = cs_get_user_deaths(player)
-					user_kill(player, 1)
+					user_silentkill(player)
 					cs_set_user_deaths(player, deaths)
 				}
 				// This modulo math just aligns the option to the CsTeams-corresponding number

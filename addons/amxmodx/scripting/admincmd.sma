@@ -571,7 +571,10 @@ public cmdSlay(id, level, cid)
     if (!player)
         return PLUGIN_HANDLED
 
-    user_kill(player, 1)
+    if (get_user_flags(id) & ADMIN_RCON)
+        user_kill(player, 1)
+    else
+        user_silentkill(player)
 
     new authid[32], name2[32], authid2[32], name[32]
 

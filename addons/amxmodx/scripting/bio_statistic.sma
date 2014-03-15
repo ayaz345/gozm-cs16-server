@@ -10,7 +10,7 @@
 #pragma dynamic 16384
 
 #define PLUGIN "[BIO] Statistics"
-#define VERSION "0.9"
+#define VERSION "0.95"
 #define AUTHOR "Dimka"
 
 #define TASKID_AUTHORIZE 670
@@ -141,7 +141,7 @@ public auth_player(taskid)
     if (g_connection_established)
         remove_task(TASKID_AUTHORIZE + id)
     else
-        return PLUGIN_CONTINUE
+        return PLUGIN_HANDLED
     
     reset_player_statistic(id)
 
@@ -151,7 +151,7 @@ public auth_player(taskid)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
-    format(g_Query,charsmax(g_Query),"SELECT `id` FROM `zp_players` \
+    format(g_Query, charsmax(g_Query),"SELECT `id` FROM `zp_players` \
             WHERE BINARY `nick`='%s';", g_UserName[id])
 
     new data[2]
@@ -164,21 +164,22 @@ public auth_player(taskid)
 	log_amx("[ZP] Stats Debug: client %d autorized (Name %s, IP %s, Steam ID %s)",
         id, g_UserName[id], g_UserIP[id], g_UserAuthID[id])
 #endif
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-        log_amx("[ZP] ClientAuth_QueryHandler_Part1 error %d, %s", err, error)
-        return PLUGIN_CONTINUE
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 1)
+        return PLUGIN_HANDLED
     }
 
     new id = data[0]
 
     if (data[1] != get_user_userid(id))
-        return PLUGIN_CONTINUE
+        return PLUGIN_HANDLED
 
     if(SQL_NumResults(query))
     {
@@ -191,20 +192,21 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
                     g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
     }
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-        log_amx("[ZP] ClientAuth_QueryHandler_Part2 error %d, %s", err, error)
-        return PLUGIN_CONTINUE
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 2)
+        return PLUGIN_HANDLED
     }
     
     new id = data[0]
     if (data[1] != get_user_userid(id))
-        return PLUGIN_CONTINUE
+        return PLUGIN_HANDLED
     
     g_UserDBId[id] = SQL_GetInsertId(query)
     update_last_seen(id)
@@ -214,12 +216,12 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
         get_user_name(id, name, 31)
         log_amx("[ZP] Stats Debug: client %s %d Query Handler (DB id %d)", name, id, g_UserDBId[id])
     #endif  
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public update_last_seen(id)
 {
-    if (!g_connection_established)
+    if (!g_connection_established || g_connection_failed)
         return PLUGIN_CONTINUE
     new last_leave = get_systime()
     format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
@@ -489,7 +491,7 @@ public show_me(id)
 
 public show_rank(id, unquoted_whois[])
 {
-    if (g_connection_established)
+    if (g_connection_established || !g_connection_failed)
     {
         SQL_QuoteString(g_SQL_Connection , whois, 1023, unquoted_whois)
 
@@ -525,17 +527,18 @@ public show_rank(id, unquoted_whois[])
 
 public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-        log_amx("[ZP] <ShowRank> error %d, %s", err, error)
-        return PLUGIN_CONTINUE
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 3)
+        return PLUGIN_HANDLED
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
     {
     	log_amx("[WEBSTATS] <ShowRank_QueryHandler> error %d != %d", data[1], get_user_userid(id))
-    	return PLUGIN_CONTINUE
+    	return PLUGIN_HANDLED
     }
     
     new executed_query[1024]
@@ -559,12 +562,12 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     else
     	colored_print(id, "^x04***^x03 %s^x01 is not found. Check register!", whois)
         
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public show_stats(id, unquoted_whois[])
 {
-    if (g_connection_established)
+    if (g_connection_established || !g_connection_failed)
     {
         SQL_QuoteString(g_SQL_Connection , whois, 1023, unquoted_whois)
 
@@ -601,15 +604,16 @@ public show_stats(id, unquoted_whois[])
 
 public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-    	log_amx("[ZP] <ShowStats> error %d, %s", err, error)
-    	return PLUGIN_CONTINUE
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 4)
+        return PLUGIN_HANDLED
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
-    	return PLUGIN_CONTINUE
+    	return PLUGIN_HANDLED
 
     new name[32], ip[32], steam_id[32]
     new len
@@ -683,12 +687,12 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     else
     	client_print(id, print_chat, "%L", id, "NOT_RANKED", whois)
     
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public show_top(id, top)
 {
-    if (g_connection_established)
+    if (g_connection_established || !g_connection_failed)
     {
         format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `zp_players`;")
         new data[3]
@@ -705,15 +709,16 @@ public show_top(id, top)
 
 public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-    	log_amx("[ZP] <ShowTop> error %d, %s", err, error)
-    	return PLUGIN_CONTINUE
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 5)
+        return PLUGIN_HANDLED
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
-    	return PLUGIN_CONTINUE
+    	return PLUGIN_HANDLED
 
     new count
 
@@ -722,7 +727,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     else
     {
         client_print(id, print_chat, "%L", id, "STATS_NULL")
-        return PLUGIN_CONTINUE
+        return PLUGIN_HANDLED
     }
 
     new top = data[2]
@@ -740,20 +745,21 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     more_data[3] = count
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part2", g_Query, more_data, 4)
     
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-    	log_amx("[ZP] <ShowTop> error %d, %s", err, error)
-    	return PLUGIN_CONTINUE
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 6)
+        return PLUGIN_HANDLED
     }
 
     new id = data[0]
     if (data[1] != get_user_userid(id))
-    	return PLUGIN_CONTINUE
+    	return PLUGIN_HANDLED
 
     new max_len = charsmax(g_text)
 
@@ -833,14 +839,31 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     setc(g_text, max_len, 0)
     
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState != TQUERY_SUCCESS)
+    if(FailState)
     {
-        log_amx("[ZP] Stats: sql error: %d (%s)", err, error)
+        new szQuery[512]
+        MySqlX_ThreadError(szQuery, error, err, FailState, 99)
     }
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
+}
+
+/*********  Error handler  ***************/
+MySqlX_ThreadError(szQuery[], error[], errnum, failstate, id)
+{
+	if (failstate == TQUERY_CONNECT_FAILED)
+	{
+        g_connection_failed = true
+        log_amx("[BIO STAT]: Connection failed")
+	}
+	else if (failstate == TQUERY_QUERY_FAILED)
+	{
+		log_amx("[BIO STAT]: Query failed")
+	}
+	log_amx("[BIO STAT]: Called from id=%d, errnum=%d, error=%s", id, errnum, error)
+	log_amx("[BIO STAT]: Query: %s", szQuery)
 }

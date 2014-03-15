@@ -209,10 +209,17 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
                 log_amx("UNBAN_SELECT: NOT YOUR BAN: U'%s' vs A'%s'", unbanning_nick, admin_nick)
                 return PLUGIN_HANDLED
             }
+/*
             log_amx("UNBAN_SELECT: amx_unsuperban %s", player_ip)
             client_cmd(id, "amx_unsuperban %s", player_ip)
             server_cmd("amx_unsuperban %s", player_ip)
             server_cmd("removeip %s", player_ip)
+*/
+
+            new sub_query[512]
+            format(sub_query, 511, "DELETE FROM `superban` WHERE BINARY bannedname = '%s'", g_player_nick)
+            SQL_ThreadQuery(g_SqlX, "cmd_delete_superban", sub_query)
+            
             colored_print(id, "^x04 ***^x01 Successfully UnBanned: %s", g_player_nick)
 
             current_time_int = get_systime(0)
@@ -292,6 +299,22 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
         }
 	}
 	return PLUGIN_HANDLED
+}
+
+public cmd_delete_superban(failstate, Handle:query, error[], errnum, data[], size)
+{
+    if (failstate)
+	{
+		new szQuery[256]
+		MySqlX_ThreadError( szQuery, error, errnum, failstate, 12 )
+	}
+	else
+	{
+        new affected_rows = SQL_AffectedRows(query)
+        log_amx("UNBAN: deleted rows: %d", affected_rows)
+    }
+    
+    return PLUGIN_HANDLED
 }
 
 public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size)

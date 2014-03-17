@@ -200,7 +200,8 @@ public reason_menu_handler(id, menu, item)
     else
         ActualBan(ban_length, s_Name)
 
-    return PLUGIN_HANDLED; 
+    menu_destroy(menu)
+    return PLUGIN_HANDLED
 }
 
 public setCustomBanReason(id,level,cid)

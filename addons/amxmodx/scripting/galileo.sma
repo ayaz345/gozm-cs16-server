@@ -1127,7 +1127,11 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
 
 public nomination_handleMatchChoice(id, menu, item)
 {
-	if( item < 0 ) return PLUGIN_CONTINUE;
+	if( item < 0 )
+    {
+        menu_destroy(menu);
+        return PLUGIN_CONTINUE;
+    }
  
 	// Get item info
 	new mapIdx, info[1];
@@ -1137,7 +1141,8 @@ public nomination_handleMatchChoice(id, menu, item)
  
 	mapIdx = info[0];
 	map_nominate(id, mapIdx);
- 
+
+    menu_destroy(menu);
 	return PLUGIN_HANDLED;
 }
 

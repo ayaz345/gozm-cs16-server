@@ -143,7 +143,8 @@ public unban_menu_handler(id, menu, item)
     
     data[0] = id
     SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
-
+    
+    menu_destroy(menu)
     return PLUGIN_HANDLED
 }
 
@@ -205,10 +206,11 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {
-                colored_print(id, "^x04 ***^x01 It's not your ban!")
+                colored_print(id, "^x04 ***^x01 It's not your ban! (by %s)", admin_nick)
                 log_amx("UNBAN_SELECT: NOT YOUR BAN: U'%s' vs A'%s'", unbanning_nick, admin_nick)
                 return PLUGIN_HANDLED
             }
+            
 /*
             log_amx("UNBAN_SELECT: amx_unsuperban %s", player_ip)
             client_cmd(id, "amx_unsuperban %s", player_ip)
@@ -216,11 +218,11 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             server_cmd("removeip %s", player_ip)
 */
 
+            server_cmd("removeip %s", player_ip)
             new sub_query[512]
-            format(sub_query, 511, "DELETE FROM `superban` WHERE BINARY bannedname = '%s'", g_player_nick)
+            format(sub_query, 511, "UPDATE `superban` SET unbantime = -1 WHERE BINARY banname = '%s'",
+                g_player_nick)
             SQL_ThreadQuery(g_SqlX, "cmd_delete_superban", sub_query)
-            
-            colored_print(id, "^x04 ***^x01 Successfully UnBanned: %s", g_player_nick)
 
             current_time_int = get_systime(0)
             ban_created_int = str_to_num(ban_created)
@@ -305,8 +307,8 @@ public cmd_delete_superban(failstate, Handle:query, error[], errnum, data[], siz
 {
     if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 12 )
+        new szQuery[256]
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, 12)
 	}
 	else
 	{
@@ -355,41 +357,43 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
 	}
 	else
 	{
-		log_amx("%L", LANG_SERVER, "UNBAN_LOG",	g_unban_admin_nick, get_user_userid(id), g_admin_steamid, g_unban_admin_team, g_player_nick, g_unban_player_steamid)
-	
-		if ( get_pcvar_num(show_in_hlsw) == 1 )
-		{
-			// If you use HLSW you will see when someone ban a player if you can see the chatlogs
-			log_message("^"%s<%d><%s><%s>^" triggered ^"amx_chat^" (text ^"%L^")", g_unban_admin_nick, get_user_userid(id) , g_admin_steamid, g_unban_admin_team,
-			LANG_SERVER, "UNBAN_CHATLOG", g_player_nick, g_unban_player_steamid)
-		}
-			
-		new show_activity = get_cvar_num("amx_show_activity")
-		
-		if( (get_user_flags(id)&get_admin_mole_access_flag() || id == 0) && (get_pcvar_num(show_name_evenif_mole) == 0) )
-			show_activity = 1
-			
-		if (show_activity == 1)
-		{
-			client_print(0,print_chat,"%L",LANG_PLAYER,"PUBLIC_UNBAN_ANNOUNCE", g_player_nick)
-		}
-	
-		if (show_activity == 2)
-		{
-			client_print(0,print_chat,"%L",LANG_PLAYER,"PUBLIC_UNBAN_ANNOUNCE_2", g_player_nick, g_unban_admin_nick)
-		}
-			
-		client_print(id,print_console," ")
-		client_print(id,print_console,"[AMXBANS] =================")
-		client_print(id,print_console,"%L",LANG_PLAYER,"PUBLIC_UNBAN_ANNOUNCE", g_player_nick)
-		client_print(id,print_console,"[AMXBANS] =================")
-		client_print(id,print_console," ")
-	
-		server_print(" ")
-		server_print("[AMXBANS] =================")
-		server_print("[AMXBANS] %L",LANG_SERVER,"PUBLIC_UNBAN_ANNOUNCE", g_player_nick)
-		server_print("[AMXBANS] =================")
-		server_print(" ")
+        log_amx("%L", LANG_SERVER, "UNBAN_LOG",	g_unban_admin_nick, get_user_userid(id), g_admin_steamid, g_unban_admin_team, g_player_nick, g_unban_player_steamid)
+
+        if ( get_pcvar_num(show_in_hlsw) == 1 )
+        {
+            // If you use HLSW you will see when someone ban a player if you can see the chatlogs
+            log_message("^"%s<%d><%s><%s>^" triggered ^"amx_chat^" (text ^"%L^")", g_unban_admin_nick, get_user_userid(id) , g_admin_steamid, g_unban_admin_team,
+            LANG_SERVER, "UNBAN_CHATLOG", g_player_nick, g_unban_player_steamid)
+        }
+            
+        new show_activity = get_cvar_num("amx_show_activity")
+
+        if( (get_user_flags(id)&get_admin_mole_access_flag() || id == 0) && (get_pcvar_num(show_name_evenif_mole) == 0) )
+            show_activity = 1
+            
+        if (show_activity == 1)
+        {
+            client_print(0,print_chat,"%L",LANG_PLAYER,"PUBLIC_UNBAN_ANNOUNCE", g_player_nick)
+        }
+
+        if (show_activity == 2)
+        {
+            client_print(0,print_chat,"%L",LANG_PLAYER,"PUBLIC_UNBAN_ANNOUNCE_2", g_player_nick, g_unban_admin_nick)
+        }
+            
+        client_print(id,print_console," ")
+        client_print(id,print_console,"[AMXBANS] =================")
+        client_print(id,print_console,"%L",LANG_PLAYER,"PUBLIC_UNBAN_ANNOUNCE", g_player_nick)
+        client_print(id,print_console,"[AMXBANS] =================")
+        client_print(id,print_console," ")
+
+        server_print(" ")
+        server_print("[AMXBANS] =================")
+        server_print("[AMXBANS] %L",LANG_SERVER,"PUBLIC_UNBAN_ANNOUNCE", g_player_nick)
+        server_print("[AMXBANS] =================")
+        server_print(" ")
+
+        colored_print(id, "^x04***^x01 Successfully UnBanned: %s", g_player_nick)
 	}
 	
 	return PLUGIN_HANDLED

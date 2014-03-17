@@ -122,17 +122,14 @@ public menu_handler(id, menu, item)
                 user_silentkill(id)
                 cs_set_team(id, TEAM_SPECTATOR)
             }
-            else
-                menu_destroy(menu)
         }
         case 21:
         {
             if(!is_user_alive(id))
                 cs_set_team(id, TEAM_CT)
-            else
-                menu_destroy(menu)
         }
     }
 
-    return PLUGIN_HANDLED; 
+    menu_destroy(menu)
+    return PLUGIN_HANDLED
 }

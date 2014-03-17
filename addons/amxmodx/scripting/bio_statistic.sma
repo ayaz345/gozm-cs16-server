@@ -14,8 +14,7 @@
 #define AUTHOR "Dimka"
 
 #define TASKID_AUTHORIZE 670
-
-//#define ZP_STATS_DEBUG
+#define TASKID_LASTSEEN 671
  
 #define column(%1) SQL_FieldNameToNum(query, %1)
 
@@ -26,12 +25,10 @@ enum
 	ME_NUM
 }
 
-new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][32]
+new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][64]
 new g_UserDBId[33]
 
-new Handle:g_SQL_Connection, Handle:g_SQL_Tuple
-new bool:g_connection_established = false
-new bool:g_connection_failed = false
+new Handle:g_SQL_Tuple
 
 new g_Query[3024]
 new whois[1024]
@@ -91,67 +88,63 @@ public sql_init()
 
     g_SQL_Tuple = SQL_MakeDbTuple(host, user, password, db)
 
-    new err, error[256]
-    g_SQL_Connection = SQL_Connect(g_SQL_Tuple, err, error, charsmax(error))
+    format(g_Query, charsmax(g_Query), "SET NAMES utf8;")
+    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 
-    if(g_SQL_Connection != Empty_Handle)
-    {
-        log_amx("%L", LANG_SERVER, "CONNECT_SUCSESSFUL")
-        g_connection_established = true
-        
-        format(g_Query, charsmax(g_Query), "SET NAMES utf8;")
-        SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-
-        new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
-        new now = get_systime()
-        new inactive_period = now - max_inactive_days*24*60*60
-        format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
-                WHERE `last_leave` < %d;", inactive_period)
-        SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-    }
-    else
-    {
-        log_amx("%L", LANG_SERVER, "CONNECT_ERROR", err, error)
-        g_connection_failed = true
-    }
+    new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
+    new now = get_systime()
+    new inactive_period = now - max_inactive_days*24*60*60
+    format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
+            WHERE `last_leave` < %d;", inactive_period)
+    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 }
 
 public plugin_end()
 {
-    g_connection_established = false
-    if(g_SQL_Tuple != Empty_Handle)
-        SQL_FreeHandle(g_SQL_Tuple)
-    if(g_SQL_Connection != Empty_Handle)
-        SQL_FreeHandle(g_SQL_Connection)
+    SQL_FreeHandle(g_SQL_Tuple)
 }
 
 public client_authorized(id)
 {
-    if (g_connection_established)
-        set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
-    else if (!g_connection_failed)  // connection can still be established
-        set_task(1.0, "auth_player", TASKID_AUTHORIZE + id, _, _, "a", 10)
+    g_UserDBId[id] = 0
+    reset_player_statistic(id)
+    set_task(0.5, "auth_player", TASKID_AUTHORIZE + id)
+
+    return PLUGIN_CONTINUE
+}
+
+public client_disconnect(id)
+{
+    g_UserDBId[id] = 0
+    reset_player_statistic(id)
+    remove_task(TASKID_AUTHORIZE + id)
+    remove_task(TASKID_LASTSEEN + id)
+}
+
+public quote_string(buffer[], unquoted_string[])
+{
+    trim(unquoted_string)
+    for (new i=0; i<strlen(unquoted_string); i++)
+    {
+        add(buffer, strlen(buffer) + 1, "\")
+        add(buffer, strlen(buffer) + 1, unquoted_string[i])
+    }
+    return
 }
 
 public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
-    g_UserDBId[id] = 0
     
-    if (g_connection_established)
-        remove_task(TASKID_AUTHORIZE + id)
-    else
-        return PLUGIN_HANDLED
-    
-    reset_player_statistic(id)
-
-    new unquoted_name[32]
+    new unquoted_name[32], buffer[64]
     get_user_name(id, unquoted_name, 31)
-    SQL_QuoteString(g_SQL_Connection , g_UserName[id], 31, unquoted_name)
+    quote_string(buffer, unquoted_name)
+    copy(g_UserName[id], 63, buffer)
+    
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
-    format(g_Query, charsmax(g_Query),"SELECT `id` FROM `zp_players` \
+    format(g_Query, charsmax(g_Query), "SELECT `id` FROM `zp_players` \
             WHERE BINARY `nick`='%s';", g_UserName[id])
 
     new data[2]
@@ -160,10 +153,6 @@ public auth_player(taskid)
 
     SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, 2)
 	
-#if defined ZP_STATS_DEBUG
-	log_amx("[ZP] Stats Debug: client %d autorized (Name %s, IP %s, Steam ID %s)",
-        id, g_UserName[id], g_UserIP[id], g_UserAuthID[id])
-#endif
     return PLUGIN_HANDLED
 }
 
@@ -171,8 +160,9 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
 {
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 1)
+        new szQuery[1024]
+        SQL_GetQueryString(query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 1)
         return PLUGIN_HANDLED
     }
 
@@ -184,12 +174,13 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     if(SQL_NumResults(query))
     {
         g_UserDBId[id] = SQL_ReadResult(query, column("id"))
-        update_last_seen(id)
+        set_task(1.0, "update_last_seen", TASKID_LASTSEEN + id)
     }
     else
     {
-        format(g_Query,charsmax(g_Query),"INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s';",
-                    g_UserName[id], g_UserIP[id], g_UserAuthID[id])
+        format(g_Query,charsmax(g_Query),
+            "INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s';",
+            g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
     }
     return PLUGIN_HANDLED
@@ -199,8 +190,9 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
 {
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 2)
+        new szQuery[1024]
+        SQL_GetQueryString(query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 2)
         return PLUGIN_HANDLED
     }
     
@@ -209,30 +201,25 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
         return PLUGIN_HANDLED
     
     g_UserDBId[id] = SQL_GetInsertId(query)
-    update_last_seen(id)
+    set_task(1.0, "update_last_seen", TASKID_LASTSEEN + id)
 
-    #if defined ZP_STATS_DEBUG
-        new name[32]
-        get_user_name(id, name, 31)
-        log_amx("[ZP] Stats Debug: client %s %d Query Handler (DB id %d)", name, id, g_UserDBId[id])
-    #endif  
     return PLUGIN_HANDLED
 }
 
-public update_last_seen(id)
+public update_last_seen(taskid)
 {
-    if (!g_connection_established || g_connection_failed)
-        return PLUGIN_CONTINUE
+    new id = taskid - TASKID_LASTSEEN
+    
     new last_leave = get_systime()
     format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d;", 
         last_leave, g_UserDBId[id])
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-    return PLUGIN_CONTINUE
+    return PLUGIN_HANDLED
 }
 
 public client_infochanged(id)
 {
-    if (!is_user_connected(id) || !g_connection_established || g_connection_failed)
+    if (!is_user_connected(id))
         return PLUGIN_CONTINUE
 
     new newname[32]
@@ -253,12 +240,6 @@ public client_infochanged(id)
         set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
     }
     return PLUGIN_CONTINUE
-}
-
-public client_disconnect(id)
-{
-    reset_player_statistic(id)
-    g_UserDBId[id] = 0
 }
 
 public event_infect(id, infector)
@@ -322,10 +303,12 @@ public logevent_endRound()
             for (i = 0; i < playersNum; i++)
             {
                 //colored_print(players[i], "^x04======================================")
-                colored_print(players[i], "^x04***^x01 Best Human:^x04 %s^x01  ->  [^x03  %d^x01 dmg  ]",
+                colored_print(players[i],
+                    "^x04***^x01 Best Human:^x04 %s^x01  ->  [^x03  %d^x01 dmg  ]",
                     maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
                 if (g_Me[players[maxInfectId]][ME_INFECT])
-                    colored_print(players[i], "^x04***^x01 Best Zombie:^x04 %s^x01  ->  [^x03  %d^x01 infection%s  ]",
+                    colored_print(players[i], 
+                        "^x04***^x01 Best Zombie:^x04 %s^x01  ->  [^x03  %d^x01 infection%s  ]",
                         maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
                         (g_Me[players[maxInfectId]][ME_INFECT] > 1) ? "s" : "")
             }
@@ -333,13 +316,15 @@ public logevent_endRound()
             // extra
             if (g_UserDBId[players[maxInfectId]])
             {
-                format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d;",
+                format(g_Query, charsmax(g_Query),
+                    "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d;",
                     g_UserDBId[players[maxInfectId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
             if (g_UserDBId[players[maxDmgId]])
             {
-                format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d;",
+                format(g_Query, charsmax(g_Query),
+                    "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d;",
                     g_UserDBId[players[maxDmgId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
@@ -400,6 +385,8 @@ public fw_HamKilled(id, attacker, shouldgib)
             g_types[type], g_types[type], killer_frags, g_UserDBId[player])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
+    
+    return PLUGIN_CONTINUE
 }
 
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
@@ -430,14 +417,14 @@ public handleSay(id)
     new arg2[32]
 
     strbreak(args, arg1, charsmax(arg1), arg2, charsmax(arg2))
-    if (equal(arg1,"/me"))
+    if (equal(arg1, "/me"))
     {
         show_me(id)
         return PLUGIN_HANDLED
     }
-    else if (equal(arg1,"/rank"))
+    else if (equal(arg1, "/rank"))
     {
-        show_rank(id,arg2)
+        show_rank(id, arg2)
         return PLUGIN_HANDLED
     }
     else if (equal(arg1, "/rankstats") || equal(arg1, "/stats"))
@@ -445,7 +432,7 @@ public handleSay(id)
         show_stats(id, arg2)
         return PLUGIN_HANDLED
     }
-    else if (equal(arg1,"/top", 4))
+    else if (equal(arg1, "/top", 4))
     {
         if (arg1[4])
             show_top(id, str_to_num(arg1[4]))
@@ -453,7 +440,7 @@ public handleSay(id)
             show_top(id, 15)
         return PLUGIN_HANDLED
     }
-    else if (equal(arg1,"/db"))
+    else if (equal(arg1, "/db"))
     {
         new playersNum, players[32]
         get_players(players, playersNum)
@@ -491,58 +478,55 @@ public show_me(id)
 
 public show_rank(id, unquoted_whois[])
 {
-    if (g_connection_established || !g_connection_failed)
+    if (!unquoted_whois[0])
     {
-        SQL_QuoteString(g_SQL_Connection , whois, 1023, unquoted_whois)
-
-        if (!whois[0])
-        {
-            format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
-                (SELECT *, (@_c := @_c + 1) AS `rank`, \
-                ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-                FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d;", 
-                g_UserDBId[id])
-        }
-        else
-        {
-            format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
-                (SELECT *, (@_c := @_c + 1) AS `rank`, \
-                ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-                FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
-                WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' LIMIT 1;", 
-                whois, whois)
-        }
-
-        new data[2]
-        data[0] = id
-        data[1] = get_user_userid(id)
-        
-        SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, 2)
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+            (SELECT *, (@_c := @_c + 1) AS `rank`, \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
+            FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d;", 
+            g_UserDBId[id])
     }
     else
-        colored_print(id, "^x04***^x01 Command ^"/rank^" is temporarily blocked")
+    {
+        new buffer[64]
+        quote_string(buffer, unquoted_whois)
+        copy(whois, 63, buffer)
+    
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+            (SELECT *, (@_c := @_c + 1) AS `rank`, \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
+            FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
+            WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' LIMIT 1;", 
+            whois, whois)
+    }
+
+    new data[2]
+    data[0] = id
+    data[1] = get_user_userid(id)
+    
+    SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, 2)
     
     return PLUGIN_HANDLED
 }
 
 public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
+    new id = data[0]
+
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 3)
+        new szQuery[1024]
+        SQL_GetQueryString(query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 3)
+        colored_print(id, "^x04***^x01 Command ^"/rank^" is temporarily blocked")
         return PLUGIN_HANDLED
     }
 
-    new id = data[0]
     if (data[1] != get_user_userid(id))
     {
     	log_amx("[WEBSTATS] <ShowRank_QueryHandler> error %d != %d", data[1], get_user_userid(id))
     	return PLUGIN_HANDLED
     }
-    
-    new executed_query[1024]
-    SQL_GetQueryString(query, executed_query, 1023)
 
     new name[32]
     new rank
@@ -557,7 +541,8 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
         skill = floatround(res*1000)
         total = SQL_ReadResult(query, column("total"))
     		
-    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 of %d place with %d skill!", name, rank, total, skill)
+    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 of %d place with %d skill!",
+            name, rank, total, skill)
     } 
     else
     	colored_print(id, "^x04***^x03 %s^x01 is not found. Check register!", whois)
@@ -567,51 +552,51 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
 public show_stats(id, unquoted_whois[])
 {
-    if (g_connection_established || !g_connection_failed)
+    if (!unquoted_whois[0])
     {
-        SQL_QuoteString(g_SQL_Connection , whois, 1023, unquoted_whois)
-
-        if (!whois[0])
-        {
-            format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
-                (SELECT *, (@_c := @_c + 1) AS `rank`, \
-                ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-                FROM (SELECT @_c := 0) r, `zp_players` \
-                ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d;", 
-                g_UserDBId[id])
-        }
-        else
-        {
-            format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
-                (SELECT *, (@_c := @_c + 1) AS `rank`, \
-                ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-                FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
-                WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
-                LIMIT 1;", 
-                whois, whois)
-        }
-
-        new data[2]
-        data[0] = id
-        data[1] = get_user_userid(id)
-        SQL_ThreadQuery(g_SQL_Tuple, "ShowStats_QueryHandler", g_Query, data, 2)
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+            (SELECT *, (@_c := @_c + 1) AS `rank`, \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
+            FROM (SELECT @_c := 0) r, `zp_players` \
+            ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d;", 
+            g_UserDBId[id])
     }
     else
-        colored_print(id, "^x04***^x01 Command ^"/stats^" is temporarily blocked")
+    {
+        new buffer[64]
+        quote_string(buffer, unquoted_whois)
+        copy(whois, 63, buffer)
+    
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+            (SELECT *, (@_c := @_c + 1) AS `rank`, \
+            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
+            FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
+            WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
+            LIMIT 1;", 
+            whois, whois)
+    }
+
+    new data[2]
+    data[0] = id
+    data[1] = get_user_userid(id)
+    SQL_ThreadQuery(g_SQL_Tuple, "ShowStats_QueryHandler", g_Query, data, 2)
     
     return PLUGIN_HANDLED
 }
 
 public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
+    new id = data[0]
+
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 4)
+        new szQuery[1024]
+        SQL_GetQueryString(query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 4)
+        colored_print(id, "^x04***^x01 Command ^"/stats^" is temporarily blocked")
         return PLUGIN_HANDLED
     }
 
-    new id = data[0]
     if (data[1] != get_user_userid(id))
     	return PLUGIN_HANDLED
 
@@ -662,7 +647,8 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
         format(lExtra, 31, "%L", id, "EXTRA")
     		
     	new max_len = charsmax(g_text)
-    	len = format(g_text, max_len, "<html><head><meta http-equiv=^"Content-Type^" content=^"text/html; charset=utf-8^" /></head><body bgcolor=#000000>")
+    	len = format(g_text, max_len, 
+            "<html><head><meta http-equiv=^"Content-Type^" content=^"text/html; charset=utf-8^" /></head><body bgcolor=#000000>")
     	len += format(g_text[len], max_len - len, 
             "%s %s:<table style=^"color: #FFB000^"><tr><td>%s</td><td>%d/%d</td></tr><tr><td>%s</td><td>%d</td><tr><td>%s</td><td>%d</td>",
     		lStats, name, lRank, rank, total, lSkill, skill, lInfect, infect)
@@ -685,38 +671,36 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     	setc(g_text, max_len, 0)
     } 
     else
-    	client_print(id, print_chat, "%L", id, "NOT_RANKED", whois)
+    	colored_print(id, "^x04***^x01 Command ^"/stats^" is temporarily blocked")
     
     return PLUGIN_HANDLED
 }
 
 public show_top(id, top)
 {
-    if (g_connection_established || !g_connection_failed)
-    {
-        format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `zp_players`;")
-        new data[3]
-        data[0] = id
-        data[1] = get_user_userid(id)
-        data[2] = top
-        SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
-    }
-    else
-        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
+    format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `zp_players`;")
+    new data[3]
+    data[0] = id
+    data[1] = get_user_userid(id)
+    data[2] = top
+    SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
     
     return PLUGIN_HANDLED
 }
 
 public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
+    new id = data[0]
+
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 5)
+        new szQuery[1024]
+        SQL_GetQueryString(query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 5)
+        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
         return PLUGIN_HANDLED
     }
 
-    new id = data[0]
     if (data[1] != get_user_userid(id))
     	return PLUGIN_HANDLED
 
@@ -726,7 +710,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
         count = SQL_ReadResult(query, 0)
     else
     {
-        client_print(id, print_chat, "%L", id, "STATS_NULL")
+        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
         return PLUGIN_HANDLED
     }
 
@@ -750,14 +734,17 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
 
 public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
 {
+    new id = data[0]
+
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 6)
+        new szQuery[1024]
+        SQL_GetQueryString(query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 6)
+        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
         return PLUGIN_HANDLED
     }
 
-    new id = data[0]
     if (data[1] != get_user_userid(id))
     	return PLUGIN_HANDLED
 
@@ -846,24 +833,24 @@ public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, F
 {
     if(FailState)
     {
-        new szQuery[512]
-        MySqlX_ThreadError(szQuery, error, err, FailState, 99)
+        new szQuery[1024]
+        SQL_GetQueryString(Query, szQuery, 1023)
+        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 99)
     }
     return PLUGIN_HANDLED
 }
 
 /*********  Error handler  ***************/
-MySqlX_ThreadError(szQuery[], error[], errnum, failstate, id)
+MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
 {
-	if (failstate == TQUERY_CONNECT_FAILED)
-	{
-        g_connection_failed = true
+    if (failstate == TQUERY_CONNECT_FAILED)
+    {
         log_amx("[BIO STAT]: Connection failed")
-	}
-	else if (failstate == TQUERY_QUERY_FAILED)
-	{
-		log_amx("[BIO STAT]: Query failed")
-	}
-	log_amx("[BIO STAT]: Called from id=%d, errnum=%d, error=%s", id, errnum, error)
-	log_amx("[BIO STAT]: Query: %s", szQuery)
+    }
+    else if (failstate == TQUERY_QUERY_FAILED)
+    {
+        log_amx("[BIO STAT]: Query failed")
+    }
+    log_amx("[BIO STAT]: Called from id=%d, errnum=%d, error=%s", id, errnum, error)
+    log_amx("[BIO STAT]: Query: %ds to '%s'", request_time, szQuery)
 }

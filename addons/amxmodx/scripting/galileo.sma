@@ -1127,23 +1127,23 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
 
 public nomination_handleMatchChoice(id, menu, item)
 {
-	if( item < 0 )
+    if( item < 0 )
     {
         menu_destroy(menu);
         return PLUGIN_CONTINUE;
     }
- 
-	// Get item info
-	new mapIdx, info[1];
-	new access, callback;
- 
-	menu_item_getinfo(g_nominationMatchesMenu[id], item, access, info, 1, _, _, callback);
- 
-	mapIdx = info[0];
-	map_nominate(id, mapIdx);
+
+    // Get item info
+    new mapIdx, info[1];
+    new access, callback;
+
+    menu_item_getinfo(g_nominationMatchesMenu[id], item, access, info, 1, _, _, callback);
+
+    mapIdx = info[0];
+    map_nominate(id, mapIdx);
 
     menu_destroy(menu);
-	return PLUGIN_HANDLED;
+    return PLUGIN_HANDLED;
 }
 
 nomination_getPlayer(idxMap)

@@ -25,7 +25,7 @@ enum
 	ME_NUM
 }
 
-new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][64]
+new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][32]
 new g_UserDBId[33]
 
 new Handle:g_SQL_Tuple
@@ -136,16 +136,21 @@ public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
     
-    new unquoted_name[32], buffer[64]
+    new unquoted_name[32]
     get_user_name(id, unquoted_name, 31)
+    if (contain(unquoted_name, "^"") != -1)
+        replace(unquoted_name, 31, "^"", "'")
+/*
+    new buffer[64]
     quote_string(buffer, unquoted_name)
     copy(g_UserName[id], 63, buffer)
-    
+*/
+    copy(g_UserName[id], 31, unquoted_name)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
     format(g_Query, charsmax(g_Query), "SELECT `id` FROM `zp_players` \
-            WHERE BINARY `nick`='%s';", g_UserName[id])
+            WHERE BINARY `nick`=^"%s^";", g_UserName[id])
 
     new data[2]
     data[0] = id
@@ -488,15 +493,17 @@ public show_rank(id, unquoted_whois[])
     }
     else
     {
+/*
         new buffer[64]
         quote_string(buffer, unquoted_whois)
-        copy(whois, 63, buffer)
+*/
+        copy(whois, 32, unquoted_whois)
     
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
-            WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' LIMIT 1;", 
+            WHERE `nick` LIKE BINARY ^"%%%s%%^" LIMIT 1;",
             whois, whois)
     }
 
@@ -563,16 +570,19 @@ public show_stats(id, unquoted_whois[])
     }
     else
     {
+/*
         new buffer[64]
         quote_string(buffer, unquoted_whois)
         copy(whois, 63, buffer)
+*/
+        copy(whois, 32, unquoted_whois)
     
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
-            WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
-            LIMIT 1;", 
+            WHERE `nick` LIKE BINARY ^"%%%s%%^" OR `ip` LIKE BINARY '%%%s%%' \
+            LIMIT 1;",
             whois, whois)
     }
 
@@ -846,6 +856,7 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     if (failstate == TQUERY_CONNECT_FAILED)
     {
         log_amx("[BIO STAT]: Connection failed")
+        pause("a")
     }
     else if (failstate == TQUERY_QUERY_FAILED)
     {

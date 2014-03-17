@@ -394,8 +394,6 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, id)
 	if (failstate == TQUERY_CONNECT_FAILED)
 	{
         log_amx("%L", LANG_SERVER, "TCONNECTION_FAILED")
-        pause("ac", "superban-q.amxx") 
-        pause("a")
 	}
 	else if (failstate == TQUERY_QUERY_FAILED)
 	{

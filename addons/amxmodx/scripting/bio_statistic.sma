@@ -856,6 +856,9 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     if (failstate == TQUERY_CONNECT_FAILED)
     {
         log_amx("[BIO STAT]: Connection failed")
+        pause("ac", "superban-q.amxx")
+        pause("ac", "amxbans.amxx")
+        pause("ac", "admin_amxbans.amxx")
         pause("a")
     }
     else if (failstate == TQUERY_QUERY_FAILED)

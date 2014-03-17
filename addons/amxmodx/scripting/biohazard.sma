@@ -272,8 +272,7 @@ new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cva
     cvar_shootobjects, cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
     
-new bool:g_zombie[25], 
-//    bool:g_falling[25], 
+new bool:g_zombie[25], g_roundstart_time,
     bool:g_disconnected[25], bool:g_blockmodel[25], 
     bool:g_showmenu[25], bool:g_menufailsafe[25], bool:g_preinfect[25], 
     bool:g_suicide[25], g_mutate[25], g_victim[25],
@@ -459,6 +458,7 @@ public plugin_init()
     register_event("ArmorType", "event_armortype", "be")
     register_event("Damage", "event_damage", "be")
 //    register_event("StatusValue","show_status","be")
+//    register_event("DeathMsg", "event_deathmsg", "a")
 
     register_logevent("logevent_round_start", 2, "1=Round_Start")
     register_logevent("logevent_round_end", 2, "1=Round_End")
@@ -954,11 +954,11 @@ public msg_ammopickup(msgid, dest, id)
 
 public msg_deathmsg(msgid, dest, id) 
 {
-	static killer
-	killer = get_msg_arg_int(1)
+    static killer
+    killer = get_msg_arg_int(1)
 
-	if(is_user_connected(killer) && g_zombie[killer])
-		set_msg_arg_string(4, g_zombie_weapname)
+    if(is_user_connected(killer) && g_zombie[killer])
+        set_msg_arg_string(4, g_zombie_weapname)
 }
 
 public msg_health(msg_id, msg_dest, msg_entity)
@@ -1134,6 +1134,7 @@ public logevent_round_start()
 {
     g_roundended = false
     g_roundstarted = true
+    g_roundstart_time = get_systime()
 
     if(get_pcvar_num(cvar_weaponsmenu))
     {
@@ -1152,9 +1153,8 @@ public logevent_round_start()
                 if(g_showmenu[id])
                 {
                     add_delay(id, "display_equipmenu")
-                    
                     g_menufailsafe[id] = true
-                    set_task(10.0, "task_weaponsmenu", TASKID_WEAPONSMENU + id)
+//                    set_task(10.0, "task_weaponsmenu", TASKID_WEAPONSMENU + id)
                 }
                 else
                 {
@@ -1263,7 +1263,7 @@ public event_newround()
 	g_gamestarted = false
 	
 	static buytime 
-	buytime = get_pcvar_num(cvar_starttime)
+	buytime = get_pcvar_num(cvar_starttime) + get_cvar_num("mp_freezetime")
 	
 	if(buytime) 
 		g_buytime = buytime + get_gametime()
@@ -1370,39 +1370,44 @@ public event_damage(victim)
 		
 		if(g_victim[attacker] == victim)
 		{
-			g_infecting = true
-			g_victim[attacker] = 0
+            g_infecting = true
+            g_victim[attacker] = 0
 
-			message_begin(MSG_ALL, g_msg_deathmsg)
-			write_byte(attacker)
-			write_byte(victim)
-			write_byte(0)
-			write_string(g_infection_name)
-			message_end()
-			
-			message_begin(MSG_ALL, g_msg_scoreattrib)
-			write_byte(victim)
-			write_byte(0)
-			message_end()
-			
-			infect_user(victim, attacker)
-			
-			static Float:frags, deaths
-			pev(attacker, pev_frags, frags)
-			deaths = fm_get_user_deaths(victim)
-			
-			set_pev(attacker, pev_frags, frags  + 1.0)
-			fm_set_user_deaths(victim, deaths + 1)
-			
-			set_pev(attacker, pev_health, get_user_health(attacker) + 300.0)
-		
-			static params[2]
-			params[0] = attacker 
-			params[1] = victim
-	
-			set_task(0.3, "task_updatescore", TASKID_UPDATESCR, params, 2)
+            message_begin(MSG_ALL, g_msg_deathmsg)
+            write_byte(attacker)
+            write_byte(victim)
+            write_byte(0)
+            write_string(g_infection_name)
+            message_end()
+
+            message_begin(MSG_ALL, g_msg_scoreattrib)
+            write_byte(victim)
+            write_byte(0)
+            message_end()
+/*            
+            message_begin(MSG_ALL, g_msg_teaminfo, _, victim)
+            write_byte(victim)
+            write_string(g_teaminfo[2])  // CT
+            message_end()
+*/
+            infect_user(victim, attacker)
+
+            static Float:frags, deaths
+            pev(attacker, pev_frags, frags)
+            deaths = fm_get_user_deaths(victim)
+
+            set_pev(attacker, pev_frags, frags  + 1.0)
+            fm_set_user_deaths(victim, deaths + 1)
+
+            set_pev(attacker, pev_health, get_user_health(attacker) + 300.0)
+
+            static params[2]
+            params[0] = attacker 
+            params[1] = victim
+
+            set_task(0.3, "task_updatescore", TASKID_UPDATESCR, params, 2)
+            g_infecting = false
 		}
-		g_infecting = false
 	}
 	return PLUGIN_CONTINUE
 }
@@ -2258,6 +2263,14 @@ public task_initround()
         {
             cs_set_team(id, TEAM_CT)
             add_delay(id, "update_team")
+            
+            if (g_player_weapons[id][0] == -1)
+            {
+                g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
+                g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
+                equipweapon(id, EQUIP_ALL)
+                colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
+            }  
         }
     }
 
@@ -2364,43 +2377,45 @@ public update_team(id)
 
 public infect_user(victim, attacker)
 {
-	if(!is_user_alive(victim) || !is_user_connected(victim))
-		return
+    if(!is_user_alive(victim) || !is_user_connected(victim))
+        return
 
-	message_begin(MSG_ONE, g_msg_screenfade, _, victim)
-	write_short(1<<10)
-	write_short(1<<10)
-	write_short(0)
-	write_byte((g_mutate[victim] != -1) ? 255 : 100)
-	write_byte(100)
-	write_byte(100)
-	write_byte(250)
-	message_end()
-	
-	if(g_mutate[victim] != -1)
-	{
-		g_player_class[victim] = g_mutate[victim]
-		g_mutate[victim] = -1
-		
-		set_hudmessage(_, _, _, _, _, 1)
-		ShowSyncHudMsg(victim, g_sync_msgdisplay, "%L", victim, "MUTATION_HUD", g_class_name[g_player_class[victim]])
-	}
-	
-	message_begin(MSG_ONE_UNRELIABLE, g_msgScreenShake, _, victim)
-	write_short(UNIT_SECOND*40) // amplitude
-	write_short(UNIT_SECOND*4) // duration
-	write_short(UNIT_SECOND*75) // frequency
-	message_end()
-	
-	set_zombie_attibutes(victim)
-	
-	emit_sound(victim, CHAN_STATIC, g_scream_sounds[_random(sizeof g_scream_sounds)], VOL_NORM, ATTN_NONE, 0, PITCH_NORM)
-	ExecuteForward(g_fwd_infect, g_fwd_result, victim, attacker)
-	
-	new param[1]
-	param[0]=victim
-	set_task(0.4, "inf", victim, param, 1)
-//	cs_set_team(victim, TEAM_TERRORIST)
+    message_begin(MSG_ONE, g_msg_screenfade, _, victim)
+    write_short(1<<10)
+    write_short(1<<10)
+    write_short(0)
+    write_byte((g_mutate[victim] != -1) ? 255 : 100)
+    write_byte(100)
+    write_byte(100)
+    write_byte(250)
+    message_end()
+
+    if(g_mutate[victim] != -1)
+    {
+        g_player_class[victim] = g_mutate[victim]
+        g_mutate[victim] = -1
+
+        set_hudmessage(_, _, _, _, _, 1)
+        ShowSyncHudMsg(victim, g_sync_msgdisplay, "%L", victim, "MUTATION_HUD",
+            g_class_name[g_player_class[victim]])
+    }
+
+    message_begin(MSG_ONE_UNRELIABLE, g_msgScreenShake, _, victim)
+    write_short(UNIT_SECOND*40) // amplitude
+    write_short(UNIT_SECOND*4) // duration
+    write_short(UNIT_SECOND*75) // frequency
+    message_end()
+
+    set_zombie_attibutes(victim)
+
+    emit_sound(victim, CHAN_STATIC, g_scream_sounds[_random(sizeof g_scream_sounds)], VOL_NORM, ATTN_NONE, 0, PITCH_NORM)
+    ExecuteForward(g_fwd_infect, g_fwd_result, victim, attacker)
+/*
+    new param[1]
+    param[0]=victim
+    set_task(0.4, "inf", victim, param, 1)
+*/
+    cs_set_team(victim, TEAM_TERRORIST)
 }
 
 public inf(param[])
@@ -2466,24 +2481,26 @@ public drop_user(id)
 
 public display_equipmenu(id)
 {
-	static menubody[512], len
-  	len = formatex(menubody, 511, "\y%L^n^n", id, "MENU_TITLE1")
-	
-	static bool:hasweap
-	hasweap = ((g_player_weapons[id][0]) != -1 && (g_player_weapons[id][1] != -1)) ? true : false
-	
-	len += formatex(menubody[len], 511 - len,"\w1. %L^n", id, "MENU_NEWWEAPONS")
-	len += formatex(menubody[len], 511 - len,"%s2. %L^n", hasweap ? "\w" : "\d", id, "MENU_PREVSETUP")
-	len += formatex(menubody[len], 511 - len,"%s3. %L^n^n", hasweap ? "\w" : "\d", id, "MENU_DONTSHOW")
-	len += formatex(menubody[len], 511 - len,"\w5. %L^n", id, "MENU_EXIT")
-	
-	static keys
-	keys = (MENU_KEY_1|MENU_KEY_5)
-	
-	if(hasweap) 
-		keys |= (MENU_KEY_2|MENU_KEY_3)
-	
-	show_menu(id, keys, menubody, -1, "Equipment")
+    static menubody[512], len
+    len = formatex(menubody, 511, "\y%L^n^n", id, "MENU_TITLE1")
+
+    static bool:hasweap
+    hasweap = ((g_player_weapons[id][0]) != -1 && (g_player_weapons[id][1] != -1)) ? true : false
+
+    len += formatex(menubody[len], 511 - len,"\w1. %L^n", id, "MENU_NEWWEAPONS")
+    len += formatex(menubody[len], 511 - len,"%s2. %L^n", hasweap ? "\w" : "\d", id, "MENU_PREVSETUP")
+    len += formatex(menubody[len], 511 - len,"%s3. %L^n^n", hasweap ? "\w" : "\d", id, "MENU_DONTSHOW")
+    len += formatex(menubody[len], 511 - len,"\w5. %L^n", id, "MENU_EXIT")
+
+    static keys
+    keys = (MENU_KEY_1|MENU_KEY_5)
+
+    if(hasweap) 
+        keys |= (MENU_KEY_2|MENU_KEY_3)
+
+    new time
+    time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time)
+    show_menu(id, keys, menubody, time > 1 ? time : 1, "Equipment")
 }
 
 public action_equip(id, key)
@@ -2511,50 +2528,51 @@ public action_equip(id, key)
 	return PLUGIN_HANDLED
 }
 
-
 public display_weaponmenu(id, menuid, pos)
 {
-	if(pos < 0 || menuid < 0)
-		return
-	
-	static start
-	start = pos * 8
-	
-	static maxitem
-	maxitem = menuid == MENU_PRIMARY ? sizeof g_primaryweapons : sizeof g_secondaryweapons
+    if(pos < 0 || menuid < 0)
+        return
 
-  	if(start >= maxitem)
-    		start = pos = g_menuposition[id]
-	
-	static menubody[512], len
-  	len = formatex(menubody, 511, "\y%L\w^n^n", id, menuid == MENU_PRIMARY ? "MENU_TITLE2" : "MENU_TITLE3")
+    static start
+    start = pos * 8
 
-	static end
-	end = start + 8
-	if(end > maxitem)
-    		end = maxitem
-	
-	static keys
-	keys = MENU_KEY_0
-	
-	static a, b
-	b = 0
-	
-  	for(a = start; a < end; ++a) 
-	{
-		keys |= (1<<b)
-		len += formatex(menubody[len], 511 - len,"%d. %s^n", ++b, menuid == MENU_PRIMARY ? g_primaryweapons[a][0]: g_secondaryweapons[a][0])
-  	}
+    static maxitem
+    maxitem = menuid == MENU_PRIMARY ? sizeof g_primaryweapons : sizeof g_secondaryweapons
 
-  	if(end != maxitem)
-	{
-    		formatex(menubody[len], 511 - len, "^n9. %L^n0. %L", id, "MENU_MORE", id, pos ? "MENU_BACK" : "MENU_EXIT")
-    		keys |= MENU_KEY_9
-  	}
-  	else	
-		formatex(menubody[len], 511 - len, "^n0. %L", id, pos ? "MENU_BACK" : "MENU_EXIT")
-	
-  	show_menu(id, keys, menubody, -1, menuid == MENU_PRIMARY ? "Primary" : "Secondary")
+    if(start >= maxitem)
+            start = pos = g_menuposition[id]
+
+    static menubody[512], len
+    len = formatex(menubody, 511, "\y%L\w^n^n", id, menuid == MENU_PRIMARY ? "MENU_TITLE2" : "MENU_TITLE3")
+
+    static end
+    end = start + 8
+    if(end > maxitem)
+            end = maxitem
+
+    static keys
+    keys = MENU_KEY_0
+
+    static a, b
+    b = 0
+
+    for(a = start; a < end; ++a) 
+    {
+        keys |= (1<<b)
+        len += formatex(menubody[len], 511 - len,"%d. %s^n", ++b, menuid == MENU_PRIMARY ? g_primaryweapons[a][0]: g_secondaryweapons[a][0])
+    }
+
+    if(end != maxitem)
+    {
+            formatex(menubody[len], 511 - len, "^n9. %L^n0. %L", id, "MENU_MORE", id, pos ? "MENU_BACK" : "MENU_EXIT")
+            keys |= MENU_KEY_9
+    }
+    else	
+        formatex(menubody[len], 511 - len, "^n0. %L", id, pos ? "MENU_BACK" : "MENU_EXIT")
+
+    new time
+    time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time)
+    show_menu(id, keys, menubody, time > 1 ? time : 1, menuid == MENU_PRIMARY ? "Primary" : "Secondary")
 }
 
 public action_prim(id, key)

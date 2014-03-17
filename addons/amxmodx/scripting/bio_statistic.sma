@@ -184,7 +184,7 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     else
     {
         format(g_Query,charsmax(g_Query),
-            "INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s';",
+            "INSERT INTO `zp_players` SET `nick`=^"%s^", `ip`='%s', `steam_id`='%s';",
             g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
     }

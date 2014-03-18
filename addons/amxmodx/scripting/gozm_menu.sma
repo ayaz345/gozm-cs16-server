@@ -1,5 +1,5 @@
 #include <amxmodx>
-#include <cs_team_changer>
+#include <cs_teams_api>
 #include <fakemeta>
 
 #define VIP_FLAG ADMIN_LEVEL_H
@@ -116,17 +116,17 @@ public menu_handler(id, menu, item)
         case 20:
         {
             if(!is_user_alive(id))
-                cs_set_team(id, TEAM_SPECTATOR)
+                cs_set_player_team(id, CS_TEAM_SPECTATOR)
             else if(get_user_flags(id) & VIP_FLAG || get_user_flags(id) & ADMIN_FLAG)
             {
                 user_silentkill(id)
-                cs_set_team(id, TEAM_SPECTATOR)
+                cs_set_player_team(id, CS_TEAM_SPECTATOR)
             }
         }
         case 21:
         {
             if(!is_user_alive(id))
-                cs_set_team(id, TEAM_CT)
+                cs_set_player_team(id, CS_TEAM_CT)
         }
     }
 

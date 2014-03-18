@@ -334,7 +334,7 @@ public fw_HamKilled(id, attacker, shouldgib)
 {
     new type, player = attacker
     new killer_frags = 1
-
+    
     if (g_UserDBId[id] && is_user_connected(attacker))
     {
         format(g_Query, charsmax(g_Query),
@@ -351,6 +351,7 @@ public fw_HamKilled(id, attacker, shouldgib)
     if (is_user_zombie(attacker))
     {
         type = 1
+        g_Me[attacker][ME_INFECT]++
     }
     else
     {

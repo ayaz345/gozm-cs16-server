@@ -236,17 +236,10 @@ new const g_dataname[][] =
 	"HITREGENDLY", 
 	"KNOCKBACK" 
 }
-new const g_teaminfo[][] = 
-{ 
-	"UNASSIGNED", 
-	"TERRORIST",
-	"CT",
-	"SPECTATOR" 
-}
 
 new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
     g_sync_msgdisplay, g_fwd_spawn, g_fwd_result, g_fwd_infect, g_fwd_gamestart,
-    g_msg_teaminfo, g_msg_scoreattrib, g_msg_scoreinfo, 
+    g_msg_scoreattrib, g_msg_scoreinfo, 
     g_msg_deathmsg , g_msg_screenfade, g_msgScreenShake, Float:g_buytime,  Float:g_spawns[MAX_SPAWNS+1][9],
     Float:g_vecvel[3], bool:g_brestorevel, bool:g_infecting, bool:g_gamestarted,
     bool:g_roundstarted, bool:g_roundended, g_class_name[MAX_CLASSES+1][32], 
@@ -446,7 +439,6 @@ public plugin_init()
     register_logevent("logevent_round_start", 2, "1=Round_Start")
     register_logevent("logevent_round_end", 2, "1=Round_End")
 
-    g_msg_teaminfo = get_user_msgid("TeamInfo")
     g_msg_scoreattrib = get_user_msgid("ScoreAttrib")
     g_msg_scoreinfo = get_user_msgid("ScoreInfo")
     g_msg_deathmsg = get_user_msgid("DeathMsg")
@@ -2171,7 +2163,7 @@ public task_initround()
         else
         {
             cs_set_player_team(id, CS_TEAM_CT)
-            add_delay(id, "update_team")
+//            add_delay(id, "update_team")
             
             if (g_player_weapons[id][0] == -1)
             {
@@ -2267,23 +2259,6 @@ public bot_weapons(id)
 	g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
 	
 	equipweapon(id, EQUIP_ALL)
-}
-
-public update_team(id)
-{
-	if(!is_user_connected(id))
-		return
-	
-	static team
-	team = fm_get_user_team(id)
-	
-	if(team == TEAM_TERRORIST || team == TEAM_CT)
-	{
-		emessage_begin(MSG_ALL, g_msg_teaminfo)
-		ewrite_byte(id)
-		ewrite_string(g_teaminfo[team])
-		emessage_end()
-	}
 }
 
 public infect_user(victim, attacker)

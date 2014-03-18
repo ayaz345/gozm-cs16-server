@@ -26,7 +26,7 @@
 new const CS_TEAM_NAMES[][] = { "UNASSIGNED", "TERRORIST", "CT", "SPECTATOR" }
 
 new Float:g_TeamMsgTargetTime
-new g_MsgTeamInfo, g_MsgScoreInfo
+new g_MsgTeamInfo//, g_MsgScoreInfo
 new g_MaxPlayers
 
 public plugin_init()
@@ -36,7 +36,7 @@ public plugin_init()
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0")
 	
 	g_MsgTeamInfo = get_user_msgid("TeamInfo")
-	g_MsgScoreInfo = get_user_msgid("ScoreInfo")
+//	g_MsgScoreInfo = get_user_msgid("ScoreInfo")
 	g_MaxPlayers = get_maxplayers()
 }
 
@@ -103,6 +103,7 @@ stock fm_cs_set_user_team(id, CsTeams:team, send_message)
 	set_pdata_int(id, OFFSET_CSTEAMS, _:team)
 	
 	// Fix for AMXX/CZ bots which update team paramater from ScoreInfo message
+/*
 	emessage_begin(MSG_BROADCAST, g_MsgScoreInfo)
 	ewrite_byte(id) // id
 	ewrite_short(pev(id, pev_frags)) // frags
@@ -110,6 +111,7 @@ stock fm_cs_set_user_team(id, CsTeams:team, send_message)
 	ewrite_short(0) // class?
 	ewrite_short(_:team) // team
 	emessage_end()
+*/
 	
 	// Send message to update team?
 	if (send_message) fm_user_team_update(id)

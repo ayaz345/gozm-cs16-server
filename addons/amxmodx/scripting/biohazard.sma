@@ -2179,7 +2179,9 @@ public task_initround()
                 g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
                 equipweapon(id, EQUIP_ALL)
                 colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
-            }  
+            }
+            else if (!user_has_weapon(id, get_weaponid(g_primaryweapons[g_player_weapons[id][0]][1])))
+                equipweapon(id, EQUIP_ALL)
         }
     }
 

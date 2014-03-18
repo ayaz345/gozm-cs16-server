@@ -121,36 +121,21 @@ public client_disconnect(id)
     remove_task(TASKID_LASTSEEN + id)
 }
 
-public quote_string(buffer[], unquoted_string[])
-{
-    trim(unquoted_string)
-    for (new i=0; i<strlen(unquoted_string); i++)
-    {
-        add(buffer, strlen(buffer) + 1, "\")
-        add(buffer, strlen(buffer) + 1, unquoted_string[i])
-    }
-    return
-}
-
 public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
     
     new unquoted_name[32]
     get_user_name(id, unquoted_name, 31)
-    if (contain(unquoted_name, "^"") != -1)
-        replace(unquoted_name, 31, "^"", "'")
-/*
-    new buffer[64]
-    quote_string(buffer, unquoted_name)
-    copy(g_UserName[id], 63, buffer)
-*/
+    if (contain(unquoted_name, "'") != -1)
+        replace_all(unquoted_name, 31, "'", "\'")
+
     copy(g_UserName[id], 31, unquoted_name)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
     format(g_Query, charsmax(g_Query), "SELECT `id` FROM `zp_players` \
-            WHERE BINARY `nick`=^"%s^";", g_UserName[id])
+            WHERE BINARY `nick`='%s';", g_UserName[id])
 
     new data[2]
     data[0] = id
@@ -184,7 +169,7 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     else
     {
         format(g_Query,charsmax(g_Query),
-            "INSERT INTO `zp_players` SET `nick`=^"%s^", `ip`='%s', `steam_id`='%s';",
+            "INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s';",
             g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
     }
@@ -493,17 +478,15 @@ public show_rank(id, unquoted_whois[])
     }
     else
     {
-/*
-        new buffer[64]
-        quote_string(buffer, unquoted_whois)
-*/
+        if (contain(unquoted_whois, "'") != -1)
+            replace_all(unquoted_whois, 31, "'", "\'")
         copy(whois, 32, unquoted_whois)
     
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
-            WHERE `nick` LIKE BINARY ^"%%%s%%^" LIMIT 1;",
+            WHERE `nick` LIKE BINARY '%%%s%%' LIMIT 1;",
             whois, whois)
     }
 
@@ -570,18 +553,15 @@ public show_stats(id, unquoted_whois[])
     }
     else
     {
-/*
-        new buffer[64]
-        quote_string(buffer, unquoted_whois)
-        copy(whois, 63, buffer)
-*/
+        if (contain(unquoted_whois, "'") != -1)
+            replace_all(unquoted_whois, 31, "'", "\'")
         copy(whois, 32, unquoted_whois)
     
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
             FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
-            WHERE `nick` LIKE BINARY ^"%%%s%%^" OR `ip` LIKE BINARY '%%%s%%' \
+            WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
             LIMIT 1;",
             whois, whois)
     }
@@ -856,7 +836,7 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     if (failstate == TQUERY_CONNECT_FAILED)
     {
         log_amx("[BIO STAT]: Connection failed")
-        pause("ac", "superban-q.amxx")
+        pause("ac", "superban-q.amxx")  // troubles with server crashing on mapchange
         pause("ac", "amxbans.amxx")
         pause("ac", "admin_amxbans.amxx")
         pause("a")

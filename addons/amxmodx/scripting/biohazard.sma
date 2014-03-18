@@ -2366,7 +2366,7 @@ public display_equipmenu(id)
         keys |= (MENU_KEY_2|MENU_KEY_3)
 
     new time
-    time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time)
+    time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 1
     show_menu(id, keys, menubody, time > 1 ? time : 1, "Equipment")
 }
 
@@ -2438,7 +2438,7 @@ public display_weaponmenu(id, menuid, pos)
         formatex(menubody[len], 511 - len, "^n0. %L", id, pos ? "MENU_BACK" : "MENU_EXIT")
 
     new time
-    time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time)
+    time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 1
     show_menu(id, keys, menubody, time > 1 ? time : 1, menuid == MENU_PRIMARY ? "Primary" : "Secondary")
 }
 

@@ -127,8 +127,14 @@ public auth_player(taskid)
     
     new unquoted_name[32]
     get_user_name(id, unquoted_name, 31)
-    if (contain(unquoted_name, "'") != -1)
-        replace_all(unquoted_name, 31, "'", "\'")
+    
+    replace_all(unquoted_name, 31, "\\", "\\\\")
+    replace_all(unquoted_name, 31, "\0", "\\0")
+    replace_all(unquoted_name, 31, "\n", "\\n")
+    replace_all(unquoted_name, 31, "\r", "\\r")
+    replace_all(unquoted_name, 31, "\x1a", "\Z")
+    replace_all(unquoted_name, 31, "'", "\'")
+    replace_all(unquoted_name, 31, "^"", "\^"")
 
     copy(g_UserName[id], 31, unquoted_name)
     get_user_authid(id, g_UserAuthID[id], 31)
@@ -164,7 +170,7 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     if(SQL_NumResults(query))
     {
         g_UserDBId[id] = SQL_ReadResult(query, column("id"))
-        set_task(1.0, "update_last_seen", TASKID_LASTSEEN + id)
+        set_task(10.0, "update_last_seen", TASKID_LASTSEEN + id)
     }
     else
     {
@@ -191,7 +197,7 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
         return PLUGIN_HANDLED
     
     g_UserDBId[id] = SQL_GetInsertId(query)
-    set_task(1.0, "update_last_seen", TASKID_LASTSEEN + id)
+    set_task(10.0, "update_last_seen", TASKID_LASTSEEN + id)
 
     return PLUGIN_HANDLED
 }
@@ -837,10 +843,6 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     if (failstate == TQUERY_CONNECT_FAILED)
     {
         log_amx("[BIO STAT]: Connection failed")
-        pause("ac", "superban-q.amxx")  // troubles with server crashing on mapchange
-        pause("ac", "amxbans.amxx")
-        pause("ac", "admin_amxbans.amxx")
-        pause("a")
     }
     else if (failstate == TQUERY_QUERY_FAILED)
     {

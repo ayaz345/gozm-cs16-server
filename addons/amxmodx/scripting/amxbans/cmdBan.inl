@@ -177,26 +177,26 @@ public cmdBan(id, level, cid)
     }
 
     /////////// SCREENSHOT AS A PROOF ///////////
-
     new banned_name[32]
     new admin_name[32]
     get_user_name(player, banned_name, 31)
     get_user_name(id, admin_name, 31)
     colored_print(player, "^x04***^x01 %s is banned by %s for %dm", banned_name, admin_name, iBanLength)
     client_cmd(player, "snapshot")
-
     /////////////////////////////////////////////
     
-    new param[2]
-    param[0] = player
-    param[1] = 15
-    set_task(kick_delay + 5.0, "double_ban", player, param, 2)
-
     new data[3]
     data[0] = id
     data[1] = player
     data[2] = iBanLength
     SQL_ThreadQuery(g_SqlX, "cmd_ban_", query, data, 3)
+    
+    new param[2]
+    param[0] = player
+    param[1] = 15
+    set_task(kick_delay + 5.0, "double_ban", player, param, 2)
+    
+    SuperBan(player, iBanLength, id)
 
     return PLUGIN_HANDLED
 }
@@ -591,7 +591,7 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
             param[2] = id
             set_task(kick_delay-1, "SuperBan", id, param, 3)
 */
-            SuperBan(player, iBanLength, id)
+//            SuperBan(player, iBanLength, id)
 		}
 		else /* The player was not found in server */
 		{

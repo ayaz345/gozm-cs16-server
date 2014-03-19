@@ -240,7 +240,7 @@ new const g_dataname[][] =
 new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
     g_sync_msgdisplay, g_fwd_spawn, g_fwd_result, g_fwd_infect, g_fwd_gamestart,
     g_msg_scoreattrib, g_msg_scoreinfo, 
-    g_msg_deathmsg , g_msg_screenfade, g_msgScreenShake, Float:g_buytime,  Float:g_spawns[MAX_SPAWNS+1][9],
+    g_msg_deathmsg , g_msg_screenfade, g_msgScreenShake, Float:g_spawns[MAX_SPAWNS+1][9],
     Float:g_vecvel[3], bool:g_brestorevel, bool:g_infecting, bool:g_gamestarted,
     bool:g_roundstarted, bool:g_roundended, g_class_name[MAX_CLASSES+1][32], 
     g_classcount, g_class_desc[MAX_CLASSES+1][32], g_class_pmodel[MAX_CLASSES+1][64], 
@@ -259,7 +259,9 @@ new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cva
     
 new bool:g_zombie[25], g_roundstart_time,
     bool:g_disconnected[25], bool:g_blockmodel[25], 
-    bool:g_showmenu[25], bool:g_menufailsafe[25], bool:g_preinfect[25], 
+    bool:g_showmenu[25], 
+//    bool:g_menufailsafe[25], 
+    bool:g_preinfect[25], 
     bool:g_suicide[25], g_mutate[25], g_victim[25],
     g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
 	lights[2], bool:stop_changing_name[25],
@@ -528,7 +530,7 @@ public client_putinserver(id)
     g_zombie[id] = false
     g_preinfect[id] = false
     g_disconnected[id] = false
-    g_menufailsafe[id] = false
+//    g_menufailsafe[id] = false
     g_victim[id] = 0
     g_mutate[id] = -1
     g_player_class[id] = 0
@@ -583,7 +585,7 @@ public client_disconnect(id)
     remove_task(TASKID_STRIPNGIVE + id)
     remove_task(TASKID_UPDATESCR + id)
     remove_task(TASKID_SPAWNDELAY + id)
-    remove_task(TASKID_WEAPONSMENU + id)
+//    remove_task(TASKID_WEAPONSMENU + id)
     remove_task(TASKID_CHECKSPAWN + id)
     remove_task(TASKID_RESTOREFADE + id)
     remove_task(TASKID_SHOWCLEAN + id)
@@ -697,6 +699,7 @@ public cmd_enablemenu(id)
     {
 //        client_print(id, print_chat, "%L", id, g_showmenu[id] == false ? "MENU_REENABLED" : "MENU_ALENABLED")
 //        g_showmenu[id] = true
+        g_showmenu[id] = false
         display_weaponmenu(id, MENU_PRIMARY, g_menuposition[id] = 0)
     }
     return PLUGIN_HANDLED
@@ -1095,7 +1098,7 @@ public logevent_round_start()
                 if(g_showmenu[id])
                 {
                     add_delay(id, "display_equipmenu")
-                    g_menufailsafe[id] = true
+//                    g_menufailsafe[id] = true
                 }
                 else
                 {
@@ -1200,12 +1203,6 @@ public event_newround()
 	if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
 
 	g_gamestarted = false
-	
-	static buytime 
-	buytime = get_pcvar_num(cvar_starttime) + get_cvar_num("mp_freezetime")
-	
-	if(buytime) 
-		g_buytime = buytime + get_gametime()
 	
 	static id
 	for(id = 0; id <= g_maxplayers; id++)
@@ -1900,8 +1897,15 @@ public task_spawned(taskid)
             return
         }
 
-        if(get_pcvar_num(cvar_weaponsmenu) && g_roundstarted && g_showmenu[id])
+        if(get_pcvar_num(cvar_weaponsmenu) && g_roundstarted && g_showmenu[id] && !g_gamestarted)
             display_equipmenu(id)
+        else if (g_gamestarted)
+        {
+            g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
+            g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
+            equipweapon(id, EQUIP_ALL)
+            colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
+        }
 
         if(!g_gamestarted)
         {
@@ -1920,7 +1924,7 @@ public task_spawned(taskid)
             team = fm_get_user_team(id)
             
             if(team == TEAM_TERRORIST)
-                cs_set_player_team(id, CS_TEAM_CT)
+                cs_set_player_team(id, CS_TEAM_CT)  // player cant be zombie when game already started
         }
 	}
 }
@@ -2016,7 +2020,7 @@ public task_updatescore(params[])
 	write_short(team)
 	message_end()
 }
-
+/*
 public task_weaponsmenu(taskid)
 {
 	static id
@@ -2025,7 +2029,7 @@ public task_weaponsmenu(taskid)
 	if(is_user_alive(id) && !g_zombie[id] && g_menufailsafe[id])
 		display_equipmenu(id)
 }
-
+*/
 public task_stripngive(taskid)
 {
 	static id
@@ -2252,7 +2256,7 @@ public task_botclient_pdata(id)
 	
 	if(is_user_alive(id)) bacon_spawn_player_post(id)
 }
-
+/*
 public bot_weapons(id)
 {
 	g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
@@ -2260,7 +2264,7 @@ public bot_weapons(id)
 	
 	equipweapon(id, EQUIP_ALL)
 }
-
+*/
 public infect_user(victim, attacker)
 {
     if(!is_user_alive(victim) || !is_user_connected(victim))
@@ -2365,12 +2369,8 @@ public display_equipmenu(id)
     if(hasweap) 
         keys |= (MENU_KEY_2|MENU_KEY_3)
 
-    new time
-    if (0 < g_buytime < get_gametime())
-        time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 1
-    else
-        time = 10
-    show_menu(id, keys, menubody, time > 1 ? time : 1, "Equipment")
+    new time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 2
+    show_menu(id, keys, menubody, time > 0 ? time : 10, "Equipment")
 }
 
 public action_equip(id, key)
@@ -2392,8 +2392,8 @@ public action_equip(id, key)
 	
 	if(key > 0)
 	{
-		g_menufailsafe[id] = false
-		remove_task(TASKID_WEAPONSMENU + id)
+//        g_menufailsafe[id] = false
+//        remove_task(TASKID_WEAPONSMENU + id)
 	}
 	return PLUGIN_HANDLED
 }
@@ -2440,12 +2440,8 @@ public display_weaponmenu(id, menuid, pos)
     else	
         formatex(menubody[len], 511 - len, "^n0. %L", id, pos ? "MENU_BACK" : "MENU_EXIT")
 
-    new time
-    if (0 < g_buytime < get_gametime())
-        time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 1
-    else
-        time = 10
-    show_menu(id, keys, menubody, time > 1 ? time : 1, menuid == MENU_PRIMARY ? "Primary" : "Secondary")
+    new time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 2
+    show_menu(id, keys, menubody, time > 0 ? time: 10, menuid == MENU_PRIMARY ? "Primary" : "Secondary")
 }
 
 public action_prim(id, key)
@@ -2459,10 +2455,11 @@ public action_prim(id, key)
 		case 9: display_weaponmenu(id, MENU_PRIMARY, --g_menuposition[id])
         default:
 		{
-			g_player_weapons[id][0] = g_menuposition[id] * 8 + key
-			equipweapon(id, EQUIP_PRI)
-			
-			display_weaponmenu(id, MENU_SECONDARY, g_menuposition[id] = 0)
+            g_player_weapons[id][0] = g_menuposition[id] * 8 + key
+            if (!g_gamestarted)
+                equipweapon(id, EQUIP_PRI)
+
+            display_weaponmenu(id, MENU_SECONDARY, g_menuposition[id] = 0)
 		}
 	}
 	
@@ -2471,25 +2468,28 @@ public action_prim(id, key)
 
 public action_sec(id, key)
 {
-	if(!is_user_alive(id) || g_zombie[id])
-		return PLUGIN_HANDLED
-	
-	switch(key) 
-	{
-    		case 8: display_weaponmenu(id, MENU_SECONDARY, ++g_menuposition[id])
-		case 9: display_weaponmenu(id, MENU_SECONDARY, --g_menuposition[id])
-    		default:
-		{
-			g_menufailsafe[id] = false
-			remove_task(TASKID_WEAPONSMENU + id)
-			
-			g_player_weapons[id][1] = g_menuposition[id] * 8 + key
-			equipweapon(id, EQUIP_SEC)		
-			equipweapon(id, EQUIP_GREN)
-		}
-	}
-	
-	return PLUGIN_HANDLED
+    if(!is_user_alive(id) || g_zombie[id])
+        return PLUGIN_HANDLED
+
+    switch(key) 
+    {
+        case 8: display_weaponmenu(id, MENU_SECONDARY, ++g_menuposition[id])
+        case 9: display_weaponmenu(id, MENU_SECONDARY, --g_menuposition[id])
+        default:
+        {
+//            g_menufailsafe[id] = false
+//            remove_task(TASKID_WEAPONSMENU + id)
+            g_player_weapons[id][1] = g_menuposition[id] * 8 + key
+
+            if (!g_gamestarted)
+            {
+                equipweapon(id, EQUIP_SEC)		
+                equipweapon(id, EQUIP_GREN)
+            }
+        }
+    }
+
+    return PLUGIN_HANDLED
 }
 
 public register_spawnpoints(const mapname[])
@@ -2837,9 +2837,6 @@ randomly_pick_zombie()
 equipweapon(id, weapon)
 {
     if(!is_user_alive(id)) 
-        return
-
-    if (0 < g_buytime < get_gametime())
         return
 
     static weaponid[2], weaponent, weapname[32]

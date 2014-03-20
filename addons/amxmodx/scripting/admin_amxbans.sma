@@ -1,37 +1,3 @@
-/* AMX Mod X script.
-*   Admin Base Plugin
-*
-* by the AMX Mod X Development Team
-*  originally developed by OLO
-*
-* This file is part of AMX Mod X.
-*
-*
-*  This program is free software; you can redistribute it and/or modify it
-*  under the terms of the GNU General Public License as published by the
-*  Free Software Foundation; either version 2 of the License, or (at
-*  your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful, but
-*  WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-*  General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software Foundation,
-*  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-*
-*  In addition, as a special exception, the author gives permission to
-*  link the code of this program with the Half-Life Game Engine ("HL
-*  Engine") and Modified Game Libraries ("MODs") developed by Valve,
-*  L.L.C ("Valve"). You must obey the GNU General Public License in all
-*  respects for all of the code used other than the HL Engine and MODs
-*  from Valve. If you modify this file, you may extend this exception
-*  to your version of the file, but you are not obligated to do so. If
-*  you do not wish to do so, delete this exception statement from your
-*  version.
-*/
-
 // Uncomment for SQL version
 #define USING_SQL
 
@@ -439,7 +405,6 @@ public adminSql()
 
 	// Sqlite is removed as amxbans dont use that.
 
-	
 	SQL_QueryAndIgnore(sql, "CREATE TABLE IF NOT EXISTS `amx_amxadmins` (`id` int(12) NOT NULL auto_increment, `username` varchar(32) default NULL, `password` varchar(32) default NULL, `access` varchar(32) default NULL, `flags` varchar(32) default NULL, `steamid` varchar(32) default NULL, `nickname` varchar(32) NOT NULL default '', PRIMARY KEY (`id`))")
 	query = SQL_PrepareQuery(sql,"SELECT amx_amxadmins.username, amx_amxadmins.password, amx_amxadmins.access, amx_amxadmins.flags FROM amx_amxadmins, amx_admins_servers, amx_serverinfo WHERE ((amx_admins_servers.admin_id =amx_amxadmins.id) AND (amx_admins_servers.server_id = amx_serverinfo.id) AND (amx_serverinfo.address = '%s:%s'))",ip,port)
 	

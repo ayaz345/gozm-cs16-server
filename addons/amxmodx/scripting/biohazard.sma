@@ -699,7 +699,7 @@ public cmd_enablemenu(id)
     {
 //        client_print(id, print_chat, "%L", id, g_showmenu[id] == false ? "MENU_REENABLED" : "MENU_ALENABLED")
 //        g_showmenu[id] = true
-        g_showmenu[id] = false
+        g_showmenu[id] = true
         display_weaponmenu(id, MENU_PRIMARY, g_menuposition[id] = 0)
     }
     return PLUGIN_HANDLED
@@ -1099,6 +1099,8 @@ public logevent_round_start()
                 {
                     add_delay(id, "display_equipmenu")
 //                    g_menufailsafe[id] = true
+                    if (g_player_weapons[id][0] != -1)
+                        equipweapon(id, EQUIP_ALL)
                 }
                 else
                 {
@@ -2389,12 +2391,13 @@ public action_equip(id, key)
 			colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
 		}
 	}
-	
+/*	
 	if(key > 0)
 	{
-//        g_menufailsafe[id] = false
-//        remove_task(TASKID_WEAPONSMENU + id)
+        g_menufailsafe[id] = false
+        remove_task(TASKID_WEAPONSMENU + id)
 	}
+*/
 	return PLUGIN_HANDLED
 }
 

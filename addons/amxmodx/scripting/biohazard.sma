@@ -428,7 +428,6 @@ public plugin_init()
     register_message(get_user_msgid("ClCorpse"), "msg_clcorpse")
     register_message(get_user_msgid("WeapPickup"), "msg_weaponpickup")
     register_message(get_user_msgid("AmmoPickup"), "msg_ammopickup")
-
     register_message(g_msg_screenfade, "msg_screenfade")
 
     register_event("TextMsg", "event_textmsg", "a", "2=#Game_will_restart_in")

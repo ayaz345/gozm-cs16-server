@@ -139,15 +139,7 @@ public auth_player(taskid)
     
     new unquoted_name[32]
     get_user_name(id, unquoted_name, 31)
-    
-    replace_all(unquoted_name, 31, "\\", "\\\\")
-    replace_all(unquoted_name, 31, "\0", "\\0")
-    replace_all(unquoted_name, 31, "\n", "\\n")
-    replace_all(unquoted_name, 31, "\r", "\\r")
-    replace_all(unquoted_name, 31, "\x1a", "\Z")
-    replace_all(unquoted_name, 31, "'", "\'")
-    replace_all(unquoted_name, 31, "^"", "\^"")
-
+    mysql_escape_string(unquoted_name, 31)
     copy(g_UserName[id], 31, unquoted_name)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
@@ -497,9 +489,8 @@ public show_rank(id, unquoted_whois[])
     }
     else
     {
-        if (contain(unquoted_whois, "'") != -1)
-            replace_all(unquoted_whois, 31, "'", "\'")
-        copy(whois, 32, unquoted_whois)
+        mysql_escape_string(unquoted_whois, 31)
+        copy(whois, 31, unquoted_whois)
     
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
@@ -532,10 +523,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     }
 
     if (data[1] != get_user_userid(id))
-    {
-    	log_amx("[WEBSTATS] <ShowRank_QueryHandler> error %d != %d", data[1], get_user_userid(id))
-    	return PLUGIN_HANDLED
-    }
+        return PLUGIN_HANDLED
 
     new name[32]
     new rank
@@ -572,9 +560,8 @@ public show_stats(id, unquoted_whois[])
     }
     else
     {
-        if (contain(unquoted_whois, "'") != -1)
-            replace_all(unquoted_whois, 31, "'", "\'")
-        copy(whois, 32, unquoted_whois)
+        mysql_escape_string(unquoted_whois, 31)
+        copy(whois, 31, unquoted_whois)
     
         format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
@@ -862,4 +849,15 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     }
     log_amx("[BIO STAT]: Called from id=%d, errnum=%d, error=%s", id, errnum, error)
     log_amx("[BIO STAT]: Query: %ds to '%s'", request_time, szQuery)
+}
+
+stock mysql_escape_string(dest[], len)
+{
+    replace_all(dest, len, "\\", "\\\\")
+    replace_all(dest, len, "\0", "\\0")
+    replace_all(dest, len, "\n", "\\n")
+    replace_all(dest, len, "\r", "\\r")
+    replace_all(dest, len, "\x1a", "\Z")
+    replace_all(dest, len, "'", "\'")
+    replace_all(dest, len, "^"", "\^"")
 }

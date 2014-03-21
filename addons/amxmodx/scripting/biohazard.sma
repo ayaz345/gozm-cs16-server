@@ -535,7 +535,7 @@ public client_putinserver(id)
     g_mutate[id] = -1
     g_player_class[id] = 0
     g_player_weapons[id][0] = -1
-    g_player_weapons[id][1] = -1
+    g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
     activate_nv[id] = false
 
     set_task(7.0, "recordDemo", id)
@@ -1906,7 +1906,7 @@ public task_spawned(taskid)
             g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
             g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
             equipweapon(id, EQUIP_ALL)
-            colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
+            colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
         }
 
         if(!g_gamestarted)
@@ -2176,7 +2176,7 @@ public task_initround()
                 g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
                 g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
                 equipweapon(id, EQUIP_ALL)
-                colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
+                colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
             }
             else if (!user_has_weapon(id, get_weaponid(g_primaryweapons[g_player_weapons[id][0]][1])))
                 equipweapon(id, EQUIP_ALL)
@@ -2388,7 +2388,7 @@ public action_equip(id, key)
 		{
 			g_showmenu[id] = false
 			equipweapon(id, EQUIP_ALL)
-			colored_print(id, "^x04***^x01 Print /guns in chat to re-order weapons")
+			colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
 		}
 	}
 /*	

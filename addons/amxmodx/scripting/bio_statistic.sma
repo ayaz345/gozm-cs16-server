@@ -98,9 +98,14 @@ public sql_init()
     format(g_Query, charsmax(g_Query), "SET NAMES utf8")
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 
+    new map_name[32]
+    get_mapname(map_name, 31)
+    format(g_Query, charsmax(g_Query), "INSERT INTO `zp_maps` (`map`) VALUES ('%s') \
+        ON DUPLICATE KEY UPDATE `games` = `games` + 1", map_name)
+    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+    
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
-    new now = get_systime()
-    new inactive_period = now - max_inactive_days*24*60*60
+    new inactive_period = get_systime() - max_inactive_days*24*60*60
     format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
             WHERE `last_leave` < %d", inactive_period)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)

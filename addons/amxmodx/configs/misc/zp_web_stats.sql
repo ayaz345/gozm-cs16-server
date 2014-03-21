@@ -15,3 +15,11 @@ CREATE TABLE IF NOT EXISTS `zp_players` (
   PRIMARY KEY  (`id`),
   KEY `nick` (`nick`,`ip`,`steam_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `zp_maps` (
+  `id` int(11) NOT NULL auto_increment,
+  `map` varchar(32) NOT NULL,
+  `games` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `map` (`map`)
+) DEFAULT CHARSET=utf8;

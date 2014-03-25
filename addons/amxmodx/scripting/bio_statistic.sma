@@ -237,6 +237,8 @@ public client_infochanged(id)
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
         
+        g_UserDBId[id] = 0
+        reset_player_statistic(id)
         set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
     }
     return PLUGIN_CONTINUE

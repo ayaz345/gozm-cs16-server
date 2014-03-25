@@ -202,7 +202,8 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             new unbanning_nick[50]
             get_user_name(id, unbanning_nick, 49)
             trim(unbanning_nick)
-            log_amx("UNBAN_SELECT: B.NAME: %s, B.IP: %s", g_player_nick, player_ip)
+            log_amx("UNBAN_SELECT: U.NAME: %s, A.NAME %s, B.NAME: %s, B.IP: %s",
+                unbanning_nick, admin_nick, g_player_nick, player_ip)
 
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {

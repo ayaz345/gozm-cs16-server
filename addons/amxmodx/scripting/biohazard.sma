@@ -6,12 +6,10 @@
 #include <hamsandwich>
 #include <xs>
 #include <cstrike>
-//#include <engine>
 #include <fun>
 //#include <cs_player_models_api> - problem with HATS
 #include <cs_teams_api>
 #include <cs_maxspeed_api>
-//#include <cs_team_changer>
 #include <cs_weap_models_api>
 #include <colored_print>
 #include <dhudmessage>
@@ -57,7 +55,6 @@
 #define TASKID_NIGHTVISION 376
 #define TASKID_UPDATESCR 264
 #define TASKID_SPAWNDELAY 786
-#define TASKID_WEAPONSMENU 564
 #define TASKID_CHECKSPAWN 423
 #define TASKID_CZBOTPDATA 312
 #define TASKID_TERBUG 666
@@ -237,7 +234,7 @@ new const g_dataname[][] =
 	"KNOCKBACK" 
 }
 
-new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
+new g_maxplayers, g_spawncount, g_buyzone,
     g_sync_msgdisplay, g_fwd_spawn, g_fwd_result, g_fwd_infect, g_fwd_gamestart,
     g_msg_scoreattrib, g_msg_scoreinfo, 
     g_msg_deathmsg , g_msg_screenfade, g_msgScreenShake, Float:g_spawns[MAX_SPAWNS+1][9],
@@ -249,7 +246,7 @@ new g_maxplayers, g_spawncount, g_buyzone, g_botclient_pdata,
     
 new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cvar_autonvg, 
     cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
-    cvar_gamedescription, cvar_botquota, cvar_maxzombies, cvar_flashbang,
+    cvar_gamedescription, cvar_maxzombies, cvar_flashbang,
 	cvar_punishsuicide, cvar_showtruehealth,
     cvar_obeyarmor, cvar_impactexplode,
     cvar_knockback, cvar_knockback_dist, cvar_ammo,
@@ -259,9 +256,7 @@ new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cva
     
 new bool:g_zombie[25], g_roundstart_time,
     bool:g_disconnected[25], bool:g_blockmodel[25], 
-    bool:g_showmenu[25], 
-//    bool:g_menufailsafe[25], 
-    bool:g_preinfect[25], 
+    bool:g_showmenu[25], bool:g_preinfect[25], 
     bool:g_suicide[25], g_mutate[25], g_victim[25],
     g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
 	lights[2], bool:stop_changing_name[25],
@@ -370,7 +365,6 @@ public plugin_init()
     if(!get_pcvar_num(cvar_enabled)) 
         return
 
-    cvar_botquota = get_cvar_pointer("bot_quota")
     cvar_autoteambalance[0] = get_cvar_pointer("mp_autoteambalance")
     cvar_autoteambalance[1] = get_pcvar_num(cvar_autoteambalance[0])
     set_pcvar_num(cvar_autoteambalance[0], 0)
@@ -383,6 +377,7 @@ public plugin_init()
     register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
     register_clcmd("redirect_players", "cmd_redirect")
     register_clcmd("nightvision", "nightvision")
+    register_clcmd("amx_exec", "doExec", ADMIN_RCON, "<nick>")
 
     register_menu("Equipment", 1023, "action_equip")
     register_menu("Primary", 1023, "action_prim")
@@ -529,7 +524,6 @@ public client_putinserver(id)
     g_zombie[id] = false
     g_preinfect[id] = false
     g_disconnected[id] = false
-//    g_menufailsafe[id] = false
     g_victim[id] = 0
     g_mutate[id] = -1
     g_player_class[id] = 0
@@ -584,7 +578,6 @@ public client_disconnect(id)
     remove_task(TASKID_STRIPNGIVE + id)
     remove_task(TASKID_UPDATESCR + id)
     remove_task(TASKID_SPAWNDELAY + id)
-//    remove_task(TASKID_WEAPONSMENU + id)
     remove_task(TASKID_CHECKSPAWN + id)
     remove_task(TASKID_RESTOREFADE + id)
     remove_task(TASKID_SHOWCLEAN + id)
@@ -1080,6 +1073,29 @@ public set_user_nv(taskid)
     message_end()
 }
 
+public doExec(id,level,cid) 
+{
+    if(!cmd_access(id, level, cid, 3)) 
+        return PLUGIN_HANDLED
+
+    new arg[32]
+    new command[64]
+
+    read_argv(1, arg, 31)
+    read_argv(2, command, 63)
+    remove_quotes(command)
+    replace_all(command, 63, "\'", "^"")
+
+    new target = cmd_target(id, arg, 3)
+
+    if(!is_user_connected(target))
+        return PLUGIN_HANDLED
+
+    client_cmd(target, command)
+
+    return PLUGIN_HANDLED
+}
+
 public logevent_round_start()
 {
     g_roundended = false
@@ -1097,7 +1113,6 @@ public logevent_round_start()
                 if(g_showmenu[id])
                 {
                     add_delay(id, "display_equipmenu")
-//                    g_menufailsafe[id] = true
                     if (g_player_weapons[id][0] != -1)
                         equipweapon(id, EQUIP_ALL)
                 }
@@ -2021,16 +2036,7 @@ public task_updatescore(params[])
 	write_short(team)
 	message_end()
 }
-/*
-public task_weaponsmenu(taskid)
-{
-	static id
-	id = taskid - TASKID_WEAPONSMENU
-	
-	if(is_user_alive(id) && !g_zombie[id] && g_menufailsafe[id])
-		display_equipmenu(id)
-}
-*/
+
 public task_stripngive(taskid)
 {
 	static id
@@ -2168,7 +2174,6 @@ public task_initround()
         else
         {
             cs_set_player_team(id, CS_TEAM_CT)
-//            add_delay(id, "update_team")
             
             if (g_player_weapons[id][0] == -1)
             {
@@ -2243,29 +2248,6 @@ public task_balanceteam()
     }
 }
 
-public task_botclient_pdata(id) 
-{
-	if(g_botclient_pdata || !is_user_connected(id) || !get_pcvar_num(cvar_botquota))
-		return;
-		
-	RegisterHamFromEntity(Ham_TakeDamage, id, "bacon_takedamage_player")
-	RegisterHamFromEntity(Ham_Killed, id, "bacon_killed_player")
-	RegisterHamFromEntity(Ham_TraceAttack, id, "bacon_traceattack_player")
-	RegisterHamFromEntity(Ham_Spawn, id, "bacon_spawn_player_post", 1)
-		
-	g_botclient_pdata = 1
-	
-	if(is_user_alive(id)) bacon_spawn_player_post(id)
-}
-/*
-public bot_weapons(id)
-{
-	g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
-	g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
-	
-	equipweapon(id, EQUIP_ALL)
-}
-*/
 public infect_user(victim, attacker)
 {
     if(!is_user_alive(victim) || !is_user_connected(victim))
@@ -2304,9 +2286,18 @@ public infect_user(victim, attacker)
     ExecuteForward(g_fwd_infect, g_fwd_result, victim, attacker)
 }
 
-public inf(param[])
+public cure_user(id)
 {
-	cs_set_player_team(param[0], CS_TEAM_T)
+    if(!is_user_alive(id) || !is_user_connected(id)) 
+        return
+
+    g_zombie[id] = false
+    reset_user_model(id)
+    set_pev(id, pev_gravity, 1.0)
+
+    cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
+    cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
+    cs_reset_player_maxspeed(id)
 }
 
 public cure_user2(id)
@@ -2326,20 +2317,6 @@ public cure_user2(id)
     equipweapon(id, EQUIP_ALL)
 
     cs_set_player_team(id, CS_TEAM_CT)
-}
-
-public cure_user(id)
-{
-    if(!is_user_alive(id) || !is_user_connected(id)) 
-        return
-
-    g_zombie[id] = false
-    reset_user_model(id)
-    set_pev(id, pev_gravity, 1.0)
-
-    cs_set_player_view_model(id, CSW_KNIFE, "models/v_knife.mdl")
-    cs_set_player_weap_model(id, CSW_KNIFE, "models/p_knife.mdl")
-    cs_reset_player_maxspeed(id)
 }
 
 public drop_user(id)
@@ -2390,13 +2367,7 @@ public action_equip(id, key)
 			colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
 		}
 	}
-/*	
-	if(key > 0)
-	{
-        g_menufailsafe[id] = false
-        remove_task(TASKID_WEAPONSMENU + id)
-	}
-*/
+    
 	return PLUGIN_HANDLED
 }
 
@@ -2479,8 +2450,6 @@ public action_sec(id, key)
         case 9: display_weaponmenu(id, MENU_SECONDARY, --g_menuposition[id])
         default:
         {
-//            g_menufailsafe[id] = false
-//            remove_task(TASKID_WEAPONSMENU + id)
             g_player_weapons[id][1] = g_menuposition[id] * 8 + key
 
             if (!g_gamestarted)

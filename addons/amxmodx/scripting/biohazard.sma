@@ -219,21 +219,6 @@ new const g_remove_entities[][] =
 	"func_buyzone"
 }
 
-new const g_dataname[][] = 
-{ 
-	"HEALTH", 
-	"SPEED", 
-	"GRAVITY", 
-	"ATTACK", 
-	"DEFENCE", 
-	"HEDEFENCE", 
-	"HITSPEED", 
-	"HITDELAY", 
-	"REGENDLY", 
-	"HITREGENDLY", 
-	"KNOCKBACK" 
-}
-
 new g_maxplayers, g_spawncount, g_buyzone,
     g_sync_msgdisplay, g_fwd_spawn, g_fwd_result, g_fwd_infect, g_fwd_gamestart,
     g_msg_scoreattrib, g_msg_scoreinfo, 
@@ -244,20 +229,18 @@ new g_maxplayers, g_spawncount, g_buyzone,
     g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie, 
     first_zombie_name[32]
     
-new cvar_randomspawn, cvar_skyname, cvar_autoteambalance[4], cvar_starttime, cvar_autonvg, 
+new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime, 
     cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
     cvar_gamedescription, cvar_maxzombies, cvar_flashbang,
-	cvar_punishsuicide, cvar_showtruehealth,
-    cvar_obeyarmor, cvar_impactexplode,
-    cvar_knockback, cvar_knockback_dist, cvar_ammo,
-	cvar_killreward, cvar_zombie_class,
+	cvar_showtruehealth, cvar_impactexplode,
+    cvar_knockback, cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_shootobjects, cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
     
 new bool:g_zombie[25], g_roundstart_time,
     bool:g_disconnected[25], bool:g_blockmodel[25], 
     bool:g_showmenu[25], bool:g_preinfect[25], 
-    bool:g_suicide[25], g_mutate[25], g_victim[25],
+    g_mutate[25], g_victim[25],
     g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
 	lights[2], bool:stop_changing_name[25],
 	activate_nv[25]
@@ -275,22 +258,17 @@ public plugin_precache()
         return
 
     cvar_gamedescription = register_cvar("bh_gamedescription", "[ ZOMBIE BIO ]")
-    cvar_skyname = register_cvar("bh_skyname", "")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
     cvar_randomspawn = register_cvar("bh_randomspawn", "1")
-    cvar_punishsuicide = register_cvar("bh_punishsuicide", "0")
-    cvar_autonvg = register_cvar("bh_autonvg", "0")
     cvar_knockback = register_cvar("bh_knockback", "1")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
-    cvar_obeyarmor = register_cvar("bh_obeyarmor", "0")
     cvar_weaponsmenu = register_cvar("bh_weaponsmenu", "1")
     cvar_ammo = register_cvar("bh_ammo", "1")
     cvar_maxzombies = register_cvar("bh_maxzombies", "23")
     cvar_flashbang = register_cvar("bh_flashbang", "1")
     cvar_impactexplode = register_cvar("bh_impactexplode", "1")
     cvar_showtruehealth = register_cvar("bh_showtruehealth", "1")
-    cvar_zombie_class = register_cvar("bh_zombie_class", "0")
     cvar_killbonus = register_cvar("bh_kill_bonus", "1")
     cvar_killreward = register_cvar("bh_kill_reward", "2")
     cvar_shootobjects = register_cvar("bh_shootobjects", "1")
@@ -317,8 +295,7 @@ public plugin_precache()
     new mapname[32]
     get_mapname(mapname, 31)
     register_spawnpoints(mapname)
-        
-    register_zombieclasses("bh_zombieclass.ini")
+
     register_dictionary("biohazard.txt")
 
     precache_model(DEFAULT_PMODEL)
@@ -448,12 +425,6 @@ public plugin_init()
 
     g_maxplayers = get_maxplayers()
 
-    new skyname[32]
-    get_pcvar_string(cvar_skyname, skyname, 31)
-        
-    if(strlen(skyname) > 0)
-        set_cvar_string("sv_skyname", skyname)
-
     set_cvar_num("sv_skycolor_r", 0)
     set_cvar_num("sv_skycolor_g", 0)
     set_cvar_num("sv_skycolor_b", 0)
@@ -559,16 +530,16 @@ public recordDemo(id)
         
     ///////////////// Force client settings	/////////////////////
 /*
-    console_cmd (id, "rate 25000")
-    console_cmd (id, "voice_scale 5")
-    console_cmd (id, "voice_overdrive 2")
-    console_cmd (id, "voice_overdrivefadetime 0.3")
-    console_cmd (id, "voice_maxgain 3")
-    console_cmd (id, "voice_avggain 0.3")
-    console_cmd (id, "voice_fadeouttime 0")
-    console_cmd (id, "bind ^"f^" ^"nightvision^"")
-*/
+    client_cmd(id, "rate 25000")
+    client_cmd(id, "voice_scale 5")
+    client_cmd(id, "voice_overdrive 2")
+    client_cmd(id, "voice_overdrivefadetime 0.3")
+    client_cmd(id, "voice_maxgain 3")
+    client_cmd(id, "voice_avggain 0.3")
+    client_cmd(id, "voice_fadeouttime 0")
+    client_cmd(id, "bind ^"f^" ^"nightvision^"")
     client_cmd(id, "bind ^"F3^" ^"gozm_menu^"")
+*/
 }
 
 public client_disconnect(id)
@@ -626,7 +597,7 @@ check_round(leaving_player)
 	if (g_preinfect[leaving_player] && !g_gamestarted)
 	{
         do
-        id = players[_random(pNum)]
+            id = players[_random(pNum)]
         while (id == leaving_player)
 
         g_preinfect[id] = true
@@ -988,12 +959,12 @@ public msg_audiomsg(msg_id, msg_dest, entity)
 }
 
 public block_changename(msgid, msgdest, msgent) {
-        new sz[80]
-        get_msg_arg_string(2, sz, 79)
-        if(containi(sz, "#Cstrike_Name_Change") != -1)
-                return PLUGIN_HANDLED
- 
-        return PLUGIN_CONTINUE
+    new sz[80]
+    get_msg_arg_string(2, sz, 79)
+    if(containi(sz, "#Cstrike_Name_Change") != -1)
+            return PLUGIN_HANDLED
+
+    return PLUGIN_CONTINUE
 }
 
 public msg_clcorpse(msgid, dest, id)
@@ -1201,17 +1172,6 @@ public event_textmsg()
 	set_task(tasktime, "task_balanceteam", TASKID_BALANCETEAM)
 }
 
-public show_status(id)
-{
-	if(!(is_user_alive(id)))
-	{
-		new name[32], target, body
-		get_user_aiming(id, target, body)
-		get_user_name(target, name, 31)
-		client_print(id, print_center, "%s", name)
-	}
-}
-
 public event_newround()
 {
 	get_pcvar_string(cvar_lights, lights, 1)
@@ -1400,9 +1360,8 @@ public fwd_player_postthink(id)
         return FMRES_IGNORED
 
     if(pev(id, pev_flags) & FL_ONGROUND)
-    {	
         set_pev(id, pev_watertype, CONTENTS_WATER)
-    }
+    
     return FMRES_IGNORED
 }
 
@@ -1523,12 +1482,9 @@ public fwd_createnamedentity(entclassname)
 
 public fwd_clientkill(id)
 {
-	if(get_pcvar_num(cvar_punishsuicide) && is_user_alive(id))
-		g_suicide[id] = true
-		
 	new name[32] 
 	get_user_name(id, name, 31)
-	colored_print(id, "^x04***^x01 %s, don't even think about suicide!", name)
+	colored_print(id, "^x04***^x03 %s^x01, don't even think about suicide!", name)
 	
 	return FMRES_SUPERCEDE		
 }
@@ -1671,36 +1627,20 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
 	}
 	else
 	{
-		if(get_user_weapon(attacker) != CSW_KNIFE)
-			return HAM_SUPERCEDE
+        if(get_user_weapon(attacker) != CSW_KNIFE)
+            return HAM_SUPERCEDE
 
-		damage *= g_class_data[g_player_class[attacker]][DATA_ATTACK]
-		
-		static Float:armor
-		pev(victim, pev_armorvalue, armor)
-		
-		if(get_pcvar_num(cvar_obeyarmor) && armor > 0.0)
-		{
-			armor -= damage
-			
-			if(armor < 0.0) 
-				armor = 0.0
-			
-			set_pev(victim, pev_armorvalue, armor)
-			SetHamParamFloat(4, 0.0)
-		}
-		else
-		{
-			static bool:infect
-			infect = allow_infection()
-			
-			g_victim[attacker] = infect ? victim : 0
-					
-			if(!g_infecting)
-				SetHamParamFloat(4, infect ? 0.0 : damage)
-			else	
-				SetHamParamFloat(4, 0.0)
-		}
+        damage *= g_class_data[g_player_class[attacker]][DATA_ATTACK]
+
+        static bool:infect
+        infect = allow_infection()
+
+        g_victim[attacker] = infect ? victim : 0
+                
+        if(!g_infecting)
+            SetHamParamFloat(4, infect ? 0.0 : damage)
+        else	
+            SetHamParamFloat(4, 0.0)
 	}
 	return HAM_HANDLED
 }
@@ -1840,24 +1780,24 @@ public bacon_touch_pushable(ent, id)
 
 public bacon_traceattack_pushable(ent, attacker, Float:damage, Float:direction[3], tracehandle, damagetype)
 {
-	if(!get_pcvar_num(cvar_shootobjects) || !is_user_alive(attacker))
-		return HAM_IGNORED
-	
-	static Float:velocity[3]
-	pev(ent, pev_velocity, velocity)
-			
-	static Float:tempvec
-	tempvec = velocity[2]	
-			
-	xs_vec_mul_scalar(direction, damage, direction)
-	xs_vec_mul_scalar(direction, g_zombie[attacker] ? 
-	get_pcvar_float(cvar_pushpwr_zombie) : get_pcvar_float(cvar_pushpwr_weapon), direction)
-	xs_vec_add(direction, velocity, velocity)
-	velocity[2] = tempvec
-	
-	set_pev(ent, pev_velocity, velocity)
-	
-	return HAM_HANDLED
+    if(!get_pcvar_num(cvar_shootobjects) || !is_user_alive(attacker))
+        return HAM_IGNORED
+
+    static Float:velocity[3]
+    pev(ent, pev_velocity, velocity)
+            
+    static Float:tempvec
+    tempvec = velocity[2]	
+            
+    xs_vec_mul_scalar(direction, damage, direction)
+    xs_vec_mul_scalar(direction, g_zombie[attacker] ? 
+        get_pcvar_float(cvar_pushpwr_zombie) : get_pcvar_float(cvar_pushpwr_weapon), direction)
+    xs_vec_add(direction, velocity, velocity)
+    velocity[2] = tempvec
+
+    set_pev(ent, pev_velocity, velocity)
+
+    return HAM_HANDLED
 }
 
 public client_infochanged(id)
@@ -1901,18 +1841,6 @@ public task_spawned(taskid)
 	
 	if(is_user_alive(id))
 	{
-        if(g_suicide[id])
-        {
-            g_suicide[id] = false
-            
-            user_silentkill(id)
-            remove_task(TASKID_CHECKSPAWN + id)
-
-            client_print(id, print_chat, "%L", id, "SUICIDEPUNISH_TXT")
-            
-            return
-        }
-
         if(get_pcvar_num(cvar_weaponsmenu) && g_roundstarted && g_showmenu[id] && !g_gamestarted)
             display_equipmenu(id)
         else if (g_gamestarted)
@@ -2075,8 +2003,8 @@ public task_newround()
         }	
 
 // ANOTHER ZOMBIE IN NEW ROUND
-        do	
-        id = players[_random(num)]
+        do
+            id = players[_random(num)]
         while (id == last_zombie)		
 
         if(!g_preinfect[id]) g_preinfect[id] = true
@@ -2498,59 +2426,6 @@ public register_spawnpoints(const mapname[])
 	}
 }
 
-public register_zombieclasses(filename[])
-{
-	new configdir[32]
-	get_configsdir(configdir, 31)
-	
-	new configfile[64]
-	formatex(configfile, 63, "%s/%s", configdir, filename)
-
-	if(get_pcvar_num(cvar_zombie_class) && file_exists(configfile))
-	{			
-		new line[128], leftstr[32], rightstr[64],  classname[32], data[MAX_DATA], i
-		
-		new file
-		file = fopen(configfile, "rt")
-		
-		while(file && !feof(file))
-		{
-			fgets(file, line, 127), trim(line)
-			if(!line[0] || line[0] == ';') continue
-			
-			if(line[0] == '[' && line[strlen(line) - 1] == ']')
-			{
-				copy(classname, strlen(line) - 2, line[1])
-
-				if(register_class(classname) == -1)
-					break
-				
-				continue
-			}
-			strtok(line, leftstr, 31, rightstr, 63, '=', 1)
-				
-			if(equali(leftstr, "DESC"))
-				copy(g_class_desc[g_classcount - 1], 31, rightstr)
-			else if(equali(leftstr, "PMODEL"))
-				copy(g_class_pmodel[g_classcount - 1], 63, rightstr)
-			else if(equali(leftstr, "WMODEL"))
-				copy(g_class_wmodel[g_classcount - 1], 63, rightstr)
-				
-			for(i = 0; i < MAX_DATA; i++)
-				data[i] = equali(leftstr, g_dataname[i])
-				
-			for(i = 0; i < MAX_DATA; i++) if(data[i])
-			{
-				g_class_data[g_classcount - 1][i] = floatstr(rightstr)
-				break
-			}
-		}
-		if(file) fclose(file)
-	} 
-	else 
-		register_class("default")
-}
-
 public register_class(classname[])
 {
 	if(g_classcount >= MAX_CLASSES)
@@ -2749,9 +2624,6 @@ set_zombie_attibutes(index)
 		engfunc(EngFunc_SetModel, g_modelent[index], g_class_pmodel[g_player_class[index]])
 		fm_set_entity_visibility(g_modelent[index], 1)
 	}
-	
-	if(get_pcvar_num(cvar_autonvg)) 
-		engclient_cmd(index, "nightvision")
 }
 
 bool:allow_infection()

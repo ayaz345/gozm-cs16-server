@@ -17,7 +17,9 @@
 #define maxTry			15					//Number of tries to get someone a non-admin random hat before giving up.
 #define modelpath		"models/hat"
 
-stock fm_set_entity_visibility(index, visible = 1) set_pev(index, pev_effects, visible == 1 ? pev(index, pev_effects) & ~EF_NODRAW : pev(index, pev_effects) | EF_NODRAW)
+stock fm_set_entity_visibility(index, visible = 1)
+    set_pev(index, pev_effects,
+        visible == 1 ? pev(index, pev_effects) & ~EF_NODRAW : pev(index, pev_effects) | EF_NODRAW)
 
 new g_HatEnt[33]
 new CurrentHat[33]
@@ -32,9 +34,6 @@ new HATNAME[MAX_HATS][26]
 new HATREST[MAX_HATS]
 new PLAYERNAME[MAX_HATS][32]
 
-new P_AdminOnly
-new P_FileHat
-
 public plugin_init() {
     register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
     register_logevent("event_roundstart", 	2,	"1=Round_Start")
@@ -42,13 +41,10 @@ public plugin_init() {
     register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
     register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
     register_clcmd("say_team /hats",	"ShowMenu", -1, 	"Shows Knife menu")
-
-    P_AdminOnly		= register_cvar("hat_adminonly",	"1")	//Only admins can use the menu
-    P_FileHat		= register_cvar("hat_file", 		"1")	//Load hats from file as player connects	
 }
 
 public ShowMenu(id) {
-	if ((get_pcvar_num(P_AdminOnly) == 1 && get_user_flags(id) & PLUG_VIP)) {
+	if (get_user_flags(id) & PLUG_VIP) {
 		CurrentMenu[id] = 1
 		ShowHats(id)
 	} else {
@@ -140,7 +136,7 @@ public plugin_precache() {
 }
 
 public client_putinserver(id) {
-	if (get_pcvar_num(P_FileHat) == 1 && get_user_flags(id) & PLUG_VIP) {
+	if (get_user_flags(id) & PLUG_VIP) {
 		load_hat_from_file(id)
 	}
 	return PLUGIN_CONTINUE
@@ -325,9 +321,9 @@ public add_delay(index, const task[])
 {
 	switch(index)
 	{
-		case 1..6:   set_task(0.2, task, index)
-		case 7..12:  set_task(0.3, task, index)
-		case 13..18: set_task(0.4, task, index)
-		case 19..24: set_task(0.5, task, index)
+		case 1..6:   set_task(0.3, task, index)
+		case 7..12:  set_task(0.5, task, index)
+		case 13..18: set_task(0.7, task, index)
+		case 19..24: set_task(0.9, task, index)
 	}
 }

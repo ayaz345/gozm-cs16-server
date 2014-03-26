@@ -227,7 +227,7 @@ new g_maxplayers, g_spawncount, g_buyzone,
     bool:g_roundstarted, bool:g_roundended, g_class_name[MAX_CLASSES+1][32], 
     g_classcount, g_class_desc[MAX_CLASSES+1][32], g_class_pmodel[MAX_CLASSES+1][64], 
     g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie, 
-    first_zombie_name[32]
+    g_first_zombie_name[32]
     
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime, 
     cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
@@ -296,6 +296,7 @@ public plugin_precache()
     get_mapname(mapname, 31)
     register_spawnpoints(mapname)
 
+    register_class("default")  // registers zombie-class
     register_dictionary("biohazard.txt")
 
     precache_model(DEFAULT_PMODEL)
@@ -510,9 +511,9 @@ public recordDemo(id)
 //	if(!(get_user_flags(id) & ADMIN_BAN))
 //		client_cmd(id, "Connect 77.220.185.29:27051")
     colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
-    colored_print(id, "^x01 IP:^x01 77.220.185.29:27051")
+//    colored_print(id, "^x01 IP:^x01 77.220.185.29:27051")
     colored_print(id, "^x01 Recording demo^x03 go_zombie.dem")
-    colored_print(id, "^x01 GoZm Menu:^x04 F3^x01 or^x04 M")
+//    colored_print(id, "^x01 GoZm Menu:^x04 F3^x01 or^x04 M")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
     client_cmd(id,"stop")
     if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
@@ -565,20 +566,20 @@ public client_disconnect(id)
 check_round(leaving_player)
 {
 	if (g_roundended)
-		return;
+		return
 
 	new players[32], pNum, id
 	get_players(players, pNum, "a")
 
 	if (pNum < 2)
-		return;
+		return
 	
 	// Last Zombie
 	if (g_zombie[leaving_player] && fnGetZombies() == 1)
 	{
 		do
-		id = players[_random(pNum)]
-		while (id == leaving_player && is_user_alive(id) && is_user_connected(id))
+            id = players[_random(pNum)]
+		while (id == leaving_player || !is_user_connected(id))
 	
 		cs_set_player_team(id, CS_TEAM_T)
 		infect_user(id, 0)
@@ -590,7 +591,7 @@ check_round(leaving_player)
 //		log_to_file("lastZombie_leavers.log", "Leaver %s", name_leaver)
 		colored_print(0, "^x04***^x03 %s^x01 disconnected,^x03 %s^x01 is a new zombie now!", name_leaver, name_newcomer)
 		
-		return;
+		return
 	}
 	
 	// Preinfected zombie leaves
@@ -598,21 +599,21 @@ check_round(leaving_player)
 	{
         do
             id = players[_random(pNum)]
-        while (id == leaving_player)
+        while (id == leaving_player || !is_user_connected(id))
 
         g_preinfect[id] = true
         g_preinfect[leaving_player] = false
 
         new name[32]
         get_user_name(leaving_player, name, 31)
-        get_user_name(id, first_zombie_name, 31)
+        get_user_name(id, g_first_zombie_name, 31)  // for win-text
 
         colored_print(0, "^x04 ***^x01 Preinfected zombie %s leaves.", name)
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
 
-        return;
+        return
 	}	
 }
 
@@ -870,9 +871,17 @@ public msg_deathmsg(msgid, dest, id)
 {
     static killer
     killer = get_msg_arg_int(1)
-
-    if(is_user_connected(killer) && g_zombie[killer])
-        set_msg_arg_string(4, g_zombie_weapname)
+    if(is_user_connected(killer))
+    {
+        if (g_zombie[killer])
+            set_msg_arg_string(4, g_zombie_weapname)
+        else
+        {
+            // "hegrenade" when killreward got too fast
+        }
+    }
+    
+    return PLUGIN_CONTINUE
 }
 
 public msg_health(msg_id, msg_dest, msg_entity)
@@ -932,7 +941,7 @@ public msg_textmsg(msgid, dest, id)
 
 	else if(equal(txtmsg[1], "Terrorists_Win"))
 	{
-		formatex(winmsg, 63, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES", first_zombie_name)
+		formatex(winmsg, 63, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES", g_first_zombie_name)
 		set_msg_arg_string(2, winmsg)
 	}
 	else if(equal(txtmsg[1], "Target_Saved") || equal(txtmsg[1], "CTs_Win"))
@@ -1457,7 +1466,7 @@ public fw_SetModel(entity, const model[])
 {
 	// We don't care
 	if (strlen(model) < 8)
-		return;
+		return
 		
 	// Get entity's classname
 	static classname[10]
@@ -1467,8 +1476,8 @@ public fw_SetModel(entity, const model[])
 	if (equal(classname, "weaponbox"))
 	{
 		// They get automatically removed when thinking
-		set_pev(entity, pev_nextthink, get_gametime() + 0.5)
-		return;
+		set_pev(entity, pev_nextthink, get_gametime() + 0.4)
+		return
 	}
 }
 
@@ -1622,7 +1631,7 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
 		
 		damage *= (damagetype & DMG_HEGRENADE) ? g_class_data[pclass][DATA_HEDEFENCE] : g_class_data[pclass][DATA_DEFENCE]
 		if(get_user_weapon(attacker) == CSW_KNIFE)
-			damage *= 4
+			damage *= 40
 		SetHamParamFloat(4, damage)
 	}
 	else
@@ -1690,7 +1699,8 @@ public bacon_killed_player(victim, killer, shouldgib)
         case 2:
         {
             if(!user_has_weapon(killer, CSW_HEGRENADE))
-                give_item(killer, "weapon_hegrenade")
+                set_task(0.1, "give_hegrenade_with_delay", killer)
+//                give_item(killer, "weapon_hegrenade")
         }
         case 3:
         {
@@ -1703,13 +1713,20 @@ public bacon_killed_player(victim, killer, shouldgib)
 					
                 cs_set_weapon_ammo(ent, maxclip)
             }
-				
+
             if(!user_has_weapon(killer, CSW_HEGRENADE))
-                give_item(killer, "weapon_hegrenade")
+                set_task(0.1, "give_hegrenade_with_delay", killer)
+//                give_item(killer, "weapon_hegrenade")
         }
     }
     
     return HAM_IGNORED
+}
+
+public give_hegrenade_with_delay(id)
+{
+    if (is_user_alive(id))
+        give_item(id, "weapon_hegrenade")
 }
 
 public bacon_spawn_player_post(id)
@@ -2005,11 +2022,11 @@ public task_newround()
 // ANOTHER ZOMBIE IN NEW ROUND
         do
             id = players[_random(num)]
-        while (id == last_zombie)		
+        while (id == last_zombie || !is_user_connected(id))	
 
         if(!g_preinfect[id]) g_preinfect[id] = true
 
-        get_user_name(id, first_zombie_name, 31)
+        get_user_name(id, g_first_zombie_name, 31)
 	}
 	
 	if(!get_pcvar_num(cvar_randomspawn) || g_spawncount <= 0) 

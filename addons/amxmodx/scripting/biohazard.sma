@@ -434,7 +434,7 @@ public plugin_init()
     if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
 
     if(get_pcvar_num(cvar_showtruehealth))
-        set_task(0.5, "task_showtruehealth", _, _, _, "b")
+        set_task(0.3, "task_showtruehealth", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
 
@@ -874,10 +874,16 @@ public msg_deathmsg(msgid, dest, id)
     if(is_user_connected(killer))
     {
         if (g_zombie[killer])
+        {
+            set_msg_arg_int(3, ARG_BYTE, 0)  // remove headshot from zm, ARG_BYTE is for int
             set_msg_arg_string(4, g_zombie_weapname)
+        }
         else
         {
             // "hegrenade" when killreward got too fast
+            //colored_print(0, "HEAD:%d", get_msg_arg_int(3))
+            //colored_print(0, "ARGT:%d", get_msg_argtype(3))
+            //colored_print(0, "ARGT:%d", get_msg_argtype(4))
         }
     }
     
@@ -1631,7 +1637,7 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
 		
 		damage *= (damagetype & DMG_HEGRENADE) ? g_class_data[pclass][DATA_HEDEFENCE] : g_class_data[pclass][DATA_DEFENCE]
 		if(get_user_weapon(attacker) == CSW_KNIFE)
-			damage *= 40
+			damage *= 4
 		SetHamParamFloat(4, damage)
 	}
 	else
@@ -1892,15 +1898,28 @@ public task_spawned(taskid)
 
 public task_showinfected(taskid) {
     new id = taskid - TASKID_SHOWINFECT
-    set_dhudmessage(255, 0, 0, 0.435, 0.88, 0, _, 0.2, 0.1)
+    set_dhudmessage(255, 0, 0, 0.435, 0.88, 0, _, 0.2, 0.1, 0.1)
     if(is_user_connected(id))
         show_dhudmessage(id, "[ INFECTED ]")
 }
 public task_showclean(taskid) {
     new id = taskid - TASKID_SHOWCLEAN
-    set_dhudmessage(0, 255, 0, 0.45, 0.88, 0, _, 0.7, 0.1)
+    set_dhudmessage(0, 255, 0, 0.45, 0.88, 0, _, 0.7, 0.1, 0.1)
     if(is_user_connected(id))
         show_dhudmessage(id, "[ CLEAN ]")
+}
+
+public task_showtruehealth()
+{
+	set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
+
+	static id, Float:health
+	for(id = 1; id <= g_maxplayers; id++) 
+		if(is_user_alive(id) && g_zombie[id] && !g_roundended)
+		{
+			pev(id, pev_health, health)
+			show_dhudmessage(id, "HP: %d", floatround(health))
+		}
 }
 
 public task_checkspawn(taskid)
@@ -1916,19 +1935,6 @@ public task_checkspawn(taskid)
 	
 	if(team == TEAM_TERRORIST || team == TEAM_CT)
 		ExecuteHamB(Ham_CS_RoundRespawn, id)
-}
-	
-public task_showtruehealth()
-{
-	set_dhudmessage(60, 50, _, 0.445, 0.88, 0, _, 0.7, 0.1)
-	
-	static id, Float:health
-	for(id = 1; id <= g_maxplayers; id++) 
-		if(is_user_alive(id) && g_zombie[id] && !g_roundended)
-		{
-			pev(id, pev_health, health)
-			show_dhudmessage(id, "HP: %d", floatround(health))
-		}
 }
 
 public task_lights()

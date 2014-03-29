@@ -2765,10 +2765,10 @@ add_delay(index, const task[])
 {
     switch(index)
     {
-        case 1..6: set_task(0.2, task, index)
-        case 7..12: set_task(0.4, task, index)
-        case 13..18: set_task(0.6, task, index)
-        case 19..24: set_task(0.8, task, index)
+        case 1..6: set_task(0.1, task, index)
+        case 7..12: set_task(0.2, task, index)
+        case 13..18: set_task(0.3, task, index)
+        case 19..24: set_task(0.4, task, index)
     }
 }
 

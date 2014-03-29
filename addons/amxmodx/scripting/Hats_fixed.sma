@@ -150,20 +150,17 @@ public client_disconnect(id) {
 }
 
 public event_roundstart() {
-	for (new i = 0; i < get_maxplayers(); ++i) {
-		if (is_user_connected(i)) {
-			add_delay(i, "Reload_Hat")
-		}
-	}
+	for (new i = 1; i <= get_maxplayers(); i++)
+		if (is_user_connected(i))
+            if (get_user_flags(i) & PLUG_VIP)
+                add_delay(i, "Reload_Hat")
 	return PLUGIN_CONTINUE
 }
 
 public Reload_Hat(id)
 {
 	Set_Hat(id, 0, -1)
-	if (get_user_flags(id) & PLUG_VIP) {
-		load_hat_from_file(id)
-	}
+	load_hat_from_file(id)
 }
 
 public Set_Hat(player, imodelnum, targeter) {
@@ -321,9 +318,9 @@ public add_delay(index, const task[])
 {
 	switch(index)
 	{
-		case 1..6:   set_task(0.3, task, index)
-		case 7..12:  set_task(0.5, task, index)
-		case 13..18: set_task(0.7, task, index)
-		case 19..24: set_task(0.9, task, index)
+		case 1..6:   set_task(0.1, task, index)
+		case 7..12:  set_task(0.2, task, index)
+		case 13..18: set_task(0.3, task, index)
+		case 19..24: set_task(0.4, task, index)
 	}
 }

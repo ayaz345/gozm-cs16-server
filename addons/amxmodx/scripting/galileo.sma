@@ -94,6 +94,7 @@ new g_runoffChoice[2];
 new g_vote[512];
 new bool:g_handleMapChange = true;
 new bool:g_skip_task_vote_manageEnd = false;
+new bool:g_vote_running = false;
 
 new g_refreshVoteStatus = true, g_voteTallyType[3], g_snuffDisplay[MAX_PLAYER_CNT + 1];
 
@@ -118,7 +119,7 @@ new cvar_voteStatus, cvar_voteStatusType;
 new cvar_soundsMute;
 
 new cvar_freezetime;
-new Float:cvar_bh_starttime;
+new cvar_bh_starttime;
 
 public plugin_init()
 {
@@ -309,8 +310,8 @@ public plugin_cfg()
     }
 
     cvar_freezetime = get_cvar_num("mp_freezetime");
-    cvar_bh_starttime = get_cvar_float("bh_starttime");
-//    log_amx("GAL: freeze: %d, bh_start: %f", cvar_freezetime, cvar_bh_starttime);
+    cvar_bh_starttime = get_cvar_num("bh_starttime");
+    log_amx("GAL: freeze: %d, bh_start: %d", cvar_freezetime, cvar_bh_starttime);
 }
 
 public plugin_end()
@@ -460,13 +461,6 @@ public vote_manageEnd()
     }
 
     new secondsLeft = get_timeleft();	
-/*
-    // are we ready to start an "end of map" vote?
-    if (secondsLeft < 150 && secondsLeft > 90 && !g_pauseMapEndVoteTask && get_pcvar_num(cvar_endOfMapVote) && !get_pcvar_num(cvar_emptyCycle))
-    {
-        vote_startDirector(false);
-    }
-*/
     // are we managing the end of the map?
     if (secondsLeft < 22 && !g_pauseMapEndManagerTask)
     {
@@ -826,7 +820,6 @@ public map_manageEnd()
 		{
             // let the server know it's the last round
             g_wasLastRound = true;
-//            log_amx("GAL: g_wasLastRound is set to true");
 
             // let the players know it's the last round
             if (g_voteStatus & VOTE_FORCED)
@@ -844,71 +837,23 @@ public map_manageEnd()
 		}
 		else
 		{
-        /*
-            // freeze the game and show the scoreboard
-            message_begin(MSG_ALL, SVC_INTERMISSION);
-            message_end();
-
-            //new chatTime = floatround(get_cvar_float("mp_chattime"), floatround_floor);
-
-            // display intermission expiration countdown
-            //set_task(1.0, "intermission_displayTimer", chatTime, _, _, "a", chatTime);
-
-            // change the map after "chattime" is over
-            set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
-        */
-        
             message_begin(MSG_ALL, SVC_INTERMISSION);
             message_end();
             set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
-//            log_amx("GAL: SCOREBOARD");
 		}
-/*
-        new map[MAX_MAPNAME_LEN + 1];
-        get_cvar_string("amx_nextmap", map, sizeof(map)-1);
-        colored_print(0,"^x01Nextmap is ^x04%s^x01.", map);
-*/
 	}
 	
 	dbg_log(2, "%32s mp_timelimit: %f", "map_manageEnd(out)", get_cvar_float("mp_timelimit"));
 }
 
-/*
-public intermission_displayTimer(originalChatTime)
-{
-	static secondsLeft = -1;
-	if (secondsLeft == -1)
-	{
-		secondsLeft = originalChatTime;
-	}
-	secondsLeft--;
-
-	client_print(0, print_center, "Intermission ends in %i seconds.", secondsLeft);
-	client_print(0, print_chat, "%i seconds", secondsLeft);
-
-	set_hudmessage(255, 0, 90, 0.80, 0.20, 0, 1.0, 2.0, 0.1, 0.1, -1);
-//	set_hudmessage(0, 222, 50, -1.0, 0.13, 0, 1.0, 0.94, 0.0, 0.0, -1);
-	show_hudmessage(0, "Intermission ends in %i seconds.", secondsLeft);
-	// use audio since visual doesn't seem to work
-	// something like "map will change in 2 seconds"
-	
-}
-*/
-
 public event_round_start()
 {
-/*
-    if (g_wasLastRound)
-    {
-        map_manageEnd();
-    }
-*/
     g_skip_task_vote_manageEnd = false;
 
-    if (g_wasLastRound) {
+    if (g_wasLastRound && !g_vote_running) {
         server_cmd("mp_freezetime %d", cvar_freezetime);
-        server_cmd("bh_starttime %f", cvar_bh_starttime);
-//        log_amx("GAL: freeze: %d, bh_start: %f - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
+        server_cmd("bh_starttime %d", cvar_bh_starttime);
+        log_amx("GAL: freeze: %d, bh_start: %f - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
         
         if (g_voteStatus & VOTE_FORCED)
             map_manageEnd();
@@ -924,7 +869,7 @@ public logevent_round_end()
     if (g_wasLastRound) {
         new vote_duration = get_pcvar_num(cvar_voteDuration);
         server_cmd("mp_freezetime %d", vote_duration + 8 + 1);
-        server_cmd("bh_starttime %d", float(vote_duration + 8 + 10));
+        server_cmd("bh_starttime %d", vote_duration + 8 + 10);
 //        log_amx("GAL: freeze: %d, bh_start: %f - ROUND END", vote_duration + 8, float(vote_duration + 8 + 10));
     }
 }
@@ -1371,60 +1316,62 @@ public nomination_list(id)
 
 public vote_startDirector(bool:forced)
 {
-	new choicesLoaded, voteDuration;
-	
-	if (g_voteStatus & VOTE_IS_RUNOFF)
-	{
-		choicesLoaded = vote_loadRunoffChoices();
-		voteDuration = get_pcvar_num(cvar_runoffDuration);
+    g_vote_running = true;
 
-		if (get_realplayersnum())
-		{
-			dbg_log(4, "   [RUNOFF VOTE CHOICES (%i)]", choicesLoaded);
-		}
-	}
-	else
-	{
-		// make it known that a vote is in progress
-		g_voteStatus |= VOTE_IN_PROGRESS;
+    new choicesLoaded, voteDuration;
 
-		// stop RTV reminders
-		remove_task(TASKID_REMINDER);
+    if (g_voteStatus & VOTE_IS_RUNOFF)
+    {
+        choicesLoaded = vote_loadRunoffChoices();
+        voteDuration = get_pcvar_num(cvar_runoffDuration);
 
-		// set nextmap to "voting"
-		if (forced || get_pcvar_num(cvar_endOfMapVote))
-		{
-			new nextMap[32];
-			formatex(nextMap, sizeof(nextMap)-1, "%L", LANG_SERVER, "GAL_NEXTMAP_VOTING");
-			map_setNext(nextMap);
-		}
-	
-		// pause the "end of map" tasks so they don't interfere
-		g_pauseMapEndVoteTask = true;
-		g_pauseMapEndManagerTask = true;
-		
-		if (forced)
-		{
-			g_voteStatus |= VOTE_FORCED;
-		}
-		
-		choicesLoaded = vote_loadChoices();
-		voteDuration = get_pcvar_num(cvar_voteDuration);
-		
-		if (get_realplayersnum())
-		{
-			dbg_log(4, "   [PRIMARY VOTE CHOICES (%i)]", choicesLoaded);
-		}
-		
-		if (choicesLoaded)
-		{
-			// clear all nominations
-			nomination_clearAll();
-		}
-	}
-	
-	if (choicesLoaded)
-	{
+        if (get_realplayersnum())
+        {
+            dbg_log(4, "   [RUNOFF VOTE CHOICES (%i)]", choicesLoaded);
+        }
+    }
+    else
+    {
+        // make it known that a vote is in progress
+        g_voteStatus |= VOTE_IN_PROGRESS;
+
+        // stop RTV reminders
+        remove_task(TASKID_REMINDER);
+
+        // set nextmap to "voting"
+        if (forced || get_pcvar_num(cvar_endOfMapVote))
+        {
+            new nextMap[32];
+            formatex(nextMap, sizeof(nextMap)-1, "%L", LANG_SERVER, "GAL_NEXTMAP_VOTING");
+            map_setNext(nextMap);
+        }
+
+        // pause the "end of map" tasks so they don't interfere
+        g_pauseMapEndVoteTask = true;
+        g_pauseMapEndManagerTask = true;
+        
+        if (forced)
+        {
+            g_voteStatus |= VOTE_FORCED;
+        }
+        
+        choicesLoaded = vote_loadChoices();
+        voteDuration = get_pcvar_num(cvar_voteDuration);
+        
+        if (get_realplayersnum())
+        {
+            dbg_log(4, "   [PRIMARY VOTE CHOICES (%i)]", choicesLoaded);
+        }
+        
+        if (choicesLoaded)
+        {
+            // clear all nominations
+            nomination_clearAll();
+        }
+    }
+
+    if (choicesLoaded)
+    {
         // alphabetize the maps
         // SortCustom2D(g_mapChoice, choicesLoaded, "sort_stringsi");
 
@@ -1469,16 +1416,16 @@ public vote_startDirector(bool:forced)
         {
             set_task(4.5 + float(voteDuration) + 1.0, "vote_expire");
         }
-	}
-	else
-	{
-		client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_VOTE_NOMAPS");
-	}
-	if (get_realplayersnum())
-	{
-		dbg_log(4, "");
-		dbg_log(4, "   [PLAYER CHOICES]");
-	}
+    }
+    else
+    {
+        client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_VOTE_NOMAPS");
+    }
+    if (get_realplayersnum())
+    {
+        dbg_log(4, "");
+        dbg_log(4, "   [PLAYER CHOICES]");
+    }
 }
 
 public vote_countdownPendingVote()

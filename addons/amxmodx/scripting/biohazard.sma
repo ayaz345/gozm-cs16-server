@@ -1189,86 +1189,81 @@ public event_textmsg()
 
 public event_newround()
 {
-	get_pcvar_string(cvar_lights, lights, 1)
-	
-	if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
+    get_pcvar_string(cvar_lights, lights, 1)
 
-	g_gamestarted = false
-	
-	static id
-	for(id = 0; id <= g_maxplayers; id++)
-	{
-		if(is_user_connected(id))
-			g_blockmodel[id] = true
-	}
-	
-	remove_task(TASKID_NEWROUND) 
-	remove_task(TASKID_INITROUND)
-	remove_task(TASKID_STARTROUND)
-	remove_task(TASKID_TERBUG)
-	
-	set_task(0.1, "task_newround", TASKID_NEWROUND)
-	set_task(get_pcvar_float(cvar_starttime), "task_initround", TASKID_INITROUND)
+    if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
+
+    g_gamestarted = false
+
+    static id
+    for(id = 1; id <= g_maxplayers; id++)
+    {
+        if(is_user_connected(id))
+            g_blockmodel[id] = true
+    }
+
+    remove_task(TASKID_NEWROUND) 
+    remove_task(TASKID_INITROUND)
+    remove_task(TASKID_STARTROUND)
+    remove_task(TASKID_TERBUG)
+
+    set_task(0.1, "task_newround", TASKID_NEWROUND)
+    set_task(get_pcvar_float(cvar_starttime), "task_initround", TASKID_INITROUND)
 }
 
 public event_curweapon(id)
 {
-	if(!is_user_alive(id))
-		return PLUGIN_CONTINUE
-	
-	static weapon
-	weapon = read_data(2)
-	
-	if(g_zombie[id])
-	{
-		if(weapon != CSW_KNIFE && !task_exists(TASKID_STRIPNGIVE + id))
-			set_task(0.1, "task_stripngive", TASKID_STRIPNGIVE + id)
-		
-		return PLUGIN_CONTINUE
-	}
+    if(!is_user_alive(id))
+        return PLUGIN_CONTINUE
+        
+    if(g_zombie[id])
+        return PLUGIN_CONTINUE
 
-	static ammotype
-	ammotype = get_pcvar_num(cvar_ammo)
-	
-	if(!ammotype || (AMMOWP_NULL & (1<<weapon)))
-		return PLUGIN_CONTINUE
+    static weapon
+    weapon = read_data(2)
 
-	static maxammo
-	switch(ammotype)
-	{
-		case 1: maxammo = g_weapon_ammo[weapon][MAX_AMMO]
-		case 2: maxammo = g_weapon_ammo[weapon][MAX_CLIP]
-	}
+    static ammotype
+    ammotype = get_pcvar_num(cvar_ammo)
 
-	if(!maxammo)
-		return PLUGIN_CONTINUE
-	
-	switch(ammotype)
-	{
-		case 1:
-		{
-			static ammo
-			ammo = cs_get_user_bpammo(id, weapon)
-			
-			if(ammo < maxammo) 
-				cs_set_user_bpammo(id, weapon, maxammo)
-		}
-		case 2:
-		{
-			static clip; clip = read_data(3)
-			if(clip < 1)
-			{
-				static weaponname[32]
-				get_weaponname(weapon, weaponname, 31)
-				
-				static ent 
-				ent = fm_find_ent_by_owner(-1, weaponname, id)
-				
-				fm_set_weapon_ammo(ent, maxammo)
-			}
-		}
-	}	
-	return PLUGIN_CONTINUE
+    if(!ammotype || (AMMOWP_NULL & (1<<weapon)))
+        return PLUGIN_CONTINUE
+
+    static maxammo
+    switch(ammotype)
+    {
+        case 1: maxammo = g_weapon_ammo[weapon][MAX_AMMO]
+        case 2: maxammo = g_weapon_ammo[weapon][MAX_CLIP]
+    }
+
+    if(!maxammo)
+        return PLUGIN_CONTINUE
+
+    switch(ammotype)
+    {
+        case 1:
+        {
+            static ammo
+            ammo = cs_get_user_bpammo(id, weapon)
+            
+            if(ammo < maxammo) 
+                cs_set_user_bpammo(id, weapon, maxammo)
+        }
+        case 2:
+        {
+            static clip; clip = read_data(3)
+            if(clip < 1)
+            {
+                static weaponname[32]
+                get_weaponname(weapon, weaponname, 31)
+                
+                static ent 
+                ent = fm_find_ent_by_owner(-1, weaponname, id)
+                
+                fm_set_weapon_ammo(ent, maxammo)
+            }
+        }
+    }	
+    return PLUGIN_CONTINUE
 }
 
 public event_damage(victim)
@@ -2765,10 +2760,10 @@ add_delay(index, const task[])
 {
     switch(index)
     {
-        case 1..6: set_task(0.1, task, index)
-        case 7..12: set_task(0.2, task, index)
-        case 13..18: set_task(0.3, task, index)
-        case 19..24: set_task(0.4, task, index)
+        case 1..6: set_task(0.2, task, index)
+        case 7..12: set_task(0.4, task, index)
+        case 13..18: set_task(0.6, task, index)
+        case 19..24: set_task(0.8, task, index)
     }
 }
 

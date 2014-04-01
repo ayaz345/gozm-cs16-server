@@ -311,7 +311,7 @@ public plugin_cfg()
 
     cvar_freezetime = get_cvar_num("mp_freezetime");
     cvar_bh_starttime = get_cvar_num("bh_starttime");
-    log_amx("GAL: freeze: %d, bh_start: %d", cvar_freezetime, cvar_bh_starttime);
+//    log_amx("GAL: freeze: %d, bh_start: %d", cvar_freezetime, cvar_bh_starttime);
 }
 
 public plugin_end()
@@ -853,7 +853,7 @@ public event_round_start()
     if (g_wasLastRound && !g_vote_running) {
         server_cmd("mp_freezetime %d", cvar_freezetime);
         server_cmd("bh_starttime %d", cvar_bh_starttime);
-        log_amx("GAL: freeze: %d, bh_start: %f - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
+//        log_amx("GAL: freeze: %d, bh_start: %d - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
         
         if (g_voteStatus & VOTE_FORCED)
             map_manageEnd();

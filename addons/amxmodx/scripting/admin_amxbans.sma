@@ -565,7 +565,7 @@ getAccess(id, name[], authid[], ip[], password[])
             set_user_flags(id, g_aAccess[index])
 			
             if(!(get_user_flags(id) & ADMIN_RCON))
-                log_amx("Login: ^"%s<%d><%s><>^" became an admin (account ^"%s^") (access ^"%s^") (address ^"%s^")", name, get_user_userid(id), authid, g_aName[index], sflags, ip)
+                log_amx("^"%s<%s><%s>^", account ^"%s^", access ^"%s^"", name, authid, ip, g_aName[index], sflags)
 		}
 		else if (equal(password, g_aPassword[index]))
 		{
@@ -575,14 +575,14 @@ getAccess(id, name[], authid[], ip[], password[])
 			new sflags[32]
 			get_flags(g_aAccess[index], sflags, 31)
 			
-			log_amx("Login: ^"%s<%d><%s><>^" became an admin (account ^"%s^") (access ^"%s^") (address ^"%s^")", name, get_user_userid(id), authid, g_aName[index], sflags, ip)
+			log_amx("^"%s<%s><%s>^", account ^"%s^", access ^"%s^"", name, authid, ip, g_aName[index], sflags)
 		} else {
 			result |= 1
 			
 			if (g_aFlags[index] & FLAG_KICK)
 			{
 				result |= 2
-				log_amx("Login: ^"%s<%d><%s><>^" kicked due to invalid password (account ^"%s^") (address ^"%s^") (_pw ^"%s^") (password ^"%s^")", name, get_user_userid(id), authid, g_aName[index], ip, password, g_aPassword[index])
+				log_amx("^"%s<%d><%s><>^" kicked due to invalid password (account ^"%s^") (address ^"%s^") (_pw ^"%s^") (password ^"%s^")", name, get_user_userid(id), authid, g_aName[index], ip, password, g_aPassword[index])
 			}
 		}
 	}

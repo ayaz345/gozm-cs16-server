@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+@session_start();
 $user_ip = $_SESSION['code'];
 
 $im = ImageCreate(120,50);

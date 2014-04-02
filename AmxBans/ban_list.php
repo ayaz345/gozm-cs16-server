@@ -35,7 +35,7 @@ if ( !file_exists("include/config.inc.php") )
 }
 
 // Start session
-session_start();
+@session_start();
 
 $previous_button = NULL;
 $next_button = NULL;

@@ -24,7 +24,7 @@
  */
 
 // Start session
-session_start();
+@session_start();
 
 require("include/config.inc.php");
 

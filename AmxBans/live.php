@@ -28,7 +28,7 @@
  */
 
 // Start session
-session_start();
+@session_start();
 
 //fast security fix
 if (isset($_GET["sid"]) && $_GET["sid"] != "") $_GET["sid"]=(int)$_GET["sid"];

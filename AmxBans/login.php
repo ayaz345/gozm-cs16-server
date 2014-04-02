@@ -28,7 +28,7 @@
  */
 
 // Start session
-session_start();
+@session_start();
 
 include("include/config.inc.php");
 

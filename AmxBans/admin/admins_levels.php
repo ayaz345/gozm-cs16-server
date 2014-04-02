@@ -28,7 +28,7 @@
  */
 
 // Start session
-session_start();
+@session_start();
 
 // Require basic site files
 

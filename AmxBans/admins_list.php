@@ -1,6 +1,6 @@
 <?php
 // Start session
-session_start();
+@session_start();
 
 //security fix
 $amxadmins_array=array();

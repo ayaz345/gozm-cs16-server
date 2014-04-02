@@ -28,7 +28,7 @@
  */
 
 // Start session
-session_start();
+@session_start();
 
 // Require basic site files
 require("../include/config.inc.php"); 	// General configuration settings for the site

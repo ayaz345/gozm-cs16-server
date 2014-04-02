@@ -28,7 +28,7 @@
  */
  
  // Start session
-session_start();
+@session_start();
 
 //fast security fix
 if (isset($_GET["bid"]) && $_GET["bid"] != "") $_GET["bid"]=(int)$_GET["bid"];

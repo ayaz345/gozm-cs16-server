@@ -28,7 +28,8 @@
  */
 
 // Start session
-session_start();
+@session_start();
+exit();
 
 // Require basic site files
 require("../include/config.inc.php");

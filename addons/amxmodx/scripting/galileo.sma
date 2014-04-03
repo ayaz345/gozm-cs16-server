@@ -850,14 +850,14 @@ public event_round_start()
 {
     g_skip_task_vote_manageEnd = false;
 
-    if (g_wasLastRound && !g_vote_running) {
+    if (g_wasLastRound) {
         server_cmd("mp_freezetime %d", cvar_freezetime);
         server_cmd("bh_starttime %d", cvar_bh_starttime);
 //        log_amx("GAL: freeze: %d, bh_start: %d - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
         
         if (g_voteStatus & VOTE_FORCED)
             map_manageEnd();
-        else
+        else if (!g_vote_running)
             vote_startDirector(false);
     }
 }

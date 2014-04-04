@@ -231,7 +231,7 @@ new g_maxplayers, g_spawncount, g_buyzone,
     
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime, 
     cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
-    cvar_gamedescription, cvar_maxzombies, cvar_flashbang,
+    cvar_gamedescription, cvar_flashbang,
 	cvar_showtruehealth, cvar_impactexplode,
     cvar_knockback, cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_shootobjects, cvar_pushpwr_weapon, cvar_pushpwr_zombie,
@@ -265,7 +265,6 @@ public plugin_precache()
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_weaponsmenu = register_cvar("bh_weaponsmenu", "1")
     cvar_ammo = register_cvar("bh_ammo", "1")
-    cvar_maxzombies = register_cvar("bh_maxzombies", "23")
     cvar_flashbang = register_cvar("bh_flashbang", "1")
     cvar_impactexplode = register_cvar("bh_impactexplode", "1")
     cvar_showtruehealth = register_cvar("bh_showtruehealth", "1")
@@ -462,8 +461,15 @@ public show_timeleft(taskid)
 
 public plugin_end()
 {
-	if(get_pcvar_num(cvar_enabled))
-		set_pcvar_num(cvar_autoteambalance[0], cvar_autoteambalance[1])
+    if(get_pcvar_num(cvar_enabled))
+        set_pcvar_num(cvar_autoteambalance[0], cvar_autoteambalance[1])
+
+    new hpk_file_size = file_size("custom.hpk")
+    if (hpk_file_size/1000.0 > 1000.0)
+    {
+        delete_file("custom.hpk")
+        log_amx("custom.hpk delete due so much size (%d kb)", hpk_file_size/1000.0)
+    }
 }
 
 public plugin_natives()
@@ -1004,21 +1010,23 @@ public msg_clcorpse(msgid, dest, id)
 public nightvision(id)
 {
 	if(is_user_connected(id))
-	{
-		if(activate_nv[id])
-		{
-			remove_task(TASKID_NIGHTVISION + id)
-			activate_nv[id] = false
-		}
-		
-		else if(!(activate_nv[id]))
-		{
-			set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
-			activate_nv[id] = true
-		}
-	}
+		toggle_nightvision(id)
 	
 	return PLUGIN_HANDLED
+}
+
+public toggle_nightvision(id)
+{
+    if(activate_nv[id])
+    {
+        remove_task(TASKID_NIGHTVISION + id)
+        activate_nv[id] = false
+    }
+    else if(!(activate_nv[id]))
+    {
+        set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+        activate_nv[id] = true
+    }
 }
 
 public set_user_nv(taskid)
@@ -1213,10 +1221,10 @@ public event_newround()
 
 public event_curweapon(id)
 {
-    if(!is_user_alive(id))
+    if(g_zombie[id])
         return PLUGIN_CONTINUE
         
-    if(g_zombie[id])
+    if(!is_user_alive(id))
         return PLUGIN_CONTINUE
 
     static weapon
@@ -1416,17 +1424,7 @@ public fwd_cmdstart(id, handle, seed)
     if(impulse == IMPULSE_FLASHLIGHT)
     {
         set_uc(handle, UC_Impulse, 0)
-        
-        if (task_exists(TASKID_NIGHTVISION + id))
-        {
-            remove_task(TASKID_NIGHTVISION + id)
-            activate_nv[id] = false
-        }
-        else
-        {
-            set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
-            activate_nv[id] = true
-        }
+        toggle_nightvision(id)
         
         return FMRES_SUPERCEDE
     }
@@ -1585,29 +1583,6 @@ public bacon_touch_grenade(ent, world)
 	return HAM_IGNORED
 }
 
-public handle_flashlight(id)
-{
-    if(pev(id, pev_impulse) == IMPULSE_FLASHLIGHT) // game gonna take it in account and switch flashlight on or off 
-    { 
-        // if you want to block, set impulse to 0 
-        set_pev(id, pev_impulse, 0)
-        
-        if (task_exists(TASKID_NIGHTVISION + id))
-        {
-            remove_task(TASKID_NIGHTVISION + id)
-            activate_nv[id] = false
-        }
-        else
-        {
-            set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
-            activate_nv[id] = true
-        }
-        
-        return HAM_HANDLED
-    }
-    return HAM_IGNORED
-}
-
 public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damagetype)
 {
 	if(damagetype & DMG_GENERIC)
@@ -1701,7 +1676,6 @@ public bacon_killed_player(victim, killer, shouldgib)
         {
             if(!user_has_weapon(killer, CSW_HEGRENADE))
                 set_task(0.1, "give_hegrenade_with_delay", killer)
-//                give_item(killer, "weapon_hegrenade")
         }
         case 3:
         {
@@ -1717,7 +1691,6 @@ public bacon_killed_player(victim, killer, shouldgib)
 
             if(!user_has_weapon(killer, CSW_HEGRENADE))
                 set_task(0.1, "give_hegrenade_with_delay", killer)
-//                give_item(killer, "weapon_hegrenade")
         }
     }
     
@@ -2659,7 +2632,7 @@ bool:allow_infection()
 			count[1]++
 	}
 	
-	maxzombies = clamp(get_pcvar_num(cvar_maxzombies), 1, 31)
+	maxzombies = g_maxplayers - 1
 	return (count[0] < maxzombies && count[1] > 1) ? true : false
 }
 

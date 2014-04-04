@@ -23,7 +23,7 @@ public mainMenu(id)
 
     new i_Menu = menu_create("\yGoZm Menu", "menu_handler" )
 
-    menu_additem(i_Menu, "Re-Pick Weapons", "1")
+    menu_additem(i_Menu, "Pick Weapons", "1")
     menu_additem(i_Menu, "Nominate Map", "2")
     menu_additem(i_Menu, "Ban", "3", VIP_FLAG|ADMIN_FLAG)
     menu_additem(i_Menu, "Mute", "4", VIP_FLAG|ADMIN_FLAG)

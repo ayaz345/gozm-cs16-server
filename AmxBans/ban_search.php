@@ -49,7 +49,7 @@ require("$config->path_root/include/functions.lang.php");
 require("$config->path_root/include/functions.inc.php");
 
 // Make the array for the admin list
-$query		= "SELECT DISTINCT steamid, nickname FROM $config->amxadmins ORDER BY id ASC";
+$query		= "SELECT DISTINCT steamid, nickname FROM $config->amxadmins WHERE ashow ORDER BY id ASC";
 $resource	= mysql_query($query) or die(mysql_error());
 	
 $admin_array	= array();

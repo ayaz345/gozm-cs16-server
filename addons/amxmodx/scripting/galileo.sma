@@ -837,12 +837,12 @@ public map_manageEnd()
 		}
 		else
 		{
-            message_begin(MSG_ALL, SVC_INTERMISSION);
+            message_begin(MSG_BROADCAST, SVC_INTERMISSION);
             message_end();
             set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
 		}
 	}
-	
+
 	dbg_log(2, "%32s mp_timelimit: %f", "map_manageEnd(out)", get_cvar_float("mp_timelimit"));
 }
 
@@ -883,13 +883,13 @@ public event_game_commencing()
 
 public event_intermission()
 {
-	// don't let the normal end interfere
-	g_pauseMapEndManagerTask = true;
-	
-	// change the map after "chattime" is over
-	set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
+    // don't let the normal end interfere
+    g_pauseMapEndManagerTask = true;
 
-	return PLUGIN_CONTINUE;
+    // change the map after "chattime" is over
+    set_task(floatmax(get_cvar_float("mp_chattime"), 2.0), "map_change");
+
+    return PLUGIN_CONTINUE;
 }
 
 map_getIdx(text[])

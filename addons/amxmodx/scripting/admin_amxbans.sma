@@ -648,7 +648,7 @@ accessUser(id, name[] = "")
 
 public client_infochanged(id)
 {
-	if (!is_user_connected(id) || !get_cvar_num("amx_mode"))
+	if (!is_user_connected(id))
 		return PLUGIN_CONTINUE
 
 	new newname[32], oldname[32]
@@ -664,16 +664,9 @@ public client_infochanged(id)
 
 public ackSignal(id)
 {
-	server_cmd("kick #%d ^"%L^"", get_user_userid(id), id, "NO_ENTRY")
+    server_cmd("kick #%d ^"%L^"", get_user_userid(id), id, "NO_ENTRY")
+    return PLUGIN_HANDLED
 }
 
 public client_authorized(id)
-	return get_cvar_num("amx_mode") ? accessUser(id) : PLUGIN_CONTINUE
-
-public client_putinserver(id)
-{
-	if (!is_dedicated_server() && id == 1)
-		return get_cvar_num("amx_mode") ? accessUser(id) : PLUGIN_CONTINUE
-	
-	return PLUGIN_CONTINUE
-}
+	return accessUser(id)  // PLUGIN_CONTINUE

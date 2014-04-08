@@ -536,6 +536,7 @@ public recordDemo(id)
         client_cmd(id,"record go_zombie")
         
     ///////////////// Force client settings	/////////////////////
+    client_cmd(id, "cl_corpsestay 30")
 /*
     client_cmd(id, "rate 25000")
     client_cmd(id, "voice_scale 5")

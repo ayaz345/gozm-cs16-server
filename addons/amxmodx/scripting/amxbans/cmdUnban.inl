@@ -179,7 +179,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
         }
         else
         {
-            client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_RESULT_1",g_unban_player_steamid)
+            client_print(id, print_console, "[AMXBANS] %L", LANG_PLAYER, "AMX_FIND_RESULT_1", g_unban_player_steamid)
 
             new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
             new ban_created_int, current_time_int

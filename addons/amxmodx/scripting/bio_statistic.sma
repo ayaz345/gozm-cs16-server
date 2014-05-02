@@ -137,10 +137,10 @@ public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
     
-    new unquoted_name[32]
-    get_user_name(id, unquoted_name, 31)
-    mysql_escape_string(unquoted_name, 31)
-    copy(g_UserName[id], 31, unquoted_name)
+    new unquoted_name[64]
+    get_user_name(id, unquoted_name, 63)
+    mysql_escape_string(unquoted_name, 63)
+    copy(g_UserName[id], 63, unquoted_name)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 

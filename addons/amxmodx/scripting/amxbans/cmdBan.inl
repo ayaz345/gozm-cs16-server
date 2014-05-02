@@ -8,14 +8,14 @@ public cmdBan(id, level, cid)
     new bool:serverCmd = false
     /* Determine if this was a server command or a command issued by a player in the game */
     if ( id == 0 )
-        serverCmd = true;
+        serverCmd = true
 
     new text[128], steamidorusername[50], ban_length[50]
     read_args(text, 127)
     parse(text, ban_length, 49, steamidorusername, 49)
 
     /* Check so the ban command has the right format */
-    if( !is_str_num(ban_length) || read_argc() < 4 )
+    if(!is_str_num(ban_length) || read_argc() < 4)
     {
         client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"AMX_BAN_SYNTAX")
 
@@ -25,7 +25,7 @@ public cmdBan(id, level, cid)
     new length1 = strlen(ban_length)
     new length2 = strlen(steamidorusername)
     new length = length1 + length2
-    length+=2
+    length += 2
 
     new reason[128]
     read_args(reason,127)
@@ -43,7 +43,7 @@ public cmdBan(id, level, cid)
         format(cTimeLength, 127, "%L", LANG_PLAYER, "TIME_ELEMENT_PERMANENTLY")
 
     // This stops admins from banning perm in console if not adminflag n
-    if(!(get_user_flags(id)&ADMIN_RCON) && iBanLength == 0)
+    if(!(get_user_flags(id) & ADMIN_RCON) && iBanLength == 0)
     {
         client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"NOT_BAN_PERMANENT")
         
@@ -51,7 +51,7 @@ public cmdBan(id, level, cid)
     }
 
     // This stops admins from banning more than 600 min in console if not adminflag n
-    if(!(get_user_flags(id)&ADMIN_RCON) && iBanLength > get_pcvar_num(consoleBanMax))
+    if(!(get_user_flags(id) & ADMIN_RCON) && iBanLength > get_pcvar_num(consoleBanMax))
     {
         client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"BAN_MAX", get_pcvar_num(consoleBanMax))
         
@@ -320,7 +320,7 @@ public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)
         /* If HLGUARD ban, the admin nick will be set to [HLGUARD] */
         if ( contain(g_ban_reason, "[HLGUARD]") != -1 )
             admin_nick = "[HLGUARD]"
-    
+
         /* If ATAC ban, the admin nick will be set to [ATAC] */
         if ( contain(g_ban_reason, "Max Team Kill Violation") != -1 )
             admin_nick = "[ATAC]"
@@ -372,7 +372,12 @@ public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)
         get_mapname(mapname,31)
 
         new query[512]
-        format(query, 511, "INSERT INTO `%s` (player_id,player_ip,player_nick,admin_ip,admin_id,admin_nick,ban_type,ban_reason,ban_created,ban_length,server_name,server_ip,map_name) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%i','%s','%s','%s:%s','%s')", tbl_bans, player_steamid, player_ip, player_nick, admin_ip, admin_steamid, admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name, g_ip, g_port, mapname)
+        format(query, 511, "INSERT INTO `%s` \
+            (player_id,player_ip,player_nick,admin_ip,admin_id,admin_nick,ban_type,\
+            ban_reason,ban_created,ban_length,server_name,server_ip,map_name) \
+            VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%i','%s','%s','%s:%s','%s')",
+            tbl_bans, player_steamid, player_ip, player_nick, admin_ip, admin_steamid, 
+            admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name, g_ip, g_port, mapname)
 //        log_amx("BAN_QUERY: %s", query)
         
         new data[3]
@@ -409,16 +414,19 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 		get_user_ip(player, player_ip, 29, 1)
 		
 		if ( get_pcvar_num(amxbans_debug) == 1 )
-			log_amx("[cmdBan function 4]PlayerSteamid: %s,PlayerIp: %s, BanType: %s", player_steamid, player_ip, g_ban_type)
+			log_amx("[cmdBan function 4]PlayerSteamid: %s,PlayerIp: %s, BanType: %s", 
+                player_steamid, player_ip, g_ban_type)
 
 		new query[512]
 		if (equal(g_ban_type, "S"))
 		{
-			format(query, 511, "SELECT bid FROM `%s` WHERE player_id='%s' AND player_ip='%s' AND ban_type='%s'", tbl_bans, player_steamid, player_ip, g_ban_type)
+			format(query, 511, "SELECT bid FROM `%s` WHERE player_id='%s' AND player_ip='%s' AND ban_type='%s'",
+                tbl_bans, player_steamid, player_ip, g_ban_type)
 		}
 		else
 		{
-			format(query, 511, "SELECT bid FROM `%s` WHERE player_ip='%s' AND ban_type='%s'", tbl_bans, player_ip, g_ban_type)
+			format(query, 511, "SELECT bid FROM `%s` WHERE player_ip='%s' AND ban_type='%s'",
+                tbl_bans, player_ip, g_ban_type)
 		}
 		
 		new data[3]
@@ -461,7 +469,8 @@ public select_bid(failstate, Handle:query, error[], errnum, data[], size)
 			log_amx("[cmdBan function 5]Bid: %d", bid)
 
 		new query[512]
-		format(query, 511, "SELECT amxban_motd FROM `%s` WHERE address = '%s:%s'", tbl_svrnfo, g_ip, g_port)
+		format(query, 511, "SELECT amxban_motd FROM `%s` WHERE address = '%s:%s'",
+            tbl_svrnfo, g_ip, g_port)
 		
 		new data[4]
 		data[0] = id
@@ -677,7 +686,8 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				for (idx=0; idx<playerCount; idx++)
 				{
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
-					format(message,191,"%L", players[idx],"PUBLIC_BAN_ANNOUNCE", player_nick, cTimeLengthPlayer, g_ban_reason)
+					format(message,191,"%L", players[idx],"PUBLIC_BAN_ANNOUNCE",
+                        player_nick, cTimeLengthPlayer, g_ban_reason)
 					
 					if ( get_pcvar_num(show_hud_messages) == 1 )
 					{
@@ -720,7 +730,8 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				for (idx=0; idx<playerCount; idx++)
 				{
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
-					format(message,191, "%L", players[idx], "PUBLIC_BAN_ANNOUNCE_2", player_nick, cTimeLengthPlayer, g_ban_reason, admin_nick)
+					format(message,191, "%L", players[idx], "PUBLIC_BAN_ANNOUNCE_2", 
+                        player_nick, cTimeLengthPlayer, g_ban_reason, admin_nick)
 	
 					if ( get_pcvar_num(show_hud_messages) == 1 )
 					{
@@ -740,7 +751,8 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 				for (idx=0; idx<playerCount; idx++)
 				{
 					get_time_length(players[idx], iBanLength, timeunit_minutes, cTimeLengthPlayer, 127)
-					format(message,191, "%L", players[idx], "PUBLIC_BAN_ANNOUNCE_2_PERM", player_nick, g_ban_reason, admin_nick)
+					format(message,191, "%L", players[idx], "PUBLIC_BAN_ANNOUNCE_2_PERM", 
+                        player_nick, g_ban_reason, admin_nick)
 					
 					if ( get_pcvar_num(show_hud_messages) == 1 )
 					{
@@ -761,8 +773,12 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 			new stime[32]
 			get_time("%Y-%m-%d %H:%M:%S",stime,31 )
 		
-			format(query, 511, "INSERT INTO `admincommands` (authid,name,authid2,name2,value,command,reason,stime) values('%s','%s','%s','%s','%i','%s','%s','%s')", admin_steamid, admin_nick, player_steamid, player_nick, iBanLength, command, g_ban_reason, stime)
-			
+			format(query, 511, 
+                "INSERT INTO `admincommands` \
+                (authid,name,authid2,name2,value,command,reason,stime) \
+                values('%s','%s','%s','%s','%i','%s','%s','%s')", 
+                admin_steamid, admin_nick, player_steamid, player_nick, iBanLength, command, g_ban_reason, stime)
+
 			data[0] = id
 			SQL_ThreadQuery(g_SqlX, "insert_ban_cmd", query, data, 1)
 		}

@@ -235,12 +235,15 @@ public ActualBan(time, reason[])
     return 0
 }
 
-public customUnban(id,level,cid) {
+public customUnban(id, level, cid) {
+    new name[32]
+    get_user_name(id, name, 31)
+    log_amx("[UNBAN]: mmode sent to %d-%s", id, name)
     client_cmd(id, "messagemode BANNED_NICKNAME")
     return PLUGIN_HANDLED
 }
 
-public unban_by_nickname(id,level,cid)
+public unban_by_nickname(id, level, cid)
 {
     new banned_nickname[32]
     read_argv(1, banned_nickname, 31)
@@ -249,6 +252,9 @@ public unban_by_nickname(id,level,cid)
         return PLUGIN_HANDLED
     }
 
+    new name[32]
+    get_user_name(id, name, 31)
+    log_amx("[UNBAN]: amx_unban %s sent to ", id, name)
     client_cmd(id, "amx_unban %s", banned_nickname)
 
     return PLUGIN_HANDLED

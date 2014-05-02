@@ -437,7 +437,7 @@ public plugin_init()
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
 
-    start_timeleft_task()
+    set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
 }
 
 public change_rcon()
@@ -445,10 +445,6 @@ public change_rcon()
 	new rcon
 	rcon = random_num(1000000, 9999999)
 	server_cmd("rcon_password %d", rcon)
-}
-
-public start_timeleft_task() {
-    set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
 }
 
 public show_timeleft(taskid)
@@ -536,7 +532,6 @@ public recordDemo(id)
         client_cmd(id,"record go_zombie")
         
     ///////////////// Force client settings	/////////////////////
-    client_cmd(id, "cl_corpsestay 30")
 /*
     client_cmd(id, "rate 25000")
     client_cmd(id, "voice_scale 5")
@@ -545,6 +540,9 @@ public recordDemo(id)
     client_cmd(id, "voice_maxgain 3")
     client_cmd(id, "voice_avggain 0.3")
     client_cmd(id, "voice_fadeouttime 0")
+    
+    client_cmd(id, "cl_corpsestay 0")
+    
     client_cmd(id, "bind ^"f^" ^"nightvision^"")
     client_cmd(id, "bind ^"F3^" ^"gozm_menu^"")
 */
@@ -993,7 +991,7 @@ public msg_clcorpse(msgid, dest, id)
 {
 	id = get_msg_arg_int(12)
 	if(!g_zombie[id])
-		return PLUGIN_CONTINUE
+		return PLUGIN_HANDLED  // removing corpses
 	
 	static ent
 	ent = fm_find_ent_by_owner(-1, MODEL_CLASSNAME, id)
@@ -1005,7 +1003,7 @@ public msg_clcorpse(msgid, dest, id)
 		
 		set_msg_arg_string(1, model)
 	}
-	return PLUGIN_CONTINUE
+	return PLUGIN_HANDLED  // removing corpses
 }
 
 public nightvision(id)
@@ -2122,7 +2120,7 @@ public task_initround()
         ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD2")
     }
 
-    set_task(5.0, "start_timeleft_task")
+    set_task(6.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
     set_task(0.51, "task_startround", TASKID_STARTROUND)
 }
 

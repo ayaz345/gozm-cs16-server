@@ -998,76 +998,79 @@ public cmd_say(id)
 
 nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegment[])
 {
-	// all map names are stored as lowercase, so normalize the nomination
-	strtolower(nomination);
-	
-	// assume there'll be more than one match (because we're lazy) and starting building the match menu
-	//menu_destroy(g_nominationMatchesMenu[id]);
-	g_nominationMatchesMenu[id] = menu_create("Nominate Map", "nomination_handleMatchChoice");
-	
-	// gather all maps that match the nomination
-	new mapIdx, nominationMap[32], matchCnt = 0, matchIdx = -1, info[1], choice[64], disabledReason[16];
-	for (mapIdx = 0; mapIdx < g_nominationMapCnt && matchCnt <= MAX_NOM_MATCH_CNT; ++mapIdx)
-	{
-		ArrayGetString(g_nominationMap, mapIdx, nominationMap, sizeof(nominationMap)-1);
-		
-		if (contain(nominationMap, nomination) > -1)
-		{
-			matchCnt++;
-			matchIdx = mapIdx;	// store in case this is the only match
-			
-			// there may be a much better way of doing this, but I didn't feel like 
-			// storing the matches and mapIdx's only to loop through them again
-			info[0] = mapIdx;
+//    new array_size;
+//    array_size = ArraySize(g_nominationMap);
 
-			// in most cases, the map will be available for selection, so assume that's the case here
-			disabledReason[0] = 0;
+    // all map names are stored as lowercase, so normalize the nomination
+    strtolower(nomination);
 
-			// disable if the map has already been nominated
-			if (nomination_getPlayer(mapIdx))
-			{
-				formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_NOMINATED");
-			}
-			// disable if the map is too recent
-			else if (map_isTooRecent(nominationMap))
-			{
-				formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_TOORECENT");
-			}
-			else if (equal(g_currentMap, nominationMap))
-			{
-				formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_CURRENTMAP");
-			}
+    // assume there'll be more than one match (because we're lazy) and starting building the match menu
+    //menu_destroy(g_nominationMatchesMenu[id]);
+    g_nominationMatchesMenu[id] = menu_create("Nominate Map", "nomination_handleMatchChoice");
 
-			formatex(choice, sizeof(choice)-1, "%s %s", nominationMap, disabledReason);
-			menu_additem(g_nominationMatchesMenu[id], choice, info, (disabledReason[0] == 0) ? 0 : (1<<26));
-		}
-	}
-	
-	// handle the number of matches
-	switch (matchCnt)
-	{
-		case 0:
-		{
-			// no matches; pity the poor fool
-			client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_NOMATCHES", nomination);
-		}		
-		case 1:
-		{
-			// one match?! omg, this is just like awesome
-			map_nominate(id, matchIdx);
-			
-		}		
-		default:
-		{
-			// this is kinda sexy; we put up a menu of the matches for them to pick the right one
-			//client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES", nomination);
-			//if (matchCnt == MAX_NOM_MATCH_CNT)
-			//{
-			//	client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES_MAX", MAX_NOM_MATCH_CNT, MAX_NOM_MATCH_CNT);
-			//}
-			menu_display(id, g_nominationMatchesMenu[id]);
-		}
-	}
+    // gather all maps that match the nomination
+    new mapIdx, nominationMap[32], matchCnt = 0, matchIdx = -1, info[1], choice[64], disabledReason[16];
+    for (mapIdx = 0; mapIdx < g_nominationMapCnt && matchCnt <= MAX_NOM_MATCH_CNT; ++mapIdx)
+    {
+        ArrayGetString(g_nominationMap, mapIdx, nominationMap, sizeof(nominationMap)-1);
+        
+        if (contain(nominationMap, nomination) > -1)
+        {
+            matchCnt++;
+            matchIdx = mapIdx;	// store in case this is the only match
+            
+            // there may be a much better way of doing this, but I didn't feel like 
+            // storing the matches and mapIdx's only to loop through them again
+            info[0] = mapIdx;
+
+            // in most cases, the map will be available for selection, so assume that's the case here
+            disabledReason[0] = 0;
+
+            // disable if the map has already been nominated
+            if (nomination_getPlayer(mapIdx))
+            {
+                formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_NOMINATED");
+            }
+            // disable if the map is too recent
+            else if (map_isTooRecent(nominationMap))
+            {
+                formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_TOORECENT");
+            }
+            else if (equal(g_currentMap, nominationMap))
+            {
+                formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_CURRENTMAP");
+            }
+
+            formatex(choice, sizeof(choice)-1, "%s %s", nominationMap, disabledReason);
+            menu_additem(g_nominationMatchesMenu[id], choice, info, (disabledReason[0] == 0) ? 0 : (1<<26));
+        }
+    }
+
+    // handle the number of matches
+    switch (matchCnt)
+    {
+        case 0:
+        {
+            // no matches; pity the poor fool
+            client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_NOMATCHES", nomination);
+        }		
+        case 1:
+        {
+            // one match?! omg, this is just like awesome
+            map_nominate(id, matchIdx);
+            
+        }		
+        default:
+        {
+            // this is kinda sexy; we put up a menu of the matches for them to pick the right one
+            //client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES", nomination);
+            //if (matchCnt == MAX_NOM_MATCH_CNT)
+            //{
+            //	client_print(id, print_chat, "%L", id, "GAL_NOM_MATCHES_MAX", MAX_NOM_MATCH_CNT, MAX_NOM_MATCH_CNT);
+            //}
+            menu_display(id, g_nominationMatchesMenu[id]);
+        }
+    }
 }
 
 public nomination_handleMatchChoice(id, menu, item)
@@ -1273,42 +1276,46 @@ map_nominate(id, idxMap, idNominator = -1)
 
 public nomination_list(id)
 {
-	new idxNomination, idxMap; //, hudMessage[512];
-	new msg[101], mapCnt;
-	new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
-	new mapName[32];
-	
-	for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
-	{
-		for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
-		{
-			idxMap = g_nomination[idPlayer][idxNomination];
-			if (idxMap >= 0)
-			{
-				ArrayGetString(g_nominationMap, idxMap, mapName, sizeof(mapName)-1);
-				format(msg, sizeof(msg)-1, "%s, %s", msg, mapName);
-				
-				if (++mapCnt == 4)	// list 4 maps per chat line
-				{
-					client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
-					mapCnt = 0;
-					msg[0] = 0;
-				}
-				// construct the HUD message
-//				format(hudMessage, sizeof(hudMessage)-1, "%s^n%s", hudMessage, mapName);
-				
-				// construct the console message
-			}
-		}
-	}
-	if (msg[0])
-	{
-		client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
-	}
-	else
-	{
-		client_print(id, print_chat, "%L: %L", LANG_PLAYER, "GAL_NOMINATIONS", LANG_PLAYER, "NONE");
-	}
+    new idxNomination, idxMap; //, hudMessage[512];
+    new msg[101], mapCnt;
+    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+    new mapName[32];
+
+    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    {
+        for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
+        {
+            idxMap = g_nomination[idPlayer][idxNomination];
+            if (idxMap >= 0)
+            {
+                ArrayGetString(g_nominationMap, idxMap, mapName, sizeof(mapName)-1);
+                format(msg, sizeof(msg)-1, "%s, %s", msg, mapName);
+                
+                if (++mapCnt == 4)	// list 4 maps per chat line
+                {
+                    client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+                    mapCnt = 0;
+                    msg[0] = 0;
+                }
+                // construct the HUD message
+    //				format(hudMessage, sizeof(hudMessage)-1, "%s^n%s", hudMessage, mapName);
+                
+                // construct the console message
+            }
+        }
+    }
+    if (msg[0])
+    {
+        client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+    }
+    else
+    {
+        client_print(id, print_chat, "%L: %L", LANG_PLAYER, "GAL_NOMINATIONS", LANG_PLAYER, "NONE");
+    }
+
+//    new array_size;
+//    array_size = ArraySize(g_nominationMap);
+//    log_amx("[GAL]: nominations: %d", array_size);
 
 //	set_hudmessage(255, 0, 90, 0.80, 0.20, 0, 1.0, 12.0, 0.1, 0.1, -1);
 //	ShowSyncHudMsg(id, g_nonOverlapHudSync, hudMessage);

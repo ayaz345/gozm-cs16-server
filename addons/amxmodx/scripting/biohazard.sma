@@ -62,7 +62,7 @@
 #define ID_RESTOREFADE (taskid - TASKID_RESTOREFADE)
 #define TASKID_SHOWCLEAN 667
 #define TASKID_SHOWINFECT 668
-#define TASKID_SHOWTIMELEFT 669
+//#define TASKID_SHOWTIMELEFT 669
 
 #define EQUIP_PRI (1<<0)
 #define EQUIP_SEC (1<<1)
@@ -437,7 +437,7 @@ public plugin_init()
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
 
-    set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
+//    set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
 }
 
 public change_rcon()
@@ -450,7 +450,7 @@ public change_rcon()
 public show_timeleft(taskid)
 {
     new timeleft = get_timeleft()
-    set_hudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.05, 0.0, 0.0)
+    set_hudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.05, 0.0, 0.0, -1)
     ShowSyncHudMsg(0, g_sync_msgdisplay, "%s%d:%s%d", timeleft / 60 < 10 ? "0" : "", timeleft / 60, 
                 timeleft % 60 < 10 ? "0" : "", timeleft % 60)
 }
@@ -512,9 +512,9 @@ public recordDemo(id)
 {
 //	if(!(get_user_flags(id) & ADMIN_BAN))
 //		client_cmd(id, "Connect 77.220.185.29:27051")
-    colored_print(id, "^x01 Join:^x04 vk.com/go_zombie")
+    colored_print(id, "^x01 Вконтакте:^x04 vk.com/go_zombie")
 //    colored_print(id, "^x01 IP:^x01 77.220.185.29:27051")
-    colored_print(id, "^x01 Recording demo^x03 go_zombie.dem")
+    colored_print(id, "^x01 Записывается демка:^x03 go_zombie.dem")
 //    colored_print(id, "^x01 GoZm Menu:^x04 F3^x01 or^x04 M")
 //	colored_print(id, "^x01 read fucking^x04 /rules")
     client_cmd(id,"stop")
@@ -594,7 +594,7 @@ check_round(leaving_player)
 		get_user_name(id, name_newcomer, 32)
 		get_user_name(leaving_player, name_leaver, 32)
 //		log_to_file("lastZombie_leavers.log", "Leaver %s", name_leaver)
-		colored_print(0, "^x04***^x03 %s^x01 disconnected,^x03 %s^x01 is a new zombie now!", name_leaver, name_newcomer)
+		colored_print(0, "^x04***^x03 %s^x01 отключился,^x03 %s^x01 новый зомби!", name_leaver, name_newcomer)
 		
 		return
 	}
@@ -613,7 +613,7 @@ check_round(leaving_player)
         get_user_name(leaving_player, name, 31)
         get_user_name(id, g_first_zombie_name, 31)  // for win-text
 
-        colored_print(0, "^x04 ***^x01 Preinfected zombie %s leaves.", name)
+        colored_print(0, "^x04 ***^x01 Зараженный зомби %s вышел.", name)
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
@@ -704,7 +704,7 @@ public cmd_infectuser(id, level, cid)
 	get_user_name(target, name, 31)
 	get_user_name(id, admin_name, 31)
 	if(!(get_user_flags(id) & ADMIN_RCON)) {
-		colored_print(0, "^x01 Admin^x03 %s^x01 used infection to^x04 %s", admin_name, name)
+		colored_print(0, "^x01 Админ^x03 %s^x01 заразил^x04 %s", admin_name, name)
 		log_amx("Admin %s used infection to %s", admin_name, name)
 	}
 	
@@ -741,7 +741,7 @@ public cmd_cureuser(id, level, cid)
 	get_user_name(target, name, 31)
 	get_user_name(id, admin_name, 31)
 	if(!(get_user_flags(id) & ADMIN_RCON)) {
-		colored_print(0, "^x01 Admin^x03 %s^x01 used cure to^x04 %s", admin_name, name)
+		colored_print(0, "^x01 Админ^x03 %s^x01 вылечил^x04 %s", admin_name, name)
 		log_amx("Admin %s used infection to %s", admin_name, name)
 	}
 	
@@ -827,7 +827,6 @@ public msg_teaminfo(msgid, dest, id)
 	}
 	return PLUGIN_CONTINUE
 }
-
 
 public msg_screenfade(msgid, dest, id)
 {
@@ -952,12 +951,12 @@ public msg_textmsg(msgid, dest, id)
 
 	else if(equal(txtmsg[1], "Terrorists_Win"))
 	{
-		formatex(winmsg, 63, "%L", LANG_SERVER, "WIN_TXT_ZOMBIES", g_first_zombie_name)
+		formatex(winmsg, 63, "Зомби выиграли!^n Первым был %s!", g_first_zombie_name)
 		set_msg_arg_string(2, winmsg)
 	}
 	else if(equal(txtmsg[1], "Target_Saved") || equal(txtmsg[1], "CTs_Win"))
 	{
-		formatex(winmsg, 63, "%L", LANG_SERVER, "WIN_TXT_SURVIVORS")
+		formatex(winmsg, 63, "Победа людей!")
 		set_msg_arg_string(2, winmsg)
 	}
 	return PLUGIN_CONTINUE
@@ -1838,17 +1837,17 @@ public task_spawned(taskid)
             g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
             g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
             equipweapon(id, EQUIP_ALL)
-            colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
+            colored_print(id, "^x04***^x01 Пиши^x03 /guns^x01 в чат, чтобы выбрать новое оружие")
         }
 
         if(!g_gamestarted)
         {
             if (g_preinfect[id]) {
-                colored_print(id, "^x01%L ^x03%L", id, "SCAN_RESULTS", id, "SCAN_INFECTED")
+                colored_print(id, "^x01[Сканер] Ты^x03 ЗАРАЖЕН!")
                 set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
             }
             else {
-                colored_print(id, "^x01%L ^x04%L", id, "SCAN_RESULTS", id, "SCAN_CLEAN")
+                colored_print(id, "^x01[Сканер] Ты^x04 ЗДОРОВ!")
                 set_task(0.5, "task_showclean", TASKID_SHOWCLEAN + id, _, _, "b")
             }
         }
@@ -1865,15 +1864,15 @@ public task_spawned(taskid)
 
 public task_showinfected(taskid) {
     new id = taskid - TASKID_SHOWINFECT
-    set_dhudmessage(255, 0, 0, 0.435, 0.88, 0, _, 0.2, 0.1, 0.1)
+    set_dhudmessage(255, 0, 0, 0.45, 0.88, 0, _, 0.2, 0.1, 0.1)
     if(is_user_connected(id))
-        show_dhudmessage(id, "[ INFECTED ]")
+        show_dhudmessage(id, "[ ЗОМБИ ]")
 }
 public task_showclean(taskid) {
     new id = taskid - TASKID_SHOWCLEAN
-    set_dhudmessage(0, 255, 0, 0.45, 0.88, 0, _, 0.7, 0.1, 0.1)
+    set_dhudmessage(0, 255, 0, 0.43, 0.88, 0, _, 0.7, 0.1, 0.1)
     if(is_user_connected(id))
-        show_dhudmessage(id, "[ CLEAN ]")
+        show_dhudmessage(id, "[ ЧЕЛОВЕК ]")
 }
 
 public task_showtruehealth()
@@ -2098,29 +2097,29 @@ public task_initround()
                 g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
                 g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
                 equipweapon(id, EQUIP_ALL)
-                colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
+                colored_print(id, "^x04***^x01 Пиши^x03 /guns^x01 в чат, чтобы выбрать новое оружие")
             }
             else if (!user_has_weapon(id, get_weaponid(g_primaryweapons[g_player_weapons[id][0]][1])))
                 equipweapon(id, EQUIP_ALL)
         }
     }
 
-    remove_task(TASKID_SHOWTIMELEFT)
+//    remove_task(TASKID_SHOWTIMELEFT)
     set_hudmessage(_, _, _, _, _, 1)
     if(newzombie)
     {
         static name[32]
         get_user_name(newzombie, name, 31)
         
-        ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD", name)
-        client_print(0, print_console, "%s is Zombie!", name)
+        ShowSyncHudMsg(0, g_sync_msgdisplay, "%s	-	зомби!!!", name)
+        client_print(0, print_console, "%s is zombie!", name)
     }
     else
     {
         ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD2")
     }
 
-    set_task(6.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
+//    set_task(6.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
     set_task(0.51, "task_startround", TASKID_STARTROUND)
 }
 
@@ -2249,15 +2248,15 @@ public drop_user(id)
 public display_equipmenu(id)
 {
     static menubody[512], len
-    len = formatex(menubody, 511, "\y%L^n^n", id, "MENU_TITLE1")
+    len = formatex(menubody, 511, "\yВооружение:^n^n")
 
     static bool:hasweap
     hasweap = ((g_player_weapons[id][0]) != -1 && (g_player_weapons[id][1] != -1)) ? true : false
 
-    len += formatex(menubody[len], 511 - len,"\w1. %L^n", id, "MENU_NEWWEAPONS")
-    len += formatex(menubody[len], 511 - len,"%s2. %L^n", hasweap ? "\w" : "\d", id, "MENU_PREVSETUP")
-    len += formatex(menubody[len], 511 - len,"%s3. %L^n^n", hasweap ? "\w" : "\d", id, "MENU_DONTSHOW")
-    len += formatex(menubody[len], 511 - len,"\w5. %L^n", id, "MENU_EXIT")
+    len += formatex(menubody[len], 511 - len,"\w1. Новое оружие^n")
+    len += formatex(menubody[len], 511 - len,"%s2. Предыдущий выбор^n", hasweap ? "\w" : "\d")
+    len += formatex(menubody[len], 511 - len,"%s3. Не показывать снова^n^n", hasweap ? "\w" : "\d")
+    len += formatex(menubody[len], 511 - len,"\w5. Выход^n")
 
     static keys
     keys = (MENU_KEY_1|MENU_KEY_5)
@@ -2282,7 +2281,7 @@ public action_equip(id, key)
 		{
 			g_showmenu[id] = false
 			equipweapon(id, EQUIP_ALL)
-			colored_print(id, "^x04***^x01 Print^x03 /guns^x01 in chat to re-order weapons")
+			colored_print(id, "^x04***^x01 Пиши^x03 /guns^x01 в чат, чтобы выбрать новое оружие")
 		}
 	}
     
@@ -2304,7 +2303,7 @@ public display_weaponmenu(id, menuid, pos)
             start = pos = g_menuposition[id]
 
     static menubody[512], len
-    len = formatex(menubody, 511, "\y%L\w^n^n", id, menuid == MENU_PRIMARY ? "MENU_TITLE2" : "MENU_TITLE3")
+    len = formatex(menubody, 511, "\y%s\w^n^n", menuid == MENU_PRIMARY ? "Основное" : "Пистолеты")
 
     static end
     end = start + 8
@@ -2325,11 +2324,11 @@ public display_weaponmenu(id, menuid, pos)
 
     if(end != maxitem)
     {
-            formatex(menubody[len], 511 - len, "^n9. %L^n0. %L", id, "MENU_MORE", id, pos ? "MENU_BACK" : "MENU_EXIT")
+            formatex(menubody[len], 511 - len, "^n9. %s^n0. %s", "Дальше", pos ? "Назад" : "Выход")
             keys |= MENU_KEY_9
     }
     else	
-        formatex(menubody[len], 511 - len, "^n0. %L", id, pos ? "MENU_BACK" : "MENU_EXIT")
+        formatex(menubody[len], 511 - len, "^n0. %s", pos ? "Назад" : "Выход")
 
     new time = get_pcvar_num(cvar_starttime) - (get_systime() - g_roundstart_time) - 2
     show_menu(id, keys, menubody, time > 0 ? time: 10, menuid == MENU_PRIMARY ? "Primary" : "Secondary")

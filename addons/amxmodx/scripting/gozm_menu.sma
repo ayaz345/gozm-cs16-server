@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <cs_teams_api>
 #include <fakemeta>
+#include <colored_print>
 
 #define VIP_FLAG ADMIN_LEVEL_H
 #define ADMIN_FLAG ADMIN_BAN
@@ -21,33 +22,25 @@ public mainMenu(id)
 {
     set_pdata_int(id, OFFSET_CSMENUCODE, 0)  // prevent from showing CS std menu
 
-    new i_Menu = menu_create("\yGoZm Menu", "menu_handler" )
+    new i_Menu = menu_create("\yGoZm Меню:", "menu_handler" )
 
-    menu_additem(i_Menu, "Pick Weapons", "1")
-    menu_additem(i_Menu, "Nominate Map", "2")
-    menu_additem(i_Menu, "Ban", "3", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "Mute", "4", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "History", "5", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "BanList", "6")
-    menu_additem(i_Menu, "Rank", "7")
-    menu_additem(i_Menu, "Top Players", "8")
-    menu_additem(i_Menu, "Statistics", "9")
-    menu_additem(i_Menu, "UnBan", "10", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "UnMute", "11", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "Hats", "12", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "List Players", "13")
-    menu_additem(i_Menu, "Damage", "14")
-    menu_additem(i_Menu, "Time", "15")
-    menu_additem(i_Menu, "Nextmap", "16")
-    menu_additem(i_Menu, "Rules", "17")
-    menu_additem(i_Menu, "Vips", "18")
-    menu_additem(i_Menu, "Info", "19")
-    menu_additem(i_Menu, "Join Spectators", "20")
-    menu_additem(i_Menu, "Join Game", "21")
+    menu_additem(i_Menu, "Выбрать оружие", "1")
+    menu_additem(i_Menu, "Выбрать карту", "2")
+    menu_additem(i_Menu, "Бан", "3", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Заглушка", "4", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Лучшие игроки", "5")
+    menu_additem(i_Menu, "В наблюдатели", "6")
+    menu_additem(i_Menu, "В игру", "7")
+    menu_additem(i_Menu, "Общение", "8")
+    menu_additem(i_Menu, "Список банов", "9")
+    menu_additem(i_Menu, "Разбан", "10", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Разрешить говорить", "11", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "История банов", "12", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Шапки", "13", VIP_FLAG|ADMIN_FLAG)
     
-    menu_setprop(i_Menu, 2, "Back")
-    menu_setprop(i_Menu, 3, "Next")
-    menu_setprop(i_Menu, 4, "Close")
+    menu_setprop(i_Menu, 2, "Назад")
+    menu_setprop(i_Menu, 3, "Вперед")
+    menu_setprop(i_Menu, 4, "Закрыть меню")
 
     menu_display(id, i_Menu, 0)
 
@@ -76,44 +69,9 @@ public menu_handler(id, menu, item)
             client_cmd(id, "say /ban")
         case 4: 
             client_cmd(id, "say /mute")
-        case 5: 
-            client_cmd(id, "amx_banhistorymenu")
-        case 6: 
-            client_cmd(id, "say /bans")
-        case 7: 
-            client_cmd(id, "say /rank")
-        case 8: 
+        case 5:
             client_cmd(id, "say /top")
-        case 9: 
-            client_cmd(id, "say /stats")
-        case 10:
-            client_cmd(id, "amx_unban_by_name")
-        case 11: 
-            client_cmd(id, "say /speak")
-        case 12: 
-            client_cmd(id, "say /hats")
-        case 13:
-        {
-            client_cmd(id, "amx_who")
-            client_print(id, print_chat, "See Result in Console")
-        }
-        case 14: 
-            client_cmd(id, "say /me")
-        case 15: 
-            client_cmd(id, "say thetime")
-        case 16: 
-            client_cmd(id, "say nextmap")
-        case 17: 
-            client_cmd(id, "say /rules")
-        case 18: 
-            client_cmd(id, "say /vips")
-        case 19:
-        {
-            client_print(id, print_chat, "3om6u cepBep (x_x(O_o)x_x) Go Zombie !!!")
-            client_print(id, print_chat, "77.220.185.29:27051")
-            client_print(id, print_chat, "vk.com/go_zombie")
-        }
-        case 20:
+        case 6:
         {
             if(!is_user_alive(id))
                 cs_set_player_team(id, CS_TEAM_SPECTATOR)
@@ -123,11 +81,27 @@ public menu_handler(id, menu, item)
                 cs_set_player_team(id, CS_TEAM_SPECTATOR)
             }
         }
-        case 21:
+        case 7:
         {
             if(!is_user_alive(id))
                 cs_set_player_team(id, CS_TEAM_CT)
         }
+        case 8:
+        {
+            colored_print(id, "3om6u cepBep (x_x(O_o)x_x) Go Zombie !!!")
+            colored_print(id, "^x01  =======^x04 77.220.185.29:27051^x01 =======   ")
+            colored_print(id, "^x01               ^x03 vk.com/go_zombie ^x01           ")
+        }
+        case 9:
+            client_cmd(id, "say /bans")
+        case 10:
+            client_cmd(id, "amx_unban_by_name")
+        case 11: 
+            client_cmd(id, "say /speak")
+        case 12: 
+            client_cmd(id, "amx_banhistorymenu")
+        case 13: 
+            client_cmd(id, "say /hats")
     }
 
     menu_destroy(menu)

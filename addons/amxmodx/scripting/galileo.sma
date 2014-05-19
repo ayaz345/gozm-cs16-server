@@ -539,7 +539,7 @@ public cmd_nextmap(id)
 {
 	new map[32];
 	get_cvar_string("amx_nextmap", map, sizeof(map)-1);
-	colored_print(0,"^x01Nextmap is ^x04%s^x01.", map);
+	colored_print(0,"^x01Следующая карта ^x04%s^x01.", map);
 	return PLUGIN_CONTINUE;
 }
 
@@ -564,7 +564,7 @@ public cmd_listrecent(id)
                 console_print(id, "%s", g_recentMap[idx]);
             }	
 //			client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_MAP_RECENTMAPS", msg[2]);
-            client_print(id, print_chat, "Check your console to see recent maps");
+            colored_print(id, "^x04***^x1 Check your console to see recent maps");
 		}
 		case 2:
 		{
@@ -585,11 +585,13 @@ public cmd_startVote(id, level, cid)
 
 	if (g_voteStatus & VOTE_IN_PROGRESS)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_VOTE_INPROGRESS");
+		//client_print(id, print_chat, "%L", id, "GAL_VOTE_INPROGRESS");
+        colored_print(id, "^x04***^x01 Голосование уже началось!");
 	}
 	else if (g_voteStatus & VOTE_IS_OVER)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_VOTE_ENDED");
+		//client_print(id, print_chat, "%L", id, "GAL_VOTE_ENDED");
+        colored_print(id, "^x04***^x01 Голосование истекло");
 	}
 	else
 	{
@@ -824,12 +826,13 @@ public map_manageEnd()
             // let the players know it's the last round
             if (g_voteStatus & VOTE_FORCED)
             {
-                client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
+                //client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
+                colored_print(0, "^x04***^x01 После завершения этого раунда карта сменится");
             }
             else
             {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
-                colored_print(0, "^x04***^x01 FINAL ROUND! Time has expired^x04 ***");
+                colored_print(0, "^x04***^x01 ПОСЛЕДНИЙ РАУНД! Время карты истекло^x04 ***");
             }
 
             // prevent the map from ending automatically
@@ -1009,7 +1012,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
     g_nominationMatchesMenu[id] = menu_create("Nominate Map", "nomination_handleMatchChoice");
 
     // gather all maps that match the nomination
-    new mapIdx, nominationMap[32], matchCnt = 0, matchIdx = -1, info[1], choice[64], disabledReason[16];
+    new mapIdx, nominationMap[32], matchCnt = 0, matchIdx = -1, info[1], choice[64], disabledReason[32];
     for (mapIdx = 0; mapIdx < g_nominationMapCnt && matchCnt <= MAX_NOM_MATCH_CNT; ++mapIdx)
     {
         ArrayGetString(g_nominationMap, mapIdx, nominationMap, sizeof(nominationMap)-1);
@@ -1029,22 +1032,26 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
             // disable if the map has already been nominated
             if (nomination_getPlayer(mapIdx))
             {
-                formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_NOMINATED");
+                formatex(disabledReason, sizeof(disabledReason)-1, "(уже выбрана)");
             }
             // disable if the map is too recent
             else if (map_isTooRecent(nominationMap))
             {
-                formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_TOORECENT");
+                formatex(disabledReason, sizeof(disabledReason)-1, "(была недавно)");
             }
             else if (equal(g_currentMap, nominationMap))
             {
-                formatex(disabledReason, sizeof(disabledReason)-1, "%L", id, "GAL_MATCH_CURRENTMAP");
+                formatex(disabledReason, sizeof(disabledReason)-1, "(текущая карта)");
             }
 
             formatex(choice, sizeof(choice)-1, "%s %s", nominationMap, disabledReason);
             menu_additem(g_nominationMatchesMenu[id], choice, info, (disabledReason[0] == 0) ? 0 : (1<<26));
         }
     }
+    
+    menu_setprop(g_nominationMatchesMenu[id], 2, "Назад");
+    menu_setprop(g_nominationMatchesMenu[id], 3, "Вперед");
+    menu_setprop(g_nominationMatchesMenu[id], 4, "Закрыть меню");
 
     // handle the number of matches
     switch (matchCnt)
@@ -1131,14 +1138,16 @@ nomination_cancel(id, idxMap)
 	// cancellations can only be made if a vote isn't already in progress
 	if (g_voteStatus & VOTE_IN_PROGRESS)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_INPROGRESS");
-		return;
+        //client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_INPROGRESS");
+        colored_print(id, "^x04***^x01 Голосование уже началось!");
+        return;
 	}
 	// and if the outcome of the vote hasn't already been determined
 	else if (g_voteStatus & VOTE_IS_OVER)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_VOTEOVER");
-		return;
+        //client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_VOTEOVER");
+        colored_print(id, "^x04***^x01 Голосование уже завершилось!");
+        return;
 	}
 
 	new bool:nominationFound, idxNomination;
@@ -1168,14 +1177,16 @@ nomination_cancel(id, idxMap)
 		new idNominator = nomination_getPlayer(idxMap);
 		if (idNominator)
 		{
-			new name[32];
-			get_user_name(idNominator, name, 31);
-			
-			client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_SOMEONEELSE", mapName, name);
+            new name[32];
+            get_user_name(idNominator, name, 31);
+
+            //client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_SOMEONEELSE", mapName, name);
+            colored_print(id, "^x04***^x01 Карта^x04 %s^x01 уже выбрана игроком^x03 %s^x01!", mapName, name);
 		}
 		else
 		{
-			client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_WASNOTYOU", mapName);
+			//client_print(id, print_chat, "%L", id, "GAL_CANCEL_FAIL_WASNOTYOU", mapName);
+            colored_print(id, "^x04***^x01 Ты еще не выбирал^x04 %s^x01!", mapName);
 		}
 	}
 }
@@ -1185,14 +1196,16 @@ map_nominate(id, idxMap, idNominator = -1)
 	// nominations can only be made if a vote isn't already in progress
 	if (g_voteStatus & VOTE_IN_PROGRESS)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_INPROGRESS");
-		return;
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_INPROGRESS");
+        colored_print(id, "^x04***^x01 Голосование уже началось!");
+        return;
 	}
 	// and if the outcome of the vote hasn't already been determined
 	else if (g_voteStatus & VOTE_IS_OVER)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_VOTEOVER");
-		return;
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_VOTEOVER");
+        colored_print(id, "^x04***^x01 Голосование уже завершилось!");
+        return;
 	}
 	
 	new mapName[32];
@@ -1201,16 +1214,18 @@ map_nominate(id, idxMap, idNominator = -1)
 	// players can not nominate the current map
 	if (equal(g_currentMap, mapName))
 	{
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_CURRENTMAP", g_currentMap);
-		return;
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_CURRENTMAP", g_currentMap);
+        colored_print(id, "^x04***^x01 Ты сейчас на карте^x04 %s^x01!", g_currentMap);
+        return;
 	}
 	
 	// players may not be able to nominate recently played maps
 	if (map_isTooRecent(mapName))
 	{
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOORECENT", mapName);
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOORECENT_HLP");
-		return;
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOORECENT", mapName);
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOORECENT_HLP");
+        colored_print(id, "^x04***^x01 На карте^x04 %s^x01 играли недавно!", mapName);
+        return;
 	}
 	
 	// check if the map has already been nominated
@@ -1240,16 +1255,17 @@ map_nominate(id, idxMap, idNominator = -1)
 
 		if (nominationCnt == playerNominationMax)
 		{
-			new nominatedMaps[256], buffer[32];
-			for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
-			{
-				idxMap = g_nomination[id][idxNomination];
-				ArrayGetString(g_nominationMap, idxMap, buffer, sizeof(buffer)-1);
-				format(nominatedMaps, sizeof(nominatedMaps)-1, "%s%s%s", nominatedMaps, (idxNomination == 1) ? "" : ", ", buffer);
-			}
-				
-			client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY", playerNominationMax, nominatedMaps);
-			client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY_HLP");
+            new nominatedMaps[256], buffer[32];
+            for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
+            {
+                idxMap = g_nomination[id][idxNomination];
+                ArrayGetString(g_nominationMap, idxMap, buffer, sizeof(buffer)-1);
+                format(nominatedMaps, sizeof(nominatedMaps)-1, "%s%s%s", nominatedMaps, (idxNomination == 1) ? "" : ", ", buffer);
+            }
+                
+            //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY", playerNominationMax, nominatedMaps);
+            //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY_HLP");
+            colored_print(id, "^x04***^x01 Ты уже выбрал желаемую карту^x04 %s^x01 !", nominatedMaps);
 		}
 		else
 		{
@@ -1257,20 +1273,22 @@ map_nominate(id, idxMap, idNominator = -1)
 			g_nomination[id][idxNominationOpen] = idxMap;
 			g_nominationCnt++;
 			map_announceNomination(id, mapName);
-			client_print(id, print_chat, "%L", id, "GAL_NOM_GOOD_HLP");
+			//client_print(id, print_chat, "%L", id, "GAL_NOM_GOOD_HLP");
 		}		
 	}
 	else if (idNominator == id)
 	{
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_ALREADY", mapName);
+		//client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_ALREADY", mapName);
+        colored_print(id, "^x04***^x01 Ты уже выбрал эту карту^x04 %s^x01 !", mapName);
 	}
 	else
 	{
-		new name[32];
-		get_user_name(idNominator, name, 31);
-		
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE", mapName, name);
-		client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE_HLP");
+        new name[32];
+        get_user_name(idNominator, name, 31);
+
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE", mapName, name);
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE_HLP");
+        colored_print(id, "^x04***^x03 %s^x01 уже выбрал эту карту^x04 %s^x01 !", name, mapName);
 	}	
 }
 
@@ -1293,7 +1311,8 @@ public nomination_list(id)
                 
                 if (++mapCnt == 4)	// list 4 maps per chat line
                 {
-                    client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+                    //client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+                    colored_print(id, "^x04***^x01 Выбор игроков:^x04 %s", msg[2]);
                     mapCnt = 0;
                     msg[0] = 0;
                 }
@@ -1306,11 +1325,13 @@ public nomination_list(id)
     }
     if (msg[0])
     {
-        client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+        //client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
+        colored_print(id, "^x04***^x01 Выбор игроков:^x04 %s", msg[2]);
     }
     else
     {
-        client_print(id, print_chat, "%L: %L", LANG_PLAYER, "GAL_NOMINATIONS", LANG_PLAYER, "NONE");
+        //client_print(id, print_chat, "%L: %L", LANG_PLAYER, "GAL_NOMINATIONS", LANG_PLAYER, "NONE");
+        colored_print(id, "^x04***^x01 Выбранных карт нет");
     }
 
 //    new array_size;
@@ -1441,7 +1462,7 @@ public vote_countdownPendingVote()
 
 	// visual countdown	
 	set_hudmessage(0, 222, 50, -1.0, 0.13, 0, 1.0, 0.94, 0.0, 0.0, -1);
-	show_hudmessage(0, "%L", LANG_PLAYER, "GAL_VOTE_COUNTDOWN", countdown);
+	show_hudmessage(0, "Голосование через %d...", countdown);
 
 	// audio countdown
 	if (!(get_pcvar_num(cvar_soundsMute) & SOUND_COUNTDOWN))
@@ -1796,11 +1817,11 @@ public vote_display(arg[3])
 		// add the header
 		if (isVoteOver)
 		{
-			charCnt = formatex(voteStatus, sizeof(voteStatus)-1, "%s%L^n", CLR_YELLOW, LANG_SERVER, "GAL_RESULT");
+			charCnt = formatex(voteStatus, sizeof(voteStatus)-1, "%sРезультат голосования:^n", CLR_YELLOW);
 		}
 		else
 		{
-			charCnt = formatex(voteStatus, sizeof(voteStatus)-1, "%s%L^n", CLR_YELLOW, LANG_SERVER, "GAL_CHOOSE");
+            charCnt = formatex(voteStatus, sizeof(voteStatus)-1, "%sВыбери следующую карту:^n", CLR_YELLOW);
 		}
 
 		// add maps to the menu
@@ -1844,7 +1865,7 @@ public vote_display(arg[3])
 			new cleanCharCnt = copy(g_vote, sizeof(g_vote)-1, voteStatus);
 			
 			// append a "None" option on for people to choose if they don't like any other choice
-			formatex(g_vote[cleanCharCnt], sizeof(g_vote)-1-cleanCharCnt, "^n^n%s0. %s%L", CLR_RED, CLR_WHITE, LANG_SERVER, "GAL_OPTION_NONE");
+			formatex(g_vote[cleanCharCnt], sizeof(g_vote)-1-cleanCharCnt, "^n^n%s0. %sНичего", CLR_RED, CLR_WHITE);
 		}
 		
 		charCnt += formatex(voteStatus[charCnt], sizeof(voteStatus)-1-charCnt, "^n^n");
@@ -1859,7 +1880,7 @@ public vote_display(arg[3])
 		
 		if (--g_voteDuration <= 10)
 		{
-			formatex(voteFooter[charCnt], sizeof(voteFooter)-1-charCnt, "%s%L: %s%i", CLR_GREY, LANG_SERVER, "GAL_TIMELEFT", CLR_RED, g_voteDuration);
+			formatex(voteFooter[charCnt], sizeof(voteFooter)-1-charCnt, "%sОсталось %s%i %sс.", CLR_WHITE, CLR_RED, g_voteDuration, CLR_WHITE);
 		}
 	}
 	
@@ -1875,7 +1896,7 @@ public vote_display(arg[3])
 	}
 	else
 	{
-		formatex(menuDirty, sizeof(menuDirty)-1, "%s^n^n%s%L", voteStatus, CLR_YELLOW, LANG_SERVER, "GAL_VOTE_ENDED");
+		formatex(menuDirty, sizeof(menuDirty)-1, "%s^n^n%sГолосование окончено.", voteStatus, CLR_YELLOW);
 	}
 
 	new menuid, menukeys;
@@ -2109,8 +2130,9 @@ public vote_expire()
 		// if there is a tie for 1st, randomly select one as the winner
 		if (firstPlaceCnt > 1)
 		{
-			idxWinner = firstPlace[random_num(0, firstPlaceCnt - 1)];
-			client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_WINNER_TIED", firstPlaceCnt);
+            idxWinner = firstPlace[random_num(0, firstPlaceCnt - 1)];
+            //client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_WINNER_TIED", firstPlaceCnt);
+            colored_print(0, "Следующая карта произвольно выбрана из %d с равными голосами", firstPlaceCnt);
 		}
 		else
 		{
@@ -2152,7 +2174,7 @@ public vote_expire()
 			map_setNext(g_mapChoice[idxWinner]);
 			server_exec();
 
-			colored_print(0,"^x01Nextmap is ^x04%s^x01.", g_mapChoice[idxWinner]);
+			colored_print(0,"^x01Следующая карта ^x04%s^x01.", g_mapChoice[idxWinner]);
 			log_amx("[ Galileo ] Nextmap is %s", g_mapChoice[idxWinner]);
 			
 			g_voteStatus |= VOTE_IS_OVER;
@@ -2310,7 +2332,8 @@ public vote_handleChoice(id, key)
 			}
 			else
 			{
-				client_print(id, print_chat, "%L", id, "GAL_CHOICE_NONE");
+				//client_print(id, print_chat, "%L", id, "GAL_CHOICE_NONE");
+                colored_print(id, "^x04***^x01 Ты решил не принимать участия в голосовании");
 			}
 		}
 		else
@@ -2345,7 +2368,8 @@ public vote_handleChoice(id, key)
 				}
 				else
 				{
-					client_print(id, print_chat, "%L", id, "GAL_CHOICE_MAP", g_mapChoice[key]);
+					//client_print(id, print_chat, "%L", id, "GAL_CHOICE_MAP", g_mapChoice[key]);
+                    colored_print(id, "^x04***^x01 Ты выбрал карту^x04 %s", g_mapChoice[key]);
 				}
 			}
 	
@@ -2355,7 +2379,7 @@ public vote_handleChoice(id, key)
 			{
 				g_mapVote[key] += voteWeight;
 				g_votesCast += (voteWeight - 1);
-				client_print(id, print_chat, "%L", id, "GAL_VOTE_WEIGHTED", voteWeight);
+				//client_print(id, print_chat, "%L", id, "GAL_VOTE_WEIGHTED", voteWeight);
 			}
 			else
 			{
@@ -2418,86 +2442,92 @@ Float:map_getMinutesElapsed()
 
 public vote_rock(id)
 {
-	// if an early vote is pending, don't allow any rocks
-	if (g_voteStatus & VOTE_IS_EARLY)
-	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_PENDINGVOTE");
-		return;
-	}
-	
-	new Float:minutesElapsed = map_getMinutesElapsed();
-	
-	// if the player is the only one on the server, bring up the vote immediately
-	if (get_realplayersnum() == 1 && minutesElapsed > floatmin(2.0, g_rtvWait))
-	{
-		vote_startDirector(true);
-		return;
-	}
+    // if an early vote is pending, don't allow any rocks
+    if (g_voteStatus & VOTE_IS_EARLY)
+    {
+        client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_PENDINGVOTE");
+        return;
+    }
 
-	// make sure enough time has gone by on the current map
-	if (g_rtvWait)
-	{
-		if (minutesElapsed < g_rtvWait)
-		{
-			client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_TOOSOON", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
-			return;
-		}
-	}
+    new Float:minutesElapsed = map_getMinutesElapsed();
 
-	// rocks can only be made if a vote isn't already in progress
-	if (g_voteStatus & VOTE_IN_PROGRESS)
-	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_INPROGRESS");
-		return;
-	}
-	// and if the outcome of the vote hasn't already been determined
-	else if (g_voteStatus & VOTE_IS_OVER)
-	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_VOTEOVER");
-		return;
-	}
-	
-	// determine how many total rocks are needed
-	new rocksNeeded = vote_getRocksNeeded();
+    // if the player is the only one on the server, bring up the vote immediately
+    if (get_realplayersnum() == 1 && minutesElapsed > floatmin(2.0, g_rtvWait))
+    {
+        vote_startDirector(true);
+        return;
+    }
 
-	// make sure player hasn't already rocked the vote
-	if (g_rockedVote[id])
-	{
-		client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_ALREADY", rocksNeeded - g_rockedVoteCnt);
-		rtv_remind(TASKID_REMINDER + id);
-		return;
-	}
+    // make sure enough time has gone by on the current map
+    if (g_rtvWait)
+    {
+        if (minutesElapsed < g_rtvWait)
+        {
+            //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_TOOSOON", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
+            colored_print(id, "%L", id, "^x04***^x01 Голосование будет разрешено через^x04 %d^x01 минут", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
+            return;
+        }
+    }
 
-	// allow the player to rock the vote
-	g_rockedVote[id] = true;
-	client_print(id, print_chat, "%L", id, "GAL_ROCK_SUCCESS");
+    // rocks can only be made if a vote isn't already in progress
+    if (g_voteStatus & VOTE_IN_PROGRESS)
+    {
+        //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_INPROGRESS");
+        colored_print(id, "^x04***^x01 Голосование уже началось!");
+        return;
+    }
+    // and if the outcome of the vote hasn't already been determined
+    else if (g_voteStatus & VOTE_IS_OVER)
+    {
+        //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_VOTEOVER");
+        colored_print(id, "^x04***^x01 Голосование окончено.");
+        return;
+    }
 
-	// make sure the rtv reminder timer has stopped
-	if (task_exists(TASKID_REMINDER))
-	{
-		remove_task(TASKID_REMINDER);
-	}
+    // determine how many total rocks are needed
+    new rocksNeeded = vote_getRocksNeeded();
 
-	// determine if there have been enough rocks for a vote yet	
-	if (++g_rockedVoteCnt >= rocksNeeded)
-	{
-		// announce that the vote has been rocked
-		client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_ROCK_ENOUGH");
+    // make sure player hasn't already rocked the vote
+    if (g_rockedVote[id])
+    {
+        //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_ALREADY", rocksNeeded - g_rockedVoteCnt);
+        colored_print(id, "^x04***^x01 Ты уже отдал свой голос за rtv!");
+        rtv_remind(TASKID_REMINDER + id);
+        return;
+    }
 
-		// start up the vote director 
-		vote_startDirector(true);
-	}
-	else
-	{
-		// let the players know how many more rocks are needed
-		rtv_remind(TASKID_REMINDER);
-		
-		if (get_pcvar_num(cvar_rtvReminder))
-		{
-			// initialize the rtv reminder timer to repeat how many rocks are still needed, at regular intervals
-			set_task(get_pcvar_float(cvar_rtvReminder) * 60.0, "rtv_remind", TASKID_REMINDER, _, _, "b");
-		}
-	}
+    // allow the player to rock the vote
+    g_rockedVote[id] = true;
+    //client_print(id, print_chat, "%L", id, "GAL_ROCK_SUCCESS");
+    colored_print(id, "^x04***^x01 Ты отдал свой голос за rtv!");
+
+    // make sure the rtv reminder timer has stopped
+    if (task_exists(TASKID_REMINDER))
+    {
+        remove_task(TASKID_REMINDER);
+    }
+
+    // determine if there have been enough rocks for a vote yet	
+    if (++g_rockedVoteCnt >= rocksNeeded)
+    {
+        // announce that the vote has been rocked
+        //client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_ROCK_ENOUGH");
+        colored_print(id, "^x04***^x01 Достаточное количество игроков написало rtv!");
+
+        // start up the vote director 
+        vote_startDirector(true);
+    }
+    else
+    {
+        // let the players know how many more rocks are needed
+        rtv_remind(TASKID_REMINDER);
+        
+        if (get_pcvar_num(cvar_rtvReminder))
+        {
+            // initialize the rtv reminder timer to repeat how many rocks are still needed, at regular intervals
+            set_task(get_pcvar_float(cvar_rtvReminder) * 60.0, "rtv_remind", TASKID_REMINDER, _, _, "b");
+        }
+    }
 }
 
 vote_unrock(id)
@@ -2521,7 +2551,7 @@ public rtv_remind(param)
 	
 	// let the players know how many more rocks are needed
 //	client_print(who, print_chat, "%L", LANG_PLAYER, "GAL_ROCK_NEEDMORE", vote_getRocksNeeded() - g_rockedVoteCnt);
-	colored_print(who, "^x04 ***^x01 To change:^x04 %i^x01 rtv", vote_getRocksNeeded() - g_rockedVoteCnt);
+	colored_print(who, "^x04 ***^x01 Для голосования нужно еще^x04 %i^x01 rtv", vote_getRocksNeeded() - g_rockedVoteCnt);
 }
 
 public cmd_listmaps(id)
@@ -2846,7 +2876,8 @@ public srv_startEmptyCycle()
 
 nomination_announceCancellation(nominations[])
 {
-	client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_CANCEL_SUCCESS", nominations);
+	//client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_CANCEL_SUCCESS", nominations);
+    colored_print(0, "^x04***^x01 Эти карты больше не номинированы:^x04 %s", nominations);
 }
 
 nomination_clearAll()
@@ -2867,7 +2898,7 @@ map_announceNomination(id, map[])
 	get_user_name(id, name, sizeof(name)-1);
 	
 //	client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_NOM_SUCCESS", name, map);
-	colored_print(0, "^x03%s ^x01has nominated ^x04%s", name, map);
+	colored_print(0, "^x03%s ^x01выбрал карту ^x04%s", name, map);
 }
 
 #if AMXX_VERSION_NUM < 180

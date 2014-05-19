@@ -306,13 +306,13 @@ public logevent_endRound()
             {
                 //colored_print(players[i], "^x04======================================")
                 colored_print(players[i],
-                    "^x04***^x01 Best Human:^x04 %s^x01  ->  [^x03  %d^x01 dmg  ]",
+                    "^x04***^x01 Лучший человек:^x04 %s^x01  ->  [^x03  %d^x01 дамаги  ]",
                     maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
                 if (g_Me[players[maxInfectId]][ME_INFECT])
                     colored_print(players[i], 
-                        "^x04***^x01 Best Zombie:^x04 %s^x01  ->  [^x03  %d^x01 infection%s  ]",
+                        "^x04***^x01 Лучший зомби:^x04 %s^x01  ->  [^x03  %d^x01 заражени%s  ]",
                         maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
-                        (g_Me[players[maxInfectId]][ME_INFECT] > 1) ? "s" : "")
+                        set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
             }
             
             // extra
@@ -465,14 +465,14 @@ public handleSay(id)
 public show_me(id)
 {
     if (!is_user_zombie(id))
-        colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 damage", g_Me[id][ME_DMG])
+        colored_print(id, "^x04***^x01 Ты нанес:^x04 %d^x01 дамаги", g_Me[id][ME_DMG])
     else
     {
         new client_message[64]
-        format(client_message, charsmax(client_message), "and^x04 %d^x01 damage", g_Me[id][ME_DMG])
-        colored_print(id, "^x04***^x01 Last result:^x04 %d^x01 infection%s %s", 
+        format(client_message, charsmax(client_message), "и^x04 %d^x01 дамаги", g_Me[id][ME_DMG])
+        colored_print(id, "^x04***^x01 Ты сделал:^x04 %d^x01 заражени%s %s", 
             g_Me[id][ME_INFECT],
-            g_Me[id][ME_INFECT] == 1 ? "" : "s",
+            set_word_completion(g_Me[id][ME_INFECT]),
             g_Me[id][ME_DMG] ? client_message : "")
     }
     
@@ -520,7 +520,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 3)
-        colored_print(id, "^x04***^x01 Command ^"/rank^" is temporarily blocked")
+        colored_print(id, "^x04***^x01 Команда ^"/rank^" временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -529,7 +529,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
     new name[32]
     new rank
-    new Float:res, skill
+    new Float:res//, skill
     new total
 
     if (SQL_MoreResults(query))
@@ -537,14 +537,14 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     	SQL_ReadResult(query, column("nick"), name, 31)
     	rank = SQL_ReadResult(query, column("rank"))
         SQL_ReadResult(query, column("skill"), res)
-        skill = floatround(res*1000)
+//        skill = floatround(res*1000)
         total = SQL_ReadResult(query, column("total"))
     		
-    	colored_print(id, "^x04***^x03 %s^x01 is on^x04 %d^x01 of %d place with %d skill!",
-            name, rank, total, skill)
+    	colored_print(id, "^x04***^x03 %s^x01 находится на^x04 %d^x01 из %d позиций!",
+            name, rank, total)
     } 
     else
-    	colored_print(id, "^x04***^x03 %s^x01 is not found. Check register!", whois)
+    	colored_print(id, "^x04***^x03 %s^x01 игрок не найден. Проверь заглавные буквы!", whois)
         
     return PLUGIN_HANDLED
 }
@@ -591,7 +591,7 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 4)
-        colored_print(id, "^x04***^x01 Command ^"/stats^" is temporarily blocked")
+        colored_print(id, "^x04***^x01 Команда ^"/stats^" временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -669,7 +669,7 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
     	setc(g_text, max_len, 0)
     } 
     else
-    	colored_print(id, "^x04***^x01 Command ^"/stats^" is temporarily blocked")
+    	colored_print(id, "^x04***^x01 Команда ^"/stats^" временно недоступна")
     
     return PLUGIN_HANDLED
 }
@@ -695,7 +695,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 5)
-        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
+        colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -708,7 +708,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
         count = SQL_ReadResult(query, 0)
     else
     {
-        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
+        colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -739,7 +739,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 6)
-        colored_print(id, "^x04***^x01 Command ^"/top^" is temporarily blocked")
+        colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -851,6 +851,18 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     }
     log_amx("[BIO STAT]: Called from id=%d, errnum=%d, error=%s", id, errnum, error)
     log_amx("[BIO STAT]: Query: %ds to '%s'", request_time, szQuery)
+}
+
+stock set_word_completion(number)
+{
+    new word_completion[8]
+    if (number == 0 || number > 4)
+        word_completion = "й"
+    else if (number == 1)
+        word_completion = "е"
+    else
+        word_completion = "я"
+    return word_completion
 }
 
 stock mysql_escape_string(dest[], len)

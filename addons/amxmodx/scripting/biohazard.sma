@@ -1843,11 +1843,11 @@ public task_spawned(taskid)
         if(!g_gamestarted)
         {
             if (g_preinfect[id]) {
-                colored_print(id, "^x01[Сканер] Ты^x03 ЗАРАЖЕН!")
+                colored_print(id, "^x01[ Сканер ] Веселье начинается, ты^x03 ЗАРАЖЕН!")
                 set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
             }
             else {
-                colored_print(id, "^x01[Сканер] Ты^x04 ЗДОРОВ!")
+                colored_print(id, "^x01[ Сканер ] Смотри по сторонам, ты^x04 ЗДОРОВ!")
                 set_task(0.5, "task_showclean", TASKID_SHOWCLEAN + id, _, _, "b")
             }
         }
@@ -1864,7 +1864,7 @@ public task_spawned(taskid)
 
 public task_showinfected(taskid) {
     new id = taskid - TASKID_SHOWINFECT
-    set_dhudmessage(255, 0, 0, 0.45, 0.88, 0, _, 0.2, 0.1, 0.1)
+    set_dhudmessage(255, 0, 0, 0.44, 0.88, 0, _, 0.2, 0.1, 0.1)
     if(is_user_connected(id))
         show_dhudmessage(id, "[ ЗОМБИ ]")
 }
@@ -2255,8 +2255,8 @@ public display_equipmenu(id)
 
     len += formatex(menubody[len], 511 - len,"\w1. Новое оружие^n")
     len += formatex(menubody[len], 511 - len,"%s2. Предыдущий выбор^n", hasweap ? "\w" : "\d")
-    len += formatex(menubody[len], 511 - len,"%s3. Не показывать снова^n^n", hasweap ? "\w" : "\d")
-    len += formatex(menubody[len], 511 - len,"\w5. Выход^n")
+    len += formatex(menubody[len], 511 - len,"%s3. Не показывать меню^n^n", hasweap ? "\w" : "\d")
+    len += formatex(menubody[len], 511 - len,"\w5. Закрыть^n")
 
     static keys
     keys = (MENU_KEY_1|MENU_KEY_5)

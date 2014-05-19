@@ -48,7 +48,7 @@ public ShowMenu(id) {
 		CurrentMenu[id] = 1
 		ShowHats(id)
 	} else {
-		colored_print(id,"^x01[^x04%s^x01] Only^x03 VIPs^x01 may currently use this menu.",PLUG_TAG)
+		colored_print(id,"^x01[^x04%s^x01] Только^x03 ВИПы^x01 могут использовать шапки.",PLUG_TAG)
 	}
 	return PLUGIN_HANDLED
 }
@@ -187,7 +187,7 @@ public Set_Hat(player, imodelnum, targeter) {
 		glowhat(player)
 		CurrentHat[player] = imodelnum
 		if (targeter != -1) {
-			colored_print(targeter, "^x01[^x04%s^x01] Set %s on^x03 %s",PLUG_TAG,HATNAME[imodelnum],name)
+			colored_print(targeter, "^x01[^x04%s^x01]^x03 %s надел шапку <%s>",PLUG_TAG,HATNAME[imodelnum],name)
 		}
 	}
 }

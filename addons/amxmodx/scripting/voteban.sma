@@ -47,11 +47,11 @@ public SayIt(id)
     if(say_args[0] == '/' && containi(say_args, "voteban") != -1)
     {
         if(get_user_flags(id) & ADMIN_LEVEL_H) {
-            colored_print(id,"^x04***^x01 Use^x04 /ban")
+            colored_print(id,"^x04***^x01 Используй^x04 /ban")
             return PLUGIN_HANDLED_MAIN
         }
         else {
-            colored_print(id,"^x04***^x01 Only VIP-players can use^x04 /voteban")
+            colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 /voteban")
             return PLUGIN_HANDLED_MAIN
         }
     }
@@ -77,7 +77,7 @@ public SayIt(id)
         }
         else
         {
-            colored_print(id,"^x04***^x01 Only VIP-players can use ^x04/ban")
+            colored_print(id,"^x04***^x01 Только ВИПы могут использовать ^x04/ban")
             return PLUGIN_HANDLED_MAIN
         }
     }
@@ -213,7 +213,7 @@ public setCustomBanReason(id,level,cid)
     read_argv(1, szReason, 127)
     copy(ban_reason, 127, szReason)
     if(strlen(ban_reason) == 0) {
-        colored_print(id,"^x04***^x01 Empty ban reason! Not a deal.")
+        colored_print(id,"^x04***^x01 Введи причину бана!")
         return PLUGIN_HANDLED
     }
 
@@ -229,7 +229,7 @@ public additionalBan() {
 public ActualBan(time, reason[])
 {
     client_cmd(ga_PlayerID[gi_VoteStarter], "amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
-    colored_print(0,"^x03%s ^x01is BANNED by %s! Reason: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
+    colored_print(0,"^x03%s^x01 ЗАБАНЕН випом %s! Причина: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
 //    log_amx("VB: %s", ga_PlayerName[gi_Sellection])
 //    log_amx("VB: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
     return 0
@@ -248,13 +248,13 @@ public unban_by_nickname(id, level, cid)
     new banned_nickname[32]
     read_argv(1, banned_nickname, 31)
     if(strlen(banned_nickname) == 0) {
-        colored_print(id,"^x04***^x01 Empty Nickname! Not a deal.")
+        colored_print(id,"^x04***^x01 Введи ник!")
         return PLUGIN_HANDLED
     }
 
     new name[32]
     get_user_name(id, name, 31)
-    log_amx("[UNBAN]: amx_unban %s sent to ", id, name)
+    log_amx("[UNBAN]: `amx_unban %s` sent to %s", banned_nickname, name)
     client_cmd(id, "amx_unban %s", banned_nickname)
 
     return PLUGIN_HANDLED

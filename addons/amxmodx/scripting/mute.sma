@@ -226,7 +226,7 @@ public CMD_GagPlayer(VIP, VictimID)
 
     get_user_name(VIP,AdminName,31)
     get_user_name(VictimID,VictimName,31)
-    colored_print(0,"^x04***^x03 %s^x01 умолк благодаря %s",VictimName, AdminName) 
+    colored_print(0,"^x04***^x03 %s^x01 умолк благодаря випу %s",VictimName, AdminName) 
 
     return PLUGIN_HANDLED
 } 
@@ -247,7 +247,7 @@ public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via con
         return PLUGIN_HANDLED
     }
 
-    colored_print(0,"^x04***^x03 %s^x01 может говорить благодаря %s", VictimName, AdminName)
+    colored_print(0,"^x04***^x03 %s^x01 может говорить благодаря випу %s", VictimName, AdminName)
 /*
     new muted_flag
     muted_flag = get_speak(VictimID)

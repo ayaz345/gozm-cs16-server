@@ -943,7 +943,7 @@ public msg_textmsg(msgid, dest, id)
 	if(get_msg_arg_int(1) != 4)
 		return PLUGIN_CONTINUE
 	
-	static txtmsg[25], winmsg[64]
+	static txtmsg[25], winmsg[128]
 	get_msg_arg_string(2, txtmsg, 24)
 	
 	if(equal(txtmsg[1], "Game_bomb_drop"))
@@ -951,12 +951,12 @@ public msg_textmsg(msgid, dest, id)
 
 	else if(equal(txtmsg[1], "Terrorists_Win"))
 	{
-		formatex(winmsg, 63, "Зомби выиграли!^n Первым был %s!", g_first_zombie_name)
+		formatex(winmsg, 127, "Зомби выиграли!^n Вечеринку начал %s!", g_first_zombie_name)
 		set_msg_arg_string(2, winmsg)
 	}
 	else if(equal(txtmsg[1], "Target_Saved") || equal(txtmsg[1], "CTs_Win"))
 	{
-		formatex(winmsg, 63, "Победа людей!")
+		formatex(winmsg, 127, "Победа людишек!")
 		set_msg_arg_string(2, winmsg)
 	}
 	return PLUGIN_CONTINUE
@@ -1843,11 +1843,11 @@ public task_spawned(taskid)
         if(!g_gamestarted)
         {
             if (g_preinfect[id]) {
-                colored_print(id, "^x01[ Сканер ] Веселье начинается, ты^x03 ЗАРАЖЕН!")
+                colored_print(id, "^x01[Сканер] Веселье начинается, ты^x03 ЗАРАЖЕН!!!")
                 set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
             }
             else {
-                colored_print(id, "^x01[ Сканер ] Смотри по сторонам, ты^x04 ЗДОРОВ!")
+                colored_print(id, "^x01[Сканер] Смотри по сторонам, ты^x04 ЗДОРОВ!")
                 set_task(0.5, "task_showclean", TASKID_SHOWCLEAN + id, _, _, "b")
             }
         }

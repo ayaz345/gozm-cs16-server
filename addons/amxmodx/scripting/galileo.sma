@@ -1880,7 +1880,7 @@ public vote_display(arg[3])
 		
 		if (--g_voteDuration <= 10)
 		{
-			formatex(voteFooter[charCnt], sizeof(voteFooter)-1-charCnt, "%sОсталось %s%i %sс.", CLR_WHITE, CLR_RED, g_voteDuration, CLR_WHITE);
+			formatex(voteFooter[charCnt], sizeof(voteFooter)-1-charCnt, "%sОсталось %s%i%sс", CLR_WHITE, CLR_RED, g_voteDuration, CLR_WHITE);
 		}
 	}
 	

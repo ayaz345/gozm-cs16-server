@@ -13,8 +13,7 @@
 #define HAT_ALL			0
 #define HAT_DUMKA		4
 
-#define menusize 		220
-#define maxTry			15					//Number of tries to get someone a non-admin random hat before giving up.
+#define menusize 		220				//Number of tries to get someone a non-admin random hat before giving up.
 #define modelpath		"models/hat"
 
 stock fm_set_entity_visibility(index, visible = 1)
@@ -36,7 +35,7 @@ new PLAYERNAME[MAX_HATS][32]
 
 public plugin_init() {
     register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
-    register_logevent("event_roundstart", 	2,	"1=Round_Start")
+//    register_logevent("event_roundstart", 	2,	"1=Round_Start")
 
     register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
     register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
@@ -187,7 +186,7 @@ public Set_Hat(player, imodelnum, targeter) {
 		glowhat(player)
 		CurrentHat[player] = imodelnum
 		if (targeter != -1) {
-			colored_print(targeter, "^x01[^x04%s^x01]^x03 %s надел шапку <%s>",PLUG_TAG,HATNAME[imodelnum],name)
+			colored_print(targeter, "^x01[^x04%s^x01]^x03 %s^x01 надел шапку <%s>",PLUG_TAG,HATNAME[imodelnum],name)
 		}
 	}
 }

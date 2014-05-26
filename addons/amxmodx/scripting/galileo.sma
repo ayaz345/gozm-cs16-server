@@ -2796,7 +2796,7 @@ public client_connect(id)
 
 public client_putinserver(id)
 {
-	if ((g_voteStatus & VOTE_IS_EARLY) && !is_user_bot(id) && !is_user_hltv(id))
+	if (g_voteStatus & VOTE_IS_EARLY)
 	{
 		set_task(20.0, "srv_announceEarlyVote", id);
 	}

@@ -312,6 +312,7 @@ public event_round_start()
 		remove_task(id+TASK_BURN);
 }
 
+/*
 // Client joins the game
 public client_putinserver(id)
 {
@@ -323,6 +324,7 @@ public client_putinserver(id)
 		set_task(0.1, "register_ham_czbots", id)
 	}
 }
+*/
 
 // Set Model Forward
 public fw_SetModel(entity, const model[])

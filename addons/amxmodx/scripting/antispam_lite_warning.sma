@@ -24,6 +24,7 @@ public client_putinserver(id)
     }
     new random_name = random_num(0, 5)
     
+    strtolower(nickname)
     if( containi(nickname, ".ru") != -1 ||
         containi(nickname, ".com") != -1 ||
         containi(nickname, ".lv") != -1 ||

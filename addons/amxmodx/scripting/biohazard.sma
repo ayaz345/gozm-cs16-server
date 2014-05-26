@@ -613,7 +613,7 @@ check_round(leaving_player)
         get_user_name(leaving_player, name, 31)
         get_user_name(id, g_first_zombie_name, 31)  // for win-text
 
-        colored_print(0, "^x04 ***^x01 Зараженный зомби %s вышел.", name)
+        colored_print(0, "^x04 ***^x01 Зараженный зомби^x03 %s^x01 вышел.", name)
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")

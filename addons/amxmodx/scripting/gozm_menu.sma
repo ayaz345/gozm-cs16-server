@@ -10,7 +10,17 @@
 #define MPROP_NEXTNAME  3
 #define MPROP_EXITNAME  4
 
+#define OFFSET_TEAM 114
+
 new GOZM_CMD[] = "gozm_menu"
+
+enum
+{
+	TEAM_UNASSIGNED = 0,
+	TEAM_TERRORIST,
+	TEAM_CT,
+    TEAM_SPECTATOR
+}
 
 public plugin_init()
 {
@@ -49,6 +59,11 @@ public mainMenu(id)
 
 public cb_allow_join_spec(id, menu, item)
 {
+    new specs[32], specsnum
+    get_players(specs, specsnum, "e", "SPECTATOR")
+    if(specsnum > 1)
+        return ITEM_DISABLED
+        
     if(!is_user_alive(id))
         return ITEM_ENABLED
     else if(get_user_flags(id) & VIP_FLAG || get_user_flags(id) & ADMIN_FLAG)
@@ -58,7 +73,7 @@ public cb_allow_join_spec(id, menu, item)
 
 public cb_allow_join_game(id, menu, item)
 {
-    if(!is_user_alive(id))
+    if(fm_get_user_team(id) == TEAM_SPECTATOR)
         return ITEM_ENABLED
     return ITEM_DISABLED
 }
@@ -122,4 +137,13 @@ public menu_handler(id, menu, item)
 
     menu_destroy(menu)
     return PLUGIN_HANDLED
+}
+
+stock fm_get_user_team(id)
+{
+	// Prevent server crash if entity is not safe for pdata retrieval
+	if (pev_valid(id) != 2)
+		return TEAM_SPECTATOR
+	
+	return get_pdata_int(id, OFFSET_TEAM, 5)
 }

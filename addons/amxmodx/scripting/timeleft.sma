@@ -33,6 +33,7 @@
 */
 
 #include <amxmodx>
+#include <colored_print>
 
 new g_TimeSet[32][2]
 new g_LastTime
@@ -105,10 +106,10 @@ public sayTimeLeft(id)
 			setTimeVoice(svoice, 127, 0, a)
 			client_cmd(id, "%s", svoice)
 		}
-		client_print(0, print_chat, "%L:  %d:%02d", LANG_PLAYER, "TIME_LEFT", (a / 60), (a % 60))
+		colored_print(0, "^x01Осталось:^x04  %d:%02d", (a / 60), (a % 60))
 	}
 	else
-		client_print(0, print_chat, "%L", LANG_PLAYER, "NO_T_LIMIT")
+		colored_print(0, "^x01Это^x04 последний^x01 раунд.")
 	
 	return PLUGIN_CONTINUE
 }

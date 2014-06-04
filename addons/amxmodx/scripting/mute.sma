@@ -263,7 +263,7 @@ public client_putinserver(id)
 	get_user_ip(id, checkIp, 15, 1)
 	
 	for (i=1; i<30; i++)
-		if(contain(mutedIp[i], checkIp) != -1)
+		if(contain(mutedIp[i], checkIp) != -1 && !(get_user_flags(id) & ADMIN_LEVEL_H))
 		{
 			new s_Flags[4],flags
 			format(s_Flags,7,"abc")

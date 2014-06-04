@@ -186,7 +186,8 @@ public Set_Hat(player, imodelnum, targeter) {
 		glowhat(player)
 		CurrentHat[player] = imodelnum
 		if (targeter != -1) {
-			colored_print(targeter, "^x01[^x04%s^x01]^x03 %s^x01 надел шапку <%s>",PLUG_TAG,HATNAME[imodelnum],name)
+            colored_print(targeter, "^x01[^x04%s^x01]^x03 %s^x01 надел шапку <%s>",
+                PLUG_TAG, name, HATNAME[imodelnum])
 		}
 	}
 }

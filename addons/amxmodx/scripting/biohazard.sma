@@ -1490,7 +1490,7 @@ public fwd_clientkill(id)
 {
 	new name[32] 
 	get_user_name(id, name, 31)
-	colored_print(id, "^x04***^x03 %s^x01, don't even think about suicide!", name)
+	colored_print(id, "^x04***^x03 %s^x01, убивать себя нельзя!", name)
 	
 	return FMRES_SUPERCEDE		
 }

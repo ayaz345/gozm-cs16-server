@@ -135,24 +135,15 @@ if($result->all_bans <= $view) {
 }
 
 //get the bans for the page list
-$resource	= mysql_query("SELECT \
-    bid, player_id, player_ip, player_nick, admin_nick, ban_reason, \
-    ban_created, ban_length, server_ip, server_name, map_name, \
-    se.gametype, aa.nickname \
-    FROM $config->bans AS ba \
-    LEFT JOIN $config->servers AS se ON ba.server_ip=se.address \
-    LEFT JOIN $config->amxadmins AS aa \
-        ON aa.username=ba.admin_nick \
-        or aa.username=ba.admin_ip \
-        or aa.username=ba.admin_id \
-    ORDER BY ban_created DESC LIMIT ".$query_start.",".$query_end) or die(mysql_error());
+$resource	= mysql_query("SELECT bid, player_id, player_ip, player_nick, admin_nick, ban_reason, ban_created, ban_length, server_ip, server_name, map_name, se.gametype, aa.nickname FROM $config->bans AS ba LEFT JOIN $config->servers AS se ON ba.server_ip=se.address LEFT JOIN $config->amxadmins AS aa ON aa.username=ba.admin_nick or aa.username=ba.admin_ip or aa.username=ba.admin_id ORDER BY ban_created DESC LIMIT ".$query_start.",".$query_end) or die(mysql_error());
 
 $ban_array	= array();
 $timezone_correction = $config->timezone_fixx * 3600;
 
 while($result = mysql_fetch_object($resource)) {
 	$bid		= $result->bid;
-	$date		= dateShort($result->ban_created + $timezone_correction);
+	//$date		= dateShort($result->ban_created + $timezone_correction);
+    $date		= dateShorttime($result->ban_created + $timezone_correction);
 	$player 	= htmlentities($result->player_nick, ENT_QUOTES);
     $map        = htmlentities($result->map_name, ENT_QUOTES);
 
@@ -267,8 +258,7 @@ while($result = mysql_fetch_object($resource)) {
 			$bancount = 'unknown';
 		}
 		else {
-			$resource4   = mysql_query("SELECT count(player_id) AS repeatOffence FROM $config->ban_history \
-                WHERE player_id = '$steamid'") or die(mysql_error()); 
+			$resource4   = mysql_query("SELECT count(player_id) AS repeatOffence FROM $config->ban_history WHERE player_id = '$steamid'") or die(mysql_error()); 
 			while($result4 = mysql_fetch_object($resource4)) { 
 				$bancount = $result4->repeatOffence; 
 			}

@@ -286,6 +286,29 @@ public client_disconnect(id)
 	}
 }
 
+public client_infochanged(id)
+{
+    if (!is_user_connected(id))
+        return PLUGIN_CONTINUE
+    
+    new newname[32]
+    get_user_info(id, "name", newname, 31)
+    new oldname[32]
+    get_user_name(id, oldname, 31)
+    
+    if (!equal(oldname,newname) && !equal(oldname,""))
+        set_task(0.2, "check_access", id)
+    
+    return PLUGIN_CONTINUE
+}
+
+public check_access(id)
+{
+    if (get_user_flags(id) & ADMIN_LEVEL_H && g_GagPlayers[id])
+        UnGagPlayer(id)
+    return PLUGIN_CONTINUE
+}
+
 stock UnGagPlayer(id) // This code is what removes the gag.
 { 
 	if((g_GagPlayers[id] & 4) && is_user_connected(id))	// Unmutes the player if he had voicecomm muted.

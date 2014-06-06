@@ -1001,8 +1001,22 @@ public cmd_say(id)
 
 nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegment[])
 {
-//    new array_size;
-//    array_size = ArraySize(g_nominationMap);
+    new idxNomination, idxMap;
+    new mapCnt;
+    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+
+    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+        for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
+        {
+            idxMap = g_nomination[idPlayer][idxNomination];
+            if (idxMap >= 0)
+                if (++mapCnt == 4)	// list 4 maps per chat line
+                {
+                    colored_print(id, "^x04***^x01 Номинировано максимум карт - %d.", mapCnt);
+                    nomination_list(id);
+                    return PLUGIN_CONTINUE;
+                }
+        }
 
     // all map names are stored as lowercase, so normalize the nomination
     strtolower(nomination);
@@ -1078,6 +1092,8 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
             menu_display(id, g_nominationMatchesMenu[id]);
         }
     }
+    
+    return PLUGIN_CONTINUE;
 }
 
 public nomination_handleMatchChoice(id, menu, item)

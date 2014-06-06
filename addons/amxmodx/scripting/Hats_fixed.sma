@@ -35,8 +35,6 @@ new PLAYERNAME[MAX_HATS][32]
 
 public plugin_init() {
     register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
-//    register_logevent("event_roundstart", 	2,	"1=Round_Start")
-
     register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
     register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
     register_clcmd("say_team /hats",	"ShowMenu", -1, 	"Shows Knife menu")
@@ -135,10 +133,11 @@ public plugin_precache() {
 }
 
 public client_putinserver(id) {
-	if (get_user_flags(id) & PLUG_VIP) {
-		load_hat_from_file(id)
-	}
-	return PLUGIN_CONTINUE
+    g_HatEnt[id] = 0
+    if (get_user_flags(id) & PLUG_VIP) {
+        load_hat_from_file(id)
+    }
+    return PLUGIN_CONTINUE
 }
 
 public client_disconnect(id) {
@@ -148,18 +147,33 @@ public client_disconnect(id) {
     }
 }
 
-public event_roundstart() {
-	for (new i = 1; i <= get_maxplayers(); i++)
-		if (is_user_connected(i))
-            if (get_user_flags(i) & PLUG_VIP)
-                add_delay(i, "Reload_Hat")
-	return PLUGIN_CONTINUE
+public client_infochanged(id)
+{
+    if (!is_user_connected(id))
+        return PLUGIN_CONTINUE
+    
+    new newname[32]
+    get_user_info(id, "name", newname, 31)
+    new oldname[32]
+    get_user_name(id, oldname, 31)
+    
+    if (!equal(oldname,newname) && !equal(oldname,""))
+        set_task(0.2, "check_access", id)
+    
+    return PLUGIN_CONTINUE
 }
 
-public Reload_Hat(id)
+public check_access(id)
 {
-	Set_Hat(id, 0, -1)
-	load_hat_from_file(id)
+    if (get_user_flags(id) & PLUG_VIP && !g_HatEnt[id])
+        load_hat_from_file(id)
+    else if (!(get_user_flags(id) & PLUG_VIP) && g_HatEnt[id] > 0)
+    {
+        fm_set_entity_visibility(g_HatEnt[id], 0)
+        g_HatEnt[id] = 0
+    }
+        
+    return PLUGIN_CONTINUE
 }
 
 public Set_Hat(player, imodelnum, targeter) {
@@ -312,15 +326,4 @@ public load_hat_from_file(id) {
 	}
 	if(file) fclose(file)
 	write_player_to_file(id, 0, -1)
-}
-
-public add_delay(index, const task[])
-{
-	switch(index)
-	{
-		case 1..6:   set_task(1.0, task, index)
-		case 7..12:  set_task(1.2, task, index)
-		case 13..18: set_task(1.4, task, index)
-		case 19..24: set_task(1.8, task, index)
-	}
 }

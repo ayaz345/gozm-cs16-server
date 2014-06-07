@@ -12,12 +12,8 @@
 
 public plugin_init() {
     register_plugin(PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_AUTHOR)
-
     register_message(get_user_msgid("ShowMenu"), "message_show_menu")
     register_message(get_user_msgid("VGUIMenu"), "message_vgui_menu")
-
-    register_clcmd("chooseteam", "clcmd_changeteam")
-    register_clcmd("jointeam", "clcmd_changeteam")
 }
 
 public message_show_menu(msgid, dest, id) {
@@ -70,9 +66,4 @@ stock force_team_join(id, menu_msgid) {
     engclient_cmd(id, jointeam, "5")
     engclient_cmd(id, joinclass, "5")
     set_msg_block(menu_msgid, msg_block)
-}
-
-public clcmd_changeteam(id) {
-    client_cmd(id, "gozm_menu")
-    return PLUGIN_HANDLED
 }

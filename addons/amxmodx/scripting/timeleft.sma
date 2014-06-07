@@ -1,37 +1,3 @@
-/* AMX Mod X
-*   TimeLeft Plugin
-*
-* by the AMX Mod X Development Team
-*  originally developed by OLO
-*
-* This file is part of AMX Mod X.
-*
-*
-*  This program is free software; you can redistribute it and/or modify it
-*  under the terms of the GNU General Public License as published by the
-*  Free Software Foundation; either version 2 of the License, or (at
-*  your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful, but
-*  WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-*  General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software Foundation,
-*  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-*
-*  In addition, as a special exception, the author gives permission to
-*  link the code of this program with the Half-Life Game Engine ("HL
-*  Engine") and Modified Game Libraries ("MODs") developed by Valve,
-*  L.L.C ("Valve"). You must obey the GNU General Public License in all
-*  respects for all of the code used other than the HL Engine and MODs
-*  from Valve. If you modify this file, you may extend this exception
-*  to your version of the file, but you are not obligated to do so. If
-*  you do not wish to do so, delete this exception statement from your
-*  version.
-*/
-
 #include <amxmodx>
 #include <colored_print>
 
@@ -42,56 +8,27 @@ new g_Switch
 
 public plugin_init()
 {
-	register_plugin("TimeLeft", AMXX_VERSION_STR, "AMXX Dev Team")
-	register_dictionary("timeleft.txt")
-	register_cvar("amx_time_voice", "1")
-	register_srvcmd("amx_time_display", "setDisplaying")
-	register_cvar("amx_timeleft", "00:00", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
-	register_clcmd("say timeleft", "sayTimeLeft", 0, "- displays timeleft")
-	register_clcmd("say thetime", "sayTheTime", 0, "- displays current time")
-	
-	set_task(0.8, "timeRemain", 8648458, "", 0, "b")
+    register_plugin("TimeLeft", AMXX_VERSION_STR, "AMXX Dev Team")
+    register_dictionary("timeleft.txt")
+    register_srvcmd("amx_time_display", "setDisplaying")
+    register_cvar("amx_timeleft", "00:00", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
+    register_clcmd("say timeleft", "sayTimeLeft", 0, "- displays timeleft")
+    register_clcmd("say thetime", "sayTheTime", 0, "- displays current time")
+    register_clcmd("say time", "sayTime", 0, "- displays current time")
+    register_clcmd("say_team timeleft", "sayTimeLeft", 0, "- displays timeleft")
+    register_clcmd("say_team thetime", "sayTheTime", 0, "- displays current time")
+    register_clcmd("say_team time", "sayTime", 0, "- displays current time and timeleft")
+
+    set_task(0.8, "timeRemain", 8648458, "", 0, "b")
 }
 
 public sayTheTime(id)
 {
-	if (get_cvar_num("amx_time_voice"))
-	{
-		new mhours[6], mmins[6], whours[32], wmins[32], wpm[6]
-		
-		get_time("%H", mhours, 5)
-		get_time("%M", mmins, 5)
-		
-		new mins = str_to_num(mmins)
-		new hrs = str_to_num(mhours)
-		
-		if (mins)
-			num_to_word(mins, wmins, 31)
-		else
-			wmins[0] = 0
-		
-		if (hrs < 12)
-			wpm = "am "
-		else
-		{
-			if (hrs > 12) hrs -= 12
-			wpm = "pm "
-		}
-
-		if (hrs) 
-			num_to_word(hrs, whours, 31)
-		else
-			whours = "twelve "
-		
-		client_cmd(id, "spk ^"fvox/time_is_now %s_period %s%s^"", whours, wmins, wpm)
-	}
-	
 	new ctime[64]
-	
 	get_time("%m/%d/%Y - %H:%M:%S", ctime, 63)
-	client_print(0, print_chat, "%L:   %s", LANG_PLAYER, "THE_TIME", ctime)
-	
-	return PLUGIN_CONTINUE
+	colored_print(id, "^x01Сейчас:^x04 %s", ctime)
+
+	return PLUGIN_HANDLED
 }
 
 public sayTimeLeft(id)
@@ -99,19 +36,20 @@ public sayTimeLeft(id)
 	if (get_cvar_float("mp_timelimit"))
 	{
 		new a = get_timeleft()
-		
-		if (get_cvar_num("amx_time_voice"))
-		{
-			new svoice[128]
-			setTimeVoice(svoice, 127, 0, a)
-			client_cmd(id, "%s", svoice)
-		}
-		colored_print(0, "^x01Осталось:^x04  %d:%02d", (a / 60), (a % 60))
+		colored_print(id, "^x01Осталось:^x04 %d:%02d", (a / 60), (a % 60))
 	}
 	else
-		colored_print(0, "^x01Это^x04 последний^x01 раунд.")
+		colored_print(id, "^x01Это^x04 последний^x01 раунд.")
 	
-	return PLUGIN_CONTINUE
+	return PLUGIN_HANDLED
+}
+
+public sayTime(id)
+{
+    sayTheTime(id)
+    sayTimeLeft(id)
+
+    return PLUGIN_HANDLED
 }
 
 setTimeText(text[], len, tmlf, id)

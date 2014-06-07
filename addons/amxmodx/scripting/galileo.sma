@@ -1311,7 +1311,7 @@ map_nominate(id, idxMap, idNominator = -1)
 public nomination_list(id)
 {
     new idxNomination, idxMap; //, hudMessage[512];
-    new msg[101], mapCnt;
+    new msg[101];//, mapCnt;
     new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
     new mapName[32];
 
@@ -1323,8 +1323,8 @@ public nomination_list(id)
             if (idxMap >= 0)
             {
                 ArrayGetString(g_nominationMap, idxMap, mapName, sizeof(mapName)-1);
-                format(msg, sizeof(msg)-1, "%s, %s", msg, mapName);
-                
+                format(msg, sizeof(msg)-1, "%s,^x04 %s^x01", msg, mapName);
+/*
                 if (++mapCnt == 4)	// list 4 maps per chat line
                 {
                     //client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
@@ -1336,13 +1336,14 @@ public nomination_list(id)
     //				format(hudMessage, sizeof(hudMessage)-1, "%s^n%s", hudMessage, mapName);
                 
                 // construct the console message
+*/
             }
         }
     }
     if (msg[0])
     {
         //client_print(id, print_chat, "%L: %s", LANG_PLAYER, "GAL_NOMINATIONS", msg[2]);
-        colored_print(id, "^x04***^x01 Выбор игроков:^x04 %s", msg[2]);
+        colored_print(id, "^x04***^x01 Выбор игроков: %s", msg[1]);
     }
     else
     {

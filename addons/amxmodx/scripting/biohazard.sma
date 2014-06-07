@@ -1843,11 +1843,11 @@ public task_spawned(taskid)
         if(!g_gamestarted)
         {
             if (g_preinfect[id]) {
-                colored_print(id, "^x01[Сканер] Веселье начинается, ты^x03 ЗАРАЖЕН!!!")
+                colored_print(id, "^x01[Сканер] Веселье начинается, ты^x03 ЗАРАЖЕН^x01!!!")
                 set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
             }
             else {
-                colored_print(id, "^x01[Сканер] Смотри по сторонам, ты^x04 ЗДОРОВ!")
+                colored_print(id, "^x01[Сканер] Смотри по сторонам, ты^x04 ЗДОРОВ^x01!")
                 set_task(0.5, "task_showclean", TASKID_SHOWCLEAN + id, _, _, "b")
             }
         }

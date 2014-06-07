@@ -9,8 +9,8 @@
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3
 #define MPROP_EXITNAME  4
-
 #define OFFSET_TEAM 114
+#define TASKID_NEWROUND	641
 
 new GOZM_CMD[] = "gozm_menu"
 
@@ -26,9 +26,14 @@ public plugin_init()
 {
     register_plugin("GoZm Menu", "1.0", "Dimka")
     register_clcmd(GOZM_CMD, "mainMenu", _, "GoZm Menu")
+    
+    register_clcmd("chooseteam", "clcmd_changeteam")
+    register_clcmd("jointeam", "clcmd_changeteam")
+    
+    register_event("HLTV", "event_newround", "a", "1=0", "2=0")
 }
 
-public mainMenu(id)
+public mainMenu(id, page)
 {
     set_pdata_int(id, OFFSET_CSMENUCODE, 0)  // prevent from showing CS std menu
 
@@ -45,37 +50,16 @@ public mainMenu(id)
     menu_additem(i_Menu, "Список банов", "9")
     menu_additem(i_Menu, "Разбан", "10", VIP_FLAG|ADMIN_FLAG)
     menu_additem(i_Menu, "Разрешить говорить", "11", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "История банов", "12", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "История банов", "12")
     menu_additem(i_Menu, "Шапки", "13", VIP_FLAG|ADMIN_FLAG)
     
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Вперед")
     menu_setprop(i_Menu, 4, "Закрыть меню")
 
-    menu_display(id, i_Menu, 0)
+    menu_display(id, i_Menu, page)
 
     return PLUGIN_HANDLED
-}
-
-public cb_allow_join_spec(id, menu, item)
-{
-    new specs[32], specsnum
-    get_players(specs, specsnum, "e", "SPECTATOR")
-    if(specsnum > 1)
-        return ITEM_DISABLED
-        
-    if(!is_user_alive(id))
-        return ITEM_ENABLED
-    else if(get_user_flags(id) & VIP_FLAG || get_user_flags(id) & ADMIN_FLAG)
-        return ITEM_ENABLED
-    return ITEM_DISABLED
-}
-
-public cb_allow_join_game(id, menu, item)
-{
-    if(fm_get_user_team(id) == TEAM_SPECTATOR)
-        return ITEM_ENABLED
-    return ITEM_DISABLED
 }
 
 public menu_handler(id, menu, item)
@@ -106,16 +90,10 @@ public menu_handler(id, menu, item)
         {
             user_silentkill(id)
             cs_set_player_team(id, CS_TEAM_SPECTATOR)
-            new name[32]
-            get_user_name(id, name, 31)
-            log_amx("GOZM_MENU]: %s switch self to SPEC", name)
         }
         case 7:
         {
             cs_set_player_team(id, CS_TEAM_CT)
-            new name[32]
-            get_user_name(id, name, 31)
-            log_amx("[GOZM_MENU]: %s switch self to GAME", name)
         }
         case 8:
         {
@@ -136,6 +114,59 @@ public menu_handler(id, menu, item)
     }
 
     menu_destroy(menu)
+    return PLUGIN_HANDLED
+}
+
+public cb_allow_join_spec(id, menu, item)
+{
+    new specs[32], specsnum
+    get_players(specs, specsnum, "e", "SPECTATOR")
+    if(specsnum > 1)
+        return ITEM_DISABLED
+    if(fm_get_user_team(id) == TEAM_SPECTATOR)
+        return ITEM_DISABLED
+        
+    if(!is_user_alive(id))
+        return ITEM_ENABLED
+    else if(get_user_flags(id) & VIP_FLAG || get_user_flags(id) & ADMIN_FLAG)
+        return ITEM_ENABLED
+    return ITEM_DISABLED
+}
+
+public cb_allow_join_game(id, menu, item)
+{
+    if(fm_get_user_team(id) == TEAM_SPECTATOR)
+        return ITEM_ENABLED
+    return ITEM_DISABLED
+}
+
+public event_newround()
+{
+    remove_task(TASKID_NEWROUND)
+    set_task(0.1, "task_newround", TASKID_NEWROUND)
+}
+
+public task_newround()
+{
+    static players[32], num, id
+    get_players(players, num)
+
+    for(new i=0; i<num; i++)
+    {
+        new old_menu, new_menu, menupage
+        id = players[i]
+        player_menu_info(id, old_menu, new_menu, menupage)
+        if (new_menu != -1)
+        {
+            menu_destroy(new_menu)
+            mainMenu(id, menupage)
+        }
+    }
+}
+
+public clcmd_changeteam(id)
+{
+    mainMenu(id, 0)
     return PLUGIN_HANDLED
 }
 

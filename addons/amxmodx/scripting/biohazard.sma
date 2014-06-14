@@ -257,7 +257,7 @@ public plugin_precache()
     if(!get_pcvar_num(cvar_enabled)) 
         return
 
-    cvar_gamedescription = register_cvar("bh_gamedescription", "[ ZOMBIE BIO ]")
+    cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
     cvar_randomspawn = register_cvar("bh_randomspawn", "1")
@@ -1117,7 +1117,7 @@ public logevent_round_start()
     }
 
     // Check for human-terrorist-bug
-    set_task(get_pcvar_float(cvar_starttime)+2.0, "check_terrorist_bug", TASKID_TERBUG)
+    set_task(get_pcvar_float(cvar_starttime)+3.0, "check_terrorist_bug", TASKID_TERBUG)
 }
 
 public check_terrorist_bug()

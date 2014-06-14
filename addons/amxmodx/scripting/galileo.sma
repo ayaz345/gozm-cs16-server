@@ -1006,6 +1006,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
     new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
     for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    {
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
             idxMap = g_nomination[idPlayer][idxNomination];
@@ -1017,6 +1018,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
                     return PLUGIN_CONTINUE;
                 }
         }
+    }
 
     // all map names are stored as lowercase, so normalize the nomination
     strtolower(nomination);

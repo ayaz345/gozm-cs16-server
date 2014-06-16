@@ -396,7 +396,6 @@ public plugin_init()
     register_message(get_user_msgid("ScoreAttrib"), "msg_scoreattrib")
     register_message(get_user_msgid("DeathMsg"), "msg_deathmsg")
     register_message(get_user_msgid("ScreenFade"), "msg_screenfade")
-    register_message(get_user_msgid("TeamInfo"), "msg_teaminfo")
     register_message(get_user_msgid("ClCorpse"), "msg_clcorpse")
     register_message(get_user_msgid("WeapPickup"), "msg_weaponpickup")
     register_message(get_user_msgid("AmmoPickup"), "msg_ammopickup")
@@ -404,7 +403,6 @@ public plugin_init()
 
     register_event("TextMsg", "event_textmsg", "a", "2=#Game_will_restart_in")
     register_event("TextMsg", "event_textmsg", "a", "2=#Game_Commencing")
-    register_event("TeamInfo", "join_team", "a")
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
     register_event("CurWeapon", "event_curweapon", "be", "1=1")
     register_event("Damage", "event_damage", "be")
@@ -803,31 +801,6 @@ public cmd_redirect(id, level, cid)
     return PLUGIN_HANDLED_MAIN
 }
 
-public msg_teaminfo(msgid, dest, id)
-{
-	if(!g_gamestarted)
-		return PLUGIN_CONTINUE
-
-	static team[2]
-	get_msg_arg_string(2, team, 1)
-	
-	if(team[0] != 'U')
-		return PLUGIN_CONTINUE
-
-	id = get_msg_arg_int(1)
-	if(is_user_alive(id) || !g_disconnected[id])
-		return PLUGIN_CONTINUE
-
-	g_disconnected[id] = false
-	id = randomly_pick_zombie()
-	if(id)
-	{
-        cs_set_player_team(id, g_zombie[id] ? CS_TEAM_CT : CS_TEAM_T)
-        set_pev(id, pev_deadflag, DEAD_RESPAWNABLE)
-	}
-	return PLUGIN_CONTINUE
-}
-
 public msg_screenfade(msgid, dest, id)
 {
 	if(!get_pcvar_num(cvar_flashbang))
@@ -1126,33 +1099,18 @@ public check_terrorist_bug()
         return PLUGIN_CONTINUE
 
     static players[32], num
-    // get ALIVE players
-    get_players(players, num, "ae", "TERRORIST")
+    get_players(players, num)
 
-    static i, id
+    static i, id, team
     for(i = 0; i < num; i++)
     {
         id = players[i]
-        if (!g_zombie[id])
+        team = fm_get_user_team(id)
+        if (!g_zombie[id] && team == TEAM_TERRORIST)
             cs_set_player_team(id, CS_TEAM_CT)
     }
     return PLUGIN_CONTINUE
 }
-
-public join_team() {
-    if (g_roundended || !g_gamestarted)
-		return PLUGIN_CONTINUE
-    
-    new id = read_data(1)
-    static user_team[32]
-    static team_terrorist[] = "TERRORIST"
-    read_data(2, user_team, 31)
-    
-    if(equal(user_team, team_terrorist) && !g_zombie[id])
-        cs_set_player_team(id, CS_TEAM_CT)
-            
-    return PLUGIN_CONTINUE
-}  
 
 public logevent_round_end()
 {
@@ -2632,38 +2590,6 @@ bool:allow_infection()
 	
 	maxzombies = g_maxplayers - 1
 	return (count[0] < maxzombies && count[1] > 1) ? true : false
-}
-
-randomly_pick_zombie()
-{
-	static data[4]
-	data[0] = 0 
-	data[1] = 0 
-	data[2] = 0 
-	data[3] = 0
-	
-	static index, players[2][24]
-	for(index = 1; index <= g_maxplayers; index++)
-	{
-		if(!is_user_alive(index)) 
-			continue
-		
-		if(g_zombie[index])
-		{
-			data[0]++
-			players[0][data[2]++] = index
-		}
-		else 
-		{
-			data[1]++
-			players[1][data[3]++] = index
-		}
-	}
-
-	if(data[0] > 0 &&  data[1] < 1) 
-		return players[0][_random(data[2])]
-	
-	return (data[0] < 1 && data[1] > 0) ?  players[1][_random(data[3])] : 0
 }
 
 equipweapon(id, weapon)

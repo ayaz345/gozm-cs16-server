@@ -49,7 +49,8 @@ public clcmd_say(id)
 	}
 	else if (say_args[0] == '/' && (containi(say_args, "speak") != -1 || containi(say_args, "mute") != -1) && !(get_user_flags(id) & ADMIN_LEVEL_H))
 	{
-		colored_print(id,"^x04***^x01 Затычка доступна только ВИПам!")
+        colored_print(id,"^x04***^x01 Затычка доступна только ВИПам!")
+        return PLUGIN_HANDLED_MAIN
 	}
 	return PLUGIN_CONTINUE
 }
@@ -70,7 +71,7 @@ display_mutemenu(id, pos)
     		end = g_menuplayersnum[id]
 	
 	static menubody[512]	
-  	new len = format(menubody, 511, "\wMute menu:^n^n")
+  	new len = format(menubody, 511, "\wКого \rзаткнем?\w^n^n")
 
 	static name[32]
 	
@@ -96,11 +97,11 @@ display_mutemenu(id, pos)
 
   	if(end != g_menuplayersnum[id]) 
 	{
-    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Next", pos ? "Back" : "Exit")
+    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Дальше", pos ? "Назад" : "Выход")
     		keys |= MENU_KEY_9
   	}
   	else
-		format(menubody[len], 511-len, "^n0. %s", pos ? "Back" : "Exit")
+		format(menubody[len], 511-len, "^n0. %s", pos ? "Назад" : "Выход")
 	
   	show_menu(id, keys, menubody, -1, "mute menu")
 }
@@ -138,7 +139,7 @@ display_speakmenu(id, pos)
     		end = g_menuplayersnum[id]
 	
 	static menubody[512]	
-  	new len = format(menubody, 511, "\wSpeak menu:^n^n")
+  	new len = format(menubody, 511, "\wРазрешим \rговорить:\w^n^n")
 
 	static name[32]
 	
@@ -164,11 +165,11 @@ display_speakmenu(id, pos)
 
   	if(end != g_menuplayersnum[id]) 
 	{
-    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Next", pos ? "Back" : "Exit")
+    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Дальше", pos ? "Назад" : "Выход")
     		keys |= MENU_KEY_9
   	}
   	else
-		format(menubody[len], 511-len, "^n0. %s", pos ? "Back" : "Exit")
+		format(menubody[len], 511-len, "^n0. %s", pos ? "Назад" : "Выход")
 	
   	show_menu(id, keys, menubody, -1, "speak menu")
 }

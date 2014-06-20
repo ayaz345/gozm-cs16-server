@@ -2539,7 +2539,7 @@ public vote_rock(id)
     else
     {
         // let the players know how many more rocks are needed
-        rtv_remind(TASKID_REMINDER);
+        rtv_remind(TASKID_REMINDER + id);
         
         if (get_pcvar_num(cvar_rtvReminder))
         {

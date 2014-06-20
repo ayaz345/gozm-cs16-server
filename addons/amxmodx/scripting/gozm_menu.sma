@@ -41,17 +41,17 @@ public mainMenu(id, page)
 
     menu_additem(i_Menu, "Выбрать оружие", "1")
     menu_additem(i_Menu, "Выбрать карту", "2")
-    menu_additem(i_Menu, "Бан", "3", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "Заглушка", "4", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Бан", "3")
+    menu_additem(i_Menu, "Заглушка", "4")
     menu_additem(i_Menu, "Лучшие игроки", "5")
-    menu_additem(i_Menu, "В наблюдатели", "6", 0, menu_makecallback("cb_allow_join_spec"))
-    menu_additem(i_Menu, "В игру", "7", 0, menu_makecallback("cb_allow_join_game"))
+    menu_additem(i_Menu, "В наблюдатели", "6")
+    menu_additem(i_Menu, "В игру", "7")
     menu_additem(i_Menu, "Общение", "8")
     menu_additem(i_Menu, "Список банов", "9")
-    menu_additem(i_Menu, "Разбан", "10", VIP_FLAG|ADMIN_FLAG)
-    menu_additem(i_Menu, "Разрешить говорить", "11", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Разбан", "10")
+    menu_additem(i_Menu, "Разрешить говорить")
     menu_additem(i_Menu, "История банов", "12")
-    menu_additem(i_Menu, "Шапки", "13", VIP_FLAG|ADMIN_FLAG)
+    menu_additem(i_Menu, "Шапки", "13")
     
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Вперед")
@@ -87,24 +87,19 @@ public menu_handler(id, menu, item)
         case 5:
             client_cmd(id, "say /top")
         case 6:
-        {
-            user_silentkill(id)
-            cs_set_player_team(id, CS_TEAM_SPECTATOR)
-        }
+            allow_join_spec(id)
         case 7:
-        {
-            cs_set_player_team(id, CS_TEAM_CT)
-        }
+            allow_join_game(id)
         case 8:
         {
             colored_print(id, "3om6u cepBep (x_x(O_o)x_x) Go Zombie !!!")
             colored_print(id, "^x01  =======^x04 77.220.185.29:27051^x01 =======   ")
-            colored_print(id, "^x01               ^x03 vk.com/go_zombie ^x01           ")
+            colored_print(id, "^x01                 ^x03 vk.com/go_zombie ^x01           ")
         }
         case 9:
             client_cmd(id, "say /bans")
         case 10:
-            client_cmd(id, "amx_unban_by_name")
+            client_cmd(id, "amx_unban_by_name")  // voteban.amxx
         case 11: 
             client_cmd(id, "say /speak")
         case 12: 
@@ -117,27 +112,43 @@ public menu_handler(id, menu, item)
     return PLUGIN_HANDLED
 }
 
-public cb_allow_join_spec(id, menu, item)
+public allow_join_spec(id)
 {
     new specs[32], specsnum
     get_players(specs, specsnum, "e", "SPECTATOR")
-    if(specsnum > 1)
-        return ITEM_DISABLED
+    if(specsnum > 1 && !(access(id, VIP_FLAG) || access(id, ADMIN_FLAG)))
+    {
+        colored_print(id, "^x04***^x01 Место в наблюдателях занято!")
+        return PLUGIN_HANDLED
+    }
     if(fm_get_user_team(id) == TEAM_SPECTATOR)
-        return ITEM_DISABLED
-        
-    if(!is_user_alive(id))
-        return ITEM_ENABLED
-    else if(get_user_flags(id) & VIP_FLAG || get_user_flags(id) & ADMIN_FLAG)
-        return ITEM_ENABLED
-    return ITEM_DISABLED
+    {
+        colored_print(id, "^x04***^x01 Ты уже в наблюдателях!")
+        return PLUGIN_HANDLED
+    }
+    if(is_user_alive(id) && !(access(id, VIP_FLAG) || access(id, ADMIN_FLAG)))
+    {
+        colored_print(id, "^x04***^x01 Живой - играй!")
+        return PLUGIN_HANDLED
+    }
+    
+    user_silentkill(id)
+    cs_set_player_team(id, CS_TEAM_SPECTATOR)
+    return PLUGIN_HANDLED
 }
 
-public cb_allow_join_game(id, menu, item)
+public access(id, flag)
+{
+    return get_user_flags(id) & flag
+}
+
+public allow_join_game(id)
 {
     if(fm_get_user_team(id) == TEAM_SPECTATOR)
-        return ITEM_ENABLED
-    return ITEM_DISABLED
+        cs_set_player_team(id, CS_TEAM_CT)
+    else
+        colored_print(id, "^x04***^x01 Ты уже в игре!")
+    return PLUGIN_HANDLED
 }
 
 public event_newround()

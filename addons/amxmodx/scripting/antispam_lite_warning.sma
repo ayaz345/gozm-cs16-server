@@ -45,34 +45,31 @@ bool:is_invalid(const text[])
         regex_free(regex)
         return true
     }
-
     regex = regex_match(text, "([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}", num, error, 49)
     if(regex >= REGEX_OK)
     {
         regex_free(regex)
         return true
     }
-    
     regex = regex_match(text, "27[0-9][0-9][0-9]", num, error, 49)
     if(regex >= REGEX_OK)
     {
         regex_free(regex)
         return true
     }
-
     if (containi(text, "ICQ") != -1)
         return true
-        
     if (containi(text, "ManoCS") != -1)
         return true
-
     if (equali(text[strlen(text)-4], "107^""))
         return true
-        
     if (equali(text[strlen(text)-4], "108^""))
         return true
-        
     if (equali(text, "/xmenu"))
+        return true
+    if (equali(text, "/cp"))
+        return true
+    if (equali(text, "/knife"))
         return true
 
     return false

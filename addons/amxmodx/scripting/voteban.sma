@@ -26,7 +26,7 @@ new ban_reason[128]
 
 public plugin_init()
 {
-    register_plugin("voteban menu","1.2","hjvl")
+    register_plugin("Ban Menu", "2.0", "Dimka")
     register_clcmd("say","SayIt" )
     register_clcmd("say_team","SayIt" )
     register_clcmd("VIP_REASON", "setCustomBanReason")
@@ -77,7 +77,7 @@ public SayIt(id)
         }
         else
         {
-            colored_print(id,"^x04***^x01 Только ВИПы могут использовать ^x04/ban")
+            colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 BAN")
             return PLUGIN_HANDLED_MAIN
         }
     }
@@ -99,7 +99,7 @@ public ShowPlayerMenu(id)
             end = gi_TotalPlayers
 
     static menubody[512]	
-    new len = format(menubody, 511, "Players to \rBAN: \w^n^n")
+    new len = format(menubody, 511, "Кого будем \rбанить\w?^n^n")
 
     static name[32]
 
@@ -125,11 +125,11 @@ public ShowPlayerMenu(id)
 
     if(end != gi_TotalPlayers) 
     {
-            format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Next", gi_MenuPosition ? "Back" : "Exit")
+            format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Дальше", gi_MenuPosition ? "Назад" : "Закрыть")
             keys |= MENU_KEY_9
     }
     else
-        format(menubody[len], 511-len, "^n0. %s", gi_MenuPosition ? "Back" : "Exit")
+        format(menubody[len], 511-len, "^n0. %s", gi_MenuPosition ? "Назад" : "Закрыть")
 
     show_menu(id, keys, menubody, 20, "ChoosePlayer")
 }
@@ -164,7 +164,7 @@ public ChooseMenu(id, key)
 
 public chooseBanReason(id)
 {
-    new i_Menu = menu_create("\yChoose Reason", "reason_menu_handler" )
+    new i_Menu = menu_create("\yПричина:", "reason_menu_handler" )
 
     menu_additem(i_Menu, "WallHack", "20160")
     menu_additem(i_Menu, "SpeedHack & AIM", "40320")
@@ -173,13 +173,13 @@ public chooseBanReason(id)
     menu_additem(i_Menu, "Mat", "60")
     menu_additem(i_Menu, "Auto B-Hop", "10080")
     menu_additem(i_Menu, "Custom", "1")
-    menu_additem(i_Menu, "OA/OV", "1440")
-    menu_additem(i_Menu, "Obxod", "10080")
-    menu_additem(i_Menu, "Black List", "40320")
+    menu_additem(i_Menu, "OCKOP6JIEHU9I", "1440")
+    menu_additem(i_Menu, "O6XOD", "10080")
+//    menu_additem(i_Menu, "Black List", "40320")
     
-    menu_setprop(i_Menu, 2, "Back")
-    menu_setprop(i_Menu, 3, "Next")
-    menu_setprop(i_Menu, 4, "Close")
+    menu_setprop(i_Menu, 2, "Назад")
+    menu_setprop(i_Menu, 3, "Дальше")
+    menu_setprop(i_Menu, 4, "Закрыть")
 
     menu_display(id, i_Menu, 0)
 
@@ -236,6 +236,12 @@ public ActualBan(time, reason[])
 }
 
 public customUnban(id, level, cid) {
+    if (!(get_user_flags(id) & ADMIN_LEVEL_H))
+    {
+        colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 UNBAN")
+        return PLUGIN_HANDLED
+    }
+
     new name[32]
     get_user_name(id, name, 31)
     log_amx("[UNBAN]: mmode sent to %d-%s", id, name)

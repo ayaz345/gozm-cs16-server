@@ -242,8 +242,7 @@ new bool:g_zombie[25], g_roundstart_time,
     bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25],
     g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
-	lights[2], bool:stop_changing_name[25],
-	activate_nv[25]
+	lights[2], activate_nv[25]
 
 public plugin_precache()
 {
@@ -371,6 +370,7 @@ public plugin_init()
     register_forward(FM_PlayerPreThink, "fwd_player_prethink_post", 1)
     register_forward(FM_PlayerPostThink, "fwd_player_postthink")
     register_forward(FM_SetClientKeyValue, "fwd_setclientkeyvalue")
+//    register_forward(FM_ClientUserInfoChanged, "fwd_client_userinfochanged")
 
     RegisterHam(Ham_TakeDamage, "player", "bacon_takedamage_player")
     RegisterHam(Ham_Killed, "player", "bacon_killed_player")
@@ -560,7 +560,6 @@ public client_disconnect(id)
 
     g_disconnected[id] = true
     remove_user_model(g_modelent[id])
-    stop_changing_name[id] = false
 	
     remove_task(TASKID_NIGHTVISION + id)
     activate_nv[id] = false
@@ -1469,6 +1468,21 @@ public fwd_setclientkeyvalue(id, infobuffer, const key[])
 	return FMRES_SUPERCEDE
 }
 
+/*
+public fwd_client_userinfochanged(id, buffer) {
+	if (!is_user_connected(id) || is_user_alive(id))
+		return FMRES_IGNORED
+
+	static oldname[32], newname[32]
+	get_user_name(id, oldname, sizeof oldname - 1)
+	engfunc(EngFunc_InfoKeyValue, buffer, g_name, newname, sizeof newname - 1)
+	if (equal(newname, oldname))
+		return FMRES_IGNORED
+
+	return FMRES_SUPERCEDE
+}
+*/
+
 public bacon_touch_weapon(ent, id)
 	return (is_user_alive(id) && g_zombie[id]) ? HAM_SUPERCEDE : HAM_IGNORED
 
@@ -1678,8 +1692,6 @@ public bacon_spawn_player_post(id)
 
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
-
-    stop_changing_name[id] = true
 
     if(g_zombie[id])
         add_delay(id, "cure_user")

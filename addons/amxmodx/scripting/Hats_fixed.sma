@@ -54,7 +54,7 @@ public ShowHats(id) {
 	new keys = (1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9)
 	
 	new szMenuBody[menusize + 1], WpnID
-	new nLen = format(szMenuBody, menusize, "\yHat Menu: [Page %i/%i]^n",CurrentMenu[id],MenuPages)
+	new nLen = format(szMenuBody, menusize, "\yШапки: \w[стр. %i/%i]^n",CurrentMenu[id],MenuPages)
 	
 	new MnuClr[3]
 	// Get Hat Names And Add Them To The List
@@ -68,15 +68,15 @@ public ShowHats(id) {
 	
 	// Next Page And Previous/Close
 	if (CurrentMenu[id] == MenuPages) {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n^n\d9. Next Page")
+		nLen += format(szMenuBody[nLen], menusize-nLen, "^n^n\d9. Дальше")
 	} else {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n^n\w9. Next Page")
+		nLen += format(szMenuBody[nLen], menusize-nLen, "^n^n\w9. Дальше")
 	}
 	
 	if (CurrentMenu[id] > 1) {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Previous Page")
+		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Назад")
 	} else {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Close")
+		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Закрыть")
 	}
 	show_menu(id, keys, szMenuBody, -1)
 	return PLUGIN_HANDLED

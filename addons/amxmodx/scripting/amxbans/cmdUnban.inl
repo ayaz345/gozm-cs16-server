@@ -394,7 +394,7 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
         server_print("[AMXBANS] =================")
         server_print(" ")
 
-        colored_print(id, "^x04***^x01 Successfully UnBanned: %s", g_player_nick)
+        colored_print(id, "^x04***^x01 Successfully UnBanned:^x04 %s", g_player_nick)
 	}
 	
 	return PLUGIN_HANDLED

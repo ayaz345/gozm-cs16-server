@@ -7,13 +7,13 @@
 #define PLUG_AUTH 		"SgtBane & Dumka"
 #define PLUG_VERS 		"1.8.1"
 #define PLUG_TAG 		"HATS"
-#define PLUG_ADMIN		ADMIN_RCON			//Access flags required to give/remove hats
-#define PLUG_VIP 		ADMIN_LEVEL_H		//Access flags required to set personal hat if admin only is enabled
+#define PLUG_ADMIN		ADMIN_RCON
+#define PLUG_VIP 		ADMIN_LEVEL_H
 
 #define HAT_ALL			0
 #define HAT_DUMKA		4
 
-#define menusize 		220				//Number of tries to get someone a non-admin random hat before giving up.
+#define menusize 		256
 #define modelpath		"models/hat"
 
 stock fm_set_entity_visibility(index, visible = 1)
@@ -35,7 +35,7 @@ new PLAYERNAME[MAX_HATS][32]
 
 public plugin_init() {
     register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
-    register_menucmd(register_menuid("\yHat Menu: [Page"),	(1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9),"MenuCommand")
+    register_menucmd(register_menuid("Hat Menu"), (1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9), "MenuCommand")
     register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
     register_clcmd("say_team /hats",	"ShowMenu", -1, 	"Shows Knife menu")
 }
@@ -78,41 +78,41 @@ public ShowHats(id) {
 	} else {
 		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Закрыть")
 	}
-	show_menu(id, keys, szMenuBody, -1)
+	show_menu(id, keys, szMenuBody, -1, "Hat Menu")
 	return PLUGIN_HANDLED
 }
 
 public MenuCommand(id, key) {
-	switch(key)
-	{
-		case 8:		//9 - [Next Page]
-		{
-			if (CurrentMenu[id] < MenuPages) CurrentMenu[id]++
-			ShowHats(id)
-			return PLUGIN_HANDLED
-		}
-		case 9:		//0 - [Close]
-		{
-			CurrentMenu[id]--
-			if (CurrentMenu[id] > 0) ShowHats(id)
-			return PLUGIN_HANDLED
-		}
-		default:
-		{
-			new HatID = ((CurrentMenu[id] * 8) + key - 8)
-			new player_on_line
-			if (HatID < TotalHats) {
-				if (HATREST[HatID] == HAT_DUMKA && !(get_user_flags(id) & PLUG_ADMIN))
-					colored_print(id, "^x01[^x04%s^x01] This Hat is too^x03 COOL^x01 for you!", PLUG_TAG)
-				else {
-					Set_Hat(id, HatID, 0)
-					player_on_line = get_player_from_file(id)
-					write_player_to_file(id, HatID, player_on_line)
-				}
-			}
-		}
-	}
-	return PLUGIN_HANDLED
+    switch(key)
+    {
+        case 8:		//9 - [Next Page]
+        {
+            if (CurrentMenu[id] < MenuPages) CurrentMenu[id]++
+            ShowHats(id)
+            return PLUGIN_HANDLED
+        }
+        case 9:		//0 - [Close]
+        {
+            CurrentMenu[id]--
+            if (CurrentMenu[id] > 0) ShowHats(id)
+            return PLUGIN_HANDLED
+        }
+        default:
+        {
+            new HatID = ((CurrentMenu[id] * 8) + key - 8)
+            new player_on_line
+            if (HatID < TotalHats) {
+                if (HATREST[HatID] == HAT_DUMKA && !(get_user_flags(id) & PLUG_ADMIN))
+                    colored_print(id, "^x01[^x04%s^x01] This Hat is too^x03 COOL^x01 for you!", PLUG_TAG)
+                else {
+                    Set_Hat(id, HatID, 0)
+                    player_on_line = get_player_from_file(id)
+                    write_player_to_file(id, HatID, player_on_line)
+                }
+            }
+        }
+    }
+    return PLUGIN_HANDLED
 }
 
 public plugin_precache() {
@@ -177,33 +177,36 @@ public check_access(id)
 }
 
 public Set_Hat(player, imodelnum, targeter) {
-	new name[32]
-	new tmpfile[101]
-	format(tmpfile, 100, "%s/%s", modelpath, HATMDL[imodelnum])
-	get_user_name(player, name, 31)
-	if (imodelnum == 0) {
-		if(g_HatEnt[player] > 0) {
-			fm_set_entity_visibility(g_HatEnt[player], 0)
-		}
-	} else if (file_exists(tmpfile)) {
-		if(g_HatEnt[player] < 1) {
-			g_HatEnt[player] = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
-			if(g_HatEnt[player] > 0) {
-				set_pev(g_HatEnt[player], pev_movetype, MOVETYPE_FOLLOW)
-				set_pev(g_HatEnt[player], pev_aiment, player)
-				set_pev(g_HatEnt[player], pev_rendermode, 	kRenderNormal)
-				engfunc(EngFunc_SetModel, g_HatEnt[player], tmpfile)
-			}
-		} else {
-			engfunc(EngFunc_SetModel, g_HatEnt[player], tmpfile)
-		}
-		glowhat(player)
-		CurrentHat[player] = imodelnum
-		if (targeter != -1) {
+    new name[32]
+    new tmpfile[101]
+    format(tmpfile, 100, "%s/%s", modelpath, HATMDL[imodelnum])
+    get_user_name(player, name, 31)
+    if (imodelnum == 0) {
+        if(g_HatEnt[player] > 0) {
+            fm_set_entity_visibility(g_HatEnt[player], 0)
+        }
+    } else if (file_exists(tmpfile)) {
+        if(g_HatEnt[player] < 1) {
+            g_HatEnt[player] = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
+            if(g_HatEnt[player] > 0) {
+                set_pev(g_HatEnt[player], pev_movetype, MOVETYPE_FOLLOW)
+                set_pev(g_HatEnt[player], pev_aiment, player)
+                set_pev(g_HatEnt[player], pev_rendermode, 	kRenderNormal)
+                engfunc(EngFunc_SetModel, g_HatEnt[player], tmpfile)
+            }
+        } else {
+            engfunc(EngFunc_SetModel, g_HatEnt[player], tmpfile)
+        }
+        glowhat(player)
+        CurrentHat[player] = imodelnum
+        if (targeter != -1) {
             colored_print(targeter, "^x01[^x04%s^x01]^x03 %s^x01 надел шапку <%s>",
                 PLUG_TAG, name, HATNAME[imodelnum])
-		}
-	}
+        }
+    }
+    else {
+        log_amx("[%s] %s not found!", PLUG_TAG, tmpfile)
+    }
 }
 
 public get_player_from_file(id) {

@@ -5,8 +5,8 @@
 public plugin_init()
 {
 	register_plugin("Anti-Spam", "1.2", "Dumka")
-	register_clcmd("say","check_player_msg")
-	register_clcmd("say_team","check_player_msg")
+	register_clcmd("say", "check_player_msg")
+	register_clcmd("say_team", "check_player_msg")
 }
 
 public client_putinserver(id)
@@ -78,16 +78,16 @@ bool:is_invalid(const text[])
 // Check say or say_team message
 public check_player_msg(id)
 {
-	new text[128], name[32]
-	read_args(text,127)
-	get_user_name(id, name, 31)
-	
-	if(is_invalid(text))
-	{
-		colored_print(id, "^x04 ***^x01 %s,^x03 STOP SPAMMING^x01 !!!", name)
-		return PLUGIN_HANDLED
-	}	
-		
-	return PLUGIN_CONTINUE
+    new text[128]
+    read_args(text,127)
+    remove_quotes(text)
+
+    if(is_invalid(text))
+    {
+        colored_print(id, "^x04***^x01 [%s] -^x04 СПАМ, СООБЩЕНИЕ УДАЛЕНО!", text)
+        return PLUGIN_HANDLED
+    }	
+        
+    return PLUGIN_CONTINUE
 }
 

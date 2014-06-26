@@ -49,7 +49,7 @@ public mainMenu(id, page)
     menu_additem(i_Menu, "Общение", "8")
     menu_additem(i_Menu, "Список банов", "9")
     menu_additem(i_Menu, "Разбан", "10")
-    menu_additem(i_Menu, "Разрешить говорить")
+    menu_additem(i_Menu, "Разрешить говорить", "11")
     menu_additem(i_Menu, "История банов", "12")
     menu_additem(i_Menu, "Шапки", "13")
     

@@ -33,26 +33,50 @@ public plugin_init()
 // MINE
 public clcmd_say(id)
 {
-	static say_args[10]
-	read_args(say_args, 9)
-	remove_quotes(say_args)
-	
-	if(say_args[0] == '/' && containi(say_args, "mute") != -1 && get_user_flags(id) & ADMIN_LEVEL_H)
-	{
-		display_mutemenu(id, g_menuposition[id] = 0)
-		return PLUGIN_HANDLED_MAIN
-	}
-	else if (say_args[0] == '/' && containi(say_args, "speak") != -1 && get_user_flags(id) & ADMIN_LEVEL_H)
-	{
-		display_speakmenu(id, g_menuposition[id] = 0)
-		return PLUGIN_HANDLED_MAIN
-	}
-	else if (say_args[0] == '/' && (containi(say_args, "speak") != -1 || containi(say_args, "mute") != -1) && !(get_user_flags(id) & ADMIN_LEVEL_H))
-	{
+    static say_args[10]
+    read_args(say_args, 9)
+    remove_quotes(say_args)
+
+    if ( 
+        say_args[0] == '/' && 
+        containi(say_args, "mute") != -1 && 
+        get_user_flags(id) & ADMIN_LEVEL_H )
+    {
+        display_mutemenu(id, g_menuposition[id] = 0)
+        return PLUGIN_HANDLED_MAIN
+    }
+    else if ( 
+        say_args[0] == '/' && 
+        containi(say_args, "speak") != -1 && 
+        get_user_flags(id) & ADMIN_LEVEL_H
+    )
+    {
+        display_speakmenu(id, g_menuposition[id] = 0)
+        return PLUGIN_HANDLED_MAIN
+    }
+    else if ( 
+        say_args[0] == '/' && 
+        containi(say_args, "unmute") != -1 && 
+        get_user_flags(id) & ADMIN_LEVEL_H
+    )
+    {
+        display_speakmenu(id, g_menuposition[id] = 0)
+        return PLUGIN_HANDLED_MAIN
+    }
+    else if (
+        say_args[0] == '/' && 
+        (
+            containi(say_args, "speak") != -1 || 
+            containi(say_args, "mute") != -1 ||
+            containi(say_args, "unmute") != -1
+        ) && 
+        !(get_user_flags(id) & ADMIN_LEVEL_H)
+    )
+    {
         colored_print(id,"^x04***^x01 Затычка доступна только ВИПам!")
         return PLUGIN_HANDLED_MAIN
-	}
-	return PLUGIN_CONTINUE
+    }
+    return PLUGIN_CONTINUE
 }
 
 display_mutemenu(id, pos) 
@@ -71,7 +95,7 @@ display_mutemenu(id, pos)
     		end = g_menuplayersnum[id]
 	
 	static menubody[512]	
-  	new len = format(menubody, 511, "\wКого \rзаткнем?\w^n^n")
+  	new len = format(menubody, 511, "\wКого \rзаткнем\w?^n^n")
 
 	static name[32]
 	
@@ -139,7 +163,7 @@ display_speakmenu(id, pos)
     		end = g_menuplayersnum[id]
 	
 	static menubody[512]	
-  	new len = format(menubody, 511, "\wРазрешим \rговорить:\w^n^n")
+  	new len = format(menubody, 511, "\wРазрешим \rговорить\w:^n^n")
 
 	static name[32]
 	

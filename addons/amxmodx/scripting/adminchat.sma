@@ -27,8 +27,8 @@ public cmdSayAdmin(id)
     if (said[0] != '@')
         return PLUGIN_CONTINUE
         
-    if (!is_user_admin(id))
-        return PLUGIN_CONTINUE
+//    if (!is_user_admin(id))
+//        return PLUGIN_CONTINUE
 
     new message[192], name[32], authid[32]
     new players[32], inum
@@ -90,33 +90,3 @@ public cmdChat(id, level, cid)
 
     return PLUGIN_HANDLED
 }
-
-/*
-public plugin_end()
-{
-    // FOR CHAT LOGGING
-    new cur_date[3], next_logfile[13]
-    get_time("%d", cur_date, 2)
-
-    new temp_cell
-    temp_cell = str_to_num(cur_date[1])
-    temp_cell++
-    num_to_str(temp_cell, cur_date[1], 1)
-    
-    format(next_logfile, 12, "chat_%s.log", cur_date)
-//    log_amx("[CLEANER]: %s", next_logfile)
-    
-    new directory[32], file[32]
-    get_basedir(directory, 31)
-    format(directory, 31, "%s/logs", directory)
-    format(file, 31, "%s/%s", directory, next_logfile)
-    log_amx("[CLEANER]: %s", file)
-    
-    if(file_exists(file))
-    {
-        new successed
-        successed = delete_file(file)
-        log_amx("[CLEANER]: %s to delete file %s", successed ? "Successed" : "Failed", next_logfile)
-    }
-}
-*/

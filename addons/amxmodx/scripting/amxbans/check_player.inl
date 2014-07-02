@@ -202,16 +202,16 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
 
                 //make sure there are no single quotes in these 4 vars
                 replace_all(player_nick, 49, "\", "")
-                replace_all(player_nick, 49, "'", "´")
+                replace_all(player_nick, 49, "'", "Ò‘")
 
                 replace_all(admin_nick, 99, "\", "")
-                replace_all(admin_nick, 99, "'", "´")
+                replace_all(admin_nick, 99, "'", "Ò‘")
 
                 replace_all(ban_reason, 254, "\", "")
-                replace_all(ban_reason, 254, "'", "´")
+                replace_all(ban_reason, 254, "'", "Ò‘")
 
                 replace_all(server_name, 99, "\", "")
-                replace_all(server_name, 99, "'", "´")
+                replace_all(server_name, 99, "'", "Ò‘")
                 
                 new query[512]
                 new data[2]

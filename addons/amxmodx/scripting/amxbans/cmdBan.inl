@@ -4,7 +4,6 @@ public cmdBan(id, level, cid)
     if (!cmd_access(id,level,cid,3))
         return PLUGIN_HANDLED
 
-
     new bool:serverCmd = false
     /* Determine if this was a server command or a command issued by a player in the game */
     if ( id == 0 )
@@ -31,8 +30,8 @@ public cmdBan(id, level, cid)
     read_args(reason,127)
     format(g_ban_reason, 255, "%s", reason[length])
 
-    replace_all(g_ban_reason, 255, "\", "")
-    replace_all(g_ban_reason, 255, "'", "´")
+    replace_all(g_ban_reason, 255, "\", "\\")
+    replace_all(g_ban_reason, 255, "'", "\'")
 
     new iBanLength = str_to_num(ban_length)
     new cTimeLength[128]
@@ -258,8 +257,8 @@ public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)
             get_user_name(player, player_nick, 49)
             get_user_ip(player, player_ip, 29, 1)
             
-            replace_all(player_nick, 49, "\", "")
-            replace_all(player_nick, 49, "'", "´")
+            replace_all(player_nick, 49, "\", "\\")
+            replace_all(player_nick, 49, "'", "\'")
         }
         else /* The player was not found in server */
         {
@@ -294,8 +293,8 @@ public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)
         get_user_name(id, admin_nick, 99)
         get_user_ip(id, admin_ip, 19, 1)
         
-        replace_all(admin_nick, 99, "\", "")
-        replace_all(admin_nick, 99, "'", "´")
+        replace_all(admin_nick, 99, "\", "\\")
+        replace_all(admin_nick, 99, "'", "\'")
         
         if (!serverCmd)
         {
@@ -344,8 +343,8 @@ public cmd_ban_(failstate, Handle:query, error[], errnum, data[], size)
             add(server_name,255,post,0)
         }
 
-        replace_all(server_name, 99, "\", "")
-        replace_all(server_name, 99, "'", "´")
+        replace_all(server_name, 99, "\", "\\")
+        replace_all(server_name, 99, "'", "\'")
         
         new BanLength[50]
         num_to_str(iBanLength, BanLength, 49)
@@ -511,8 +510,8 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 		get_user_name(player, player_nick, 49)
 		get_user_ip(player, player_ip, 29, 1)
 		
-		replace_all(player_nick, 49, "\", "")
-		replace_all(player_nick, 49, "'", "´")
+		replace_all(player_nick, 49, "\", "\\")
+		replace_all(player_nick, 49, "'", "\'")
 		
 		new amxban_motd_url[256]
 		if (!SQL_NumResults(query))
@@ -528,8 +527,8 @@ public select_amxbans_motd(failstate, Handle:query, error[], errnum, data[], siz
 		get_user_authid(id, admin_steamid, 49)
 		get_user_name(id, admin_nick, 99)
 		
-		replace_all(admin_nick, 99, "\", "")
-		replace_all(admin_nick, 99, "'", "´")
+		replace_all(admin_nick, 99, "\", "\\")
+		replace_all(admin_nick, 99, "'", "\'")
 		
 		new cTimeLengthPlayer[128]
 		new cTimeLengthServer[128]

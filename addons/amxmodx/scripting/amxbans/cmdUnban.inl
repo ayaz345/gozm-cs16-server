@@ -1,4 +1,3 @@
-
 /*
      This function will UnBan by steamID amx_unban <STEAMID or NICKNAME>   
 */
@@ -31,6 +30,9 @@ public cmdUnBan(id,level,cid)
     {
         new query[512]
         new data[1]
+        
+        replace_all(steamid_or_nick, 99, "\", "\\")
+        replace_all(steamid_or_nick, 99, "'", "\'")
 
         format(query, 511, "SELECT \
             bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
@@ -78,7 +80,7 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
         
         if(!res_count)
         {
-            client_print(id, print_console, "[AMXBANS] Player with that part of nickname is NOT found in bans")
+            //client_print(id, print_console, "[AMXBANS] Player with that part of nickname is NOT found in bans")
             colored_print(id, "^x04 ***^x01 Player with that part of nickname is NOT found in bans")
             server_print("[AMXBANS] Player with that part of nickname is NOT found in bans")
 
@@ -134,6 +136,9 @@ public unban_menu_handler(id, menu, item)
     
     new query[512]
     new data[1]
+    
+    replace_all(s_Name, 99, "\", "\\")
+    replace_all(s_Name, 99, "'", "\'")
 
     format(query, 511, "SELECT \
         bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
@@ -172,8 +177,9 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
         
         if (!SQL_NumResults(query))
         {
-            client_print(id, print_console, "[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
+            //client_print(id, print_console, "[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
             server_print("[AMXBANS] %L",LANG_PLAYER,"AMX_FIND_NORESULT", g_unban_player_steamid)
+            colored_print(id, "^x04 ***^x01 Не могу найти запрошенный ник в базе!")
 
             return PLUGIN_HANDLED
         }
@@ -207,8 +213,8 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 
             if(!equal(unbanning_nick, admin_nick) && !(get_user_flags(id) & ADMIN_BAN))
             {
-                colored_print(id, "^x04 ***^x01 It's not your ban! (by %s)", admin_nick)
-                log_amx("UNBAN_SELECT: NOT YOUR BAN: U'%s' vs A'%s'", unbanning_nick, admin_nick)
+                colored_print(id, "^x04 ***^x01 It's not your ban! Banned by %s.", admin_nick)
+                log_amx("UNBAN_SELECT: NOT YOUR BAN: VIP'%s' vs ADM'%s'", unbanning_nick, admin_nick)
                 return PLUGIN_HANDLED
             }
             
@@ -221,8 +227,14 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 
             server_cmd("removeip %s", player_ip)
             new sub_query[512]
+            new banned_player_name[50]
+            banned_player_name = g_player_nick
+            
+            replace_all(banned_player_name, 99, "\", "\\")
+            replace_all(banned_player_name, 99, "'", "\'")
+            
             format(sub_query, 511, "UPDATE `superban` SET unbantime = -1 WHERE BINARY banname = '%s'",
-                g_player_nick)
+                banned_player_name)
             SQL_ThreadQuery(g_SqlX, "cmd_delete_superban", sub_query)
 
             current_time_int = get_systime(0)
@@ -287,7 +299,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
                 ban_reason,ban_created,ban_length,server_ip,server_name,\
                 unban_created,unban_reason,unban_admin_nick) \
                 VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%i','UnBanned in Game','%s %s')",
-                tbl_banhist,g_unban_player_steamid,player_ip,g_player_nick,
+                tbl_banhist,g_unban_player_steamid,player_ip,banned_player_name,
                 g_admin_steamid,admin_nick,ban_type,ban_reason,ban_created,
                 ban_length,server_ip,server_name,unban_created, g_unban_admin_nick, 
                 unban_admin_steamid)

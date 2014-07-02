@@ -42,7 +42,7 @@ public banmod_online_(failstate, Handle:query, error[], errnum, data[], size)
 	else
 	{
 		replace_all(servername, 99, "\", "")
-		replace_all(servername, 99, "'", "´")
+		replace_all(servername, 99, "'", "Ò‘")
 	
 		if (!SQL_NumResults(query))
 		{
@@ -65,7 +65,7 @@ public banmod_online_(failstate, Handle:query, error[], errnum, data[], size)
 		else
 		{
 			new kick_delay_str[10]
-			SQL_ReadResult(query, 7, kick_delay_str, 10)  // inte säker på om det ska vara 7 eller 8
+			SQL_ReadResult(query, 7, kick_delay_str, 10)  // inte sÐ´ker pÐµ om det ska vara 7 eller 8
 
 			if (floatstr(kick_delay_str)>2.0)
 			{

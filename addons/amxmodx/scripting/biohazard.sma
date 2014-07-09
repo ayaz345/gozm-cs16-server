@@ -1834,27 +1834,28 @@ public task_spawned(taskid)
 
 public task_showinfected(taskid) {
     new id = taskid - TASKID_SHOWINFECT
-    set_dhudmessage(255, 0, 0, 0.44, 0.88, 0, _, 0.2, 0.1, 0.1)
-    if(is_user_connected(id))
+    if(is_user_connected(id) && !g_zombie[id]) {
+        set_dhudmessage(255, 0, 0, 0.44, 0.88, 0, _, 0.2, 0.1, 0.1)
         show_dhudmessage(id, "[ ЗОМБИ ]")
+    }
 }
 public task_showclean(taskid) {
     new id = taskid - TASKID_SHOWCLEAN
-    set_dhudmessage(0, 255, 0, 0.43, 0.88, 0, _, 0.7, 0.1, 0.1)
-    if(is_user_connected(id))
+    if(is_user_connected(id) && !g_zombie[id]) {
+        set_dhudmessage(0, 255, 0, 0.43, 0.88, 0, _, 0.7, 0.1, 0.1)
         show_dhudmessage(id, "[ ЧЕЛОВЕК ]")
+    }
 }
 
 public task_showtruehealth()
 {
-	set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
-
 	static id, Float:health
+    set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
 	for(id = 1; id <= g_maxplayers; id++) 
 		if(is_user_alive(id) && g_zombie[id] && !g_roundended)
 		{
-			pev(id, pev_health, health)
-			show_dhudmessage(id, "HP: %d", floatround(health))
+            pev(id, pev_health, health)
+            show_dhudmessage(id, "HP: %d", floatround(health))
 		}
 }
 
@@ -2733,11 +2734,11 @@ stock fm_set_weapon_ammo(id, max)
 
 stock reset_user_model(index)
 {
-	set_pev(index, pev_rendermode, kRenderNormal)
-	set_pev(index, pev_renderamt, 0.0)
+    set_pev(index, pev_rendermode, kRenderNormal)
+    set_pev(index, pev_renderamt, 0.0)
 
-	if(pev_valid(g_modelent[index]))
-		fm_set_entity_visibility(g_modelent[index], 0)
+    if(pev_valid(g_modelent[index]))
+        fm_set_entity_visibility(g_modelent[index], 0)
 }
 
 stock remove_user_model(ent)

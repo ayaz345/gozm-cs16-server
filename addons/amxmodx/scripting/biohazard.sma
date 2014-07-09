@@ -1849,14 +1849,14 @@ public task_showclean(taskid) {
 
 public task_showtruehealth()
 {
-	static id, Float:health
+    static id, Float:health
     set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
-	for(id = 1; id <= g_maxplayers; id++) 
-		if(is_user_alive(id) && g_zombie[id] && !g_roundended)
-		{
+    for(id = 1; id <= g_maxplayers; id++) 
+    if(is_user_alive(id) && g_zombie[id] && !g_roundended)
+        {
             pev(id, pev_health, health)
             show_dhudmessage(id, "HP: %d", floatround(health))
-		}
+        }
 }
 
 public task_checkspawn(taskid)

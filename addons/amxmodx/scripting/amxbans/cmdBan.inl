@@ -97,7 +97,7 @@ public cmdBan(id, level, cid)
         if (serverCmd)
             server_print("[AMXXBANS] The Player %s was not found",g_steamidorusername)
         else
-            colored_print(id, "^x04***^x01 »грок^x03 %s^x01 не найден на сервере.", g_steamidorusername)
+            colored_print(id, "^x04***^x01 Игрок^x03 %s^x01 не найден на сервере.", g_steamidorusername)
 
         if ( get_pcvar_num(amxbans_debug) == 1 )
             log_amx("[AMXXBANS DEBUG] Player %s could not be found",g_steamidorusername)
@@ -488,7 +488,7 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 
 	if (failstate)
 	{
-        colored_print(id, "^x04***^x01 Ѕан не сработал из-за проблем с базой данных.")
+        colored_print(id, "^x04***^x01 Бан не сработал из-за проблем с базой данных.")
         new szQuery[256]
         MySqlX_ThreadError( szQuery, error, errnum, failstate, 7 )
 	}
@@ -496,9 +496,9 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 	{
         new victim_name[32], vip_name[32]
         get_user_name(id, vip_name, 31)
-        get_user_name(id, victim_name, 31)
+        get_user_name(player, victim_name, 31)
 
-        colored_print(0, "^x03%s^x01 «јЅјЌ≈Ќ випом %s! ѕричина: %s", victim_name, vip_name, g_ban_reason)
+        colored_print(0, "^x03%s^x01 забанен випом %s! причина: %s", victim_name, vip_name, g_ban_reason)
 
         new player_steamid[50], player_ip[30]
 

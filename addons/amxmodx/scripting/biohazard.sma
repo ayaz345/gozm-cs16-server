@@ -230,7 +230,7 @@ new g_maxplayers, g_spawncount, g_buyzone,
     g_first_zombie_name[32]
     
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime, 
-    cvar_weaponsmenu, cvar_lights, cvar_killbonus, cvar_enabled, 
+    cvar_weaponsmenu, cvar_lights, cvar_healthbonus, cvar_killbonus, cvar_enabled, 
     cvar_gamedescription, cvar_flashbang,
 	cvar_showtruehealth, cvar_impactexplode,
     cvar_knockback, cvar_knockback_dist, cvar_ammo, cvar_killreward,
@@ -267,6 +267,7 @@ public plugin_precache()
     cvar_flashbang = register_cvar("bh_flashbang", "1")
     cvar_impactexplode = register_cvar("bh_impactexplode", "1")
     cvar_showtruehealth = register_cvar("bh_showtruehealth", "1")
+    cvar_healthbonus = register_cvar("bh_healthbonus", "600")
     cvar_killbonus = register_cvar("bh_kill_bonus", "1")
     cvar_killreward = register_cvar("bh_kill_reward", "2")
     cvar_shootobjects = register_cvar("bh_shootobjects", "1")
@@ -1269,7 +1270,10 @@ public event_damage(victim)
             set_pev(attacker, pev_frags, frags  + 1.0)
             fm_set_user_deaths(victim, deaths + 1)
 
-            set_pev(attacker, pev_health, get_user_health(attacker) + 300.0)
+            new Float:bonus_health = get_random_bonus_health()
+            set_pev(attacker, pev_health, get_user_health(attacker) + bonus_health)
+            set_hudmessage(200, 200, 0, 0.55, 0.55, 0, 0.1, 2.0, 0.1, 0.1, -1)
+            ShowSyncHudMsg(attacker, g_sync_msgdisplay, "+%d HP", floatround(bonus_health))
 
             static params[2]
             params[0] = attacker 
@@ -1280,6 +1284,12 @@ public event_damage(victim)
         g_infecting = false
 	}
 	return PLUGIN_CONTINUE
+}
+
+public Float:get_random_bonus_health()
+{
+    new i_health = get_pcvar_num(cvar_healthbonus)
+    return float(random_num(100, i_health))
 }
 
 public fwd_player_prethink(id)

@@ -35,7 +35,6 @@ public plugin_init()
 	register_menucmd(register_menuid("Banhistory Menu"), 1023, "actionBanhistoryMenu")
 
 	g_coloredMenus = colored_menus()
-	g_MyMsgSync = CreateHudSyncObj()
 
 	register_plugin(PLUGIN_NAME, VERSION, AUTHOR)
 	register_cvar("amxbans_version", VERSION, FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
@@ -58,7 +57,6 @@ public plugin_init()
 	higher_ban_time_admin = register_cvar("amxbans_higher_ban_time_admin", "n")
 	admin_mole_access = register_cvar("amxbans_admin_mole_access", "r")
 	show_in_hlsw = register_cvar("amxbans_show_in_hlsw", "1")
-	show_hud_messages = register_cvar("amxbans_show_hud_messages", "1")
 	add_mapname_in_servername = register_cvar("amxbans_add_mapname_in_servername", "0")
 	
 	register_dictionary("amxbans.txt")

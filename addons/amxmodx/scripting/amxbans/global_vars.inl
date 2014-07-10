@@ -12,9 +12,6 @@
 #define MPROP_NEXTNAME  3
 #define MPROP_EXITNAME  4
 
-// For hudmessages
-new g_MyMsgSync
-
 // Variables for menus
 new g_LowBanMenuValues[12]
 new g_HighBanMenuValues[12]
@@ -49,7 +46,6 @@ new max_time_gone_to_unban
 new higher_ban_time_admin
 new admin_mole_access
 new show_in_hlsw
-new show_hud_messages
 new add_mapname_in_servername
 
 /*****************************/

@@ -613,6 +613,7 @@ check_round(leaving_player)
         colored_print(0, "^x04 ***^x01 Зараженный зомби^x03 %s^x01 вышел.", name)
 //		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
+        colored_print(id, "^x01[Сканер] Инфекция перебросилась, ты^x03 ЗАРАЖЕН^x01!!!")
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
 
         return

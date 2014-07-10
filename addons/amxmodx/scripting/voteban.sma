@@ -229,7 +229,10 @@ public additionalBan() {
 public ActualBan(time, reason[])
 {
     client_cmd(ga_PlayerID[gi_VoteStarter], "amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
-    colored_print(0,"^x03%s^x01 ЗАБАНЕН випом %s! Причина: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
+//    colored_print(0,"^x03%s^x01 ЗАБАНЕН випом %s! Причина: %s", ga_PlayerName[gi_Sellection], ga_PlayerName[gi_VoteStarter], reason)
+//    colored_print(  ga_PlayerID[gi_VoteStarter], 
+//                    "^x04***^x01 Отправляем запрос на бан^x03 %s^x01...", 
+//                    ga_PlayerName[gi_Sellection])
 //    log_amx("VB: %s", ga_PlayerName[gi_Sellection])
 //    log_amx("VB: amx_ban %d #%d %s", time, ga_PlayerUserID[gi_Sellection], reason)
     return 0

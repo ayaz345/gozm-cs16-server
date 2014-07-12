@@ -568,38 +568,18 @@ public client_disconnect(id)
 
 check_round(leaving_player)
 {
-	if (g_roundended)
-		return
+    if (g_roundended)
+        return PLUGIN_CONTINUE
 
-	new players[32], pNum, id
-	get_players(players, pNum, "a")
+    new players[32], pNum, id
+    get_players(players, pNum, "a")
 
-	if (pNum < 2)
-		return
-	
-	// Last Zombie
-	if (g_zombie[leaving_player] && fnGetZombies() == 1)
-	{
-		do
-            id = players[_random(pNum)]
-		while (id == leaving_player || !is_user_connected(id))
-	
-		cs_set_player_team(id, CS_TEAM_T)
-		infect_user(id, 0)
-		
-		new name_newcomer[32]
-		new name_leaver[32]
-		get_user_name(id, name_newcomer, 32)
-		get_user_name(leaving_player, name_leaver, 32)
-//		log_to_file("lastZombie_leavers.log", "Leaver %s", name_leaver)
-		colored_print(0, "^x04***^x03 %s^x01 отключился,^x03 %s^x01 новый зомби!", name_leaver, name_newcomer)
-		
-		return
-	}
-	
-	// Preinfected zombie leaves
-	if (g_preinfect[leaving_player] && !g_gamestarted)
-	{
+    if (pNum < 2)
+        return PLUGIN_CONTINUE
+
+    // Preinfected zombie leaves
+    if (g_preinfect[leaving_player] && !g_gamestarted)
+    {
         do
             id = players[_random(pNum)]
         while (id == leaving_player || !is_user_connected(id))
@@ -612,13 +592,46 @@ check_round(leaving_player)
         get_user_name(id, g_first_zombie_name, 31)  // for win-text
 
         colored_print(0, "^x04 ***^x01 Зараженный зомби^x03 %s^x01 вышел.", name)
-//		log_to_file("preinfected_leavers.log", "Leaver %s", name)
         remove_task(TASKID_SHOWCLEAN + id)
         colored_print(id, "^x01[Сканер] Инфекция перебросилась, ты^x03 ЗАРАЖЕН^x01!!!")
         set_task(0.1, "task_showinfected", TASKID_SHOWINFECT + id, _, _, "b")
+    }
+        
+    // Last Zombie leaves
+    if (g_zombie[leaving_player] && fnGetZombies() == 1)
+    {
+        do
+            id = players[_random(pNum)]
+        while (id == leaving_player || !is_user_connected(id))
 
-        return
-	}	
+        infect_user(id, 0)
+
+        new name_newcomer[32]
+        new name_leaver[32]
+        get_user_name(id, name_newcomer, 32)
+        get_user_name(leaving_player, name_leaver, 32)
+        colored_print(0, "^x04***^x03 %s^x01 отключился,^x03 %s^x01 новый зомби!", 
+            name_leaver, name_newcomer)
+    }
+    
+    // Last Human leaves
+    if (!g_zombie[leaving_player] && fnGetHumans() == 1)
+    {
+        do
+            id = players[_random(pNum)]
+        while (id == leaving_player || !is_user_connected(id))
+
+        cure_user_in_game(id)
+
+        new name_newcomer[32]
+        new name_leaver[32]
+        get_user_name(id, name_newcomer, 32)
+        get_user_name(leaving_player, name_leaver, 32)
+        colored_print(0, "^x04***^x03 %s^x01 отключился,^x03 %s^x01 последний человек!", 
+            name_leaver, name_newcomer)
+    }
+
+    return PLUGIN_CONTINUE
 }
 
 // Get Zombies -returns alive zombies number-
@@ -744,8 +757,7 @@ public cmd_cureuser(id, level, cid)
 		log_amx("Admin %s used infection to %s", admin_name, name)
 	}
 	
-	console_print(id, "You've healed %s", name)
-	cure_user2(target)
+	cure_user_in_game(target)
 	
 	return PLUGIN_HANDLED_MAIN
 }
@@ -2199,7 +2211,7 @@ public cure_user(id)
     cs_reset_player_maxspeed(id)
 }
 
-public cure_user2(id)
+public cure_user_in_game(id)
 {
     if(!is_user_alive(id) || !is_user_connected(id)) 
         return

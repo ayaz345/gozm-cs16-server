@@ -19,15 +19,11 @@ public plugin_init()
 { 
 	register_plugin("Admin Gag","1.8.3","EKS") 
 	register_clcmd("say","block_gagged") 
-	register_clcmd("say_team","block_gagged") 
-// MINE	
+	register_clcmd("say_team","block_gagged")
 	register_clcmd("say", "clcmd_say")
 	register_clcmd("say_team", "clcmd_say")
 	register_menucmd(register_menuid("mute menu"), 1023, "action_mutemenu")
 	register_menucmd(register_menuid("speak menu"), 1023, "action_speakmenu")
-	
-//	register_concmd("amx_gag","CMD_GagPlayer",ADMIN_LEVEL_H,"<nick or #userid>") 
-//	register_concmd("amx_ungag","CMD_UnGagPlayer",ADMIN_LEVEL_H,"<nick or #userid>") 
 } 
 
 // MINE
@@ -40,7 +36,7 @@ public clcmd_say(id)
     if ( 
         say_args[0] == '/' && 
         containi(say_args, "mute") != -1 && 
-        get_user_flags(id) & ADMIN_LEVEL_H )
+        is_priveleged_user(id) )
     {
         display_mutemenu(id, g_menuposition[id] = 0)
         return PLUGIN_HANDLED_MAIN
@@ -48,8 +44,7 @@ public clcmd_say(id)
     else if ( 
         say_args[0] == '/' && 
         containi(say_args, "speak") != -1 && 
-        get_user_flags(id) & ADMIN_LEVEL_H
-    )
+        is_priveleged_user(id) )
     {
         display_speakmenu(id, g_menuposition[id] = 0)
         return PLUGIN_HANDLED_MAIN
@@ -57,8 +52,7 @@ public clcmd_say(id)
     else if ( 
         say_args[0] == '/' && 
         containi(say_args, "unmute") != -1 && 
-        get_user_flags(id) & ADMIN_LEVEL_H
-    )
+        is_priveleged_user(id) )
     {
         display_speakmenu(id, g_menuposition[id] = 0)
         return PLUGIN_HANDLED_MAIN
@@ -70,14 +64,22 @@ public clcmd_say(id)
             containi(say_args, "mute") != -1 ||
             containi(say_args, "unmute") != -1
         ) && 
-        !(get_user_flags(id) & ADMIN_LEVEL_H)
-    )
+        !is_priveleged_user(id) )
     {
-        colored_print(id,"^x04***^x01 Затычка доступна только ВИПам!")
+        colored_print(id, "^x04***^x01 Затычка доступна только ВИПам!")
         return PLUGIN_HANDLED_MAIN
     }
     return PLUGIN_CONTINUE
 }
+
+public has_vip(id)
+    return get_user_flags(id) & ADMIN_LEVEL_H
+    
+public has_rcon(id)
+    return get_user_flags(id) & ADMIN_RCON
+
+public is_priveleged_user(id)
+    return has_vip(id) || has_rcon(id)
 
 display_mutemenu(id, pos) 
 {
@@ -107,7 +109,7 @@ display_mutemenu(id, pos)
 		i = g_menuplayers[id][a]
 		get_user_name(i, name, 31)
 
-		if( i == id || get_user_flags(i) & ADMIN_LEVEL_H  && !(get_user_flags(i) & ADMIN_RCON) || g_GagPlayers[i])
+		if( i == id || has_vip(i)  && !has_rcon(i) || g_GagPlayers[i])
 		{
 			++b
 			len += format(menubody[len], 511 - len, "\d#  %s\w^n", name)
@@ -175,7 +177,7 @@ display_speakmenu(id, pos)
 		i = g_menuplayers[id][a]
 		get_user_name(i, name, 31)
 
-		if( i == id || get_user_flags(i) & ADMIN_LEVEL_H  && !(get_user_flags(i) & ADMIN_RCON) || !g_GagPlayers[i])
+		if( i == id || has_vip(i)  && !has_rcon(i) || !g_GagPlayers[i])
 		{
 			++b
 			len += format(menubody[len], 511 - len, "\d#  %s\w^n", name)
@@ -222,12 +224,12 @@ public block_gagged(id)
 	if ( cmd[3] == '_' )
 		{ 
 		if (g_GagPlayers[id] & 2){ 
-			colored_print(id,"^x04***^x01 Тебя заткнули!") 
+			colored_print(id, "^x04***^x01 Тебя заткнули!") 
 			return PLUGIN_HANDLED 
 			} 
 		} 
 	else if (g_GagPlayers[id] & 1)   { 
-			colored_print(id,"^x04***^x01 Тебя заткнули!") 
+			colored_print(id, "^x04***^x01 Тебя заткнули!") 
 			return PLUGIN_HANDLED 
 		} 
 	return PLUGIN_CONTINUE 
@@ -235,7 +237,7 @@ public block_gagged(id)
 
 public CMD_GagPlayer(VIP, VictimID) 
 {
-    if ((get_user_flags(VictimID) & ADMIN_LEVEL_H) && VictimID != VIP)  
+    if (has_vip(VictimID) && VictimID != VIP)  
         return PLUGIN_HANDLED;
         
     if (!is_user_connected(VictimID))  
@@ -251,14 +253,17 @@ public CMD_GagPlayer(VIP, VictimID)
 
     get_user_name(VIP,AdminName,31)
     get_user_name(VictimID,VictimName,31)
-    colored_print(0,"^x04***^x03 %s^x01 умолк благодаря випу %s",VictimName, AdminName) 
+    if (!has_rcon(VIP))
+        colored_print(0, "^x04***^x03 %s^x01 умолк благодаря випу %s", VictimName, AdminName)
+    else
+        console_print(VIP, "*** %s is silented", VictimName)
 
     return PLUGIN_HANDLED
 } 
 
 public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via console command )
 {
-    if ((get_user_flags(VictimID) & ADMIN_LEVEL_H) && VictimID != VIP)  
+    if (has_vip(VictimID) && VictimID != VIP)  
         return PLUGIN_HANDLED;
         
     new AdminName[32],VictimName[32] 
@@ -268,16 +273,15 @@ public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via con
 
     if(!g_GagPlayers[VictimID])		// Checks if player has gagged flag
     {
-        console_print(VIP,"%s Is Not Gagged & Cannot Be Ungagged.",VictimName)
+        console_print(VIP, "%s Is Not Gagged & Cannot Be Ungagged.",VictimName)
         return PLUGIN_HANDLED
     }
 
-    colored_print(0,"^x04***^x03 %s^x01 может говорить благодаря випу %s", VictimName, AdminName)
-/*
-    new muted_flag
-    muted_flag = get_speak(VictimID)
-	log_amx("MUTE: %s had %d flag", VictimName, muted_flag)
-*/
+    if (!has_rcon(VIP))
+        colored_print(0, "^x04***^x03 %s^x01 может говорить благодаря випу %s", VictimName, AdminName)
+    else
+        console_print(VIP, "*** %s is free", VictimName)
+    
     UnGagPlayer(VictimID)		// This is the function that does the actual removal of the gag info
     return PLUGIN_HANDLED
 }
@@ -288,7 +292,7 @@ public client_putinserver(id)
 	get_user_ip(id, checkIp, 15, 1)
 	
 	for (i=1; i<30; i++)
-		if(contain(mutedIp[i], checkIp) != -1 && !(get_user_flags(id) & ADMIN_LEVEL_H))
+		if(contain(mutedIp[i], checkIp) != -1 && !has_vip(id))
 		{
 			new s_Flags[4],flags
 			format(s_Flags,7,"abc")
@@ -329,7 +333,7 @@ public client_infochanged(id)
 
 public check_access(id)
 {
-    if (get_user_flags(id) & ADMIN_LEVEL_H && g_GagPlayers[id])
+    if (has_vip(id) && g_GagPlayers[id])
         UnGagPlayer(id)
     return PLUGIN_CONTINUE
 }

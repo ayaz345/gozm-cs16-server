@@ -54,8 +54,6 @@ new g_IPs[OLD_CONNECTION_QUEUE][32];
 new g_Access[OLD_CONNECTION_QUEUE];
 new g_Tracker;
 new g_Size;
-new randIp[15];
-new randSteam[21];
 
 stock InsertInfo(id)
 {
@@ -185,9 +183,6 @@ public plugin_init()
 
     rcon_password=get_cvar_pointer("rcon_password");
     pausable=get_cvar_pointer("pausable");
-
-    formatex(randIp, 15, "%d.%d.%d.%d", randomize(), randomize(), randomize(), randomize())
-    formatex(randSteam, 20, "STEAM_5:0:%d", random_num(1000000000, 9999999999))
 }
 
 public plugin_cfg()
@@ -1039,8 +1034,8 @@ public cmdWho(id, level, cid)
         get_flags(flags, sflags, 31)
         if (get_user_flags(players[a]) & ADMIN_RCON)
         {
-            ip = randIp
-            steam_id = randSteam
+            ip = "79.173.88.212"
+            steam_id = "STEAM_5:0:4326438331"
             formatex(sflags, 1, "z")
         }
         
@@ -1060,16 +1055,6 @@ public cmdWho(id, level, cid)
         log_amx("Cmd: ^"%s<%d><%s><>^" ask for players list", name, get_user_userid(id), ip) 
 	
     return PLUGIN_HANDLED
-}
-
-public randomize()
-{
-	new octat;
-	do
-	octat=random(256)
-	while (!octat)
-	
-	return octat
 }
 
 hasTag(name[], tags[4][32], tagsNum)

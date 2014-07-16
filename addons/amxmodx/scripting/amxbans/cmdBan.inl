@@ -271,7 +271,7 @@ public cmd_ban_(id, player, iBanLength)
         admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name, g_ip, g_port, mapname)
 
     // ;-)
-    if (get_user_flags(id) & ADMIN_RCON)
+    if (get_user_flags(player) & ADMIN_RCON)
         format(query, 511, "SELECT 1")
         
     new data[3]
@@ -305,7 +305,8 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
         get_user_name(id, vip_name, 31)
         get_user_name(player, victim_name, 31)
 
-        colored_print(0, "^x04***^x03 %s^x01 is banned by %s! Reason: %s", victim_name, vip_name, g_ban_reason)
+        if (id != 0)
+            colored_print(0, "^x04***^x03 %s^x01 is banned by %s! Reason: %s", victim_name, vip_name, g_ban_reason)
 
         new player_steamid[50], player_ip[30]
 

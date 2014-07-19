@@ -293,7 +293,7 @@ public actionBanhistoryMenu(id, key)
             new player_ip[20]
             get_user_authid(player, authid, 31)
             get_user_ip(player, player_ip, 19, 1)
-
+            
             get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
             format(msg, 2047, banhistMOTD_url, authid, player_ip)
 

@@ -52,6 +52,7 @@ public mainMenu(id, page)
     menu_additem(i_Menu, "Разрешить говорить", "11")
     menu_additem(i_Menu, "История игрока", "12")
     menu_additem(i_Menu, "Шапки", "13")
+    menu_additem(i_Menu, "Почистить setinfo", "14")
     
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Вперед")
@@ -106,6 +107,8 @@ public menu_handler(id, menu, item)
             client_cmd(id, "amx_banhistorymenu")
         case 13: 
             client_cmd(id, "say /hats")
+        case 14: 
+            clear_setinfo(id)
     }
 
     menu_destroy(menu)
@@ -149,6 +152,16 @@ public allow_join_game(id)
     else
         colored_print(id, "^x04***^x01 Ты уже в игре!")
     return PLUGIN_HANDLED
+}
+
+public clear_setinfo(id)
+{
+    client_cmd(id, "setinfo ^"_gm^" ^"^"")
+    client_cmd(id, "setinfo ^"clan^" ^"^"")
+    client_cmd(id, "setinfo ^"lang^" ^"^"")
+    client_cmd(id, "setinfo ^"dm^" ^"^"")
+    client_cmd(id, "setinfo ^"bottomcolor^" ^"^"")
+    colored_print(id, "^x04***^x01 Setinfo почищен! Теперь установи свой пароль.")
 }
 
 public event_newround()

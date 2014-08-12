@@ -51,7 +51,7 @@ public mainMenu(id, page)
     menu_additem(i_Menu, "Лучшие игроки", "5")
     menu_additem(i_Menu, "В наблюдатели", "6")
     menu_additem(i_Menu, "В игру", "7")
-    menu_additem(i_Menu, "Общение", "8")
+    menu_additem(i_Menu, "Застрял!", "8")
     menu_additem(i_Menu, "Список банов", "9")
     menu_additem(i_Menu, "Разбан", "10")
     menu_additem(i_Menu, "Разрешить говорить", "11")
@@ -97,11 +97,7 @@ public menu_handler(id, menu, item)
         case 7:
             allow_join_game(id)
         case 8:
-        {
-            colored_print(id, "3om6u cepBep (x_x(O_o)x_x) Go Zombie !!!")
-            colored_print(id, "^x01  =======^x04 77.220.185.29:27051^x01 =======   ")
-            colored_print(id, "^x01                 ^x03 vk.com/go_zombie ^x01           ")
-        }
+            client_cmd(id, "say /unstuck")
         case 9:
             client_cmd(id, "say /bans")
         case 10:

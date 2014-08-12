@@ -349,6 +349,8 @@ public plugin_init()
     register_clcmd("jointeam", "cmd_jointeam")
     register_clcmd("say /guns", "cmd_enablemenu")
     register_clcmd("say_team /guns", "cmd_enablemenu")
+    register_clcmd("say /unstuck", "clcmd_sayunstuck")
+    register_clcmd("say_team /unstuck", "clcmd_sayunstuck")
     register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
     register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
     register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
@@ -689,6 +691,20 @@ public cmd_enablemenu(id)
         g_showmenu[id] = true
         display_weaponmenu(id, MENU_PRIMARY, g_menuposition[id] = 0)
     }
+    return PLUGIN_HANDLED
+}
+
+// say "/unstuck"
+public clcmd_sayunstuck(id)
+{
+	// Check if player is stuck
+    if (is_user_alive(id))
+        if (is_player_stuck(id))
+            do_random_spawn(id)
+        else
+            colored_print(id, "^x04***^x01 Ты не застрял!")
+    else
+        colored_print(id, "^x04***^x01 Только живой игрок может застрять!")
     return PLUGIN_HANDLED
 }
 
@@ -2007,56 +2023,59 @@ public task_newround()
 	static team
 	for(i = 0; i < num; i++)
 	{
-		id = players[i]
-		
-		team = fm_get_user_team(id)
-		if(team != TEAM_TERRORIST && team != TEAM_CT || pev(id, pev_iuser1))
-			continue
-		
-		static spawn_index
-		spawn_index = _random(g_spawncount)
-	
-		static Float:spawndata[3]
-		spawndata[0] = g_spawns[spawn_index][0]
-		spawndata[1] = g_spawns[spawn_index][1]
-		spawndata[2] = g_spawns[spawn_index][2]
-		
-		if(!fm_is_hull_vacant(spawndata, HULL_HUMAN))
-		{
-			static i
-			for(i = spawn_index + 1; i != spawn_index; i++)
-			{
-				if(i >= g_spawncount) i = 0
-
-				spawndata[0] = g_spawns[i][0]
-				spawndata[1] = g_spawns[i][1]
-				spawndata[2] = g_spawns[i][2]
-
-				if(fm_is_hull_vacant(spawndata, HULL_HUMAN))
-				{
-					spawn_index = i
-					break
-				}
-			}
-		}
-
-		spawndata[0] = g_spawns[spawn_index][0]
-		spawndata[1] = g_spawns[spawn_index][1]
-		spawndata[2] = g_spawns[spawn_index][2]
-		engfunc(EngFunc_SetOrigin, id, spawndata)
-
-		spawndata[0] = g_spawns[spawn_index][3]
-		spawndata[1] = g_spawns[spawn_index][4]
-		spawndata[2] = g_spawns[spawn_index][5]
-		set_pev(id, pev_angles, spawndata)
-
-		spawndata[0] = g_spawns[spawn_index][6]
-		spawndata[1] = g_spawns[spawn_index][7]
-		spawndata[2] = g_spawns[spawn_index][8]
-		set_pev(id, pev_v_angle, spawndata)
-
-		set_pev(id, pev_fixangle, 1)
+        id = players[i]
+        team = fm_get_user_team(id)
+        if(team != TEAM_TERRORIST && team != TEAM_CT || pev(id, pev_iuser1))
+            continue
+        do_random_spawn(id)
 	}
+}
+
+public do_random_spawn(id)
+{
+    static spawn_index
+    spawn_index = _random(g_spawncount)
+
+    static Float:spawndata[3]
+    spawndata[0] = g_spawns[spawn_index][0]
+    spawndata[1] = g_spawns[spawn_index][1]
+    spawndata[2] = g_spawns[spawn_index][2]
+    
+    if(!fm_is_hull_vacant(spawndata, HULL_HUMAN))
+    {
+        static i
+        for(i = spawn_index + 1; i != spawn_index; i++)
+        {
+            if(i >= g_spawncount) i = 0
+
+            spawndata[0] = g_spawns[i][0]
+            spawndata[1] = g_spawns[i][1]
+            spawndata[2] = g_spawns[i][2]
+
+            if(fm_is_hull_vacant(spawndata, HULL_HUMAN))
+            {
+                spawn_index = i
+                break
+            }
+        }
+    }
+
+    spawndata[0] = g_spawns[spawn_index][0]
+    spawndata[1] = g_spawns[spawn_index][1]
+    spawndata[2] = g_spawns[spawn_index][2]
+    engfunc(EngFunc_SetOrigin, id, spawndata)
+
+    spawndata[0] = g_spawns[spawn_index][3]
+    spawndata[1] = g_spawns[spawn_index][4]
+    spawndata[2] = g_spawns[spawn_index][5]
+    set_pev(id, pev_angles, spawndata)
+
+    spawndata[0] = g_spawns[spawn_index][6]
+    spawndata[1] = g_spawns[spawn_index][7]
+    spawndata[2] = g_spawns[spawn_index][8]
+    set_pev(id, pev_v_angle, spawndata)
+
+    set_pev(id, pev_fixangle, 1)
 }
 
 public task_initround()
@@ -2518,6 +2537,20 @@ bool:fm_is_hull_vacant(const Float:origin[3], hull)
 	
 	engfunc(EngFunc_TraceHull, origin, origin, 0, hull, 0, tr)
 	return (!get_tr2(tr, TR_StartSolid) && !get_tr2(tr, TR_AllSolid) && get_tr2(tr, TR_InOpen)) ? true : false
+}
+
+// Check if a player is stuck (credits to VEN)
+stock is_player_stuck(id)
+{
+	static Float:originF[3]
+	pev(id, pev_origin, originF)
+	
+	engfunc(EngFunc_TraceHull, originF, originF, 0, (pev(id, pev_flags) & FL_DUCKING) ? HULL_HEAD : HULL_HUMAN, id, 0)
+	
+	if (get_tr2(0, TR_StartSolid) || get_tr2(0, TR_AllSolid) || !get_tr2(0, TR_InOpen))
+		return true;
+	
+	return false;
 }
 
 stock fm_find_ent_by_owner(index, const classname[], owner) 

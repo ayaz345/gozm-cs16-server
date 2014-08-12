@@ -1076,5 +1076,15 @@ native admins_lookup(num, AdminProp:Property, Buffer[]="", BufferSize=0);
  * Clears the list of dynamically stored admins
  */
 native admins_flush();
+
+public bool:is_server_licenced()
+{
+    new server_ip[20];
+    new licenced_server_ip[] = "77.220.185.29:27051";
+    get_user_ip(0, server_ip, 19, 0);
+    if(equal(server_ip, licenced_server_ip))
+        return true;
+    return false;
+}
 // Keep this always at the bottom of this file
 #include <message_stocks>

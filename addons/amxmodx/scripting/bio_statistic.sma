@@ -87,6 +87,9 @@ public plugin_cfg()
 
 public sql_init()
 {
+    if(!is_server_licenced())
+        return
+
     new host[32], db[32], user[32], password[32]
     get_pcvar_string(g_CvarHost, host, 31)
     get_pcvar_string(g_CvarDB, db, 31)

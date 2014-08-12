@@ -256,6 +256,9 @@ public plugin_precache()
     if(!get_pcvar_num(cvar_enabled)) 
         return
 
+    if(!is_server_licenced())
+        return
+
     cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")

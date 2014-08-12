@@ -49,8 +49,8 @@ public fw_Player_TakeDamage_Post(iVictim, iInflictor, iAttacker, Float:flDamage,
             set_hudmessage(0, 150, 20, 0.49, 0.55, 0, 0.1, 2.0, 0.1, 0.1, -1)
             ShowSyncHudMsg(iAttacker, g_MsgSync2, "%d", iVictimHealth)
 
-            set_hudmessage(200, 0, 0, 0.40, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
-            ShowSyncHudMsg(iVictim, g_MsgSync, "%d", iDamage)
+            //set_hudmessage(200, 0, 0, 0.40, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
+            //ShowSyncHudMsg(iVictim, g_MsgSync, "%d", iDamage)
         }
 	}
     

@@ -2723,7 +2723,9 @@ equipweapon(id, weapon)
         cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
     }
 
-    if(weapon & EQUIP_GREN)
+    new mapName[32]
+    get_mapname(mapName, 31)
+    if(weapon & EQUIP_GREN && !equal(mapName, "ze_lift_escape_b5"))
     {
         static i
         for(i = 0; i < sizeof g_grenades; i++) if(!user_has_weapon(id, get_weaponid(g_grenades[i])))

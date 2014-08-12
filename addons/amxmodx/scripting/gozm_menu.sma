@@ -30,6 +30,11 @@ public plugin_init()
     register_clcmd("chooseteam", "clcmd_changeteam")
     register_clcmd("jointeam", "clcmd_changeteam")
     
+    register_clcmd("say /history", "player_history")
+    register_clcmd("say_team /history", "player_history")
+    register_clcmd("say /bans", "show_bans")
+    register_clcmd("say_team /bans", "show_bans")
+    
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
 }
 
@@ -101,13 +106,13 @@ public menu_handler(id, menu, item)
             client_cmd(id, "say /bans")
         case 10:
             client_cmd(id, "amx_unban_by_name")  // voteban.amxx
-        case 11: 
+        case 11:
             client_cmd(id, "say /speak")
-        case 12: 
-            client_cmd(id, "amx_banhistorymenu")
-        case 13: 
+        case 12:
+            player_history(id)
+        case 13:
             client_cmd(id, "say /hats")
-        case 14: 
+        case 14:
             clear_setinfo(id)
     }
 
@@ -162,6 +167,18 @@ public clear_setinfo(id)
     client_cmd(id, "setinfo ^"dm^" ^"^"")
     client_cmd(id, "setinfo ^"bottomcolor^" ^"^"")
     colored_print(id, "^x04***^x01 Setinfo почищен! Теперь установи свой пароль.")
+}
+
+public player_history(id)
+{
+    client_cmd(id, "amx_banhistorymenu")
+    return PLUGIN_HANDLED
+}
+
+public show_bans(id)
+{
+    show_motd(id, "bans.txt", "BANS")
+    return PLUGIN_HANDLED
 }
 
 public event_newround()

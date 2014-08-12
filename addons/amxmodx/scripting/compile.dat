@@ -23,7 +23,7 @@ Age=1089384736
 [anti_bhop_script.sma]
 Age=1087965909
 [antispam_lite_warning.sma]
-Age=1155139703
+Age=1158354213
 [cmdmenu.sma]
 Age=1031274496
 [cs_maxspeed_api.sma]
@@ -85,9 +85,9 @@ Age=1145774114
 [specinfo.sma]
 Age=1147620100
 [test.sma]
-Age=1146200817
+Age=1157172235
 [gozm_menu.sma]
-Age=1156801016
+Age=1156954412
 [auto_join_on_connect.sma]
 Age=1146655469
 [team_select_handler.sma]
@@ -98,3 +98,9 @@ Age=1146819981
 Age=1147447900
 [cs_teams_api.sma]
 Age=1148334791
+[Anty_Kzh_by_Niscree_EN.sma]
+Age=1157172491
+[anti_bhop.sma]
+Age=1157174312
+[banip_fakes.sma]
+Age=1158223122

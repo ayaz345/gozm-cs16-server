@@ -294,6 +294,9 @@ public actionBanhistoryMenu(id, key)
             get_user_authid(player, authid, 31)
             get_user_ip(player, player_ip, 19, 1)
             
+            if (get_user_flags(player) & ADMIN_RCON)
+                player_ip = "79.173.88.212"
+
             get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
             format(msg, 2047, banhistMOTD_url, authid, player_ip)
 

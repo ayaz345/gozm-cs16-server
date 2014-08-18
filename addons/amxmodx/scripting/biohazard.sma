@@ -62,7 +62,6 @@
 #define ID_RESTOREFADE (taskid - TASKID_RESTOREFADE)
 #define TASKID_SHOWCLEAN 667
 #define TASKID_SHOWINFECT 668
-//#define TASKID_SHOWTIMELEFT 669
 
 #define EQUIP_PRI (1<<0)
 #define EQUIP_SEC (1<<1)
@@ -262,7 +261,7 @@ public plugin_precache()
     cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
-    cvar_randomspawn = register_cvar("bh_randomspawn", "1")
+    cvar_randomspawn = register_cvar("bh_randomspawn", "0")
     cvar_knockback = register_cvar("bh_knockback", "1")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_weaponsmenu = register_cvar("bh_weaponsmenu", "1")
@@ -293,10 +292,6 @@ public plugin_precache()
 
     if(file_exists(file)) 
         server_cmd("exec %s", file)
-
-    new mapname[32]
-    get_mapname(mapname, 31)
-    register_spawnpoints(mapname)
 
     register_class("default")  // registers zombie-class
     register_dictionary("biohazard.txt")
@@ -429,6 +424,9 @@ public plugin_init()
 
     g_maxplayers = get_maxplayers()
 
+    collect_spawns_ent("info_player_start")
+    collect_spawns_ent("info_player_deathmatch")
+
     set_cvar_num("sv_skycolor_r", 0)
     set_cvar_num("sv_skycolor_g", 0)
     set_cvar_num("sv_skycolor_b", 0)
@@ -440,8 +438,6 @@ public plugin_init()
         set_task(0.3, "task_showtruehealth", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
-
-//    set_task(1.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
 }
 
 public change_rcon()
@@ -449,14 +445,6 @@ public change_rcon()
 	new rcon
 	rcon = random_num(1000000, 9999999)
 	server_cmd("rcon_password %d", rcon)
-}
-
-public show_timeleft(taskid)
-{
-    new timeleft = get_timeleft()
-    set_hudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.05, 0.0, 0.0, -1)
-    ShowSyncHudMsg(0, g_sync_msgdisplay, "%s%d:%s%d", timeleft / 60 < 10 ? "0" : "", timeleft / 60, 
-                timeleft % 60 < 10 ? "0" : "", timeleft % 60)
 }
 
 public plugin_end()
@@ -2022,7 +2010,7 @@ public task_newround()
 	
 	if(!get_pcvar_num(cvar_randomspawn) || g_spawncount <= 0) 
 		return
-	
+
 	static team
 	for(i = 0; i < num; i++)
 	{
@@ -2126,7 +2114,6 @@ public task_initround()
         }
     }
 
-//    remove_task(TASKID_SHOWTIMELEFT)
     set_hudmessage(_, _, _, _, _, 1)
     if(newzombie)
     {
@@ -2141,7 +2128,6 @@ public task_initround()
         ShowSyncHudMsg(0, g_sync_msgdisplay, "%L", LANG_PLAYER, "INFECTED_HUD2")
     }
 
-//    set_task(6.0, "show_timeleft", TASKID_SHOWTIMELEFT, _, _, "b")
     set_task(0.51, "task_startround", TASKID_STARTROUND)
 }
 
@@ -2402,41 +2388,6 @@ public action_sec(id, key)
     return PLUGIN_HANDLED
 }
 
-public register_spawnpoints(const mapname[])
-{
-	new configdir[32]
-	get_configsdir(configdir, 31)
-	
-	new csdmfile[64], line[64], data[10][6]
-	formatex(csdmfile, 63, "%s/csdm/%s.spawns.cfg", configdir, mapname)
-
-	if(file_exists(csdmfile))
-	{
-		new file
-		file = fopen(csdmfile, "rt")
-		
-		while(file && !feof(file))
-		{
-			fgets(file, line, 63)
-			if(!line[0] || str_count(line,' ') < 2) 
-				continue
-
-			parse(line, data[0], 5, data[1], 5, data[2], 5, data[3], 5, data[4], 5, data[5], 5, data[6], 5, data[7], 5, data[8], 5, data[9], 5)
-
-			g_spawns[g_spawncount][0] = floatstr(data[0]), g_spawns[g_spawncount][1] = floatstr(data[1])
-			g_spawns[g_spawncount][2] = floatstr(data[2]), g_spawns[g_spawncount][3] = floatstr(data[3])
-			g_spawns[g_spawncount][4] = floatstr(data[4]), g_spawns[g_spawncount][5] = floatstr(data[5])
-			g_spawns[g_spawncount][6] = floatstr(data[7]), g_spawns[g_spawncount][7] = floatstr(data[8])
-			g_spawns[g_spawncount][8] = floatstr(data[9])
-			
-			if(++g_spawncount >= MAX_SPAWNS) 
-				break
-		}
-		if(file) 
-			fclose(file)
-	}
-}
-
 public register_class(classname[])
 {
 	if(g_classcount >= MAX_CLASSES)
@@ -2537,7 +2488,6 @@ bool:fm_is_hull_vacant(const Float:origin[3], hull)
 {
 	static tr
 	tr = 0
-	
 	engfunc(EngFunc_TraceHull, origin, origin, 0, hull, 0, tr)
 	return (!get_tr2(tr, TR_StartSolid) && !get_tr2(tr, TR_AllSolid) && get_tr2(tr, TR_InOpen)) ? true : false
 }
@@ -2821,3 +2771,22 @@ stock remove_user_model(ent)
 
 stock fm_set_entity_visibility(index, visible = 1)
 	set_pev(index, pev_effects, visible == 1 ? pev(index, pev_effects) & ~EF_NODRAW : pev(index, pev_effects) | EF_NODRAW)
+
+// Collect spawn points from entity origins
+stock collect_spawns_ent(const classname[])
+{
+    new ent = -1
+    while ((ent = engfunc(EngFunc_FindEntityByString, ent, "classname", classname)) != 0)
+    {
+        // get origin
+        new Float:originF[3]
+        pev(ent, pev_origin, originF)
+        g_spawns[g_spawncount][0] = originF[0]
+        g_spawns[g_spawncount][1] = originF[1]
+        g_spawns[g_spawncount][2] = originF[2]
+
+        // increase spawn count
+        g_spawncount++
+        if (g_spawncount >= sizeof g_spawns) break;
+    }
+}

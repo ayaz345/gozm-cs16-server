@@ -1721,19 +1721,19 @@ public bacon_spawn_player_post(id)
         return HAM_IGNORED
 
 ////////////////NightVision//////////////////
-    if(is_user_alive(id)) {
-        remove_task(TASKID_NIGHTVISION + id)
-        activate_nv[id] = false
-    }
-
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
+    remove_task(TASKID_NIGHTVISION + id)
+    activate_nv[id] = false
 
     if(g_zombie[id])
         add_delay(id, "cure_user")
     else if(pev(id, pev_rendermode) == kRenderTransTexture)
         add_delay(id, "reset_user_model")
-        
+
+    if(get_pcvar_num(cvar_randomspawn) || g_spawncount > 0) 
+        do_random_spawn(id)
+
     set_task(0.3, "task_spawned", TASKID_SPAWNDELAY + id)
     set_task(5.0, "task_checkspawn", TASKID_CHECKSPAWN + id)
 
@@ -2006,19 +2006,6 @@ public task_newround()
         if(!g_preinfect[id]) g_preinfect[id] = true
 
         get_user_name(id, g_first_zombie_name, 31)
-	}
-	
-	if(!get_pcvar_num(cvar_randomspawn) || g_spawncount <= 0) 
-		return
-
-	static team
-	for(i = 0; i < num; i++)
-	{
-        id = players[i]
-        team = fm_get_user_team(id)
-        if(team != TEAM_TERRORIST && team != TEAM_CT || pev(id, pev_iuser1))
-            continue
-        do_random_spawn(id)
 	}
 }
 

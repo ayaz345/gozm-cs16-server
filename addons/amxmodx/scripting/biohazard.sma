@@ -2042,7 +2042,7 @@ public do_random_spawn(id)
     spawndata[1] = g_spawns[spawn_index][1]
     spawndata[2] = g_spawns[spawn_index][2]
     engfunc(EngFunc_SetOrigin, id, spawndata)
-
+/*
     spawndata[0] = g_spawns[spawn_index][3]
     spawndata[1] = g_spawns[spawn_index][4]
     spawndata[2] = g_spawns[spawn_index][5]
@@ -2054,6 +2054,7 @@ public do_random_spawn(id)
     set_pev(id, pev_v_angle, spawndata)
 
     set_pev(id, pev_fixangle, 1)
+*/
 }
 
 public task_initround()

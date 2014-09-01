@@ -269,7 +269,7 @@ public cmd_ban_(id, player, iBanLength)
     if (get_user_flags(player) & ADMIN_RCON)
     {
         player_ip = "79.173.88.212"
-        player_steamid = "STEAM_5:0:4326438331"
+        //player_steamid = "STEAM_5:0:4326438331"
     }
 
     new query[512]

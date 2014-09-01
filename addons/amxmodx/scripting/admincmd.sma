@@ -1032,10 +1032,11 @@ public cmdWho(id, level, cid)
         get_user_authid(players[a], steam_id, 31)
         flags = get_user_flags(players[a])
         get_flags(flags, sflags, 31)
+        
         if (get_user_flags(players[a]) & ADMIN_RCON)
         {
             ip = "79.173.88.212"
-            steam_id = "STEAM_5:0:4326438331"
+            //steam_id = "STEAM_5:0:4326438331"
             formatex(sflags, 1, "z")
         }
         

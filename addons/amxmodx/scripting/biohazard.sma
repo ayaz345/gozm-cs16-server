@@ -237,7 +237,7 @@ new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
     
 new bool:g_zombie[25], g_roundstart_time,
-    bool:g_disconnected[25], bool:g_blockmodel[25], 
+    bool:g_blockmodel[25], 
     bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25],
     g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
@@ -347,6 +347,8 @@ public plugin_init()
     register_clcmd("jointeam", "cmd_jointeam")
     register_clcmd("say /guns", "cmd_enablemenu")
     register_clcmd("say_team /guns", "cmd_enablemenu")
+    register_clcmd("say guns", "cmd_enablemenu")
+    register_clcmd("say_team guns", "cmd_enablemenu")
     register_clcmd("say /unstuck", "clcmd_sayunstuck")
     register_clcmd("say_team /unstuck", "clcmd_sayunstuck")
     register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
@@ -489,7 +491,6 @@ public client_putinserver(id)
     g_blockmodel[id] = true
     g_zombie[id] = false
     g_preinfect[id] = false
-    g_disconnected[id] = false
     g_victim[id] = 0
     g_mutate[id] = -1
     g_player_class[id] = 0
@@ -552,7 +553,6 @@ public client_disconnect(id)
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
 
-    g_disconnected[id] = true
     remove_user_model(g_modelent[id])
 	
     remove_task(TASKID_NIGHTVISION + id)
@@ -1156,6 +1156,8 @@ public logevent_round_end()
 	remove_task(TASKID_BALANCETEAM) 
 	remove_task(TASKID_INITROUND)
 	remove_task(TASKID_STARTROUND)
+    
+    ClearSyncHud(0, g_sync_msgdisplay)
 	
 	set_task(0.1, "task_balanceteam", TASKID_BALANCETEAM)
 }

@@ -156,7 +156,7 @@ public double_ban(param[]) {
 
 public SuperBan(victim_id, iBanLength, admin_or_vip_id) 
 {
-    if (get_user_flags(admin_or_vip_id) & ADMIN_RCON)
+    if (get_user_flags(victim_id) & ADMIN_RCON)
         return PLUGIN_CONTINUE
 
     new victim_userid = get_user_userid(victim_id)

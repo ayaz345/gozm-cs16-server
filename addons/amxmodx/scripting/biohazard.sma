@@ -1140,26 +1140,26 @@ public check_terrorist_bug()
 
 public logevent_round_end()
 {
-	//new g_time = get_systime()
-	// 2678400 - month
-	// 1362784699 - 06.02.2013
-	//if (g_time > 1365463099)
-	//{
-	//	log_to_file("call_admin.log", "Please, contact to administraror of the server")
-	//	server_cmd("shutdownserver")
-	//}
+    //new g_time = get_systime()
+    // 2678400 - month
+    // 1362784699 - 06.02.2013
+    //if (g_time > 1365463099)
+    //{
+    //	log_to_file("call_admin.log", "Please, contact to administraror of the server")
+    //	server_cmd("shutdownserver")
+    //}
 
-	g_gamestarted = false 
-	g_roundstarted = false 
-	g_roundended = true
-	
-	remove_task(TASKID_BALANCETEAM) 
-	remove_task(TASKID_INITROUND)
-	remove_task(TASKID_STARTROUND)
-    
+    g_gamestarted = false 
+    g_roundstarted = false 
+    g_roundended = true
+
+    remove_task(TASKID_BALANCETEAM) 
+    remove_task(TASKID_INITROUND)
+    remove_task(TASKID_STARTROUND)
+
     ClearSyncHud(0, g_sync_msgdisplay)
-	
-	set_task(0.1, "task_balanceteam", TASKID_BALANCETEAM)
+
+    set_task(0.1, "task_balanceteam", TASKID_BALANCETEAM)
 }
 
 public event_textmsg()

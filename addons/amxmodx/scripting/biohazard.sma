@@ -100,6 +100,9 @@
 #define _random(%1) random_num(0, %1 - 1)
 #define AMMOWP_NULL (1<<0 | 1<<CSW_KNIFE | 1<<CSW_FLASHBANG | 1<<CSW_HEGRENADE | 1<<CSW_SMOKEGRENADE | 1<<CSW_C4)
 
+const PEV_NADE_TYPE = pev_flTimeStepSound
+const NADE_TYPE_FLARE = 4444
+
 enum
 {
 	TEAM_UNASSIGNED = 0,
@@ -232,7 +235,7 @@ new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_weaponsmenu, cvar_lights, cvar_healthbonus, cvar_killbonus, cvar_enabled, 
     cvar_gamedescription, cvar_flashbang,
 	cvar_showtruehealth, cvar_impactexplode,
-    cvar_knockback, cvar_knockback_dist, cvar_ammo, cvar_killreward,
+    cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_shootobjects, cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
     
@@ -262,7 +265,6 @@ public plugin_precache()
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
     cvar_randomspawn = register_cvar("bh_randomspawn", "0")
-    cvar_knockback = register_cvar("bh_knockback", "1")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_weaponsmenu = register_cvar("bh_weaponsmenu", "1")
     cvar_ammo = register_cvar("bh_ammo", "1")
@@ -390,6 +392,7 @@ public plugin_init()
     RegisterHam(Ham_Touch, "armoury_entity", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "weapon_shield", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "grenade", "bacon_touch_grenade")
+    RegisterHam(Ham_Think, "grenade", "bacon_think_grenade")
 
     register_message(get_user_msgid("Health"), "msg_health")
     register_message(get_user_msgid("TextMsg"), "msg_textmsg")
@@ -498,7 +501,7 @@ public client_putinserver(id)
     g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
     activate_nv[id] = false
 
-    set_task(7.0, "recordDemo", id)
+    set_task(10.0, "recordDemo", id)
 }
 
 public recordDemo(id)
@@ -1456,21 +1459,38 @@ public fwd_gamedescription()
 
 public fw_SetModel(entity, const model[])
 {
-	// We don't care
-	if (strlen(model) < 8)
-		return
-		
-	// Get entity's classname
-	static classname[10]
-	pev(entity, pev_classname, classname, charsmax(classname))
-	
-	// Check if it's a weapon box
-	if (equal(classname, "weaponbox"))
-	{
-		// They get automatically removed when thinking
-		set_pev(entity, pev_nextthink, get_gametime() + 0.4)
-		return
-	}
+    // We don't care
+    if (strlen(model) < 8)
+        return
+        
+    // Get entity's classname
+    static classname[10]
+    pev(entity, pev_classname, classname, charsmax(classname))
+
+    // Check if it's a weapon box
+    if (equal(classname, "weaponbox"))
+    {
+        // They get automatically removed when thinking
+        set_pev(entity, pev_nextthink, get_gametime() + 0.4)
+        return
+    }
+
+    /* Remove smoke grenade */
+
+    // Narrow down our matches a bit
+    if (model[7] != 'w' || model[8] != '_')
+        return
+
+    // Get damage time of grenade
+    static Float:dmgtime
+    pev(entity, pev_dmgtime, dmgtime)
+
+    // Grenade not yet thrown
+    if (dmgtime == 0.0)
+        return
+
+    if (model[9] == 's' && model[10] == 'm')
+        set_pev(entity, PEV_NADE_TYPE, NADE_TYPE_FLARE)
 }
 
 public fwd_createnamedentity(entclassname)
@@ -1533,10 +1553,10 @@ public bacon_use_pushable(ent, caller, activator, use_type, Float:value)
 public bacon_traceattack_player(victim, attacker, Float:damage, Float:direction[3], tracehandle, damagetype)
 {
 	// Non-player damage or self damage or not a zombie or not bullet damage or knockback disabled
-	if (victim == attacker || !is_user_connected(attacker) || !(damagetype & DMG_BULLET) || !get_pcvar_num(cvar_knockback))
+	if (victim == attacker || !is_user_connected(attacker) || !(damagetype & DMG_BULLET))
 		return HAM_IGNORED;
-	
-    	// round starts and ends
+
+    // round starts and ends
 	if (!g_gamestarted || g_roundended)
 		return HAM_SUPERCEDE;  // was HAM_SUPERCEDE
     
@@ -1591,35 +1611,58 @@ public bacon_touch_grenade(ent, world)
 	return HAM_IGNORED
 }
 
+public bacon_think_grenade(entity)
+{
+    if(!pev_valid(entity))
+        return HAM_IGNORED
+
+    if(pev(entity, PEV_NADE_TYPE) == NADE_TYPE_FLARE && pev(entity, pev_flags) & FL_ONGROUND)
+    {
+        engfunc(EngFunc_RemoveEntity, entity)
+        return HAM_SUPERCEDE
+    }
+
+    return HAM_IGNORED
+}
+
 public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damagetype)
 {
-	if(damagetype & DMG_GENERIC)
-		return HAM_IGNORED
-	
-	if(!is_user_alive(victim))
-		return HAM_SUPERCEDE
-		
-	if(!is_user_connected(attacker))
-		return HAM_IGNORED
+    if(damagetype & DMG_GENERIC)
+        return HAM_IGNORED
 
-	if(!g_gamestarted || (!g_zombie[victim] && !g_zombie[attacker]) || (damagetype & DMG_HEGRENADE && victim == attacker))
-		return HAM_SUPERCEDE
-	
-	if(g_zombie[attacker] && damagetype & DMG_HEGRENADE)
-		return HAM_SUPERCEDE
-			
-	if(!g_zombie[attacker])
-	{
-		static pclass
-		pclass = g_player_class[victim] 
-		
-		damage *= (damagetype & DMG_HEGRENADE) ? g_class_data[pclass][DATA_HEDEFENCE] : g_class_data[pclass][DATA_DEFENCE]
-		if(get_user_weapon(attacker) == CSW_KNIFE)
-			damage *= 4
-		SetHamParamFloat(4, damage)
-	}
-	else
-	{
+    if(!is_user_alive(victim))
+        return HAM_IGNORED  // was HAM_SUPERCEDE
+        
+    if(!is_user_connected(attacker))
+        return HAM_IGNORED
+
+    if( 
+        !g_gamestarted || 
+        (!g_zombie[victim] && !g_zombie[attacker] && !g_gamestarted) || 
+        (damagetype & DMG_HEGRENADE && victim == attacker)
+    )
+        return HAM_SUPERCEDE
+
+    if(g_zombie[attacker] && damagetype & DMG_HEGRENADE)
+        return HAM_SUPERCEDE
+            
+    if(!g_zombie[attacker])
+    {
+        static pclass
+        pclass = g_player_class[victim] 
+
+        damage *= (damagetype & DMG_HEGRENADE) ? g_class_data[pclass][DATA_HEDEFENCE] : g_class_data[pclass][DATA_DEFENCE]
+        
+        static user_weapon
+        user_weapon = get_user_weapon(attacker)
+        if(user_weapon == CSW_KNIFE)
+            damage *= 4
+//        else if(user_weapon == CSW_AWP)
+//            damage *= 2
+        SetHamParamFloat(4, damage)
+    }
+    else
+    {
         if(get_user_weapon(attacker) != CSW_KNIFE)
             return HAM_SUPERCEDE
 
@@ -1634,8 +1677,8 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
             SetHamParamFloat(4, infect ? 0.0 : damage)
         else	
             SetHamParamFloat(4, 0.0)
-	}
-	return HAM_HANDLED
+    }
+    return HAM_HANDLED
 }
 
 public bacon_killed_player(victim, killer, shouldgib)
@@ -1799,33 +1842,16 @@ public bacon_traceattack_pushable(ent, attacker, Float:damage, Float:direction[3
 
 public client_infochanged(id)
 {
-    if  (!is_user_connected(id))
+    if(!is_user_connected(id))
         return PLUGIN_CONTINUE
 
-    new newname[32], model[32]
-    get_user_info(id, "name", newname, 31)
+    new model[32]
     get_user_info(id, "model", model, 31)
-    
-    new oldname[32]
-    get_user_name(id, oldname, 31)
-    if (equal(newname, "Game Destroyed"))
-    {
-        colored_print(id, "^x04***^x03 %s^x01 bye-bye, bitch =*", oldname)
-        set_user_info(id, "name", oldname)
-        return PLUGIN_HANDLED
-    }
-/*
-    if (stop_changing_name[id] && !equal(oldname,newname) && !(get_user_flags(id) & ADMIN_LEVEL_H))
-    {
-        colored_print(id,"^x04***^x01 Changing names is not allowed!")
-        set_user_info(id,"name",oldname)
-        return PLUGIN_HANDLED
-    }
-*/
+
     if (equal(model, "zombie_source") || equal(model, "vip"))
     {
         set_user_info(id, "model", "")
-        return PLUGIN_HANDLED
+        return PLUGIN_CONTINUE
     }
 
     return PLUGIN_CONTINUE

@@ -1,12 +1,3 @@
-/* AMX Mod script. 
-* 
-* (c) 2002-2003, OLO 
-* modified by shadow
-* This file is provided as is (no warranties). 
-* 
-* Players with immunity won't be checked 
-*/ 
-
 #include <amxmodx> 
 #include <amxmisc>
 
@@ -122,5 +113,3 @@ public cmdHpk(id,level,cid){
 //  console_print(id,"Maxping: %d  Time between checks: %d Checkcount: %d Delay: %d",get_pcvar_num(p_amx_hpk_ping),get_pcvar_num(p_amx_hpk_check),get_pcvar_num(p_amx_hpk_tests),get_pcvar_num(p_amx_hpk_delay))
   return PLUGIN_HANDLED    
 }
-
-

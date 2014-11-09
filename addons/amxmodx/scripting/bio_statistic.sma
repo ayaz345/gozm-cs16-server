@@ -10,7 +10,7 @@
 #pragma dynamic 16384
 
 #define PLUGIN "[BIO] Statistics"
-#define VERSION "0.95"
+#define VERSION "0.9"
 #define AUTHOR "Dimka"
 
 #define TASKID_AUTHORIZE 670
@@ -33,7 +33,6 @@ new Handle:g_SQL_Tuple
 new g_Query[3024]
 new whois[1024]
 
-new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 new g_CvarMaxInactiveDays
 
 new const g_types[][] = {
@@ -53,15 +52,10 @@ new g_text[5096]
 public plugin_init() 
 {
     register_plugin(PLUGIN, VERSION, AUTHOR)
-	
-    g_CvarHost = register_cvar("zp_stats_host", "195.128.158.196")
-    g_CvarDB = register_cvar("zp_stats_db", "b179761")
-    g_CvarUser = register_cvar("zp_stats_user", "u179761")
-    g_CvarPassword = register_cvar("zp_stats_password", "petyx")
-	
+
     register_cvar("bio_statistics_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
 	
-    g_CvarMaxInactiveDays = register_cvar("zp_stats_max_inactive_days", "30")
+    g_CvarMaxInactiveDays = register_cvar("bio_stats_max_inactive_days", "30")
 	
     register_clcmd("say", "handleSay")
     register_clcmd("say_team", "handleSay")
@@ -73,14 +67,14 @@ public plugin_init()
     register_logevent("logevent_endRound", 2, "1=Round_End")
 	
     register_dictionary("time.txt")
-    register_dictionary("zp_web_stats.txt")
+    register_dictionary("bio_stats.txt")
 }
 
 public plugin_cfg()
 {
     new cfgdir[32]
     get_configsdir(cfgdir, charsmax(cfgdir))
-    server_cmd("exec %s/zp_web_stats.cfg", cfgdir)
+    server_cmd("exec %s/bio_stats.cfg", cfgdir)
 
     set_task(0.1, "sql_init")
 }
@@ -90,26 +84,20 @@ public sql_init()
     if(!is_server_licenced())
         return
 
-    new host[32], db[32], user[32], password[32]
-    get_pcvar_string(g_CvarHost, host, 31)
-    get_pcvar_string(g_CvarDB, db, 31)
-    get_pcvar_string(g_CvarUser, user, 31)
-    get_pcvar_string(g_CvarPassword, password, 31)
-
-    g_SQL_Tuple = SQL_MakeDbTuple(host, user, password, db)
+    g_SQL_Tuple = SQL_MakeStdTuple(30)
 
     format(g_Query, charsmax(g_Query), "SET NAMES utf8")
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 
     new map_name[32]
     get_mapname(map_name, 31)
-    format(g_Query, charsmax(g_Query), "INSERT INTO `zp_maps` (`map`) VALUES ('%s') \
+    format(g_Query, charsmax(g_Query), "INSERT INTO `bio_maps` (`map`) VALUES ('%s') \
         ON DUPLICATE KEY UPDATE `games` = `games` + 1", map_name)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
     new inactive_period = get_systime() - max_inactive_days*24*60*60
-    format(g_Query,charsmax(g_Query),"DELETE FROM `zp_players` \
+    format(g_Query,charsmax(g_Query),"DELETE FROM `bio_players` \
             WHERE `last_leave` < %d", inactive_period)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 }
@@ -147,7 +135,7 @@ public auth_player(taskid)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
-    format(g_Query, charsmax(g_Query), "SELECT `id` FROM `zp_players` \
+    format(g_Query, charsmax(g_Query), "SELECT `id` FROM `bio_players` \
             WHERE BINARY `nick`='%s'", g_UserName[id])
 
     new data[2]
@@ -182,7 +170,7 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     else
     {
         format(g_Query,charsmax(g_Query),
-            "INSERT INTO `zp_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s'",
+            "INSERT INTO `bio_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s'",
             g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
     }
@@ -214,7 +202,7 @@ public update_last_seen(taskid)
     new id = taskid - TASKID_LASTSEEN
     
     new last_leave = get_systime()
-    format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d", 
+    format(g_Query,charsmax(g_Query),"UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
         last_leave, g_UserDBId[id])
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     return PLUGIN_HANDLED
@@ -235,7 +223,7 @@ public client_infochanged(id)
         if (g_UserDBId[id])
         {
             new last_leave = get_systime()
-            format(g_Query,charsmax(g_Query),"UPDATE `zp_players` SET `last_leave` = %d WHERE `id`=%d", 
+            format(g_Query,charsmax(g_Query),"UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
                 last_leave, g_UserDBId[id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
@@ -256,20 +244,20 @@ public event_infect(id, infector)
         if (g_UserDBId[id])
         {
             format(g_Query, charsmax(g_Query), 
-                "UPDATE `zp_players` SET `infected` = `infected` + 1 WHERE `id`=%d", g_UserDBId[id])
+                "UPDATE `bio_players` SET `infected` = `infected` + 1 WHERE `id`=%d", g_UserDBId[id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
         if (g_UserDBId[infector])
         {
             format(g_Query, charsmax(g_Query),
-                "UPDATE `zp_players` SET `infect` = `infect` + 1 WHERE `id`=%d", g_UserDBId[infector])
+                "UPDATE `bio_players` SET `infect` = `infect` + 1 WHERE `id`=%d", g_UserDBId[infector])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
     }
     else if (g_UserDBId[id])
     {
         format(g_Query, charsmax(g_Query),
-            "UPDATE `zp_players` SET `first_zombie` = `first_zombie` + 1 WHERE `id`=%d", g_UserDBId[id])
+            "UPDATE `bio_players` SET `first_zombie` = `first_zombie` + 1 WHERE `id`=%d", g_UserDBId[id])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
 }
@@ -322,14 +310,14 @@ public logevent_endRound()
             if (g_UserDBId[players[maxInfectId]])
             {
                 format(g_Query, charsmax(g_Query),
-                    "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
+                    "UPDATE `bio_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
                     g_UserDBId[players[maxInfectId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
             if (g_UserDBId[players[maxDmgId]])
             {
                 format(g_Query, charsmax(g_Query),
-                    "UPDATE `zp_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
+                    "UPDATE `bio_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
                     g_UserDBId[players[maxDmgId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
@@ -353,7 +341,7 @@ public fw_HamKilled(id, attacker, shouldgib)
     if (g_UserDBId[id] && is_user_connected(attacker))
     {
         format(g_Query, charsmax(g_Query),
-            "UPDATE `zp_players` SET `death` = `death` + 1 WHERE `id`=%d", g_UserDBId[id])
+            "UPDATE `bio_players` SET `death` = `death` + 1 WHERE `id`=%d", g_UserDBId[id])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
 
@@ -378,7 +366,7 @@ public fw_HamKilled(id, attacker, shouldgib)
             {
                 // extra
                 format(g_Query, charsmax(g_Query),
-                    "UPDATE `zp_players` SET `extra` = `extra` + 5 WHERE `id`=%d",
+                    "UPDATE `bio_players` SET `extra` = `extra` + 5 WHERE `id`=%d",
                     g_UserDBId[player])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
@@ -387,7 +375,7 @@ public fw_HamKilled(id, attacker, shouldgib)
 
     if (g_UserDBId[player])
     {
-        format(g_Query, charsmax(g_Query), "UPDATE `zp_players` SET `%s` = `%s` + %d WHERE `id`=%d",
+        format(g_Query, charsmax(g_Query), "UPDATE `bio_players` SET `%s` = `%s` + %d WHERE `id`=%d",
             g_types[type], g_types[type], killer_frags, g_UserDBId[player])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
@@ -446,21 +434,6 @@ public handleSay(id)
             show_top(id, 15)
         return PLUGIN_HANDLED
     }
-    else if (equal(arg1, "/db"))
-    {
-        new playersNum, players[32]
-        get_players(players, playersNum)
-        for (new i = 0; i < playersNum; i++)
-        {
-            if(is_user_connected(players[i]))
-            {
-                new name[32]
-                get_user_name(players[i], name, 31)
-                log_amx("DB:%s=%d", name, g_UserDBId[players[i]])
-            }
-        }
-        return PLUGIN_HANDLED
-    }
 
     return PLUGIN_CONTINUE
 }
@@ -486,10 +459,10 @@ public show_rank(id, unquoted_whois[])
 {
     if (!unquoted_whois[0])
     {
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d", 
+            FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d", 
             g_UserDBId[id])
     }
     else
@@ -497,10 +470,10 @@ public show_rank(id, unquoted_whois[])
         mysql_escape_string(unquoted_whois, 31)
         copy(whois, 31, unquoted_whois)
     
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
+            FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` \
             WHERE `nick` LIKE BINARY '%%%s%%' LIMIT 1",
             whois, whois)
     }
@@ -556,10 +529,10 @@ public show_stats(id, unquoted_whois[])
 {
     if (!unquoted_whois[0])
     {
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `zp_players` \
+            FROM (SELECT @_c := 0) r, `bio_players` \
             ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d", 
             g_UserDBId[id])
     }
@@ -568,10 +541,10 @@ public show_stats(id, unquoted_whois[])
         mysql_escape_string(unquoted_whois, 31)
         copy(whois, 31, unquoted_whois)
     
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `zp_players`) AS `total` FROM \
+        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `zp_players` ORDER BY `skill` DESC) AS `newtable` \
+            FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` \
             WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
             LIMIT 1",
             whois, whois)
@@ -679,7 +652,7 @@ public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], siz
 
 public show_top(id, top)
 {
-    format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `zp_players`")
+    format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `bio_players`")
     new data[3]
     data[0] = id
     data[1] = get_user_userid(id)
@@ -720,7 +693,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
             `infect`, `death`, `infected`, `rank`, `extra` FROM \
             (SELECT *, (@_c := @_c + 1) AS `rank`, \
             ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `zp_players` \
+            FROM (SELECT @_c := 0) r, `bio_players` \
             ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= %d ORDER BY `rank` DESC LIMIT 15", 
             top)
     new more_data[4]

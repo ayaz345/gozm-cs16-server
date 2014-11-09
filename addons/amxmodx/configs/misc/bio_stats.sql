@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `zp_players` (
+CREATE TABLE IF NOT EXISTS `bio_players` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `nick` varchar(32) character set utf8 NOT NULL,
   `ip` varchar(32) character set utf8 NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `zp_players` (
   KEY `nick` (`nick`,`ip`,`steam_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `zp_maps` (
+CREATE TABLE IF NOT EXISTS `bio_maps` (
   `id` int(11) NOT NULL auto_increment,
   `map` varchar(32) NOT NULL,
   `games` int(11) NOT NULL default '1',

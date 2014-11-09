@@ -1,104 +1,3 @@
-/*================================================================================
-	
-	------------------------
-	-*- Napalm Nades 1.3 -*-
-	------------------------
-	
-	~~~~~~~~~~~~~~~
-	- Description -
-	~~~~~~~~~~~~~~~
-	
-	This plugin turns one of the default grenades into a napalm bomb that
-	can set players on fire. Basically a CS port of the "fire grenades"
-	I originally developed for Zombie Plague, at the request of some people
-	and since there were no similiar plugins around. Have fun!
-	
-	~~~~~~~~~~~~~~~~
-	- Requirements -
-	~~~~~~~~~~~~~~~~
-	
-	* Mods: Counter-Strike 1.6 or Condition-Zero
-	* AMXX: Version 1.8.0 or later
-	
-	~~~~~~~~~~~~~~~~
-	- Installation -
-	~~~~~~~~~~~~~~~~
-	
-	* Extract .amxx file to your plugins folder, and add its name to plugins.ini
-	* Extract flame.spr to the "sprites" folder on your server
-	* To change models or sounds, open up the .sma with any text editor and look
-	   for the customization section. When you're done, recompile.
-	
-	~~~~~~~~~~~~
-	- Commands -
-	~~~~~~~~~~~~
-	
-	* say /napalm - Buy a napalm grenade (when override is off)
-	
-	~~~~~~~~~
-	- CVARS -
-	~~~~~~~~~
-	
-	* napalm_on <0/1> - Enable/Disable Napalm Nades
-	* napalm_affect <1/2/3> - Which nades should be napalms (1-HE // 2-FB // 3-SG)
-	* napalm_team <0/1/2> - Determines which team can buy/use napalm nades
-	   (0-both teams // 1-Terrorists only // 2-CTs only)
-	* napalm_override <0/1> - If enabled, grenades will automatically become
-	   napalms without players having to buy them
-	* napalm_price <1000> - Money needed to buy a napalm (when override is off)
-	* napalm_buyzone <0/1> - If enabled, players need to be in a buyzone to
-	   purchase a napalm (when override is off)
-	* napalm_carrylimit <1> - How many napalms can be carried at once
-	
-	* napalm_radius <240> - Napalm explosion radius
-	* napalm_hitself <0/1> - If enabled, napalms will also affect their owner
-	* napalm_ff <0/1> - If enabled, napalms will also affect teammates
-	* napalm_spread <0/1> - If enabled, players will be able to catch fire
-	   from others when they touch
-	* napalm_keepexplosion <0/1> - Wether to keep the default CS explosion
-	
-	* napalm_duration <5> - How long the burning lasts in seconds
-	* napalm_damage <2> - How much damage the burning does (every 0.2 secs)
-	* napalm_cankill <0/1> - If set, burning will be able to kill the victim
-	* napalm_slowdown <0.5> - Burning slow down, set between: 0.1 (slower) and
-	   0.9 (faster). Use 0 to disable.
-	* napalm_screamrate <20> - How often players will scream when on fire
-	   (lower values = more screams). Use 0 to disable.
-	
-	~~~~~~~~~~~~~
-	- Changelog -
-	~~~~~~~~~~~~~
-	
-	* v1.0: (Jul 26, 2008)
-	   - First release
-	
-	* v1.1: (Aug 15, 2008)
-	   - Grenades now explode based on their pev_dmgtime (means the
-	      plugin is now compatible with Nade Modes)
-	   - Changed method to identify napalm nades when override is off
-	   - Fire spread feature now fully working with CZ bots
-	
-	* v1.1b: (Aug 23, 2008)
-	   - Optimized bandwidth usage for temp entity messages
-	
-	* v1.1c: (Aug 26, 2008)
-	   - Fixed possible bugs with plugins that change a player's team
-	      after throwing a napalm nade
-	
-	* v1.2: (Oct 05, 2008)
-	   - Added a few cvars that allow more customization
-	   - Optimized the code a bit
-	   - Fixed a bug where buying 2 napalms too quick would sometimes
-	      result in the second acting as a normal nade
-
-	* v1.3: (Feb 17, 2009)
-	   - Added ability to carry multiple napalms at once (+CVAR)
-	
-	* v1.3a: (Mar 16, 2009)
-	   - Code optimized (+CVARs now cached at round start)
-	
-================================================================================*/
-
 #include <amxmodx>
 #include <fakemeta>
 #include <hamsandwich>
@@ -109,20 +8,8 @@
  [Plugin Customization]
 =================================================================================*/
 
-// Uncomment the following if you wish to set custom models for napalms
-//#define USE_NAPALM_CUSTOM_MODELS
-
-#if defined USE_NAPALM_CUSTOM_MODELS // Then set your custom models here
-new const g_model_napalm_view[] = "models/v_hegrenade"
-new const g_model_napalm_player[] = "models/p_hegrenade.mdl"
-new const g_model_napalm_world[] = "models/w_hegrenade.mdl"
-#endif
-
 // Explosion sounds
 new const grenade_fire[][] = { "weapons/hegrenade-1.wav" }
-
-// Player burning sounds
-//new const grenade_fire_player[][] = { "scientist/sci_fear8.wav", "scientist/sci_pain1.wav", "scientist/scream02.wav" }
 
 // Grenade sprites
 new const sprite_grenade_fire[] = "sprites/flame.spr"
@@ -175,9 +62,6 @@ new const AFFECTED_NAMES[][] = { "HE", "FB", "SG" }
 new const AFFECTED_CLASSNAMES[][] = { "weapon_hegrenade", "weapon_flashbang", "weapon_smokegrenade" }
 new const AFFECTED_MODELS[][] = { "w_he", "w_fl", "w_sm" }
 new const AFFECTED_AMMOID[] = { 12, 11, 13 }
-#if defined USE_NAPALM_CUSTOM_MODELS
-new const AFFECTED_WEAPONS[] = { CSW_HEGRENADE, CSW_FLASHBANG, CSW_SMOKEGRENADE }
-#endif
 
 // CS Sounds
 new const sound_buyammo[] = "items/9mmclip1.wav"
@@ -195,7 +79,6 @@ new g_msgDamage, g_msgMoney, g_msgBlinkAcct, g_msgAmmoPickup
 new cvar_radius, cvar_price, cvar_hitself, cvar_duration, cvar_slowdown, cvar_override,
 cvar_damage, cvar_on, cvar_buyzone, cvar_ff, cvar_cankill, cvar_spread, cvar_botquota,
 cvar_teamrestrict, cvar_keepexplosion, cvar_affect, cvar_carrylimit
-//cvar_screamrate
 
 // Cached stuff
 new g_maxplayers, g_on, g_affect, g_override, g_allowedteam, g_keepexplosion, g_spread,
@@ -219,12 +102,6 @@ public plugin_precache()
 	
 	// CS sounds (just in case)
 	engfunc(EngFunc_PrecacheSound, sound_buyammo)
-	
-#if defined USE_NAPALM_CUSTOM_MODELS
-	engfunc(EngFunc_PrecacheModel, g_model_napalm_view)
-	engfunc(EngFunc_PrecacheModel, g_model_napalm_player)
-	engfunc(EngFunc_PrecacheModel, g_model_napalm_world)
-#endif
 }
 
 public plugin_init()
@@ -239,10 +116,6 @@ public plugin_init()
 	register_forward(FM_SetModel, "fw_SetModel")
 	RegisterHam(Ham_Think, "grenade", "fw_ThinkGrenade")
 	RegisterHam(Ham_Touch, "player", "fw_TouchPlayer")
-#if defined USE_NAPALM_CUSTOM_MODELS
-	for (new i = 0; i < sizeof AFFECTED_CLASSNAMES; i++)
-		RegisterHam(Ham_Item_Deploy, AFFECTED_CLASSNAMES[i], "fw_Item_Deploy_Post", 1)
-#endif
 	
 	// Client commands
 	register_clcmd("say napalm", "buy_napalm")
@@ -267,7 +140,6 @@ public plugin_init()
 	cvar_damage = register_cvar("napalm_damage", "8")
 	cvar_cankill = register_cvar("napalm_cankill", "0")
 	cvar_slowdown = register_cvar("napalm_slowdown", "0.77")
-//	cvar_screamrate = register_cvar("napalm_screamrate", "20")
 	
 	cvar_botquota = get_cvar_pointer("bot_quota")
 	g_maxplayers = get_maxplayers()
@@ -301,7 +173,6 @@ public event_round_start()
 	g_price = get_pcvar_num(cvar_price)
 	g_carrylimit = get_pcvar_num(cvar_carrylimit)
 	g_hitself = get_pcvar_num(cvar_hitself)
-//	g_screamrate = get_pcvar_num(cvar_screamrate)
 	g_slowdown = get_pcvar_float(cvar_slowdown)
 	g_damage = floatround(get_pcvar_float(cvar_damage), floatround_ceil)
 	g_cankill = get_pcvar_num(cvar_cankill)
@@ -311,20 +182,6 @@ public event_round_start()
 	for (new id = 1; id <= g_maxplayers; id++)
 		remove_task(id+TASK_BURN);
 }
-
-/*
-// Client joins the game
-public client_putinserver(id)
-{
-	// CZ bots seem to use a different "classtype" for player entities
-	// (or something like that) which needs to be hooked separately
-	if (!g_hamczbots && cvar_botquota && is_user_bot(id))
-	{
-		// Set a task to let the private data initialize
-		set_task(0.1, "register_ham_czbots", id)
-	}
-}
-*/
 
 // Set Model Forward
 public fw_SetModel(entity, const model[])
@@ -394,14 +251,8 @@ public fw_SetModel(entity, const model[])
 	
 	// Set owner's team on the thrown grenade entity
 	set_pev(entity, pev_team, owner_team)
-	
-#if defined USE_NAPALM_CUSTOM_MODELS
-	// Set custom model and supercede the original forward
-	engfunc(EngFunc_SetModel, entity, g_model_napalm_world)
-	return FMRES_SUPERCEDE;
-#else
+
 	return FMRES_IGNORED;
-#endif
 }
 
 // Grenade Think Forward
@@ -474,39 +325,6 @@ public fw_TouchPlayer(self, other)
 	// Set burning task on victim
 	set_task(0.1, "burning_flame", other+TASK_BURN, params, sizeof params)
 }
-
-#if defined USE_NAPALM_CUSTOM_MODELS
-// Ham Weapon Deploy Forward
-public fw_Item_Deploy_Post(entity)
-{
-	// Napalm grenades disabled
-	if (!g_on) return;
-	
-	// Not a napalm grenade (because the weapon entity of its owner doesn't have the flag set)
-	if (!g_override && pev(entity, PEV_NADE_TYPE) != NADE_TYPE_NAPALM)
-		return;
-	
-	// Get weapon's id
-	static weaponid
-	weaponid = fm_get_weapon_ent_id(entity)
-	
-	// Not an affected grenade
-	if (weaponid != AFFECTED_WEAPONS[g_affect-1])
-		return;
-	
-	// Get weapon's owner
-	static owner
-	owner = fm_get_weapon_ent_owner(entity)
-	
-	// Player is on a restricted team
-	if (g_allowedteam > 0 && g_allowedteam != fm_get_user_team(owner))
-		return;
-	
-	// Replace models
-	set_pev(owner, pev_viewmodel2, g_model_napalm_view)
-	set_pev(owner, pev_weaponmodel2, g_model_napalm_player)
-}
-#endif
 
 // Napalm purchase command
 public buy_napalm(id)
@@ -715,11 +533,7 @@ public burning_flame(args[2], taskid)
 		
 		return;
 	}
-	
-	// Randomly play burning sounds
-//	if (g_screamrate > 0 && random_num(1, g_screamrate) == 1)
-//		engfunc(EngFunc_EmitSound, ID_BURN, CHAN_VOICE, grenade_fire_player[random_num(0, sizeof grenade_fire_player - 1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
-	
+
 	// Fire slow down
 	if (g_slowdown > 0.0 && (flags & FL_ONGROUND))
 	{

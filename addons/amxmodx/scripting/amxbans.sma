@@ -107,14 +107,7 @@ public addBanhistMenu()
 
 public sql_init()
 {
-	new host[64], user[64], pass[64], db[64]
-
-	get_cvar_string("amx_sql_host", host, 63)
-	get_cvar_string("amx_sql_user", user, 63)
-	get_cvar_string("amx_sql_pass", pass, 63)
-	get_cvar_string("amx_sql_db", db, 63)
-
-	g_SqlX = SQL_MakeDbTuple(host, user, pass, db)
+	g_SqlX = SQL_MakeStdTuple(30)
 	
 	set_task(1.0, "banmod_online")
 	set_task(1.0, "fetchReasons")

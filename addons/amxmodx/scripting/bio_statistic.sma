@@ -72,10 +72,6 @@ public plugin_init()
 
 public plugin_cfg()
 {
-    new cfgdir[32]
-    get_configsdir(cfgdir, charsmax(cfgdir))
-    server_cmd("exec %s/bio_stats.cfg", cfgdir)
-
     set_task(0.1, "sql_init")
 }
 

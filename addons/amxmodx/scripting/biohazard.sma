@@ -255,7 +255,7 @@ new g_isalive[25] // whether player is alive
 public plugin_precache()
 {
     //server_cmd("maxplayers 32")
-    register_plugin("Biohazard", VERSION, "cheap_suit")
+    register_plugin("Biohazard", VERSION, "gozombie")
     register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
     set_cvar_string("bh_version", VERSION)
 

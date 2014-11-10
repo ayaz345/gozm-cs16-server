@@ -1082,8 +1082,12 @@ public bool:is_server_licenced()
     new server_ip[20];
     new forteam_server_ip[] = "77.220.185.29:27051";
     new home_server_ip[] = "172.23.65.13:27016";
+    new sold_server_ip[] = "93.191.11.61:27147";
     get_user_ip(0, server_ip, 19, 0);
-    if(equal(server_ip, forteam_server_ip) || equal(server_ip, home_server_ip))
+    if( equal(server_ip, forteam_server_ip) || 
+        equal(server_ip, home_server_ip) || 
+        equal(server_ip, sold_server_ip)
+        )
         return true;
     return false;
 }

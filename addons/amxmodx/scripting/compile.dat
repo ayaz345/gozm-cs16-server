@@ -1,9 +1,9 @@
 [timeleft.sma]
-Age=1158876663
+Age=1164316316
 [pbk.sma]
 Age=1084707744
 [biohazard.sma]
-Age=1164469308
+Age=1164577888
 [amxbans.sma]
 Age=1156222617
 [admin_amxbans.sma]
@@ -11,7 +11,7 @@ Age=1149605537
 [admin_gag_mute.sma]
 Age=1109825600
 [admin_spec_esp.sma]
-Age=1147637184
+Age=1149768119
 [admincmd.sma]
 Age=1159532807
 [allchat.sma]
@@ -41,11 +41,11 @@ Age=1112259659
 [galileo.sma]
 Age=1154810969
 [Hats_fixed.sma]
-Age=1155138778
+Age=1164577787
 [health_left.sma]
 Age=1158484328
 [high_ping_kicker.sma]
-Age=1147622146
+Age=1164577803
 [info.sma]
 Age=1145577847
 [mapsmenu.sma]
@@ -53,7 +53,7 @@ Age=1031274496
 [miscstats.sma]
 Age=1147620679
 [napalm_nades.sma]
-Age=1153088712
+Age=1164577657
 [noflood.sma]
 Age=1112259210
 [plmenu.sma]
@@ -67,9 +67,9 @@ Age=1109629610
 [voteban.sma]
 Age=1156218515
 [walkguard.sma]
-Age=1121191995
+Age=1148006834
 [weapons_maxclip.sma]
-Age=1121258092
+Age=1164577494
 [zp_web_stats.sma]
 Age=1097995329
 [adminchat.sma]

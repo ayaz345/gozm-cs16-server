@@ -12,17 +12,6 @@
 
 #pragma reqlib "biohazardf"
 
-/* Returns the mods status */
-stock is_biomod_active()
-{
-	if(!cvar_exists("bh_enabled"))
-	{
-		log_amx("Cvar: ^"bh_enabled^" does not exist.")
-		return 0
-	}
-	return get_cvar_num("bh_enabled")
-}
-
 /* Called when a survivor is infected */
 forward event_infect(victim, attacker)
 

@@ -232,13 +232,13 @@ new g_maxplayers, g_spawncount, g_buyzone,
     g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie, 
     g_first_zombie_name[32]
     
-new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime, 
-    cvar_lights, cvar_healthbonus, cvar_killbonus, cvar_enabled, 
+new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
+    cvar_lights, cvar_healthbonus, cvar_killbonus,
     cvar_gamedescription, cvar_flashbang, cvar_impactexplode,
     cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius,
-    cvar_start_money
+    cvar_start_money, cvar_forum, cvar_demo_name
     
 new bool:g_zombie[25], g_roundstart_time,
     bool:g_blockmodel[25], 
@@ -259,17 +259,14 @@ public plugin_precache()
     register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
     set_cvar_string("bh_version", VERSION)
 
-    cvar_enabled = register_cvar("bh_enabled", "1")
-
-    if(!get_pcvar_num(cvar_enabled)) 
-        return
-
     if(!is_server_licenced())
         return
 
     cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
+    cvar_forum = register_cvar("bh_forum", "vk.com/go_zombie")
+    cvar_demo_name = register_cvar("bh_demoname", "go_zombie")
     cvar_randomspawn = register_cvar("bh_randomspawn", "0")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_ammo = register_cvar("bh_ammo", "1")
@@ -343,7 +340,7 @@ public plugin_precache()
 
 public plugin_init()
 {
-    if(!get_pcvar_num(cvar_enabled)) 
+    if(!is_server_licenced())
         return
 
     cvar_autoteambalance[0] = get_cvar_pointer("mp_autoteambalance")
@@ -461,8 +458,7 @@ public change_rcon()
 
 public plugin_end()
 {
-    if(get_pcvar_num(cvar_enabled))
-        set_pcvar_num(cvar_autoteambalance[0], cvar_autoteambalance[1])
+    set_pcvar_num(cvar_autoteambalance[0], cvar_autoteambalance[1])
 
     new hpk_file_size = file_size("custom.hpk")
     if (hpk_file_size/1000 > 1000.0)
@@ -513,22 +509,30 @@ public client_putinserver(id)
 
 public recordDemo(id)
 {
-    colored_print(id, "^x01 Вконтакте:^x04 vk.com/go_zombie")
-    colored_print(id, "^x01 Записывается демка:^x03 go_zombie.dem")
+    static forum[32]
+    get_pcvar_string(cvar_forum, forum, 31)
+    if(strlen(forum) > 0)
+        colored_print(id, "^x01 Общайся:^x04 %s", forum)
 
-    client_cmd(id,"stop")
-    if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
-    {	
-        new CurrentTime[32]
-        get_time("%H%M",CurrentTime,31)
-        new CurrentDate[32]
-        get_time("%y-%m-%d",CurrentDate,31)
-        new mapname[32]
-        get_mapname(mapname, 31)
-        client_cmd( id,"record %s_%s_%s", CurrentDate, CurrentTime, mapname)
+    static demo_name[32]
+    get_pcvar_string(cvar_demo_name, demo_name, 31)
+    if(strlen(demo_name) > 0)
+    {
+        colored_print(id, "^x01 Записывается демка:^x03 %s.dem", demo_name)
+        client_cmd(id,"stop")
+        if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
+        {	
+            new CurrentTime[32]
+            get_time("%H%M",CurrentTime,31)
+            new CurrentDate[32]
+            get_time("%y-%m-%d",CurrentDate,31)
+            new mapname[32]
+            get_mapname(mapname, 31)
+            client_cmd( id,"record %s_%s_%s", CurrentDate, CurrentTime, mapname)
+        }
+        else
+            client_cmd(id, "record %s", demo_name)
     }
-    else
-        client_cmd(id,"record go_zombie")
 }
 
 check_round(leaving_player)
@@ -2542,20 +2546,6 @@ bacon_strip_weapon(index, weapon[])
 	set_pev(index, pev_weapons, pev(index, pev_weapons) & ~(1<<weaponid))
 
 	return 1
-}
-
-stock str_count(str[], searchchar)
-{
-	static maxlen
-	maxlen = strlen(str)
-	
-	static i, count
-	count = 0
-	
-	for(i = 0; i <= maxlen; i++) if(str[i] == searchchar)
-		count++
-
-	return count
 }
 
 set_zombie_attibutes(index)

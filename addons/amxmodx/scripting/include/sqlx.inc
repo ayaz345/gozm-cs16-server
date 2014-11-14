@@ -1,6 +1,15 @@
-/**
- * SQLX - Newer version of SQL stuff
- */
+// vim: set ts=4 sw=4 tw=99 noet:
+//
+// AMX Mod X, based on AMX Mod by Aleksander Naszko ("OLO").
+// Copyright (C) The AMX Mod X Development Team.
+//
+// This software is licensed under the GNU General Public License, version 3 or higher.
+// Additional exceptions apply. For full license details, see LICENSE.txt or visit:
+//     https://alliedmods.net/amxmodx-license
+
+//
+// SQLX - Newer SQL Database API
+//
 
 #if defined _sqlx_included
   #endinput
@@ -55,6 +64,22 @@ native Handle:SQL_Connect(Handle:cn_tuple, &errcode, error[], maxlength);
 
 
 /**
+ * Sets the character set of the current connection. 
+ * Like SET NAMES .. in mysql, but stays after connection problems.
+ * 
+ * If a connection tuple is supplied, this should be called before SQL_Connect or SQL_ThreadQuery.
+ * Also note the change will remain until you call this function with another value.
+ * 
+ * Example: "utf8", "latin1"
+ *
+ * @param h					Database or connection tuple Handle.
+ * @param charset			The character set string to change to.
+ * @return					True, if character set was changed, false otherwise.
+ */
+native bool:SQL_SetCharset(Handle:h, const charset[]);
+
+
+/**
  * Prepares a query.
  * The query must always be freed.
  * This does not actually do the query!
@@ -67,7 +92,8 @@ native Handle:SQL_PrepareQuery(Handle:db, const fmt[], any:...);
  * Note: The buffer's maximum size should be 2*strlen(string) to catch
  * all scenarios.
  *
- * @param db				Database handle, for localization.
+ * @param db				Database handle for localization, or Empty_Handle 
+ *                          for when a handle is not available.
  * @param buffer			Buffer to copy to.
  * @param buflen			Maximum size of the buffer.
  * @param string			String to backquote (should not overlap buffer).
@@ -80,7 +106,8 @@ native SQL_QuoteString(Handle:db, buffer[], buflen, const string[]);
  * Note: The buffer's maximum size should be 2*strlen(string) to catch
  * all scenarios.
  *
- * @param db				Database handle, for localization.
+ * @param db				Database handle for localization, or Empty_Handle 
+ *                          for when a handle is not available.
  * @param buffer			Buffer to copy to.
  * @param buflen			Maximum size of the buffer.
  * @param fmt				Format of string to backquote (should not overlap buffer).

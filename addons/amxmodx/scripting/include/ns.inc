@@ -1,9 +1,15 @@
-/* NS module functions
- *
- * by the AMX Mod X Development Team
- *
- * This file is provided as is (no warranties).
- */
+// vim: set ts=4 sw=4 tw=99 noet:
+//
+// AMX Mod X, based on AMX Mod by Aleksander Naszko ("OLO").
+// Copyright (C) The AMX Mod X Development Team.
+//
+// This software is licensed under the GNU General Public License, version 3 or higher.
+// Additional exceptions apply. For full license details, see LICENSE.txt or visit:
+//     https://alliedmods.net/amxmodx-license
+
+//
+// Natural Selection Module Functions
+//
 
 #if defined NS_INC
 	#endinput
@@ -35,7 +41,7 @@
 forward client_changeclass(id, newclass, oldclass);
 
 /**
- * Called whenever the client builds a structyure.
+ * Called whenever the client builds a structure.
  *
  * @param idPlayer		The player index who triggered the building.
  * @param idStructure	The structure index that was created.
@@ -537,6 +543,7 @@ forward client_spawn(id);
  * @param Damage		The amount of damage being done.
  * @param DamageType	The damage type being done (bitmask).
  */
+#pragma deprecated It is suggested to use hamsandwich for this action instead.
 native ns_takedamage(IDVictim, IDInflictor, IDAttacker, Float:Damage, DamageType);
 
 /**
@@ -663,6 +670,23 @@ native Float:ns_add_weld_done(idWeldable,Float:value);
 native Float:ns_get_obs_energy(idObs);
 native ns_set_obs_energy(idObs,Float:value);
 native Float:ns_add_obs_energy(idObs,Float:value);
+
+/**
+ * Removes an upgrade from the player's bought and active upgrade lists.
+ * This will not refund the points spent on the upgrade, nor will it
+ * immediately strip the upgrade if the player is alive.  Rather, it will
+ * make it so the player no longer receives the upgrade on spawn.
+ *
+ * @note This only works in combat.
+ * @params idPlayer		The player index to change upgrades for.
+ * @params ugprade		The impulse number for the upgrade to strip.
+ * @return 				2 for upgrade removed from player's bought and active list.
+ *						1 for upgrade removed from player's bought list only.
+ *						3 for upgrade removed from player's active list only (shouldn't happen, just incase.)
+ *						0 for the player didn't have the upgrade in either list.
+ */
+native ns_remove_upgrade(idPlayer, upgrade);
+
 /**
  * Particle system natives
  * -

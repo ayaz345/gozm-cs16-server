@@ -22,84 +22,90 @@ new amxbans_version[] = "amxx_5.0" // This is for the DB
 // 16k * 4 = 64k stack size
 #pragma dynamic 16384 		// Give the plugin some extra memory to use
 
+new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
+
 public plugin_init()
 {
-	register_concmd("amx_reloadreasons", "reasonReload", ADMIN_CFG)
+    register_concmd("amx_reloadreasons", "reasonReload", ADMIN_CFG)
 
-	register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu") //Changed this line to make this menu come up instead of the normal amxx ban menu
-	register_clcmd("amxbans_custombanreason", "setCustomBanReason", ADMIN_BAN, "- configures custom ban message")
-	register_clcmd("amx_banhistorymenu", "cmdBanhistoryMenu", ADMIN_LEVEL_H, "- displays banhistorymenu")
-	
-	register_menucmd(register_menuid("Ban Menu"), 1023, "actionBanMenu")
-	register_menucmd(register_menuid("Ban Reason Menu"), 1023, "actionBanMenuReason")
-	register_menucmd(register_menuid("Banhistory Menu"), 1023, "actionBanhistoryMenu")
+    register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu") //Changed this line to make this menu come up instead of the normal amxx ban menu
+    register_clcmd("amxbans_custombanreason", "setCustomBanReason", ADMIN_BAN, "- configures custom ban message")
+    register_clcmd("amx_banhistorymenu", "cmdBanhistoryMenu", ADMIN_LEVEL_H, "- displays banhistorymenu")
 
-	g_coloredMenus = colored_menus()
+    register_menucmd(register_menuid("Ban Menu"), 1023, "actionBanMenu")
+    register_menucmd(register_menuid("Ban Reason Menu"), 1023, "actionBanMenuReason")
+    register_menucmd(register_menuid("Banhistory Menu"), 1023, "actionBanhistoryMenu")
 
-	register_plugin(PLUGIN_NAME, VERSION, AUTHOR)
-	register_cvar("amxbans_version", VERSION, FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
+    g_coloredMenus = colored_menus()
 
-	amxbans_cmd_sql = register_cvar("amxbans_cmd_sql", "0") // A custom plugin that is not released yet so dont touch this cvar.
-	amxbans_debug = register_cvar("amxbans_debug", "1") // Set this to 1 to enable debug
-	server_nick = register_cvar("amxbans_servernick", "") // Set this cvar to what the adminname should be if the server make the ban.
-																											  // Ie. amxbans_servernick "My Great server" put this in server.cfg or amxx.cfg
-	ban_evenif_disconn = register_cvar("amxbans_ban_evenif_disconnected", "0") // 1 enabled and 0 disabled ban of players not in server
-	complainurl = register_cvar("amxbans_complain_url", "www.yoursite.com") // Dont use http:// then the url will not show
-	show_prebanned = register_cvar("amxbans_show_prebanned", "1") // Will show if a player has been banned before as amx_chat to admins. 0 to disable
-	show_prebanned_num = register_cvar("amxbans_show_prebanned_num", "2") // How many offences should the player have to notify admins?
-	max_time_to_show_preban = register_cvar("amxbans_max_time_to_show_preban", "9999") // How many days must go if the ban should not count
-	banhistmotd_url = register_cvar("amxbans_banhistmotd_url","http://pathToYour/findex.php?steamid=%s&ip=%s")
-	show_atacbans = register_cvar("amxbans_show_prebans_from_atac", "1") // neohasses custom to not count or count atac bans in the chat to admins
-	show_name_evenif_mole = register_cvar("amxbans_show_name_evenif_mole", "1")
-	firstBanmenuValue = register_cvar("amxbans_first_banmenu_value", "5")
-	consoleBanMax = register_cvar("amxbans_consolebanmax", "1440")
-	max_time_gone_to_unban = register_cvar("amxbans_max_time_gone_to_unban", "1440") // This is set in minutes
-	higher_ban_time_admin = register_cvar("amxbans_higher_ban_time_admin", "n")
-	admin_mole_access = register_cvar("amxbans_admin_mole_access", "r")
-	show_in_hlsw = register_cvar("amxbans_show_in_hlsw", "1")
-	add_mapname_in_servername = register_cvar("amxbans_add_mapname_in_servername", "0")
-	
-	register_dictionary("amxbans.txt")
-	register_dictionary("common.txt")
-	register_dictionary("time.txt")
+    register_plugin(PLUGIN_NAME, VERSION, AUTHOR)
+    register_cvar("amxbans_version", VERSION, FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
 
-	register_concmd("amx_ban", "cmdBan", ADMIN_BAN, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
-	register_srvcmd("amx_ban", "cmdBan", -1, "<time in min> <steamID or nickname or #authid or IP> <reason>")
-	register_concmd("amx_banip", "cmdBan", ADMIN_BAN, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
-	register_srvcmd("amx_banip", "cmdBan", -1, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
-	register_concmd("amx_unban", "cmdUnBan", ADMIN_BAN, "<steamID or nickname>")
-	register_srvcmd("amx_unban", "cmdUnBan", -1, "<steamID or nickname>")
-	register_concmd("amx_find", "amx_find", ADMIN_BAN, "<steamID>")
-	register_srvcmd("amx_find", "amx_find", -1, "<steamID>")
-	register_concmd("amx_findex", "amx_findex", ADMIN_BAN, "<steamID>")
-	register_srvcmd("amx_findex", "amx_findex", -1, "<steamID>")
-	register_srvcmd("amx_list", "cmdLst", -1, "Displays playerinfo")
-	register_srvcmd("amx_sethighbantimes", "setHighBantimes")
-	register_srvcmd("amx_setlowbantimes", "setLowBantimes")
+    // store in amxbans.cfg
+    g_CvarHost = register_cvar("amxbans_host", "141.101.203.23")
+    g_CvarDB = register_cvar("amxbans_db", "b179761")
+    g_CvarUser = register_cvar("amxbans_user", "u179761")
+    g_CvarPassword = register_cvar("amxbans_password", "petyx")
 
-	new configsDir[64]
-	get_configsdir(configsDir, 63)
+    amxbans_cmd_sql = register_cvar("amxbans_cmd_sql", "0") // A custom plugin that is not released yet so dont touch this cvar.
+    amxbans_debug = register_cvar("amxbans_debug", "1") // Set this to 1 to enable debug
+    server_nick = register_cvar("amxbans_servernick", "") // Set this cvar to what the adminname should be if the server make the ban.
+                                                                                                              // Ie. amxbans_servernick "My Great server" put this in server.cfg or amxx.cfg
+    ban_evenif_disconn = register_cvar("amxbans_ban_evenif_disconnected", "0") // 1 enabled and 0 disabled ban of players not in server
+    complainurl = register_cvar("amxbans_complain_url", "www.yoursite.com") // Dont use http:// then the url will not show
+    show_prebanned = register_cvar("amxbans_show_prebanned", "1") // Will show if a player has been banned before as amx_chat to admins. 0 to disable
+    show_prebanned_num = register_cvar("amxbans_show_prebanned_num", "2") // How many offences should the player have to notify admins?
+    max_time_to_show_preban = register_cvar("amxbans_max_time_to_show_preban", "9999") // How many days must go if the ban should not count
+    banhistmotd_url = register_cvar("amxbans_banhistmotd_url","http://pathToYour/findex.php?steamid=%s&ip=%s")
+    show_atacbans = register_cvar("amxbans_show_prebans_from_atac", "1") // neohasses custom to not count or count atac bans in the chat to admins
+    show_name_evenif_mole = register_cvar("amxbans_show_name_evenif_mole", "1")
+    firstBanmenuValue = register_cvar("amxbans_first_banmenu_value", "5")
+    consoleBanMax = register_cvar("amxbans_consolebanmax", "1440")
+    max_time_gone_to_unban = register_cvar("amxbans_max_time_gone_to_unban", "1440") // This is set in minutes
+    higher_ban_time_admin = register_cvar("amxbans_higher_ban_time_admin", "n")
+    admin_mole_access = register_cvar("amxbans_admin_mole_access", "r")
+    show_in_hlsw = register_cvar("amxbans_show_in_hlsw", "1")
+    add_mapname_in_servername = register_cvar("amxbans_add_mapname_in_servername", "0")
 
-	new configfile[128]
-	format(configfile, 127, "%s/amxbans.cfg", configsDir)
-	
-	server_cmd("exec %s/sql.cfg", configsDir)
-	if(file_exists(configfile))
-	{
-		server_cmd("exec %s", configfile)
-	}
-	else
-	{
-		loadDefaultBantimes(0)
-		server_print("[AMXBANS] Could not find amxbans.cfg, loading default bantimes")
-		log_amx("[AMXBANS] Could not find amxbans.cfg, loading default bantimes")
-		log_amx("[AMXBANS] You should put amxbans.cfg in addons/amxmodx/configs/")
-	}
-	//server_exec() // Made other plugins dont work properly b/c settings in amxx.cfg was not read properly
+    register_dictionary("amxbans.txt")
+    register_dictionary("common.txt")
+    register_dictionary("time.txt")
 
-	set_task(0.5, "sql_init")
-	set_task(5.0, "addBanhistMenu")
+    register_concmd("amx_ban", "cmdBan", ADMIN_BAN, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
+    register_srvcmd("amx_ban", "cmdBan", -1, "<time in min> <steamID or nickname or #authid or IP> <reason>")
+    register_concmd("amx_banip", "cmdBan", ADMIN_BAN, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
+    register_srvcmd("amx_banip", "cmdBan", -1, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
+    register_concmd("amx_unban", "cmdUnBan", ADMIN_BAN, "<steamID or nickname>")
+    register_srvcmd("amx_unban", "cmdUnBan", -1, "<steamID or nickname>")
+    register_concmd("amx_find", "amx_find", ADMIN_BAN, "<steamID>")
+    register_srvcmd("amx_find", "amx_find", -1, "<steamID>")
+    register_concmd("amx_findex", "amx_findex", ADMIN_BAN, "<steamID>")
+    register_srvcmd("amx_findex", "amx_findex", -1, "<steamID>")
+    register_srvcmd("amx_list", "cmdLst", -1, "Displays playerinfo")
+    register_srvcmd("amx_sethighbantimes", "setHighBantimes")
+    register_srvcmd("amx_setlowbantimes", "setLowBantimes")
 
+    new configsDir[64]
+    get_configsdir(configsDir, 63)
+
+    new configfile[128]
+    format(configfile, 127, "%s/amxbans.cfg", configsDir)
+
+    if(file_exists(configfile))
+    {
+        server_cmd("exec %s", configfile)
+    }
+    else
+    {
+        loadDefaultBantimes(0)
+        server_print("[AMXBANS] Could not find amxbans.cfg, loading default bantimes")
+        log_amx("[AMXBANS] Could not find amxbans.cfg, loading default bantimes")
+        log_amx("[AMXBANS] You should put amxbans.cfg in addons/amxmodx/configs/")
+    }
+    //server_exec() // Made other plugins dont work properly b/c settings in amxx.cfg was not read properly
+
+    set_task(0.5, "sql_init")
+    set_task(5.0, "addBanhistMenu")
 }
 
 public addBanhistMenu()
@@ -107,10 +113,16 @@ public addBanhistMenu()
 
 public sql_init()
 {
-	g_SqlX = SQL_MakeStdTuple(30)
-	
-	set_task(1.0, "banmod_online")
-	set_task(1.0, "fetchReasons")
+    new host[32], db[32], user[32], password[32]
+    get_pcvar_string(g_CvarHost, host, 31)
+    get_pcvar_string(g_CvarDB, db, 31)
+    get_pcvar_string(g_CvarUser, user, 31)
+    get_pcvar_string(g_CvarPassword, password, 31)
+
+    g_SqlX = SQL_MakeDbTuple(host, user, password, db)
+
+    set_task(1.0, "banmod_online")
+    set_task(1.0, "fetchReasons")
 }
 
 public reasonReload(id,level,cid)

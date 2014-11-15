@@ -80,8 +80,6 @@ public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
         read_argv(1, szWeaponName[7], charsmax(szWeaponName)-7)
         new iId = get_weaponid(szWeaponName)
         
-        log_amx("[MAXCLIP]: %s - %d", szWeaponName, iId)
-        
         if( iId && ~NOCLIP_WPN_BS & 1<<iId )
         {
             new szMaxClip[4]
@@ -90,8 +88,6 @@ public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
             new bool:bIsShotGun = !!( SHOTGUNS_BS & (1<<iId) )
             if( iMaxClip && iMaxClip != g_iDftMaxClip[iId] )
             {
-                log_amx("[MAXCLIP]: Not default %d", iMaxClip)
-
                 g_iMaxClip[iId] = iMaxClip
                 if( g_iHhPostFrame[iId] )
                 {

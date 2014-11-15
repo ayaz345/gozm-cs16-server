@@ -12,7 +12,7 @@
 #include <cs_maxspeed_api>
 #include <cs_weap_models_api>
 #include <colored_print>
-#include <dhudmessage>
+//#include <dhudmessage>
 
 #tryinclude "biohazard.cfg"
 

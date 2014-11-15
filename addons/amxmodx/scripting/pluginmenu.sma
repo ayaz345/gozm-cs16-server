@@ -482,7 +482,6 @@ public CommandChangeCvar(id)
  */
 public CvarMenuSelection(id, menu, item)
 {
-	
 	if (item==MENU_EXIT)
 	{
 		menu_destroy(menu);
@@ -538,8 +537,6 @@ public CvarMenuSelection(id, menu, item)
 		menu_destroy(menu);
 		return PLUGIN_HANDLED;
 	}
-	
-	return 0;
 }
 /**
  * Displays the cvar menu to a client.
@@ -844,8 +841,6 @@ public CommandMenuSelection(id, menu, item)
 		DisplaySpecificCommand(id,str_to_num(Command));
 		return PLUGIN_HANDLED;
 	}
-	
-	return 0;
 }
 /**
  * This blocks "say" and "say_team" commands. 

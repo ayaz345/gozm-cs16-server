@@ -560,7 +560,7 @@ stock constraint_offset(low, high, seed, offset)
 		return high - (abs(offset) % numElements) + 1;
 	}
 	
-	return 0;	// Makes the compiler happy -_-
+//	return 0;	// Makes the compiler happy -_-
 }
 
 /* Returns true if the user has ANY of the provided flags

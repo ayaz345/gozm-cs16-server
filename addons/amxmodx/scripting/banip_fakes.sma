@@ -41,7 +41,7 @@
 #define BAN_DURATION       33
 new gszKickMsg[] =         "bye"
 
-#define MAX_PLAYERS        32
+//#define MAX_PLAYERS        32
 //#define WHITELIST_SIZE   4	// EXACTLY as rows quantity below; uncomment to enable whitelist
 
 #if defined WHITELIST_SIZE

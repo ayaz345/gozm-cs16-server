@@ -406,7 +406,7 @@ public handleSay(id)
     new arg1[16]
     new arg2[32]
 
-    strbreak(args, arg1, charsmax(arg1), arg2, charsmax(arg2))
+    argbreak(args, arg1, charsmax(arg1), arg2, charsmax(arg2))
     if (equal(arg1, "/me"))
     {
         show_me(id)

@@ -77,11 +77,11 @@ new g_msgDamage, g_msgMoney, g_msgBlinkAcct, g_msgAmmoPickup
 
 // CVAR pointers
 new cvar_radius, cvar_price, cvar_hitself, cvar_duration, cvar_slowdown, cvar_override,
-cvar_damage, cvar_on, cvar_buyzone, cvar_ff, cvar_cankill, cvar_spread, cvar_botquota,
+cvar_damage, cvar_buyzone, cvar_ff, cvar_cankill, cvar_spread, cvar_botquota,
 cvar_teamrestrict, cvar_keepexplosion, cvar_affect, cvar_carrylimit
 
 // Cached stuff
-new g_maxplayers, g_on, g_affect, g_override, g_allowedteam, g_keepexplosion, g_spread,
+new g_maxplayers, g_affect, g_override, g_allowedteam, g_keepexplosion, g_spread,
 g_ff, g_duration, g_buyzone, g_price, g_carrylimit, g_hitself, g_damage,
 Float:g_slowdown, g_cankill, Float:g_radius
 //g_screamrate
@@ -122,7 +122,6 @@ public plugin_init()
 	register_clcmd("say /napalm", "buy_napalm")
 	
 	// CVARS
-	cvar_on = register_cvar("napalm_on", "1")
 	cvar_affect = register_cvar("napalm_affect", "1")
 	cvar_teamrestrict = register_cvar("napalm_team", "0")
 	cvar_override = register_cvar("napalm_override", "1")
@@ -161,7 +160,6 @@ public plugin_cfg()
 public event_round_start()
 {
 	// Cache CVARs
-	g_on = get_pcvar_num(cvar_on)
 	g_affect = get_pcvar_num(cvar_affect)
 	g_override = get_pcvar_num(cvar_override)
 	g_allowedteam = get_pcvar_num(cvar_teamrestrict)
@@ -186,9 +184,6 @@ public event_round_start()
 // Set Model Forward
 public fw_SetModel(entity, const model[])
 {
-	// Napalm grenades disabled
-	if (!g_on) return FMRES_IGNORED;
-	
 	// Get damage time of grenade
 	static Float:dmgtime
 	pev(entity, pev_dmgtime, dmgtime)
@@ -329,9 +324,6 @@ public fw_TouchPlayer(self, other)
 // Napalm purchase command
 public buy_napalm(id)
 {
-	// Napalm grenades disabled
-	if (!g_on) return PLUGIN_CONTINUE;
-	
 	// Check if override setting is enabled instead
 	if (g_override)
 	{

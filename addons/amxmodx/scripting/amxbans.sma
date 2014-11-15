@@ -102,8 +102,8 @@ public plugin_init()
         log_amx("[AMXBANS] Could not find amxbans.cfg, loading default bantimes")
         log_amx("[AMXBANS] You should put amxbans.cfg in addons/amxmodx/configs/")
     }
-    //server_exec() // Made other plugins dont work properly b/c settings in amxx.cfg was not read properly
-
+    server_exec() // Made other plugins dont work properly b/c settings in amxx.cfg was not read properly
+    
     set_task(0.5, "sql_init")
     set_task(5.0, "addBanhistMenu")
 }
@@ -118,10 +118,11 @@ public sql_init()
     get_pcvar_string(g_CvarDB, db, 31)
     get_pcvar_string(g_CvarUser, user, 31)
     get_pcvar_string(g_CvarPassword, password, 31)
-
+    
+    log_amx("[AMXBANS]: Connecting to host: %s, user: %s, pwd: %s, db: %s", host, user, password, db)
     g_SqlX = SQL_MakeDbTuple(host, user, password, db)
 
-    set_task(1.0, "banmod_online")
+//    set_task(1.0, "banmod_online")
     set_task(1.0, "fetchReasons")
 }
 

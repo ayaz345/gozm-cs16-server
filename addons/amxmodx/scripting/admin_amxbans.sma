@@ -249,7 +249,7 @@ AddAdmin(id, auth[], accessflags[], password[], flags[])
 	
 	if (sql == Empty_Handle)
 	{
-		server_print("[AMXX] %L", LANG_SERVER, "SQL_CANT_CON", error)
+		server_print("[AMX_ADMINS] %L", LANG_SERVER, "SQL_CANT_CON", error)
 		//backup to users.ini
 #endif
 		// Make sure that the users.ini file exists.
@@ -306,8 +306,8 @@ AddAdmin(id, auth[], accessflags[], password[], flags[])
 	if (!SQL_Execute(query))
 	{
 		SQL_QueryError(query, error, 127)
-		server_print("[AMXX] %L", LANG_SERVER, "SQL_CANT_LOAD_ADMINS", error)
-		console_print(id, "[AMXX] %L", LANG_SERVER, "SQL_CANT_LOAD_ADMINS", error)
+		server_print("[AMX_ADMINS] %L", LANG_SERVER, "SQL_CANT_LOAD_ADMINS", error)
+		console_print(id, "[AMX_ADMINS] %L", LANG_SERVER, "SQL_CANT_LOAD_ADMINS", error)
 	} else if (SQL_NumResults(query)) {
 		console_print(id, "[%s] %s already exists!", PLUGINNAME, auth)
 	} else {
@@ -364,9 +364,9 @@ loadSettings(szFilename[])
 	}
 	
 	if (g_aNum == 1)
-		server_print("[AMXX] %L", LANG_SERVER, "LOADED_ADMIN")
+		server_print("[AMX_ADMINS] %L", LANG_SERVER, "LOADED_ADMIN")
 	else
-		server_print("[AMXX] %L", LANG_SERVER, "LOADED_ADMINS", g_aNum)
+		server_print("[AMX_ADMINS] %L", LANG_SERVER, "LOADED_ADMINS", g_aNum)
 
 	return 1
 }
@@ -374,84 +374,91 @@ loadSettings(szFilename[])
 #if defined USING_SQL
 public adminSql()
 {
-	new error[128], type[12], errno
-	
-	new Handle:info = SQL_MakeStdTuple()
-	new Handle:sql = SQL_Connect(info, errno, error, 127)
+    new error[128], type[12], errno
 
-	// This is a new way of getting the port number
-	new ip_port[42], ip_tmp[32], ip[32] , port[10]
-	get_user_ip(0, ip_port, 41)
-	strtok(ip_port, ip_tmp, 31, port, 9, ':')
-	get_cvar_string("ip",ip,32)
+    new Handle:info = SQL_MakeStdTuple()
+    new Handle:sql = SQL_Connect(info, errno, error, 127)
 
-	SQL_GetAffinity(type, 11)
-	
-	if (sql == Empty_Handle)
-	{
-		server_print("[AMXX] %L", LANG_SERVER, "SQL_CANT_CON", error)
-		
-		//backup to users.ini
-		new configsDir[64]
-		
-		get_configsdir(configsDir, 63)
-		format(configsDir, 63, "%s/users.ini", configsDir)
-		loadSettings(configsDir) // Load admins accounts
+    // This is a new way of getting the port number
+    new ip_port[42], ip_tmp[32], ip[32] , port[10]
+    get_user_ip(0, ip_port, 41)
+    strtok(ip_port, ip_tmp, 31, port, 9, ':')
+    get_cvar_string("ip",ip,32)
 
-		return PLUGIN_HANDLED
-	}
+    SQL_GetAffinity(type, 11)
 
-	new Handle:query
+    if (sql == Empty_Handle)
+    {
+        server_print("[AMX_ADMINS] Cant connect ot database: %s", error)
+        
+        //backup to users.ini
+        new configsDir[64]
+        
+        get_configsdir(configsDir, 63)
+        format(configsDir, 63, "%s/users.ini", configsDir)
+        loadSettings(configsDir) // Load admins accounts
 
-	// Sqlite is removed as amxbans dont use that.
+        return PLUGIN_HANDLED
+    }
 
-	SQL_QueryAndIgnore(sql, "CREATE TABLE IF NOT EXISTS `amx_amxadmins` (`id` int(12) NOT NULL auto_increment, `username` varchar(32) default NULL, `password` varchar(32) default NULL, `access` varchar(32) default NULL, `flags` varchar(32) default NULL, `steamid` varchar(32) default NULL, `nickname` varchar(32) NOT NULL default '', PRIMARY KEY (`id`))")
-	query = SQL_PrepareQuery(sql,"SELECT amx_amxadmins.username, amx_amxadmins.password, amx_amxadmins.access, amx_amxadmins.flags FROM amx_amxadmins, amx_admins_servers, amx_serverinfo WHERE ((amx_admins_servers.admin_id =amx_amxadmins.id) AND (amx_admins_servers.server_id = amx_serverinfo.id) AND (amx_serverinfo.address = '%s:%s'))",ip,port)
-	
-	if (!SQL_Execute(query))
-	{
-		SQL_QueryError(query, error, 127)
-		server_print("[AMXX] %L", LANG_SERVER, "SQL_CANT_LOAD_ADMINS", error)
-	} else if (!SQL_NumResults(query)) {
-		server_print("[AMXX] %L", LANG_SERVER, "NO_ADMINS")
-	} else {
-		new szFlags[32], szAccess[32]
-		
-		g_aNum = 0
-		
-		/** do this incase people change the query order and forget to modify below */
-		//new qcolAuth = SQL_FieldNameToNum(query, "auth")
-		new qcolAuth = SQL_FieldNameToNum(query, "username")
-		new qcolPass = SQL_FieldNameToNum(query, "password")
-		new qcolAccess = SQL_FieldNameToNum(query, "access")
-		new qcolFlags = SQL_FieldNameToNum(query, "flags")
-		
-		while (SQL_MoreResults(query))
-		{
-			SQL_ReadResult(query, qcolAuth, g_aName[g_aNum], 31)
-			SQL_ReadResult(query, qcolPass, g_aPassword[g_aNum], 31)
-			SQL_ReadResult(query, qcolAccess, szAccess, 31)
-			SQL_ReadResult(query, qcolFlags, szFlags, 31)
-	
-			g_aAccess[g_aNum] = read_flags(szAccess)
-	
-			g_aFlags[g_aNum] = read_flags(szFlags)
-			
-			++g_aNum
-			SQL_NextRow(query)
-		}
-	
-		if (g_aNum == 1)
-			server_print("[AMXX] %L", LANG_SERVER, "SQL_LOADED_ADMIN")
-		else
-			server_print("[AMXX] %L", LANG_SERVER, "SQL_LOADED_ADMINS", g_aNum)
-		
-		SQL_FreeHandle(query)
-		SQL_FreeHandle(sql)
-		SQL_FreeHandle(info)
-	}
-	
-	return PLUGIN_HANDLED
+    new Handle:query
+
+    // Sqlite is removed as amxbans dont use that.
+
+    server_print("[AMX_ADMINS] IP: %s, PORT: %s", ip, port)
+    //SQL_QueryAndIgnore(sql, "CREATE TABLE IF NOT EXISTS `amx_amxadmins` (`id` int(12) NOT NULL auto_increment, `username` varchar(32) default NULL, `password` varchar(32) default NULL, `access` varchar(32) default NULL, `flags` varchar(32) default NULL, `steamid` varchar(32) default NULL, `nickname` varchar(32) NOT NULL default '', PRIMARY KEY (`id`))")
+    query = SQL_PrepareQuery(sql, "\
+        SELECT amx_amxadmins.username, \
+               amx_amxadmins.password, \
+               amx_amxadmins.access, \
+               amx_amxadmins.flags \
+        FROM amx_amxadmins\
+    ")
+
+    if (!SQL_Execute(query))
+    {
+        SQL_QueryError(query, error, 127)
+        server_print("[AMX_ADMINS] Cant load admins: %s", error)
+    } else if (!SQL_NumResults(query)) {
+        server_print("[AMX_ADMINS] No Admins found!")
+    } else {
+        new szFlags[32], szAccess[32]
+        
+        g_aNum = 0
+        
+        /** do this incase people change the query order and forget to modify below */
+        //new qcolAuth = SQL_FieldNameToNum(query, "auth")
+        new qcolAuth = SQL_FieldNameToNum(query, "username")
+        new qcolPass = SQL_FieldNameToNum(query, "password")
+        new qcolAccess = SQL_FieldNameToNum(query, "access")
+        new qcolFlags = SQL_FieldNameToNum(query, "flags")
+        
+        while (SQL_MoreResults(query))
+        {
+            SQL_ReadResult(query, qcolAuth, g_aName[g_aNum], 31)
+            SQL_ReadResult(query, qcolPass, g_aPassword[g_aNum], 31)
+            SQL_ReadResult(query, qcolAccess, szAccess, 31)
+            SQL_ReadResult(query, qcolFlags, szFlags, 31)
+
+            g_aAccess[g_aNum] = read_flags(szAccess)
+
+            g_aFlags[g_aNum] = read_flags(szFlags)
+            
+            ++g_aNum
+            SQL_NextRow(query)
+        }
+
+        if (g_aNum == 1)
+            server_print("[AMX_ADMINS] %L", LANG_SERVER, "SQL_LOADED_ADMIN")
+        else
+            server_print("[AMX_ADMINS] %L", LANG_SERVER, "SQL_LOADED_ADMINS", g_aNum)
+        
+        SQL_FreeHandle(query)
+        SQL_FreeHandle(sql)
+        SQL_FreeHandle(info)
+    }
+
+    return PLUGIN_HANDLED
 }
 #endif
 
@@ -475,9 +482,9 @@ public cmdReload(id, level, cid)
 	if (id != 0)
 	{
 		if (g_aNum == 1)
-			console_print(id, "[AMXX] %L", LANG_SERVER, "LOADED_ADMIN")
+			console_print(id, "[AMX_ADMINS] %L", LANG_SERVER, "LOADED_ADMIN")
 		else
-			console_print(id, "[AMXX] %L", LANG_SERVER, "LOADED_ADMINS", g_aNum)
+			console_print(id, "[AMX_ADMINS] %L", LANG_SERVER, "LOADED_ADMINS", g_aNum)
 	}
 #else
 	g_aNum = 0
@@ -486,9 +493,9 @@ public cmdReload(id, level, cid)
 	if (id != 0)
 	{
 		if (g_aNum == 1)
-			console_print(id, "[AMXX] %L", LANG_SERVER, "SQL_LOADED_ADMIN")
+			console_print(id, "[AMX_ADMINS] %L", LANG_SERVER, "SQL_LOADED_ADMIN")
 		else
-			console_print(id, "[AMXX] %L", LANG_SERVER, "SQL_LOADED_ADMINS", g_aNum)
+			console_print(id, "[AMX_ADMINS] %L", LANG_SERVER, "SQL_LOADED_ADMINS", g_aNum)
 	}
 #endif
 

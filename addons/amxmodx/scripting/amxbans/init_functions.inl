@@ -2,102 +2,115 @@
 /*********************  Banmod online  ********************/
 public banmod_online(id)
 {
-	get_cvar_string("ip", g_ip, 31)
-	// This is a new way of getting the port number
-	new ip_port[42], ip_tmp[32]
-	get_user_ip(0, ip_port, 41) // Takes in the whole IP:port string.. (0 is always the server)
-	strtok(ip_port, ip_tmp, 31, g_port, 9, ':') // Divides the string with the help of strtok and delimiter :
+    get_cvar_string("ip", g_ip, 31)
+    // This is a new way of getting the port number
+    new ip_port[42], ip_tmp[32]
+    get_user_ip(0, ip_port, 41) // Takes in the whole IP:port string.. (0 is always the server)
+    strtok(ip_port, ip_tmp, 31, g_port, 9, ':') // Divides the string with the help of strtok and delimiter :
 
-	if ( get_pcvar_num(amxbans_debug) == 1 )
-	{
-		server_print("[AMXBANS DEBUG] The server IP:PORT is: %s:%s", g_ip, g_port)
-		log_amx("[AMXBANS DEBUG] The server IP:PORT is: %s:%s", g_ip, g_port)
-	}
-	
-	new query[512]
-	new data[1]
+    if ( get_pcvar_num(amxbans_debug) == 1 )
+    {
+        server_print("[AMXBANS DEBUG] The server IP:PORT is: %s:%s", g_ip, g_port)
+        log_amx("[AMXBANS DEBUG] The server IP:PORT is: %s:%s", g_ip, g_port)
+    }
 
-	format(query, 511, "SELECT timestamp,hostname,address,gametype,rcon,amxban_version,amxban_motd,motd_delay FROM `%s` WHERE address = '%s:%s'",tbl_svrnfo,g_ip,g_port)
-	
-	data[0] = id
+    new query[512]
+    new data[1]
 
-	SQL_ThreadQuery(g_SqlX, "banmod_online_", query, data, 1)
+    format(query, 511, "\
+        SELECT \
+            timestamp, \
+            hostname, \
+            address, \
+            gametype, \
+            rcon, \
+            amxban_version, \
+            amxban_motd, \
+            motd_delay \
+        FROM `%s` \
+    ",tbl_svrnfo)
+
+    data[0] = id
+
+    log_amx("[AMXBANS]: THREADING banmod_online_")
+    SQL_ThreadQuery(g_SqlX, "banmod_online_", query, data, 1)
 }
 
 public banmod_online_(failstate, Handle:query, error[], errnum, data[], size)
 {
-	new id = data[0]
+    new id = data[0]
 
-	new timestamp = get_systime(0)
-	new servername[100]
-	get_cvar_string("hostname",servername,99)
-	new modname[32]
-	get_modname(modname,31)
+    new timestamp = get_systime(0)
+    new servername[100]
+    get_cvar_string("hostname",servername,99)
+    new modname[32]
+    get_modname(modname,31)
 
-	if (failstate)
-	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 1 )
-	}
-	else
-	{
-		replace_all(servername, 99, "\", "")
-		replace_all(servername, 99, "'", "ґ")
-	
-		if (!SQL_NumResults(query))
-		{
-	
-			if ( get_pcvar_num(amxbans_debug) == 1 )
-			{
-				server_print("AMXBANS DEBUG] INSERT INTO `%s` VALUES ('', '%i','%s', '%s:%s', '%s', '', '%s', '', '', '0')", tbl_svrnfo, timestamp, servername, g_ip, g_port, modname, amxbans_version)
-				log_amx("AMXBANS DEBUG] INSERT INTO `%s` VALUES ('', '%i','%s', '%s:%s', '%s', '', '%s', '', '', '0')", tbl_svrnfo, timestamp, servername, g_ip, g_port, modname, amxbans_version)
-			}
-			
-			new query[512]
-			new data[1]
+    log_amx("[AMXBANS]: in banmod_online_")
+    if (failstate)
+    {
+        new szQuery[256]
+        MySqlX_ThreadError( szQuery, error, errnum, failstate, 1 )
+    }
+    else
+    {
+        replace_all(servername, 99, "\", "")
+        replace_all(servername, 99, "'", "ґ")
 
-			format(query, 511,"INSERT INTO `%s` (timestamp, hostname, address, gametype, amxban_version, amxban_menu) VALUES ('%i', '%s', '%s:%s', '%s', '%s', '1')", tbl_svrnfo, timestamp, servername, g_ip, g_port, modname, amxbans_version)
-			
-			data[0] = id
+        if (!SQL_NumResults(query))
+        {
+            if ( get_pcvar_num(amxbans_debug) == 1 )
+            {
+                server_print("AMXBANS DEBUG] INSERT INTO `%s` VALUES ('', '%i','%s', '%s:%s', '%s', '', '%s', '', '', '0')", tbl_svrnfo, timestamp, servername, g_ip, g_port, modname, amxbans_version)
+                log_amx("AMXBANS DEBUG] INSERT INTO `%s` VALUES ('', '%i','%s', '%s:%s', '%s', '', '%s', '', '', '0')", tbl_svrnfo, timestamp, servername, g_ip, g_port, modname, amxbans_version)
+            }
 
-			SQL_ThreadQuery(g_SqlX, "banmod_online_insert", query, data, 1)
-		}
-		else
-		{
-			new kick_delay_str[10]
-			SQL_ReadResult(query, 7, kick_delay_str, 10)  // inte sдker pе om det ska vara 7 eller 8
+            new query[512]
+            new data[1]
 
-			if (floatstr(kick_delay_str)>2.0)
-			{
-				kick_delay=floatstr(kick_delay_str)
-			}
-			else
-			{
-				kick_delay=10.0
-			}
-	
-			if ( get_pcvar_num(amxbans_debug) == 1 )
-			{
-				server_print("AMXBANS DEBUG] UPDATE `%s` SET timestamp='%i',hostname='%s',gametype='%s',amxban_version='%s', amxban_menu='1' WHERE address = '%s:%s'", tbl_svrnfo, timestamp, servername, modname, amxbans_version, g_ip, g_port)
-				log_amx("[AMXBANS DEBUG] UPDATE `%s` SET timestamp='%i',hostname='%s',gametype='%s',amxban_version='%s', amxban_menu='1' WHERE address = '%s:%s'", tbl_svrnfo, timestamp, servername, modname, amxbans_version, g_ip, g_port)
-			}
-	
-			new query[512]
-			new data[1]
+            format(query, 511,"INSERT INTO `%s` (timestamp, hostname, address, gametype, amxban_version, amxban_menu) VALUES ('%i', '%s', '%s:%s', '%s', '%s', '1')", tbl_svrnfo, timestamp, servername, g_ip, g_port, modname, amxbans_version)
 
-			format(query, 511, "UPDATE `%s` SET timestamp='%i',hostname='%s',gametype='%s',amxban_version='%s', amxban_menu='1' WHERE address = '%s:%s'", tbl_svrnfo, timestamp, servername, modname, amxbans_version, g_ip, g_port)
-			
-			data[0] = id
+            data[0] = id
 
-			SQL_ThreadQuery(g_SqlX, "banmod_online_update", query, data, 1)
+            log_amx("[AMXBANS]: THREADING banmod_online_insert")
+            SQL_ThreadQuery(g_SqlX, "banmod_online_insert", query, data, 1)
+        }
+        else
+        {
+            new kick_delay_str[10]
+            SQL_ReadResult(query, 7, kick_delay_str, 10)  // inte sдker pе om det ska vara 7 eller 8
 
-		}
-		
-		if ( !(get_pcvar_num(amxbans_debug) == 10) )
-			log_amx("[AMXBANS] %L", LANG_SERVER, "SQL_BANMOD_ONLINE", VERSION)
-	}
-	
-	return PLUGIN_CONTINUE
+            if (floatstr(kick_delay_str)>2.0)
+            {
+                kick_delay=floatstr(kick_delay_str)
+            }
+            else
+            {
+                kick_delay=10.0
+            }
+
+            if ( get_pcvar_num(amxbans_debug) == 1 )
+            {
+                server_print("AMXBANS DEBUG] UPDATE `%s` SET timestamp='%i',hostname='%s',gametype='%s',amxban_version='%s', amxban_menu='1' WHERE address = '%s:%s'", tbl_svrnfo, timestamp, servername, modname, amxbans_version, g_ip, g_port)
+                log_amx("[AMXBANS DEBUG] UPDATE `%s` SET timestamp='%i',hostname='%s',gametype='%s',amxban_version='%s', amxban_menu='1' WHERE address = '%s:%s'", tbl_svrnfo, timestamp, servername, modname, amxbans_version, g_ip, g_port)
+            }
+
+            new query[512]
+            new data[1]
+
+            format(query, 511, "UPDATE `%s` SET timestamp='%i',hostname='%s',gametype='%s',amxban_version='%s', amxban_menu='1' WHERE address = '%s:%s'", tbl_svrnfo, timestamp, servername, modname, amxbans_version, g_ip, g_port)
+
+            data[0] = id
+
+            log_amx("[AMXBANS]: THREADING banmod_online_update")
+            SQL_ThreadQuery(g_SqlX, "banmod_online_update", query, data, 1)
+        }
+        
+        if ( !(get_pcvar_num(amxbans_debug) == 10) )
+            log_amx("[AMXBANS] %L", LANG_SERVER, "SQL_BANMOD_ONLINE", VERSION)
+    }
+
+    return PLUGIN_CONTINUE
 }
 
 public banmod_online_insert(failstate, Handle:query, error[], errnum, data[], size)
@@ -124,7 +137,7 @@ public fetchReasons(id)
 	new query[512]
 	new data[1]
 	
-	format(query, 511, "SELECT reason FROM %s WHERE address = '%s:%s'", tbl_reasons, g_ip, g_port)
+	format(query, 511, "SELECT reason FROM %s", tbl_reasons)
 	
 	data[0] = id
 	

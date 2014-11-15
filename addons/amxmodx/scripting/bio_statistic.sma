@@ -33,6 +33,7 @@ new Handle:g_SQL_Tuple
 new g_Query[3024]
 new whois[1024]
 
+new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 new g_CvarMaxInactiveDays
 
 new const g_types[][] = {
@@ -52,7 +53,12 @@ new g_text[5096]
 public plugin_init() 
 {
     register_plugin(PLUGIN, VERSION, AUTHOR)
-
+	
+    g_CvarHost = register_cvar("bio_stats_host", "195.128.158.196")
+    g_CvarDB = register_cvar("bio_stats_db", "b179761")
+    g_CvarUser = register_cvar("bio_stats_user", "u179761")
+    g_CvarPassword = register_cvar("bio_stats_password", "petyx")
+	
     register_cvar("bio_statistics_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
 	
     g_CvarMaxInactiveDays = register_cvar("bio_stats_max_inactive_days", "30")
@@ -72,6 +78,10 @@ public plugin_init()
 
 public plugin_cfg()
 {
+    new cfgdir[32]
+    get_configsdir(cfgdir, charsmax(cfgdir))
+    server_cmd("exec %s/bio_stats.cfg", cfgdir)
+
     set_task(0.1, "sql_init")
 }
 
@@ -80,7 +90,13 @@ public sql_init()
     if(!is_server_licenced())
         return
 
-    g_SQL_Tuple = SQL_MakeStdTuple(30)
+    new host[32], db[32], user[32], password[32]
+    get_pcvar_string(g_CvarHost, host, 31)
+    get_pcvar_string(g_CvarDB, db, 31)
+    get_pcvar_string(g_CvarUser, user, 31)
+    get_pcvar_string(g_CvarPassword, password, 31)
+
+    g_SQL_Tuple = SQL_MakeDbTuple(host, user, password, db)
 
     format(g_Query, charsmax(g_Query), "SET NAMES utf8")
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
@@ -198,7 +214,7 @@ public update_last_seen(taskid)
     new id = taskid - TASKID_LASTSEEN
     
     new last_leave = get_systime()
-    format(g_Query,charsmax(g_Query),"UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
+    format(g_Query, charsmax(g_Query), "UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
         last_leave, g_UserDBId[id])
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     return PLUGIN_HANDLED
@@ -214,7 +230,7 @@ public client_infochanged(id)
     new oldname[32]
     get_user_name(id, oldname, 31)
     
-    if (!equal(oldname,newname) && !equal(oldname,""))
+    if (!equal(oldname, newname) && !equal(oldname, ""))
     {
         if (g_UserDBId[id])
         {

@@ -76,68 +76,73 @@ public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
 {
 	if( cmd_access(id, lvl, cid, 3) )
 	{
-		new szWeaponName[17] = "weapon_"
-		read_argv(1, szWeaponName[7], charsmax(szWeaponName)-7)
-		new iId = get_weaponid(szWeaponName)
-		if( iId && ~NOCLIP_WPN_BS & 1<<iId )
-		{
-			new szMaxClip[4]
-			read_argv(2, szMaxClip, charsmax(szMaxClip))
-			new iMaxClip = str_to_num(szMaxClip)
-			new bool:bIsShotGun = !!( SHOTGUNS_BS & (1<<iId) )
-			if( iMaxClip && iMaxClip != g_iDftMaxClip[iId] )
-			{
-				g_iMaxClip[iId] = iMaxClip
-				if( g_iHhPostFrame[iId] )
-				{
-					EnableHamForward( g_iHhPostFrame[iId] )
-				}
-				else
-				{
-					g_iHhPostFrame[iId] = RegisterHam(Ham_Item_PostFrame, szWeaponName, bIsShotGun ? "Shotgun_PostFrame" : "Item_PostFrame")
-				}
-				if( g_iHhAttachToPlayer[iId] )
-				{
-					EnableHamForward( g_iHhAttachToPlayer[iId] )
-				}
-				else
-				{
-					g_iHhAttachToPlayer[iId] = RegisterHam(Ham_Item_AttachToPlayer, szWeaponName, "Item_AttachToPlayer")
-				}
-				if( bIsShotGun )
-				{
-					new iShotGunType = iId == CSW_M3 ? m3 : xm1014
-					if( g_iHhWeapon_WeaponIdle[iShotGunType] )
-					{
-						EnableHamForward( g_iHhWeapon_WeaponIdle[iShotGunType] )
-					}
-					else
-					{
-						g_iHhWeapon_WeaponIdle[iShotGunType] = RegisterHam(Ham_Weapon_WeaponIdle, szWeaponName, "Shotgun_WeaponIdle")
-					}
-				}
-			}
-			else
-			{
-				g_iMaxClip[iId] = 0
-				if( g_iHhPostFrame[iId] )
-				{
-					DisableHamForward( g_iHhPostFrame[iId] )
-				}
-				if( g_iHhAttachToPlayer[iId] )
-				{
-					DisableHamForward( g_iHhAttachToPlayer[iId] )
-				}
-				if( bIsShotGun )
-				{
-					new iShotGunType = iId == CSW_M3 ? m3 : xm1014
-					if( g_iHhWeapon_WeaponIdle[iShotGunType] )
-					{
-						DisableHamForward( g_iHhWeapon_WeaponIdle[iShotGunType] )
-					}
-				}
-			}
-		}
+        new szWeaponName[17] = "weapon_"
+        read_argv(1, szWeaponName[7], charsmax(szWeaponName)-7)
+        new iId = get_weaponid(szWeaponName)
+        
+        log_amx("[MAXCLIP]: %s - %d", szWeaponName, iId)
+        
+        if( iId && ~NOCLIP_WPN_BS & 1<<iId )
+        {
+            new szMaxClip[4]
+            read_argv(2, szMaxClip, charsmax(szMaxClip))
+            new iMaxClip = str_to_num(szMaxClip)
+            new bool:bIsShotGun = !!( SHOTGUNS_BS & (1<<iId) )
+            if( iMaxClip && iMaxClip != g_iDftMaxClip[iId] )
+            {
+                log_amx("[MAXCLIP]: Not default %d", iMaxClip)
+
+                g_iMaxClip[iId] = iMaxClip
+                if( g_iHhPostFrame[iId] )
+                {
+                    EnableHamForward( g_iHhPostFrame[iId] )
+                }
+                else
+                {
+                    g_iHhPostFrame[iId] = RegisterHam(Ham_Item_PostFrame, szWeaponName, bIsShotGun ? "Shotgun_PostFrame" : "Item_PostFrame")
+                }
+                if( g_iHhAttachToPlayer[iId] )
+                {
+                    EnableHamForward( g_iHhAttachToPlayer[iId] )
+                }
+                else
+                {
+                    g_iHhAttachToPlayer[iId] = RegisterHam(Ham_Item_AttachToPlayer, szWeaponName, "Item_AttachToPlayer")
+                }
+                if( bIsShotGun )
+                {
+                    new iShotGunType = iId == CSW_M3 ? m3 : xm1014
+                    if( g_iHhWeapon_WeaponIdle[iShotGunType] )
+                    {
+                        EnableHamForward( g_iHhWeapon_WeaponIdle[iShotGunType] )
+                    }
+                    else
+                    {
+                        g_iHhWeapon_WeaponIdle[iShotGunType] = RegisterHam(Ham_Weapon_WeaponIdle, szWeaponName, "Shotgun_WeaponIdle")
+                    }
+                }
+            }
+            else
+            {
+                g_iMaxClip[iId] = 0
+                if( g_iHhPostFrame[iId] )
+                {
+                    DisableHamForward( g_iHhPostFrame[iId] )
+                }
+                if( g_iHhAttachToPlayer[iId] )
+                {
+                    DisableHamForward( g_iHhAttachToPlayer[iId] )
+                }
+                if( bIsShotGun )
+                {
+                    new iShotGunType = iId == CSW_M3 ? m3 : xm1014
+                    if( g_iHhWeapon_WeaponIdle[iShotGunType] )
+                    {
+                        DisableHamForward( g_iHhWeapon_WeaponIdle[iShotGunType] )
+                    }
+                }
+            }
+        }
 	}
 	return PLUGIN_HANDLED
 }

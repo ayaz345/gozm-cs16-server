@@ -13,6 +13,7 @@
 #include <cs_weap_models_api>
 #include <colored_print>
 //#include <dhudmessage>
+#include <engine>
 
 #tryinclude "biohazard.cfg"
 
@@ -1230,6 +1231,16 @@ public event_damage(victim)
 
         if(g_victim[attacker] == victim)
         {
+            // CALCULATING DISTANCE
+            if(g_zombie[attacker])
+            {
+                new d, a_name[32], v_name[32]
+                get_user_name(attacker, a_name, 31)
+                get_user_name(victim, v_name, 31)
+                d = get_entity_distance(attacker, victim)
+                log_amx("[BIOHAZARD]: %d is between %s and %s", d, a_name, v_name)
+            }
+        
             g_infecting = true
             g_victim[attacker] = 0
 

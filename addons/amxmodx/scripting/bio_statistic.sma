@@ -321,6 +321,10 @@ public logevent_endRound()
             // extra
             if (g_UserDBId[players[maxInfectId]])
             {
+                static Float:frags
+                pev(players[maxInfectId], pev_frags, frags)
+                set_pev(players[maxInfectId], pev_frags, frags+1.0)
+                
                 format(g_Query, charsmax(g_Query),
                     "UPDATE `bio_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
                     g_UserDBId[players[maxInfectId]])
@@ -328,6 +332,10 @@ public logevent_endRound()
             }
             if (g_UserDBId[players[maxDmgId]])
             {
+                static Float:frags
+                pev(players[maxDmgId], pev_frags, frags)
+                set_pev(players[maxDmgId], pev_frags, frags+1.0)
+            
                 format(g_Query, charsmax(g_Query),
                     "UPDATE `bio_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
                     g_UserDBId[players[maxDmgId]])

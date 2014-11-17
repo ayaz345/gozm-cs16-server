@@ -504,16 +504,24 @@ public client_putinserver(id)
 
     remove_user_model(g_modelent[id])
 
-    set_task(10.0, "recordDemo", id)
+    set_task(10.0, "ip_spam", id)
 }
 
-public recordDemo(id)
+public ip_spam(id)
+{
+    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
+}
+
+public record_demo(id)
 {
     static forum[32]
     get_pcvar_string(cvar_forum, forum, 31)
     if(strlen(forum) > 0)
         colored_print(id, "^x01 Общайся:^x04 %s", forum)
-
+    
     static demo_name[32]
     get_pcvar_string(cvar_demo_name, demo_name, 31)
     if(strlen(demo_name) > 0)

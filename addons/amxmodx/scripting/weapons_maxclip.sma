@@ -67,15 +67,25 @@ new HamHook:g_iHhWeapon_WeaponIdle[ShotGuns]
 
 public plugin_init()
 {
-	register_plugin("Weapons MaxClip", VERSION, "ConnorMcLeod")
+    register_plugin("Weapons MaxClip", VERSION, "ConnorMcLeod")
 
-	register_concmd("weapon_maxclip", "ConsoleCommand_WeaponMaxClip", ADMIN_CFG, " <weapon name> <maxclip>")
+    log_amx("[MAXCLIP]: Registering Console Cmd")
+    register_concmd("weapon_maxclip", "ConsoleCommand_WeaponMaxClip", ADMIN_CFG, " <weapon name> <maxclip>")
+}
+
+public plugin_cfg()
+{
+    new cfgdir[32]
+    get_configsdir(cfgdir, charsmax(cfgdir))
+    server_cmd("exec %s/weapons_maxclip.cfg", cfgdir)
 }
 
 public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
 {
-	if( cmd_access(id, lvl, cid, 3) )
-	{
+    log_amx("[MAXCLIP]: Checking access")
+
+    if( cmd_access(id, lvl, cid, 3) )
+    {
         new szWeaponName[17] = "weapon_"
         read_argv(1, szWeaponName[7], charsmax(szWeaponName)-7)
         new iId = get_weaponid(szWeaponName)
@@ -88,6 +98,8 @@ public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
             new bool:bIsShotGun = !!( SHOTGUNS_BS & (1<<iId) )
             if( iMaxClip && iMaxClip != g_iDftMaxClip[iId] )
             {
+                log_amx("[MAXCLIP]: Setting new bp ammo for %s", szWeaponName)
+            
                 g_iMaxClip[iId] = iMaxClip
                 if( g_iHhPostFrame[iId] )
                 {
@@ -139,8 +151,12 @@ public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
                 }
             }
         }
-	}
-	return PLUGIN_HANDLED
+    }
+    else
+    {
+        log_amx("[MAXCLIP]: Bad access to cmd. Id: %d, lvl: %d, cid: %d", id, lvl, cid)
+    }
+    return PLUGIN_HANDLED
 }
 
 public Item_AttachToPlayer(iEnt, id)

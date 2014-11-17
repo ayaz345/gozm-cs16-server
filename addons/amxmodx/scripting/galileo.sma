@@ -2464,29 +2464,11 @@ public vote_rock(id)
     // if an early vote is pending, don't allow any rocks
     if (g_voteStatus & VOTE_IS_EARLY)
     {
-        client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_PENDINGVOTE");
+        colored_print(id, "^x04***^x01 Голосование начнется через пару минут");
         return;
     }
 
     new Float:minutesElapsed = map_getMinutesElapsed();
-
-    // if the player is the only one on the server, bring up the vote immediately
-    if (get_realplayersnum() == 1 && minutesElapsed > floatmin(2.0, g_rtvWait))
-    {
-        vote_startDirector(true);
-        return;
-    }
-
-    // make sure enough time has gone by on the current map
-    if (g_rtvWait)
-    {
-        if (minutesElapsed < g_rtvWait)
-        {
-            //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_TOOSOON", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
-            colored_print(id, "%L", id, "^x04***^x01 Голосование будет разрешено через^x04 %d^x01 минут", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
-            return;
-        }
-    }
 
     // rocks can only be made if a vote isn't already in progress
     if (g_voteStatus & VOTE_IN_PROGRESS)
@@ -2501,6 +2483,24 @@ public vote_rock(id)
         //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_VOTEOVER");
         colored_print(id, "^x04***^x01 Голосование окончено.");
         return;
+    }
+
+    // if the player is the only one on the server, bring up the vote immediately
+    if (get_realplayersnum() == 1 && minutesElapsed > floatmin(2.0, g_rtvWait))
+    {
+        vote_startDirector(true);
+        return;
+    }
+
+    // make sure enough time has gone by on the current map
+    if (g_rtvWait)
+    {
+        if (minutesElapsed < g_rtvWait)
+        {
+            //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_TOOSOON", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
+            colored_print(id, "^x04***^x01 Голосование будет разрешено через^x04 %d^x01 мин.", floatround(g_rtvWait - minutesElapsed, floatround_ceil));
+            return;
+        }
     }
 
     // determine how many total rocks are needed

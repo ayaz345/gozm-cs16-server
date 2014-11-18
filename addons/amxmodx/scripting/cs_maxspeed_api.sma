@@ -37,17 +37,6 @@ public plugin_init()
 	RegisterHam(Ham_Player_ResetMaxSpeed, "player", "fw_ResetMaxSpeed_Post", 1)
 }
 
-public cz_bot_ham_registerable(id)
-{
-	RegisterHamFromEntity(Ham_Player_ResetMaxSpeed, id, "fw_ResetMaxSpeed_Post", 1)
-}
-
-public plugin_cfg()
-{
-	// Prevents CS from limiting player maxspeeds at 320
-	server_cmd("sv_maxspeed 9999")
-}
-
 public plugin_natives()
 {
 	register_library("cs_maxspeed_api")

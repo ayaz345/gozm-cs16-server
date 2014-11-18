@@ -1,4 +1,3 @@
-
 #include <amxmodx>
 #include <fakemeta>
 
@@ -41,42 +40,31 @@ new Hints[][HintMaxLen] =
 	"hint_press_use_so_hostage_will_follow"
 }
 
-new HintsDefaultStatus[sizeof Hints] = 
-{
-	1,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0
-}
-
 new Trie:HintsStatus
 
 public plugin_init()
 {
 	register_plugin(PLUGIN, VERSION, AUTHOR)	
-	register_message(get_user_msgid("HudTextArgs"),"hudTextArgs")
+	register_message(get_user_msgid("HudTextArgs"), "hudTextArgs")
 }
 
 public plugin_cfg()
 {
 	HintsStatus = TrieCreate()
 	
-	for(new i=0, statusString[2]; i<sizeof Hints; i++)
-	{
-		statusString[0] = HintsDefaultStatus[i] + 48
-		
-		if(get_pcvar_num(register_cvar(Hints[i],statusString)))
-			TrieSetCell(HintsStatus,Hints[i][5],true)
-	}
+	for(new i=0; i<sizeof Hints; i++)
+        TrieSetCell(HintsStatus, Hints[i][5], true)
 }
 
 public hudTextArgs(msgid, msgDest, msgEnt)
 {
-	static hint[HintMaxLen + 1]
-	get_msg_arg_string(1,hint,charsmax(hint))
-
-	if(TrieKeyExists(HintsStatus,hint[6]))
-	{
-		set_pdata_float(msgEnt,NextHudTextArgsOffset,0.0)		
-		return PLUGIN_HANDLED
-	}
-	
-	return PLUGIN_CONTINUE 
+    static hint[HintMaxLen + 1]
+    get_msg_arg_string(1, hint, charsmax(hint))
+    
+    if(TrieKeyExists(HintsStatus, hint[6]))
+    {
+        set_pdata_float(msgEnt, NextHudTextArgsOffset, 0.0)		
+        return PLUGIN_HANDLED
+    }
+    return PLUGIN_CONTINUE 
 }

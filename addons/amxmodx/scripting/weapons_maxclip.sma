@@ -69,7 +69,6 @@ public plugin_init()
 {
     register_plugin("Weapons MaxClip", VERSION, "ConnorMcLeod")
 
-    log_amx("[MAXCLIP]: Registering Console Cmd")
     register_concmd("weapon_maxclip", "ConsoleCommand_WeaponMaxClip", ADMIN_CFG, " <weapon name> <maxclip>")
 }
 
@@ -82,8 +81,6 @@ public plugin_cfg()
 
 public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
 {
-    log_amx("[MAXCLIP]: Checking access")
-
     if( cmd_access(id, lvl, cid, 3) )
     {
         new szWeaponName[17] = "weapon_"
@@ -98,8 +95,6 @@ public ConsoleCommand_WeaponMaxClip(id, lvl, cid)
             new bool:bIsShotGun = !!( SHOTGUNS_BS & (1<<iId) )
             if( iMaxClip && iMaxClip != g_iDftMaxClip[iId] )
             {
-                log_amx("[MAXCLIP]: Setting new bp ammo for %s", szWeaponName)
-            
                 g_iMaxClip[iId] = iMaxClip
                 if( g_iHhPostFrame[iId] )
                 {

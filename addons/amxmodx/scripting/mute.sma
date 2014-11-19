@@ -1,29 +1,20 @@
-//#define DefaultGagTime 1400.0	// The std gag time if no other time was entered. ( this is 10 min ), Remember the value MUST contain a .0
-#define MaxPlayers 32
-
 #include <amxmodx>
 #include <amxmisc>
 #include <engine>
 #include <colored_print>
 
-new g_GagPlayers[MaxPlayers+1]	// Used to check if a player is gagged
-//
-new g_menuposition[MaxPlayers+1]
-new g_menuplayers[MaxPlayers+1][32]
-new g_menuplayersnum[MaxPlayers+1]
+new g_GagPlayers[MAX_PLAYERS+1]	// Used to check if a player is gagged
 
 new mutedIp[64][16]
 new muted_num = 1
 
 public plugin_init() 
 { 
-	register_plugin("Admin Gag","1.8.3","EKS") 
-	register_clcmd("say","block_gagged") 
-	register_clcmd("say_team","block_gagged")
+	register_plugin("Admin Gag", "1.8.3", "EKS") 
+	register_clcmd("say", "block_gagged") 
+	register_clcmd("say_team", "block_gagged")
 	register_clcmd("say", "clcmd_say")
 	register_clcmd("say_team", "clcmd_say")
-	register_menucmd(register_menuid("mute menu"), 1023, "action_mutemenu")
-	register_menucmd(register_menuid("speak menu"), 1023, "action_speakmenu")
 } 
 
 // MINE
@@ -38,7 +29,7 @@ public clcmd_say(id)
         containi(say_args, "mute") != -1 && 
         is_priveleged_user(id) )
     {
-        display_mutemenu(id, g_menuposition[id] = 0)
+        display_mutemenu(id)
         return PLUGIN_HANDLED_MAIN
     }
     else if ( 
@@ -46,7 +37,7 @@ public clcmd_say(id)
         containi(say_args, "speak") != -1 && 
         is_priveleged_user(id) )
     {
-        display_speakmenu(id, g_menuposition[id] = 0)
+        display_speakmenu(id)
         return PLUGIN_HANDLED_MAIN
     }
     else if ( 
@@ -54,7 +45,7 @@ public clcmd_say(id)
         containi(say_args, "unmute") != -1 && 
         is_priveleged_user(id) )
     {
-        display_speakmenu(id, g_menuposition[id] = 0)
+        display_speakmenu(id)
         return PLUGIN_HANDLED_MAIN
     }
     else if (
@@ -81,139 +72,108 @@ public has_rcon(id)
 public is_priveleged_user(id)
     return has_vip(id) || has_rcon(id)
 
-display_mutemenu(id, pos) 
+public display_mutemenu(id)
 {
-	if(pos < 0)  
-		return
+    new i_Menu = menu_create("\wКого \yзаткнем\w?", "mute_player_menu_handler" )
 
-	get_players(g_menuplayers[id], g_menuplayersnum[id])
+    static players[32], num
+    get_players(players, num)
+    for(new i=0; i<num; i++)
+    {
+        new name[32], str_id[3]
+        get_user_name(players[i], name, 31)
+        num_to_str(players[i], str_id, 2)
+        
+        menu_additem(i_Menu, name, str_id, _, menu_makecallback("check_for_muted_victim"))
+    }
 
-  	new start = pos * 8
-  	if(start >= g_menuplayersnum[id])
-    		start = pos = g_menuposition[id]
+    menu_setprop(i_Menu, 2, "Назад")
+    menu_setprop(i_Menu, 3, "Дальше")
+    menu_setprop(i_Menu, 4, "Закрыть")
 
-  	new end = start + 8
-	if(end > g_menuplayersnum[id])
-    		end = g_menuplayersnum[id]
-	
-	static menubody[512]	
-  	new len = format(menubody, 511, "\wКого \rзаткнем\w?^n^n")
+    menu_display(id, i_Menu, 0)
 
-	static name[32]
-	
-	new b = 0, i
-	new keys = MENU_KEY_0
-	
-  	for(new a = start; a < end; ++a)
-	{
-		i = g_menuplayers[id][a]
-		get_user_name(i, name, 31)
-
-		if( i == id || has_vip(i)  && !has_rcon(i) || g_GagPlayers[i])
-		{
-			++b
-			len += format(menubody[len], 511 - len, "\d#  %s\w^n", name)
-		}
-		else
-		{
-			keys |= (1<<b)
-			len += format(menubody[len], 511 - len, "%d. %s\w^n", ++b, name)
-		}
-	}
-
-  	if(end != g_menuplayersnum[id]) 
-	{
-    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Дальше", pos ? "Назад" : "Выход")
-    		keys |= MENU_KEY_9
-  	}
-  	else
-		format(menubody[len], 511-len, "^n0. %s", pos ? "Назад" : "Выход")
-	
-  	show_menu(id, keys, menubody, -1, "mute menu")
+    return PLUGIN_HANDLED
 }
 
-
-public action_mutemenu(id, key)
+public check_for_muted_victim(id, menu, item)
 {
-	switch(key) 
-	{
-		case 8: display_mutemenu(id, ++g_menuposition[id])
-		case 9: display_mutemenu(id, --g_menuposition[id])
-		default: 
-		{
-            new player = g_menuplayers[id][g_menuposition[id] * 8 + key]
-            CMD_GagPlayer(id, player)
-            display_mutemenu(id, g_menuposition[id])
-    	}
-  	}
-	return PLUGIN_HANDLED
+    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
+
+    victim_id = str_to_num(s_Id)
+    if(victim_id == id || has_vip(victim_id) && !has_rcon(victim_id) || g_GagPlayers[victim_id])
+        return ITEM_DISABLED
+    return ITEM_ENABLED
 }
 
-display_speakmenu(id, pos) 
+public mute_player_menu_handler(id, menu, item)
 {
-	if(pos < 0)  
-		return
+    if (item == MENU_EXIT)
+    {
+        menu_destroy(menu)
+        return PLUGIN_HANDLED
+    }
 
-	get_players(g_menuplayers[id], g_menuplayersnum[id])
+    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
+    victim_id = str_to_num(s_Id)
+    CMD_GagPlayer(id, victim_id)
 
-  	new start = pos * 8
-  	if(start >= g_menuplayersnum[id])
-    		start = pos = g_menuposition[id]
-
-  	new end = start + 8
-	if(end > g_menuplayersnum[id])
-    		end = g_menuplayersnum[id]
-	
-	static menubody[512]	
-  	new len = format(menubody, 511, "\wРазрешим \rговорить\w:^n^n")
-
-	static name[32]
-	
-	new b = 0, i
-	new keys = MENU_KEY_0
-	
-  	for(new a = start; a < end; ++a)
-	{
-		i = g_menuplayers[id][a]
-		get_user_name(i, name, 31)
-
-		if( i == id || has_vip(i)  && !has_rcon(i) || !g_GagPlayers[i])
-		{
-			++b
-			len += format(menubody[len], 511 - len, "\d#  %s\w^n", name)
-		}
-		else
-		{
-			keys |= (1<<b)
-			len += format(menubody[len], 511 - len, "%d. %s\w^n", ++b, name)
-		}
-	}
-
-  	if(end != g_menuplayersnum[id]) 
-	{
-    		format(menubody[len], 511 - len, "^n9. %s...^n0. %s", "Дальше", pos ? "Назад" : "Выход")
-    		keys |= MENU_KEY_9
-  	}
-  	else
-		format(menubody[len], 511-len, "^n0. %s", pos ? "Назад" : "Выход")
-	
-  	show_menu(id, keys, menubody, -1, "speak menu")
+    menu_destroy(menu)
+    return PLUGIN_HANDLED
 }
 
-
-public action_speakmenu(id, key)
+public display_speakmenu(id)
 {
-	switch(key) 
-	{
-		case 8: display_speakmenu(id, ++g_menuposition[id])
-		case 9: display_speakmenu(id, --g_menuposition[id])
-		default: 
-		{
-			new player = g_menuplayers[id][g_menuposition[id] * 8 + key]
-			CMD_UnGagPlayer(id, player)
-    	}
-  	}
-	return PLUGIN_HANDLED
+    new i_Menu = menu_create("\wРазрешим \yговорить\w:", "speak_player_menu_handler" )
+
+    static players[32], num
+    get_players(players, num)
+    for(new i=0; i<num; i++)
+    {
+        new name[32], str_id[3]
+        get_user_name(players[i], name, 31)
+        num_to_str(players[i], str_id, 2)
+        
+        menu_additem(i_Menu, name, str_id, _, menu_makecallback("check_for_speaking_victim"))
+    }
+
+    menu_setprop(i_Menu, 2, "Назад")
+    menu_setprop(i_Menu, 3, "Дальше")
+    menu_setprop(i_Menu, 4, "Закрыть")
+
+    menu_display(id, i_Menu, 0)
+
+    return PLUGIN_HANDLED
+}
+
+public check_for_speaking_victim(id, menu, item)
+{
+    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
+
+    victim_id = str_to_num(s_Id)
+    if(victim_id == id || has_vip(victim_id) && !has_rcon(victim_id) || !g_GagPlayers[victim_id])
+        return ITEM_DISABLED
+    return ITEM_ENABLED
+}
+
+public speak_player_menu_handler(id, menu, item)
+{
+    if (item == MENU_EXIT)
+    {
+        menu_destroy(menu)
+        return PLUGIN_HANDLED
+    }
+
+    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
+    victim_id = str_to_num(s_Id)
+    CMD_UnGagPlayer(id, victim_id)
+
+    menu_destroy(menu)
+    return PLUGIN_HANDLED
 }
 
 public block_gagged(id)

@@ -2,8 +2,6 @@
 #include <amxmisc>
 #include <colored_print>
 
-#define MAX_menudata 1024
-
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3
 #define MPROP_EXITNAME  4
@@ -61,7 +59,7 @@ public say_it(id)
 
 public show_player_menu(id)
 {
-    new i_Menu = menu_create("\wКого будем \rбанить\w?", "show_player_menu_handler" )
+    new i_Menu = menu_create("\wКого будем \yбанить\w?", "show_player_menu_handler" )
 
     static players[32], num
     get_players(players, num)

@@ -89,9 +89,25 @@ public check_player(id)
     new query[4096]
     new data[1]
     if(equal(player_steamid, "STEAM_ID_LAN") || equal(player_steamid, ""))
-        format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_ip='%s'",tbl_bans, player_ip)
+        format(query, 4095, "\
+        SELECT \
+            bid, ban_created, ban_length, \
+            ban_reason, admin_nick, admin_id, \
+            admin_ip, player_nick, player_id, \
+            player_ip, server_name, server_ip, \
+            ban_type, map_name \
+        FROM `%s` WHERE player_ip='%s'\
+        ",tbl_bans, player_ip)
     else
-        format(query, 4095, "SELECT bid,ban_created,ban_length,ban_reason,admin_nick,admin_id,admin_ip,player_nick,player_id,player_ip,server_name,server_ip,ban_type,map_name FROM `%s` WHERE player_id='%s' OR player_ip='%s'",tbl_bans, player_steamid, player_ip)
+        format(query, 4095, "\
+        SELECT \
+            bid, ban_created, ban_length,\
+            ban_reason, admin_nick, admin_id, \
+            admin_ip, player_nick, player_id, \
+            player_ip, server_name, server_ip, \
+            ban_type, map_name \
+        FROM `%s` WHERE player_id='%s' OR player_ip='%s'\
+        ",tbl_bans, player_steamid, player_ip)
                                              
     data[0] = id
     SQL_ThreadQuery(g_SqlX, "check_player_", query, data, 1)
@@ -180,11 +196,11 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                 if ( get_pcvar_num(amxbans_debug) == 1 )
                     log_amx("[AMXBANS DEBUG] Delayed Kick-TASK ID1: <%d>  ID2: <%s>", id, id_str)
 
-                set_task(3.5,"delayed_kick",0,id_str,3)
+                set_task(3.5, "delayed_kick", 0, id_str, 3)
                 //log_amx("CHECK: gm_data:[name: %s, ip: %s, steam: %s]", has_name, has_ip, has_steam)
                 //log_amx("CHECK: db_data:[name: %s, ip: %s, steam: %s], bid: %d", player_nick, player_ip, player_steamid, bid)
-                new requested_query[4096]
-                SQL_GetQueryString(query, requested_query, charsmax(requested_query))
+                //new requested_query[4096]
+                //SQL_GetQueryString(query, requested_query, charsmax(requested_query))
                 //log_amx("CHECK: query: %s", requested_query)
                 //log_amx("CHECK: results: %d", SQL_NumResults(query))
 
@@ -213,17 +229,34 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                 replace_all(server_name, 99, "\", "")
                 replace_all(server_name, 99, "'", "ґ")
                 
-                new query[512]
-                new data[2]
-
-                format(query, 511, "INSERT INTO `%s` (player_id,player_ip,player_nick,admin_id,admin_nick,admin_ip,ban_type,ban_reason,ban_created,ban_length,server_ip,unban_created,unban_reason,unban_admin_nick,map_name) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%d','%s','%s','%i','Bantime expired','amxbans','%s')",tbl_banhist, player_steamid, player_ip, player_nick, admin_steamid, admin_nick, admin_ip, ban_type, ban_reason, ban_created, ban_length, server_ip, unban_created, map_name)
-                data[0] = id
-                data[1] = bid
-                SQL_ThreadQuery(g_SqlX, "insert_to_banhistory", query, data, 2)
-                
+                // INSERT INTO BANHISTORY
+                new insert_query[512]
+                format(insert_query, 511, 
+                    "INSERT INTO `%s` ( \
+                        player_id, player_ip, player_nick, \
+                        admin_id, admin_nick, admin_ip, \
+                        ban_type, ban_reason, ban_created, \
+                        ban_length, server_ip, unban_created, \
+                        unban_reason, unban_admin_nick, map_name) \
+                    VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%d','%s','%s','%i',\
+                        'Bantime expired','amxbans','%s')\
+                    ",
+                    tbl_banhist, 
+                    player_steamid, player_ip, player_nick, 
+                    admin_steamid, admin_nick, admin_ip, 
+                    ban_type, ban_reason, ban_created, 
+                    ban_length, server_ip, unban_created, 
+                    map_name)
+                SQL_ThreadQuery(g_SqlX, "insert_to_banhistory", insert_query)
                 if ( get_pcvar_num(amxbans_debug) == 1 )
                     log_amx("[AMXBANS DEBUG] PRUNE BAN: INSERT INTO `%s` (VALUES('%s','%s','%s')",tbl_banhist, player_steamid, player_nick, ban_length)
                 
+                //DELETE EXPIRED BAN
+                new delete_query[512]
+                format(delete_query, 511,"DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
+                SQL_ThreadQuery(g_SqlX, "delete_expired_ban", delete_query)
+                if ( get_pcvar_num(amxbans_debug) == 1 )
+                    log_amx("[AMXBANS DEBUG] PRUNE BAN: DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
             }
 		}
 	}
@@ -232,37 +265,20 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
 
 public insert_to_banhistory(failstate, Handle:query, error[], errnum, data[], size)
 {
-	new id = data[0]
-	new bid = data[1]
-
 	if (failstate)
 	{
 		new szQuery[256]
 		MySqlX_ThreadError( szQuery, error, errnum, failstate, 18 )
 	}
-	else
-	{
-		new query[512]
-		new data[1]
-	
-		format(query, 511,"DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
-		
-		data[0] = id
-		SQL_ThreadQuery(g_SqlX, "delete_expired_ban", query, data, 1)
-	
-		if ( get_pcvar_num(amxbans_debug) == 1 )
-			log_amx("[AMXBANS DEBUG] PRUNE BAN: DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
-	}
-	
 	return PLUGIN_HANDLED
 }
 
 public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size)
 {
-
 	if (failstate)
 	{
 		new szQuery[256]
 		MySqlX_ThreadError( szQuery, error, errnum, failstate, 19 )
 	}
+    return PLUGIN_HANDLED
 }

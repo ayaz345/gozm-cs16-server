@@ -145,7 +145,7 @@ public reason_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Reason[6], s_Length[64], i_Access, i_Callback
+    new s_Reason[64], s_Length[6], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Length, charsmax(s_Length), s_Reason, charsmax(s_Reason), i_Callback)
     new ban_length = str_to_num(s_Length)
     
@@ -175,7 +175,7 @@ public set_custom_ban_reason(id, level, cid)
 public actual_ban(vip_id, time, reason[])
 {
     //log_amx("[GOZM_BAN]: amx_ban %d #%d %s", time, g_chosen_userid[vip_id], reason)
-    client_cmd(vip_id, "amx_ban %d #%d ^"%s^"", time, g_chosen_userid[vip_id], reason)
+    client_cmd(vip_id, "amx_ban %d #%d %s", time, g_chosen_userid[vip_id], reason)
     return PLUGIN_HANDLED
 }
 

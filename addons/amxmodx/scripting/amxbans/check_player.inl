@@ -152,7 +152,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             SQL_ReadResult(query, 13, map_name, 31)
 
             if (get_pcvar_num(amxbans_debug)==1)
-                    log_amx("^nbid: %d ^nwhen: %d ^nlenght: %s ^nreason: %s ^nadmin: %s ^nadminsteamID: %s ^nPlayername %s ^nserver: %s ^nserverip: %s ^nbantype: %s",bid,ban_created,ban_length,ban_reason,admin_nick,admin_steamid,player_nick,server_name,server_ip,ban_type)
+                log_amx("^nbid: %d ^nwhen: %d ^nlenght: %s ^nreason: %s ^nadmin: %s ^nadminsteamID: %s ^nPlayername %s ^nserver: %s ^nserverip: %s ^nbantype: %s",bid,ban_created,ban_length,ban_reason,admin_nick,admin_steamid,player_nick,server_name,server_ip,ban_type)
 
             new current_time_int = get_systime(0)
             new ban_length_int = str_to_num(ban_length) * 60 // in secs
@@ -161,10 +161,10 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             if ((ban_length_int == 0) || (ban_created ==0) || (ban_created+ban_length_int > current_time_int))
             {
                 // LOGGING
-                new has_ip[20], has_steam[32], has_name[32]
-                get_user_authid(id, has_steam, 31)
-                get_user_ip(id, has_ip, 19, 1)
-                get_user_name(id, has_name, 31)
+                //new has_ip[20], has_steam[32], has_name[32]
+                //get_user_authid(id, has_steam, 31)
+                //get_user_ip(id, has_ip, 19, 1)
+                //get_user_name(id, has_name, 31)
                 //log_amx("!!! BANNED STEAM: %s", has_steam)
                 //log_amx("!!! BANNED IPADR: %s", has_ip)
                 //log_amx("!!! BANNED NAME: %s", has_name)
@@ -275,10 +275,10 @@ public insert_to_banhistory(failstate, Handle:query, error[], errnum, data[], si
 
 public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size)
 {
-	if (failstate)
-	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 19 )
-	}
+    if (failstate)
+    {
+        new szQuery[256]
+        MySqlX_ThreadError( szQuery, error, errnum, failstate, 19 )
+    }
     return PLUGIN_HANDLED
 }

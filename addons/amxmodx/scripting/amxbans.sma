@@ -2,8 +2,6 @@ new AUTHOR[] = "YoMama/Lux & lantz69 -Sqlx by Gizmo"
 new PLUGIN_NAME[] = "AMXBans"
 new VERSION[] = "5.0" // This is used in the plugins name
 
-new amxbans_version[] = "amxx_5.0" // This is for the DB
-
 #include <amxmodx>
 #include <amxmisc>
 #include <sqlx>
@@ -47,7 +45,6 @@ public plugin_init()
     g_CvarUser = register_cvar("amxbans_user", "u179761")
     g_CvarPassword = register_cvar("amxbans_password", "petyx")
 
-    amxbans_cmd_sql = register_cvar("amxbans_cmd_sql", "0") // A custom plugin that is not released yet so dont touch this cvar.
     amxbans_debug = register_cvar("amxbans_debug", "1") // Set this to 1 to enable debug
     server_nick = register_cvar("amxbans_servernick", "") // Set this cvar to what the adminname should be if the server make the ban.
                                                                                                               // Ie. amxbans_servernick "My Great server" put this in server.cfg or amxx.cfg
@@ -119,10 +116,9 @@ public sql_init()
     get_pcvar_string(g_CvarUser, user, 31)
     get_pcvar_string(g_CvarPassword, password, 31)
     
-    log_amx("[AMXBANS]: Connecting to host: %s, user: %s, pwd: %s, db: %s", host, user, password, db)
+//    log_amx("[AMXBANS]: Connecting to host: %s, user: %s, pwd: %s, db: %s", host, user, password, db)
     g_SqlX = SQL_MakeDbTuple(host, user, password, db)
 
-//    set_task(1.0, "banmod_online")
     set_task(1.0, "fetchReasons")
 }
 
@@ -148,7 +144,7 @@ public reasonReload(id,level,cid)
 
 public client_connect(id)
 {
-	if( (id > 0 || id < 32) && is_user_connected(id) )
+	if( (0 < id < 32) && is_user_connected(id) )
 	{
 		g_lastCustom[id][0] = '^0'
 		g_inCustomReason[id] = 0
@@ -200,8 +196,8 @@ public cmdLst(id,level,cid)
 {
 	new players[32], inum, authid[32],name[32],ip[50]
 
-	get_players(players,inum)
-	console_print(id,"playerinfo")
+	get_players(players, inum)
+	console_print(id, "playerinfo")
 
 	for(new a = 0; a < inum; a++)
 	{

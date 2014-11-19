@@ -29,7 +29,6 @@ new bool:g_player_flagged[33]
 /*****************************/
 
 // pcvars
-new amxbans_cmd_sql
 new amxbans_debug
 new server_nick
 new ban_evenif_disconn
@@ -53,8 +52,8 @@ new add_mapname_in_servername
 new Handle:g_SqlX
 
 new g_aNum = 0
-new g_ip[32]
-new g_port[10]
+new g_ip[] = "46.174.52.13"
+new g_port[] = "27259"
 new ban_motd[4096]
 new Float:kick_delay = 10.0
 new g_highbantimesnum

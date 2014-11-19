@@ -235,7 +235,7 @@ public client_infochanged(id)
         if (g_UserDBId[id])
         {
             new last_leave = get_systime()
-            format(g_Query,charsmax(g_Query),"UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
+            format(g_Query,charsmax(g_Query), "UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
                 last_leave, g_UserDBId[id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
@@ -252,6 +252,7 @@ public event_infect(id, infector)
     if (infector)
     {
         g_Me[infector][ME_INFECT]++
+        show_me(infector)
 
         if (g_UserDBId[id])
         {
@@ -307,7 +308,6 @@ public logevent_endRound()
         {
             for (i = 0; i < playersNum; i++)
             {
-                //colored_print(players[i], "^x04======================================")
                 colored_print(players[i],
                     "^x04***^x01 Лучший человек:^x04 %s^x01  ->  [^x03  %d^x01 дамаги  ]",
                     maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
@@ -353,32 +353,30 @@ public event_newround()
         reset_player_statistic(players[i])
 }
 
-public fw_HamKilled(id, attacker, shouldgib)
+public fw_HamKilled(victim, attacker, shouldgib)
 {
-    new type, player = attacker
+    new type
     new killer_frags = 1
     
-    if (g_UserDBId[id] && is_user_connected(attacker))
+    if (g_UserDBId[victim] && is_user_connected(attacker))
     {
         format(g_Query, charsmax(g_Query),
-            "UPDATE `bio_players` SET `death` = `death` + 1 WHERE `id`=%d", g_UserDBId[id])
+            "UPDATE `bio_players` SET `death` = `death` + 1 WHERE `id`=%d", g_UserDBId[victim])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
 
-    if (id == attacker || !is_user_connected(attacker))
-    {
+    if (victim == attacker || !is_user_connected(attacker))
         type = 6
-        player = id
-    }
-    else
-    if (is_user_zombie(attacker))
+    else if (is_user_zombie(attacker))
     {
         type = 1
         g_Me[attacker][ME_INFECT]++
     }
     else
     {
-        if (g_UserDBId[id])
+        show_me(attacker)
+        
+        if (g_UserDBId[victim])
         {
             type = 2
 
@@ -387,16 +385,16 @@ public fw_HamKilled(id, attacker, shouldgib)
                 // extra
                 format(g_Query, charsmax(g_Query),
                     "UPDATE `bio_players` SET `extra` = `extra` + 5 WHERE `id`=%d",
-                    g_UserDBId[player])
+                    g_UserDBId[attacker])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
         }
     }
 
-    if (g_UserDBId[player])
+    if (g_UserDBId[attacker])
     {
         format(g_Query, charsmax(g_Query), "UPDATE `bio_players` SET `%s` = `%s` + %d WHERE `id`=%d",
-            g_types[type], g_types[type], killer_frags, g_UserDBId[player])
+            g_types[type], g_types[type], killer_frags, g_UserDBId[attacker])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
     
@@ -463,15 +461,10 @@ public show_me(id)
     if (!is_user_zombie(id))
         colored_print(id, "^x04***^x01 Ты нанес:^x04 %d^x01 дамаги", g_Me[id][ME_DMG])
     else
-    {
-        new client_message[64]
-        format(client_message, charsmax(client_message), "и^x04 %d^x01 дамаги", g_Me[id][ME_DMG])
-        colored_print(id, "^x04***^x01 Ты сделал:^x04 %d^x01 заражени%s %s", 
+        colored_print(id, "^x04***^x01 Ты сделал:^x04 %d^x01 заражени%s", 
             g_Me[id][ME_INFECT],
-            set_word_completion(g_Me[id][ME_INFECT]),
-            g_Me[id][ME_DMG] ? client_message : "")
-    }
-    
+            set_word_completion(g_Me[id][ME_INFECT]))
+
     return PLUGIN_HANDLED
 }
 
@@ -525,7 +518,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
     new name[32]
     new rank
-    new Float:res//, skill
+    new Float:res
     new total
 
     if (SQL_MoreResults(query))
@@ -533,7 +526,6 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     	SQL_ReadResult(query, column("nick"), name, 31)
     	rank = SQL_ReadResult(query, column("rank"))
         SQL_ReadResult(query, column("skill"), res)
-//        skill = floatround(res*1000)
         total = SQL_ReadResult(query, column("total"))
     		
     	colored_print(id, "^x04***^x03 %s^x01 находится на^x04 %d^x01 из %d позиций!",

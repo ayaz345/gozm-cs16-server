@@ -3,7 +3,7 @@
 #include <engine>
 #include <colored_print>
 
-new g_GagPlayers[MAX_PLAYERS+1]	// Used to check if a player is gagged
+new g_GagPlayers[MAX_PLAYERS]	// Used to check if a player is gagged
 
 new mutedIp[64][16]
 new muted_num = 1

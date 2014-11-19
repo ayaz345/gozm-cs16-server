@@ -41,7 +41,6 @@
 #define BAN_DURATION       33
 new gszKickMsg[] =         "bye"
 
-//#define MAX_PLAYERS        32
 //#define WHITELIST_SIZE   4	// EXACTLY as rows quantity below; uncomment to enable whitelist
 
 #if defined WHITELIST_SIZE
@@ -56,7 +55,7 @@ new const gszWhiteList[WHITELIST_SIZE][] = {
 
 #define DEBUG	// uncomment to enable some messages
 
-new gszPlayerIP[MAX_PLAYERS + 1][16]
+new gszPlayerIP[MAX_PLAYERS][16]
 new Trie:gtPlayerIPs
 
 #if defined WHITELIST_SIZE

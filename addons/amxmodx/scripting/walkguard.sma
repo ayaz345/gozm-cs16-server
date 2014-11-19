@@ -670,7 +670,7 @@ public InitWalkGuard(player) {
 	get_user_name(player, name, 32)
 	get_user_authid(player, steam, 32)
 	
-	if (!(get_user_flags(player) & ADMIN_RCON))
+	if (!has_rcon(player))
 	{
 		log_amx("no access-rights for '%s' <%s>", name, steam)
 		return PLUGIN_HANDLED

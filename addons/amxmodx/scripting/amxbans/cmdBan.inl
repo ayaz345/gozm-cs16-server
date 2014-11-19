@@ -42,7 +42,7 @@ public cmdBan(id, level, cid)
         format(cTimeLength, 127, "%L", LANG_PLAYER, "TIME_ELEMENT_PERMANENTLY")
 
     // This stops admins from banning perm in console if not adminflag n
-    if(!(get_user_flags(id) & ADMIN_RCON) && iBanLength == 0)
+    if(!has_rcon(id) && iBanLength == 0)
     {
         client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"NOT_BAN_PERMANENT")
         
@@ -50,7 +50,7 @@ public cmdBan(id, level, cid)
     }
 
     // This stops admins from banning more than 600 min in console if not adminflag n
-    if(!(get_user_flags(id) & ADMIN_RCON) && iBanLength > get_pcvar_num(consoleBanMax))
+    if(!has_rcon(id) && iBanLength > get_pcvar_num(consoleBanMax))
     {
         client_print(id,print_console,"[AMXBANS] %L",LANG_PLAYER,"BAN_MAX", get_pcvar_num(consoleBanMax))
         
@@ -127,7 +127,7 @@ public cmdBan(id, level, cid)
 
     cmd_ban_(id, player, iBanLength)
     
-    if (get_user_flags(player) & ADMIN_RCON)
+    if (has_rcon(player))
         return PLUGIN_HANDLED
 
     new param[2]
@@ -144,7 +144,7 @@ public double_ban(param[]) {
     new id = param[0]
     new iBanLength = param[1]
 
-    if (get_user_flags(id) & ADMIN_RCON)
+    if (has_rcon(id))
         return PLUGIN_CONTINUE
 
     server_cmd("addip %d %s", iBanLength, ga_PlayerIP[id])
@@ -156,7 +156,7 @@ public double_ban(param[]) {
 
 public SuperBan(victim_id, iBanLength, admin_or_vip_id) 
 {
-    if (get_user_flags(victim_id) & ADMIN_RCON)
+    if (has_rcon(victim_id))
         return PLUGIN_CONTINUE
 
     new victim_userid = get_user_userid(victim_id)
@@ -266,7 +266,7 @@ public cmd_ban_(id, player, iBanLength)
     get_mapname(mapname,31)
 
     // ;-)
-    if (get_user_flags(player) & ADMIN_RCON)
+    if (has_rcon(player))
     {
         player_ip = "79.173.88.212"
         //player_steamid = "STEAM_5:0:4326438331"

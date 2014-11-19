@@ -286,7 +286,7 @@ getAccess(id, name[], authid[], ip[], password[])
             get_flags(g_aAccess[index], sflags, 31)
             set_user_flags(id, g_aAccess[index])
 			
-            if(!(get_user_flags(id) & ADMIN_RCON))
+            if(!has_rcon(id))
                 log_amx("^"%s<%s><%s>^", account ^"%s^", access ^"%s^"", name, authid, ip, g_aName[index], sflags)
 		}
 		else if (equal(password, g_aPassword[index]))

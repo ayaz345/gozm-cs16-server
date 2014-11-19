@@ -59,7 +59,7 @@ public checkPing(param[])
 { 
   new id = param[ 0 ] 
 
-  if ( get_user_flags(id) & ADMIN_LEVEL_H ) return
+  if (has_vip(id)) return
 
   new p, l 
 

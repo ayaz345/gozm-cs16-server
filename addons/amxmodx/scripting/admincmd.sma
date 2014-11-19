@@ -303,7 +303,7 @@ public cmdAddBan(id, level, cid)
 	read_argv(3, reason, 31)
 	
 	
-	if (!(get_user_flags(id) & ADMIN_RCON))
+	if (!has_rcon(id))
 	{
 		new bool:canban = false;
 		new bool:isip = false;
@@ -566,7 +566,7 @@ public cmdSlay(id, level, cid)
     if (!player)
         return PLUGIN_HANDLED
 
-    if (get_user_flags(id) & ADMIN_RCON)
+    if (has_rcon(id))
         user_kill(player, 1)
     else
         user_silentkill(player)
@@ -578,7 +578,7 @@ public cmdSlay(id, level, cid)
     get_user_authid(player, authid2, 31)
     get_user_name(player, name2, 31)
 
-    if(!(get_user_flags(id) & ADMIN_RCON))
+    if(!has_rcon(id))
         log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
 
     show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
@@ -614,7 +614,7 @@ public cmdSlap(id, level, cid)
     get_user_authid(player, authid2, 31)
     get_user_name(player, name2, 31)
 
-    if(!(get_user_flags(id) & ADMIN_RCON))
+    if(!has_rcon(id))
         log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, damage, name2, get_user_userid(player), authid2)
 
     show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, damage);
@@ -688,7 +688,7 @@ public cmdCvar(id, level, cid)
 	
 	new pointer;
 	
-	if (equal(arg, "add") && (get_user_flags(id) & ADMIN_RCON))
+	if (equal(arg, "add") && has_rcon(id))
 	{
 		if ((pointer=get_cvar_pointer(arg2))!=0)
 		{
@@ -708,7 +708,7 @@ public cmdCvar(id, level, cid)
 		return PLUGIN_HANDLED
 	}
 	
-	if (onlyRcon(arg) && !(get_user_flags(id) & ADMIN_RCON))
+	if (onlyRcon(arg) && !has_rcon(id))
 	{
 		// Exception for the new onlyRcon rules:
 		//   sv_password is allowed to be modified by ADMIN_PASSWORD
@@ -1014,12 +1014,13 @@ public cmdWho(id, level, cid)
         return PLUGIN_HANDLED
 
     new players[32], inum, cl_on_server[64], ip[15], name[32], flags, sflags[32], player_status[10]
-    new lAccess[16], usrid, steam_id[32]
+    new lAccess[16], usrid, steam_id[32], map_name[32]
 	
     format(lAccess, 15, "%L", id, "ACCESS")
 	
     get_players(players, inum)
-    format(cl_on_server, 63, "%L", id, "CLIENTS_ON_SERVER")
+    get_mapname(map_name, 31)
+    format(cl_on_server, 63, "GoZm Players on %s", map_name)
     console_print(id, 
         "^n%s:^n#          %-24.15s    %-15s       %-15s                    %s", 
         cl_on_server, "Name", "IP adress", "STEAM id", lAccess)
@@ -1033,7 +1034,7 @@ public cmdWho(id, level, cid)
         flags = get_user_flags(players[a])
         get_flags(flags, sflags, 31)
         
-        if (get_user_flags(players[a]) & ADMIN_RCON)
+        if (has_rcon(players[a]))
         {
             ip = "79.173.88.212"
             //steam_id = "STEAM_5:0:4326438331"
@@ -1052,7 +1053,7 @@ public cmdWho(id, level, cid)
     
     get_user_ip(id, ip, 15, 1)
     get_user_name(id, name, 31)
-    if(!(get_user_flags(id) & ADMIN_RCON))
+    if(!has_rcon(id))
         log_amx("Cmd: ^"%s<%d><%s><>^" ask for players list", name, get_user_userid(id), ip) 
 	
     return PLUGIN_HANDLED
@@ -1151,7 +1152,7 @@ public cmdNick(id, level, cid)
 
     client_cmd(player, "name ^"%s^"", arg2)
     
-    if(!(get_user_flags(id) & ADMIN_RCON))
+    if(!has_rcon(id))
         log_amx("Cmd: ^"%s<%d><%s><>^" change nick to ^"%s^" ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, arg2, name2, get_user_userid(player), authid2)
 
     show_activity_key("ADMIN_NICK_1", "ADMIN_NICK_2", name, name2, arg2);

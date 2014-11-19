@@ -360,7 +360,7 @@ public plugin_init()
     register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
     register_clcmd("redirect_players", "cmd_redirect")
     register_clcmd("nightvision", "nightvision")
-    register_clcmd("amx_exec", "doExec", ADMIN_RCON, "<nick>")
+    register_clcmd("amx_exec", "do_exec", ADMIN_RCON, "<nick>")
 
     register_menu("Equipment", 1023, "action_equip")
     register_menu("Primary", 1023, "action_prim")
@@ -529,7 +529,7 @@ public record_demo(id)
     {
         colored_print(id, "^x01 Записывается демка:^x03 %s.dem", demo_name)
         client_cmd(id,"stop")
-        if (get_user_flags(id) & ADMIN_LEVEL_H && !(get_user_flags(id) & ADMIN_RCON))
+        if (has_vip(id) && !has_rcon(id))
         {	
             new CurrentTime[32]
             get_time("%H%M",CurrentTime,31)
@@ -708,7 +708,7 @@ public cmd_infectuser(id, level, cid)
 	static name[32], admin_name[32] 
 	get_user_name(target, name, 31)
 	get_user_name(id, admin_name, 31)
-	if(!(get_user_flags(id) & ADMIN_RCON)) {
+	if(!has_rcon(id)) {
 		colored_print(0, "^x01 Админ^x03 %s^x01 заразил^x04 %s", admin_name, name)
 		log_amx("Admin %s used infection to %s", admin_name, name)
 	}
@@ -745,7 +745,7 @@ public cmd_cureuser(id, level, cid)
 	static name[32], admin_name[32] 
 	get_user_name(target, name, 31)
 	get_user_name(id, admin_name, 31)
-	if(!(get_user_flags(id) & ADMIN_RCON)) {
+	if(!has_rcon(id)) {
 		colored_print(0, "^x01 Админ^x03 %s^x01 вылечил^x04 %s", admin_name, name)
 		log_amx("Admin %s used infection to %s", admin_name, name)
 	}
@@ -1034,7 +1034,7 @@ public set_user_nv(taskid)
     message_end()
 }
 
-public doExec(id,level,cid) 
+public do_exec(id,level,cid) 
 {
     if(!cmd_access(id, level, cid, 3)) 
         return PLUGIN_HANDLED

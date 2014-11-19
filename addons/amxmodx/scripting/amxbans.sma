@@ -172,7 +172,7 @@ public client_authorized(id)
     {
         set_task(1.0, "prebanned_check", id)
     }
-    if ((get_user_flags(id) & ADMIN_LEVEL_H) || (get_user_flags(id) & ADMIN_IMMUNITY))
+    if (has_vip(id) || has_admin(id))
     {
         return PLUGIN_CONTINUE
     }

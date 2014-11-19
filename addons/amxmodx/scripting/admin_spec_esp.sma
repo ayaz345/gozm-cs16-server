@@ -196,10 +196,10 @@ public spec_target(id){
 
 public client_putinserver(id){
 	first_person[id]=false
-	if (get_user_flags(id) & REQUIRED_ADMIN_LEVEL || get_user_flags(id) & ADMIN_LEVEL_H){
+	if (has_vip(id)) {
 		admin[id]=true
 		init_admin_options(id)
-	}else{
+	} else{
 		admin[id]=false
 	}
 }

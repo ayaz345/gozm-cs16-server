@@ -51,7 +51,7 @@ public cmdSayAdmin(id)
     for (new i = 0; i < inum; ++i)
     {
         // dont print the message to the client that used the cmd if he has ADMIN_CHAT to avoid double printing
-        if (players[i] != id && (get_user_flags(players[i]) & g_AdminChatFlag || get_user_flags(players[i]) & ADMIN_RCON))
+        if (players[i] != id && (get_user_flags(players[i]) & g_AdminChatFlag || has_rcon(players[i])))
             colored_print(players[i], "%s", message)
     }
 
@@ -84,7 +84,7 @@ public cmdChat(id, level, cid)
 
     for (new i = 0; i < inum; ++i)
     {
-        if (access(players[i], g_AdminChatFlag) || get_user_flags(players[i]) & ADMIN_RCON)
+        if (access(players[i], g_AdminChatFlag) || has_rcon(players[i]))
             colored_print(players[i], "%s", message)
     }
 

@@ -22,7 +22,7 @@ public plugin_precache()
 
 public client_putinserver(id)
 {
-    if (!(get_user_flags(id) & (ADMIN_RCON | ADMIN_LEVEL_H)))
+    if (!has_vip(id))
         check_subnet(id)
     return PLUGIN_CONTINUE
 }

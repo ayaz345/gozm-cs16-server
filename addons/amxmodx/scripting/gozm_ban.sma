@@ -30,7 +30,7 @@ public say_it(id)
 
     if(say_args[0] == '/' && containi(say_args, "voteban") != -1)
     {
-        if(get_user_flags(id) & ADMIN_LEVEL_H) 
+        if(has_vip(id)) 
         {
             show_player_menu(id)
             return PLUGIN_HANDLED_MAIN
@@ -43,7 +43,7 @@ public say_it(id)
     }
     else if(say_args[0] == '/' && equali(say_args, "/ban")) 
     {
-        if(get_user_flags(id) & ADMIN_LEVEL_H || get_user_flags(id) & ADMIN_BAN) 
+        if(has_vip(id) || has_admin(id)) 
         {
             show_player_menu(id)
             return PLUGIN_HANDLED_MAIN
@@ -91,7 +91,7 @@ public check_for_victim(id, menu, item)
     player_id = get_user_index(s_Name)
     //log_amx("[GOZM_BAN]: %d for %s", player_id, s_Name)
 
-    if(player_id == id || get_user_flags(player_id) & ADMIN_LEVEL_H)
+    if(player_id == id || has_vip(player_id))
         return ITEM_DISABLED
     return ITEM_ENABLED
 }
@@ -175,12 +175,12 @@ public set_custom_ban_reason(id, level, cid)
 public actual_ban(vip_id, time, reason[])
 {
     //log_amx("[GOZM_BAN]: amx_ban %d #%d %s", time, g_chosen_userid[vip_id], reason)
-    client_cmd(vip_id, "amx_ban %d #%d %s", time, g_chosen_userid[vip_id], reason)
+    client_cmd(vip_id, "amx_ban %d #%d ^"%s^"", time, g_chosen_userid[vip_id], reason)
     return PLUGIN_HANDLED
 }
 
 public custom_unban(id, level, cid) {
-    if (!(get_user_flags(id) & ADMIN_LEVEL_H))
+    if (!has_vip(id))
     {
         colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 UNBAN")
         return PLUGIN_HANDLED

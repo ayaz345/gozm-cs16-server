@@ -3,8 +3,6 @@
 #include <fakemeta>
 #include <colored_print>
 
-#define VIP_FLAG ADMIN_LEVEL_H
-#define ADMIN_FLAG ADMIN_BAN
 #define OFFSET_CSMENUCODE	205
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3
@@ -120,7 +118,7 @@ public allow_join_spec(id)
 {
     new specs[32], specsnum
     get_players(specs, specsnum, "e", "SPECTATOR")
-    if(specsnum > 1 && !(access(id, VIP_FLAG) || access(id, ADMIN_FLAG)))
+    if(specsnum > 1 && !(has_vip(id) || has_admin(id)))
     {
         colored_print(id, "^x04***^x01 Место в наблюдателях занято!")
         return PLUGIN_HANDLED
@@ -130,7 +128,7 @@ public allow_join_spec(id)
         colored_print(id, "^x04***^x01 Ты уже в наблюдателях!")
         return PLUGIN_HANDLED
     }
-    if(is_user_alive(id) && !(access(id, VIP_FLAG) || access(id, ADMIN_FLAG)))
+    if(is_user_alive(id) && !(has_vip(id) || has_admin(id)))
     {
         colored_print(id, "^x04***^x01 Живой - играй!")
         return PLUGIN_HANDLED
@@ -139,11 +137,6 @@ public allow_join_spec(id)
     user_silentkill(id)
     cs_set_player_team(id, CS_TEAM_SPECTATOR)
     return PLUGIN_HANDLED
-}
-
-public access(id, flag)
-{
-    return get_user_flags(id) & flag
 }
 
 public allow_join_game(id)

@@ -3422,5 +3422,17 @@ public bool:is_server_licenced()
     return false;
 }
 
+public has_vip(id)
+    return get_user_flags(id) & ADMIN_LEVEL_H
+
+public has_admin(id)
+    return get_user_flags(id) & ADMIN_BAN
+    
+public has_rcon(id)
+    return get_user_flags(id) & ADMIN_RCON
+
+public is_priveleged_user(id)
+    return has_vip(id) || has_rcon(id) || has_admin(id)
+
 // Always keep this at the bottom of this file
 #include <message_stocks>

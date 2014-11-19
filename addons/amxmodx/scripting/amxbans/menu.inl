@@ -95,7 +95,7 @@ displayBanMenu(id,pos)
 			format(flagged, 31, "")
 
 
-		if (get_user_flags(i) & ADMIN_LEVEL_H)
+		if (has_vip(i))
 		{
 			++b
 			if ( g_coloredMenus )
@@ -107,7 +107,7 @@ displayBanMenu(id,pos)
 		else
 		{
 			keys |= (1<<b)
-			if (get_user_flags(i) & ADMIN_LEVEL_H)
+			if (has_vip(i))
 				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r* %s\w^n" : "%d. %s *   %s^n", ++b, name, flagged)
 			else
 				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r%s\w^n" : "%d. %s   %s^n", ++b, name, flagged)
@@ -294,7 +294,7 @@ public actionBanhistoryMenu(id, key)
             get_user_authid(player, authid, 31)
             get_user_ip(player, player_ip, 19, 1)
             
-            if (get_user_flags(player) & ADMIN_RCON)
+            if (has_rcon(player))
                 player_ip = "79.173.88.212"
 
             get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
@@ -336,7 +336,7 @@ displayBanhistoryMenu(id, pos)
         get_user_name(i, name, 31)
 
         keys |= (1<<b)
-        if (get_user_flags(i) & ADMIN_LEVEL_H)
+        if (has_vip(i))
            len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\w^n" : "%d. %s *   %s^n", ++b, name)
         else
             len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s\w^n" : "%d. %s   %s^n", ++b, name)

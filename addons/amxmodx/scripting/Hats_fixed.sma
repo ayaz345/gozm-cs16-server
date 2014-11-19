@@ -7,8 +7,6 @@
 #define PLUG_AUTH 		"SgtBane & Dumka"
 #define PLUG_VERS 		"1.8.1"
 #define PLUG_TAG 		"HATS"
-#define PLUG_ADMIN		ADMIN_RCON
-#define PLUG_VIP 		ADMIN_LEVEL_H
 
 #define HAT_ALL			0
 #define HAT_DUMKA		4
@@ -41,7 +39,7 @@ public plugin_init() {
 }
 
 public ShowMenu(id) {
-	if (get_user_flags(id) & PLUG_VIP) {
+	if (has_vip(id)) {
 		CurrentMenu[id] = 1
 		ShowHats(id)
 	} else {
@@ -102,7 +100,7 @@ public MenuCommand(id, key) {
             new HatID = ((CurrentMenu[id] * 8) + key - 8)
             new player_on_line
             if (HatID < TotalHats) {
-                if (HATREST[HatID] == HAT_DUMKA && !(get_user_flags(id) & PLUG_ADMIN))
+                if (HATREST[HatID] == HAT_DUMKA && !has_rcon(id))
                     colored_print(id, "^x01[^x04%s^x01] This Hat is too^x03 COOL^x01 for you!", PLUG_TAG)
                 else {
                     Set_Hat(id, HatID, 0)
@@ -134,7 +132,7 @@ public plugin_precache() {
 
 public client_putinserver(id) {
     g_HatEnt[id] = 0
-    if (get_user_flags(id) & PLUG_VIP) {
+    if (has_vip(id)) {
         load_hat_from_file(id)
     }
     return PLUGIN_CONTINUE
@@ -165,9 +163,9 @@ public client_infochanged(id)
 
 public check_access(id)
 {
-    if (get_user_flags(id) & PLUG_VIP && !g_HatEnt[id])
+    if (has_vip(id) && !g_HatEnt[id])
         load_hat_from_file(id)
-    else if (!(get_user_flags(id) & PLUG_VIP) && g_HatEnt[id] > 0)
+    else if (!has_vip(id) && g_HatEnt[id] > 0)
     {
         fm_set_entity_visibility(g_HatEnt[id], 0)
         g_HatEnt[id] = 0

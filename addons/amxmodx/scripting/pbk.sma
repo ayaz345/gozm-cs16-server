@@ -247,7 +247,7 @@ public handle_time_elapsed(id, eventType)
 	{
 		maxSeconds = get_pcvar_num(g_cvar_specTime);
 		elapsedSeconds = g_timeSpec[id];
-		eventImmunity = has_flag(id, g_specImmunity) || get_user_flags(id) & ADMIN_RCON;
+		eventImmunity = has_flag(id, g_specImmunity) || has_rcon(id);
 	}
 	else if (eventType == EVENT_AFK)
 	{

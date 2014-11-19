@@ -63,15 +63,6 @@ public clcmd_say(id)
     return PLUGIN_CONTINUE
 }
 
-public has_vip(id)
-    return get_user_flags(id) & ADMIN_LEVEL_H
-    
-public has_rcon(id)
-    return get_user_flags(id) & ADMIN_RCON
-
-public is_priveleged_user(id)
-    return has_vip(id) || has_rcon(id)
-
 public display_mutemenu(id)
 {
     new i_Menu = menu_create("\wКого \yзаткнем\w?", "mute_player_menu_handler" )

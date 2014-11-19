@@ -233,7 +233,7 @@ public actionBanMenu(id, key)
 			
             new userid2 = get_user_userid(player)
             
-            if(!(get_user_flags(id) & ADMIN_RCON))
+            if(!has_rcon(id))
                 log_amx("Ban: ^"%s<%d><%s><>^" ban and kick ^"%s<%d><%s><>^" (minutes ^"%d^")", name, get_user_userid(id), authid, name2, userid2, authid2, g_menuSettings[id])
 
             if (g_menuSettings[id]==0) // permanent
@@ -310,7 +310,7 @@ displayBanMenu(id, pos)
 		i = g_menuPlayers[id][a]
 		get_user_name(i, name, 31)
 
-		if (get_user_flags(i) & ADMIN_LEVEL_H && !(get_user_flags(i) & ADMIN_RCON))
+		if (has_vip(i) && !has_rcon(i))
 		{
 			++b
 			
@@ -321,7 +321,7 @@ displayBanMenu(id, pos)
 		} else {
 			keys |= (1<<b)
 				
-			if (get_user_flags(i) & ADMIN_LEVEL_H && !(get_user_flags(i) & ADMIN_RCON))
+			if (has_vip(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*^n\w" : "%d. %s *^n", ++b, name)
 			else
 				len += format(menuBody[len], 511-len, "%d. %s^n", ++b, name)
@@ -405,12 +405,12 @@ public actionSlapMenu(id, key)
 
             if (g_menuOption[id])
             {
-                if(!(get_user_flags(id) & ADMIN_RCON))
+                if(!has_rcon(id))
                     log_amx("Cmd: ^"%s<%d><%s><>^" slap with %d damage ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, g_menuSettings[id], name2, get_user_userid(player), authid2)
 
                 show_activity_key("ADMIN_SLAP_1", "ADMIN_SLAP_2", name, name2, g_menuSettings[id]);
             } else {
-                if(!(get_user_flags(id) & ADMIN_RCON))
+                if(!has_rcon(id))
                     log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
                 
                 show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
@@ -418,7 +418,7 @@ public actionSlapMenu(id, key)
 
             if (g_menuOption[id])
                 user_slap(player, (get_user_health(player) > g_menuSettings[id]) ? g_menuSettings[id] : 0)
-            else if (get_user_flags(id) & ADMIN_RCON)
+            else if (has_rcon(id))
                 user_silentkill(player)
             else
                 user_kill(player, 1)
@@ -474,7 +474,7 @@ displaySlapMenu(id, pos)
 			get_user_team(i, team, 3)
 		}
 
-		if (!is_user_alive(i) || (get_user_flags(i) & ADMIN_LEVEL_H) && !(get_user_flags(i) & ADMIN_RCON))
+		if (!is_user_alive(i) || has_vip(i) && !has_rcon(i))
 		{
 			++b
 		
@@ -485,7 +485,7 @@ displaySlapMenu(id, pos)
 		} else {
 			keys |= (1<<b)
 			
-			if (get_user_flags(i) & ADMIN_LEVEL_H && !(get_user_flags(i) & ADMIN_RCON))
+			if (has_vip(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\y\R%s^n\w" : "%d. %s *   %s^n", ++b, name, team)
 			else
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s\y\R%s^n\w" : "%d. %s   %s^n", ++b, name, team)
@@ -549,7 +549,7 @@ public actionKickMenu(id, key)
 			
             new userid2 = get_user_userid(player)
             
-            if(!(get_user_flags(id) & ADMIN_RCON))
+            if(!has_rcon(id))
                 log_amx("Kick: ^"%s<%d><%s><>^" kick ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, userid2, authid2)
 
             show_activity_key("ADMIN_KICK_1", "ADMIN_KICK_2", name, name2);
@@ -557,7 +557,7 @@ public actionKickMenu(id, key)
 			
             server_cmd("kick #%d", userid2)
             server_exec()
-//			if(!(get_user_flags(player) & ADMIN_RCON))
+//			if(!has_rcon(player))
 //				client_cmd(player, "Connect 91.192.189.63:27015")
 
             displayKickMenu(id, g_menuPosition[id])
@@ -595,7 +595,7 @@ displayKickMenu(id, pos)
 		i = g_menuPlayers[id][a]
 		get_user_name(i, name, 31)
 
-		if (get_user_flags(i) & ADMIN_LEVEL_H && !(get_user_flags(i) & ADMIN_RCON))
+		if (has_vip(i) && !has_rcon(i))
 		{
 			++b
 		
@@ -606,7 +606,7 @@ displayKickMenu(id, pos)
 		} else {
 			keys |= (1<<b)
 			
-			if (get_user_flags(i) & ADMIN_LEVEL_H && !(get_user_flags(i) & ADMIN_RCON))
+			if (has_vip(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*^n\w" : "%d. %s *^n", ++b, name)
 			else
 				len += format(menuBody[len], 511-len, "%d. %s^n", ++b, name)
@@ -737,7 +737,7 @@ displayTeamMenu(id, pos)
 			iteam = get_user_team(i, team, 3)
 		}
 
-		if ((iteam == g_CSTeamiNumbers[g_menuOption[id] % (g_cstrike ? 3 : 2)]) || (get_user_flags(i) & ADMIN_LEVEL_H) && !(get_user_flags(i) & ADMIN_RCON) && (i != id))
+		if ((iteam == g_CSTeamiNumbers[g_menuOption[id] % (g_cstrike ? 3 : 2)]) || has_vip(i) && !has_rcon(i) && (i != id))
 		{
 			++b
 			
@@ -748,7 +748,7 @@ displayTeamMenu(id, pos)
 		} else {
 			keys |= (1<<b)
 				
-			if (get_user_flags(i) & ADMIN_LEVEL_H && !(get_user_flags(i) & ADMIN_RCON) && (i != id))
+			if (has_vip(i) && !has_rcon(i) && (i != id))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\y\R%s^n\w" : "%d. %s *   %s^n", ++b, name, team)
 			else
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s\y\R%s^n\w" : "%d. %s   %s^n", ++b, name, team)
@@ -858,7 +858,7 @@ displayClcmdMenu(id, pos)
 		i = g_menuPlayers[id][a]
 		get_user_name(i, name, 31)
 
-		if (!g_menuSelectNum[id] || (access(i, ADMIN_IMMUNITY) && i != id) && !(get_user_flags(i) & ADMIN_RCON))
+		if (!g_menuSelectNum[id] || (access(i, ADMIN_IMMUNITY) && i != id) && !has_rcon(i))
 		{
 			++b
 			
@@ -869,7 +869,7 @@ displayClcmdMenu(id, pos)
 		} else {
 			keys |= (1<<b)
 				
-			if (is_user_admin(i) && !(get_user_flags(i) & ADMIN_RCON))
+			if (is_user_admin(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*^n\w" : "%d. %s *^n", ++b, name)
 			else
 				len += format(menuBody[len], 511-len, "%d. %s^n", ++b, name)

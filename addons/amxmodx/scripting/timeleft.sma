@@ -18,6 +18,8 @@ public plugin_init()
     register_clcmd("say_team thetime", "sayTheTime", 0, "- displays current time")
     register_clcmd("say time", "sayTime", 0, "- displays current time")
     register_clcmd("say_team time", "sayTime", 0, "- displays current time and timeleft")
+    register_clcmd("say /timeleft", "sayTimeLeft", 0, "- displays current time")
+    register_clcmd("say_team /timeleft", "sayTimeLeft", 0, "- displays current time and timeleft")
     register_clcmd("say /time", "sayTime", 0, "- displays current time")
     register_clcmd("say_team /time", "sayTime", 0, "- displays current time and timeleft")
 

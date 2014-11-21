@@ -103,14 +103,17 @@ public sql_init()
 
     new map_name[32]
     get_mapname(map_name, 31)
-    format(g_Query, charsmax(g_Query), "INSERT INTO `bio_maps` (`map`) VALUES ('%s') \
+    format(g_Query, charsmax(g_Query), "\
+        INSERT INTO `bio_maps` (`map`) \
+        VALUES ('%s') \
         ON DUPLICATE KEY UPDATE `games` = `games` + 1", map_name)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
     new inactive_period = get_systime() - max_inactive_days*24*60*60
-    format(g_Query,charsmax(g_Query),"DELETE FROM `bio_players` \
-            WHERE `last_leave` < %d", inactive_period)
+    format(g_Query,charsmax(g_Query),"\
+        DELETE FROM `bio_players` \
+        WHERE `last_leave` < %d", inactive_period)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 }
 
@@ -147,13 +150,13 @@ public auth_player(taskid)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
-    format(g_Query, charsmax(g_Query), "SELECT `id` FROM `bio_players` \
-            WHERE BINARY `nick`='%s'", g_UserName[id])
+    format(g_Query, charsmax(g_Query), "\
+        SELECT `id` FROM `bio_players` \
+        WHERE BINARY `nick`='%s'", g_UserName[id])
 
     new data[2]
     data[0] = id
     data[1] = get_user_userid(id)
-
     SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, 2)
 	
     return PLUGIN_HANDLED
@@ -182,7 +185,8 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     else
     {
         format(g_Query,charsmax(g_Query),
-            "INSERT INTO `bio_players` SET `nick`='%s', `ip`='%s', `steam_id`='%s'",
+            "INSERT INTO `bio_players` \
+            SET `nick`='%s', `ip`='%s', `steam_id`='%s'",
             g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
     }
@@ -196,6 +200,7 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 2)
+
         return PLUGIN_HANDLED
     }
     
@@ -214,9 +219,11 @@ public update_last_seen(taskid)
     new id = taskid - TASKID_LASTSEEN
     
     new last_leave = get_systime()
-    format(g_Query, charsmax(g_Query), "UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
-        last_leave, g_UserDBId[id])
+    format(g_Query, charsmax(g_Query), "\
+        UPDATE `bio_players` \
+        SET `last_leave` = %d WHERE `id`=%d", last_leave, g_UserDBId[id])
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+
     return PLUGIN_HANDLED
 }
 
@@ -235,8 +242,10 @@ public client_infochanged(id)
         if (g_UserDBId[id])
         {
             new last_leave = get_systime()
-            format(g_Query,charsmax(g_Query), "UPDATE `bio_players` SET `last_leave` = %d WHERE `id`=%d", 
-                last_leave, g_UserDBId[id])
+            format(g_Query,charsmax(g_Query), "\
+                UPDATE `bio_players` \
+                SET `last_leave` = %d \
+                WHERE `id`=%d", last_leave, g_UserDBId[id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
         
@@ -244,6 +253,7 @@ public client_infochanged(id)
         reset_player_statistic(id)
         set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
     }
+
     return PLUGIN_CONTINUE
 }
 
@@ -256,23 +266,31 @@ public event_infect(id, infector)
 
         if (g_UserDBId[id])
         {
-            format(g_Query, charsmax(g_Query), 
-                "UPDATE `bio_players` SET `infected` = `infected` + 1 WHERE `id`=%d", g_UserDBId[id])
+            format(g_Query, charsmax(g_Query), "\
+            UPDATE `bio_players` \
+                SET `infected` = `infected` + 1 \
+                WHERE `id`=%d", g_UserDBId[id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
         if (g_UserDBId[infector])
         {
             format(g_Query, charsmax(g_Query),
-                "UPDATE `bio_players` SET `infect` = `infect` + 1 WHERE `id`=%d", g_UserDBId[infector])
+                "UPDATE `bio_players` \
+                SET `infect` = `infect` + 1 \
+                WHERE `id`=%d", g_UserDBId[infector])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
     }
     else if (g_UserDBId[id])
     {
-        format(g_Query, charsmax(g_Query),
-            "UPDATE `bio_players` SET `first_zombie` = `first_zombie` + 1 WHERE `id`=%d", g_UserDBId[id])
+        format(g_Query, charsmax(g_Query), "\
+            UPDATE `bio_players` \
+            SET `first_zombie` = `first_zombie` + 1 \
+            WHERE `id`=%d", g_UserDBId[id])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
+    
+    return PLUGIN_CONTINUE
 }
 
 public logevent_endRound()
@@ -285,16 +303,19 @@ public logevent_endRound()
         get_players(players, playersNum, "ch")
         for (i = 0; i < playersNum; i++)
         {
-            if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT]) {
+            if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT])
+            {
                 maxInfectId = i
                 extraMaxInfectNum = 0
                 maxInfectList[extraMaxInfectNum] = i
             }
-            else if (g_Me[players[i]][ME_INFECT] == g_Me[players[maxInfectId]][ME_INFECT] && (i != 0)) {
+            else if (g_Me[players[i]][ME_INFECT] == g_Me[players[maxInfectId]][ME_INFECT] && (i != 0))
+            {
                 extraMaxInfectNum++
                 maxInfectList[extraMaxInfectNum] = i
             }
-            if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG]) {
+            if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG])
+            {
                 maxDmgId = i
             }
         }
@@ -325,9 +346,10 @@ public logevent_endRound()
                 pev(players[maxInfectId], pev_frags, frags)
                 set_pev(players[maxInfectId], pev_frags, frags+1.0)
                 
-                format(g_Query, charsmax(g_Query),
-                    "UPDATE `bio_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
-                    g_UserDBId[players[maxInfectId]])
+                format(g_Query, charsmax(g_Query), "\
+                    UPDATE `bio_players` \
+                    SET `extra` = `extra` + 1 \
+                    WHERE `id`=%d", g_UserDBId[players[maxInfectId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
             if (g_UserDBId[players[maxDmgId]])
@@ -336,9 +358,10 @@ public logevent_endRound()
                 pev(players[maxDmgId], pev_frags, frags)
                 set_pev(players[maxDmgId], pev_frags, frags+1.0)
             
-                format(g_Query, charsmax(g_Query),
-                    "UPDATE `bio_players` SET `extra` = `extra` + 1 WHERE `id`=%d",
-                    g_UserDBId[players[maxDmgId]])
+                format(g_Query, charsmax(g_Query), "\
+                    UPDATE `bio_players` \
+                    SET `extra` = `extra` + 1 \
+                    WHERE `id`=%d", g_UserDBId[players[maxDmgId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
         }
@@ -360,8 +383,10 @@ public fw_HamKilled(victim, attacker, shouldgib)
     
     if (g_UserDBId[victim] && is_user_connected(attacker))
     {
-        format(g_Query, charsmax(g_Query),
-            "UPDATE `bio_players` SET `death` = `death` + 1 WHERE `id`=%d", g_UserDBId[victim])
+        format(g_Query, charsmax(g_Query), "\
+            UPDATE `bio_players` \
+            SET `death` = `death` + 1 \
+            WHERE `id`=%d", g_UserDBId[victim])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
 
@@ -383,9 +408,10 @@ public fw_HamKilled(victim, attacker, shouldgib)
             if(get_user_weapon(attacker) == CSW_KNIFE)
             {
                 // extra
-                format(g_Query, charsmax(g_Query),
-                    "UPDATE `bio_players` SET `extra` = `extra` + 5 WHERE `id`=%d",
-                    g_UserDBId[attacker])
+                format(g_Query, charsmax(g_Query), "\
+                    UPDATE `bio_players` \
+                    SET `extra` = `extra` + 5 \
+                    WHERE `id`=%d", g_UserDBId[attacker])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
         }
@@ -393,7 +419,10 @@ public fw_HamKilled(victim, attacker, shouldgib)
 
     if (g_UserDBId[attacker])
     {
-        format(g_Query, charsmax(g_Query), "UPDATE `bio_players` SET `%s` = `%s` + %d WHERE `id`=%d",
+        format(g_Query, charsmax(g_Query), "\
+            UPDATE `bio_players` \
+            SET `%s` = `%s` + %d \
+            WHERE `id`=%d",
             g_types[type], g_types[type], killer_frags, g_UserDBId[attacker])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
@@ -403,7 +432,11 @@ public fw_HamKilled(victim, attacker, shouldgib)
 
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 {
-    if (victim == attacker || !is_user_alive(attacker) || !is_user_connected(victim) || !is_user_zombie(victim))
+    if (victim == attacker || 
+        !is_user_alive(attacker) || 
+        !is_user_connected(victim) || 
+        !is_user_zombie(victim)
+        )
         return PLUGIN_CONTINUE	
 
     if (is_user_alive(attacker) && !is_user_zombie(attacker))
@@ -459,11 +492,12 @@ public handleSay(id)
 public show_me(id)
 {
     if (!is_user_zombie(id))
-        colored_print(id, "^x04***^x01 Ты нанес:^x04 %d^x01 дамаги", g_Me[id][ME_DMG])
+        colored_print(id, "^x04***^x01 Нанес:^x04 %d^x01 дамаги",
+            g_Me[id][ME_DMG])
     else
-        colored_print(id, "^x04***^x01 Ты сделал:^x04 %d^x01 заражени%s", 
+        colored_print(id, "^x04***^x01 Заразил:^x04 %d^x01 человек%s", 
             g_Me[id][ME_INFECT],
-            set_word_completion(g_Me[id][ME_INFECT]))
+            0 < g_Me[id][ME_INFECT] < 4 ? "а" : "")
 
     return PLUGIN_HANDLED
 }
@@ -728,6 +762,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 6)
         colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
+
         return PLUGIN_HANDLED
     }
 
@@ -823,6 +858,7 @@ public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, F
         SQL_GetQueryString(Query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 99)
     }
+
     return PLUGIN_HANDLED
 }
 
@@ -850,6 +886,7 @@ stock set_word_completion(number)
         word_completion = "е"
     else
         word_completion = "я"
+
     return word_completion
 }
 

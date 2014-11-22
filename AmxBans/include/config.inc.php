@@ -1,5 +1,5 @@
 <?php
- 
+
 /*
  *
  *  AMXBans, managing bans for Half-Life modifications
@@ -8,7 +8,7 @@
  *	web		: http://www.xs4all.nl/~yomama/amxbans/
  *	mail	: yomama@xs4all.nl
  *	ICQ		: 104115504
- *   
+ *
  *	This file is part of AMXBans.
  *
  *  AMXBans is free software; you can redistribute it and/or modify
@@ -27,17 +27,17 @@
  *
  */
 
-if (!get_magic_quotes_gpc()) { 
-   $_POST = addslashes($_POST); 
-   $_GET = addslashes($_GET); 
-} 
-// fix text to display 
-$_POST = str_replace("\'", "", $_POST); 
-$_POST = str_replace("\"", "", $_POST); 
-$_POST = str_replace("\\", "", $_POST); 
+if (!get_magic_quotes_gpc()) {
+   $_POST = addslashes($_POST);
+   $_GET = addslashes($_GET);
+}
+// fix text to display
+$_POST = str_replace("\'", "", $_POST);
+$_POST = str_replace("\"", "", $_POST);
+$_POST = str_replace("\\", "", $_POST);
 
-$_GET = str_replace("\'", "", $_GET); 
-$_GET = str_replace("\"", "", $_GET); 
+$_GET = str_replace("\'", "", $_GET);
+$_GET = str_replace("\"", "", $_GET);
 $_GET = str_replace("\\", "", $_GET);
 
 
@@ -45,7 +45,7 @@ $config->document_root = "/179761";
 $config->path_root = "/home/forteam/v3/users/amx/179761";
 $config->importdir = "/home/forteam/v3/users/amx/179761/tmp";
 $config->templatedir = "/home/forteam/v3/users/amx/179761/templates";
-$config->db_host = "localhost";
+$config->db_host = "141.101.203.23";
 $config->db_name = "b179761";
 $config->db_user = "u179761";
 $config->db_pass = "petyx";

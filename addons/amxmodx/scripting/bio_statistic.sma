@@ -391,7 +391,9 @@ public fw_HamKilled(victim, attacker, shouldgib)
     }
 
     if (victim == attacker || !is_user_connected(attacker))
+    {
         type = 6
+    }
     else if (is_user_zombie(attacker))
     {
         type = 1
@@ -417,7 +419,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
         }
     }
 
-    if (g_UserDBId[attacker])
+    if (is_user_connected(attacker) && g_UserDBId[attacker])
     {
         format(g_Query, charsmax(g_Query), "\
             UPDATE `bio_players` \

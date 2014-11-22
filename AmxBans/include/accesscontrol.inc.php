@@ -21,13 +21,9 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-@session_start();
+session_start();
 
 require("$config->path_root/include/functions.inc.php");
-
-if( $_SERVER['REQUEST_METHOD'] == 'POST')
-    if(!preg_match('!^http(s)?://' . preg_quote($_SERVER['HTTP_HOST']) . '!i', $_SERVER['HTTP_REFERER']))
-        exit;
 
 $uid = mysql_real_escape_string($_POST['uid']);
 $pwd = mysql_real_escape_string($_POST['pwd']);

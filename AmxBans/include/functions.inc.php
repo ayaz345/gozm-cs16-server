@@ -507,16 +507,9 @@ function print_it( $var )
 
 function throw_error( $msg )
 {
-}
 
-function regGlobOff($array) {
-    foreach($array as $k => $v) {
-        unset($GLOBALS[$k]);
-    }
+
+
 }
-error_reporting(0);
-regGlobOff($_POST);
-regGlobOff($_GET);
-regGlobOff($_COOKIE);
 
 ?>

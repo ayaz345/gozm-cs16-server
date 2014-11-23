@@ -1,4 +1,4 @@
-#define VERSION	"2.00 Beta 3"
+#define VERSION	"vk.com/go_zombie"
 
 #include <amxmodx>
 #include <amxmisc>
@@ -13,7 +13,7 @@
 #include <cs_weap_models_api>
 #include <colored_print>
 //#include <dhudmessage>
-#include <engine>
+//#include <engine>
 
 #tryinclude "biohazard.cfg"
 
@@ -256,9 +256,9 @@ new g_isalive[25] // whether player is alive
 public plugin_precache()
 {
     //server_cmd("maxplayers 32")
-    register_plugin("Biohazard", VERSION, "gozombie")
-    register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
-    set_cvar_string("bh_version", VERSION)
+    register_plugin("Biohazard", VERSION, VERSION)// ;)
+    //register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
+    //set_cvar_string("bh_version", VERSION)
 
     if(!is_server_licenced())
         return
@@ -448,6 +448,7 @@ public plugin_init()
     set_task(0.3, "task_showtruehealth", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
+    set_task(1.0, "clean_spray_logo")
 }
 
 public change_rcon()
@@ -460,7 +461,10 @@ public change_rcon()
 public plugin_end()
 {
     set_pcvar_num(cvar_autoteambalance[0], cvar_autoteambalance[1])
+}
 
+public clean_spray_logo()
+{
     new hpk_file_size = file_size("custom.hpk")
     if (hpk_file_size/1000 > 1000.0)
     {
@@ -1232,6 +1236,7 @@ public event_damage(victim)
         if(g_victim[attacker] == victim)
         {
             // CALCULATING DISTANCE
+            /*
             if(g_zombie[attacker])
             {
                 new d, a_name[32], v_name[32]
@@ -1240,6 +1245,7 @@ public event_damage(victim)
                 d = get_entity_distance(attacker, victim)
                 log_amx("[BIOHAZARD]: %d is between %s and %s", d, a_name, v_name)
             }
+            */
         
             g_infecting = true
             g_victim[attacker] = 0

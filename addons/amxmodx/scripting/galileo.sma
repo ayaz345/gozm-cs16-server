@@ -18,17 +18,9 @@ new const PLUGIN_VERSION[]  = "1.1 $Revision: 290 $"; // $Date: 2009-02-26 11:20
 #define SOUND_TIMETOCHOOSE			4
 #define SOUND_RUNOFFREQUIRED		8
 
-#define MAPFILETYPE_SINGLE	1
-#define MAPFILETYPE_GROUPS	2
-
 #define SHOWSTATUS_VOTE		1
-#define SHOWSTATUS_END		2
 
-#define SHOWSTATUSTYPE_COUNT			1
 #define SHOWSTATUSTYPE_PERCENTAGE	2
-
-#define ANNOUNCECHOICE_PLAYERS	1
-#define ANNOUNCECHOICE_ADMINS		2
 
 #define MAX_NOMINATION_CNT			5
 
@@ -36,7 +28,6 @@ new const PLUGIN_VERSION[]  = "1.1 $Revision: 290 $"; // $Date: 2009-02-26 11:20
 #define MAX_RECENT_MAP_CNT	16
 
 #define MAX_PLAYER_CNT				32
-#define MAX_STANDARD_MAP_CNT	25
 #define MAX_MAPNAME_LEN				31
 #define MAX_MAPS_IN_VOTE			8
 #define MAX_NOM_MATCH_CNT     1000
@@ -50,7 +41,6 @@ new const PLUGIN_VERSION[]  = "1.1 $Revision: 290 $"; // $Date: 2009-02-26 11:20
 
 #define SRV_START_CURRENTMAP	1
 #define SRV_START_NEXTMAP			2
-#define SRV_START_MAPVOTE			3
 #define SRV_START_RANDOMMAP		4
 
 #define LISTMAPS_USERID	0

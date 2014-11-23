@@ -53,7 +53,10 @@ new g_text[5096]
 public plugin_init() 
 {
     register_plugin(PLUGIN, VERSION, AUTHOR)
-	
+
+    if(!is_server_licenced())
+        return
+
     g_CvarHost = register_cvar("bio_stats_host", "195.128.158.196")
     g_CvarDB = register_cvar("bio_stats_db", "b179761")
     g_CvarUser = register_cvar("bio_stats_user", "u179761")
@@ -494,10 +497,10 @@ public handleSay(id)
 public show_me(id)
 {
     if (!is_user_zombie(id))
-        colored_print(id, "^x04***^x01 Нанес:^x04 %d^x01 дамаги",
+        colored_print(id, "^x04***^x01 Нанес^x04 %d^x01 дамаги",
             g_Me[id][ME_DMG])
     else
-        colored_print(id, "^x04***^x01 Заразил:^x04 %d^x01 человек%s", 
+        colored_print(id, "^x04***^x01 Заразил^x04 %d^x01 человек%s", 
             g_Me[id][ME_INFECT],
             0 < g_Me[id][ME_INFECT] < 4 ? "а" : "")
 

@@ -3406,10 +3406,8 @@ native bool:has_map_ent_class(const classname[]);
 public bool:is_server_licenced()
 {
     new server_ips[][20] = {
-        "77.220.185.29:27051",  // ForTeam
         "46.174.52.13:27259",  // MyArena
-        "172.23.65.13:27016",  // Home
-        "93.191.11.61:27147"  // Sold
+        "172.23.65.13:27016"  // Home
     }
     new current_ip[20]
     get_user_ip(0, current_ip, 19, 0);

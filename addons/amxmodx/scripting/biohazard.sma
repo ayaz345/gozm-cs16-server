@@ -509,15 +509,16 @@ public client_putinserver(id)
 
     remove_user_model(g_modelent[id])
 
+    set_task(7.0, "record_demo", id)
     set_task(10.0, "ip_spam", id)
 }
 
 public ip_spam(id)
 {
-    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
-    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
-    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
-    colored_print(id, "^x01 Новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
+    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
 }
 
 public record_demo(id)

@@ -119,6 +119,10 @@ public sql_init()
 //    log_amx("[AMXBANS]: Connecting to host: %s, user: %s, pwd: %s, db: %s", host, user, password, db)
     g_SqlX = SQL_MakeDbTuple(host, user, password, db)
 
+    new query[32]
+    format(query, charsmax(query), "SET NAMES utf8")
+    SQL_ThreadQuery(g_SqlX, "mysql_thread", query)
+
     set_task(1.0, "fetchReasons")
 }
 
@@ -375,6 +379,16 @@ loadDefaultBantimes(num)
 		server_cmd("amx_sethighbantimes 5 60 240 600 6000 0 -1")
 	if(num == 2 || num == 0)
 		server_cmd("amx_setlowbantimes 5 30 60 480 600 1440 -1")
+}
+
+public mysql_thread(failstate, Handle:query, error[], errnum, data[], size)
+{
+	if (failstate)
+	{
+		new szQuery[256]
+		MySqlX_ThreadError( szQuery, error, errnum, failstate, 18 )
+	}
+	return PLUGIN_HANDLED
 }
 
 /*********  Error handler  ***************/

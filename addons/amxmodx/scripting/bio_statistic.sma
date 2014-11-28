@@ -709,7 +709,8 @@ public show_top(id, top)
     data[1] = get_user_userid(id)
     data[2] = top
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
-    
+    colored_print(id, "^x04***^x01 Список лучших сейчас загрузится")
+
     return PLUGIN_HANDLED
 }
 

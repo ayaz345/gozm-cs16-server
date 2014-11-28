@@ -1,6 +1,6 @@
 #include <amxmodx>
-#include <cs_teams_api>
 #include <fakemeta>
+#include <cs_teams_api>
 #include <colored_print>
 
 #define OFFSET_CSMENUCODE	205
@@ -9,8 +9,6 @@
 #define MPROP_EXITNAME  4
 #define OFFSET_TEAM 114
 #define TASKID_NEWROUND	641
-
-new GOZM_CMD[] = "gozm_menu"
 
 enum
 {
@@ -23,16 +21,11 @@ enum
 public plugin_init()
 {
     register_plugin("GoZm Menu", "1.0", "Dimka")
-    register_clcmd(GOZM_CMD, "mainMenu", _, "GoZm Menu")
+    register_clcmd("gozm_menu", "mainMenu", _, "GoZm Menu")
     
     register_clcmd("chooseteam", "clcmd_changeteam")
     register_clcmd("jointeam", "clcmd_changeteam")
-    
-    register_clcmd("say /history", "player_history")
-    register_clcmd("say_team /history", "player_history")
-    register_clcmd("say /bans", "show_bans")
-    register_clcmd("say_team /bans", "show_bans")
-    
+
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
 }
 
@@ -97,7 +90,7 @@ public menu_handler(id, menu, item)
         case 8:
             client_cmd(id, "say /unstuck")
         case 9:
-            client_cmd(id, "say /bans")
+            show_bans(id)
         case 10:
             client_cmd(id, "amx_unban_by_name")  // voteban.amxx
         case 11:
@@ -176,6 +169,7 @@ public event_newround()
     set_task(0.1, "task_newround", TASKID_NEWROUND)
 }
 
+// that function saves opened menu in a new round
 public task_newround()
 {
     static players[32], num, id

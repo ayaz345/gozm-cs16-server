@@ -7,13 +7,10 @@
 #include <xs>
 #include <cstrike>
 #include <fun>
-//#include <cs_player_models_api> - problem with HATS
 #include <cs_teams_api>
 #include <cs_maxspeed_api>
 #include <cs_weap_models_api>
 #include <colored_print>
-//#include <dhudmessage>
-//#include <engine>
 
 #tryinclude "biohazard.cfg"
 
@@ -256,9 +253,7 @@ new g_isalive[25] // whether player is alive
 public plugin_precache()
 {
     //server_cmd("maxplayers 32")
-    register_plugin("Biohazard", VERSION, VERSION)// ;)
-    //register_cvar("bh_version", VERSION, FCVAR_SPONLY|FCVAR_SERVER)
-    //set_cvar_string("bh_version", VERSION)
+    register_plugin("Biohazard", VERSION, VERSION)
 
     if(!is_server_licenced())
         return
@@ -1236,7 +1231,7 @@ public event_damage(victim)
 
         if(g_victim[attacker] == victim)
         {
-            // CALCULATING DISTANCE
+            // CALCULATING DISTANCE (include engine)
             /*
             if(g_zombie[attacker])
             {
@@ -1650,8 +1645,6 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
         user_weapon = get_user_weapon(attacker)
         if(user_weapon == CSW_KNIFE)
             damage *= 4
-//        else if(user_weapon == CSW_AWP)
-//            damage *= 2
         SetHamParamFloat(4, damage)
     }
     else
@@ -1696,9 +1689,6 @@ public bacon_takedamage_player_post(iVictim, iInflictor, iAttacker, Float:flDama
 
             set_hudmessage(0, 150, 20, 0.49, 0.55, 0, 0.1, 2.0, 0.1, 0.1, -1)
             ShowSyncHudMsg(iAttacker, g_dmg_sync2, "%d", iVictimHealth)
-
-            //set_hudmessage(200, 0, 0, 0.40, 0.49, 0, 0.1, 2.0, 0.1, 0.1, -1)
-            //ShowSyncHudMsg(iVictim, g_MsgSync, "%d", iDamage)
         }
 	}
     
@@ -1713,7 +1703,7 @@ public bacon_killed_player(victim, killer, shouldgib)
     remove_task(TASKID_NIGHTVISION + victim)
     activate_nv[victim] = false
 
-    if(!is_user_valid_connected(killer)) //|| (!g_zombie[victim] && fnGetHumans() == 0))
+    if(!is_user_valid_connected(killer))
     {
         fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
     }
@@ -2037,7 +2027,7 @@ public task_newround()
 		
 	get_players(players, num, "a")
 	
-// SET START MONEY
+    // SET START MONEY
 	for(i=0; i<num; i++)
 	{
 		id = players[i]
@@ -2052,7 +2042,7 @@ public task_newround()
             g_preinfect[players[i]] = false
         }	
 
-// ANOTHER ZOMBIE IN NEW ROUND
+        // ANOTHER ZOMBIE IN NEW ROUND
         do
             id = players[_random(num)]
         while (id == last_zombie || !is_user_valid_connected(id))	

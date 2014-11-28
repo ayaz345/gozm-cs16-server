@@ -127,8 +127,8 @@ if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
 			$ban_type = "SteamID";
 		}
 		
-		//$ban_reason = htmlentities($result->ban_reason, ENT_QUOTES);
-		$ban_reason = $result->ban_reason;
+        $ban_reason = htmlentities($result->ban_reason, ENT_QUOTES, 'utf-8');
+        $ban_reason = mb_convert_encoding($ban_reason, 'cp1251', 'utf-8');
 		
 		if($result->server_name <> "website") {
 			//$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";

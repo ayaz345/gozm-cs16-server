@@ -52,7 +52,6 @@ if(isset($_GET["steamid"]))
 	if(mysql_num_rows($resource) == 0) 
 	{
 		//trigger_error("Can't find ban with given ID: ".mysql_escape_string($_GET["steamid"] , E_USER_NOTICE);
-		// Här behöver man inte ha något. Har bortkommenterat raden ovan. Tycker att NOTICE är onödigt för det förstör mest formatet på motd sidan.
 	}
 	else
 	{		

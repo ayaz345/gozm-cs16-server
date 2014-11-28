@@ -110,7 +110,7 @@ if($result->all_bans <= $view) {
 		$query_end = $view;
 		
 		if($page > $pages + 1) {
-			trigger_error("Pagenumber doesn´t exists.", E_USER_NOTICE);
+			trigger_error("Page number doesn't exists.", E_USER_NOTICE);
 			exit;
 		} elseif($page == $pages + 1) {
 			$page_start = ($view * ($page - 1)) + 1;
@@ -239,7 +239,8 @@ while($result = mysql_fetch_object($resource)) {
 		}
 	}
 
-	$ban_reason = htmlentities($result->ban_reason, ENT_QUOTES);
+	$ban_reason = htmlentities($result->ban_reason, ENT_QUOTES, 'utf-8');
+    $ban_reason = mb_convert_encoding($ban_reason, 'cp1251', 'utf-8');
 
 	if ($serverip != "") {
 		$gametype = $result->gametype;

@@ -33,7 +33,7 @@ if ($config->error_handler == "enabled") {
 }
 
 #include("$config->path_root/include/accesscontrol.inc.php");
-//löschen des user cookie
+//lÑ†schen des user cookie
 setcookie("amxbans","",time()-3600,$config->document_root,$_SERVER['SERVER_NAME']);
 
 unset($_SESSION['uid']);

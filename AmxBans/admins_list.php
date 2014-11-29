@@ -15,9 +15,9 @@ if ($config->error_handler == "enabled") {
 }
 
 $resource	= mysql_query(
-	"SELECT aa.id, aa.access, aa.nickname, zp.last_leave FROM $config->amxadmins AS aa 
+	"SELECT aa.id, aa.access, aa.nickname, players.last_leave FROM $config->amxadmins AS aa 
 	INNER JOIN $config->admins_servers AS sa ON aa.id = sa.admin_id
-	INNER JOIN zp_players AS zp ON BINARY aa.nickname = zp.nick
+	INNER JOIN bio_players AS players ON BINARY aa.nickname = players.nick
 	WHERE ashow = '1' ORDER BY access, id ASC"
 	) or die(mysql_error());
 while($result = mysql_fetch_object($resource)) {

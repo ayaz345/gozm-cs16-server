@@ -659,8 +659,7 @@ public cmd_jointeam(id)
 }
 	
 public cmd_enablemenu(id)
-{	
-    g_showmenu[id] = true
+{
     display_weaponmenu(id, MENU_PRIMARY, g_menuposition[id] = 0)
     return PLUGIN_HANDLED
 }
@@ -2232,7 +2231,7 @@ public infect_user(victim, attacker)
 
 public cure_user(id)
 {
-    if(!is_user_valid_alive(id) || !is_user_valid_connected(id)) 
+    if(!is_user_valid_alive(id)) 
         return
 
     g_zombie[id] = false
@@ -2327,7 +2326,7 @@ public display_weaponmenu(id, menuid, pos)
     maxitem = menuid == MENU_PRIMARY ? sizeof g_primaryweapons : sizeof g_secondaryweapons
 
     if(start >= maxitem)
-            start = pos = g_menuposition[id]
+        start = pos = g_menuposition[id]
 
     static menubody[512], len
     len = formatex(menubody, 511, "\y%s\w^n^n", menuid == MENU_PRIMARY ? "Основное" : "Пистолеты")
@@ -2362,10 +2361,7 @@ public display_weaponmenu(id, menuid, pos)
 }
 
 public action_prim(id, key)
-{
-	if(!is_user_valid_alive(id) || g_zombie[id])
-		return PLUGIN_HANDLED
-		
+{	
 	switch(key)
 	{
         case 8: display_weaponmenu(id, MENU_PRIMARY, ++g_menuposition[id])
@@ -2373,7 +2369,7 @@ public action_prim(id, key)
         default:
 		{
             g_player_weapons[id][0] = g_menuposition[id] * 8 + key
-            if (!g_gamestarted)
+            if (!g_gamestarted && is_user_valid_alive(id))
                 equipweapon(id, EQUIP_PRI)
 
             display_weaponmenu(id, MENU_SECONDARY, g_menuposition[id] = 0)
@@ -2385,9 +2381,6 @@ public action_prim(id, key)
 
 public action_sec(id, key)
 {
-    if(!is_user_valid_alive(id) || g_zombie[id])
-        return PLUGIN_HANDLED
-
     switch(key) 
     {
         case 8: display_weaponmenu(id, MENU_SECONDARY, ++g_menuposition[id])
@@ -2396,7 +2389,7 @@ public action_sec(id, key)
         {
             g_player_weapons[id][1] = g_menuposition[id] * 8 + key
 
-            if (!g_gamestarted)
+            if (!g_gamestarted && is_user_valid_alive(id))
             {
                 equipweapon(id, EQUIP_SEC)		
                 equipweapon(id, EQUIP_GREN)

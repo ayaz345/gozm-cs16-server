@@ -16,10 +16,7 @@
             if (!mysql_select_db($mysql_db))
                 die (mysql_error());
 
-            #header('Content-Type: text/html; charset=windows-1251');
-            #setlocale(LC_ALL, 'ru_RU.CP1251', 'rus_RUS.CP1251', 'Russian_Russia.1251', 'russian');
-
-            $resource = mysql_query("SELECT `nick`, `zombiekills`, `infect`, `death`, `infected`, `rank`, `extra` FROM (SELECT *, (@_c := @_c + 1) AS `rank`, ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= 100 ORDER BY `rank` LIMIT 42;");
+            $resource = mysql_query($config->stats_select_players);
 
 			echo '<table><tr><td>';
 
@@ -34,7 +31,7 @@
 
 			echo '</td><td>';
 
-			$resource = mysql_query("SELECT `map`, `games` from `bio_maps` ORDER BY `games` DESC;");
+			$resource = mysql_query($config->stats_select_maps);
 			echo '<table border=1 style="float:right;margin-left:50px;"><tr><th>No.</th><th>Map</th><th>Games</th></tr>';
 			$iter = 1;
             while ($row = mysql_fetch_object($resource))

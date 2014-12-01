@@ -91,6 +91,10 @@
 #define DATA_HITREGENDLY 9
 #define DATA_KNOCKBACK 10
 
+// animations
+#define USP_DRAWANIM	6
+#define M4A1_DRAWANIM	5
+
 #define fm_get_user_model(%1,%2,%3) engfunc(EngFunc_InfoKeyValue, engfunc(EngFunc_GetInfoKeyBuffer, %1), "model", %2, %3) 
 
 #define fm_lastprimary(%1) get_pdata_cbase(%1, OFFSET_LASTPRIM)
@@ -238,12 +242,12 @@ new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius,
     cvar_start_money, cvar_forum, cvar_demo_name
     
-new bool:g_zombie[25], g_roundstart_time,
-    bool:g_blockmodel[25], 
-    bool:g_showmenu[25], bool:g_preinfect[25], 
-    g_mutate[25], g_victim[25],
-    g_modelent[33], g_menuposition[25], g_player_class[25], g_player_weapons[25][2],
-	lights[2], activate_nv[25]
+new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25], 
+    g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
+    g_player_class[25], g_player_weapons[25][2], activate_nv[25],
+    g_silenced[25]
+
+new g_roundstart_time, lights[2]
 
 new g_isconnected[25] // whether player is connected
 new g_isalive[25] // whether player is alive
@@ -375,7 +379,7 @@ public plugin_init()
 //    register_forward(FM_ClientUserInfoChanged, "fwd_client_userinfochanged")
     register_forward(FM_ClientDisconnect, "fwd_client_disconnect")
 
-    RegisterHam(Ham_TakeDamage, "player", "bacon_takedamage_player")
+    RegisterHam(Ham_TakeDamage, "player", "bacon_takedamage_player", 0)
     RegisterHam(Ham_TakeDamage, "player", "bacon_takedamage_player_post", 1)
     RegisterHam(Ham_Killed, "player", "bacon_killed_player")
     RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
@@ -501,6 +505,7 @@ public client_putinserver(id)
     g_player_weapons[id][0] = -1
     g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
     activate_nv[id] = false
+    g_silenced[id] = 0
 
     remove_user_model(g_modelent[id])
 
@@ -771,7 +776,7 @@ public cmd_dropuser(id, level, cid)
 	static name[32] 
 	get_user_name(target, name, 31)
 	
-	console_print(id, "You've taken off all weapons from %s", name)
+	console_print(id, "You've taken off all weapons from [%s]", name)
 	drop_user(target)
 	
 	return PLUGIN_HANDLED_MAIN
@@ -1428,10 +1433,15 @@ public fw_SetModel(entity, const model[])
     // We don't care
     if (strlen(model) < 8)
         return
-        
+
     // Get entity's classname
     static classname[10]
     pev(entity, pev_classname, classname, charsmax(classname))
+
+    // Owner
+    new owner = pev(entity, pev_owner)
+    if(is_user_valid_connected(owner))
+        remember_silen_status(owner)
 
     // Check if it's a weapon box
     if (equal(classname, "weaponbox"))
@@ -1518,11 +1528,14 @@ public fwd_client_disconnect(id)
     remove_task(TASKID_RESTOREFADE + id)
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
+    remove_task(TASKID_NIGHTVISION + id)
 
     remove_user_model(g_modelent[id])
 
-    remove_task(TASKID_NIGHTVISION + id)
+    g_player_weapons[id][0] = -1
+    g_player_weapons[id][1] = -1
     activate_nv[id] = false
+    g_silenced[id] = 0
 
     // Player left, clear cached flags
     g_isconnected[id] = false
@@ -1615,6 +1628,10 @@ public bacon_think_grenade(entity)
 
 public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damagetype)
 {
+    if( g_zombie[victim] && g_zombie[attacker] ||
+        !g_zombie[victim] && !g_zombie[attacker])
+        return HAM_SUPERCEDE
+
     if(damagetype & DMG_GENERIC)
         return HAM_IGNORED
 
@@ -1626,8 +1643,7 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
 
     if( !g_gamestarted || 
         (!g_zombie[victim] && !g_zombie[attacker] && !g_gamestarted) || 
-        (damagetype & DMG_HEGRENADE && victim == attacker)
-    )
+        (damagetype & DMG_HEGRENADE && victim == attacker))
         return HAM_SUPERCEDE
 
     if(g_zombie[attacker] && damagetype & DMG_HEGRENADE)
@@ -1698,14 +1714,17 @@ public bacon_killed_player(victim, killer, shouldgib)
 {
     // Player killed
     g_isalive[victim] = false
+    activate_nv[victim] = false
 
     remove_task(TASKID_NIGHTVISION + victim)
-    activate_nv[victim] = false
 
     if(!is_user_valid_connected(killer))
     {
         fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
     }
+
+    if(!g_zombie[victim])
+        remember_silen_status(victim)
 
     if(!is_user_valid_alive(killer) || g_zombie[killer] || !g_zombie[victim])
         return HAM_IGNORED
@@ -2006,18 +2025,20 @@ public task_updatescore(params[])
 
 public task_stripngive(taskid)
 {
-	static id
-	id = taskid - TASKID_STRIPNGIVE
-	
-	if(is_user_valid_alive(id))
-	{
-		strip_user_weapons(id)
-		give_item(id, "weapon_knife")
-		
-		cs_set_player_view_model(id, CSW_KNIFE, g_class_wmodel[g_player_class[id]])
-		cs_set_player_weap_model(id, CSW_KNIFE, "")
-		cs_set_player_maxspeed(id, g_class_data[g_player_class[id]][DATA_SPEED])
-	}
+    static id
+    id = taskid - TASKID_STRIPNGIVE
+
+    if(is_user_valid_alive(id))
+    {
+        remember_silen_status(id)
+
+        strip_user_weapons(id)
+        give_item(id, "weapon_knife")
+        
+        cs_set_player_view_model(id, CSW_KNIFE, g_class_wmodel[g_player_class[id]])
+        cs_set_player_weap_model(id, CSW_KNIFE, "")
+        cs_set_player_maxspeed(id, g_class_data[g_player_class[id]][DATA_SPEED])
+    }
 }
 
 public task_newround()
@@ -2643,8 +2664,12 @@ equipweapon(id, weapon)
             weaponid[0] = -1
         
         if(weaponid[0] != weaponid[1])
+        {
             give_item(id, g_primaryweapons[g_player_weapons[id][0]][1])
-        
+
+            if(g_silenced[id] && equal(g_primaryweapons[g_player_weapons[id][0]][1], "weapon_m4a1"))
+                set_weapon_silen(id)
+        }
         cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
     }
 
@@ -2666,8 +2691,9 @@ equipweapon(id, weapon)
             weaponid[0] = -1
         
         if(weaponid[0] != weaponid[1])
+        {
             give_item(id, g_secondaryweapons[g_player_weapons[id][1]][1])
-        
+        }
         cs_set_user_bpammo(id, weaponid[1], g_weapon_ammo[weaponid[1]][MAX_AMMO])
     }
 
@@ -2679,6 +2705,26 @@ equipweapon(id, weapon)
         for(i = 0; i < sizeof g_grenades; i++) if(!user_has_weapon(id, get_weaponid(g_grenades[i])))
             give_item(id, g_grenades[i])
     }
+}
+
+public set_weapon_silen(player_id)
+{
+    new w_ent = fm_find_ent_by_owner(-1, g_primaryweapons[g_player_weapons[player_id][0]][1], player_id)
+
+    if(pev_valid(w_ent))
+    {
+        cs_set_weapon_silen(w_ent, 1, 0)
+        set_pev(player_id, pev_weaponanim, M4A1_DRAWANIM)
+    }
+
+    g_silenced[player_id] = 0
+}
+
+public remember_silen_status(player_id)
+{
+    new weaponent = fm_lastprimary(player_id)
+    if(pev_valid(weaponent))
+        g_silenced[player_id] = cs_get_weapon_silen(weaponent)
 }
 
 add_delay(index, const task[])

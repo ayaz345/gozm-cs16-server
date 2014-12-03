@@ -4,9 +4,9 @@
 #include <amxmisc>
 #include <fakemeta>
 #include <hamsandwich>
-#include <xs>
 #include <cstrike>
 #include <fun>
+#include <xs>
 #include <cs_teams_api>
 #include <cs_maxspeed_api>
 #include <cs_weap_models_api>
@@ -233,7 +233,9 @@ new g_maxplayers, g_spawncount, g_buyzone,
     g_classcount, g_class_desc[MAX_CLASSES+1][32], g_class_pmodel[MAX_CLASSES+1][64], 
     g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie, 
     g_first_zombie_name[32]
-    
+
+new g_server_ip[32], g_forum[32]
+
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_lights, cvar_healthbonus, cvar_killbonus,
     cvar_gamedescription, cvar_flashbang, cvar_impactexplode,
@@ -444,7 +446,11 @@ public plugin_init()
     get_pcvar_string(cvar_lights, lights, 1)
     if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
 
+    get_pcvar_string(cvar_forum, g_forum, 31)
+    get_user_ip(0, g_server_ip, 31, 0)
+
     set_task(0.3, "task_showtruehealth", _, _, _, "b")
+    set_task(0.3, "task_showserverinfo", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
     set_task(1.0, "clean_spray_logo")
@@ -510,32 +516,21 @@ public client_putinserver(id)
     remove_user_model(g_modelent[id])
 
     set_task(7.0, "record_demo", id)
-    set_task(10.0, "ip_spam", id)
-}
-
-public ip_spam(id)
-{
-    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
-    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
-    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
-    colored_print(id, "^x01 Запиши новый IP:^x04 46.174.52.13:27259")
 }
 
 public record_demo(id)
 {
-    static forum[32]
-    get_pcvar_string(cvar_forum, forum, 31)
-    if(strlen(forum) > 0)
-        colored_print(id, "^x01 Общайся:^x04 %s", forum)
-    
+    if(g_forum[0])
+        colored_print(id, "^x01 Общайся:^x04 %s", g_forum)
+
     static demo_name[32]
     get_pcvar_string(cvar_demo_name, demo_name, 31)
     if(strlen(demo_name) > 0)
     {
         colored_print(id, "^x01 Записывается демка:^x03 %s.dem", demo_name)
-        client_cmd(id,"stop")
+        client_cmd(id, "stop")
         if (has_vip(id) && !has_rcon(id))
-        {	
+        {
             new CurrentTime[32]
             get_time("%H%M",CurrentTime,31)
             new CurrentDate[32]
@@ -1628,10 +1623,6 @@ public bacon_think_grenade(entity)
 
 public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damagetype)
 {
-    if( g_zombie[victim] && g_zombie[attacker] ||
-        !g_zombie[victim] && !g_zombie[attacker])
-        return HAM_SUPERCEDE
-
     if(damagetype & DMG_GENERIC)
         return HAM_IGNORED
 
@@ -1640,6 +1631,10 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
         
     if(!is_user_valid_connected(attacker))
         return HAM_IGNORED
+
+    if( g_zombie[victim] && g_zombie[attacker] ||
+        !g_zombie[victim] && !g_zombie[attacker])
+        return HAM_SUPERCEDE
 
     if( !g_gamestarted || 
         (!g_zombie[victim] && !g_zombie[attacker] && !g_gamestarted) || 
@@ -1717,6 +1712,8 @@ public bacon_killed_player(victim, killer, shouldgib)
     activate_nv[victim] = false
 
     remove_task(TASKID_NIGHTVISION + victim)
+    remove_task(TASKID_SHOWCLEAN + victim)
+    remove_task(TASKID_SHOWINFECT + victim)
 
     if(!is_user_valid_connected(killer))
     {
@@ -1937,6 +1934,7 @@ public task_showinfected(taskid) {
         show_dhudmessage(id, "[ ЗОМБИ ]")
     }
 }
+
 public task_showclean(taskid) {
     new id = taskid - TASKID_SHOWCLEAN
     if(is_user_valid_connected(id) && !g_zombie[id]) {
@@ -1947,13 +1945,23 @@ public task_showclean(taskid) {
 
 public task_showtruehealth()
 {
-    static id, Float:health
-    set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
-    for(id = 1; id <= g_maxplayers; id++) 
-    if(is_user_valid_alive(id) && g_zombie[id] && !g_roundended)
+    for(new id = 1; id <= g_maxplayers; id++) 
+        if(is_user_valid_alive(id) && g_zombie[id] && !g_roundended)
         {
+            new Float:health
             pev(id, pev_health, health)
+            set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
             show_dhudmessage(id, "HP: %d", floatround(health))
+        }
+}
+
+public task_showserverinfo()
+{
+    for(new id = 1; id <= g_maxplayers; id++) 
+        if(is_user_valid_connected(id) && !is_user_valid_alive(id))
+        {
+            set_dhudmessage(0, 255, 0, 0.045, 0.18, 0, _, 0.3, 0.1, 0.0)
+            show_dhudmessage(id, "%s^n%s", g_server_ip, g_forum[0] ? g_forum : "")
         }
 }
 

@@ -14,7 +14,7 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'lang', 'mai
 
 
 <div id="footer">
-<a href="http://www.amxbans.de" target="_blank">AMXBans 5.1b</a> | <a href="http://www.forteam.ru" target="_blank">ForTeam.ru</a> | <?php echo ((is_array($_tmp='_TOTALBANS')) ? $this->_run_mod_handler('lang', true, $_tmp) : smarty_modifier_lang($_tmp)); ?>
+<a href="http://www.amxbans.de" target="_blank">AMXBans 5.1b</a> | <a href="http://www.myarena.ru" target="_blank">MyArena.ru</a> | <?php echo ((is_array($_tmp='_TOTALBANS')) ? $this->_run_mod_handler('lang', true, $_tmp) : smarty_modifier_lang($_tmp)); ?>
 : <?php echo $total ?>
 	 
 </div>

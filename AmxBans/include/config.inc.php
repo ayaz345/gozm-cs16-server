@@ -27,6 +27,21 @@
  *
  */
 
+if (!get_magic_quotes_gpc()) { 
+  if (isset($_POST)) { 
+    foreach ($_POST as $key => $value) { 
+      $_POST[$key] = $value; 
+    } 
+  } 
+
+  if (isset($_GET)) { 
+    foreach ($_GET as $key => $value) { 
+      $_GET[$key] = $value; 
+    } 
+  }
+}
+
+/*
 if (!get_magic_quotes_gpc()) {
    $_POST = addslashes($_POST);
    $_GET = addslashes($_GET);
@@ -39,15 +54,15 @@ $_POST = str_replace("\\", "", $_POST);
 $_GET = str_replace("\'", "", $_GET);
 $_GET = str_replace("\"", "", $_GET);
 $_GET = str_replace("\\", "", $_GET);
+*/
 
-
-$config->document_root = "/179761";
-$config->path_root = "/home/forteam/v3/users/amx/179761";
-$config->importdir = "/home/forteam/v3/users/amx/179761/tmp";
-$config->templatedir = "/home/forteam/v3/users/amx/179761/templates";
-$config->db_host = "141.101.203.23";
-$config->db_name = "b179761";
-$config->db_user = "u179761";
+$config->document_root = "";
+$config->path_root = "/var/www/gozm/data/www/gozm.myarena.ru";
+$config->importdir = "/var/www/gozm/data/www/gozm.myarena.ru/tmp";
+$config->templatedir = "/var/www/gozm/data/www/gozm.myarena.ru/templates";
+$config->db_host = "db1.myarena.ru";
+$config->db_name = "gozm_gozm";
+$config->db_user = "gozm_admin";
 $config->db_pass = "petyx";
 $config->stats_table_players = "bio_players";
 $config->stats_select_players = "SELECT `nick`, `zombiekills`, `infect`, `death`, `infected`, `rank`, `extra` FROM (SELECT *, (@_c := @_c + 1) AS `rank`, ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` FROM (SELECT @_c := 0) r, `".$config->stats_table_players."` ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= 100 ORDER BY `rank` LIMIT 100;";
@@ -68,7 +83,7 @@ $config->reasons = "amx_banreasons";
 $config->admin_nickname = "Dimka";
 $config->admin_email = "vk.com/go_zombie";
 $config->error_handler = "disabled";
-$config->error_handler_path = "/home/forteam/v3/users/amx/179761/include/error_handler.inc.php";
+$config->error_handler_path = "/var/www/gozm/data/www/gozm.myarena.ru/include/error_handler.inc.php";
 $config->admin_management = "enabled";
 $config->fancy_layers = "enabled";
 $config->version_checking = "disabled";

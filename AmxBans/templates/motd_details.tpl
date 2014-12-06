@@ -14,8 +14,8 @@
 </head>
 
 <body>
-<div id="header"><a href="http://amxbans.forteam.ru{$dir}"><img src="{$dir}/images/logo.png" /></a></div>
-<div class="line-h"></div>
+<!--div id="header"><a href="http://amxbans.forteam.ru{$dir}"><img src="{$dir}/images/logo.png" /></a></div>
+<div class="line-h"></div-->
 
 <table border='0' cellpadding='0' cellspacing='0' width='100%'>
   <tr>

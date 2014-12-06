@@ -22,7 +22,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'mo
 </head>
 
 <body>
-<div id="header"><a href="http://amxbans.forteam.ru<?php echo $this->_tpl_vars['dir']; ?>
+<div id="header"><a href="http://gozm.myarena.ru<?php echo $this->_tpl_vars['dir']; ?>
 "><img src="<?php echo $this->_tpl_vars['dir']; ?>
 /images/logo.png" /></a></div>
 <div class="line-h"></div>

@@ -484,7 +484,7 @@ public restart_empty_server()
         if(++g_server_is_empty == 3)
         {
             log_to_file(g_restart_logfile, "Going to restart...")
-            server_cmd("reload")
+            server_cmd("quit")
         }
     }
     else

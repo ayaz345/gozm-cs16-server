@@ -92,6 +92,7 @@ new g_menuChooseMap;
 
 new g_pauseMapEndVoteTask, g_pauseMapEndManagerTask;
 
+new cvar_debug;
 new cvar_extendmapMax, cvar_extendmapStep;
 new cvar_endOnRound, cvar_endOfMapVote;
 new cvar_rtvWait, cvar_rtvRatio, cvar_rtvCommands;
@@ -127,7 +128,7 @@ public plugin_init()
     register_cvar("gal_server_starting", "1", FCVAR_SPONLY);
     cvar_emptyCycle = register_cvar("gal_in_empty_cycle", "0", FCVAR_SPONLY);
 
-    register_cvar("gal_debug", "0");
+    cvar_debug = register_cvar("gal_debug", "0");
 
     register_dictionary("common.txt");
     register_dictionary("nextmap.txt");
@@ -1749,7 +1750,7 @@ public vote_handleDisplay()
 		copy(g_voteTallyType, sizeof(g_voteTallyType)-1, "%");
 	}
 
-	if (get_cvar_num("gal_debug") & 4)
+	if (get_pcvar_num(cvar_debug) & 4)
 	{
 		set_task(2.0, "dbg_fakeVotes");
 	}
@@ -1818,7 +1819,7 @@ public vote_display(arg[3])
 
 		new isRunoff = (g_voteStatus & VOTE_IS_RUNOFF);
 		new bool:allowExtend = !allowStay && ((isRunoff && g_choiceCnt == 1) || (!(g_voteStatus & VOTE_FORCED) && !isRunoff && get_cvar_float("mp_timelimit") < get_pcvar_float(cvar_extendmapMax)));
-		if (get_cvar_num("gal_debug") & 4)
+		if (get_pcvar_num(cvar_debug) & 4)
 		{
 			allowExtend = !allowStay && ((isRunoff && g_choiceCnt == 1) || (!isRunoff && get_cvar_float("mp_timelimit") < get_pcvar_float(cvar_extendmapMax)));
 		}
@@ -2209,7 +2210,7 @@ public vote_expire()
 
 	if (g_handleMapChange)
 	{
-        if ((g_voteStatus & VOTE_FORCED || (playerCnt == 1 && idxWinner < g_choiceCnt) || playerCnt == 0) && !(get_cvar_num("gal_debug") & 4))
+        if ((g_voteStatus & VOTE_FORCED || (playerCnt == 1 && idxWinner < g_choiceCnt) || playerCnt == 0) && !(get_pcvar_num(cvar_debug) & 4))
         {
             // tell the map we need to finish up
             set_task(2.0, "map_manageEnd");
@@ -2959,7 +2960,7 @@ map_restoreOriginalTimeLimit()
 
 dbg_log(const mode, const text[] = "", {Float,Sql,Result,_}:...)
 {	
-	new dbg = get_cvar_num("gal_debug");
+	new dbg = get_pcvar_num(cvar_debug);
 	if (mode & dbg)
 	{
 		// format the text as needed

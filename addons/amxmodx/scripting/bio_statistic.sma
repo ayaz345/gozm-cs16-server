@@ -1,10 +1,11 @@
 #include <amxmodx>
 #include <amxmisc>
+#include <fakemeta>
+#include <hamsandwich>
 #include <biohazard>
 #include <sqlx>
-#include <hamsandwich>
 #include <time>
-#include <fakemeta>
+#include <fun>
 #include <colored_print>
 
 #pragma dynamic 16384
@@ -346,10 +347,8 @@ public logevent_endRound()
             // extra
             if (g_UserDBId[players[maxInfectId]])
             {
-                static Float:frags
-                pev(players[maxInfectId], pev_frags, frags)
-                set_pev(players[maxInfectId], pev_frags, frags+1.0)
-                
+                set_user_frags(players[maxInfectId], get_user_frags(players[maxInfectId])+1)
+
                 format(g_Query, charsmax(g_Query), "\
                     UPDATE `bio_players` \
                     SET `best_zombie` = `best_zombie` + 1 \
@@ -358,10 +357,8 @@ public logevent_endRound()
             }
             if (g_UserDBId[players[maxDmgId]])
             {
-                static Float:frags
-                pev(players[maxDmgId], pev_frags, frags)
-                set_pev(players[maxDmgId], pev_frags, frags+1.0)
-            
+                set_user_frags(players[maxDmgId], get_user_frags(players[maxDmgId])+1)
+
                 format(g_Query, charsmax(g_Query), "\
                     UPDATE `bio_players` \
                     SET `best_human` = `best_human` + 1 \
@@ -388,11 +385,11 @@ public event_newround()
         for (new i = 0; i < playersNum; i++)
         {
             new id = players[i]
-            new Float:frags, deaths
+            new frags, deaths
 
-            pev(id, pev_frags, frags)
+            frags = get_user_frags(id)
             deaths = fm_get_user_deaths(id)
-            player_total[i] = frags / (float(deaths) + 4.0)
+            player_total[i] = float(frags) / (float(deaths) + 4.0)
             if (player_total[i] >= player_total[player_total_max])
             {
                 player_total_max = i

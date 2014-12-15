@@ -1760,7 +1760,7 @@ public bacon_killed_player(victim, killer, shouldgib)
     if(killbonus)
         set_pev(killer, pev_frags, pev(killer, pev_frags) + float(killbonus))
     if(get_user_weapon(killer) == CSW_KNIFE)
-        set_pev(killer, pev_frags, pev(killer, pev_frags) + 3.0)
+        set_pev(killer, pev_frags, pev(killer, pev_frags) + 3.0)  // 1+1+3=5
 
     static killreward
     killreward = get_pcvar_num(cvar_killreward)

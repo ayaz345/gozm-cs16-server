@@ -1273,14 +1273,14 @@ public event_damage(victim)
             g_infecting = true
             g_victim[attacker] = 0
 
-            message_begin(MSG_ALL, g_msg_deathmsg)
+            message_begin(MSG_BROADCAST, g_msg_deathmsg)
             write_byte(attacker)
             write_byte(victim)
             write_byte(0)
             write_string(g_infection_name)
             message_end()
 
-            message_begin(MSG_ALL, g_msg_scoreattrib)
+            message_begin(MSG_BROADCAST, g_msg_scoreattrib)
             write_byte(victim)
             write_byte(0)
             message_end()
@@ -2253,7 +2253,7 @@ public infect_user(victim, attacker)
     if(!is_user_valid_alive(victim) || !is_user_valid_connected(victim))
         return
 
-    message_begin(MSG_ONE, g_msg_screenfade, _, victim)
+    message_begin(MSG_ONE_UNRELIABLE, g_msg_screenfade, _, victim)
     write_short(1<<10)
     write_short(1<<10)
     write_short(0)

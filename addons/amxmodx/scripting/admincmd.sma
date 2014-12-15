@@ -657,7 +657,7 @@ public cmdMap(id, level, cid)
 	
 	if (!equal(_modName, "zp"))
 	{
-		message_begin(MSG_ALL, SVC_INTERMISSION)
+		message_begin(MSG_BROADCAST, SVC_INTERMISSION)
 		message_end()
 	}
 	

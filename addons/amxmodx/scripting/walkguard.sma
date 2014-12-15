@@ -471,7 +471,7 @@ public LoadWGZ() {
 // -----------------------------------------------------------------------------------------
 public FX_Box(Float:sizemin[3], Float:sizemax[3], color[3], life) {
 	// FX
-	message_begin(MSG_ALL, SVC_TEMPENTITY);
+	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
 
 	write_byte(31);
 	

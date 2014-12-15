@@ -98,7 +98,7 @@ public actionResult(id, key)
 			
 			if (!equal(_modName, "zp"))
 			{
-				message_begin(MSG_ALL, SVC_INTERMISSION)
+				message_begin(MSG_BROADCAST, SVC_INTERMISSION)
 				message_end()
 			}
 
@@ -161,7 +161,7 @@ public checkVotes(id)
 			
 			if (!equal(_modName, "zp"))
 			{
-				message_begin(MSG_ALL, SVC_INTERMISSION)
+				message_begin(MSG_BROADCAST, SVC_INTERMISSION)
 				message_end()
 			}
 			new tempMap[32];
@@ -462,7 +462,7 @@ public actionMapsMenu(id, key)
 			get_modname(_modName, 9)
 			if (!equal(_modName, "zp"))
 			{
-				message_begin(MSG_ALL, SVC_INTERMISSION)
+				message_begin(MSG_BROADCAST, SVC_INTERMISSION)
 				message_end()
 			}
 			

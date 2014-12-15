@@ -101,18 +101,7 @@ stock fm_cs_set_user_team(id, CsTeams:team, send_message)
 	
 	// Set team offset
 	set_pdata_int(id, OFFSET_CSTEAMS, _:team)
-	
-	// Fix for AMXX/CZ bots which update team paramater from ScoreInfo message
-/*
-	emessage_begin(MSG_BROADCAST, g_MsgScoreInfo)
-	ewrite_byte(id) // id
-	ewrite_short(pev(id, pev_frags)) // frags
-	ewrite_short(cs_get_user_deaths(id)) // deaths
-	ewrite_short(0) // class?
-	ewrite_short(_:team) // team
-	emessage_end()
-*/
-	
+
 	// Send message to update team?
 	if (send_message) fm_user_team_update(id)
 }

@@ -2940,7 +2940,7 @@ print_color(id, text[])
 {
     if(is_user_connected(id))
     {
-        message_begin(MSG_ONE, get_user_msgid("SayText"), {0, 0, 0}, id);
+        message_begin(MSG_ONE_UNRELIABLE, get_user_msgid("SayText"), {0, 0, 0}, id);
         write_byte(id);
         write_string(text);
         message_end();

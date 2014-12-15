@@ -85,9 +85,6 @@ public plugin_init()
 	
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
     register_logevent("logevent_endRound", 2, "1=Round_End")
-
-    register_dictionary("time.txt")
-    register_dictionary("bio_stats.txt")
 }
 
 public plugin_cfg()

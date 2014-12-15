@@ -10,8 +10,12 @@
 #pragma dynamic 16384
 
 #define PLUGIN "[BIO] Statistics"
-#define VERSION "0.9"
+#define VERSION "1.01"
 #define AUTHOR "Dimka"
+
+#define DEFAULT_TOP_COUNT 10
+
+#define OFFSET_DEATH 444
 
 #define TASKID_AUTHORIZE 670
 #define TASKID_LASTSEEN 671
@@ -30,25 +34,31 @@ new g_UserDBId[33]
 
 new Handle:g_SQL_Tuple
 
-new g_Query[3024]
+new g_Query[1024]
 new whois[1024]
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 new g_CvarMaxInactiveDays
 
 new const g_types[][] = {
-    "first_zombie", 
-    "infect", 
-    "zombiekills", 
-    "humankills", 
-    "nemkills", 
-    "survkills", 
-    "suicide", 
-    "extra"
+    "first_zombie",
+    "infect",
+    "zombiekills",
+    "humankills",
+    "nemkills",
+    "survkills",
+    "suicide"
 }
 
 new g_Me[33][ME_NUM]
 new g_text[5096]
+
+new g_select_statement[] = "\
+(SELECT *, (@_c := @_c + 1) AS `rank`, \
+((`infect` + `zombiekills`*2 + `humankills` + \
+`knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10) / \
+(`infected` + `death` + 300)) AS `skill` \
+FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
 
 public plugin_init() 
 {
@@ -74,7 +84,7 @@ public plugin_init()
 	
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
     register_logevent("logevent_endRound", 2, "1=Round_End")
-	
+
     register_dictionary("time.txt")
     register_dictionary("bio_stats.txt")
 }
@@ -114,9 +124,9 @@ public sql_init()
     
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
     new inactive_period = get_systime() - max_inactive_days*24*60*60
-    format(g_Query,charsmax(g_Query),"\
+    format(g_Query, charsmax(g_Query), "\
         DELETE FROM `bio_players` \
-        WHERE `last_leave` < %d", inactive_period)
+        WHERE `last_seen` < %d", inactive_period)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 }
 
@@ -221,13 +231,14 @@ public update_last_seen(taskid)
 {
     new id = taskid - TASKID_LASTSEEN
     
-    new last_leave = get_systime()
+    new last_seen = get_systime()
     format(g_Query, charsmax(g_Query), "\
         UPDATE `bio_players` \
-        SET `last_leave` = %d WHERE `id`=%d", last_leave, g_UserDBId[id])
+        SET `last_seen` = %d, `ip`='%s', `steam_id`='%s' \
+        WHERE `id`=%d", last_seen, g_UserIP[id], g_UserAuthID[id], g_UserDBId[id])
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
 
-    return PLUGIN_HANDLED
+    return PLUGIN_CONTINUE
 }
 
 public client_infochanged(id)
@@ -244,12 +255,7 @@ public client_infochanged(id)
     {
         if (g_UserDBId[id])
         {
-            new last_leave = get_systime()
-            format(g_Query,charsmax(g_Query), "\
-                UPDATE `bio_players` \
-                SET `last_leave` = %d \
-                WHERE `id`=%d", last_leave, g_UserDBId[id])
-            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+            set_task(0.1, "update_last_seen", TASKID_LASTSEEN + id)
         }
         
         g_UserDBId[id] = 0
@@ -330,17 +336,12 @@ public logevent_endRound()
         if (g_Me[players[maxInfectId]][ME_INFECT] ||
             g_Me[players[maxDmgId]][ME_DMG])
         {
-            for (i = 0; i < playersNum; i++)
-            {
-                colored_print(players[i],
-                    "^x04***^x01 Лучший человек:^x04 %s^x01  ->  [^x03  %d^x01 дамаги  ]",
-                    maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
-                if (g_Me[players[maxInfectId]][ME_INFECT])
-                    colored_print(players[i], 
-                        "^x04***^x01 Лучший зомби:^x04 %s^x01  ->  [^x03  %d^x01 заражени%s  ]",
-                        maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
-                        set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
-            }
+            colored_print(0, "^x04***^x01 Лучший человек:^x04 %s^x01  ->  [^x03  %d^x01 дамаги  ]",
+                maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
+            if (g_Me[players[maxInfectId]][ME_INFECT])
+                colored_print(0, "^x04***^x01 Лучший зомби:^x04 %s^x01  ->  [^x03  %d^x01 заражени%s  ]",
+                    maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
+                    set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
             
             // extra
             if (g_UserDBId[players[maxInfectId]])
@@ -351,7 +352,7 @@ public logevent_endRound()
                 
                 format(g_Query, charsmax(g_Query), "\
                     UPDATE `bio_players` \
-                    SET `extra` = `extra` + 1 \
+                    SET `best_zombie` = `best_zombie` + 1 \
                     WHERE `id`=%d", g_UserDBId[players[maxInfectId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
@@ -363,7 +364,7 @@ public logevent_endRound()
             
                 format(g_Query, charsmax(g_Query), "\
                     UPDATE `bio_players` \
-                    SET `extra` = `extra` + 1 \
+                    SET `best_human` = `best_human` + 1 \
                     WHERE `id`=%d", g_UserDBId[players[maxDmgId]])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
@@ -373,10 +374,51 @@ public logevent_endRound()
 
 public event_newround()
 {
-    new players[32], playersNum, i
+    new players[32], playersNum
     get_players(players, playersNum, "ch")
-    for (i = 0; i < playersNum; i++)
+    for (new i = 0; i < playersNum; i++)
         reset_player_statistic(players[i])
+
+    if(get_playersnum() && !get_cvar_float("mp_timelimit"))
+    {
+        new Float:player_total[33]
+        new player_total_max = 0
+        new best_id = 0
+
+        for (new i = 0; i < playersNum; i++)
+        {
+            new id = players[i]
+            new Float:frags, deaths
+
+            pev(id, pev_frags, frags)
+            deaths = fm_get_user_deaths(id)
+            player_total[i] = frags / (float(deaths) + 4.0)
+            if (player_total[i] >= player_total[player_total_max])
+            {
+                player_total_max = i
+                best_id = id
+            }
+        }
+
+        set_task(1.5, "announce_best_player", best_id)
+
+        if (g_UserDBId[best_id])
+        {
+            format(g_Query, charsmax(g_Query), "\
+                UPDATE `bio_players` \
+                SET `best_player` = `best_player` + 10 \
+                WHERE `id`=%d", g_UserDBId[best_id])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+        }
+    }
+}
+
+public announce_best_player(best_id)
+{
+    new best_name[32]
+    get_user_name(best_id, best_name, 31)
+    colored_print(0, "^x04***^x01 Поздравляем!", best_name)
+    colored_print(0, "^x04***^x01 Лучшим игроком карты признан^x03 %s^x01", best_name)
 }
 
 public fw_HamKilled(victim, attacker, shouldgib)
@@ -415,7 +457,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
                 // extra
                 format(g_Query, charsmax(g_Query), "\
                     UPDATE `bio_players` \
-                    SET `extra` = `extra` + 5 \
+                    SET `knife_kills` = `knife_kills` + 1 \
                     WHERE `id`=%d", g_UserDBId[attacker])
                 SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
             }
@@ -487,7 +529,7 @@ public handleSay(id)
         if (arg1[4])
             show_top(id, str_to_num(arg1[4]))
         else
-            show_top(id, 15)
+            show_top(id, DEFAULT_TOP_COUNT)
         return PLUGIN_HANDLED
     }
 
@@ -511,23 +553,21 @@ public show_rank(id, unquoted_whois[])
 {
     if (!unquoted_whois[0])
     {
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
-            (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d", 
-            g_UserDBId[id])
+        format(g_Query, charsmax(g_Query), "\
+            SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` \
+            FROM %s WHERE `id`=%d", 
+            g_select_statement, g_UserDBId[id])
     }
     else
     {
         mysql_escape_string(unquoted_whois, 31)
         copy(whois, 31, unquoted_whois)
     
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
-            (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` \
+        format(g_Query, charsmax(g_Query), "\
+            SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` \
+            FROM %s \
             WHERE `nick` LIKE BINARY '%%%s%%' LIMIT 1",
-            whois, whois)
+            g_select_statement, whois)
     }
 
     new data[2]
@@ -548,7 +588,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 3)
-        colored_print(id, "^x04***^x01 Команда ^"/rank^" временно недоступна")
+        colored_print(id, "^x04***^x01 Команда^x04 /rank^x01 временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -571,134 +611,14 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
             name, rank, total)
     } 
     else
-    	colored_print(id, "^x04***^x03 %s^x01 игрок не найден. Проверь заглавные буквы!", whois)
+    	colored_print(id, "^x04*** Игрок^x03 %s^x01 не найден. Проверь заглавные буквы!", whois)
         
     return PLUGIN_HANDLED
 }
 
 public show_stats(id, unquoted_whois[])
 {
-    if (!unquoted_whois[0])
-    {
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
-            (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `bio_players` \
-            ORDER BY `skill` DESC) AS `newtable` WHERE `id`=%d", 
-            g_UserDBId[id])
-    }
-    else
-    {
-        mysql_escape_string(unquoted_whois, 31)
-        copy(whois, 31, unquoted_whois)
-    
-        format(g_Query, charsmax(g_Query), "SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` FROM \
-            (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable` \
-            WHERE `nick` LIKE BINARY '%%%s%%' OR `ip` LIKE BINARY '%%%s%%' \
-            LIMIT 1",
-            whois, whois)
-    }
-
-    new data[2]
-    data[0] = id
-    data[1] = get_user_userid(id)
-    SQL_ThreadQuery(g_SQL_Tuple, "ShowStats_QueryHandler", g_Query, data, 2)
-    
-    return PLUGIN_HANDLED
-}
-
-public ShowStats_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
-{
-    new id = data[0]
-
-    if(FailState)
-    {
-        new szQuery[1024]
-        SQL_GetQueryString(query, szQuery, 1023)
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 4)
-        colored_print(id, "^x04***^x01 Команда ^"/stats^" временно недоступна")
-        return PLUGIN_HANDLED
-    }
-
-    if (data[1] != get_user_userid(id))
-    	return PLUGIN_HANDLED
-
-    new name[32], ip[32], steam_id[32]
-    new len
-    new infect, zombiekills
-    new death, infected, rank, total, Float:res, first_zombie, skill, extra
-
-    if (SQL_MoreResults(query))
-    {
-    	SQL_ReadResult(query, column("nick"), name, 31)
-    	SQL_ReadResult(query, column("ip"), ip, 31)
-    	SQL_ReadResult(query, column("steam_id"), steam_id, 31)
-    	first_zombie = SQL_ReadResult(query, column("first_zombie"))
-    	infect = SQL_ReadResult(query, column("infect"))
-    	zombiekills = SQL_ReadResult(query, column("zombiekills"))
-    	death = SQL_ReadResult(query, column("death"))
-    	infected = SQL_ReadResult(query, column("infected"))
-    	rank = SQL_ReadResult(query, column("rank"))
-        extra = SQL_ReadResult(query, column("extra"))
-    	SQL_ReadResult(query, column("skill"), res)
-        
-        skill = floatround(res*1000)
-    	total = SQL_ReadResult(query, column("total"))
-    	
-    	replace_all(name, 32, ">", "gt;")
-    	replace_all(name, 32, "<", "lt;")
-    	
-    	new lStats[32]
-    	format(lStats, 31, "%L", id, "STATS")
-    	new lRank[32]
-    	format(lRank, 31, "%L", id, "RANK_STATS")
-        new lSkill[32]
-        format(lSkill, 31, "%L", id, "RESULT")
-    	new lInfect[32]
-    	format(lInfect, 31, "%L", id, "INFECT_STATS")
-    	new lZKills[32]
-    	format(lZKills, 31, "%L", id, "ZKILLS_STATS")
-    	new lHKills[32]
-    	format(lHKills, 31, "%L", id, "HKILLS_STATS")
-    	new lDeath[32]
-    	format(lDeath, 31, "%L", id, "DEATH")
-    	new lInfected[32]
-    	format(lInfected, 31, "%L", id, "INFECTED")
-    	new lFirstZombie[32]
-    	format(lFirstZombie, 31, "%L", id, "FIRST_ZOMBIE")
-        new lExtra[32]
-        format(lExtra, 31, "%L", id, "EXTRA")
-    		
-    	new max_len = charsmax(g_text)
-    	len = format(g_text, max_len, 
-            "<html><head><meta http-equiv=^"Content-Type^" content=^"text/html; charset=utf-8^" /></head><body bgcolor=#000000>")
-    	len += format(g_text[len], max_len - len, 
-            "%s %s:<table style=^"color: #FFB000^"><tr><td>%s</td><td>%d/%d</td></tr><tr><td>%s</td><td>%d</td><tr><td>%s</td><td>%d</td>",
-    		lStats, name, lRank, rank, total, lSkill, skill, lInfect, infect)
-    	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr>",
-    		lZKills, zombiekills)
-    	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr><tr><td>%s</td><td>%d</td></tr>",
-    		lDeath, death, lInfected, infected)
-    	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr>",
-    		lFirstZombie, first_zombie)
-        len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%d</td></tr>",
-    		lExtra, extra)
-    	
-    	len += format(g_text[len], max_len - len, "<tr><td>%s</td><td>%s</td></tr><tr><td>%s</td><td>%s</td></tr>",
-    		"IP", ip, "Steam ID", steam_id)
-    	
-    	len += format(g_text[len], max_len - len, "</table></body></html>")
-    		
-    	show_motd(id, g_text, "Stats")
-    	
-    	setc(g_text, max_len, 0)
-    } 
-    else
-    	colored_print(id, "^x04***^x01 Команда ^"/stats^" временно недоступна")
-    
-    return PLUGIN_HANDLED
+    colored_print(id, "^x04***^x01 Подробная статистика скоро появится на сайте")
 }
 
 public show_top(id, top)
@@ -709,7 +629,7 @@ public show_top(id, top)
     data[1] = get_user_userid(id)
     data[2] = top
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
-    colored_print(id, "^x04***^x01 Список лучших сейчас загрузится")
+//    colored_print(id, "^x04***^x01 Список лучших сейчас загрузится")
 
     return PLUGIN_HANDLED
 }
@@ -723,7 +643,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 5)
-        colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
+        colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
         return PLUGIN_HANDLED
     }
 
@@ -736,18 +656,16 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
         count = SQL_ReadResult(query, 0)
     else
     {
-        colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
+        colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
         return PLUGIN_HANDLED
     }
 
     new top = data[2]
-    format(g_Query, charsmax(g_Query), "SELECT `nick`, `zombiekills`, `humankills`, \
-            `infect`, `death`, `infected`, `rank`, `extra` FROM \
-            (SELECT *, (@_c := @_c + 1) AS `rank`, \
-            ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` \
-            FROM (SELECT @_c := 0) r, `bio_players` \
-            ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= %d ORDER BY `rank` DESC LIMIT 15", 
-            top)
+    format(g_Query, charsmax(g_Query), "\
+        SELECT `nick`, `rank`, `skill` \
+        FROM %s \
+        WHERE `rank` <= %d ORDER BY `rank` DESC LIMIT %d", 
+        g_select_statement, top, DEFAULT_TOP_COUNT)
     new more_data[4]
     more_data[0] = data[0]
     more_data[1] = data[1]
@@ -767,7 +685,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, 1023)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 6)
-        colored_print(id, "^x04***^x01 Команда ^"/top^" временно недоступна")
+        colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
 
         return PLUGIN_HANDLED
     }
@@ -777,21 +695,19 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     new max_len = charsmax(g_text)
 
-    new lTop[32]
-    format(lTop, 31, "%L", id, "TOP")
-
-    new lLooserTop[32]
-    format(lLooserTop, 31, "%L", id, "TOP_LOOSERS")
+    new lTop[32], lLooserTop[32]
+    format(lTop, 31, "ТОП игроков")
+    format(lLooserTop, 31, "ТОП лузеров")
 
     new title[32]
     new top = data[2]
 
     new count = data[3]
-    if (top <= 15)
+    if (top <= DEFAULT_TOP_COUNT)
         format(title, 31, "%s %d", lTop, top)
     else
     if (top < count)
-        format(title, 31, "%s %d - %d", lTop, top - 14, top)
+        format(title, 31, "%s %d - %d", lTop, top - DEFAULT_TOP_COUNT - 1, top)
     else
     {
         top = count
@@ -800,43 +716,26 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     setc(g_text, max_len, 0)
 
-    new zombiekills, humankills, infect, name[32], rank, infected, death, extra
-    new Float:res, skill
+    new name[32], rank, skill
+    new Float:pre_skill
     new len
 
     while (SQL_MoreResults(query))
     {
-        SQL_ReadResult(query, column("nick"), name, 31)
-        zombiekills = SQL_ReadResult(query, column("zombiekills"))
-        humankills = SQL_ReadResult(query, column("humankills"))
-        infect = SQL_ReadResult(query, column("infect"))
-        infected = SQL_ReadResult(query, column("infected"))
-        death = SQL_ReadResult(query, column("death"))
         rank = SQL_ReadResult(query, column("rank"))
-        extra = SQL_ReadResult(query, column("extra"))
-        res = float(zombiekills*2 + humankills + infect + extra) / float(death + infected + 300)
-        skill = floatround(res*1000)
-        
-        format(g_text, max_len, "<tr><td>%d<td>%s<td>%d<td>%d<td>%d<td>%d<td>%d<td>%s",
-            rank, name, zombiekills, infect, death, infected, skill, g_text)
+        SQL_ReadResult(query, column("nick"), name, 31)
+        SQL_ReadResult(query, column("skill"), pre_skill)
+        skill = floatround(pre_skill*1000.0)
+
+        format(g_text, max_len, "<tr><td>%d<td>%s<td>%d<td>%s",
+            rank, name, skill, g_text)
         
         SQL_NextRow(query)
     }
 
-    new lInfect[32]
-    format(lInfect, 31, "%L", id, "INFECT_STATS")
-    new lZKills[32]
-    format(lZKills, 31, "%L", id, "ZKILLS_STATS")
-    new lHKills[32]
-    format(lHKills, 31, "%L", id, "HKILLS_STATS")
-    new lDeaths[32]
-    format(lDeaths, 31, "%L", id, "DEATH")
-    new lInfected[32]
-    format(lInfected, 31, "%L", id, "INFECTED")
-    new result[32]
-    format(result, 31, "%L", id, "RESULT")
-    new lNick[32]
-    format(lNick, 31, "%L", id, "NICK")
+    new lNick[32], result[32]
+    format(lNick, 31, "Ник")
+    format(result, 31, "Скилл")
 
     len = format(g_text, max_len, 
         "<html>\
@@ -845,8 +744,8 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         </head>\
         <body bgcolor=#000000>\
         <table style=^"color: #FFB000^">\
-        <tr><td>%s<td>%s<td>%s | <td>%s | <td>%s | <td>%s | <td>%s     <td>%s",
-        "#", lNick, lZKills, lInfect, lDeaths, lInfected, result, g_text)
+        <tr><td>%s<td>%s<td>%s<td>%s",
+        "#", lNick, result, g_text)
     format(g_text[len], max_len - len, "</table></body></html>")    
 
     show_motd(id, g_text, title)
@@ -905,4 +804,13 @@ stock mysql_escape_string(dest[], len)
     replace_all(dest, len, "\x1a", "\Z")
     replace_all(dest, len, "'", "\'")
     replace_all(dest, len, "^"", "\^"")
+}
+
+stock fm_get_user_deaths(id)
+{
+	// Prevent server crash if entity is not safe for pdata retrieval
+	if (pev_valid(id) != 2)
+		return 0;
+	
+	return get_pdata_int(id, OFFSET_DEATH);
 }

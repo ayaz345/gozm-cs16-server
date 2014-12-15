@@ -20,7 +20,7 @@ public reset_score(id)
     cs_set_user_deaths(id, 0)
     set_user_frags(id, 0)
 
-    colored_print(id, "^x04***^x01 Ты успешно сбросил свой счет")
+    colored_print(id, "^x04***^x01 РўС‹ СѓСЃРїРµС€РЅРѕ СЃР±СЂРѕСЃРёР» СЃРІРѕР№ СЃС‡РµС‚")
     
     return PLUGIN_HANDLED
 }

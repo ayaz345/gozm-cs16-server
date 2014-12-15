@@ -26,6 +26,11 @@ public plugin_init()
     register_clcmd("chooseteam", "clcmd_changeteam")
     register_clcmd("jointeam", "clcmd_changeteam")
 
+    register_clcmd("say /history", "player_history")
+    register_clcmd("say_team /history", "player_history")
+    register_clcmd("say /bans", "show_bans")
+    register_clcmd("say_team /bans", "show_bans")
+
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
 }
 

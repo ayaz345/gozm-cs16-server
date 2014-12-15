@@ -10,16 +10,16 @@ new muted_num = 1
 
 public plugin_init() 
 { 
-	register_plugin("Admin Gag", "1.8.3", "EKS")
+    register_plugin("Admin Gag", "1.8.3", "EKS")
 
-	register_clcmd("say", "block_gagged")
-	register_clcmd("say_team", "block_gagged")
-	register_clcmd("say", "clcmd_say")
-	register_clcmd("say_team", "clcmd_say")
+    register_clcmd("say", "block_gagged")
+    register_clcmd("say_team", "block_gagged")
+    register_clcmd("say", "clcmd_say")
+    register_clcmd("say_team", "clcmd_say")
 
-    register_concmd("radio1", "hook_radio");
-    register_concmd("radio2", "hook_radio");
-    register_concmd("radio3", "hook_radio");
+    register_concmd("radio1", "hook_radio")
+    register_concmd("radio2", "hook_radio")
+    register_concmd("radio3", "hook_radio")
 } 
 
 // MINE

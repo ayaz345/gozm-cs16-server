@@ -21,6 +21,8 @@ public reset_score(id)
     set_user_frags(id, 0)
 
     colored_print(id, "^x04***^x01 Ты успешно сбросил свой счет")
+    
+    return PLUGIN_HANDLED
 }
 
 /* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE

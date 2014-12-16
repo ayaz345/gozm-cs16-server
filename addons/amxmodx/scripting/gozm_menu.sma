@@ -3,6 +3,8 @@
 #include <cs_teams_api>
 #include <colored_print>
 
+#define PDATA_SAFE 2
+#define OFFSET_LINUX 5
 #define OFFSET_CSMENUCODE	205
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3
@@ -36,7 +38,8 @@ public plugin_init()
 
 public mainMenu(id, page)
 {
-    set_pdata_int(id, OFFSET_CSMENUCODE, 0)  // prevent from showing CS std menu
+    if(pev_valid(id) == PDATA_SAFE)
+        set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
     new i_Menu = menu_create("\yGoZm Меню:", "menu_handler" )
 

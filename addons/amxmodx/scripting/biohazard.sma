@@ -20,6 +20,9 @@
 	#assert AMX Mod X v1.8.0 or greater required!
 #endif
 
+#define OFFSET_LINUX 5
+#define PDATA_SAFE 2
+
 #define OFFSET_DEATH 444
 #define OFFSET_TEAM 114
 #define OFFSET_ARMOR 112
@@ -242,7 +245,7 @@ new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius,
-    cvar_start_money, cvar_forum, cvar_demo_name
+    cvar_forum, cvar_demo_name
     
 new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
@@ -289,7 +292,6 @@ public plugin_precache()
     cvar_nvgcolor_spec[1] = register_cvar("bh_nvg_color_spec_g", "30")
     cvar_nvgcolor_spec[2] = register_cvar("bh_nvg_color_spec_b", "0")	
     cvar_nvgradius = register_cvar("bh_nvg_radius", "255")
-    cvar_start_money = register_cvar("bh_start_money", "1488")
 
     new file[64]
     get_configsdir(file, 63)
@@ -400,6 +402,7 @@ public plugin_init()
     RegisterHam(Ham_Think, "grenade", "bacon_think_grenade")
 
     register_message(get_user_msgid("Health"), "msg_health")
+    register_message(get_user_msgid("Money"), "msg_money")
     register_message(get_user_msgid("TextMsg"), "msg_textmsg")
     register_message(get_user_msgid("SendAudio"), "msg_audiomsg")  // remove fire-in-the-hole sound
     register_message(get_user_msgid("SayText"), "block_changename")
@@ -877,6 +880,13 @@ public msg_health(msg_id, msg_dest, msg_entity)
 	
 	// HUD can only show as much as 255 hp
 	set_msg_arg_int(1, get_msg_argtype(1), 255)
+}
+
+// Take off player's money
+public msg_money(msg_id, msg_dest, msg_entity)
+{
+	fm_cs_set_user_money(msg_entity, 0)
+	return PLUGIN_HANDLED
 }
 
 // Set player's health (from fakemeta_util)
@@ -2054,13 +2064,6 @@ public task_newround()
 	static players[32], num, i, id
 		
 	get_players(players, num, "a")
-	
-    // SET START MONEY
-	for(i=0; i<num; i++)
-	{
-		id = players[i]
-		cs_set_user_money(id, get_pcvar_num(cvar_start_money))
-	}	
 
 	if(num > 1)
 	{
@@ -2542,9 +2545,9 @@ stock is_player_stuck(id)
 	engfunc(EngFunc_TraceHull, originF, originF, 0, (pev(id, pev_flags) & FL_DUCKING) ? HULL_HEAD : HULL_HUMAN, id, 0)
 	
 	if (get_tr2(0, TR_StartSolid) || get_tr2(0, TR_AllSolid) || !get_tr2(0, TR_InOpen))
-		return true;
+		return true
 	
-	return false;
+	return false
 }
 
 stock fm_find_ent_by_owner(index, const classname[], owner) 
@@ -2750,55 +2753,65 @@ add_delay(index, const task[])
 stock fm_get_user_team(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return TEAM_SPECTATOR;
 	
-	return get_pdata_int(id, OFFSET_TEAM, 5);
+	return get_pdata_int(id, OFFSET_TEAM, OFFSET_LINUX);
 }
 
 stock fm_get_user_deaths(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return 0;
 	
-	return get_pdata_int(id, OFFSET_DEATH);
+	return get_pdata_int(id, OFFSET_DEATH, OFFSET_LINUX);
 }
 
 stock fm_set_user_deaths(id, value)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return;
 	
-	set_pdata_int(id, OFFSET_DEATH, value);
+	set_pdata_int(id, OFFSET_DEATH, value, OFFSET_LINUX);
 }
 
 stock fm_get_user_armortype(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return 0;
 	
-	return get_pdata_int(id, OFFSET_ARMOR);
+	return get_pdata_int(id, OFFSET_ARMOR, OFFSET_LINUX);
 }
 
 stock fm_set_user_armortype(id, ARMOR)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return;
 	
-	set_pdata_int(id, OFFSET_ARMOR, ARMOR);
+	set_pdata_int(id, OFFSET_ARMOR, ARMOR, OFFSET_LINUX);
 }
 
 stock fm_set_weapon_ammo(id, max)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return;
 	
 	set_pdata_int(id, OFFSET_CLIPAMMO, max, EXTRAOFFSET_WEAPONS);
+}
+
+// Set User Money
+stock fm_cs_set_user_money(id, value)
+{
+	// Prevent server crash if entity's private data not initalized
+	if (pev_valid(id) != PDATA_SAFE)
+		return;
+	
+	set_pdata_int(id, OFFSET_CSMONEY, value, OFFSET_LINUX)
 }
 
 stock reset_user_model(index)

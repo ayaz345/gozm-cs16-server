@@ -373,7 +373,7 @@ public event_newround()
     for (new i = 0; i < playersNum; i++)
         reset_player_statistic(players[i])
 
-    if(get_playersnum() && !get_cvar_float("mp_timelimit"))
+    if(get_playersnum() && !get_cvar_float("mp_timelimit"))  // galileo
     {
         new Float:player_total[33]
         new player_total_max = 0

@@ -237,15 +237,14 @@ new g_maxplayers, g_spawncount, g_buyzone,
     g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie, 
     g_first_zombie_name[32]
 
-new g_server_ip[32], g_forum[32]
+new g_server_ip[32]
 
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_lights, cvar_healthbonus, cvar_killbonus,
     cvar_gamedescription, cvar_flashbang, cvar_impactexplode,
     cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_pushpwr_weapon, cvar_pushpwr_zombie,
-	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius,
-    cvar_forum, cvar_demo_name
+	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
     
 new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
@@ -270,8 +269,6 @@ public plugin_precache()
     cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
     cvar_starttime = register_cvar("bh_starttime", "15.0")
-    cvar_forum = register_cvar("bh_forum", "vk.com/go_zombie")
-    cvar_demo_name = register_cvar("bh_demoname", "go_zombie")
     cvar_randomspawn = register_cvar("bh_randomspawn", "0")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_ammo = register_cvar("bh_ammo", "1")
@@ -449,7 +446,6 @@ public plugin_init()
     get_pcvar_string(cvar_lights, lights, 1)
     if(strlen(lights) > 0) engfunc(EngFunc_LightStyle, 0, lights);
 
-    get_pcvar_string(cvar_forum, g_forum, 31)
     get_user_ip(0, g_server_ip, 31, 0)
 
     set_task(0.3, "task_showtruehealth", _, _, _, "b")
@@ -517,34 +513,6 @@ public client_putinserver(id)
     g_silenced[id] = 0
 
     remove_user_model(g_modelent[id])
-
-    set_task(7.0, "record_demo", id)
-}
-
-public record_demo(id)
-{
-    if(g_forum[0])
-        colored_print(id, "^x01 Общайся:^x04 %s", g_forum)
-
-    static demo_name[32]
-    get_pcvar_string(cvar_demo_name, demo_name, 31)
-    if(strlen(demo_name) > 0)
-    {
-        colored_print(id, "^x01 Записывается демка:^x03 %s.dem", demo_name)
-        client_cmd(id, "stop")
-        if (has_vip(id) && !has_rcon(id))
-        {
-            new CurrentTime[32]
-            get_time("%H%M",CurrentTime,31)
-            new CurrentDate[32]
-            get_time("%y-%m-%d",CurrentDate,31)
-            new mapname[32]
-            get_mapname(mapname, 31)
-            client_cmd( id,"record %s_%s_%s", CurrentDate, CurrentTime, mapname)
-        }
-        else
-            client_cmd(id, "record %s", demo_name)
-    }
 }
 
 check_round(leaving_player)
@@ -1427,7 +1395,7 @@ public fwd_gamedescription()
 { 
 	static gamename[32]
 	get_pcvar_string(cvar_gamedescription, gamename, 31)
-	
+
 	forward_return(FMV_STRING, gamename)
 	
 	return FMRES_SUPERCEDE
@@ -1971,7 +1939,7 @@ public task_showserverinfo()
         if(is_user_valid_connected(id) && !is_user_valid_alive(id))
         {
             set_dhudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.0, 0.1, 0.0)
-            show_dhudmessage(id, "%s^n%s", g_server_ip, g_forum[0] ? g_forum : "")
+            show_dhudmessage(id, "%s^n%s", g_server_ip, "vk.com/go_zombie")
         }
 }
 

@@ -452,7 +452,6 @@ public plugin_init()
     set_task(1.0, "task_showserverinfo", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
-    set_task(1.0, "clean_spray_logo")
 }
 
 public change_rcon()
@@ -465,16 +464,6 @@ public change_rcon()
 public plugin_end()
 {
     set_pcvar_num(cvar_autoteambalance[0], cvar_autoteambalance[1])
-}
-
-public clean_spray_logo()
-{
-    new hpk_file_size = file_size("custom.hpk")
-    if (hpk_file_size/1000 > 1000.0)
-    {
-        delete_file("custom.hpk")
-        log_amx("custom.hpk delete due so much size (%d kb)", hpk_file_size/1000)
-    }
 }
 
 public plugin_natives()

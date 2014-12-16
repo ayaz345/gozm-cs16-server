@@ -242,8 +242,7 @@ new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_knockback_dist, cvar_ammo, cvar_killreward,
     cvar_pushpwr_weapon, cvar_pushpwr_zombie,
 	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius,
-    cvar_start_money, cvar_forum, cvar_demo_name,
-    cvar_restart
+    cvar_start_money, cvar_forum, cvar_demo_name
     
 new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
@@ -251,8 +250,6 @@ new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinf
     g_silenced[25]
 
 new g_roundstart_time, lights[2]
-
-new g_server_is_empty, g_restart_logfile[64]
 
 new g_isconnected[25] // whether player is connected
 new g_isalive[25] // whether player is alive
@@ -293,7 +290,6 @@ public plugin_precache()
     cvar_nvgcolor_spec[2] = register_cvar("bh_nvg_color_spec_b", "0")	
     cvar_nvgradius = register_cvar("bh_nvg_radius", "255")
     cvar_start_money = register_cvar("bh_start_money", "1488")
-    cvar_restart = register_cvar("bh_restart_empty_server", "1")
 
     new file[64]
     get_configsdir(file, 63)
@@ -458,16 +454,6 @@ public plugin_init()
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
     set_task(1.0, "clean_spray_logo")
-
-    if(get_pcvar_num(cvar_restart))
-    {
-        new cur_date[3]
-        get_time("%d", cur_date, 2)
-        get_basedir(g_restart_logfile, 63)  // addons/amxmodx
-        format(g_restart_logfile, 63, "%s/logs/server_restart_%s.log", g_restart_logfile, cur_date)
-        if(!file_exists(g_restart_logfile))
-            set_task(60.0, "restart_empty_server", _, _, _, "b")
-    }
 }
 
 public change_rcon()
@@ -475,20 +461,6 @@ public change_rcon()
 	new rcon
 	rcon = random_num(1000000, 9999999)
 	server_cmd("rcon_password %d", rcon)
-}
-
-public restart_empty_server()
-{
-    if(!get_playersnum(1))  // with connecting people
-    {
-        if(++g_server_is_empty == 3)
-        {
-            log_to_file(g_restart_logfile, "Going to restart...")
-            server_cmd("quit")
-        }
-    }
-    else
-        g_server_is_empty = 0
 }
 
 public plugin_end()

@@ -3,7 +3,7 @@ Age=1165343004
 [pbk.sma]
 Age=1165230350
 [biohazard.sma]
-Age=1167067661
+Age=1167105651
 [amxbans.sma]
 Age=1165758504
 [admin_amxbans.sma]
@@ -118,3 +118,5 @@ Age=1165495181
 Age=1167070990
 [anti_proxies.sma]
 Age=1167038252
+[restart_empty_server.sma]
+Age=1167105637

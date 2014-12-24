@@ -5,10 +5,10 @@
 
 #define PDATA_SAFE 2
 #define OFFSET_LINUX 5
-#define OFFSET_CSMENUCODE	205
-#define MPROP_BACKNAME  2
-#define MPROP_NEXTNAME  3
-#define MPROP_EXITNAME  4
+#define OFFSET_CSMENUCODE 205
+#define MPROP_BACKNAME 2
+#define MPROP_NEXTNAME 3
+#define MPROP_EXITNAME 4
 #define OFFSET_TEAM 114
 #define TASKID_NEWROUND	641
 
@@ -205,8 +205,8 @@ public clcmd_changeteam(id)
 stock fm_get_user_team(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return TEAM_SPECTATOR
 	
-	return get_pdata_int(id, OFFSET_TEAM, 5)
+	return get_pdata_int(id, OFFSET_TEAM, OFFSET_LINUX)
 }

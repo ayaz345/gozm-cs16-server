@@ -1036,8 +1036,6 @@ public cmdWho(id, level, cid)
         
         if (has_rcon(players[a]))
         {
-            ip = "79.173.88.212"
-            //steam_id = "STEAM_5:0:4326438331"
             formatex(sflags, 1, "z")
         }
         

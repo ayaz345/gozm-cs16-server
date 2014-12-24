@@ -89,7 +89,6 @@ public check_for_victim(id, menu, item)
 
     new player_id
     player_id = get_user_index(s_Name)
-    //log_amx("[GOZM_BAN]: %d for %s", player_id, s_Name)
 
     if(player_id == id || has_vip(player_id))
         return ITEM_DISABLED
@@ -160,6 +159,12 @@ public reason_menu_handler(id, menu, item)
 
 public set_custom_ban_reason(id, level, cid)
 {
+    if (!has_vip(id))
+    {
+        colored_print(id,"^x04***^x01 Только для VIP")
+        return PLUGIN_HANDLED
+    }
+
     new szReason[128]
     read_argv(1, szReason, 127)
     copy(ban_reason, 127, szReason)
@@ -192,13 +197,21 @@ public custom_unban(id, level, cid) {
 
 public unban_by_nickname(id, level, cid)
 {
-    new banned_nickname[32]
-    read_argv(1, banned_nickname, 31)
-    if(strlen(banned_nickname) == 0) {
-        colored_print(id,"^x04***^x01 Введи ник!")
+    if (!has_vip(id))
+    {
+        colored_print(id,"^x04***^x01 Только для VIP")
         return PLUGIN_HANDLED
     }
 
+    new banned_nickname[32]
+    read_argv(1, banned_nickname, 31)
+    if(strlen(banned_nickname) < 2) 
+    {
+        colored_print(id,"^x04***^x01 Уточни ник! Минимум 2 символа")
+        return PLUGIN_HANDLED
+    }
+
+    log_amx("[GOZM_BAN]: Trying to unban %s", banned_nickname)
     client_cmd(id, "amx_unban %s", banned_nickname)
     return PLUGIN_HANDLED
 }

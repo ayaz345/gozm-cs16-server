@@ -55,11 +55,11 @@ new g_Me[33][ME_NUM]
 new g_text[5096]
 
 new g_select_statement[] = "\
-(SELECT *, (@_c := @_c + 1) AS `rank`, \
-((`infect` + `zombiekills`*2 + `humankills` + \
-`knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10) / \
-(`infected` + `death` + 300)) AS `skill` \
-FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
+    (SELECT *, (@_c := @_c + 1) AS `rank`, \
+    ((`infect` + `zombiekills`*2 + `humankills` + \
+    `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10 + `extra`) / \
+    (`infected` + `death` + 300)) AS `skill` \
+    FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
 
 public plugin_init() 
 {
@@ -109,8 +109,11 @@ public sql_init()
 
     g_SQL_Tuple = SQL_MakeDbTuple(host, user, password, db)
 
-    format(g_Query, charsmax(g_Query), "SET NAMES utf8")
-    SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+    if(!SQL_SetCharset(g_SQL_Tuple, "utf8"))
+    {
+        format(g_Query, charsmax(g_Query), "SET NAMES utf8")
+        SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+    }
 
     new map_name[32]
     get_mapname(map_name, 31)

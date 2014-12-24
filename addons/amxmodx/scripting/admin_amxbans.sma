@@ -387,4 +387,7 @@ public ackSignal(id)
 }
 
 public client_authorized(id)
-	return accessUser(id)  // PLUGIN_CONTINUE
+{
+    accessUser(id)
+    return PLUGIN_CONTINUE
+}

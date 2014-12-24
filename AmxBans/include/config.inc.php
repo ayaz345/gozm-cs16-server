@@ -65,7 +65,7 @@ $config->db_name = "gozm_gozm";
 $config->db_user = "gozm_admin";
 $config->db_pass = "petyx";
 $config->stats_table_players = "bio_players";
-$config->stats_select_players = "SELECT `nick`, `zombiekills`, `infect`, `death`, `infected`, `rank`, `extra` FROM (SELECT *, (@_c := @_c + 1) AS `rank`, ((`infect` + `zombiekills`*2 + `humankills` + `extra`) / (`infected` + `death` + 300)) AS `skill` FROM (SELECT @_c := 0) r, `".$config->stats_table_players."` ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= 100 ORDER BY `rank` LIMIT 100;";
+$config->stats_select_players = "SELECT `nick`, `zombiekills`, `infect`, `death`, `infected`, `rank`, `extra`, `skill` FROM (SELECT *, (@_c := @_c + 1) AS `rank`, ((`infect` + `zombiekills`*2 + `humankills` + `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10 + `extra`) / (`infected` + `death` + 300)) AS `skill` FROM (SELECT @_c := 0) r, `".$config->stats_table_players."` ORDER BY `skill` DESC) AS `newtable` WHERE `rank` <= 100 ORDER BY `rank` LIMIT 100;";
 $config->stats_table_maps = "bio_maps";
 $config->stats_select_maps = "SELECT `map`, `games` from `".$config->stats_table_maps."` ORDER BY `games` DESC;";
 $config->bans = "amx_bans";

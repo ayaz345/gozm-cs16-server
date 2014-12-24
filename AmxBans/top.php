@@ -23,8 +23,7 @@
             echo '<table border=1 style="float:left;margin-right:50px;"><tr><th>Rank</th><th>Nick</th><th>ZM killed</th><th>Infects</th><th>Infected</th><th>Deaths</th><th>Bonuses</th><th>Total Skill</th></tr>';
             while ($row = mysql_fetch_object($resource))
             {
-                $skill_float = ($row->zombiekills*2 + $row->infect + $row->extra) / ($row->death + $row->infected + 300);
-                $skill = intval($skill_float * 1000);
+                $skill = intval($row->skill * 1000);
                 echo "<tr><td>" . $row->rank . ". </td><td>" . $row->nick . "</td><td>" . $row->zombiekills . "</td><td>" . $row->infect . "</td><td>" . $row->infected . "</td><td>" . $row->death . "</td><td>" . $row->extra . "</td><td> " . $skill . " </td></tr>";
             }
             echo '</table>';

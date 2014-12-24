@@ -15,17 +15,18 @@ if ($config->error_handler == "enabled") {
 }
 
 $resource	= mysql_query(
-	"SELECT aa.id, aa.access, aa.nickname, players.last_leave FROM $config->amxadmins AS aa 
+	"SELECT aa.id, aa.access, aa.nickname, players.last_seen FROM $config->amxadmins AS aa 
 	INNER JOIN $config->admins_servers AS sa ON aa.id = sa.admin_id
 	INNER JOIN bio_players AS players ON BINARY aa.nickname = players.nick
 	WHERE ashow = '1' ORDER BY access, id ASC"
 	) or die(mysql_error());
+
 while($result = mysql_fetch_object($resource)) {
 
 		$amxadmins_info = array(
 			"access"	=> $result->access,
 			"nickname"	=> $result->nickname,
-			"time"		=> date("d-m-Y [H:i]", $result->last_leave)
+			"time"		=> date("d-m-Y [H:i]", $result->last_seen)
 			);
 	
 		$amxadmins_array[] = $amxadmins_info;

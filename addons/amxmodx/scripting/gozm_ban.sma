@@ -205,9 +205,9 @@ public unban_by_nickname(id, level, cid)
 
     new banned_nickname[32]
     read_argv(1, banned_nickname, 31)
-    if(strlen(banned_nickname) < 2) 
+    if(strlen(banned_nickname) == 0) 
     {
-        colored_print(id,"^x04***^x01 Уточни ник! Минимум 2 символа")
+        colored_print(id,"^x04***^x01 Уточни ник для разбана!")
         return PLUGIN_HANDLED
     }
 

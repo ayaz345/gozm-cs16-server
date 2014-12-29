@@ -1393,7 +1393,7 @@ public fw_SetModel(entity, const model[])
 {
     // We don't care
     if (strlen(model) < 8)
-        return
+        return FMRES_IGNORED
 
     // Get entity's classname
     static classname[10]
@@ -1409,14 +1409,14 @@ public fw_SetModel(entity, const model[])
     {
         // They get automatically removed when thinking
         set_pev(entity, pev_nextthink, get_gametime() + 0.4)
-        return
+        return FMRES_IGNORED
     }
 
     /* Remove smoke grenade */
 
     // Narrow down our matches a bit
     if (model[7] != 'w' || model[8] != '_')
-        return
+        return FMRES_IGNORED
 
     // Get damage time of grenade
     static Float:dmgtime
@@ -1424,10 +1424,11 @@ public fw_SetModel(entity, const model[])
 
     // Grenade not yet thrown
     if (dmgtime == 0.0)
-        return
+        return FMRES_IGNORED
 
     if (model[9] == 's' && model[10] == 'm')
         set_pev(entity, PEV_NADE_TYPE, NADE_TYPE_FLARE)
+    return FMRES_IGNORED
 }
 
 public fwd_createnamedentity(entclassname)
@@ -1501,6 +1502,8 @@ public fwd_client_disconnect(id)
     // Player left, clear cached flags
     g_isconnected[id] = false
     g_isalive[id] = false
+    
+    return FMRES_IGNORED
 }
 
 public bacon_touch_weapon(ent, id)
@@ -1516,15 +1519,15 @@ public bacon_traceattack_player(victim, attacker, Float:damage, Float:direction[
 {
 	// Non-player damage or self damage or not a zombie or not bullet damage or knockback disabled
 	if (victim == attacker || !is_user_valid_connected(attacker) || !(damagetype & DMG_BULLET))
-		return HAM_IGNORED;
+		return HAM_IGNORED
 
     // round starts and ends
 	if (!g_gamestarted || g_roundended)
-		return HAM_SUPERCEDE;  // was HAM_SUPERCEDE
+		return HAM_SUPERCEDE
     
 	// New round starting and friendly fire prevent
 	if (!g_zombie[attacker] && !g_zombie[victim])
-		return HAM_IGNORED;  // was HAM_SUPERCEDE
+		return HAM_SUPERCEDE
 	
 	// Get distance between players
 	static origin1[3], origin2[3]
@@ -1533,12 +1536,12 @@ public bacon_traceattack_player(victim, attacker, Float:damage, Float:direction[
 
 	// Max distance exceeded
 	if (get_distance(origin1, origin2) > get_pcvar_num(cvar_knockback_dist))
-		return HAM_IGNORED;
+		return HAM_IGNORED
 	
 	// Get victim's velocity
 	static Float:velocity[3]
 	pev(victim, pev_velocity, velocity)
-	
+
 	static kbpower
 	kbpower = g_weapon_knockback[get_user_weapon(attacker)]
 	
@@ -1553,7 +1556,7 @@ public bacon_traceattack_player(victim, attacker, Float:damage, Float:direction[
 	// Set the knockback'd victim's velocity
 	set_pev(victim, pev_velocity, direction)
 
-	return HAM_IGNORED;
+	return HAM_IGNORED
 }
 
 public bacon_touch_grenade(ent, world)
@@ -1593,7 +1596,7 @@ public bacon_takedamage_player(victim, inflictor, attacker, Float:damage, damage
         return HAM_IGNORED
 
     if(!is_user_valid_alive(victim))
-        return HAM_IGNORED  // was HAM_SUPERCEDE
+        return HAM_IGNORED
         
     if(!is_user_valid_connected(attacker))
         return HAM_IGNORED
@@ -1683,7 +1686,7 @@ public bacon_killed_player(victim, killer, shouldgib)
 
     if(!is_user_valid_connected(killer))
     {
-        fm_set_user_deaths(victim, fm_get_user_deaths(victim) - 1)
+        fm_set_user_deaths(victim, fm_get_user_deaths(victim)-1)
     }
 
     if(!g_zombie[victim])

@@ -471,7 +471,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
     
-    return PLUGIN_CONTINUE
+    return HAM_IGNORED
 }
 
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
@@ -481,12 +481,12 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
         !is_user_connected(victim) || 
         !is_user_zombie(victim)
         )
-        return PLUGIN_CONTINUE	
+        return HAM_IGNORED
 
     if (is_user_alive(attacker) && !is_user_zombie(attacker))
         g_Me[attacker][ME_DMG] += floatround(damage)
     
-    return PLUGIN_CONTINUE
+    return HAM_IGNORED
 }
 
 public reset_player_statistic(id)

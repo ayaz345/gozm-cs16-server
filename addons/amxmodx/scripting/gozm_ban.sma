@@ -19,7 +19,7 @@ public plugin_init()
     register_clcmd("amx_unban_by_name", "custom_unban")
     register_clcmd("BANNED_NICKNAME", "unban_by_nickname")
     
-    g_ban_time=register_cvar("amxx_voteban_bantime", "30")
+    g_ban_time = register_cvar("amxx_voteban_bantime", "30")
 }
 
 public say_it(id)

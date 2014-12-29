@@ -230,7 +230,7 @@ public locate_player(id, identifier[])
     if (player)
     {
         /* Check for immunity */
-        if (has_vip(id) || has_admin(id)) 
+        if (has_vip(player) || has_admin(player)) 
         {
             return -1
         }
@@ -1034,6 +1034,7 @@ public check_player(id)
 
     new query[4096]
     new data[1]
+
     if(equal(player_steamid, "BOT"))
         return PLUGIN_HANDLED
 

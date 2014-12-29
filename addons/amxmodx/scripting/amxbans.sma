@@ -109,6 +109,8 @@ public plugin_init()
     register_concmd("amx_unban", "cmdUnBan", ADMIN_BAN, "<steamID or nickname>")
     register_srvcmd("amx_unban", "cmdUnBan", -1, "<steamID or nickname>")
     register_srvcmd("amx_setbantimes", "setBantimes")
+    
+    register_dictionary("time.txt")  // for get_time_length()
 
     new configsDir[64], configfile[128]
     get_configsdir(configsDir, 63)
@@ -147,12 +149,9 @@ public sql_init()
 
 public client_connect(id)
 {
-	if( 0 < id < 32 && is_user_connected(id) )
-	{
-		g_lastCustom[id][0] = '^0'
-		g_inCustomReason[id] = 0
-		g_being_banned[id] = false
-	}
+    g_lastCustom[id][0] = '^0'
+    g_inCustomReason[id] = 0
+    g_being_banned[id] = false
 }
 
 public client_disconnect(id)
@@ -177,7 +176,7 @@ public delayed_kick(id_str[])
 	new player_id = str_to_num(id_str)
 	new userid = get_user_userid(player_id)
 	new kick_message[128]
-	format(kick_message, 127, "Ты забанен, смотри консоль. vk.com/go_zombie")
+	format(kick_message, 127, "Ты забанен, смотри консоль. Разбан тут: vk.com/go_zombie")
 
 	if ( get_pcvar_num(amxbans_debug) == 1 )
 		log_amx("[AMXBANS DEBUG] Delayed Kick ID: <%s>", id_str)
@@ -198,9 +197,20 @@ public locate_player(id, identifier[])
         log_amx("[AMXBANS DEBUG] identifier: %s", identifier)
     
     g_ban_type = "SI"
+    
+    new player
+
+    // Check based on user ID
+    if (identifier[0]=='#' && identifier[1] ) 
+    {
+        player = find_player("k", str_to_num(identifier[1]))
+    }
 
     // Check based on steam ID
-    new player = find_player("c", identifier)
+    if (!player)
+    {
+        player = find_player("c", identifier)
+    }
 
     // Check based on a partial non-case sensitive name
     if (!player) 
@@ -217,23 +227,11 @@ public locate_player(id, identifier[])
             g_ban_type = "SI"
     }
 
-    // Check based on user ID
-    if ( !player && identifier[0]=='#' && identifier[1] ) 
-    {
-        player = find_player("k",str_to_num(identifier[1]))
-    }
-
     if (player)
     {
         /* Check for immunity */
         if (has_vip(id) || has_admin(id)) 
         {
-            new name[32]
-            get_user_name(player, name, 31)
-            if( id == 0 )
-                server_print("[GOZM]: Client ^"%s^" has immunity", name)
-            else
-                console_print(id,"[GOZM]: Client ^"%s^" has immunity", name)
             return -1
         }
     }
@@ -293,7 +291,7 @@ loadDefaultBantimes()
 public cmdBan(id, level, cid)
 {
     /* Checking if the admin has the right access */
-    if (!cmd_access(id,level,cid,3))
+    if (!cmd_access(id, level, cid, 3))
         return PLUGIN_HANDLED
 
     new bool:serverCmd = false
@@ -349,6 +347,11 @@ public cmdBan(id, level, cid)
 
     /* Try to find the player that should be banned */
     new player = locate_player(id, steamidorusername)
+    if (player == -1)
+    {
+        colored_print(id, "^x04***^x01 У этого игрока есть иммунитет")
+        return PLUGIN_HANDLED
+    }
 
     if(g_being_banned[player]) //triggered error http://amxbans.net/forums/viewtopic.php?p=3468#3468
     {
@@ -376,7 +379,7 @@ public cmdBan(id, level, cid)
         g_being_banned[0] = false
         
         if (serverCmd)
-            server_print("[AMXXBANS] The Player %s was not found",g_steamidorusername)
+            server_print("[AMXXBANS] The Player %s was not found", g_steamidorusername)
         else
             colored_print(id, "^x04***^x01 Игрок^x03 %s^x01 не найден на сервере", g_steamidorusername)
 
@@ -554,13 +557,11 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 	}
 	else
 	{
-        new victim_name[32], vip_name[32]
-        get_user_name(id, vip_name, 31)
+        new victim_name[32]
         get_user_name(player, victim_name, 31)
 
         if (id != 0)
-            colored_print(0, "^x04***^x03 %s^x01 забанен випом^x04 %s^x01! Причина: %s", 
-                victim_name, vip_name, g_ban_reason)
+            colored_print(0, "^x04***^x03 %s^x01 забанен по причине^x04 %s", victim_name, g_ban_reason)
 	}
 	return PLUGIN_HANDLED
 }
@@ -608,15 +609,14 @@ public announce_and_kick(id, player, iBanLength)
         new complain_url[256]
         get_pcvar_string(complainurl ,complain_url, 255)
             
-        client_print(player,print_console,"[GOZM] ===============================================")				
-        client_print(player,print_console,"[GOZM] Тебя ВЫПИЛИЛИ с сервера")
-        client_print(player,print_console,"[GOZM] Оспорить свой бан можешь тут: %s", complain_url)
-        client_print(player,print_console,"[GOZM] Причина: '%s'", g_ban_reason)
-        client_print(player,print_console,"[GOZM] Время бана: '%s'", cTimeLengthPlayer)
-        client_print(player,print_console,"[GOZM] Твой SteamID: '%s'", player_steamid)
-        client_print(player,print_console,"[GOZM] Твой IP: '%s'", player_ip)
         client_print(player,print_console,"[GOZM] ===============================================")
-        client_print(player,print_console,"[GOZM] Демка тут: cstrike/go_zombie.dem")
+        client_print(player,print_console,"[GOZM] Unban: %s", complain_url)
+        client_print(player,print_console,"[GOZM] Reason: '%s'", g_ban_reason)
+        client_print(player,print_console,"[GOZM] Ban time: '%s'", cTimeLengthPlayer)
+        client_print(player,print_console,"[GOZM] SteamID: '%s'", player_steamid)
+        client_print(player,print_console,"[GOZM] IP: '%s'", player_ip)
+        client_print(player,print_console,"[GOZM] ===============================================")
+        client_print(player,print_console,"[GOZM] Demo: cstrike/go_zombie.dem")
         client_print(player,print_console,"[GOZM] ===============================================")
 
         new id_str[3]
@@ -639,7 +639,7 @@ public announce_and_kick(id, player, iBanLength)
     if (equal(g_ban_type, "S"))
     {
         if (serverCmd)
-            log_message("[GOZM]: SteamID '%s' успешно забанен. Ща кикнет...",player_steamid)
+            log_message("[GOZM]: SteamID '%s' successfully banned. Kicking...",player_steamid)
         else
             client_print(id, print_console,"[GOZM]: SteamID '%s' успешно забанен. Ща кикнет...",
                 player_steamid)
@@ -647,7 +647,7 @@ public announce_and_kick(id, player, iBanLength)
     else
     {
         if (serverCmd)
-            log_message("[GOZM]: IP успешно забанен. Ща кикнет...")
+            log_message("[GOZM]: IP successfully banned. Kicking...")
         else
             client_print(id, print_console,"[GOZM]: IP успешно забанен. Ща кикнет...")
     }
@@ -662,14 +662,14 @@ public announce_and_kick(id, player, iBanLength)
     // Logs all bans by admins/server to amxx logs
     if (iBanLength > 0)
     {
-        log_amx("%s<%d><%s><%s> забанил %s<%s> на %s (%i минут). Причина: %s.",
+        log_amx("%s<%d><%s><%s> ban %s<%s> for %s (%i minutes). Reason: %s.",
             admin_nick, get_user_userid(id), admin_steamid, 
             admin_team, player_nick, player_steamid, 
             cTimeLengthServer, iBanLength, g_ban_reason)
     }
     else
     {
-        log_amx("%s<%d><%s><%s> забанил %s<%s> НАВСЕГДА. Причина: %s.", 
+        log_amx("%s<%d><%s><%s> ban %s<%s> forever. Reason: %s.", 
             admin_nick, get_user_userid(id), admin_steamid, 
             admin_team, player_nick, player_steamid, 
             g_ban_reason)
@@ -682,7 +682,7 @@ public announce_and_kick(id, player, iBanLength)
      This function will UnBan by steamID amx_unban <STEAMID or NICKNAME>   
 */
 
-public cmdUnBan(id,level,cid)
+public cmdUnBan(id, level, cid)
 {
     if(!(get_user_flags(id) & level))
         return PLUGIN_HANDLED
@@ -827,7 +827,7 @@ public unban_menu_handler(id, menu, item)
         player_nick,player_ip,player_id,ban_type,server_ip,server_name \
         FROM `%s` WHERE bid=%d", 
         tbl_bans, str_to_num(s_Bid))
-    
+
     data[0] = id
     SQL_ThreadQuery(g_SqlX, "cmd_unban_select", query, data, 1)
     
@@ -859,7 +859,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
         }
         else
         {
-            client_print(id, print_console, "[GOZM]: Найден SteamID: '%s'", g_unban_player_steamid)
+            client_print(id, print_console, "[GOZM]: Found SteamID: '%s'", g_unban_player_steamid)
 
             new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
             new player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]
@@ -906,8 +906,8 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 
             client_print(id,print_console," ")
             client_print(id,print_console,"[GOZM] =================")
-            client_print(id,print_console,"[GOZM] BanID: '%s', Ник: '%s'", bid, g_player_nick)
-            client_print(id,print_console,"[GOZM] Забанен на '%s'['%s'], причина: '%s'",
+            client_print(id,print_console,"[GOZM] BanID: '%s', Nick: '%s'", bid, g_player_nick)
+            client_print(id,print_console,"[GOZM] Ban for '%s'['%s'], Reason: '%s'",
                 admin_nick, g_admin_steamid, ban_reason)
             client_print(id,print_console,"[GOZM] =================")
             client_print(id,print_console," ")
@@ -1012,11 +1012,11 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
 	}
 	else
 	{
-        log_amx("%s<%d><%s><%s> разбанен %s<%s>.",	g_unban_admin_nick, get_user_userid(id), g_admin_steamid, g_unban_admin_team, g_player_nick, g_unban_player_steamid)
+        log_amx("%s<%d><%s><%s> unbanned %s<%s>.",	g_unban_admin_nick, get_user_userid(id), g_admin_steamid, g_unban_admin_team, g_player_nick, g_unban_player_steamid)
 
         client_print(id,print_console," ")
         client_print(id,print_console,"[GOZM] =================")
-        client_print(id,print_console,"'%s' РАЗБАНЕН", g_player_nick)
+        client_print(id,print_console,"'%s' is unbanned", g_player_nick)
         client_print(id,print_console,"[GOZM] =================")
         client_print(id,print_console," ")
 
@@ -1034,6 +1034,9 @@ public check_player(id)
 
     new query[4096]
     new data[1]
+    if(equal(player_steamid, "BOT"))
+        return PLUGIN_HANDLED
+
     if(equal(player_steamid, "STEAM_ID_LAN") || equal(player_steamid, ""))
         format(query, 4095, "\
         SELECT \
@@ -1110,18 +1113,18 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                 get_pcvar_string(complainurl ,complain_url,255)
                 
                 client_cmd(id, "echo [GOZM]: ===============================================")
-                client_cmd(id, "echo [GOZM]: Ты ВЫПИЛЕН с сервера випом %s", admin_nick)
+                client_cmd(id, "echo [GOZM]: Banned by %s", admin_nick)
                 new cTimeLength[128]
                 new iSecondsLeft = (ban_created + ban_length_int - current_time_int)
                 get_time_length(id, iSecondsLeft, timeunit_seconds, cTimeLength, 127)
-                client_cmd(id, "echo [GOZM]: Тебе осталось %s минут в бане", cTimeLength)
-                client_cmd(id, "echo [GOZM]: Ник в бане: %s", player_nick)	
-                client_cmd(id, "echo [GOZM]: Причина: '%s'", ban_reason)
-                client_cmd(id, "echo [GOZM]: Оспорить свой бан можешь тут @ %s", complain_url)
-                client_cmd(id, "echo [GOZM]: Твой SteamID: '%s'", player_steamid)
-                client_cmd(id, "echo [GOZM]: Твой IP: '%s'", player_ip)
+                client_cmd(id, "echo [GOZM]: Ban left in %s", cTimeLength)
+                client_cmd(id, "echo [GOZM]: Nick: %s", player_nick)	
+                client_cmd(id, "echo [GOZM]: Reason: '%s'", ban_reason)
+                client_cmd(id, "echo [GOZM]: Unban: %s", complain_url)
+                client_cmd(id, "echo [GOZM]: SteamID: '%s'", player_steamid)
+                client_cmd(id, "echo [GOZM]: IP: '%s'", player_ip)
                 client_cmd(id, "echo [GOZM]: ===============================================")
-                client_cmd(id, "echo [GOZM]: Демка тут: cstrike/go_zombie.dem")
+                client_cmd(id, "echo [GOZM]: Demo: cstrike/go_zombie.dem")
                 client_cmd(id, "echo [GOZM]: ===============================================")
 
                 if ( get_pcvar_num(amxbans_debug) == 1 )
@@ -1140,7 +1143,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             {
                 new has_name[32]
                 get_user_name(id, has_name, 31)
-                client_cmd(id, "echo [GOZM]: За тобой уже бывали баны...")
+                client_cmd(id, "echo [GOZM]: Ban expired...")
 
                 new unban_created = get_systime(0)
 
@@ -1232,8 +1235,6 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 	{
 		if (!SQL_NumResults(query))
 		{
-			server_print("[GOZM]: Причины не найдены.")
-			
 			format(g_banReasons[0], 127, "Wallhack")
 			format(g_banReasons[1], 127, "Speedhack")
 			format(g_banReasons[2], 127, "Mat")
@@ -1241,9 +1242,8 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 			format(g_banReasons[4], 127, "Noob")
 			format(g_banReasons[5], 127, "Reconnect")
 			format(g_banReasons[6], 127, "Obxod")
-		
-			server_print("[GOZM]: Загружены стандартные причины")
-			log_amx("[AMXBANS]: Загружены стандартные причины")
+
+			log_amx("[AMXBANS]: Static reasons loaded")
 
 			g_aNum = 7
 	
@@ -1259,11 +1259,6 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 				g_aNum++
 			}
 		}
-		
-		if (g_aNum == 1)
-			server_print("[GOZM]: Загружена 1 причина" )
-		else
-			server_print("[GOZM]: Загружены %d причин из БД", g_aNum )
 	}
 	return PLUGIN_HANDLED
 }
@@ -1318,7 +1313,7 @@ displayBanMenu(id,pos)
 		start = pos = g_menuPosition[id] = 0
 
 	new len = format(menuBody, 511, 
-        g_coloredMenus ? "\yБАНЫ\R%d/%d^n\w^n" : "БАНЫ %d/%d^n^n", pos+1,
+        g_coloredMenus ? "\yБАНЫ\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
         (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0 )))
 
 	new end = start + 7
@@ -1346,12 +1341,12 @@ displayBanMenu(id,pos)
 		{
 			keys |= (1<<b)
 			if (has_vip(i))
-				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r* %s\w^n" : "%d. %s *^n", ++b, name)
+				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r* \w^n" : "%d. %s *^n", ++b, name)
 			else
-				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r%s\w^n" : "%d. %s^n", ++b, name)
+				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r \w^n" : "%d. %s^n", ++b, name)
 		}
 	}
-	
+
 	new iBanLength = g_menuSettings[id]
 	new cTimeLength[128]
 	if(iBanLength == 0)
@@ -1365,7 +1360,7 @@ displayBanMenu(id,pos)
 	
 	if (end != g_menuPlayersNum[id])
 	{
-		len += format(menuBody[len],511-len,"^n9. %s...^n0. Дальше", pos ? "Назад" : "Выход")
+		len += format(menuBody[len],511-len,"^n9. %s...^n0. Выход", pos ? "Назад" : "Дальше")
 		keys |= MENU_KEY_9
 	}
 	else
@@ -1396,7 +1391,7 @@ public actionBanMenuReason(id,key)
 		}
 		case 7:
 		{
-			g_inCustomReason[id]=1
+			g_inCustomReason[id] = 1
 			client_cmd(id,"messagemode amxbans_custombanreason")
 			return PLUGIN_HANDLED
 		}
@@ -1451,13 +1446,13 @@ public setCustomBanReason(id,level,cid)
 	}
 
 	new szReason[128]
-	read_argv(1,szReason,127)
-	copy(g_lastCustom[id],127,szReason)
+	read_argv(1, szReason, 127)
+	copy(g_lastCustom[id], 127, szReason)
 
 	if (g_inCustomReason[id])
 	{
-		g_inCustomReason[id]=0
-		banUser(id,g_lastCustom[id])
+		g_inCustomReason[id] = 0
+		banUser(id, g_lastCustom[id])
 	}
 
 	return PLUGIN_HANDLED

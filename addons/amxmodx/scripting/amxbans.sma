@@ -256,28 +256,33 @@ public setBantimes()
 	new num[32], flag[32]
 	while (i < argc)
 	{
-		read_argv(i + 1, arg, 31)
-		parse(arg, num, 31, flag, 31)
+        read_argv(i + 1, arg, 31)
+        parse(arg, num, 31, flag, 31)
 
-		if(equali(flag, "m"))
-		{ 
-			g_BanMenuValues[i] = str_to_num(num)
-		}
-		else if(equali(flag, "h"))
-		{
-			g_BanMenuValues[i] = (str_to_num(num) * 60)
-		}
-		else if(equali(flag, "d"))
-		{
-			g_BanMenuValues[i] = (str_to_num(num) * 1440)
-		}
-		else if(equali(flag, "w"))
-		{
-			g_BanMenuValues[i] = (str_to_num(num) * 10080)
-		}
+        if(equal(flag, "m"))
+        { 
+            g_BanMenuValues[i] = str_to_num(num)
+        }
+        else if(equal(flag, "h"))
+        {
+            g_BanMenuValues[i] = (str_to_num(num) * 60)
+        }
+        else if(equal(flag, "d"))
+        {
+            g_BanMenuValues[i] = (str_to_num(num) * 1440)
+        }
+        else if(equal(flag, "w"))
+        {
+            g_BanMenuValues[i] = (str_to_num(num) * 10080)
+        }
+        else if(equal(flag, "M"))
+        {
+            g_BanMenuValues[i] = (str_to_num(num) * 43200)
+        }
 
-		i++
+        i++
 	}
+
 	return PLUGIN_HANDLED
 }
 
@@ -323,12 +328,6 @@ public cmdBan(id, level, cid)
     replace_all(g_ban_reason, 255, "'", "\'")
 
     new iBanLength = str_to_num(ban_length)
-    new cTimeLength[128]
-
-    if (iBanLength > 0)
-        get_time_length(id, iBanLength, timeunit_minutes, cTimeLength, 127)
-    else
-        format(cTimeLength, 127, "НАВСЕГДА")
 
     // This stops admins from banning perm in console
     if(!has_rcon(id) && iBanLength == 0)
@@ -600,8 +599,8 @@ public announce_and_kick(id, player, iBanLength)
     }
     else //Permanent Ban
     {
-        format(cTimeLengthPlayer, 127, "НАВСЕГДА")
-        format(cTimeLengthServer, 127, "НАВСЕГДА")
+        format(cTimeLengthPlayer, 127, "Permanent")
+        format(cTimeLengthServer, 127, "Permanent")
     }
 
     if (player)
@@ -1265,6 +1264,79 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 }
 
 /* ---------------- MENUS --------------- */
+displayBanMenu(id,pos)
+{
+    if (pos < 0)  return
+
+    get_players(g_menuPlayers[id],g_menuPlayersNum[id])
+
+    new menuBody[512]
+    new b = 0
+    new i
+    new name[32]
+    new start = pos * 7
+
+    if (start >= g_menuPlayersNum[id])
+        start = pos = g_menuPosition[id] = 0
+
+    new len = format(menuBody, 511, 
+        g_coloredMenus ? "\yКого забаним?\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
+        (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0 )))
+
+    new end = start + 7
+    new keys = MENU_KEY_0|MENU_KEY_8
+
+    if (end > g_menuPlayersNum[id])
+        end = g_menuPlayersNum[id]
+
+
+    for (new a = start; a < end; ++a)
+    {
+        i = g_menuPlayers[id][a]
+        get_user_name(i,name,31)
+
+        if (has_vip(i))
+        {
+            ++b
+            if ( g_coloredMenus )
+                len += format(menuBody[len],511-len,"\d%d. %s\w^n", b, name)
+            else
+                len += format(menuBody[len],511-len,"#. %s^n", name)
+
+        }
+        else
+        {
+            keys |= (1<<b)
+            if (has_vip(i))
+                len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r* \w^n" : "%d. %s *^n", ++b, name)
+            else
+                len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r \w^n" : "%d. %s^n", ++b, name)
+        }
+    }
+
+    new iBanLength = g_menuSettings[id]
+    new cTimeLength[128]
+    if(iBanLength == 0)
+        len += format(menuBody[len],511-len, g_coloredMenus ? "\w^n8. Навсегда^n" : "^n8. Навсегда^n")
+    else
+    {
+        get_time_length(id, iBanLength, timeunit_minutes, cTimeLength, 127)
+
+        len += format(menuBody[len],511-len, 
+            g_coloredMenus ? "\w^n8. На %s^n" : "^n8. На %s^n", cTimeLength)
+    }
+
+    if (end != g_menuPlayersNum[id])
+    {
+        len += format(menuBody[len],511-len,"^n9. %s...^n0. Выход", pos ? "Назад" : "Дальше")
+        keys |= MENU_KEY_9
+    }
+    else
+        len += format(menuBody[len],511-len,"^n0. %s", pos ? "Назад" : "Выход")
+
+    show_menu(id, keys, menuBody, -1 , "Ban Menu")
+}
+
 public actionBanMenu(id,key)
 {
 	switch (key)
@@ -1283,11 +1355,11 @@ public actionBanMenu(id,key)
                     g_menuSettings[id] = -1
             }
 
-            displayBanMenu(id,g_menuPosition[id])
+            displayBanMenu(id, g_menuPosition[id])
 		}
 
-		case 8: displayBanMenu(id,++g_menuPosition[id])
-		case 9: displayBanMenu(id,--g_menuPosition[id])
+		case 8: displayBanMenu(id, ++g_menuPosition[id])
+		case 9: displayBanMenu(id, --g_menuPosition[id])
 
 		default:
 		{
@@ -1298,85 +1370,12 @@ public actionBanMenu(id,key)
 	return PLUGIN_HANDLED
 }
 
-displayBanMenu(id,pos)
+public cmdBanMenu(id, level, cid)
 {
-	if (pos < 0)  return
-
-	get_players(g_menuPlayers[id],g_menuPlayersNum[id])
-
-	new menuBody[512]
-	new b = 0
-	new i
-	new name[32]
-	new start = pos * 7
-
-	if (start >= g_menuPlayersNum[id])
-		start = pos = g_menuPosition[id] = 0
-
-	new len = format(menuBody, 511, 
-        g_coloredMenus ? "\yКого забаним?\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
-        (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0 )))
-
-	new end = start + 7
-	new keys = MENU_KEY_0|MENU_KEY_8
-
-	if (end > g_menuPlayersNum[id])
-		end = g_menuPlayersNum[id]
-
-
-	for (new a = start; a < end; ++a)
-	{
-		i = g_menuPlayers[id][a]
-		get_user_name(i,name,31)
-
-		if (has_vip(i))
-		{
-			++b
-			if ( g_coloredMenus )
-				len += format(menuBody[len],511-len,"\d%d. %s\w^n", b, name)
-			else
-				len += format(menuBody[len],511-len,"#. %s^n", name)
-
-		}
-		else
-		{
-			keys |= (1<<b)
-			if (has_vip(i))
-				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r* \w^n" : "%d. %s *^n", ++b, name)
-			else
-				len += format(menuBody[len],511-len, g_coloredMenus ? "\w%d. %s \r \w^n" : "%d. %s^n", ++b, name)
-		}
-	}
-
-	new iBanLength = g_menuSettings[id]
-	new cTimeLength[128]
-	if(iBanLength == 0)
-		len += format(menuBody[len],511-len, g_coloredMenus ? "\w^n8. НАВСЕГДА^n" : "^n8. НАВСЕГДА^n")
-	else
-	{
-		get_time_length(id, iBanLength, timeunit_minutes, cTimeLength, 127)
-
-		len += format(menuBody[len],511-len, 
-            g_coloredMenus ? "\w^n8. На %s^n" : "^n8. На %s^n", cTimeLength)
-	}
-	
-	if (end != g_menuPlayersNum[id])
-	{
-		len += format(menuBody[len],511-len,"^n9. %s...^n0. Выход", pos ? "Назад" : "Дальше")
-		keys |= MENU_KEY_9
-	}
-	else
-		len += format(menuBody[len],511-len,"^n0. %s", pos ? "Назад" : "Выход")
-
-	show_menu(id,keys,menuBody,-1,"Ban Menu")
-}
-
-public cmdBanMenu(id,level,cid)
-{
-	if (!cmd_access(id,level,cid,1))
+	if (!cmd_access(id, level, cid, 1))
 		return PLUGIN_HANDLED
 
-	g_menuOption[id] = 0   // This is the first menu option that is used
+	g_menuSettings[id] = g_BanMenuValues[0]   // This is the first menu option that is used
 	displayBanMenu(id, g_menuPosition[id] = 0)
 
 	return PLUGIN_HANDLED
@@ -1389,24 +1388,25 @@ public actionBanMenuReason(id,key)
 	{
 		case 9: // go back to ban menu
 		{
-			displayBanMenu(id,g_menuPosition[id])
+			displayBanMenu(id, g_menuPosition[id])
 		}
 		case 7:
 		{
 			g_inCustomReason[id] = 1
-			client_cmd(id,"messagemode amxbans_custombanreason")
+			client_cmd(id, "messagemode amxbans_custombanreason")
 			return PLUGIN_HANDLED
 		}
 		case 8:
 		{
-			banUser(id,g_lastCustom[id])
+			banUser(id, g_lastCustom[id])
 		}
 		default:
 		{
-			banUser(id,g_banReasons[key])
+			banUser(id, g_banReasons[key])
 		}
 	}
-	displayBanMenu(id,g_menuPosition[id] = 0)
+	displayBanMenu(id, g_menuPosition[id] = 0)
+
 	return PLUGIN_HANDLED
 }
 
@@ -1467,7 +1467,7 @@ banUser(id, banReason[])
     new player = g_bannedPlayer
     new ip[16]
     get_user_ip(player, ip, 15, 1)
-    console_cmd(id,"amx_ban %d %s %s" ,g_menuSettings[id], ip, banReason)
+    console_cmd(id,"amx_ban %d %s %s", g_menuSettings[id], ip, banReason)
 }
 
 

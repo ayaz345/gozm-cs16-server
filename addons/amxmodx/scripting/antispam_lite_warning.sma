@@ -36,7 +36,7 @@ public ClientUserInfoChanged_Pre(const iClient, const pszInfoBuffer)
 
     new Regex:regex;
     new error[50], num;
-    regex = regex_match(szBufferName, "[a-z0-9-]{3,}\.[a-z]{2,3}(\S)", num, error, 49, "i");
+    regex = regex_match(szBufferName, "[a-zA-Z0-9-]{3,}\.[a-zA-Z]{2,3}$", num, error, 49, "i");
     if(regex >= REGEX_OK)
     {
         regex_free(regex);

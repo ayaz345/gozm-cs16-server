@@ -1314,7 +1314,7 @@ displayBanMenu(id,pos)
 		start = pos = g_menuPosition[id] = 0
 
 	new len = format(menuBody, 511, 
-        g_coloredMenus ? "\yБАНЫ\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
+        g_coloredMenus ? "\yКого забаним?\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
         (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0 )))
 
 	new end = start + 7
@@ -1356,7 +1356,8 @@ displayBanMenu(id,pos)
 	{
 		get_time_length(id, iBanLength, timeunit_minutes, cTimeLength, 127)
 
-		len += format(menuBody[len],511-len, g_coloredMenus ? "\w^n8. Забанить на ^n" : "^n8. Забанить на %s^n", cTimeLength)
+		len += format(menuBody[len],511-len, 
+            g_coloredMenus ? "\w^n8. На %s^n" : "^n8. На %s^n", cTimeLength)
 	}
 	
 	if (end != g_menuPlayersNum[id])

@@ -1,8 +1,8 @@
 <?php
-$host = "141.101.203.23";
-$login = "u179761";
+$host = "db1.myarena.ru";
+$login = "gozm_admin";
 $password = "petyx";
-$db = "b179761";
+$db = "gozm_gozm";
 $table = "superban";
 
 $lines = 25;

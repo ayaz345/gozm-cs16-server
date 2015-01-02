@@ -39,24 +39,25 @@ function MakeSelection($sql)
 
 // Выбирает что и как запрашивать из таблицы
 function BottomPanel()
-{	global $table, $lines, $count;
-	$sql = "SELECT COUNT(*) as count FROM " . $table;
+{	
+    global $table, $lines, $count;
+	$sql = "SELECT COUNT(*) AS count FROM " . $table;
 	$count_select = MakeSelection($sql);
 	$count = $count_select[0]["count"];
 	if (isset($_GET["page"])) {$p = ($_GET["page"]-1)*$lines;} else {$p = 0;}
 	if ($_GET["search"] == "")
 	{
-		$sql  = "Select * from ".$table." order by banid desc limit ".$p.", ".$lines;
+		$sql  = "SELECT * FROM ".$table." ORDER BY banid DESC LIMIT ".$p.", ".$lines;
 	}
 	else
 	{
 		$search = mysql_escape_string($_GET["search"]);
-		$sql  = "Select * from " . $table
-			. " where ip like '%" . $search
-			. "%' or banname like '%" . $search
-			. "%' or name like '%" . $search
-			. "%' or sid like '%" . $search
-			. "%' order by banid desc limit " . $p . ", " . $lines;
+		$sql  = "SELECT * FROM " . $table
+			. " WHERE ip LIKE '%" . $search
+			. "%' OR banname LIKE '%" . $search
+			. "%' OR name LIKE '%" . $search
+			. "%' OR sid LIKE '%" . $search
+			. "%' ORDER BY banid DESC LIMIT " . $p . ", " . $lines;
 	}
 	$users = MakeSelection($sql);
 
@@ -96,22 +97,28 @@ function PrintResult($array)
 				$color = $line_odd_color;
 			}
 			print("
-    <tr align = left bgcolor = \"".$color."\" onMouseOver=\"this.style.backgroundColor='".$cursor_color."'\" onMouseOut=\"this.style.backgroundColor='".$color."'\" onClick=\"Toggle(dop".$i.")\">
-      <td>".date("d.m.Y [H:i]", $array[$i]['time'])."</td>
-      <td>".htmlspecialchars($array[$i]['banname'])."</td>
-      <td>".$array[$i]['admin']."</td>
-      <td>".$reason."</td>
-      <td>".$unban."</td>
-    </tr>");
+                <tr align = left bgcolor = \"".$color."\" onMouseOver=\"this.style.backgroundColor='".$cursor_color."'\" onMouseOut=\"this.style.backgroundColor='".$color."'\" onClick=\"Toggle(dop".$i.")\">
+                  <td>".date("d.m.Y [H:i]", $array[$i]['time'])."</td>
+                  <td>".htmlspecialchars($array[$i]['banname'])."</td>
+                  <td>".$array[$i]['admin']."</td>
+                  <td>".$reason."</td>
+                  <td>".$unban."</td>
+                </tr>");
     		if ($array[$i]['bantime'] == 0) $bantime = date("d.m.Y [H:i]", $array[$i]['time']);
     		else $bantime = date("d.m.Y [H:i]", $array[$i]['bantime']);
             if (intval($array[$i]['unbantime']) > 0) $unban = date("d.m.Y [H:i]", $array[$i]['unbantime']);
             else $unban = "-";
 			print("
-    <tr align = left bgcolor = \"".$line_add_color."\" id = \"dop".$i."\" style = \"display: none;\">
-      <td colspan=\"5\"><b>Последний визит: </b>".$bantime."<br><b>Последний IP адрес: </b>".$array[$i]['ip']."<br><b>Последний ник: </b>".$array[$i]['name']."<br><b>SteamID: </b>".$array[$i]['sid']."<br><b>Дата окончания бана: </b>".$unban."</td>
-    </tr>");
-	}
+                <tr align = left bgcolor = \"".$line_add_color."\" id = \"dop".$i."\" style = \"display: none;\">
+                  <td colspan=\"5\">
+                    <b>Последний визит: </b>".$bantime."<br>
+                    <b>Последний IP адрес: </b>".$array[$i]['ip']."<br>
+                    <b>Последний ник: </b>".$array[$i]['name']."<br>
+                    <b>SteamID: </b>".$array[$i]['sid']."<br>
+                    <b>Дата окончания бана: </b>".$unban."<br>
+                    <input type=\"submit\" value=\"Удалить бан\" onClick=\"DeleteBan($array[$i]['banid'])\"></td>
+                </tr>");
+        }
 
 
 		print("<tr align = left bgcolor = \"".$bottom_color."\"><td colspan = 5>");
@@ -132,6 +139,13 @@ function PrintResult($array)
 		}
 		print("&nbsp;</td></tr>");
 	}
+}
+
+function DeleteBan($banid)
+{
+    global $table;
+	$sql = "DELETE FROM " . $table . " WHERE banid = " . $banid . "";
+    mysql_query($sql);
 }
 
 // Делает запрсс из таблицы superban

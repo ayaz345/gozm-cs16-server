@@ -1477,30 +1477,13 @@ banUser(id, banReason[])
    
 *************************************************************/
 
-public actionBanhistoryMenu(id, key)
+public cmdBanhistoryMenu(id, level, cid)
 {
-    switch (key)
-    {
-        case 8: displayBanhistoryMenu(id, ++g_menuPosition[id])
-        case 9: displayBanhistoryMenu(id, --g_menuPosition[id])
-        default:
-        {
-            new authid[32]
-            new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
+	if (!cmd_access(id, level, cid, 1))
+		return PLUGIN_HANDLED
 
-            new banhistMOTD_url[256], msg[2048]
-            new player_ip[20]
-            get_user_authid(player, authid, 31)
-            get_user_ip(player, player_ip, 19, 1)
-
-            get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
-            format(msg, 2047, banhistMOTD_url, authid, player_ip)
-
-            show_motd(id, msg, "Banhistory")
-            displayBanhistoryMenu(id, g_menuPosition[id])
-        }
-    }
-    return PLUGIN_HANDLED
+	displayBanhistoryMenu(id, g_menuPosition[id] = 0)
+	return PLUGIN_HANDLED
 }
 
 displayBanhistoryMenu(id, pos)
@@ -1541,7 +1524,7 @@ displayBanhistoryMenu(id, pos)
 	}
 	if (end != g_menuPlayersNum[id])
 	{
-		format(menuBody[len], 511-len, "^n9. %s...^n0. Дальше", pos ? "Назад" : "Выход")
+		format(menuBody[len], 511-len, "^n9. %s...^n0. Выход", pos ? "Назад" : "Дальше")
 		keys |= MENU_KEY_9
 	}
 	else
@@ -1550,13 +1533,30 @@ displayBanhistoryMenu(id, pos)
 	show_menu(id, keys, menuBody, -1, "Banhistory Menu")
 }
 
-public cmdBanhistoryMenu(id, level, cid)
+public actionBanhistoryMenu(id, key)
 {
-	if (!cmd_access(id, level, cid, 1))
-		return PLUGIN_HANDLED
+    switch (key)
+    {
+        case 8: displayBanhistoryMenu(id, ++g_menuPosition[id])
+        case 9: displayBanhistoryMenu(id, --g_menuPosition[id])
+        default:
+        {
+            new authid[32]
+            new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
 
-	displayBanhistoryMenu(id, g_menuPosition[id] = 0)
-	return PLUGIN_HANDLED
+            new banhistMOTD_url[256], msg[2048]
+            new player_ip[20]
+            get_user_authid(player, authid, 31)
+            get_user_ip(player, player_ip, 19, 1)
+
+            get_pcvar_string(banhistmotd_url, banhistMOTD_url, 255)
+            format(msg, 2047, banhistMOTD_url, authid, player_ip)
+
+            show_motd(id, msg, "Banhistory")
+            displayBanhistoryMenu(id, g_menuPosition[id])
+        }
+    }
+    return PLUGIN_HANDLED
 }
 
 /* ------------ MYSQL stuff ------------- */

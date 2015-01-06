@@ -53,7 +53,6 @@
 #define TASKID_INITROUND 222
 #define TASKID_STARTROUND 153
 #define TASKID_BALANCETEAM 375
-#define TASKID_NIGHTVISION 376
 #define TASKID_UPDATESCR 264
 #define TASKID_SPAWNDELAY 786
 #define TASKID_CHECKSPAWN 423
@@ -243,13 +242,11 @@ new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_lights, cvar_healthbonus, cvar_killbonus,
     cvar_gamedescription, cvar_flashbang, cvar_impactexplode,
     cvar_knockback_dist, cvar_ammo, cvar_killreward,
-    cvar_pushpwr_weapon, cvar_pushpwr_zombie,
-	cvar_nvgcolor_hum[3], cvar_nvgcolor_zm[3], cvar_nvgcolor_spec[3], cvar_nvgradius
+    cvar_pushpwr_weapon, cvar_pushpwr_zombie
     
 new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
-    g_player_class[25], g_player_weapons[25][2], activate_nv[25],
-    g_silenced[25]
+    g_player_class[25], g_player_weapons[25][2], g_silenced[25]
 
 new g_roundstart_time, lights[2]
 
@@ -279,16 +276,6 @@ public plugin_precache()
     cvar_killreward = register_cvar("bh_kill_reward", "2")
     cvar_pushpwr_weapon = register_cvar("bh_pushpwr_weapon", "3.0")
     cvar_pushpwr_zombie = register_cvar("bh_pushpwr_zombie", "3.0")
-    cvar_nvgcolor_hum[0] = register_cvar("bh_nvg_color_hum_r", "0")
-    cvar_nvgcolor_hum[1] = register_cvar("bh_nvg_color_hum_g", "30")
-    cvar_nvgcolor_hum[2] = register_cvar("bh_nvg_color_hum_b", "30")
-    cvar_nvgcolor_zm[0] = register_cvar("bh_nvg_color_zm_r", "0")
-    cvar_nvgcolor_zm[1] = register_cvar("bh_nvg_color_zm_g", "150")
-    cvar_nvgcolor_zm[2] = register_cvar("bh_nvg_color_zm_b", "2")
-    cvar_nvgcolor_spec[0] = register_cvar("bh_nvg_color_spec_r", "30")
-    cvar_nvgcolor_spec[1] = register_cvar("bh_nvg_color_spec_g", "30")
-    cvar_nvgcolor_spec[2] = register_cvar("bh_nvg_color_spec_b", "0")	
-    cvar_nvgradius = register_cvar("bh_nvg_radius", "255")
 
     new file[64]
     get_configsdir(file, 63)
@@ -367,7 +354,7 @@ public plugin_init()
     register_menu("Secondary", 1023, "action_sec")
 
     unregister_forward(FM_Spawn, g_fwd_spawn)
-//    register_forward(FM_CmdStart, "fwd_cmdstart")
+    register_forward(FM_CmdStart, "fwd_cmdstart")
     register_forward(FM_EmitSound, "fwd_emitsound")
     register_forward(FM_GetGameDescription, "fwd_gamedescription")
     register_forward(FM_SetModel, "fw_SetModel")  // to remove dropped weapon
@@ -497,7 +484,6 @@ public client_putinserver(id)
     g_player_class[id] = 0
     g_player_weapons[id][0] = -1
     g_player_weapons[id][1] = _random(sizeof g_secondaryweapons)
-    activate_nv[id] = false
     g_silenced[id] = 0
 
     remove_user_model(g_modelent[id])
@@ -939,66 +925,6 @@ public msg_clcorpse(msgid, dest, id)
 	return PLUGIN_HANDLED  // removing corpses
 }
 
-public nightvision(id)
-{
-	if(is_user_valid_connected(id))
-		toggle_nightvision(id)
-	
-	return PLUGIN_HANDLED
-}
-
-public toggle_nightvision(id)
-{
-    if(activate_nv[id])
-    {
-        remove_task(TASKID_NIGHTVISION + id)
-        activate_nv[id] = false
-    }
-    else if(!(activate_nv[id]))
-    {
-        set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
-        activate_nv[id] = true
-    }
-}
-
-public set_user_nv(taskid)
-{
-    new id = taskid - TASKID_NIGHTVISION
-    if(!is_user_valid_connected(id))
-        return
-
-    static origin[3]
-    get_user_origin(id, origin)
-
-    message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, id)
-    write_byte(TE_DLIGHT)
-    write_coord(origin[0])
-    write_coord(origin[1])
-    write_coord(origin[2])
-    write_byte(get_pcvar_num(cvar_nvgradius))	// radius 
-    if(!(is_user_valid_alive(id)))
-    {
-        write_byte(get_pcvar_num(cvar_nvgcolor_spec[0]))		// red 
-        write_byte(get_pcvar_num(cvar_nvgcolor_spec[1]))		// green 
-        write_byte(get_pcvar_num(cvar_nvgcolor_spec[2]))		// blue 
-    }
-    else if(g_zombie[id])
-    {
-        write_byte(get_pcvar_num(cvar_nvgcolor_zm[0]))		// red 
-        write_byte(get_pcvar_num(cvar_nvgcolor_zm[1]))		// green
-        write_byte(get_pcvar_num(cvar_nvgcolor_zm[2]))		// blue 
-    }
-    else 
-    {
-        write_byte(get_pcvar_num(cvar_nvgcolor_hum[0]))		// red
-        write_byte(get_pcvar_num(cvar_nvgcolor_hum[1]))		// green
-        write_byte(get_pcvar_num(cvar_nvgcolor_hum[2]))		// blue
-    }
-    write_byte(2)
-    write_byte(0)
-    message_end()
-}
-
 public do_exec(id,level,cid) 
 {
     if(!cmd_access(id, level, cid, 3)) 
@@ -1352,7 +1278,7 @@ public fwd_cmdstart(id, handle, seed)
     if(impulse == IMPULSE_FLASHLIGHT)
     {
         set_uc(handle, UC_Impulse, 0)
-        toggle_nightvision(id)
+//        toggle_nightvision(id)
         
         return FMRES_SUPERCEDE
     }
@@ -1490,13 +1416,11 @@ public fwd_client_disconnect(id)
     remove_task(TASKID_RESTOREFADE + id)
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
-    remove_task(TASKID_NIGHTVISION + id)
 
     remove_user_model(g_modelent[id])
 
     g_player_weapons[id][0] = -1
     g_player_weapons[id][1] = -1
-    activate_nv[id] = false
     g_silenced[id] = 0
 
     // Player left, clear cached flags
@@ -1678,9 +1602,7 @@ public bacon_killed_player(victim, killer, shouldgib)
 {
     // Player killed
     g_isalive[victim] = false
-    activate_nv[victim] = false
 
-    remove_task(TASKID_NIGHTVISION + victim)
     remove_task(TASKID_SHOWCLEAN + victim)
     remove_task(TASKID_SHOWINFECT + victim)
 
@@ -1768,11 +1690,8 @@ public bacon_spawn_player_post(id)
     // Player spawned
     g_isalive[id] = true
 
-    ////////////////NightVision//////////////////
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
-    remove_task(TASKID_NIGHTVISION + id)
-    activate_nv[id] = false
 
     fm_set_user_nvg(id, 1)
 

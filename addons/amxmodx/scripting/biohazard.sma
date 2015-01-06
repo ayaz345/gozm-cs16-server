@@ -359,7 +359,7 @@ public plugin_init()
     register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
     register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
     register_clcmd("redirect_players", "cmd_redirect")
-    register_clcmd("nightvision", "nightvision")
+//    register_clcmd("nightvision", "nightvision")
     register_clcmd("amx_exec", "do_exec", ADMIN_RCON, "<nick>")
 
     register_menu("Equipment", 1023, "action_equip")
@@ -367,7 +367,7 @@ public plugin_init()
     register_menu("Secondary", 1023, "action_sec")
 
     unregister_forward(FM_Spawn, g_fwd_spawn)
-    register_forward(FM_CmdStart, "fwd_cmdstart")
+//    register_forward(FM_CmdStart, "fwd_cmdstart")
     register_forward(FM_EmitSound, "fwd_emitsound")
     register_forward(FM_GetGameDescription, "fwd_gamedescription")
     register_forward(FM_SetModel, "fw_SetModel")  // to remove dropped weapon
@@ -1774,6 +1774,8 @@ public bacon_spawn_player_post(id)
     remove_task(TASKID_NIGHTVISION + id)
     activate_nv[id] = false
 
+    fm_set_user_nvg(id, 1)
+
     if(g_zombie[id])
         add_delay(id, "cure_user")
     else if(pev(id, pev_rendermode) == kRenderTransTexture)
@@ -2771,6 +2773,15 @@ stock fm_cs_set_user_money(id, value)
 		return;
 	
 	set_pdata_int(id, OFFSET_CSMONEY, value, OFFSET_LINUX)
+}
+
+stock fm_set_user_nvg(index, onoff = 1)
+{
+	static nvg
+	nvg = get_pdata_int(index, OFFSET_NVG)
+	
+	set_pdata_int(index, OFFSET_NVG, onoff == 1 ? nvg | HAS_NVG : nvg & ~HAS_NVG)
+	return 1
 }
 
 stock reset_user_model(index)

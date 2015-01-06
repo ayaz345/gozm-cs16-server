@@ -1,23 +1,3 @@
-/**
- *  + "hotvision_brightness" - brightness of the map while in hotvision.
- *  - from "a" to "z" - from darkest to brightest.
- *  - from "A" to "Z" - brightest with controlled negative effect on light source edges.
- *  - "!" - brightest with small negative effect on large light sources.
- *  - "W" - brightest with visible enough negative effect. [default]
- *  - ""  - use default map brightness.
-**/
-
-// ----------------------------------------- CONFIG START -----------------------------------------
-
-// If you are having trouble with heart-beat device what can be caused by many hostages or other
-// plugins what use hostage system to show something on radar - please change this value to a
-// higher one. NOTE: Highest value what you can use is 255-maxplayers, and lowest value should be
-// maximal number of hostages what you can have on your server in some specific map.
-#define RADARID_OFFSET 16 // default: 16
-
-// ------------------------------------------ CONFIG END ------------------------------------------
-
-
 #include <amxmodx>
 #include <fakemeta>
 #include <hamsandwich>
@@ -42,10 +22,7 @@ new g_iInNvg;
 new g_iMsgId_NVGToggle;
 new g_iMsgId_Flashlight;
 
-new g_iCvarHotVisionBrightness;
-
 new g_iDefaultBrightness[32];
-new g_iCustomBrightness[32];
 
 new g_iMaxPlayers;
 
@@ -69,8 +46,6 @@ public plugin_init()
 	
 	register_message(g_iMsgId_NVGToggle, "Message_NVGToggle");
 
-	g_iCvarHotVisionBrightness = register_cvar("hotvision_brightness", "");
-	
 	if( !g_iDefaultBrightness[0] )
 		g_iDefaultBrightness[0] = 'l';
 	
@@ -85,12 +60,8 @@ public plugin_cfg()
 
 public Event_NewRound()
 {
-    state Default;
-
     if( !g_iFwdFM_AddToFullPack )
         g_iFwdFM_AddToFullPack = register_forward(FM_AddToFullPack, "FM_AddToFullPack_Post", 1);
-
-    get_pcvar_string(g_iCvarHotVisionBrightness, g_iCustomBrightness, 31);
 }
 
 public Message_NVGToggle(iMsgId, iMsgType, iPlrId)
@@ -99,7 +70,7 @@ public Message_NVGToggle(iMsgId, iMsgType, iPlrId)
 	{
         remove_task(iPlrId);
 
-        set_pev(iPlrId, pev_effects, (pev(iPlrId, pev_effects)&~EF_DIMLIGHT));
+        set_pev(iPlrId, pev_effects, (pev(iPlrId, pev_effects) & ~EF_DIMLIGHT));
 
         message_begin(MSG_ONE_UNRELIABLE, g_iMsgId_Flashlight, _, iPlrId);
         write_byte(0);
@@ -152,21 +123,10 @@ public FM_LightStyle_Pre(iStyle, iVal[])
 public FM_StartFrame_Pre()
 	g_iUpdateData = 4294967295; // 4294967296-1 == (((1<<31)*2)-1) == (1<<0)|(1<<1)|...|(1<<31) == (1<<32)-1
 
-public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iPSet) <Default>
+public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iPSet)
 {
 	if( 1<=iHost<=g_iMaxPlayers && get_orig_retval() )
 		frame_nvg_update(iHost, iPlayer, iEsHandle, iEnt);
-	
-	return FMRES_IGNORED;
-}
-
-public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iPSet) <>
-{
-	if( g_iFwdFM_AddToFullPack )
-	{
-		unregister_forward(g_iFwdFM_AddToFullPack, 1);
-		g_iFwdFM_AddToFullPack = 0;
-	}
 	
 	return FMRES_IGNORED;
 }
@@ -227,13 +187,6 @@ bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
 					write_string(g_iDefaultBrightness);
 					message_end();
 				}
-			}
-			else if( CheckPlayerBit(g_iInNvg, iPlrId) && g_iCustomBrightness[0] )
-			{
-				message_begin(MSG_ONE_UNRELIABLE, SVC_LIGHTSTYLE, _, iPlrId);
-				write_byte(0);
-				write_string(g_iCustomBrightness);
-				message_end();
 			}
 		}
 		

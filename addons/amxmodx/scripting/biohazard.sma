@@ -73,7 +73,6 @@
 #define DMG_HEGRENADE (1<<24)
 
 #define MODEL_CLASSNAME "player_model"
-#define IMPULSE_FLASHLIGHT 100
 #define UNIT_SECOND (1<<12)
 #define FFADE_STAYOUT 0x0004
 
@@ -354,7 +353,6 @@ public plugin_init()
     register_menu("Secondary", 1023, "action_sec")
 
     unregister_forward(FM_Spawn, g_fwd_spawn)
-    register_forward(FM_CmdStart, "fwd_cmdstart")
     register_forward(FM_EmitSound, "fwd_emitsound")
     register_forward(FM_GetGameDescription, "fwd_gamedescription")
     register_forward(FM_SetModel, "fw_SetModel")  // to remove dropped weapon
@@ -1270,21 +1268,6 @@ public fwd_emitsound(id, channel, sample[], Float:volume, Float:attn, flag, pitc
 	return FMRES_IGNORED
 }
 
-public fwd_cmdstart(id, handle, seed)
-{
-    static impulse
-    impulse = get_uc(handle, UC_Impulse)
-
-    if(impulse == IMPULSE_FLASHLIGHT)
-    {
-        set_uc(handle, UC_Impulse, 0)
-//        toggle_nightvision(id)
-        
-        return FMRES_SUPERCEDE
-    }
-    return FMRES_IGNORED
-}
-	
 public fwd_spawn(ent)
 {
 	if(!pev_valid(ent)) 

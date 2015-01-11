@@ -6,9 +6,9 @@
 #define PLUGIN_VERSION	"1.0"
 #define PLUGIN_AUTHOR	"Dimka"
 
+#define IMPULSE_FLASHLIGHT 100
 #define m_fNvgState 129
 #define NVG_ACTIVATED (1<<8) // 256
-#define m_iFlashBattery 244
 
 #define SetPlayerBit(%1,%2)    ( %1 |=  ( 1 << ( %2 & 31 ) ) )
 #define ClearPlayerBit(%1,%2)  ( %1 &= ~( 1 << ( %2 & 31 ) ) )
@@ -20,9 +20,8 @@ new g_iUpdateData;
 new g_iInNvg;
 
 new g_iMsgId_NVGToggle;
-new g_iMsgId_Flashlight;
 
-new g_iDefaultBrightness[32];
+new g_iDefaultBrightness[2];
 
 new g_iMaxPlayers;
 
@@ -31,25 +30,25 @@ new g_iFwdFM_LightStyle;
 
 public plugin_init()
 {
-	register_plugin(PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_AUTHOR);
-	
-	RegisterHam(Ham_Spawn, "player", "Ham_Spawn_player_Post", 1);
-	RegisterHam(Ham_Killed, "player", "Ham_Killed_player_Post", 1);
+    register_plugin(PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_AUTHOR);
 
-	unregister_forward(FM_LightStyle, g_iFwdFM_LightStyle, 0);
-	register_forward(FM_StartFrame, "FM_StartFrame_Pre", 0);
+    RegisterHam(Ham_Spawn, "player", "Ham_Spawn_player_Post", 1);
+    RegisterHam(Ham_Killed, "player", "Ham_Killed_player_Post", 1);
 
-	register_event("HLTV", "Event_NewRound", "a", "1=0", "2=0");
+    unregister_forward(FM_LightStyle, g_iFwdFM_LightStyle, 0);
+    register_forward(FM_StartFrame, "FM_StartFrame_Pre", 0);
+    register_forward(FM_CmdStart, "fwd_cmdstart")
 
-	g_iMsgId_NVGToggle  = get_user_msgid("NVGToggle");
-	g_iMsgId_Flashlight = get_user_msgid("Flashlight");
-	
-	register_message(g_iMsgId_NVGToggle, "Message_NVGToggle");
+    register_event("HLTV", "Event_NewRound", "a", "1=0", "2=0");
 
-	if( !g_iDefaultBrightness[0] )
-		g_iDefaultBrightness[0] = 'l';
-	
-	g_iMaxPlayers = clamp(get_maxplayers(), 1, 32);
+    g_iMsgId_NVGToggle  = get_user_msgid("NVGToggle");
+
+    register_message(g_iMsgId_NVGToggle, "Message_NVGToggle");
+
+    if( !g_iDefaultBrightness[0] )
+        g_iDefaultBrightness[0] = 'l';
+
+    g_iMaxPlayers = clamp(get_maxplayers(), 1, 32);
 }
 
 public plugin_precache()
@@ -69,14 +68,6 @@ public Message_NVGToggle(iMsgId, iMsgType, iPlrId)
 	if( g_iFwdFM_AddToFullPack )
 	{
         remove_task(iPlrId);
-
-        set_pev(iPlrId, pev_effects, (pev(iPlrId, pev_effects) & ~EF_DIMLIGHT));
-
-        message_begin(MSG_ONE_UNRELIABLE, g_iMsgId_Flashlight, _, iPlrId);
-        write_byte(0);
-        write_byte(get_pdata_int(iPlrId, m_iFlashBattery, 5));
-        message_end();
-
         return PLUGIN_HANDLED;
 	}
 	else
@@ -123,17 +114,27 @@ public FM_LightStyle_Pre(iStyle, iVal[])
 public FM_StartFrame_Pre()
 	g_iUpdateData = 4294967295; // 4294967296-1 == (((1<<31)*2)-1) == (1<<0)|(1<<1)|...|(1<<31) == (1<<32)-1
 
+public fwd_cmdstart(id, handle, seed)
+{
+    static impulse
+    impulse = get_uc(handle, UC_Impulse)
+
+    if(impulse == IMPULSE_FLASHLIGHT)
+    {
+        set_uc(handle, UC_Impulse, 0)
+        engclient_cmd(id, "nightvision")
+        
+        return FMRES_SUPERCEDE
+    }
+    return FMRES_IGNORED
+}
+
 public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iPSet)
 {
 	if( 1<=iHost<=g_iMaxPlayers && get_orig_retval() )
 		frame_nvg_update(iHost, iPlayer, iEsHandle, iEnt);
 	
 	return FMRES_IGNORED;
-}
-
-set_hotvision_plr(iEsHandle)
-{
-	set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT));
 }
 
 bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
@@ -195,7 +196,7 @@ bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
 			if( iUpdatingPlayer )
 			{
 				if( iPlrId==s_iSpectatedPerson[iPlrId] || iPlrId!=iEnt )
-					set_hotvision_plr(iEsHandle);
+					set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT));
 			}
 			
 			return true;

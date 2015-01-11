@@ -15,17 +15,25 @@ if ($config->error_handler == "enabled") {
 }
 
 $resource	= mysql_query(
-	"SELECT aa.id, aa.access, aa.nickname, players.last_seen FROM $config->amxadmins AS aa
-	INNER JOIN bio_players AS players ON BINARY aa.nickname = players.nick
-	WHERE ashow = '1' ORDER BY access, id ASC"
+	"SELECT admins.id, admins.access, admins.nickname, players.last_seen
+    FROM $config->amxadmins AS admins
+	LEFT JOIN bio_players AS players ON BINARY admins.nickname = players.nick
+	WHERE ashow = '1'
+    ORDER BY access, id ASC"
 	) or die(mysql_error());
 
 while($result = mysql_fetch_object($resource)) {
+        $time = $result->last_seen;
+        if ($time) {
+            $date = date("d-m-Y [H:i]", $time);
+        }
+        else
+            $date = "(более мес€ца назад)";
 
 		$amxadmins_info = array(
 			"access"	=> $result->access,
 			"nickname"	=> $result->nickname,
-			"time"		=> date("d-m-Y [H:i]", $result->last_seen)
+			"time"		=> $date
 			);
 	
 		$amxadmins_array[] = $amxadmins_info;

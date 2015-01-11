@@ -239,10 +239,9 @@ new g_server_ip[32]
 
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_lights, cvar_healthbonus, cvar_killbonus,
-    cvar_gamedescription, cvar_flashbang, cvar_impactexplode,
-    cvar_knockback_dist, cvar_ammo, cvar_killreward,
-    cvar_pushpwr_weapon, cvar_pushpwr_zombie
-    
+    cvar_gamedescription, cvar_knockback_dist, cvar_ammo,
+    cvar_killreward, cvar_pushpwr_weapon, cvar_pushpwr_zombie
+
 new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25], 
     g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
     g_player_class[25], g_player_weapons[25][2], g_silenced[25]
@@ -268,8 +267,6 @@ public plugin_precache()
     cvar_randomspawn = register_cvar("bh_randomspawn", "0")
     cvar_knockback_dist = register_cvar("bh_knockback_dist", "280.0")
     cvar_ammo = register_cvar("bh_ammo", "1")
-    cvar_flashbang = register_cvar("bh_flashbang", "1")
-    cvar_impactexplode = register_cvar("bh_impactexplode", "1")
     cvar_healthbonus = register_cvar("bh_healthbonus", "500")
     cvar_killbonus = register_cvar("bh_kill_bonus", "1")
     cvar_killreward = register_cvar("bh_kill_reward", "2")
@@ -380,7 +377,6 @@ public plugin_init()
     RegisterHam(Ham_Touch, "weaponbox", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "armoury_entity", "bacon_touch_weapon")
     RegisterHam(Ham_Touch, "weapon_shield", "bacon_touch_weapon")
-    RegisterHam(Ham_Touch, "grenade", "bacon_touch_grenade")
     RegisterHam(Ham_Think, "grenade", "bacon_think_grenade")
 
     register_message(get_user_msgid("Health"), "msg_health")
@@ -751,9 +747,6 @@ public cmd_redirect(id, level, cid)
 
 public msg_screenfade(msgid, dest, id)
 {
-	if(!get_pcvar_num(cvar_flashbang))
-		return PLUGIN_CONTINUE
-	
 	if(!g_zombie[id] || !is_user_valid_alive(id))
 	{
 		static data[4]
@@ -1463,23 +1456,6 @@ public bacon_traceattack_player(victim, attacker, Float:damage, Float:direction[
 	// Set the knockback'd victim's velocity
 	set_pev(victim, pev_velocity, direction)
 
-	return HAM_IGNORED
-}
-
-public bacon_touch_grenade(ent, world)
-{
-	if(!get_pcvar_num(cvar_impactexplode))
-		return HAM_IGNORED
-	
-	static model[12]
-	pev(ent, pev_model, model, 11)
-	
-	if(model[9] == 'h' && model[10] == 'e')
-	{
-		set_pev(ent, pev_dmgtime, 0.0)
-		
-		return HAM_HANDLED
-	}
 	return HAM_IGNORED
 }
 

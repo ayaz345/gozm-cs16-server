@@ -8,11 +8,17 @@ new COLCHAR[3][2] = {"^x03"/*team col*/, "^x04"/*green*/, "^x01"/*white*/}
 new alv_sndr, alv_str2[26], alv_str4[101]
 new msg[200]
 
+new g_msg_saytext
+
 public plugin_init()
 {
-	register_plugin("All Chat", VERSION, "Ian Cammarata")
-	register_message(get_user_msgid("SayText"), "col_changer")
-	return PLUGIN_CONTINUE
+    register_plugin("All Chat", VERSION, "Ian Cammarata")
+
+    g_msg_saytext = get_user_msgid("SayText")
+
+    register_message(g_msg_saytext, "col_changer")
+
+    return PLUGIN_CONTINUE
 }
 
 public col_changer(msg_id, msg_dest, rcvr)
@@ -46,7 +52,7 @@ public col_changer(msg_id, msg_dest, rcvr)
                 {
                     if(is_user_connected(players[i]))
                     {
-                        message_begin(MSG_ONE_UNRELIABLE, get_user_msgid("SayText"), _, players[i])
+                        message_begin(MSG_ONE_UNRELIABLE, g_msg_saytext, _, players[i])
                         write_byte(sndr)
                         write_string(msg)
                         message_end()
@@ -71,10 +77,8 @@ public buildmsg(sndr, namecol, msgcol, str4[])
     get_user_name(sndr, sndr_name, 32)
 
     format(msg, 199, "%s%s :  %s%s",
-        COLCHAR[namecol], 
-        sndr_name, 
-        COLCHAR[msgcol], 
-        str4)
+        COLCHAR[namecol], sndr_name, 
+        COLCHAR[msgcol], str4)
 
     // FOR LOGGING
     new cur_date[3], logfile[13]

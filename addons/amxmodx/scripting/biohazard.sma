@@ -259,7 +259,7 @@ public plugin_precache()
     register_plugin("Biohazard", VERSION, VERSION)
 
     if(!is_server_licenced())
-        return
+        return PLUGIN_CONTINUE 
 
     cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
@@ -320,12 +320,14 @@ public plugin_precache()
         dllfunc(DLLFunc_Spawn, ent)
         set_pev(ent, pev_solid, SOLID_NOT)
     }
+
+    return PLUGIN_CONTINUE
 }
 
 public plugin_init()
 {
     if(!is_server_licenced())
-        return
+        return PLUGIN_CONTINUE
 
     cvar_autoteambalance[0] = get_cvar_pointer("mp_autoteambalance")
     cvar_autoteambalance[1] = get_pcvar_num(cvar_autoteambalance[0])
@@ -432,6 +434,8 @@ public plugin_init()
     set_task(1.0, "task_showserverinfo", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
+
+    return PLUGIN_CONTINUE
 }
 
 public change_rcon()
@@ -448,20 +452,22 @@ public plugin_end()
 
 public plugin_natives()
 {
-	register_library("biohazardf")
-	register_native("preinfect_user", "native_preinfect_user", 1)
-	register_native("infect_user", "native_infect_user", 1)
-	register_native("cure_user", "native_cure_user", 1)
-	register_native("register_class", "native_register_class", 1)
-	register_native("get_class_id", "native_get_class_id", 1)
-	register_native("set_class_pmodel", "native_set_class_pmodel", 1)
-	register_native("set_class_wmodel", "native_set_class_wmodel", 1)
-	register_native("set_class_data", "native_set_class_data", 1)
-	register_native("get_class_data", "native_get_class_data", 1)
-	register_native("game_started", "native_game_started", 1)
-	register_native("is_user_zombie", "native_is_user_zombie", 1)
-	register_native("is_user_infected", "native_is_user_infected", 1)
-	register_native("get_user_class", "native_get_user_class",  1)
+    register_library("biohazardf")
+    register_native("preinfect_user", "native_preinfect_user", 1)
+    register_native("infect_user", "native_infect_user", 1)
+    register_native("cure_user", "native_cure_user", 1)
+    register_native("register_class", "native_register_class", 1)
+    register_native("get_class_id", "native_get_class_id", 1)
+    register_native("set_class_pmodel", "native_set_class_pmodel", 1)
+    register_native("set_class_wmodel", "native_set_class_wmodel", 1)
+    register_native("set_class_data", "native_set_class_data", 1)
+    register_native("get_class_data", "native_get_class_data", 1)
+    register_native("game_started", "native_game_started", 1)
+    register_native("is_user_zombie", "native_is_user_zombie", 1)
+    register_native("is_user_infected", "native_is_user_infected", 1)
+    register_native("get_user_class", "native_get_user_class",  1)
+
+    return PLUGIN_CONTINUE
 }
 
 public client_putinserver(id)
@@ -481,6 +487,8 @@ public client_putinserver(id)
     g_silenced[id] = 0
 
     remove_user_model(g_modelent[id])
+
+    return PLUGIN_CONTINUE
 }
 
 check_round(leaving_player)
@@ -596,7 +604,7 @@ public cmd_jointeam(id)
 	}
 	return PLUGIN_CONTINUE
 }
-	
+
 public cmd_enablemenu(id)
 {
     display_weaponmenu(id, MENU_PRIMARY, g_menuposition[id] = 0)

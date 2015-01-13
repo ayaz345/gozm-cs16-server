@@ -141,8 +141,6 @@ bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
 {
 	if( CheckPlayerBit(g_iConnected, iPlrId) )
 	{
-		static s_iSpectatedPerson[33];
-		
 		if( CheckPlayerBit(g_iUpdateData, iPlrId) )
 		{
 			static bool:s_bOldNvg;
@@ -152,30 +150,13 @@ bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
 			
 			if( CheckPlayerBit(g_iAlive, iPlrId) )
 			{
-				s_iSpectatedPerson[iPlrId] = iPlrId;
 				if( get_pdata_int(iPlrId, m_fNvgState, 5) & NVG_ACTIVATED )
 					SetPlayerBit(g_iInNvg, iPlrId);
 				else
 					ClearPlayerBit(g_iInNvg, iPlrId);
 			}
-			else if( pev(iPlrId, pev_iuser1)==4 )
-			{
-				s_iSpectatedPerson[iPlrId] = pev(iPlrId, pev_iuser2);
-				if( s_iSpectatedPerson[iPlrId]>g_iMaxPlayers || s_iSpectatedPerson[iPlrId]<=0 )
-					ClearPlayerBit(g_iInNvg, iPlrId);
-				else if( CheckPlayerBit(g_iAlive, s_iSpectatedPerson[iPlrId]) )
-				{
-					if( get_pdata_int(s_iSpectatedPerson[iPlrId], m_fNvgState, 5) & NVG_ACTIVATED )
-						SetPlayerBit(g_iInNvg, iPlrId);
-					else
-						ClearPlayerBit(g_iInNvg, iPlrId);
-				}
-				else
-					ClearPlayerBit(g_iInNvg, iPlrId);
-			}
 			else
 			{
-				s_iSpectatedPerson[iPlrId] = 0;
 				ClearPlayerBit(g_iInNvg, iPlrId);
 			}
 			
@@ -195,7 +176,7 @@ bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
 		{
 			if( iUpdatingPlayer )
 			{
-				if( iPlrId==s_iSpectatedPerson[iPlrId] || iPlrId!=iEnt )
+                if( iPlrId==iEnt )
 					set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT));
 			}
 			

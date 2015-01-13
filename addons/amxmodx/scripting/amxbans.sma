@@ -661,17 +661,13 @@ public announce_and_kick(id, player, iBanLength)
     // Logs all bans by admins/server to amxx logs
     if (iBanLength > 0)
     {
-        log_amx("%s<%d><%s><%s> ban %s<%s> for %s (%i minutes). Reason: %s.",
-            admin_nick, get_user_userid(id), admin_steamid, 
-            admin_team, player_nick, player_steamid, 
-            cTimeLengthServer, iBanLength, g_ban_reason)
+        log_amx("[AMXBANS]: %s ban %s for %s (%i minutes). Reason: %s.",
+            admin_nick, player_nick, cTimeLengthServer, iBanLength, g_ban_reason)
     }
     else
     {
-        log_amx("%s<%d><%s><%s> ban %s<%s> forever. Reason: %s.", 
-            admin_nick, get_user_userid(id), admin_steamid, 
-            admin_team, player_nick, player_steamid, 
-            g_ban_reason)
+        log_amx("[AMXBANS]: %s ban %s forever. Reason: %s.", 
+            admin_nick, player_nick, g_ban_reason)
     }
     return PLUGIN_HANDLED
 }
@@ -1012,7 +1008,7 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
 	}
 	else
 	{
-        log_amx("%s<%d><%s><%s> unbanned %s<%s>.",	g_unban_admin_nick, get_user_userid(id), g_admin_steamid, g_unban_admin_team, g_player_nick, g_unban_player_steamid)
+        log_amx("[AMXBANS]: %s unbanned %s.", g_unban_admin_nick, g_player_nick)
 
         client_print(id,print_console," ")
         client_print(id,print_console,"[GOZM] =================")

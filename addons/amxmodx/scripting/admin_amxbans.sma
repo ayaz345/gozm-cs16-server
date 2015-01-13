@@ -285,9 +285,9 @@ getAccess(id, name[], authid[], ip[], password[])
 			
             get_flags(g_aAccess[index], sflags, 31)
             set_user_flags(id, g_aAccess[index])
-			
+
             if(!has_rcon(id))
-                log_amx("^"%s<%s><%s>^", account ^"%s^", access ^"%s^"", name, authid, ip, g_aName[index], sflags)
+                log_amx("^"%s^", access ^"%s^"", name, sflags)
 		}
 		else if (equal(password, g_aPassword[index]))
 		{
@@ -296,15 +296,15 @@ getAccess(id, name[], authid[], ip[], password[])
 			
 			new sflags[32]
 			get_flags(g_aAccess[index], sflags, 31)
-			
-			log_amx("^"%s<%s><%s>^", account ^"%s^", access ^"%s^"", name, authid, ip, g_aName[index], sflags)
+
+			log_amx("^"%s^", access ^"%s^"", name, sflags)
 		} else {
 			result |= 1
 			
 			if (g_aFlags[index] & FLAG_KICK)
 			{
 				result |= 2
-				log_amx("^"%s<%d><%s><>^" kicked due to invalid password (account ^"%s^") (address ^"%s^") (_pw ^"%s^") (password ^"%s^")", name, get_user_userid(id), authid, g_aName[index], ip, password, g_aPassword[index])
+				log_amx("^"%s^" kicked due to invalid password (_pw ^"%s^") (password ^"%s^")", name, password, g_aPassword[index])
 			}
 		}
 	}

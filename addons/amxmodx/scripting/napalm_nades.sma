@@ -324,7 +324,7 @@ public burning_flame(args[2], taskid)
 	BURN_DURATION -= 1;
 	
 	// Keep sending flame messages
-	set_task(0.2, "burning_flame", taskid, args, sizeof args)
+	set_task(0.4, "burning_flame", taskid, args, sizeof args)
 }
 
 // Napalm Grenade: Fire Blast (originally made by Avalanche in Frostnades)

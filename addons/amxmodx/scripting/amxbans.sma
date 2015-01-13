@@ -693,6 +693,7 @@ public cmdUnBan(id, level, cid)
 
     if (equal(steamid_or_nick, ""))
     {
+        log_amx("[AMXBANS]: Empty steamid_or_nick")
         client_print(id, print_console, "Применение: amx_unban <steam_id или ник>")
         return PLUGIN_HANDLED
     }
@@ -705,11 +706,11 @@ public cmdUnBan(id, level, cid)
     // STEAM_ID
     else if (contain(steamid_or_nick, "STEAM_") != -1)
     {
+        log_amx("[AMXBANS]: Unbanning by STEAM")
         g_unban_player_steamid = steamid_or_nick
 
         new query[512]
         new data[1]
-
         format(query, 511, "SELECT \
             bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
             player_nick,player_ip,player_id,ban_type,server_ip,server_name \
@@ -724,6 +725,7 @@ public cmdUnBan(id, level, cid)
     // nick
     else
     {
+        log_amx("[AMXBANS]: Unbanning by NICK")
         g_player_nick = steamid_or_nick
 
         new query[512]
@@ -770,6 +772,8 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
             
             for(c=1; c<=res_count; c++)
             {
+                log_amx("[AMXBANS]: Found %d results", res_count)
+
                 new player_name[64]
                 new admin_name[32]
                 new i_player_bid
@@ -796,8 +800,7 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
         else
         {
             log_amx("[AMXBANS]: Too many: %d on %s", res_count, g_player_nick)
-            colored_print(id, "^x04***^x01 Слишком много совпадений: %d", res_count)
-            colored_print(id, "^x04***^x01 Постарайся уточнить ник:^x04 %s", g_player_nick)
+            colored_print(id, "^x04***^x01 Много совпадений, уточни ник:^x04 %s", g_player_nick)
             return PLUGIN_HANDLED
         }
     }
@@ -814,13 +817,11 @@ public unban_menu_handler(id, menu, item)
 
     new s_Bid[6], s_Name[64], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Bid, charsmax(s_Bid), s_Name, charsmax(s_Name), i_Callback)
-    
+
+    log_amx("[AMXBANS]: Selecting bid: %s", s_Bid)
+
     new query[512]
     new data[1]
-    
-    replace_all(s_Name, 99, "\", "\\")
-    replace_all(s_Name, 99, "'", "\'")
-
     format(query, 511, "SELECT \
         bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
         player_nick,player_ip,player_id,ban_type,server_ip,server_name \
@@ -858,7 +859,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
         }
         else
         {
-            client_print(id, print_console, "[GOZM]: Found SteamID: '%s'", g_unban_player_steamid)
+            log_amx("[AMXBANS]: Found SteamID: '%s'", g_unban_player_steamid)
 
             new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
             new player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]

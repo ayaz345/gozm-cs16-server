@@ -44,6 +44,11 @@ function BottomPanel()
 	$sql = "SELECT COUNT(*) AS count FROM " . $table;
 	$count_select = MakeSelection($sql);
 	$count = $count_select[0]["count"];
+    if (isset($_GET["banid"]))
+    {
+        $sql = "UPDATE " . $table . " SET unbantime = -1 WHERE banid = " . $_GET['banid'] . "";
+        MakeSelection($sql);
+    }
 	if (isset($_GET["page"])) {$p = ($_GET["page"]-1)*$lines;} else {$p = 0;}
 	if ($_GET["search"] == "")
 	{
@@ -108,6 +113,7 @@ function PrintResult($array)
     		else $bantime = date("d.m.Y [H:i]", $array[$i]['bantime']);
             if (intval($array[$i]['unbantime']) > 0) $unban = date("d.m.Y [H:i]", $array[$i]['unbantime']);
             else $unban = "-";
+            if (isset($_GET["page"])) {$p = $_GET["page"];} else {$p = 1;}
 			print("
                 <tr align = left bgcolor = \"".$line_add_color."\" id = \"dop".$i."\" style = \"display: none;\">
                   <td colspan=\"5\">
@@ -116,7 +122,9 @@ function PrintResult($array)
                     <b>Последний ник: </b>".$array[$i]['name']."<br>
                     <b>SteamID: </b>".$array[$i]['sid']."<br>
                     <b>Дата окончания бана: </b>".$unban."<br>
-                    <input type=\"submit\" value=\"Удалить бан\" onClick=\"DeleteBan($array[$i]['banid'])\"></td>
+                    <input type=\"submit\" value=\"Разбанить\" 
+                        onclick=\"window.location='".$_SERVER['PHP_SELF']."?banid=".$array[$i]['banid']."&page=".$p."';\" />
+                  </td>
                 </tr>");
         }
 
@@ -139,13 +147,6 @@ function PrintResult($array)
 		}
 		print("&nbsp;</td></tr>");
 	}
-}
-
-function DeleteBan($banid)
-{
-    global $table;
-	$sql = "DELETE FROM " . $table . " WHERE banid = " . $banid . "";
-    mysql_query($sql);
 }
 
 // Делает запрсс из таблицы superban

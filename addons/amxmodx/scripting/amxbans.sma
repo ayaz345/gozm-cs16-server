@@ -661,12 +661,12 @@ public announce_and_kick(id, player, iBanLength)
     // Logs all bans by admins/server to amxx logs
     if (iBanLength > 0)
     {
-        log_amx("[AMXBANS]: %s ban %s for %s (%i minutes). Reason: %s.",
+        log_amx("[AMXBANS]: ^"%s^" ban ^"%s^" for %s. Reason: %s.",
             admin_nick, player_nick, cTimeLengthServer, iBanLength, g_ban_reason)
     }
     else
     {
-        log_amx("[AMXBANS]: %s ban %s forever. Reason: %s.", 
+        log_amx("[AMXBANS]: ^"%s^" ban ^"%s^" forever. Reason: %s.", 
             admin_nick, player_nick, g_ban_reason)
     }
     return PLUGIN_HANDLED

@@ -304,7 +304,7 @@ getAccess(id, name[], authid[], ip[], password[])
 			if (g_aFlags[index] & FLAG_KICK)
 			{
 				result |= 2
-				log_amx("^"%s^" kicked due to invalid password (_pw ^"%s^") (password ^"%s^")", name, password, g_aPassword[index])
+				log_amx("^"%s^" has invalid password (_pw ^"%s^") (password ^"%s^")", name, password, g_aPassword[index])
 			}
 		}
 	}

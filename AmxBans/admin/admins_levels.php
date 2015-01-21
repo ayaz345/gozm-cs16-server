@@ -168,6 +168,8 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
 	}
 } else if (($sektion == "webadmins") && ($_SESSION['webadmins_edit'] == "yes")) {
 
+//  INSERT INTO `amx_webadmins` (`username`, `password`, `level`) SELECT username, password, 2 FROM `amx_amxadmins` WHERE flags = 'a'
+
 	if ($action == lang("_REMOVE")) {
 		$resource2 = mysql_query("DELETE FROM $config->webadmins WHERE id = '".$_POST['id']."'") or die (mysql_error());
 
@@ -223,8 +225,13 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
 } else if (($sektion == "amxadmins") && ($_SESSION['amxadmins_edit'] == "yes")) {
 
 	if ($action == lang("_REMOVE")) {
+        $tmp_select = mysql_query("SELECT username FROM $config->amxadmins WHERE id = '".$_POST['id']."'") or die (mysql_error());
+        $tmp_result = mysql_fetch_object($tmp_select);
+        $username = $tmp_result->username;
+        
 		$resource2 = mysql_query("DELETE FROM $config->amxadmins WHERE id = '".$_POST['id']."'") or die (mysql_error());
-
+        $resource3 = mysql_query("DELETE FROM $config->webadmins WHERE username = '$username'") or die (mysql_error());
+        
 		$now = date("U");
 		$add_log	= mysql_query("INSERT INTO $config->logs (timestamp, ip, username, action, remarks) VALUES ('$now', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['uid']."', 'amxadmins management', 'Removed admin ".$_POST['username']."')") or die (mysql_error());
 
@@ -232,8 +239,14 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
 		$username	= htmlentities($_POST['username'], ENT_QUOTES); 
 		$password	= htmlentities($_POST['password'], ENT_QUOTES);
 		$nickname	= htmlentities($_POST['nickname'], ENT_QUOTES);
+        
+        $tmp_select = mysql_query("SELECT username FROM $config->amxadmins WHERE id = '".$_POST['id']."'") or die (mysql_error());
+        $tmp_result = mysql_fetch_object($tmp_select);
+        $tmp_username = $tmp_result->username;
+        
 		$resource2	= mysql_query("UPDATE $config->amxadmins SET username = '$username', password = '$password', access = '".$_POST['access']."', flags = '".$_POST['flags']."', steamid = '".$_POST['steamid']."', nickname = '$nickname',ashow = '".$_POST['ashow']."' WHERE id = '".$_POST['id']."'") or die (mysql_error());
-
+        $resource3  = mysql_query("UPDATE $config->webadmins SET username = '$username', password = '".MD5($password)."' WHERE username = '$tmp_username'") or die (mysql_error());
+        
 		$now = date("U");
 		$add_log	= mysql_query("INSERT INTO $config->logs (timestamp, ip, username, action, remarks) VALUES ('$now', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['uid']."', 'amxadmins management', 'Edited admin $username')") or die (mysql_error());
 
@@ -245,7 +258,9 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
 
 		$now = date("U");
 		$add_log	= mysql_query("INSERT INTO $config->logs (timestamp, ip, username, action, remarks) VALUES ('$now', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['uid']."', 'amxadmins management', 'Added admin $username')") or die (mysql_error());
-	}
+        // ALSO ADD WEBADMIN LEVEL 2
+        $resource	= mysql_query("INSERT INTO $config->webadmins (username, password, level) VALUES('$username', '".md5($password)."', '2')") or die (mysql_error());
+    }
 
 	//get all amxadmins
 	$resource = mysql_query("SELECT id, username, password, access, flags, steamid, nickname, ashow FROM $config->amxadmins ORDER BY access ASC, id ASC") or die (mysql_error());

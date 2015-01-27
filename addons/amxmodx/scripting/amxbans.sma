@@ -662,7 +662,7 @@ public announce_and_kick(id, player, iBanLength)
     if (iBanLength > 0)
     {
         log_amx("[AMXBANS]: ^"%s^" ban ^"%s^" for %s. Reason: %s.",
-            admin_nick, player_nick, cTimeLengthServer, iBanLength, g_ban_reason)
+            admin_nick, player_nick, cTimeLengthServer, g_ban_reason)
     }
     else
     {

@@ -505,8 +505,13 @@ check_round(leaving_player)
     // Preinfected zombie leaves
     if (g_preinfect[leaving_player] && !g_gamestarted)
     {
+        new i_i = 0
         do
+        {
             id = players[_random(pNum)]
+            if (i_i++ % 10 == 0)
+                log_amx("[WARN]: cycle run %d times!", i_i)
+        }
         while (id == leaving_player || !is_user_valid_connected(id))
 
         g_preinfect[id] = true
@@ -527,8 +532,13 @@ check_round(leaving_player)
     // Last Zombie leaves
     if (g_zombie[leaving_player] && fnGetZombies() == 1)
     {
+        new i_i = 0
         do
+        {
             id = players[_random(pNum)]
+            if (i_i++ % 10 == 0)
+                log_amx("[WARN]: cycle run %d times!", i_i)
+        }
         while (id == leaving_player || !is_user_valid_connected(id))
 
         infect_user(id, 0)
@@ -546,8 +556,13 @@ check_round(leaving_player)
     // Last Human leaves
     if (!g_zombie[leaving_player] && fnGetHumans() == 1)
     {
+        new i_i = 0
         do
+        {
             id = players[_random(pNum)]
+            if (i_i++ % 10 == 0)
+                log_amx("[WARN]: cycle run %d times!", i_i)
+        }
         while (id == leaving_player || !is_user_valid_connected(id))
 
         cure_user_in_game(id)
@@ -1921,8 +1936,13 @@ public task_newround()
         }	
 
         // ANOTHER ZOMBIE IN NEW ROUND
+        new i_i = 0
         do
+        {
             id = players[_random(num)]
+            if (i_i++ % 10 == 0)
+                log_amx("[WARN]: cycle run %d times!", i_i)
+        }
         while (id == last_zombie || !is_user_valid_connected(id))	
 
         if(!g_preinfect[id]) g_preinfect[id] = true

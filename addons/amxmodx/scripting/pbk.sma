@@ -307,14 +307,17 @@ public handle_time_elapsed(id, eventType)
 		new logFlags = get_pcvar_num(g_cvar_log);
 		if (logFlags)
 		{
-			get_time_length(0, maxSeconds, timeunit_seconds, maxTime, 127);
-			
-			new logText[128];
-			format(logText, 127, "%L", LANG_SERVER, msgAnnounce, "", maxTime);
-			// remove the single space that not providing a name added
-			trim(logText);
-			
-			create_log_entry(id, "PBK", logFlags, logText);
+            get_time_length(0, maxSeconds, timeunit_seconds, maxTime, 127);
+
+            new logText[128];
+            format(logText, 127, "%L", LANG_SERVER, msgAnnounce, "", maxTime);
+            // remove the single space that not providing a name added
+            trim(logText);
+
+            //create_log_entry(id, "PBK", logFlags, logText);
+            new name[32];
+            get_user_name(id, name, 31);
+            log_amx("^"%s^" %s", name, logText);
 		}
 	}
 }

@@ -317,7 +317,7 @@ public handle_time_elapsed(id, eventType)
             //create_log_entry(id, "PBK", logFlags, logText);
             new name[32];
             get_user_name(id, name, 31);
-            log_amx("^"%s^" %s", name, logText);
+            log_amx("[PBK]: ^"%s^" %s", name, logText);
 		}
 	}
 }

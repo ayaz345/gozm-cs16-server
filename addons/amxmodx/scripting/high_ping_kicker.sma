@@ -52,7 +52,7 @@ kickPlayer( id )
   get_user_authid(id,authid,31)
   server_cmd("kick #%d PING > %d", get_user_userid(id), get_pcvar_num(p_amx_hpk_ping));
 //  client_cmd(id, "Connect 91.192.189.63:27018")
-  log_amx("Highpingkick: ^"%s<%d><%s>^" was kicked due highping (Average Ping ^"%d^")", name,get_user_userid(id),authid,(g_Ping[id] / g_Samples[id]))
+  log_amx("[HPK]: ^"%s^" was kicked due to highping ^"%d^"", name, (g_Ping[id] / g_Samples[id]))
 }
 
 public checkPing(param[]) 

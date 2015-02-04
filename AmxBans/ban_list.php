@@ -158,7 +158,9 @@ while($result = mysql_fetch_object($resource)) {
 		$show_demo = $count_demo > 0 ? $bid : NULL;
 	}
 	
-	$server_name = $result->server_name;
+	//$server_name = $result->server_name;
+	$server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
+    $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
 	
 	if ($config->fancy_layers == "enabled") {
 		if($config->display_comments == "enabled") {

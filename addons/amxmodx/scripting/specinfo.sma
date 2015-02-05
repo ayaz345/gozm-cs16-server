@@ -59,17 +59,18 @@ public server_frame( )
     for( new i = 0; i < num; i++ )
     {
         id = players[i];
-        if( get_user_button( id ) & IN_FORWARD )
+        new user_button = get_user_button(id)
+        if( user_button & IN_FORWARD )
             cl_keys[id] |= IN_FORWARD;
-        if( get_user_button( id ) & IN_BACK )
+        if( user_button & IN_BACK )
             cl_keys[id] |= IN_BACK;
-        if( get_user_button( id ) & IN_MOVELEFT )
+        if( user_button & IN_MOVELEFT )
             cl_keys[id] |= IN_MOVELEFT;
-        if( get_user_button( id ) & IN_MOVERIGHT )
+        if( user_button & IN_MOVERIGHT )
             cl_keys[id] |= IN_MOVERIGHT;
-        if( get_user_button( id ) & IN_DUCK )
+        if( user_button & IN_DUCK )
             cl_keys[id] |= IN_DUCK;
-        if( get_user_button( id ) & IN_JUMP )
+        if( user_button & IN_JUMP )
             cl_keys[id] |= IN_JUMP;
     }
     return PLUGIN_CONTINUE

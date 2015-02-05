@@ -307,66 +307,72 @@ public logevent_endRound()
 {
 	if (get_playersnum())
 	{
-        new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0
-        new maxInfectName[32], maxDmgName[32]
-        new extraMaxInfectNum = 0, maxInfectList[32]
-        get_players(players, playersNum, "ch")
-        for (i = 0; i < playersNum; i++)
-        {
-            if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT])
-            {
-                maxInfectId = i
-                extraMaxInfectNum = 0
-                maxInfectList[extraMaxInfectNum] = i
-            }
-            else if (g_Me[players[i]][ME_INFECT] == g_Me[players[maxInfectId]][ME_INFECT] && (i != 0))
-            {
-                extraMaxInfectNum++
-                maxInfectList[extraMaxInfectNum] = i
-            }
-            if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG])
-            {
-                maxDmgId = i
-            }
-        }
-        
-        maxInfectId = maxInfectList[random_num(0, extraMaxInfectNum)]
-        get_user_name(players[maxInfectId], maxInfectName, 31)
-        get_user_name(players[maxDmgId], maxDmgName, 31)
-        
-        if (g_Me[players[maxInfectId]][ME_INFECT] ||
-            g_Me[players[maxDmgId]][ME_DMG])
-        {
-            colored_print(0, "^x04***^x01 Лучший человек:^x04 %s^x01  ->  [^x03  %d^x01 дамаги  ]",
-                maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
-            if (g_Me[players[maxInfectId]][ME_INFECT])
-                colored_print(0, "^x04***^x01 Лучший зомби:^x04 %s^x01  ->  [^x03  %d^x01 заражени%s  ]",
-                    maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
-                    set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
-            
-            // extra
-            if (g_UserDBId[players[maxInfectId]])
-            {
-                set_user_frags(players[maxInfectId], get_user_frags(players[maxInfectId])+1)
-
-                format(g_Query, charsmax(g_Query), "\
-                    UPDATE `bio_players` \
-                    SET `best_zombie` = `best_zombie` + 1 \
-                    WHERE `id`=%d", g_UserDBId[players[maxInfectId]])
-                SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-            }
-            if (g_UserDBId[players[maxDmgId]])
-            {
-                set_user_frags(players[maxDmgId], get_user_frags(players[maxDmgId])+1)
-
-                format(g_Query, charsmax(g_Query), "\
-                    UPDATE `bio_players` \
-                    SET `best_human` = `best_human` + 1 \
-                    WHERE `id`=%d", g_UserDBId[players[maxDmgId]])
-                SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-            }
-        }
+        // to calculate critical hits
+        set_task(0.1, "task_announce_best_human_and_zombie")
 	}
+}
+
+public task_announce_best_human_and_zombie()
+{
+    new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0
+    new maxInfectName[32], maxDmgName[32]
+    new extraMaxInfectNum = 0, maxInfectList[32]
+    get_players(players, playersNum, "ch")
+    for (i = 0; i < playersNum; i++)
+    {
+        if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT])
+        {
+            maxInfectId = i
+            extraMaxInfectNum = 0
+            maxInfectList[extraMaxInfectNum] = i
+        }
+        else if (g_Me[players[i]][ME_INFECT] == g_Me[players[maxInfectId]][ME_INFECT] && (i != 0))
+        {
+            extraMaxInfectNum++
+            maxInfectList[extraMaxInfectNum] = i
+        }
+        if (g_Me[players[i]][ME_DMG] > g_Me[players[maxDmgId]][ME_DMG])
+        {
+            maxDmgId = i
+        }
+    }
+
+    maxInfectId = maxInfectList[random_num(0, extraMaxInfectNum)]
+    get_user_name(players[maxInfectId], maxInfectName, 31)
+    get_user_name(players[maxDmgId], maxDmgName, 31)
+
+    if (g_Me[players[maxInfectId]][ME_INFECT] ||
+        g_Me[players[maxDmgId]][ME_DMG])
+    {
+        colored_print(0, "^x04***^x01 Лучший человек:^x04 %s^x01  ->  [^x03  %d^x01 дамаги  ]",
+            maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
+        if (g_Me[players[maxInfectId]][ME_INFECT])
+            colored_print(0, "^x04***^x01 Лучший зомби:^x04 %s^x01  ->  [^x03  %d^x01 заражени%s  ]",
+                maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
+                set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
+        
+        // extra
+        if (g_UserDBId[players[maxInfectId]])
+        {
+            set_user_frags(players[maxInfectId], get_user_frags(players[maxInfectId])+1)
+
+            format(g_Query, charsmax(g_Query), "\
+                UPDATE `bio_players` \
+                SET `best_zombie` = `best_zombie` + 1 \
+                WHERE `id`=%d", g_UserDBId[players[maxInfectId]])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+        }
+        if (g_UserDBId[players[maxDmgId]])
+        {
+            set_user_frags(players[maxDmgId], get_user_frags(players[maxDmgId])+1)
+
+            format(g_Query, charsmax(g_Query), "\
+                UPDATE `bio_players` \
+                SET `best_human` = `best_human` + 1 \
+                WHERE `id`=%d", g_UserDBId[players[maxDmgId]])
+            SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+        }
+    }
 }
 
 public event_newround()
@@ -397,7 +403,7 @@ public event_newround()
             }
         }
 
-        set_task(1.5, "announce_best_player", best_id)
+        set_task(1.5, "task_announce_best_player", best_id)
 
         if (g_UserDBId[best_id])
         {
@@ -410,7 +416,7 @@ public event_newround()
     }
 }
 
-public announce_best_player(best_id)
+public task_announce_best_player(best_id)
 {
     new best_name[32]
     get_user_name(best_id, best_name, 31)

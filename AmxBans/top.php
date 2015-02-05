@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Go Zombie !!! STATS </title>
+        <title> GoZm Statistics </title>
     </head>
     <body>
         <?php
@@ -18,31 +18,38 @@
 
             $resource = mysql_query($config->stats_select_players);
 
-			echo '<table><tr><td>';
-
-            echo '<table border=1 style="float:left;margin-right:50px;"><tr><th>Rank</th><th>Nick</th><th>ZM killed</th><th>Infects</th><th>Infected</th><th>Deaths</th><th>Bonuses</th><th>Total Skill</th></tr>';
+            echo '<table border=1 style="float:center;margin-right:50px;">
+                    <tr><th>Место</th>
+                        <th>Ник</th>
+                        <th>Убил зм</th>
+                        <th>Заразил</th>
+                        <th>Был заражён</th>
+                        <th>Умирал</th>
+                        <th>Был первым зм</th>
+                        <th>Убил с ножа</th>
+                        <th>Лучший зм</th>
+                        <th>Лучший человек</th>
+                        <th>Лучший игрок карты</th>
+                        <th>Общий скилл</th>
+                    </tr>';
             while ($row = mysql_fetch_object($resource))
             {
                 $skill = intval($row->skill * 1000);
-                echo "<tr><td>" . $row->rank . ". </td><td>" . $row->nick . "</td><td>" . $row->zombiekills . "</td><td>" . $row->infect . "</td><td>" . $row->infected . "</td><td>" . $row->death . "</td><td>" . $row->extra . "</td><td> " . $skill . " </td></tr>";
+                echo "  <tr><td>" . $row->rank . ". 
+                        </td><td>" . $row->nick . "
+                        </td><td>" . $row->zombiekills . "
+                        </td><td>" . $row->infect . "
+                        </td><td>" . $row->infected . "
+                        </td><td>" . $row->death . "
+                        </td><td>" . $row->first_zombie . "
+                        </td><td>" . $row->knife_kills . "
+                        </td><td>" . $row->best_zombie . "
+                        </td><td>" . $row->best_human . "
+                        </td><td>" . $row->best_player . "
+                        </td><td> " . $skill . "
+                        </td></tr>";
             }
             echo '</table>';
-
-			echo '</td><td>';
-
-			$resource = mysql_query($config->stats_select_maps);
-			echo '<table border=1 style="float:right;margin-left:50px;"><tr><th>No.</th><th>Map</th><th>Games</th></tr>';
-			$iter = 1;
-            while ($row = mysql_fetch_object($resource))
-            {
-                $map = $row->map;
-                $games = $row->games;
-                echo "<tr><td>" . $iter . " </td><td>" . $map . " </td><td>" . $games . "</td></tr>";
-				$iter = $iter + 1;
-            }
-            echo '</table>';
-
-			echo '</td></tr></table>';
         ?>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<html>
+п»ї<html>
     <head>
         <title> GoZm Statistics </title>
     </head>
@@ -19,18 +19,18 @@
             $resource = mysql_query($config->stats_select_players);
 
             echo '<table border=1 style="float:center;margin-right:50px;">
-                    <tr><th>Место</th>
-                        <th>Ник</th>
-                        <th>Убил зм</th>
-                        <th>Заразил</th>
-                        <th>Был заражён</th>
-                        <th>Умирал</th>
-                        <th>Был первым зм</th>
-                        <th>Убил с ножа</th>
-                        <th>Лучший зм</th>
-                        <th>Лучший человек</th>
-                        <th>Лучший игрок карты</th>
-                        <th>Общий скилл</th>
+                    <tr><th>РњРµСЃС‚Рѕ</th>
+                        <th>РќРёРє</th>
+                        <th>РЈР±РёР» Р·Рј</th>
+                        <th>Р—Р°СЂР°Р·РёР» Р»СЋРґРµР№</th>
+                        <th>Р‘С‹Р» Р·Р°СЂР°Р¶С‘РЅ</th>
+                        <th>Р‘С‹Р» СѓР±РёС‚</th>
+                        <th>РџРµСЂРІС‹Р№ Р·Рј</th>
+                        <th>РЈР±РёР» СЃ РЅРѕР¶Р°</th>
+                        <th>Р›СѓС‡С€РёР№ Р·Рј</th>
+                        <th>Р›СѓС‡С€РёР№ С‡РµР»РѕРІРµРє</th>
+                        <th>Р›СѓС‡С€РёР№ РёРіСЂРѕРє РєР°СЂС‚С‹</th>
+                        <th>РћР±С‰РёР№ СЃРєРёР»Р»</th>
                     </tr>';
             while ($row = mysql_fetch_object($resource))
             {

@@ -77,7 +77,7 @@ stock get_time_length(id, unitCnt, type, output[], outputLen)
 
         // translate the unit counts into verbose text
         new maxElementIdx = -1;
-        new timeElement[5][33];
+        new timeElement[6][33];
 
         if (monthCnt > 0)
             format(timeElement[++maxElementIdx], 32, "%i %L", monthCnt, id, (monthCnt == 1) ? "TIME_ELEMENT_MONTH" : "TIME_ELEMENT_MONTHS");

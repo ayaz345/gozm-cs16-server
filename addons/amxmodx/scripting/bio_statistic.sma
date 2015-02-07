@@ -547,7 +547,7 @@ public show_me(id)
     else
         colored_print(id, "^x04***^x01 Заразил^x04 %d^x01 человек%s", 
             g_Me[id][ME_INFECT],
-            0 < g_Me[id][ME_INFECT] < 4 ? "а" : "")
+            0 < g_Me[id][ME_INFECT] < 5 ? "а" : "")
 
     return PLUGIN_HANDLED
 }

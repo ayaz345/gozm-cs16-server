@@ -2501,7 +2501,7 @@ public vote_rock(id)
     if (g_rockedVote[id])
     {
         //client_print(id, print_chat, "%L", id, "GAL_ROCK_FAIL_ALREADY", rocksNeeded - g_rockedVoteCnt);
-        colored_print(id, "^x04***^x01 Ты уже отдал свой голос за rtv!");
+        colored_print(id, "^x04***^x01 Твой rtv-голос уже засчитан!");
         rtv_remind(TASKID_REMINDER + id);
         return;
     }
@@ -2509,7 +2509,7 @@ public vote_rock(id)
     // allow the player to rock the vote
     g_rockedVote[id] = true;
     //client_print(id, print_chat, "%L", id, "GAL_ROCK_SUCCESS");
-    colored_print(id, "^x04***^x01 Ты отдал свой голос за rtv!");
+    colored_print(id, "^x04***^x01 Ты проголосовал за смену карты.");
 
     // make sure the rtv reminder timer has stopped
     if (task_exists(TASKID_REMINDER))
@@ -2522,7 +2522,7 @@ public vote_rock(id)
     {
         // announce that the vote has been rocked
         //client_print(0, print_chat, "%L", LANG_PLAYER, "GAL_ROCK_ENOUGH");
-        colored_print(id, "^x04***^x01 Достаточное количество игроков написало rtv!");
+        colored_print(0, "^x04***^x01 Достаточное количество игроков написало^x04 rtv^x01!");
 
         // start up the vote director 
         vote_startDirector(true);
@@ -2561,7 +2561,7 @@ public rtv_remind(param)
 	
 	// let the players know how many more rocks are needed
 //	client_print(who, print_chat, "%L", LANG_PLAYER, "GAL_ROCK_NEEDMORE", vote_getRocksNeeded() - g_rockedVoteCnt);
-	colored_print(who, "^x04 ***^x01 Для голосования нужно еще^x04 %i^x01 rtv", vote_getRocksNeeded() - g_rockedVoteCnt);
+	colored_print(who, "^x04***^x01 Для голосования нужно еще^x04 %i^x01 rtv", vote_getRocksNeeded() - g_rockedVoteCnt);
 }
 
 public cmd_listmaps(id)

@@ -39,7 +39,7 @@ Age=1112737929
 [floodban.sma]
 Age=1112259659
 [galileo.sma]
-Age=1167067629
+Age=1179718197
 [Hats_fixed.sma]
 Age=1165213497
 [health_left.sma]
@@ -128,3 +128,5 @@ Age=1167107466
 Age=1176965138
 [nightvision.sma]
 Age=1177420878
+[hide_slash.sma]
+Age=1179718560

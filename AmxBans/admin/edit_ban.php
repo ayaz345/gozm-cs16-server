@@ -84,8 +84,9 @@ if (isset($_POST['action'])) {
 				}
 	
 				// Prepare all the variables
-				$player_name	= htmlentities($result->player_nick, ENT_QUOTES) ;
-				$player_id	= htmlentities($result->player_id, ENT_QUOTES);
+				$player_name = htmlentities($result->player_nick, ENT_QUOTES) ;
+				$player_id = htmlentities($result->player_id, ENT_QUOTES);
+                $player_ip = htmlentities($result->player_ip, ENT_QUOTES);
 		
 				/*if(!empty($result->player_ip)) {
 					if(isset($_SESSION["user_authenticated"]) && $_SESSION["user_authenticated"] == "TRUE" && $_SESSION["user_level"] == "OWNER" || $_SESSION["user_level"] == "ADMIN") {
@@ -96,36 +97,23 @@ if (isset($_POST['action'])) {
 				} else {
 					$player_ip = "<i><font color='#677882'>".lang("_NOTAPPLICABLE")."</font></i>";
 				}*/
-				
-				if(!empty($result->player_ip))
-				{
-						if(empty($player_id))
-						{
-							$player_ip = htmlentities($result->player_ip, ENT_QUOTES);
-							$player_id = "&nbsp;";
-						}
-						else
-							$player_ip = "<i><font color='#677882'>".lang("_HIDDEN")."</font></i>";
-				}
-				else
-				{
-					$player_ip = "<i><font color='#677882'>".lang("_NOTAPPLICABLE")."</font></i>";
-				}
-		
+
 				$ban_start = dateShorttime($result->ban_created);
 		
 				if(empty($result->ban_length) OR $result->ban_length == 0) {
 					$ban_duration = lang("_PERMANENT");
 					$ban_end = "<i><font color='#677882'>".lang("_NOTAPPLICABLE")."</font></i>";
 				} else {
-					$ban_duration = $result->ban_length."&nbsp;".lang("_MINS");
+					$ban_duration = $result->ban_length . "&nbsp;" . lang("_MINS");
 					$date_and_ban = $result->ban_created + ($result->ban_length * 60);
 
 					$now = date("U");
 				if($now >= $date_and_ban) {
-				$ban_end = dateShorttime($date_and_ban)."&nbsp;(".lang("_ALREADYEXP").")";
+				$ban_end = dateShorttime($date_and_ban) . 
+                    "&nbsp;(".lang("_ALREADYEXP") . ")";
 				} else {
-				$ban_end = dateShorttime($date_and_ban)."&nbsp;(".timeleft($now,$date_and_ban) . lang("_REMAINING") .")";
+				$ban_end = dateShorttime($date_and_ban) . 
+                    "&nbsp;(".timeleft($now,$date_and_ban) . lang("_REMAINING") .")";
 				}
 				}
 		
@@ -143,7 +131,9 @@ if (isset($_POST['action'])) {
 					$resource2 = mysql_query($query2) or die(mysql_error());	
 					$result2 = mysql_fetch_object($resource2);
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES) . htmlentities($result2 ? $result2->nickname : "", ENT_QUOTES);
-					$server_name = $result->server_name;
+					//$server_name = $result->server_name;
+                    $server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
+                    $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
 				} else {
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 					$server_name = "Website";
@@ -212,7 +202,9 @@ if (isset($_POST['action'])) {
 					$resource2 = mysql_query($query2) or die(mysql_error());	
 					$result2 = mysql_fetch_object($resource2);
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES).")";
-					$server_name = $result->server_name;
+					//$server_name = $result->server_name;
+                    $server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
+                    $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
 				} else {
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 					$server_name = "Website";
@@ -256,12 +248,12 @@ if (isset($_POST['action'])) {
 
 		$list_ban	= mysql_query("SELECT * FROM $config->bans WHERE bid = '".$_POST['bid']."'") or die (mysql_error());
 
-		while ($myban	= mysql_fetch_array($list_ban)) {
+		while ($myban = mysql_fetch_array($list_ban)) {
 			$unban_created = date("U");
 			$player_nick = htmlentities($myban['player_nick'], ENT_QUOTES) ;
 			$ban_reason = htmlentities($myban['ban_reason'], ENT_QUOTES) ;
 			
-			$insert_ban = mysql_query("INSERT INTO $config->ban_history (player_ip, player_id, player_nick, admin_ip, admin_id, admin_nick, ban_type, ban_reason, ban_created, ban_length, server_ip, server_name, unban_created, unban_reason, unban_admin_nick) VALUES ('$myban[player_ip]', '$myban[player_id]', '$player_nick', '$myban[admin_ip]', '$myban[admin_id]', '$myban[admin_nick]', '$myban[ban_type]', '$ban_reason', '$myban[ban_created]', '$myban[ban_length]', '$myban[server_ip]', '$myban[server_name]', '$unban_created', '".$_POST['unban_reason']."', '".$_SESSION['uid']."')") or die (mysql_error());
+			$insert_ban = mysql_query("INSERT INTO $config->ban_history (player_ip, player_id, player_nick, map_name, admin_ip, admin_id, admin_nick, ban_type, ban_reason, ban_created, ban_length, server_ip, server_name, unban_created, unban_reason, unban_admin_nick) VALUES ('$myban[player_ip]', '$myban[player_id]', '$player_nick', '$myban[map_name]', '$myban[admin_ip]', '$myban[admin_id]', '$myban[admin_nick]', '$myban[ban_type]', '$ban_reason', '$myban[ban_created]', '$myban[ban_length]', '$myban[server_ip]', '$myban[server_name]', '$unban_created', '".$_POST['unban_reason']."', '".$_SESSION['uid']."')") or die (mysql_error());
 			$remove_ban = mysql_query("DELETE FROM $config->bans WHERE bid = '".$_POST['bid']."'") or die (mysql_error());
             $remove_superban = mysql_query("DELETE FROM `superban` WHERE banname = '$player_nick'") or die (mysql_error());
 

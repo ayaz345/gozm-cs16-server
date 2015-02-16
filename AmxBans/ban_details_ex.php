@@ -110,14 +110,16 @@ if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
 		} else {
 			
 			//echo $timezone;
-			$ban_duration = $result->ban_length."&nbsp;" . lang("_MINS");
+			$ban_duration = $result->ban_length . "&nbsp;" . lang("_MINS");
 			$date_and_ban = $result->ban_created + $timezone + ($result->ban_length * 60);
 
 			$now = date("U");
 			if($now >= $date_and_ban) {
-				$ban_end = dateShorttime($date_and_ban)."&nbsp;(" . lang("_ALREADYEXP") . ")";
+				$ban_end = dateShorttime($date_and_ban) . "&nbsp;(" . 
+                    lang("_ALREADYEXP") . ")";
 			} else {
-				$ban_end = dateShorttime($date_and_ban)."&nbsp;(".timeleft($now + $timezone,$date_and_ban)."&nbsp;".lang("_REMAINING").")";
+				$ban_end = dateShorttime($date_and_ban) . "&nbsp;(" . 
+                    timeleft($now + $timezone,$date_and_ban)."&nbsp;".lang("_REMAINING").")";
 			}
 		}
 		
@@ -137,7 +139,9 @@ if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
 			$result2 = mysql_fetch_object($resource2);
 			
 			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES).")";
-			$server_name = $result->server_name;
+			//$server_name = $result->server_name;
+            $server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
+            $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
 		} else {
 			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 			$server_name = lang("_WEBSITE");

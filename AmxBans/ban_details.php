@@ -169,7 +169,7 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			"ban_reason"	=> $ban_reason,
 			"admin_name"	=> $admin_name,
 			"amx_name"	=> isset($admin_amxname) ? $admin_amxname : "",
-			"server_name"	=> "3om6u cepBep (x_x(O_o)x_x) Go Zombie !!!"
+			"server_name"	=> "Çמלבט סונגונ (x_x(O_o)x_x) Go Zombie !!!"
 			);	
 		
 		if(isset($_GET["bhid"])) {

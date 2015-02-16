@@ -12,8 +12,8 @@
             <td height='16' width='30%' class='listtable_1'>SteamID</td>
             <td height='16' width='70%' class='listtable_1'>{$ban_info.player_id}</td>
           </tr>
-          <tr class="listtable_1-{cycle values="w,g"}tr"
-            <td height='16' width='30%' class='listtable_1'>{"_IP"|lang}</td>
+          <tr class="listtable_1-{cycle values="w,g"}tr">
+            <td height='16' width='30%' class='listtable_1'>IP</td>
             <td height='16' width='70%' class='listtable_1'>{$ban_info.player_ip}</td>
           </tr>
           <tr class="listtable_1-{cycle values="w,g"}tr">

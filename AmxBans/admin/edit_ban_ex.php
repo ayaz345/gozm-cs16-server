@@ -99,7 +99,9 @@ if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 					$resource2 = mysql_query($query2) or die(mysql_error());	
 					$result2 = mysql_fetch_object($resource2);
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities($result2->nickname, ENT_QUOTES).")";
-					$server_name = $result->server_name;
+					//$server_name = $result->server_name;
+                    $server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
+                    $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
 				} else {
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 					$server_name = "Website";

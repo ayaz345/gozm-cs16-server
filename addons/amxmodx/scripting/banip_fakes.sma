@@ -1,36 +1,4 @@
-/**
-*	Simple plugin to protect server against recently created fake flooder.
-*
-*	Home post:
-*	  http://c-s.net.ua/forum/index.php?act=findpost&pid=638816
-*
-*	Last update:
-*	  8/7/2014
-*
-*	Credits:
-*	- Zetex for 'IP converter' stocks
-*/
-
-/*	Copyright © 2014  Safety1st
-
-	BanIP Fakes is free software;
-	you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation; either version 2 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
-
 #include <amxmodx>
-#include <celltrie>
 
 #define PLUGIN "BanIP Fakes"
 #define VERSION "0.2"
@@ -41,30 +9,10 @@
 #define BAN_DURATION       33
 new gszKickMsg[] =         "bye"
 
-//#define WHITELIST_SIZE   4	// EXACTLY as rows quantity below; uncomment to enable whitelist
-
-#if defined WHITELIST_SIZE
-new const gszWhiteList[WHITELIST_SIZE][] = {
-	"127.0.0.0/8",         // loopback interface (usually assigned IP is 127.0.0.1)
-	"192.168.0.0/24",      // 192.168.0.0/24 subnet, IPs range 192.168.0.0 ... 192.168.0.255
-	"10.3.3.2/24",         // 10.3.3.0/24 subnet, we could use any of its IPs here
-	"141.101.120.244"      // c-s.net.ua IP
-}
-#endif
-/*----------------------------------------*/
-
 #define DEBUG	// uncomment to enable some messages
 
 new gszPlayerIP[MAX_PLAYERS][16]
 new Trie:gtPlayerIPs
-
-#if defined WHITELIST_SIZE
-enum _:WhitelistData {
-	NET_IP,
-	NET_MASK
-}
-new Array:gaWhitelist
-#endif
 
 #define FIRST_PLAYER   1
 #define SINGLE_PLAYER  1
@@ -74,34 +22,11 @@ public plugin_init() {
 	register_cvar( "banipfakes_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY|FCVAR_UNLOGGED )
 
 	gtPlayerIPs = TrieCreate()
-
-#if defined WHITELIST_SIZE
-	new iData[WhitelistData]
-	gaWhitelist = ArrayCreate(WhitelistData)
-
-	for( new i; i < WHITELIST_SIZE; i++ ) {
-		net_to_long( gszWhiteList[i], iData[NET_IP], iData[NET_MASK] )
-		ArrayPushArray( gaWhitelist, iData )
-	}
-#endif
 }
 
 public client_putinserver(id) {
 	new szPlayerIP[16]
 	get_user_ip( id, szPlayerIP, charsmax(szPlayerIP), 1 /* without port */ )
-
-#if defined WHITELIST_SIZE
-	new iData[WhitelistData]
-	for( new i; i < WHITELIST_SIZE; i++ ) {
-		ArrayGetArray( gaWhitelist, i, iData )
-		if( iData[NET_IP] == ip_to_long(szPlayerIP) & iData[NET_MASK] ) {
-			#if defined DEBUG
-			server_print( "White IP detected: id %d, IP %s", id, szPlayerIP )
-			#endif
-			return
-		}
-	}
-#endif
 
 	new iQuantity = FIRST_PLAYER
 	if( TrieGetCell( gtPlayerIPs, szPlayerIP, iQuantity ) ) {

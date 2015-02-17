@@ -255,7 +255,7 @@ while($result = mysql_fetch_object($resource)) {
 		// get previous offences if any
 		//$resource4   = mysql_query("SELECT count(player_id) FROM $config->ban_history WHERE player_id = '$steamid'") or die(mysql_error());
 		//$bancount = mysql_result($resource4, 0);
-		
+/*
 		// get previous offences if any 
 		if (empty($steamid)) {
 			$bancount = 'unknown';
@@ -266,6 +266,7 @@ while($result = mysql_fetch_object($resource)) {
 				$bancount = $result4->repeatOffence; 
 			}
 		}
+*/
 	}
 
 	if(empty($duration)) {
@@ -314,7 +315,7 @@ while($result = mysql_fetch_object($resource)) {
 		"ban_type"	=> $ban_type,
 		"ban_reason"	=> $ban_reason,
 		"server_name"	=> $server_name,
-		"bancount"	=> $bancount,
+//		"bancount"	=> $bancount,
 		"demo"		=> ($config->display_demo == "enabled") ?$show_demo:NULL,
 		"comments"	=> ($config->display_comments == "enabled") ? $show_comm:NULL,
 		"commentscount"=> ($config->display_comments == "enabled") ?$count_cmts:NULL

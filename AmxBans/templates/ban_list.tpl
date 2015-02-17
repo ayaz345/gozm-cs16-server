@@ -200,10 +200,10 @@
             <td height='16' class='d-c' width='20%'><b>{"_BANON"|lang}</b></td>
             <td height='16' class='d-c' width='80%' >{$bans.server_name}</td>
           </tr>
-          <tralign='left'>
+          <!--tr align='left'>
             <td height='16' class='d-c' width='20%'><b>{"_PREVOFF"|lang}</b></td>
             <td height='16' class='d-c' width='80%'>{$bans.bancount}</td>
-          </tr>
+          </tr-->
           	{if $display_comments == "enabled"}
           <tr bgcolor="#D3D8DC" align='left'>
             <td height='16' class='d-c' width='20%'><b>{"_COMMENTS"|lang}</b></td>

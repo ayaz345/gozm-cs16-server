@@ -8,7 +8,7 @@
  *	web		: http://www.amxbans.de
  *	mail	: setoy@my-horizon.de
  *	ICQ		: 226696015
- *   
+ *
  *	This file is part of AMXBans.
  *
  *  AMXBans is free software; you can redistribute it and/or modify
@@ -62,7 +62,7 @@ $result		= mysql_fetch_object($resource);
 // Get the page number, if no number is defined make default 1
 if(isset($_GET["page"]) AND is_numeric($_GET["page"])) {
 	$page = mysql_real_escape_string($_GET["page"]);
-	
+
 	if($page < 1) {
 		trigger_error("Pagenumbers need to be >= 1.", E_USER_NOTICE);
 		exit;
@@ -82,45 +82,47 @@ if(isset($_GET["view"]) AND is_numeric($_GET["view"])) {
 if($result->all_bans <= $view) {
 	$query_start = 0;
 	$query_end = $view;
-	
+
 	$page_start = $result->all_bans ? 1:0;
 	$page_end = $result->all_bans;
-	
+
 	$pages_results = array(
 		"page_start" => $page_start,
 		"page_end" => $page_end,
 		"all_bans" => $result->all_bans,
 		"prev_button" => "",
-		"next_button" => "");
+		"next_button" => "",
+		"ip" => $_SERVER['REMOTE_ADDR']
+	);
 } else {
 	if($page == 1) {
 		$query_start = 0;
 		$query_end = $view;
-	
+
 		$page_start = 1;
 		$page_end = $view;
-		
+
 		$previous_page = NULL;
 		$next_page = $page + 1;
 	} else {
 		$remaining = $result->all_bans % $view;
 		$pages = ($result->all_bans - $remaining) / $view;
-		
+
 		$query_start = $view * ($page - 1);
 		$query_end = $view;
-		
+
 		if($page > $pages + 1) {
 			trigger_error("Page number doesn't exists.", E_USER_NOTICE);
 			exit;
 		} elseif($page == $pages + 1) {
 			$page_start = ($view * ($page - 1)) + 1;
 			$page_end = $page_start + $remaining - 1;
-		
+
 			$previous_page = $page - 1;
 		} else {
 			$page_start = ($view * ($page - 1)) + 1;
 			$page_end = $page_start + ($view - 1);
-			
+
 			$previous_page = $page - 1;
 			$next_page = $page + 1;
 		}
@@ -131,7 +133,9 @@ if($result->all_bans <= $view) {
 		"all_bans" => $result->all_bans,
 		"view" => $view,
 		"prev_page" => ($previous_page <> NULL) ? $previous_page : "",
-		"next_page" => ($next_page <> NULL) ? $next_page : "");
+		"next_page" => ($next_page <> NULL) ? $next_page : "",
+		"ip" => $_SERVER['REMOTE_ADDR']
+	);
 }
 
 //get the bans for the page list
@@ -157,11 +161,11 @@ while($result = mysql_fetch_object($resource)) {
 		$count_demo = mysql_num_rows($sql_demo);
 		$show_demo = $count_demo > 0 ? $bid : NULL;
 	}
-	
+
 	//$server_name = $result->server_name;
 	$server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
     $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
-	
+
 	if ($config->fancy_layers == "enabled") {
 		if($config->display_comments == "enabled") {
 			$sql_comm = mysql_query("SELECT * FROM $config->amxcomments WHERE  bid = '" . $bid . "'");
@@ -178,7 +182,7 @@ while($result = mysql_fetch_object($resource)) {
 		} else {
 			$player_ip = "<i><font color='#677882'>" . lang("_NOIP") . "</font></i>";
 		}
-		
+
 		if(!empty($result->player_id)) {
 			$steamid = htmlentities($result->player_id, ENT_QUOTES);
 			$steamcomid = GetFriendId($steamid);
@@ -189,7 +193,7 @@ while($result = mysql_fetch_object($resource)) {
 
 		$ldate		= dateShorttime($result->ban_created + $timezone_correction);
 		$banlength	= $result->ban_length;
-	
+
 		if(empty($result->ban_length) OR $result->ban_length == 0) {
 			$ban_duration = lang("_PERMANENT");
 			$ban_end = "<i><font color='#677882'>" . lang("_NOTAPPLICABLE") . "</font></i>";
@@ -204,20 +208,20 @@ while($result = mysql_fetch_object($resource)) {
 				$ban_end = dateShorttime($date_and_ban)."&nbsp; (".timeleft($now,$date_and_ban) ."&nbsp;". lang("_REMAINING") .")";
 			}
 		}
-		
+
 		if(@$result->ban_type == "SI") {
 			$ban_type = lang("_STEAMID&IP");
 		} else {
 			$ban_type = "SteamID";
 		}
-		
+
 		// // if($result->server_name <> "website") {
-			// // //$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";	
-			// // $query2 = "SELECT nickname FROM $config->amxadmins WHERE username = '".$result->admin_id."' OR username = '".$result->admin_ip."' OR username = '".$result->admin_nick."'";	
-			// // $resource2 = mysql_query($query2) or die(mysql_error());	
+			// // //$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";
+			// // $query2 = "SELECT nickname FROM $config->amxadmins WHERE username = '".$result->admin_id."' OR username = '".$result->admin_ip."' OR username = '".$result->admin_nick."'";
+			// // $resource2 = mysql_query($query2) or die(mysql_error());
 			// // $result2 = mysql_fetch_object($resource2);
 
-			
+
 			// // $admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 			// // if ( $result2 )
 		if($result->server_name != "website") {
@@ -251,19 +255,19 @@ while($result = mysql_fetch_object($resource)) {
 	}
 
 	// We dont need to count the bans if fancy layers arent enabled (Lantz69 060906)
-	if ($config->fancy_layers == "enabled") {	
+	if ($config->fancy_layers == "enabled") {
 		// get previous offences if any
 		//$resource4   = mysql_query("SELECT count(player_id) FROM $config->ban_history WHERE player_id = '$steamid'") or die(mysql_error());
 		//$bancount = mysql_result($resource4, 0);
 /*
-		// get previous offences if any 
+		// get previous offences if any
 		if (empty($steamid)) {
 			$bancount = 'unknown';
 		}
 		else {
-			$resource4   = mysql_query("SELECT count(player_id) AS repeatOffence FROM $config->ban_history WHERE player_id = '$steamid'") or die(mysql_error()); 
-			while($result4 = mysql_fetch_object($resource4)) { 
-				$bancount = $result4->repeatOffence; 
+			$resource4   = mysql_query("SELECT count(player_id) AS repeatOffence FROM $config->ban_history WHERE player_id = '$steamid'") or die(mysql_error());
+			while($result4 = mysql_fetch_object($resource4)) {
+				$bancount = $result4->repeatOffence;
 			}
 		}
 */
@@ -352,7 +356,7 @@ while($result = mysql_fetch_object($resource)) {
 			);
 		}
 	}
-	
+
 	$ban_array[] = $ban_info;
 }
 

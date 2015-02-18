@@ -7,7 +7,7 @@
 	<tr>
 		<td width='95%'><b>{"_BANDETAILS"|lang}</b></td>
 		{if $ban_info.id_type == "bid"}
-		
+
 			{if (($smarty.session.bans_edit == "yes") || (($smarty.session.bans_edit == "own") && ($smarty.session.uid == $bans.webadmin)))}
 				<form name="delete" method="post" action="{$dir}/admin/edit_ban.php">
 				<input type='hidden' name='action' value='edit'>
@@ -28,9 +28,9 @@
 				<input type='image' src='{$dir}/images/delete.gif' name='delete' alt='{"_DELETE"|lang}' onclick="javascript:return confirm('{"_WANTTOREMOVE"|lang} ban_id {$ban_info.bid}?')"></td></form>
 			{/if}
 		{/if}
-		
+
 		{if $ban_info.id_type == "bhid"}
-		
+
 			{if (($smarty.session.bans_edit == "yes") || (($smarty.session.bans_edit == "own") && ($smarty.session.uid == $bans.webadmin)))}
 				<form name="delete" method="post" action="{$dir}/admin/edit_ban_ex.php">
 				<input type='hidden' name='action' value='edit_ex'>
@@ -38,7 +38,7 @@
 		<td align='right' width='2%'>
 				<input type='image' SRC='{$dir}/images/edit.gif' name='action' ALT='{"_EDIT"|lang}'><img src='{$dir}/images/spacer.gif' width='1px' height='1'></td></form>
 			{/if}
-			
+
 		{if (($smarty.session.bans_delete == "yes") || (($smarty.session.bans_delete == "own") && ($smarty.session.uid == $bans.webadmin)))}
 				<form name="unban" method="post" action="{$dir}/admin/edit_ban_ex.php">
 				<input type='hidden' name='action' value='delete_ex'>
@@ -57,53 +57,51 @@
             <td height='16' width='70%' class='listtable_1-w'>{$ban_info.player_name}</td>
           </tr>
 		  <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-w'>{"_MAP"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-w'>{$ban_info.map_name}</td>
-          </tr>	
-          <tr bgcolor="#D3D8DC">
+            <td height='16' width='30%' class='listtable_1-g'>{"_MAP"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-g'>{$ban_info.map_name}</td>
+          </tr>
+          <!--tr bgcolor="#D3D8DC">
             <td height='16' width='30%' class='listtable_1-g'>{"_BANTYPE"|lang}</td>
             <td height='16' width='70%' class='listtable_1-g'>{$ban_info.ban_type}</td>
-          </tr>
+          </tr-->
           <tr bgcolor="#D3D8DC">
             <td height='16' width='30%' class='listtable_1-w'>SteamID</td>
             <td height='16' width='70%' class='listtable_1-w'>{if $ban_info.player_id == "&nbsp;"}<i><font color='#677882'>{"_NOSTEAMID"|lang}</font></i>{else}{$ban_info.player_id}{/if}</td>
           </tr>
-		  {if $ban_info.player_id <> "&nbsp;"}
-		  <tr bgcolor="#D3D8DC" align='left'>
+		  <!--tr bgcolor="#D3D8DC" align='left'>
 			<td height='16' width='30%' class='listtable_1-g'>{"_COMMUNITYPROFILE"|lang}</td>
 			<td height='16' width='70%' class='listtable_1-g'><a href="http://steamcommunity.com/profiles/{$ban_info.player_comid}" target="_blank">http://steamcommunity.com/profiles/{$ban_info.player_comid}</a></td>
-		  </tr>
-		  {/if}
+		  </tr-->
           <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-w'>{"_IP"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-w'>{if $smarty.session.ip_view == "yes" || $ban_info.player_ip == "&nbsp;"}{$ban_info.player_ip}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
+            <td height='16' width='30%' class='listtable_1-g'>{"_IP"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-g'>{if $smarty.session.ip_view == "yes" || $ban_info.player_ip == "&nbsp;"}{$ban_info.player_ip}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
           </tr>
           <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-g'>{"_INVOKED"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-g'>{$ban_info.ban_start}</td>
+            <td height='16' width='30%' class='listtable_1-w'>{"_INVOKED"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-w'>{$ban_info.ban_start}</td>
           </tr>
           <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-w'>{"_BANLENGHT"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-w'>{$ban_info.ban_duration}</td>
+            <td height='16' width='30%' class='listtable_1-g'>{"_BANLENGHT"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-g'>{$ban_info.ban_duration}</td>
           </tr>
           <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-g'>{"_EXPIRES"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-g'>{$ban_info.ban_end}</td>
+            <td height='16' width='30%' class='listtable_1-w'>{"_EXPIRES"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-w'>{$ban_info.ban_end}</td>
           </tr>
           <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-w'>{"_REASON"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-w'>{$ban_info.ban_reason}</td>
+            <td height='16' width='30%' class='listtable_1-g'>{"_REASON"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-g'>{$ban_info.ban_reason}</td>
           </tr>
           <tr bgcolor="#D3D8DC">
-            <td height='16' width='30%' class='listtable_1-g'>{"_BANBY"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-g'>{if ($display_admin == "enabled") || ($smarty.session.bans_add == "yes")}{$ban_info.admin_name}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
+            <td height='16' width='30%' class='listtable_1-w'>{"_BANBY"|lang}</td>
+            <td height='16' width='70%' class='listtable_1-w'>{if ($display_admin == "enabled") || ($smarty.session.bans_add == "yes")}{$ban_info.admin_name}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
           </tr>
-          <tr bgcolor="#D3D8DC">
+          <!--tr bgcolor="#D3D8DC">
             <td height='16' width='30%' class='listtable_1-w'>{"_BANON"|lang}</td>
             <td height='16' width='70%' class='listtable_1-w'>{$ban_info.server_name}</td>
-          </tr>
+          </tr-->
 </table>
-				
+
 {if $unban_info.verify == "TRUE"}
 	<br>
         <table cellspacing='1' class='listtable' width='100%'>
@@ -124,7 +122,7 @@
           </tr>
         </table>
 {/if}
-  
+
 {if $history == "TRUE"}
 	<br>
     <table cellspacing='1' class='listtable' width='100%'>
@@ -138,8 +136,8 @@
             <td height='16' width='{if $display_reason == "enabled"}20%{else}30%{/if}' class='listtable_1'>{if ($display_admin == "enabled") || ($smarty.session.bans_add == "yes")}{$bhans.admin}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
             {if $display_reason == "enabled"}<td height='16' width='25%' class='listtable_1'>{$bhans.reason}</td>{/if}
             <td height='16' width='16%' class='listtable_1'>{$bhans.duration}</td>
-            
-            
+
+
             <td height='16' width='4%' class='listtable_1'>
     <table width='100%' border='0' cellpadding='0' cellspacing='0'>
 			<tr>
@@ -157,7 +155,7 @@
           <tr bgcolor="#D3D8DC">
             <td height='16' colspan='6' class='listtable_1-w'>{"_NOBANNED"|lang}</td>
           </tr>
-          {/foreach}          
+          {/foreach}
     </table>
 {/if}
 
@@ -287,12 +285,12 @@
 		<textarea cols=50 rows=6 name=comment id="ns_comment"></textarea>
 		</td>
 		</tr>
-			<tr bgcolor="#D3D8DC"> 
-				<td height='16' width='30%' class='listtable_1-g'>{"_SCODE"|lang}</td> 
-				<td height='16' width='70%' class='listtable_1-g'>{"_SCODEENTER"|lang}<br> 
-					<img src={$dir}/code.php alt="Security code" style="border: 1px #000000 solid;"><br> 
-					<input type='text' name='verify' id="verify_code"> 
-				</td> 
+			<tr bgcolor="#D3D8DC">
+				<td height='16' width='30%' class='listtable_1-g'>{"_SCODE"|lang}</td>
+				<td height='16' width='70%' class='listtable_1-g'>{"_SCODEENTER"|lang}<br>
+					<img src={$dir}/code.php alt="Security code" style="border: 1px #000000 solid;"><br>
+					<input type='text' name='verify' id="verify_code">
+				</td>
 			</tr>
 			<tr bgcolor="#D3D8DC">
 				<td height='16' width='100%' class='listtable_1-w' colspan='2' align='right'>

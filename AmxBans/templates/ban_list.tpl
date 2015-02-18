@@ -10,7 +10,7 @@
 </table>
 <br>
 {/if}
- 
+
 
 <table cellspacing='1' class='listtable' width='100%'>
   <tr>
@@ -22,17 +22,18 @@
 	<td height='16' width='20%' class='listtable_top'><b>{"_LENGHT"|lang}</b></td>
 	{if $display_comments == "enabled"}<td height='16' width='25%' class='listtable_top'><b>{"_COMMENTS"|lang}</b></td>{/if}
 	{if $display_demo == "enabled"}<td height='16' width='25%' class='listtable_top'><b>{"_DEMO"|lang}</b></td>{/if}
-    
+
   </tr>
 	<tr bgcolor="#D3D8DC">
    		<td height='16' width='100%' class='listtable_1' colspan='{if $display_demo == "enabled"}8{else}7{/if}' align='right'>
-		{if $pages_results.prev_page <> ""}<b><a href="{$dir}/ban_list.php?view={$pages_results.view}&amp;page={$pages_results.prev_page}" class='hover_black'><img src='images/left.gif' border='0' alt="{"_PREVIOUS"|lang}"></a></b> {/if}
+        {"_YOUR"|lang} {"_IP"|lang}: <b>{$pages_results.ip}</b> &nbsp;|&nbsp;
+		{if $pages_results.prev_page <> ""}<b><a href="{$dir}/ban_list.php?view={$pages_results.view}&amp;page={$pages_results.prev_page}" class='hover_black'><img src='images/left.gif' border='0' alt='{"_PREVIOUS"|lang}'></a></b> {/if}
 			{"_DISPLAYING"|lang} {$pages_results.page_start} - {$pages_results.page_end} {"_OF"|lang} {$pages_results.all_bans} {"_RESULTS"|lang}
 		{if $pages_results.next_page <> ""} <b><a href="{$dir}/ban_list.php?view={$pages_results.view}&amp;page={$pages_results.next_page}" class='hover_black'><img src='images/right.gif' border='0' alt="{"_NEXT"|lang}"></a></b>{/if}
 		</td>
 	</tr>
-          
-          
+
+
           {foreach from=$bans item=bans}
           <tr class="listtable_1-{cycle values="w,g"}tr" style="CURSOR:pointer;" {if ($fancy_layers == "enabled")}onClick="ToggleLayer('layer_{$bans.bid}');"{else}onClick="document.location = '{$dir}/ban_details.php?bid={$bans.bid}';"{/if} onMouseOver="this.style.backgroundColor='#C7CCD2'" onMouseOut="this.style.backgroundColor='#D3D8DC'">
             <td height='16' class='listtable_1' align='center'><img src='{$dir}/images/{$bans.gametype}.gif'></td>
@@ -64,7 +65,7 @@
 		<td align='right' width='2%'>
 			<input type='image' SRC='{$dir}/images/edit.gif' name='action' ALT='{"_EDIT"|lang}'><img src='{$dir}/images/spacer.gif' width='3px' height='1'></td></form>
 		{/if}
-		
+
 		{if (($smarty.session.bans_unban == "yes") || (($smarty.session.bans_unban == "own") && ($smarty.session.uid == $bans.webadmin)))}
 				<form name="unban" method="post" action="{$dir}/admin/edit_ban.php">
 				<input type='hidden' name='action' value='unban'>
@@ -153,16 +154,15 @@
             <td height='16' class='d-c'  width='20%'><b>{"_MAP"|lang}</b></td>
             <td height='16' class='d-c'  width='80%'>{$bans.map}</td>
           </tr>
-          <tr align='left'>
-            <td height='16' class='d-c' width='20%''><b>{"_BANTYPE"|lang}</b></td>
+          <!--tr align='left'>
+            <td height='16' class='d-c' width='20%'><b>{"_BANTYPE"|lang}</b></td>
             <td height='16' class='d-c'  width='80%'>{$bans.ban_type}</td>
-          </tr>
+          </tr-->
           <tr  align='left'>
             <td height='16' class='d-c'  width='20%'><b>SteamID</b></td>
             <td height='16' class='d-c' width='80%'>{if $bans.player_id == "&nbsp;"}<i><font color='#677882'>{"_NOSTEAMID"|lang}</font></i>{else}{$bans.player_id}{/if}</td>
           </tr>
-		  
-		  <tr  align='left'>
+		  <!--tr  align='left'>
 			<td height='16' class='d-c'  width='20%'><b>{"_COMMUNITYPROFILE"|lang}</b></td>
 			<td height='16' class='d-c'  width='80%'>
 			{if $bans.player_id <> NULL}
@@ -171,10 +171,10 @@
 				&nbsp;
 			{/if}
 			</td>
-		  </tr>
+		  </tr-->
           <tr align='left'>
             <td height='16' class='d-c' width='20%'><b>{"_IP"|lang}</b></td>
-	     <td height='16' class='d-c' width='80%' >{if $smarty.session.ip_view == "yes" || $bans.player_id == "&nbsp;"}{$bans.player_ip}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td> 
+	     <td height='16' class='d-c' width='80%' >{if $smarty.session.ip_view == "yes" || $bans.player_id == "&nbsp;"}{$bans.player_ip}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
           </tr>
           <tr align='left'>
             <td height='16' class='d-c' width='20%' ><b>{"_INVOKED"|lang}</b></td>
@@ -196,10 +196,10 @@
             <td height='16' class='d-c' width='20%'><b>{"_BANBY"|lang}</b></td>
             <td height='16' class='d-c' width='80%' >{if $display_admin == "enabled" || ($smarty.session.bans_add == "yes")}{$bans.admin} ({$bans.webadmin}){else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
           </tr>
-          <tr align='left'>
+          <!--tr align='left'>
             <td height='16' class='d-c' width='20%'><b>{"_BANON"|lang}</b></td>
             <td height='16' class='d-c' width='80%' >{$bans.server_name}</td>
-          </tr>
+          </tr-->
           <!--tr align='left'>
             <td height='16' class='d-c' width='20%'><b>{"_PREVOFF"|lang}</b></td>
             <td height='16' class='d-c' width='80%'>{$bans.bancount}</td>
@@ -228,10 +228,11 @@
 {/foreach}
 {if $display_comments=="enabled" || $display_demo=="enabled"}
           <tr>
-            <td height='16' class='d-c'  colspan='{if $fancy_layers != "enabled"}7{else}8{/if}''>
-		{if $display_comments == "enabled"}{"_TOTALCOMMENTS"|lang} : {$count_comm}<br>{/if}
-		{if $display_demo == "enabled"}{"_TOTALDEMOS"|lang} : {$count_demo}{/if}&nbsp;</td>
-          </tr> 
+            <td height='16' class='d-c'  colspan='{if $fancy_layers != "enabled"}7{else}8{/if}'>
+                {if $display_comments == "enabled"}{"_TOTALCOMMENTS"|lang} : {$count_comm}<br>{/if}
+                {if $display_demo == "enabled"}{"_TOTALDEMOS"|lang} : {$count_demo}{/if}&nbsp;
+            </td>
+          </tr>
 {/if}
 	</table>
 

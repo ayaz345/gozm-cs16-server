@@ -242,6 +242,7 @@ define("_COMMENTSTBL","Таблица комментариев");
 define("_NONAME","Пожалуйста введите ваше имя");
 define("_NOMAIL","Пожалуйста введите контактный e-mail");
 define("_NOTEXT","Пожалуйста введите комментарий");
+define("_YOUR","Твой");
 //admin list
 define("_ADMLIST","Список админов");
 define("_ACCESSFLAGS","Доступ");
@@ -279,7 +280,7 @@ define("_SCODE", "Securitycode:");
 define("_SCODEENTER", "Please enter the Securitycode from image:");
 //live server view
 define("_LIVESTATUS","Live Server-Status");
-define("_MAP","Map");
+define("_MAP","Карта");
 define("_TIMELEFT","Timeleft");
 define("_TIMELIMIT","Timelimit");
 define("_NOTIMELIMIT","No time limit");

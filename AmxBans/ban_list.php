@@ -362,6 +362,7 @@ if ($config->version_checking == "enabled") {
 	$new_version_exists = 0;
 }
 
+/*
 //Get Count from all comments
 $sql_comm = mysql_query("SELECT * FROM $config->amxcomments");
 $count_comm = mysql_num_rows($sql_comm);
@@ -369,6 +370,10 @@ $count_comm = mysql_num_rows($sql_comm);
 //Get Count from all demos
 $sql_demo = mysql_query("SELECT * FROM $config->amxdemos");
 $count_demo = mysql_num_rows($sql_demo);
+*/
+$count_comm = 0;
+$count_demo = 0;
+
 
 /*
  * Template parsing

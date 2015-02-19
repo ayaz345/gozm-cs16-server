@@ -5,7 +5,7 @@ define("_ADMIN","Админ");
 define("_REASON","Причина");
 define("_LENGHT","Время");
 define("_PERMANENT","Навсегда");
-define("_DISPLAYING","показано");
+define("_DISPLAYING","показаны");
 define("_RESULTS","результатов");
 define("_OF","из");
 define("_NEXT","вперед");

@@ -14,7 +14,13 @@
 #define VERSION "1.01"
 #define AUTHOR "Dimka"
 
-#define DEFAULT_TOP_COUNT 10
+#define DEFAULT_TOP_COUNT   15
+#define MAX_BUFFER_LENGTH   2047
+
+#define STATSX_SHELL_DESIGN3_STYLE "<meta charset=UTF-8><style>body{background:#E6E6E6;font-family:Verdana}th{background:#F5F5F5;color:#A70000;padding:6px;text-align:left}td{padding:2px 6px}table{color:#333;background:#E6E6E6;font-size:10px;font-family:Georgia;border:2px solid #D9D9D9}h2,h3{color:#333;}#c{background:#FFF}img{height:10px;background:#14CC00;margin:0 3px}#r{height:10px;background:#CC8A00}#clr{background:none;color:#A70000;font-size:20px;border:0}</style>"
+#define STATSX_SHELL_DESIGN7_STYLE "<meta charset=UTF-8><style>body{background:#FFF;font-family:Verdana}th{background:#2E2E2E;color:#FFF;text-align:left}table{padding:6px 2px;background:#FFF;font-size:11px;color:#333;border:1px solid #CCC}h2,h3{color:#333}#c{background:#F0F0F0}img{height:7px;background:#444;margin:0 3px}#r{height:7px;background:#999}#clr{background:none;color:#2E2E2E;font-size:20px;border:0}</style>"
+#define STATSX_SHELL_DESIGN8_STYLE "<meta charset=UTF-8><style>body{background:#242424;margin:20px;font-family:Tahoma}th{background:#2F3034;color:#BDB670;text-align:left} table{padding:4px;background:#4A4945;font-size:10px;color:#FFF}h2,h3{color:#D2D1CF}#c{background:#3B3C37}img{height:12px;background:#99CC00;margin:0 3px}#r{height:12px;background:#999900}#clr{background:none;color:#FFF;font-size:20px}</style>"
+#define STATSX_SHELL_DESIGN10_STYLE "<meta charset=UTF-8><style>body{background:#4C5844;font-family:Tahoma}th{background:#1E1E1E;color:#C0C0C0;padding:2px;text-align:left;}td{padding:2px 10px}table{color:#AAC0AA;background:#424242;font-size:13px}h2,h3{color:#C2C2C2;font-family:Tahoma}#c{background:#323232}img{height:3px;background:#B4DA45;margin:0 3px}#r{height:3px;background:#6F9FC8}#clr{background:none;color:#FFF;font-size:20px}</style>"
 
 #define OFFSET_DEATH 444
 
@@ -39,7 +45,7 @@ new g_Query[1024]
 new whois[1024]
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
-new g_CvarMaxInactiveDays
+new g_CvarMaxInactiveDays, g_pcvar_design
 
 new const g_types[][] = {
     "first_zombie",
@@ -52,7 +58,8 @@ new const g_types[][] = {
 }
 
 new g_Me[33][ME_NUM]
-new g_text[5096]
+new g_text[MAX_BUFFER_LENGTH + 1]
+new bool:szTrigger = true
 
 new g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
@@ -76,6 +83,7 @@ public plugin_init()
     register_cvar("bio_statistics_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
 	
     g_CvarMaxInactiveDays = register_cvar("bio_stats_max_inactive_days", "30")
+    g_pcvar_design = register_cvar("bio_stats_design", "4")
 	
     register_clcmd("say", "handleSay")
     register_clcmd("say_team", "handleSay")
@@ -621,7 +629,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
 public show_stats(id, unquoted_whois[])
 {
-    colored_print(id, "^x04***^x01 Подробная статистика скоро появится на сайте")
+    colored_print(id, "^x04***^x01 Подробная статистика^x04 http://gozm.myarena.ru/top.php")
 }
 
 public show_top(id, top)
@@ -653,22 +661,26 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     if (data[1] != get_user_userid(id))
     	return PLUGIN_HANDLED
 
-    new count
-
-    if(SQL_MoreResults(query))
-        count = SQL_ReadResult(query, 0)
-    else
+    if(!SQL_MoreResults(query))
     {
         colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
         return PLUGIN_HANDLED
     }
 
+    new count
+    count = SQL_ReadResult(query, 0)
+
     new top = data[2]
+    if (top <= DEFAULT_TOP_COUNT)
+        top = DEFAULT_TOP_COUNT
+    if (top >= count)
+        top = count
+
     format(g_Query, charsmax(g_Query), "\
         SELECT `nick`, `rank`, `skill` \
         FROM %s \
-        WHERE `rank` <= %d ORDER BY `rank` DESC LIMIT %d", 
-        g_select_statement, top, DEFAULT_TOP_COUNT)
+        WHERE `rank` <= %d ORDER BY `rank` ASC LIMIT %d, %d", 
+        g_select_statement, top, top - DEFAULT_TOP_COUNT, DEFAULT_TOP_COUNT)
     new more_data[4]
     more_data[0] = data[0]
     more_data[1] = data[1]
@@ -696,33 +708,38 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     if (data[1] != get_user_userid(id))
     	return PLUGIN_HANDLED
 
-    new max_len = charsmax(g_text)
-
-    new lTop[32], lLooserTop[32]
-    format(lTop, 31, "ТОП игроков")
-    format(lLooserTop, 31, "ТОП лузеров")
-
     new title[32]
     new top = data[2]
 
     new count = data[3]
     if (top <= DEFAULT_TOP_COUNT)
-        format(title, 31, "%s %d", lTop, top)
-    else
-    if (top < count)
-        format(title, 31, "%s %d - %d", lTop, top - DEFAULT_TOP_COUNT - 1, top)
+        format(title, 31, "ТОП игроков 1-%d", top)
+    else if (top < count)
+        format(title, 31, "ТОП игроков %d-%d", top - DEFAULT_TOP_COUNT + 1, top)
     else
     {
         top = count
-        format(title, 31, "%s", lLooserTop)
+        format(title, 31, "ТОП игроков %d-%d ", top - DEFAULT_TOP_COUNT + 1, top)
     }
 
-    setc(g_text, max_len, 0)
+    new iLen = 0
+    setc(g_text, MAX_BUFFER_LENGTH + 1, 0)
+    
+    iLen = format_all_themes(g_text, iLen)
+    iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
+        "<body><table width=100%% border=0 align=center cellpadding=0 cellspacing=1>")
+
+    
+    new lNick[32], lResult[32]
+    format(lNick, 31, "Ник")
+    format(lResult, 31, "Скилл")
+    iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
+        "<body><tr><th>%s<th>%s<th>%s</tr>", "#", lNick, lResult)
 
     new name[32], rank, skill
     new Float:pre_skill
-    new len
-
+    szTrigger = true
+    
     while (SQL_MoreResults(query))
     {
         rank = SQL_ReadResult(query, column("rank"))
@@ -730,30 +747,16 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         SQL_ReadResult(query, column("skill"), pre_skill)
         skill = floatround(pre_skill*1000.0)
 
-        format(g_text, max_len, "<tr><td>%d<td>%s<td>%d<td>%s",
-            rank, name, skill, g_text)
+        iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
+            "<tr%s><td>%d<td>%s<td>%d</tr>", szTrigger ? "" : " id=c", rank, name, skill)
         
         SQL_NextRow(query)
+        szTrigger = szTrigger ? false : true
     }
-
-    new lNick[32], result[32]
-    format(lNick, 31, "Ник")
-    format(result, 31, "Скилл")
-
-    len = format(g_text, max_len, 
-        "<html>\
-        <head>\
-        <meta http-equiv=^"Content-Type^" content=^"text/html; charset=utf-8^" />\
-        </head>\
-        <body bgcolor=#000000>\
-        <table style=^"color: #FFB000^">\
-        <tr><td>%s<td>%s<td>%s<td>%s",
-        "#", lNick, result, g_text)
-    format(g_text[len], max_len - len, "</table></body></html>")    
 
     show_motd(id, g_text, title)
 
-    setc(g_text, max_len, 0)
+    setc(g_text, MAX_BUFFER_LENGTH + 1, 0)
     
     return PLUGIN_HANDLED
 }
@@ -783,6 +786,37 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     }
     log_amx("[BIO STAT]: Called from id=%d, errnum=%d, error=%s", id, errnum, error)
     log_amx("[BIO STAT]: Query: %ds to '%s'", request_time, szQuery)
+}
+
+format_all_themes(sBuffer[MAX_BUFFER_LENGTH + 1], iLen)
+{
+    new iDesign = get_pcvar_num(g_pcvar_design)
+
+    switch(iDesign)
+    {
+        case 1:
+        {
+            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN3_STYLE)
+        }
+        case 2:
+        {
+            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN7_STYLE)
+        }
+        case 3:
+        {
+            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN8_STYLE)
+        }
+        case 4:
+        {
+            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN10_STYLE)
+        }
+        default:
+        {
+            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN10_STYLE)			
+        }
+    }
+        
+    return iLen
 }
 
 stock set_word_completion(number)

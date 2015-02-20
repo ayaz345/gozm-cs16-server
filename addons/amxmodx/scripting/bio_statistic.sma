@@ -45,7 +45,7 @@ new g_Query[1024]
 new whois[1024]
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
-new g_CvarMaxInactiveDays, g_pcvar_design
+new g_CvarMaxInactiveDays//, g_pcvar_design
 
 new const g_types[][] = {
     "first_zombie",
@@ -83,7 +83,7 @@ public plugin_init()
     register_cvar("bio_statistics_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
 	
     g_CvarMaxInactiveDays = register_cvar("bio_stats_max_inactive_days", "30")
-    g_pcvar_design = register_cvar("bio_stats_design", "4")
+//    g_pcvar_design = register_cvar("bio_stats_design", "4")
 	
     register_clcmd("say", "handleSay")
     register_clcmd("say_team", "handleSay")
@@ -725,7 +725,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     new iLen = 0
     setc(g_text, MAX_BUFFER_LENGTH + 1, 0)
     
-    iLen = format_all_themes(g_text, iLen)
+    iLen = format_all_themes(g_text, iLen, id)
     iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
         "<body><table width=100%% border=0 align=center cellpadding=0 cellspacing=1>")
 
@@ -788,25 +788,26 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
     log_amx("[BIO STAT]: Query: %ds to '%s'", request_time, szQuery)
 }
 
-format_all_themes(sBuffer[MAX_BUFFER_LENGTH + 1], iLen)
+format_all_themes(sBuffer[MAX_BUFFER_LENGTH + 1], iLen, player_id)
 {
-    new iDesign = get_pcvar_num(g_pcvar_design)
+    //new iDesign = get_pcvar_num(g_pcvar_design)
+    new iDesign = player_id % 4
 
     switch(iDesign)
     {
-        case 1:
+        case 0:
         {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN3_STYLE)
         }
-        case 2:
+        case 1:
         {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN7_STYLE)
         }
-        case 3:
+        case 2:
         {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN8_STYLE)
         }
-        case 4:
+        case 3:
         {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN10_STYLE)
         }

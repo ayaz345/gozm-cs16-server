@@ -35,7 +35,7 @@ public clcmd_say(id)
         is_priveleged_user(id) )
     {
         display_mutemenu(id)
-        return PLUGIN_HANDLED_MAIN
+        return PLUGIN_HANDLED
     }
     else if (
         say_args[0] == '/' && 
@@ -43,7 +43,7 @@ public clcmd_say(id)
         is_priveleged_user(id) )
     {
         display_speakmenu(id)
-        return PLUGIN_HANDLED_MAIN
+        return PLUGIN_HANDLED
     }
     else if (
         say_args[0] == '/' && 
@@ -51,7 +51,7 @@ public clcmd_say(id)
         is_priveleged_user(id) )
     {
         display_speakmenu(id)
-        return PLUGIN_HANDLED_MAIN
+        return PLUGIN_HANDLED
     }
     else if (
         say_args[0] == '/' && 
@@ -63,7 +63,7 @@ public clcmd_say(id)
         !is_priveleged_user(id) )
     {
         colored_print(id, "^x04***^x01 Затычка доступна только ВИПам!")
-        return PLUGIN_HANDLED_MAIN
+        return PLUGIN_HANDLED
     }
     return PLUGIN_CONTINUE
 }

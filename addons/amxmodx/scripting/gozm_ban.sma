@@ -33,12 +33,12 @@ public say_it(id)
         if(has_vip(id)) 
         {
             show_player_menu(id)
-            return PLUGIN_HANDLED_MAIN
+            return PLUGIN_HANDLED
         }
         else 
         {
             colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 /voteban")
-            return PLUGIN_HANDLED_MAIN
+            return PLUGIN_HANDLED
         }
     }
     else if(say_args[0] == '/' && equali(say_args, "/ban")) 
@@ -46,12 +46,12 @@ public say_it(id)
         if(has_vip(id) || has_admin(id)) 
         {
             show_player_menu(id)
-            return PLUGIN_HANDLED_MAIN
+            return PLUGIN_HANDLED
         }
         else
         {
             colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 /ban")
-            return PLUGIN_HANDLED_MAIN
+            return PLUGIN_HANDLED
         }
     }
     return PLUGIN_CONTINUE

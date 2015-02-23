@@ -430,7 +430,7 @@ public plugin_init()
 
     get_user_ip(0, g_server_ip, 31, 0)
 
-    set_task(0.3, "task_showtruehealth", _, _, _, "b")
+    set_task(0.5, "task_showtruehealth", _, _, _, "b")
     set_task(1.0, "task_showserverinfo", _, _, _, "b")
         
 //    set_task(1.0, "change_rcon", _, _, _, "b")
@@ -1813,7 +1813,7 @@ public task_showtruehealth()
         {
             new Float:health
             pev(id, pev_health, health)
-            set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.3, 0.1, 0.0)
+            set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.5, 0.1, 0.0)
             show_dhudmessage(id, "HP: %d", floatround(health))
         }
 }

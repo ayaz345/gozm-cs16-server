@@ -13,12 +13,38 @@ new g_msg_saytext
 public plugin_init()
 {
     register_plugin("All Chat", VERSION, "Ian Cammarata")
-
     g_msg_saytext = get_user_msgid("SayText")
-
     register_message(g_msg_saytext, "col_changer")
+    
+    set_task(1.0, "clean_next_file")
 
     return PLUGIN_CONTINUE
+}
+
+public clean_next_file()
+{
+    new next_log_file_path[128]
+    new next_log_file[12]  // for logging
+    new s_cur_date[3]
+    new i_next_date
+
+    get_localinfo("amxx_basedir", next_log_file_path, 127)
+
+    get_time("%d", s_cur_date, 2)
+    i_next_date = str_to_num(s_cur_date) + 1
+    if (i_next_date < 10)
+        format(next_log_file, 127, "chat_0%d.log", i_next_date)
+    else
+        format(next_log_file, 127, "chat_%d.log", i_next_date)
+
+    format(next_log_file_path, 127, 
+        "%s/logs/%s", next_log_file_path, next_log_file)
+
+    if (file_exists(next_log_file_path))
+    {
+        log_amx("[ALLCHAT]: Clean next file - %s", next_log_file)
+        delete_file(next_log_file_path)
+    }
 }
 
 public col_changer(msg_id, msg_dest, rcvr)

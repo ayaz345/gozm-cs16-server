@@ -1562,8 +1562,9 @@ public mysql_thread(failstate, Handle:query, error[], errnum, data[], size)
 {
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError(szQuery, error, errnum, failstate, 18)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, 511)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, 18)
 	}
 	return PLUGIN_HANDLED
 }

@@ -765,8 +765,8 @@ public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, F
 {
     if(FailState)
     {
-        new szQuery[1024]
-        SQL_GetQueryString(Query, szQuery, 1023)
+        new szQuery[512]
+        SQL_GetQueryString(Query, szQuery, 511)
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 99)
     }
 

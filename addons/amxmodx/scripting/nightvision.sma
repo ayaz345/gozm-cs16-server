@@ -8,6 +8,7 @@
 
 #define IMPULSE_FLASHLIGHT 100
 #define m_fNvgState 129
+#define HAS_NVG (1<<0)
 #define NVG_ACTIVATED (1<<8) // 256
 
 #define SetPlayerBit(%1,%2)    ( %1 |=  ( 1 << ( %2 & 31 ) ) )
@@ -92,8 +93,10 @@ public client_disconnect(iPlrId)
 
 public Ham_Spawn_player_Post(iPlrId)
 {
-	if( is_user_alive(iPlrId) && CheckPlayerBit(g_iConnected, iPlrId) )
-		SetPlayerBit(g_iAlive, iPlrId);
+    if( is_user_alive(iPlrId) && CheckPlayerBit(g_iConnected, iPlrId) )
+        SetPlayerBit(g_iAlive, iPlrId);
+
+    fm_set_user_nvg(iPlrId, 1);
 }
 
 public Ham_Killed_player_Post(iPlrId)
@@ -184,4 +187,13 @@ bool:frame_nvg_update(iPlrId, iUpdatingPlayer, iEsHandle, iEnt)
 		}
 	}
 	return false;
+}
+
+stock fm_set_user_nvg(index, onoff = 1)
+{
+	static nvg
+	nvg = get_pdata_int(index, m_fNvgState)
+	
+	set_pdata_int(index, m_fNvgState, onoff == 1 ? nvg | HAS_NVG : nvg & ~HAS_NVG)
+	return 1
 }

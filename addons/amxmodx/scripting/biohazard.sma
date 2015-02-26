@@ -26,7 +26,6 @@
 #define OFFSET_DEATH 444
 #define OFFSET_TEAM 114
 #define OFFSET_ARMOR 112
-#define OFFSET_NVG 129
 #define OFFSET_CSMONEY 115
 #define OFFSET_PRIMARYWEAPON 116
 #define OFFSET_WEAPONTYPE 43
@@ -1666,8 +1665,6 @@ public bacon_spawn_player_post(id)
     remove_task(TASKID_SHOWCLEAN + id)
     remove_task(TASKID_SHOWINFECT + id)
 
-    fm_set_user_nvg(id, 1)
-
     if(g_zombie[id])
         add_delay(id, "cure_user")
     else if(pev(id, pev_rendermode) == kRenderTransTexture)
@@ -2667,15 +2664,6 @@ stock fm_cs_set_user_money(id, value)
 		return;
 	
 	set_pdata_int(id, OFFSET_CSMONEY, value, OFFSET_LINUX)
-}
-
-stock fm_set_user_nvg(index, onoff = 1)
-{
-	static nvg
-	nvg = get_pdata_int(index, OFFSET_NVG)
-	
-	set_pdata_int(index, OFFSET_NVG, onoff == 1 ? nvg | HAS_NVG : nvg & ~HAS_NVG)
-	return 1
 }
 
 stock reset_user_model(index)

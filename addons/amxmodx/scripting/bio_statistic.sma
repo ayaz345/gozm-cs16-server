@@ -428,8 +428,12 @@ public task_announce_best_player(best_id)
 {
     new best_name[32]
     get_user_name(best_id, best_name, 31)
+/*
     colored_print(0, "^x04***^x01 Поздравляем!", best_name)
     colored_print(0, "^x04***^x01 Лучшим игроком карты признан^x03 %s^x01", best_name)
+*/
+    set_hudmessage(_, _, _, _, _, 1)
+    ShowSyncHudMsg(0, CreateHudSyncObj(), "%s	-	лучший игрок!!!", best_name)
 }
 
 public fw_HamKilled(victim, attacker, shouldgib)

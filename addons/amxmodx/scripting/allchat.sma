@@ -42,7 +42,7 @@ public clean_next_file()
 
     if (file_exists(next_log_file_path))
     {
-        log_amx("[ALLCHAT]: Clean next file - %s", next_log_file)
+        log_amx("[ALLCHAT]: Clean next file '%s'", next_log_file)
         delete_file(next_log_file_path)
     }
 }

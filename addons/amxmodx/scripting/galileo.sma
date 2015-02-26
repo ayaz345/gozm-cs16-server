@@ -824,7 +824,7 @@ public map_manageEnd()
             {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
                 //colored_print(0, "^x04***^x01 ПОСЛЕДНИЙ РАУНД! Время карты истекло^x04 ***");
-                set_hudmessage(_, _, _, 0.15, -1.0, 2, _, 5.0, 1.0, _, -1);
+                set_hudmessage(_, _, _, 0.1, -1.0, 2, _, 5.0, 0.3, _, -1);
                 ShowSyncHudMsg(0, CreateHudSyncObj(), "Последний раунд");
             }
 

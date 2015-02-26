@@ -15,7 +15,7 @@ Age=1165213526
 [admincmd.sma]
 Age=1167359164
 [allchat.sma]
-Age=1180349381
+Age=1180372516
 [amx_subnetban2.sma]
 Age=1143868370
 [commencing_prevent.sma]
@@ -39,7 +39,7 @@ Age=1112737929
 [floodban.sma]
 Age=1112259659
 [galileo.sma]
-Age=1180370243
+Age=1180372009
 [Hats_fixed.sma]
 Age=1165213497
 [health_left.sma]
@@ -73,7 +73,7 @@ Age=1165124149
 [zp_web_stats.sma]
 Age=1097995329
 [adminchat.sma]
-Age=1180349384
+Age=1180372495
 [loading_banner.sma]
 Age=1127743891
 [bio_statistic.sma]
@@ -87,7 +87,7 @@ Age=1147620100
 [test.sma]
 Age=1157172235
 [gozm_menu.sma]
-Age=1167358112
+Age=1180372411
 [auto_join_on_connect.sma]
 Age=1146655469
 [team_select_handler.sma]
@@ -133,4 +133,4 @@ Age=1179718560
 [bio_colored_nightvision.sma]
 Age=1180369677
 [colored_nightvision.sma]
-Age=1180369677
+Age=1180372349

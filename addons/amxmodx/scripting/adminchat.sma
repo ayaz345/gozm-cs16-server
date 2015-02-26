@@ -4,6 +4,8 @@
 
 new g_AdminChatFlag = ADMIN_CHAT;
 
+// просто русский коммент
+
 public plugin_init()
 {
     new admin_chat_id

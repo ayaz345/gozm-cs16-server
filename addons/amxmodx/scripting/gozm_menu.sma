@@ -60,7 +60,7 @@ public mainMenu(id, page)
     
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Вперед")
-    menu_setprop(i_Menu, 4, "Закрыть меню")
+    menu_setprop(i_Menu, 4, "Закрыть")
 
     menu_display(id, i_Menu, page)
 

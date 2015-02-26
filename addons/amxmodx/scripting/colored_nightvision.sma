@@ -17,7 +17,7 @@ new g_isalive[MAX_PLAYERS + 1]
 new const g_Colors[][3] =
 {
 //	R	    G	    B
-    {30,	150,	0},	    // 0
+    {0,	    30,	    5},	    // 0
 	{150,	0,	    0},	    // 1
 	{0,	    150,	0},	    // 2
 	{0,	    0,	    150},	// 3
@@ -26,7 +26,7 @@ new const g_Colors[][3] =
 	{202,	31,	    123},	// 6
 	{255,	255,	0}	    // 7
 }
-new const g_Radius = 80
+new const g_Radius = 255
 
 public plugin_init()
 {
@@ -48,7 +48,7 @@ public plugin_init()
 
 public clcmd_nvg(id)
 {
-    colored_print(id, "^x04***^x01 Скоро ты сможешь выбирать цвет ночного!")
+    colored_print(id, "^x04***^x01 РЎРєРѕСЂРѕ С‚С‹ СЃРјРѕР¶РµС€СЊ РІС‹Р±РёСЂР°С‚СЊ С†РІРµС‚ РЅРѕС‡РЅРѕРіРѕ!")
     
     return PLUGIN_HANDLED
 }

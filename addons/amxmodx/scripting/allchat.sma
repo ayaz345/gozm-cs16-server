@@ -2,7 +2,7 @@
 
 #define VERSION "1.1"
 
-new COLCHAR[3][2] = {"^x03"/*team col*/, "^x04"/*green*/, "^x01"/*white*/}
+new COLCHAR[3][2] = {"^x03"/*командный*/, "^x04"/*зеленый*/, "^x01"/*желтый*/}
 
 //vars to check if message has already been duplicated
 new alv_sndr, alv_str2[26], alv_str4[101]

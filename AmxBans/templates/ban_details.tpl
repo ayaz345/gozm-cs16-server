@@ -74,7 +74,7 @@
 		  </tr-->
           <tr bgcolor="#D3D8DC">
             <td height='16' width='30%' class='listtable_1-g'>{"_IP"|lang}</td>
-            <td height='16' width='70%' class='listtable_1-g'>{if $smarty.session.ip_view == "yes" || $ban_info.player_ip == "&nbsp;"}{$ban_info.player_ip}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
+            <td height='16' width='70%' class='listtable_1-g'>{$ban_info.player_ip}</td>
           </tr>
           <tr bgcolor="#D3D8DC">
             <td height='16' width='30%' class='listtable_1-w'>{"_INVOKED"|lang}</td>

@@ -174,10 +174,10 @@
 		  </tr-->
           <tr align='left'>
             <td height='16' class='d-c' width='20%'><b>{"_IP"|lang}</b></td>
-	     <td height='16' class='d-c' width='80%' >{if $smarty.session.ip_view == "yes" || $bans.player_id == "&nbsp;"}{$bans.player_ip}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
+            <td height='16' class='d-c' width='80%'>{$bans.player_ip}</td>
           </tr>
           <tr align='left'>
-            <td height='16' class='d-c' width='20%' ><b>{"_INVOKED"|lang}</b></td>
+            <td height='16' class='d-c' width='20%'><b>{"_INVOKED"|lang}</b></td>
             <td height='16' class='d-c' width='80%'>{$bans.ban_start}</td>
           </tr>
           <tr align='left'>

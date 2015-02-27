@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <fakemeta>
 #include <hamsandwich>
+#include <colored_print>
 
 #define PDATA_SAFE          2
 #define OFFSET_LINUX        5
@@ -20,7 +21,7 @@ new g_isalive[MAX_PLAYERS + 1]
 
 new g_UserNVG[MAX_PLAYERS + 1]
 
-new const g_Radius = 100
+new const g_Radius = 70
 new const g_Colors[][3] =
 {
 //	R	    G	    B
@@ -64,7 +65,14 @@ public client_putinserver(id)
     active_nv[id] = false
     g_UserNVG[id] = DEFAULT_NVG
     
+    set_task(10.0, "nvg_info", id)
+    
     return PLUGIN_CONTINUE
+}
+
+public nvg_info(id)
+{
+    colored_print(id, "^x04***^x01 Смени цвет ночного:^x04 /nvg")
 }
 
 public fwd_client_disconnect(id)

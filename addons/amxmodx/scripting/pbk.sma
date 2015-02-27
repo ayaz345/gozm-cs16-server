@@ -23,7 +23,6 @@ new const AUTHOR[]  = "Brad Jones";
 // player 
 #define MAX_PLAYER_CNT 33	// really 32, but 32 is 0-31 and we want 1-32, so... 33
 
-
 new g_playerJoined[MAX_PLAYER_CNT], g_playerSpawned[MAX_PLAYER_CNT];
 new g_timeJoin[MAX_PLAYER_CNT], g_timeSpec[MAX_PLAYER_CNT], g_timeAFK[MAX_PLAYER_CNT], g_timeSpecQuery[MAX_PLAYER_CNT];
 new Float:g_prevDistance[MAX_PLAYER_CNT];
@@ -40,7 +39,7 @@ new g_cvar_kick2ip, g_cvar_kick2port;
 public plugin_init()
 {
 	register_plugin(PLUGIN, RELEASE, AUTHOR);
-	
+
 	register_cvar("pbk_debug", "-1");
 	register_cvar("pbk_version", RELEASE, FCVAR_SERVER|FCVAR_SPONLY);  // For GameSpy/HLSW and such
 
@@ -52,43 +51,42 @@ public plugin_init()
 	register_forward(FM_PlayerPostThink, "fm_playerPostThink");
 	register_logevent("event_round_start", 2, "0=World triggered", "1=Round_Start");
 	register_logevent("event_round_end", 2, "0=World triggered", "1=Round_End")	;
-	
-	g_cvar_joinMinPlayers		= register_cvar("pbk_join_min_players", "4");
-	g_cvar_joinTime					= register_cvar("pbk_join_time", "120");
-	g_cvar_joinImmunity			= register_cvar("pbk_join_immunity_flags", "");
-	
-	g_cvar_specMinPlayers		= register_cvar("pbk_spec_min_players", "4");
-	g_cvar_specTime					= register_cvar("pbk_spec_time", "120");
-	g_cvar_specImmunity			= register_cvar("pbk_spec_immunity_flags", "");
-	g_cvar_specQuery				= register_cvar("pbk_spec_query", "0");
-	
-	g_cvar_afkMinPlayers		= register_cvar("pbk_afk_min_players", "4");
-	g_cvar_afkTime					= register_cvar("pbk_afk_time", "90");
-	g_cvar_afkImmunity			= register_cvar("pbk_afk_immunity_flags", "");
 
-	g_cvar_log 							= register_cvar("pbk_log", "3");
-	g_cvar_logCnt 					= register_cvar("pbk_log_cnt", "2");
+	g_cvar_joinMinPlayers	= register_cvar("pbk_join_min_players", "4");
+	g_cvar_joinTime			= register_cvar("pbk_join_time", "120");
+	g_cvar_joinImmunity		= register_cvar("pbk_join_immunity_flags", "");
 
-	g_cvar_kick2ip					= register_cvar("pbk_kick2_ip", "");
-	g_cvar_kick2port				= register_cvar("pbk_kick2_port", "27015");
-	
+	g_cvar_specMinPlayers	= register_cvar("pbk_spec_min_players", "4");
+	g_cvar_specTime			= register_cvar("pbk_spec_time", "120");
+	g_cvar_specImmunity		= register_cvar("pbk_spec_immunity_flags", "");
+	g_cvar_specQuery		= register_cvar("pbk_spec_query", "0");
+
+	g_cvar_afkMinPlayers	= register_cvar("pbk_afk_min_players", "4");
+	g_cvar_afkTime			= register_cvar("pbk_afk_time", "90");
+	g_cvar_afkImmunity		= register_cvar("pbk_afk_immunity_flags", "");
+
+	g_cvar_log 				= register_cvar("pbk_log", "3");
+	g_cvar_logCnt 			= register_cvar("pbk_log_cnt", "2");
+
+	g_cvar_kick2ip			= register_cvar("pbk_kick2_ip", "");
+	g_cvar_kick2port		= register_cvar("pbk_kick2_port", "27015");
 }
 
 public plugin_cfg()
 {
 	new configDir[255];
-	formatex(configDir[get_configsdir(configDir, sizeof(configDir)-1)], sizeof(configDir)-1, "/");
+	formatex(configDir[get_configsdir(configDir, sizeof(configDir) - 1)], sizeof(configDir) - 1, "/");
 	server_cmd("exec %spbk.cfg", configDir);
 	server_exec();
-	
-	get_pcvar_string(g_cvar_joinImmunity, g_joinImmunity, sizeof(g_joinImmunity)-1);
-	get_pcvar_string(g_cvar_specImmunity, g_specImmunity, sizeof(g_specImmunity)-1);
-	get_pcvar_string(g_cvar_afkImmunity, g_afkImmunity, sizeof(g_afkImmunity)-1);	
+
+	get_pcvar_string(g_cvar_joinImmunity, g_joinImmunity, sizeof(g_joinImmunity) - 1);
+	get_pcvar_string(g_cvar_specImmunity, g_specImmunity, sizeof(g_specImmunity) - 1);
+	get_pcvar_string(g_cvar_afkImmunity, g_afkImmunity, sizeof(g_afkImmunity) - 1);	
 
 	cycle_log_files("pbk", clamp(get_pcvar_num(g_cvar_logCnt), 0, 11)); // must keep between 0 and 11 months
 
 	register_menucmd(register_menuid("pbk_AreYouThere"), (1<<0)|(1<<1), "query_answered");
-	
+
 	set_task(float(CHECK_FREQ), "check_players", _, _, _, "b");
 }
 
@@ -107,7 +105,7 @@ public client_disconnect(id)
 {
 	g_playerJoined[id] = false;
 	g_playerSpawned[id] = false;
-	
+
 	g_timeJoin[id] = 0;
 	g_timeSpec[id] = 0;
 	g_timeAFK[id] = 0;
@@ -128,14 +126,14 @@ public event_round_start()
 	// reset the coords of each player (for use in AFK checking)
 	new players[32], playerCnt, id;
 	get_players(players, playerCnt, "ch"); // skip bots and hltv
-	
+
 	for (new playerIdx = 0; playerIdx < playerCnt; playerIdx++)
 	{
 		id = players[playerIdx];
 		new target, body
 		g_prevDistance[id] = get_user_aiming(id, target, body)
 	}
-	
+
 	// note that the round has started
 	g_roundInProgress = true;
 }
@@ -151,7 +149,7 @@ public check_players()
 
 	new players[32], id;
 	get_players(players, playerCnt, "ch"); // skip bots and hltv
-	
+
 	for (new playerIdx = 0; playerIdx < playerCnt; playerIdx++)
 	{
 		id = players[playerIdx];
@@ -256,7 +254,7 @@ public handle_time_elapsed(id, eventType)
 		eventImmunity = has_flag(id, g_afkImmunity);
 	}
 	else return;
-	
+
 	if (elapsedSeconds >= maxSeconds) 
 	{
 		// if players have immunity for this event abort

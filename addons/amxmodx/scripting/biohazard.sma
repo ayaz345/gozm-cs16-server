@@ -1994,16 +1994,16 @@ public task_initround()
     for(i = 0; i < num; i++)
     {
         id = players[i]
-        
+
         remove_task(TASKID_SHOWCLEAN + id)
         remove_task(TASKID_SHOWINFECT + id)
-        
+
         if(id == newzombie || g_preinfect[id])
             infect_user(id, 0)
         else
         {
             cs_set_player_team(id, CS_TEAM_CT)
-            
+
             if (g_player_weapons[id][0] == -1)
             {
                 g_player_weapons[id][0] = _random(sizeof g_primaryweapons)
@@ -2021,7 +2021,7 @@ public task_initround()
     {
         static name[32]
         get_user_name(newzombie, name, 31)
-        
+
         ShowSyncHudMsg(0, g_sync_msgdisplay, "%s	-	зомби!!!", name)
         client_print(0, print_console, "%s is zombie!", name)
     }
@@ -2166,7 +2166,7 @@ public display_equipmenu(id)
     len += formatex(menubody[len], 511 - len,"\w1. Новое оружие^n")
     len += formatex(menubody[len], 511 - len,"%s2. Предыдущий выбор^n", hasweap ? "\w" : "\d")
     len += formatex(menubody[len], 511 - len,"%s3. Не показывать меню^n^n", hasweap ? "\w" : "\d")
-    len += formatex(menubody[len], 511 - len,"\w5. Закрыть^n")
+//    len += formatex(menubody[len], 511 - len,"\w5. Закрыть^n")
 
     static keys
     keys = (MENU_KEY_1|MENU_KEY_5)

@@ -243,6 +243,8 @@ define("_NONAME","Пожалуйста введите ваше имя");
 define("_NOMAIL","Пожалуйста введите контактный e-mail");
 define("_NOTEXT","Пожалуйста введите комментарий");
 define("_YOUR","Твой");
+define("_BANNED","ЗАБАНЕН");
+define("_CLEAN","чистый");
 //admin list
 define("_ADMLIST","Список админов");
 define("_ACCESSFLAGS","Доступ");

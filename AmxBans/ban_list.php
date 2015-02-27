@@ -55,7 +55,13 @@ require("$config->path_root/include/functions.lang.php");
 require("$config->path_root/include/functions.inc.php");
 require("$config->path_root/include/steam.inc.php");
 
-// First we get the total number of bans in the date base.
+// Show if client ip is banned.
+$resource	= mysql_query("SELECT bid FROM $config->bans WHERE player_ip='". $_SERVER['REMOTE_ADDR'] ."'") or die(mysql_error());
+//$resource	= mysql_query("SELECT bid FROM $config->bans WHERE player_ip='". "46.42.164.50" ."'") or die(mysql_error());
+$result		= mysql_fetch_object($resource);
+$banned_ip  = $result->bid;
+
+// Get the total number of bans in the date base.
 $resource	= mysql_query("SELECT COUNT(bid) AS all_bans FROM $config->bans") or die(mysql_error());
 $result		= mysql_fetch_object($resource);
 
@@ -391,11 +397,11 @@ $section = "banlist";
 
 $smarty = new dynamicPage;
 
-$smarty->assign("meta","");
-$smarty->assign("title",$title);
-$smarty->assign("section",$section);
-$smarty->assign("dir",$config->document_root);
-$smarty->assign("this",$_SERVER['PHP_SELF']);
+$smarty->assign("meta", "");
+$smarty->assign("title", $title);
+$smarty->assign("section", $section);
+$smarty->assign("dir", $config->document_root);
+$smarty->assign("this", $_SERVER['PHP_SELF']);
 $smarty->assign("fancy_layers", $config->fancy_layers);
 $smarty->assign("display_search", $config->display_search);
 $smarty->assign("display_admin", $config->display_admin);
@@ -403,14 +409,15 @@ $smarty->assign("display_reason", $config->display_reason);
 $smarty->assign("display_demo", $config->display_demo);
 $smarty->assign("display_comments", $config->display_comments);
 $smarty->assign("geoip", $config->geoip);
-$smarty->assign("bans",$ban_array);
-$smarty->assign("count_comm",$count_comm);
-$smarty->assign("count_demo",$count_demo);
-$smarty->assign("pages_results",$pages_results);
+$smarty->assign("banned_ip", $banned_ip);
+$smarty->assign("bans", $ban_array);
+$smarty->assign("count_comm", $count_comm);
+$smarty->assign("count_demo", $count_demo);
+$smarty->assign("pages_results", $pages_results);
 #$smarty->assign("previous_button",$previous_button);
 #$smarty->assign("next_button",$next_button);
-$smarty->assign("new_version",$new_version_exists);
-$smarty->assign("update_url",$config->update_url);
+$smarty->assign("new_version", $new_version_exists);
+$smarty->assign("update_url", $config->update_url);
 
 $smarty->display('main_header.tpl');
 $smarty->display('ban_list.tpl');

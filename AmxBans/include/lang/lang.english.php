@@ -243,6 +243,8 @@ define("_NONAME","Please enter your name");
 define("_NOMAIL","Please enter a correct e-mail");
 define("_NOTEXT","Please enter comment");
 define("_YOUR","Your");
+define("_BANNED","BANNED");
+define("_CLEAN","clean");
 //admin list
 define("_ADMLIST","Admin list");
 define("_ACCESSFLAGS","Access");

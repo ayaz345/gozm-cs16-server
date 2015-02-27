@@ -411,7 +411,7 @@ public event_newround()
             }
         }
 
-        set_task(1.5, "task_announce_best_player", best_id)
+        set_task(5.5, "task_announce_best_player", best_id)
 
         if (g_UserDBId[best_id])
         {
@@ -432,8 +432,8 @@ public task_announce_best_player(best_id)
     colored_print(0, "^x04***^x01 Поздравляем!", best_name)
     colored_print(0, "^x04***^x01 Лучшим игроком карты признан^x03 %s^x01", best_name)
 */
-    set_hudmessage(_, _, _, _, _, 1)
-    ShowSyncHudMsg(0, CreateHudSyncObj(), "%s	-	лучший игрок!!!", best_name)
+    set_hudmessage(_, _, _, _, _, _, _, 5.0)
+    ShowSyncHudMsg(0, CreateHudSyncObj(), "Лучший игрок карты^n^n %s", best_name)
 }
 
 public fw_HamKilled(victim, attacker, shouldgib)

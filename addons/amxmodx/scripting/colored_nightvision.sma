@@ -26,7 +26,7 @@ new const g_Colors[][3] =
 	{202,	31,	    123},	// 6
 	{255,	255,	0}	    // 7
 }
-new const g_Radius = 255
+new const g_Radius = 100
 
 public plugin_init()
 {

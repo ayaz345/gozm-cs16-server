@@ -26,7 +26,7 @@
   </tr>
 	<tr bgcolor="#D3D8DC">
    		<td height='16' width='100%' class='listtable_1' colspan='{if $display_demo == "enabled"}8{else}7{/if}' align='right'>
-        {"_YOUR"|lang} {"_IP"|lang}: <b>{$pages_results.ip}</b> - {if $banned_ip} <a href="{$dir}/ban_details.php?bid={$banned_ip}" style="color:red">{"_BANNED"|lang}</a> {else}{"_CLEAN"|lang}{/if} &nbsp;|&nbsp;
+        {"_YOUR"|lang} {"_IP"|lang}: <b>{$pages_results.ip}</b> - {if $banned_ip} <a href="{$dir}/ban_details.php?bid={$banned_ip}" style="color:red">{"_BANNED"|lang}</a> {else}<font color="green">{"_CLEAN"|lang}</font>{/if} &nbsp;|&nbsp;
 		{if $pages_results.prev_page <> ""}<b><a href="{$dir}/ban_list.php?view={$pages_results.view}&amp;page={$pages_results.prev_page}" class='hover_black'><img src='images/left.gif' border='0' alt='{"_PREVIOUS"|lang}'></a></b> {/if}
 			{"_DISPLAYING"|lang} {$pages_results.page_start} - {$pages_results.page_end} {"_OF"|lang} {$pages_results.all_bans} {"_RESULTS"|lang}
 		{if $pages_results.next_page <> ""} <b><a href="{$dir}/ban_list.php?view={$pages_results.view}&amp;page={$pages_results.next_page}" class='hover_black'><img src='images/right.gif' border='0' alt="{"_NEXT"|lang}"></a></b>{/if}

@@ -1810,7 +1810,7 @@ public task_showtruehealth()
         {
             new Float:health
             pev(id, pev_health, health)
-            set_dhudmessage(255, 255, 0, 0.445, 0.88, 0, _, 0.5, 0.1, 0.0)
+            set_dhudmessage(255, 255, 0, -1.0, 0.89, 0, _, 0.5, 0.1, 0.0)
             show_dhudmessage(id, "HP: %d", floatround(health))
         }
 }

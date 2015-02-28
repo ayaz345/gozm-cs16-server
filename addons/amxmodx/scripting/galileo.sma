@@ -824,7 +824,7 @@ public map_manageEnd()
             {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
                 //colored_print(0, "^x04***^x01 ПОСЛЕДНИЙ РАУНД! Время карты истекло^x04 ***");
-                set_hudmessage(_, _, _, 0.05, -1.0, 2, _, 4.5, 0.2, _, -1);
+                set_hudmessage(_, _, _, 0.07, -1.0, 2, _, 4.5, 0.2, _, -1);
                 ShowSyncHudMsg(0, CreateHudSyncObj(), "Последний раунд");
             }
 
@@ -1443,7 +1443,7 @@ public vote_startDirector(bool:forced)
         set_task(1.0, "vote_countdownPendingVote", _, _, _, "a", 3);
 
         // display the map choices
-        set_task(4.5, "vote_handleDisplay");
+        set_task(4.0, "vote_handleDisplay");
 
         // display the vote outcome 
         if (get_pcvar_num(cvar_voteStatus))
@@ -1770,11 +1770,11 @@ public vote_handleDisplay()
 	
 	if (get_pcvar_num(cvar_voteStatus) == SHOWSTATUS_VOTE)
 	{
-		set_task(1.0, "vote_display", _, arg, sizeof(arg), "a", g_voteDuration);
+		set_task(0.1, "vote_display", _, arg, sizeof(arg), "a", g_voteDuration);
 	}
 	else
 	{
-		set_task(1.0, "vote_display", _, arg, sizeof(arg));
+		set_task(0.1, "vote_display", _, arg, sizeof(arg));
 	}
 }
 

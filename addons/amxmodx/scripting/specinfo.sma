@@ -1,7 +1,6 @@
 #include <amxmodx>
 #include <engine>
 #include <fakemeta>
-#include <nvault>
 
 #define KEYS_STR_LEN 31
 #define LIST_STR_LEN 610

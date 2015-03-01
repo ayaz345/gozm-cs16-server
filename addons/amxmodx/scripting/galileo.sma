@@ -1006,7 +1006,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
             if (idxMap >= 0)
                 if (++mapCnt == 4)	// list 4 maps per chat line
                 {
-                    colored_print(id, "^x04***^x01 Номинировано максимум карт - %d.", mapCnt);
+                    colored_print(id, "^x04***^x01 Все номинации заняты!");
                     nomination_list(id);
                     return PLUGIN_CONTINUE;
                 }
@@ -1443,7 +1443,7 @@ public vote_startDirector(bool:forced)
         set_task(1.0, "vote_countdownPendingVote", _, _, _, "a", 3);
 
         // display the map choices
-        set_task(4.0, "vote_handleDisplay");
+        set_task(4.5, "vote_handleDisplay");
 
         // display the vote outcome 
         if (get_pcvar_num(cvar_voteStatus))
@@ -1770,11 +1770,11 @@ public vote_handleDisplay()
 	
 	if (get_pcvar_num(cvar_voteStatus) == SHOWSTATUS_VOTE)
 	{
-		set_task(0.1, "vote_display", _, arg, sizeof(arg), "a", g_voteDuration);
+		set_task(1.0, "vote_display", _, arg, sizeof(arg), "a", g_voteDuration);
 	}
 	else
 	{
-		set_task(0.1, "vote_display", _, arg, sizeof(arg));
+		set_task(1.0, "vote_display", _, arg, sizeof(arg));
 	}
 }
 

@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <fakemeta>
 #include <hamsandwich>
+#include <nvault>
 #include <colored_print>
 
 #define PDATA_SAFE          2
@@ -10,6 +11,8 @@
 #define IMPULSE_FLASHLIGHT  100
 #define TASKID_NIGHTVISION  376
 #define DEFAULT_NVG         3
+
+new g_nvault_handle
 
 new g_maxplayers
 new active_nv[MAX_PLAYERS + 1]
@@ -22,7 +25,7 @@ new g_isalive[MAX_PLAYERS + 1]
 
 new g_UserNVG[MAX_PLAYERS + 1]
 
-new const g_Radius = 80
+new const g_Radius = 110
 new const g_Colors[][3] =
 {
 //	R	    G	    B
@@ -47,12 +50,24 @@ public plugin_init()
 
     register_forward(FM_CmdStart, "fwd_cmdstart")
     register_forward(FM_ClientDisconnect, "fwd_client_disconnect")
-    register_forward(FM_AddToFullPack, "FM_AddToFullPack_Post", 1);
+    register_forward(FM_AddToFullPack, "FM_AddToFullPack_Post", 1)
 
     RegisterHam(Ham_Killed, "player", "bacon_killed_player")
     RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
 
     g_maxplayers = get_maxplayers()
+}
+
+public plugin_cfg()
+{
+    new nvault_file[] = "gozm_nvg"
+    g_nvault_handle = nvault_open(nvault_file)
+    if (g_nvault_handle == INVALID_HANDLE)
+        set_fail_state("[NVG]: Error opening nvault file '%s'", nvault_file)
+
+    nvault_prune(g_nvault_handle, 0, get_systime() - 31*86400)
+
+    return PLUGIN_CONTINUE
 }
 
 public clcmd_nvg(id)
@@ -68,15 +83,40 @@ public client_putinserver(id)
     active_nv[id] = false
     active_bl[id] = false
     g_UserNVG[id] = DEFAULT_NVG
-    
+
+    new name[32], user_nvg[2], ts
+    get_user_name(id, name, 31)
+    if (nvault_lookup(g_nvault_handle, name, user_nvg, charsmax(user_nvg), ts))
+        g_UserNVG[id] = nvault_get(g_nvault_handle, name)
+
     set_task(14.0, "nvg_info", id)
+
+    return PLUGIN_CONTINUE
+}
+
+public client_infochanged(id)
+{
+    if (!is_user_valid_connected(id))
+        return PLUGIN_CONTINUE
+
+    new newname[32]
+    get_user_info(id, "name", newname, 31)
+    new oldname[32]
+    get_user_name(id, oldname, 31)
     
+    if (!equal(oldname, newname) && !equal(oldname, ""))
+    {
+        new s_user_nvg[3]
+        num_to_str(g_UserNVG[id], s_user_nvg, charsmax(s_user_nvg))
+        nvault_set(g_nvault_handle, newname, s_user_nvg)
+    }
+
     return PLUGIN_CONTINUE
 }
 
 public nvg_info(id)
 {
-    colored_print(id, "^x04***^x01 Смени цвет ночного:^x04 /nvg")
+    colored_print(id, "^x04***^x01 Смени цвет ночного:^x04 /nvg^x01 (сохраняется)")
 }
 
 public fwd_client_disconnect(id)
@@ -96,7 +136,7 @@ public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iP
 {
 	if( 1<=iHost<=g_maxplayers && get_orig_retval() )
     {
-        if( iPlayer && g_isconnected[iPlayer] && active_bl[iPlayer] )
+        if( iPlayer && g_isconnected[iHost] && active_bl[iHost] )
         {
             if( iHost==iEnt )
                 set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT));
@@ -123,8 +163,6 @@ public fwd_cmdstart(id, handle, seed)
 
 public toggle_brightlight(id)
 {
-    // set_pev(id, pev_effects, pev(id, pev_effects) | EF_BRIGHTLIGHT)
-    // set_pev(id, pev_effects, pev(id, pev_effects) &~ EF_BRIGHTLIGHT)
     if(active_bl[id] && active_nv[id])
     {
         active_bl[id] = false
@@ -169,13 +207,13 @@ public toggle_nightvision(id)
         active_bl[id] = false
 
         set_user_nv(TASKID_NIGHTVISION + id)
-        set_task(0.3, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+        set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
         active_nv[id] = true
     }
     else if(!active_nv[id] && !active_bl[id])
     {
         set_user_nv(TASKID_NIGHTVISION + id)
-        set_task(0.3, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+        set_task(0.1, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
         active_nv[id] = true
     }
 }
@@ -194,13 +232,13 @@ public set_user_nv(taskid)
     write_coord(origin[0])
     write_coord(origin[1])
     write_coord(origin[2])
-    write_byte(g_Radius)	        // radius 
+    write_byte(g_Radius)	                    // radius 
 
     write_byte(g_Colors[g_UserNVG[id]][0])		// red
     write_byte(g_Colors[g_UserNVG[id]][1])		// green
     write_byte(g_Colors[g_UserNVG[id]][2])		// blue
 
-    write_byte(4)
+    write_byte(2)
     write_byte(0)
     message_end()
 }
@@ -262,11 +300,20 @@ public nvg_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Data[2], s_Name[64], i_Access, i_Callback
+    new s_Data[3], s_Name[64], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Data, charsmax(s_Data), s_Name, charsmax(s_Name), i_Callback)
     new i_Key = str_to_num(s_Data)
     g_UserNVG[id] = i_Key
 
+    new name[32]
+    get_user_name(id, name, 31)
+    nvault_set(g_nvault_handle, name, s_Data)
+
     menu_destroy(menu)
     return PLUGIN_HANDLED
+}
+
+public plugin_end()
+{
+    nvault_close(g_nvault_handle)
 }

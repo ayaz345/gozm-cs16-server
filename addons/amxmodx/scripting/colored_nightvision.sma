@@ -13,6 +13,7 @@
 
 new g_maxplayers
 new active_nv[MAX_PLAYERS + 1]
+new active_bl[MAX_PLAYERS + 1]
 
 new g_isconnected[MAX_PLAYERS + 1]
 new g_isalive[MAX_PLAYERS + 1]
@@ -21,7 +22,7 @@ new g_isalive[MAX_PLAYERS + 1]
 
 new g_UserNVG[MAX_PLAYERS + 1]
 
-new const g_Radius = 70
+new const g_Radius = 80
 new const g_Colors[][3] =
 {
 //	R	    G	    B
@@ -45,6 +46,8 @@ public plugin_init()
     register_clcmd("nightvision", "nightvision")
 
     register_forward(FM_CmdStart, "fwd_cmdstart")
+    register_forward(FM_ClientDisconnect, "fwd_client_disconnect")
+    register_forward(FM_AddToFullPack, "FM_AddToFullPack_Post", 1);
 
     RegisterHam(Ham_Killed, "player", "bacon_killed_player")
     RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
@@ -63,9 +66,10 @@ public client_putinserver(id)
 {
     g_isconnected[id] = true
     active_nv[id] = false
+    active_bl[id] = false
     g_UserNVG[id] = DEFAULT_NVG
     
-    set_task(10.0, "nvg_info", id)
+    set_task(14.0, "nvg_info", id)
     
     return PLUGIN_CONTINUE
 }
@@ -80,11 +84,26 @@ public fwd_client_disconnect(id)
     g_isconnected[id] = false
     g_isalive[id] = false
     active_nv[id] = false
+    active_bl[id] = false
     g_UserNVG[id] = DEFAULT_NVG
     
     remove_task(TASKID_NIGHTVISION + id)
     
     return FMRES_IGNORED
+}
+
+public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iPSet)
+{
+	if( 1<=iHost<=g_maxplayers && get_orig_retval() )
+    {
+        if( iPlayer && g_isconnected[iPlayer] && active_bl[iPlayer] )
+        {
+            if( iHost==iEnt )
+                set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT));
+        }
+    }
+	
+	return FMRES_IGNORED
 }
 
 public fwd_cmdstart(id, handle, seed)
@@ -95,11 +114,34 @@ public fwd_cmdstart(id, handle, seed)
     if(impulse == IMPULSE_FLASHLIGHT)
     {
         set_uc(handle, UC_Impulse, 0)
-        toggle_nightvision(id)
+        toggle_brightlight(id)
         
         return FMRES_SUPERCEDE
     }
     return FMRES_IGNORED
+}
+
+public toggle_brightlight(id)
+{
+    // set_pev(id, pev_effects, pev(id, pev_effects) | EF_BRIGHTLIGHT)
+    // set_pev(id, pev_effects, pev(id, pev_effects) &~ EF_BRIGHTLIGHT)
+    if(active_bl[id] && active_nv[id])
+    {
+        active_bl[id] = false
+    }
+    else if(active_bl[id] && !active_nv[id])
+    {
+        active_bl[id] = false
+    }
+    else if(!active_bl[id] && active_nv[id])
+    {
+        toggle_nightvision(id)
+        active_bl[id] = true
+    }
+    else if(!active_bl[id] && !active_nv[id])
+    {
+        active_bl[id] = true
+    }
 }
 
 public nightvision(id)
@@ -112,12 +154,25 @@ public nightvision(id)
 
 public toggle_nightvision(id)
 {
-    if(active_nv[id])
+    if(active_nv[id] && active_bl[id])
     {
         remove_task(TASKID_NIGHTVISION + id)
         active_nv[id] = false
     }
-    else if(!(active_nv[id]))
+    else if(active_nv[id] && !active_bl[id])
+    {
+        remove_task(TASKID_NIGHTVISION + id)
+        active_nv[id] = false
+    }
+    else if(!active_nv[id] && active_bl[id])
+    {
+        active_bl[id] = false
+
+        set_user_nv(TASKID_NIGHTVISION + id)
+        set_task(0.3, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
+        active_nv[id] = true
+    }
+    else if(!active_nv[id] && !active_bl[id])
     {
         set_user_nv(TASKID_NIGHTVISION + id)
         set_task(0.3, "set_user_nv", TASKID_NIGHTVISION + id, _, _, "b")
@@ -154,6 +209,7 @@ public bacon_killed_player(victim, killer, shouldgib)
 {
     g_isalive[victim] = false
     active_nv[victim] = false
+    active_bl[victim] = false
     
     remove_task(TASKID_NIGHTVISION + victim)
 
@@ -167,6 +223,7 @@ public bacon_spawn_player_post(id)
 
     g_isalive[id] = true
     active_nv[id] = false
+    active_bl[id] = false
     
     remove_task(TASKID_NIGHTVISION + id)
 

@@ -1,10 +1,15 @@
 #include <amxmodx>
 #include <engine>
 #include <fakemeta>
+#include <nvault>
 
 #define KEYS_STR_LEN 31
 #define LIST_STR_LEN 610
 #define BOTH_STR_LEN KEYS_STR_LEN + LIST_STR_LEN
+
+new g_maxplayers;
+new g_isconnected[MAX_PLAYERS + 1];
+#define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 
 //data arrays
 new cl_keys[33];
@@ -12,9 +17,27 @@ new keys_string[33][KEYS_STR_LEN + 1];
 
 public plugin_init( )
 {
-	register_plugin( "SpecInfo", "1.3.1", "GoZm" );
+    register_plugin( "SpecInfo", "2.0", "GoZm" );
+
+    register_forward(FM_ClientDisconnect, "fwd_client_disconnect")
+
+    g_maxplayers = get_maxplayers();
+
+    set_task( 0.1, "keys_update", _, _, _, "b" );
+}
+
+public client_putinserver(id)
+{
+    g_isconnected[id] = true
     
-	set_task( 0.1, "keys_update", _, _, _, "b" );
+    return PLUGIN_CONTINUE
+}
+
+public fwd_client_disconnect(id)
+{
+    g_isconnected[id] = false
+
+    return FMRES_IGNORED
 }
 
 public keys_update( )
@@ -52,27 +75,28 @@ public keys_update( )
 
 }
 
-public server_frame( )
+public client_PreThink( id )
 {
-    new players[32], num, id;
-    get_players( players, num, "a" );
-    for( new i = 0; i < num; i++ )
-    {
-        id = players[i];
-        new user_button = get_user_button(id)
-        if( user_button & IN_FORWARD )
-            cl_keys[id] |= IN_FORWARD;
-        if( user_button & IN_BACK )
-            cl_keys[id] |= IN_BACK;
-        if( user_button & IN_MOVELEFT )
-            cl_keys[id] |= IN_MOVELEFT;
-        if( user_button & IN_MOVERIGHT )
-            cl_keys[id] |= IN_MOVERIGHT;
-        if( user_button & IN_DUCK )
-            cl_keys[id] |= IN_DUCK;
-        if( user_button & IN_JUMP )
-            cl_keys[id] |= IN_JUMP;
-    }
+    if (!is_user_valid_connected(id)) 
+        return PLUGIN_CONTINUE
+    
+    new user_button = get_user_button(id)
+    if (user_button == 0) 
+        return PLUGIN_CONTINUE // saves a lot of cpu
+
+    if( user_button & IN_FORWARD )
+        cl_keys[id] |= IN_FORWARD;
+    if( user_button & IN_BACK )
+        cl_keys[id] |= IN_BACK;
+    if( user_button & IN_MOVELEFT )
+        cl_keys[id] |= IN_MOVELEFT;
+    if( user_button & IN_MOVERIGHT )
+        cl_keys[id] |= IN_MOVERIGHT;
+    if( user_button & IN_DUCK )
+        cl_keys[id] |= IN_DUCK;
+    if( user_button & IN_JUMP )
+        cl_keys[id] |= IN_JUMP;
+
     return PLUGIN_CONTINUE
 }
 

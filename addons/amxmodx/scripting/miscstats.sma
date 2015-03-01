@@ -33,7 +33,7 @@
 */
 
 #include <amxmodx>
-#include <csx>
+//#include <csx>
 #include <cstrike>
 
 public MultiKill

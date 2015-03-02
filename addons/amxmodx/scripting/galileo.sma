@@ -1004,7 +1004,8 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
         {
             idxMap = g_nomination[idPlayer][idxNomination];
             if (idxMap >= 0)
-                if (++mapCnt == 4)	// list 4 maps per chat line
+                mapCnt++;
+                if (mapCnt >= 4)
                 {
                     colored_print(id, "^x04***^x01 Все номинации заняты!");
                     nomination_list(id);
@@ -1018,7 +1019,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
 
     // assume there'll be more than one match (because we're lazy) and starting building the match menu
     //menu_destroy(g_nominationMatchesMenu[id]);
-    g_nominationMatchesMenu[id] = menu_create("Nominate Map", "nomination_handleMatchChoice");
+    g_nominationMatchesMenu[id] = menu_create("\yНоминации", "nomination_handleMatchChoice");
 
     // gather all maps that match the nomination
     new mapIdx, nominationMap[32], matchCnt = 0, matchIdx = -1, info[1], choice[64], disabledReason[32];
@@ -1060,7 +1061,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
     
     menu_setprop(g_nominationMatchesMenu[id], 2, "Назад");
     menu_setprop(g_nominationMatchesMenu[id], 3, "Вперед");
-    menu_setprop(g_nominationMatchesMenu[id], 4, "Закрыть меню");
+    menu_setprop(g_nominationMatchesMenu[id], 4, "Закрыть");
 
     // handle the number of matches
     switch (matchCnt)
@@ -1276,7 +1277,7 @@ map_nominate(id, idxMap, idNominator = -1)
                 
             //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY", playerNominationMax, nominatedMaps);
             //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY_HLP");
-            colored_print(id, "^x04***^x01 Ты уже выбрал желаемую карту^x04 %s^x01 !", nominatedMaps);
+            colored_print(id, "^x04***^x01 Ты уже номинировал карту^x04 %s", nominatedMaps);
 		}
 		else
 		{

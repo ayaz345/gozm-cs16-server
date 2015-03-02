@@ -1004,8 +1004,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
         {
             idxMap = g_nomination[idPlayer][idxNomination];
             if (idxMap >= 0)
-                mapCnt++;
-                if (mapCnt >= 4)
+                if (++mapCnt >= 4)
                 {
                     colored_print(id, "^x04***^x01 Все номинации заняты!");
                     nomination_list(id);

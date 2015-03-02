@@ -87,7 +87,10 @@ public client_putinserver(id)
     new name[32], user_nvg[2], ts
     get_user_name(id, name, 31)
     if (nvault_lookup(g_nvault_handle, name, user_nvg, charsmax(user_nvg), ts))
+    {
         g_UserNVG[id] = nvault_get(g_nvault_handle, name)
+        nvault_touch(g_nvault_handle, name)
+    }
 
     set_task(14.0, "nvg_info", id)
 
@@ -106,9 +109,12 @@ public client_infochanged(id)
     
     if (!equal(oldname, newname) && !equal(oldname, ""))
     {
-        new s_user_nvg[3]
-        num_to_str(g_UserNVG[id], s_user_nvg, charsmax(s_user_nvg))
-        nvault_set(g_nvault_handle, newname, s_user_nvg)
+        if (g_UserNVG[id] != DEFAULT_NVG)
+        {
+            new s_user_nvg[3]
+            num_to_str(g_UserNVG[id], s_user_nvg, charsmax(s_user_nvg))
+            nvault_set(g_nvault_handle, newname, s_user_nvg)
+        }
     }
 
     return PLUGIN_CONTINUE

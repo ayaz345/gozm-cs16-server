@@ -2158,7 +2158,7 @@ public drop_user(id)
 public display_equipmenu(id)
 {
     static menubody[512], len
-    len = formatex(menubody, 511, "\yВооружение:^n^n")
+    len = formatex(menubody, 511, "\yОружие:^n^n")
 
     static bool:hasweap
     hasweap = ((g_player_weapons[id][0]) != -1 && (g_player_weapons[id][1] != -1)) ? true : false

@@ -2,146 +2,90 @@
 #include <amxmisc>
 #include <fakemeta>
 #include <colored_print>
+#include <nvault>
 
-#define PLUG_NAME 		"HATS"
-#define PLUG_AUTH 		"SgtBane & Dumka"
-#define PLUG_VERS 		"1.8.1"
-#define PLUG_TAG 		"HATS"
+#define PLUG_NAME 		    "Hats"
+#define PLUG_AUTH 		    "Dumka"
+#define PLUG_VERS 		    "2.0"
+#define PLUG_TAG 		    "HATS"
 
-#define HAT_ALL			0
-#define HAT_DUMKA		4
+#define MAX_HATS            64
+#define MODELPATH		    "models/hat"
 
-#define menusize 		256
-#define modelpath		"models/hat"
+#define PDATA_SAFE          2
+#define OFFSET_LINUX        5
+#define OFFSET_CSMENUCODE   205
 
-stock fm_set_entity_visibility(index, visible = 1)
-    set_pev(index, pev_effects,
-        visible == 1 ? pev(index, pev_effects) & ~EF_NODRAW : pev(index, pev_effects) | EF_NODRAW)
+new g_total_hats
+new g_nvault_handle
 
-new g_HatEnt[33]
-new CurrentHat[33]
-new CurrentMenu[33]
+new g_hat_ent[33]
+new g_hat_file[64]
 
-new HatFile[64], UsersHats[64]
-new MenuPages, TotalHats
-
-#define MAX_HATS 64
 new HATMDL[MAX_HATS][26]
 new HATNAME[MAX_HATS][26]
-new HATREST[MAX_HATS]
-new PLAYERNAME[MAX_HATS][32]
 
-public plugin_init() {
+public plugin_init() 
+{
     register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
-    register_menucmd(register_menuid("Hat Menu"), (1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9), "MenuCommand")
-    register_clcmd("say /hats",			"ShowMenu", -1, 	"Shows Knife menu")
-    register_clcmd("say_team /hats",	"ShowMenu", -1, 	"Shows Knife menu")
+    register_clcmd("say /hats",	"access_hats_menu", -1, "Show Hats menu")
+    register_clcmd("say_team /hats", "access_hats_menu", -1, "Show Hats menu")
 }
 
-public ShowMenu(id) {
-	if (has_vip(id)) {
-		CurrentMenu[id] = 1
-		ShowHats(id)
-	} else {
-		colored_print(id,"^x01[^x04%s^x01] Только^x03 ВИПы^x01 могут использовать шапки.",PLUG_TAG)
-	}
-	return PLUGIN_HANDLED
+public plugin_cfg()
+{
+    new nvault_file[] = "gozm_hats"
+    g_nvault_handle = nvault_open(nvault_file)
+    if (g_nvault_handle == INVALID_HANDLE)
+        set_fail_state("[%s]: Error opening nvault file '%s'", PLUG_TAG, nvault_file)
+
+    return PLUGIN_CONTINUE
 }
 
-public ShowHats(id) {
-	new keys = (1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9)
-	
-	new szMenuBody[menusize + 1], WpnID
-	new nLen = format(szMenuBody, menusize, "\yШапки: \w[стр. %i/%i]^n",CurrentMenu[id],MenuPages)
-	
-	new MnuClr[3]
-	// Get Hat Names And Add Them To The List
-	for (new hatid=0; hatid < 8; hatid++) {
-		WpnID = ((CurrentMenu[id] * 8) + hatid - 8)
-		if (WpnID < TotalHats) {
-			menucolor(id, WpnID, MnuClr)
-			nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w%i.%s %s", hatid + 1, MnuClr, HATNAME[WpnID])
-		}
-	}
-	
-	// Next Page And Previous/Close
-	if (CurrentMenu[id] == MenuPages) {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n^n\d9. Дальше")
-	} else {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n^n\w9. Дальше")
-	}
-	
-	if (CurrentMenu[id] > 1) {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Назад")
-	} else {
-		nLen += format(szMenuBody[nLen], menusize-nLen, "^n\w0. Закрыть")
-	}
-	show_menu(id, keys, szMenuBody, -1, "Hat Menu")
-	return PLUGIN_HANDLED
-}
-
-public MenuCommand(id, key) {
-    switch(key)
-    {
-        case 8:		//9 - [Next Page]
-        {
-            if (CurrentMenu[id] < MenuPages) CurrentMenu[id]++
-            ShowHats(id)
-            return PLUGIN_HANDLED
-        }
-        case 9:		//0 - [Close]
-        {
-            CurrentMenu[id]--
-            if (CurrentMenu[id] > 0) ShowHats(id)
-            return PLUGIN_HANDLED
-        }
-        default:
-        {
-            new HatID = ((CurrentMenu[id] * 8) + key - 8)
-            new player_on_line
-            if (HatID < TotalHats) {
-                if (HATREST[HatID] == HAT_DUMKA && !has_rcon(id))
-                    colored_print(id, "^x01[^x04%s^x01] This Hat is too^x03 COOL^x01 for you!", PLUG_TAG)
-                else {
-                    Set_Hat(id, HatID, 0)
-                    player_on_line = get_player_from_file(id)
-                    write_player_to_file(id, HatID, player_on_line)
-                }
-            }
-        }
-    }
-    return PLUGIN_HANDLED
-}
-
-public plugin_precache() {
-	new cfgDir[32]
-	get_configsdir(cfgDir,31)
-	formatex(HatFile,63,"%s/HatList.ini",cfgDir)
-	formatex(UsersHats,63,"%s/UsersHats.ini",cfgDir)
+public plugin_precache() 
+{
+	new cfg_dir[32]
+	get_configsdir(cfg_dir, 31)
+	formatex(g_hat_file, 63, "%s/HatList.ini", cfg_dir)
 	command_load()
-	new tmpfile [101]
-	for (new i = 1; i < TotalHats; ++i) {
-		format(tmpfile, 100, "%s/%s", modelpath, HATMDL[i])
-		if (file_exists (tmpfile)) {
-			precache_model(tmpfile)
-		} else {
-			log_amx("[%s] Failed to precache: %d. %s", PLUG_TAG, i, tmpfile)
-		}
+	new tmpfile[101]
+	for (new i=1; i<g_total_hats; i++) 
+    {
+        format(tmpfile, 100, "%s/%s", MODELPATH, HATMDL[i])
+        if (file_exists(tmpfile)) 
+        {
+            precache_model(tmpfile)
+        }
+        else 
+        {
+            log_amx("[%s] Failed to precache: %d. %s", PLUG_TAG, i, tmpfile)
+        }
 	}
 }
 
-public client_putinserver(id) {
-    g_HatEnt[id] = 0
-    if (has_vip(id)) {
-        load_hat_from_file(id)
+public client_putinserver(id) 
+{
+    g_hat_ent[id] = 0
+    if (_has_vip(id)) 
+    {   
+        new name[32], s_user_hat[3], ts
+        get_user_name(id, name, 31)
+        if (nvault_lookup(g_nvault_handle, name, s_user_hat, charsmax(s_user_hat), ts))
+        {
+            new i_user_hat
+            i_user_hat = nvault_get(g_nvault_handle, name)
+            set_hat(id, i_user_hat, -1)
+        }
     }
     return PLUGIN_CONTINUE
 }
 
-public client_disconnect(id) {
-    if(g_HatEnt[id] > 0) {
-        fm_set_entity_visibility(g_HatEnt[id], 0)
-        g_HatEnt[id] = 0
+public client_disconnect(id) 
+{
+    if(g_hat_ent[id] > 0) 
+    {
+        fm_set_entity_visibility(g_hat_ent[id], 0)
+        g_hat_ent[id] = 0
     }
 }
 
@@ -149,182 +93,196 @@ public client_infochanged(id)
 {
     if (!is_user_connected(id))
         return PLUGIN_CONTINUE
-    
-    new newname[32]
+
+    new newname[32], oldname[32]
     get_user_info(id, "name", newname, 31)
-    new oldname[32]
     get_user_name(id, oldname, 31)
-    
+
     if (!equal(oldname,newname) && !equal(oldname,""))
-        set_task(0.2, "check_access", id)
-    
+        set_task(0.1, "check_access", id)
+
     return PLUGIN_CONTINUE
 }
 
 public check_access(id)
 {
-    if (has_vip(id) && !g_HatEnt[id])
-        load_hat_from_file(id)
-    else if (!has_vip(id) && g_HatEnt[id] > 0)
+    if (_has_vip(id) && !g_hat_ent[id])
     {
-        fm_set_entity_visibility(g_HatEnt[id], 0)
-        g_HatEnt[id] = 0
+        new name[32], s_user_hat[3], ts
+        get_user_name(id, name, 31)
+        if (nvault_lookup(g_nvault_handle, name, s_user_hat, charsmax(s_user_hat), ts))
+        {
+            new i_user_hat
+            i_user_hat = nvault_get(g_nvault_handle, name)
+            set_hat(id, i_user_hat, -1)
+        }
     }
-        
+    else if (!_has_vip(id) && g_hat_ent[id] > 0)
+    {
+        fm_set_entity_visibility(g_hat_ent[id], 0)
+        g_hat_ent[id] = 0
+    }
+
     return PLUGIN_CONTINUE
 }
 
-public Set_Hat(player, imodelnum, targeter) {
+public plugin_end()
+{
+    nvault_close(g_nvault_handle)
+}
+
+public access_hats_menu(id) 
+{
+    if (_has_vip(id)) 
+    {
+        show_hats_menu(id)
+    } 
+    else 
+    {
+        colored_print(id,"^x01[^x04%s^x01] Только^x03 ВИПы^x01 могут использовать шапки", PLUG_TAG)
+    }
+
+    return PLUGIN_HANDLED
+}
+
+public show_hats_menu(id)
+{
+    if(pev_valid(id) == PDATA_SAFE)
+        set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
+
+    new i_menu = menu_create("\yШапки:", "hats_menu_handler")
+
+    for (new hat_id=0; hat_id<g_total_hats; hat_id++) 
+    {
+        new s_hat_id[3]
+        num_to_str(hat_id, s_hat_id, charsmax(s_hat_id))
+        menu_additem(i_menu, HATNAME[hat_id], s_hat_id)
+    }
+
+    menu_setprop(i_menu, 2, "Назад")
+    menu_setprop(i_menu, 3, "Вперед")
+    menu_setprop(i_menu, 4, "Закрыть")
+
+    menu_display(id, i_menu)
+
+    return PLUGIN_HANDLED
+}
+
+public hats_menu_handler(id, menu, item)
+{
+    if (item == MENU_EXIT)
+    {
+        menu_destroy(menu)
+        return PLUGIN_HANDLED
+    }
+
+    new s_hat_num[3], s_hat_name[64], i_access, i_callback
+    menu_item_getinfo(
+        menu, item, i_access, 
+        s_hat_num, charsmax(s_hat_num),
+        s_hat_name, charsmax(s_hat_name), 
+        i_callback
+    )
+    new i_hat_num = str_to_num(s_hat_num)
+    set_hat(id, i_hat_num, 0)
+
+    new name[32]
+    get_user_name(id, name, 31)
+    nvault_set(g_nvault_handle, name, s_hat_num)
+
+    menu_destroy(menu)
+    return PLUGIN_HANDLED
+}
+
+public set_hat(player, imodelnum, targeter) 
+{
     new name[32]
     new tmpfile[101]
-    format(tmpfile, 100, "%s/%s", modelpath, HATMDL[imodelnum])
+    format(tmpfile, 100, "%s/%s", MODELPATH, HATMDL[imodelnum])
     get_user_name(player, name, 31)
-    if (imodelnum == 0) {
-        if(g_HatEnt[player] > 0) {
-            fm_set_entity_visibility(g_HatEnt[player], 0)
+    if (imodelnum == 0) 
+    {
+        if(g_hat_ent[player] > 0) 
+        {
+            fm_set_entity_visibility(g_hat_ent[player], 0)
         }
-    } else if (file_exists(tmpfile)) {
-        if(g_HatEnt[player] < 1) {
-            g_HatEnt[player] = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
-            if(g_HatEnt[player] > 0) {
-                set_pev(g_HatEnt[player], pev_movetype, MOVETYPE_FOLLOW)
-                set_pev(g_HatEnt[player], pev_aiment, player)
-                set_pev(g_HatEnt[player], pev_rendermode, 	kRenderNormal)
-                engfunc(EngFunc_SetModel, g_HatEnt[player], tmpfile)
+    } 
+    else if (file_exists(tmpfile)) 
+    {
+        if(g_hat_ent[player] < 1) 
+        {
+            g_hat_ent[player] = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
+            if(g_hat_ent[player] > 0) 
+            {
+                set_pev(g_hat_ent[player], pev_movetype, MOVETYPE_FOLLOW)
+                set_pev(g_hat_ent[player], pev_aiment, player)
+                set_pev(g_hat_ent[player], pev_rendermode, 	kRenderNormal)
+                engfunc(EngFunc_SetModel, g_hat_ent[player], tmpfile)
             }
-        } else {
-            engfunc(EngFunc_SetModel, g_HatEnt[player], tmpfile)
+        } 
+        else 
+        {
+            engfunc(EngFunc_SetModel, g_hat_ent[player], tmpfile)
         }
         glowhat(player)
-        CurrentHat[player] = imodelnum
-        if (targeter != -1) {
-            colored_print(targeter, "^x01[^x04%s^x01]^x03 %s^x01 надел шапку <%s>",
-                PLUG_TAG, name, HATNAME[imodelnum])
+        if (targeter != -1) 
+        {
+            colored_print(targeter, "^x04***^x03 %s^x01 надел шапку^x04 %s", name, HATNAME[imodelnum])
         }
     }
-    else {
+    else 
+    {
         log_amx("[%s] %s not found!", PLUG_TAG, tmpfile)
     }
 }
 
-public get_player_from_file(id) {
-	new name[32]
-	get_user_name(id, name, 31)
-	new hat_name[25]
-	new hat_model[3]
-	new TotalPlayers=1
-	new sfLineData[128]
-	new file = fopen(UsersHats,"rt")
-	while(file && !feof(file)) {
-		fgets(file,sfLineData,127)
-		
-		// Skip Comment ; // and Empty Lines 
-		if (sfLineData[0] == ';' || strlen(sfLineData) < 1 || (sfLineData[0] == '/' && sfLineData[1] == '/')) continue
-		
-		// BREAK IT UP!
-		parse(sfLineData, PLAYERNAME[TotalPlayers], 32, hat_name, 25, hat_model, 3)
-		if ((containi(PLAYERNAME[TotalPlayers], name) != -1)) {
-			fclose(file)
-			return TotalPlayers-1
-		}
-		TotalPlayers += 1
-	}
-	if(file) fclose(file)
-	return -1
-}
-
-public write_player_to_file(id, model_id, str_num) {
-	new name[32]
-	get_user_name(id, name, 31)
-	new file = fopen(UsersHats,"r+")
-	new data[64], string[10]
-	num_to_str(model_id,string,5)
-	formatex(data, 63, "^"%s^" ^"%s^" ^"%s^"", name, HATNAME[model_id], string)
-	write_file(UsersHats, data, str_num)
-	if(file) fclose(file)
-}
-
 public command_load() {
-	if(file_exists(HatFile)) {
+	if(file_exists(g_hat_file)) 
+    {
 		HATMDL[0] = ""
 		HATNAME[0] = "None"
-		TotalHats = 1
+		g_total_hats = 1
 		new TempCrapA[2]
 		new sfLineData[128]
-		new file = fopen(HatFile,"rt")
-		while(file && !feof(file)) {
+		new file = fopen(g_hat_file,"rt")
+		while(file && !feof(file)) 
+        {
 			fgets(file,sfLineData,127)
-			
+
 			// Skip Comment ; // and Empty Lines 
 			if (sfLineData[0] == ';' || strlen(sfLineData) < 1 || (sfLineData[0] == '/' && sfLineData[1] == '/')) continue
-			
+
 			// BREAK IT UP!
-			parse(sfLineData, HATMDL[TotalHats], 25, HATNAME[TotalHats], 25, TempCrapA, 1)
+			parse(sfLineData, HATMDL[g_total_hats], 25, HATNAME[g_total_hats], 25, TempCrapA, 1)
 			
-			if (TempCrapA[0] == '4') {
-				HATREST[TotalHats] = HAT_DUMKA
-			} else {
-				HATREST[TotalHats] = HAT_ALL
-			}
-			TotalHats += 1
-			if(TotalHats >= MAX_HATS) {
+			g_total_hats += 1
+			if(g_total_hats >= MAX_HATS) 
+            {
 				log_amx("[%s] Break command_load()", PLUG_TAG)
 				break
 			}
 		}
 		if(file) fclose(file)
 	}
-	MenuPages = floatround((TotalHats / 8.0), floatround_ceil)
 }
 
-public menucolor(id, ItemID, MnuClr[3]) {
-	//If its the hat they currently have on
-	if (ItemID == CurrentHat[id]) {
-		MnuClr = "\d"
+public glowhat(id) 
+{
+	if (!pev_valid(g_hat_ent[id])) 
 		return
-	}
-	if (HATREST[ItemID] == HAT_DUMKA) {
-		MnuClr = "\r"
-	} else {
-		MnuClr = "\w"
-	}
+
+	set_pev(g_hat_ent[id], pev_renderfx, kRenderFxNone)
+	set_pev(g_hat_ent[id], pev_renderamt, 0.0)
+
+	fm_set_entity_visibility(g_hat_ent[id], 1)
 	return
 }
 
-public glowhat(id) {
-	if (!pev_valid(g_HatEnt[id])) 
-		return
-		
-	set_pev(g_HatEnt[id], pev_renderfx,	kRenderFxNone)
-	set_pev(g_HatEnt[id], pev_renderamt,	0.0)
-
-	fm_set_entity_visibility(g_HatEnt[id], 1)
-	return
-}
-
-public load_hat_from_file(id) {
-	new player_name[32]
-	get_user_name(id, player_name, 31)
-	new hat_name[25]
-	new hat_model[3]
-	new TotalPlayers=1
-	new sfLineData[128]
-	new file = fopen(UsersHats,"rt")
-	while(file && !feof(file)) {
-		fgets(file,sfLineData,127)
-		
-		// Skip Comment ; // and Empty Lines 
-		if (sfLineData[0] == ';' || strlen(sfLineData) < 1 || (sfLineData[0] == '/' && sfLineData[1] == '/')) continue
-		
-		// BREAK IT UP!
-		parse(sfLineData, PLAYERNAME[TotalPlayers], 33, hat_name, 25, hat_model, 3)
-		if (equal(PLAYERNAME[TotalPlayers], player_name)) {
-			fclose(file)
-			Set_Hat(id, str_to_num(hat_model), -1)
-			return
-		}
-		TotalPlayers += 1
-	}
-	if(file) fclose(file)
-	write_player_to_file(id, 0, -1)
+stock fm_set_entity_visibility(index, visible=1)
+{
+    set_pev(
+        index, 
+        pev_effects, 
+        visible == 1 ? pev(index, pev_effects)&~EF_NODRAW : pev(index, pev_effects)|EF_NODRAW
+    )
 }

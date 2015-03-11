@@ -66,7 +66,7 @@ public plugin_precache()
 public client_putinserver(id) 
 {
     g_hat_ent[id] = 0
-    if (_has_vip(id)) 
+    if (has_vip(id)) 
     {   
         new name[32], s_user_hat[3], ts
         get_user_name(id, name, 31)
@@ -106,7 +106,7 @@ public client_infochanged(id)
 
 public check_access(id)
 {
-    if (_has_vip(id) && !g_hat_ent[id])
+    if (has_vip(id) && !g_hat_ent[id])
     {
         new name[32], s_user_hat[3], ts
         get_user_name(id, name, 31)
@@ -117,7 +117,7 @@ public check_access(id)
             set_hat(id, i_user_hat, -1)
         }
     }
-    else if (!_has_vip(id) && g_hat_ent[id] > 0)
+    else if (!has_vip(id) && g_hat_ent[id] > 0)
     {
         fm_set_entity_visibility(g_hat_ent[id], 0)
         g_hat_ent[id] = 0
@@ -133,7 +133,7 @@ public plugin_end()
 
 public access_hats_menu(id) 
 {
-    if (_has_vip(id)) 
+    if (has_vip(id)) 
     {
         show_hats_menu(id)
     } 

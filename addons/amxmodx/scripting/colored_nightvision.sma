@@ -92,7 +92,7 @@ public client_putinserver(id)
         nvault_touch(g_nvault_handle, name)
     }
 
-    set_task(14.0, "nvg_info", id)
+//    set_task(14.0, "nvg_info", id)
 
     return PLUGIN_CONTINUE
 }

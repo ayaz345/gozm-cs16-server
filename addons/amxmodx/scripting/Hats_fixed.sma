@@ -74,7 +74,8 @@ public client_putinserver(id)
         {
             new i_user_hat
             i_user_hat = nvault_get(g_nvault_handle, name)
-            set_hat(id, i_user_hat, -1)
+            if (i_user_hat < g_total_hats)
+                set_hat(id, i_user_hat, -1)
         }
     }
     return PLUGIN_CONTINUE
@@ -139,7 +140,7 @@ public access_hats_menu(id)
     } 
     else 
     {
-        colored_print(id,"^x01[^x04%s^x01] Только^x03 ВИПы^x01 могут использовать шапки", PLUG_TAG)
+        colored_print(id,"^x01[^x04%s^x01] Только^x03 ВИПЫ^x01 могут использовать шапки", PLUG_TAG)
     }
 
     return PLUGIN_HANDLED

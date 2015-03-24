@@ -4,8 +4,6 @@
 
 new g_AdminChatFlag = ADMIN_CHAT;
 
-// просто русский коммент
-
 public plugin_init()
 {
     new admin_chat_id
@@ -32,7 +30,8 @@ public cmdSayAdmin(id)
 //    if (!is_user_admin(id))
 //        return PLUGIN_CONTINUE
 
-    new message[192], name[32], authid[32]
+    new message[192], duplicate_message[192]
+    new name[32], authid[32]
     new players[32], inum
 
     read_args(message, 191)
@@ -46,6 +45,7 @@ public cmdSayAdmin(id)
     format(logfile, 12, "chat_%s.log", cur_date)
     log_to_file(logfile, "*VIP* %s: %s", name, message[1])
 
+    duplicate_message = message
     format(message, 191, "^x04 %s^x03 %s^x01 : %s", "*VIP*", name, message[1])
 
     get_players(players, inum)
@@ -54,10 +54,16 @@ public cmdSayAdmin(id)
     {
         // dont print the message to the client that used the cmd if he has ADMIN_CHAT to avoid double printing
         if (players[i] != id && (get_user_flags(players[i]) & g_AdminChatFlag || has_rcon(players[i])))
+        {
             colored_print(players[i], "%s", message)
+            
+            // duplicate russian messages
+            console_print(players[i], "%s: %s", name, duplicate_message[1])
+        }
     }
 
     colored_print(id, "%s", message)
+    console_print(id, "%s : %s", name, duplicate_message[1])
 
     return PLUGIN_HANDLED
 }

@@ -6,7 +6,7 @@ new COLCHAR[3][2] = {"^x03"/*командный*/, "^x04"/*зеленый*/, "^x
 
 //vars to check if message has already been duplicated
 new alv_sndr, alv_str2[26], alv_str4[101]
-new msg[200]
+new g_msg[200], g_duplicate_msg[200]
 
 new g_msg_saytext
 
@@ -80,8 +80,11 @@ public col_changer(msg_id, msg_dest, rcvr)
                     {
                         message_begin(MSG_ONE_UNRELIABLE, g_msg_saytext, _, players[i])
                         write_byte(sndr)
-                        write_string(msg)
+                        write_string(g_msg)
                         message_end()
+
+                        // duplicate russian messages
+                        console_print(players[i], g_duplicate_msg)
                     }
                 }
                     
@@ -102,9 +105,10 @@ public buildmsg(sndr, namecol, msgcol, str4[])
     new sndr_name[33]
     get_user_name(sndr, sndr_name, 32)
 
-    format(msg, 199, "%s%s :  %s%s",
+    format(g_msg, 199, "%s%s :  %s%s",
         COLCHAR[namecol], sndr_name, 
         COLCHAR[msgcol], str4)
+    format(g_duplicate_msg, 199, "%s : %s", sndr_name, str4)
 
     // FOR LOGGING
     new cur_date[3], logfile[13]

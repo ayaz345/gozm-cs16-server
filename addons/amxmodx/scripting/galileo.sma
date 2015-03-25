@@ -88,6 +88,7 @@ new bool:g_vote_running = false;
 
 new g_refreshVoteStatus = true, g_voteTallyType[3], g_snuffDisplay[MAX_PLAYER_CNT + 1];
 
+new g_sync_msgdisplay;
 new g_menuChooseMap;
 
 new g_pauseMapEndVoteTask, g_pauseMapEndManagerTask;
@@ -201,6 +202,7 @@ public plugin_init()
 
     cvar_soundsMute					= register_cvar("gal_sounds_mute", "0");
 
+    g_sync_msgdisplay = CreateHudSyncObj();
     //set_task(1.0, "dbg_test",_,_,_,"a", 15);
 }
 
@@ -824,8 +826,9 @@ public map_manageEnd()
             {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
                 //colored_print(0, "^x04***^x01 ПОСЛЕДНИЙ РАУНД! Время карты истекло^x04 ***");
-                set_hudmessage(_, _, _, 0.07, -1.0, 2, _, 4.5, 0.2, _, -1);
-                ShowSyncHudMsg(0, CreateHudSyncObj(), "Последний раунд");
+                //set_hudmessage(_, _, _, 0.07, -1.0, 2, _, 4.5, 0.2, _, -1);
+                set_hudmessage(_, _, _, -1.0, 0.05, 2, _, 180.0, 0.2, _, 4);
+                ShowSyncHudMsg(0, g_sync_msgdisplay, "Последний раунд");
             }
 
             // prevent the map from ending automatically
@@ -846,7 +849,8 @@ public event_round_start()
 {
     g_skip_task_vote_manageEnd = false;
 
-    if (g_wasLastRound) {
+    if (g_wasLastRound) 
+    {
         server_cmd("mp_freezetime %d", cvar_freezetime);
         server_cmd("bh_starttime %d", cvar_bh_starttime);
 //        log_amx("GAL: freeze: %d, bh_start: %d - DEFAULT VALUES", cvar_freezetime, cvar_bh_starttime);
@@ -862,7 +866,10 @@ public logevent_round_end()
 {
     g_skip_task_vote_manageEnd = true;
     
-    if (g_wasLastRound) {
+    if (g_wasLastRound) 
+    {
+        ClearSyncHud(0, g_sync_msgdisplay);
+
         new vote_duration = get_pcvar_num(cvar_voteDuration);
         server_cmd("mp_freezetime %d", vote_duration + 8 + 1);
         server_cmd("bh_starttime %d", vote_duration + 8 + 10);
@@ -2947,7 +2954,7 @@ print_color(id, text[])
         write_string(text);
         message_end();
     }
-}	
+}
 
 map_restoreOriginalTimeLimit()
 {

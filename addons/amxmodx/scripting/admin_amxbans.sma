@@ -143,11 +143,9 @@ public adminSql()
 
     new Handle:query
     query = SQL_PrepareQuery(sql, "\
-        SELECT amx_amxadmins.username, \
-               amx_amxadmins.password, \
-               amx_amxadmins.access, \
-               amx_amxadmins.flags \
-        FROM amx_amxadmins\
+        SELECT username, password, access, flags \
+        FROM amx_amxadmins \
+        WHERE is_active=1 \
     ")
 
     if (!SQL_Execute(query))

@@ -190,6 +190,7 @@
 			<td height='16' class='listtable_1'>SteamID</td>
 			<td height='16' class='listtable_1'>{"_NICKNAME"|lang}</td>
 			<td height='16' class='listtable_1'>Admins list</td>
+            <td height='16' class='listtable_1'>Active</td>
 			<td height='16' class='listtable_1'>{"_ACTION"|lang}</td>
 		</tr>
 		{foreach from=$amxadmin item=amxadmin}
@@ -201,8 +202,9 @@
 			<td height='16' width='5%' class='listtable_1' align='center'><input type='text' name='flags' value='{$amxadmin.flags}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 30px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='steamid' value='{$amxadmin.steamid}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 120px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='nickname' value='{$amxadmin.nickname}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 100px'></td>
-			<td height='16' width='10%' class='listtable_1' align='center'><select name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
-			<td height='16' width='45%' class='listtable_1' align='left'><input type='submit' name='action' value='{"_APPLY"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'> <input type='submit' name='action' value='{"_REMOVE"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px' onclick="javascript:return confirm('{"_DELADMIN"|lang}')"></td>
+            <td height='16' width='10%' class='listtable_1' align='center'><select name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
+			<td height='16' width='10%' class='listtable_1' align='center'><select name='is_active' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Off</option><option value='1' {if $amxadmin.is_active == "1"}selected{/if}>Active</option></select></td>
+            <td height='16' width='45%' class='listtable_1' align='left'><input type='submit' name='action' value='{"_APPLY"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'> <input type='submit' name='action' value='{"_REMOVE"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px' onclick="javascript:return confirm('{"_DELADMIN"|lang}')"></td>
 		</tr>
 		</form>
 		{/foreach}
@@ -216,7 +218,8 @@
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='steamid' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 120px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='nickname' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 100px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><select name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
-			<td height='16' width='45%' class='listtable_1' align='left'><input type='submit' name='action' value='{"_INSERT"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'></td>
+			<td height='16' width='10%' class='listtable_1' align='center'><select name='is_active' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Off</option><option value='1' {if $amxadmin.is_active == "1"}selected{/if}>Active</option></select></td>
+            <td height='16' width='45%' class='listtable_1' align='left'><input type='submit' name='action' value='{"_INSERT"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'></td>
 		</tr>
 		</form>
 		{/if}

@@ -244,7 +244,7 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
         $tmp_result = mysql_fetch_object($tmp_select);
         $tmp_username = $tmp_result->username;
         
-		$resource2	= mysql_query("UPDATE $config->amxadmins SET username = '$username', password = '$password', access = '".$_POST['access']."', flags = '".$_POST['flags']."', steamid = '".$_POST['steamid']."', nickname = '$nickname',ashow = '".$_POST['ashow']."' WHERE id = '".$_POST['id']."'") or die (mysql_error());
+		$resource2	= mysql_query("UPDATE $config->amxadmins SET username = '$username', password = '$password', access = '".$_POST['access']."', flags = '".$_POST['flags']."', steamid = '".$_POST['steamid']."', nickname = '$nickname', ashow = '".$_POST['ashow']."', is_active = '".$_POST['is_active']."' WHERE id = '".$_POST['id']."'") or die (mysql_error());
         $resource3  = mysql_query("UPDATE $config->webadmins SET username = '$username', password = '".MD5($password)."' WHERE username = '$tmp_username'") or die (mysql_error());
         
 		$now = date("U");
@@ -254,7 +254,7 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
 		$username	= htmlentities($_POST['username'], ENT_QUOTES); 
 		$password	= htmlentities($_POST['password'], ENT_QUOTES);
 		$nickname	= htmlentities($_POST['nickname'], ENT_QUOTES);
-		$resource2	= mysql_query("INSERT INTO $config->amxadmins (username, password, access, flags, steamid, nickname, ashow ) VALUES('$username', '$password', '".$_POST['access']."', '".$_POST['flags']."', '".$_POST['steamid']."', '$nickname', '".$_POST['ashow']."')")  or die (mysql_error());
+		$resource2	= mysql_query("INSERT INTO $config->amxadmins (username, password, access, flags, steamid, nickname, ashow, is_active ) VALUES('$username', '$password', '".$_POST['access']."', '".$_POST['flags']."', '".$_POST['steamid']."', '$nickname', '".$_POST['ashow']."', '".$_POST['is_active']."')")  or die (mysql_error());
 
 		$now = date("U");
 		$add_log	= mysql_query("INSERT INTO $config->logs (timestamp, ip, username, action, remarks) VALUES ('$now', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['uid']."', 'amxadmins management', 'Added admin $username')") or die (mysql_error());
@@ -263,7 +263,7 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
     }
 
 	//get all amxadmins
-	$resource = mysql_query("SELECT id, username, password, access, flags, steamid, nickname, ashow FROM $config->amxadmins ORDER BY access ASC, id ASC") or die (mysql_error());
+	$resource = mysql_query("SELECT id, username, password, access, flags, steamid, nickname, ashow, is_active FROM $config->amxadmins ORDER BY access ASC, id ASC") or die (mysql_error());
 
 	$amxadmins_array = array();
 	while($result = mysql_fetch_object($resource)) {
@@ -277,7 +277,8 @@ if (($sektion == "levels") && ($_SESSION['permissions_edit'] == "yes")) {
 			"flags"		=> $result->flags,
 			"steamid"	=> $result->steamid,
 			"nickname"	=> $result->nickname,
-			"ashow"		=> $result->ashow
+			"ashow"		=> $result->ashow,
+            "is_active"	=> $result->is_active,
 			);
 	
 		$amxadmins_array[] = $amxadmins_info;

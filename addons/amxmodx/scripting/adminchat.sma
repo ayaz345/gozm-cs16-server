@@ -1,22 +1,11 @@
 #include <amxmodx>
-#include <amxmisc>
 #include <colored_print>
-
-new g_AdminChatFlag = ADMIN_CHAT;
 
 public plugin_init()
 {
-    new admin_chat_id
-
-    register_plugin("Admin Chat", AMXX_VERSION_STR, "AMXX Dev Team")
-    register_dictionary("adminchat.txt")
-    register_dictionary("common.txt")
+    register_plugin("Admin Chat", AMXX_VERSION_STR, "GoZm")
     register_clcmd("say", "cmdSayAdmin", 0, "@<text> - displays message to admins")
     register_clcmd("say_team", "cmdSayAdmin", 0, "@<text> - displays message to admins")
-    admin_chat_id = register_concmd("amx_chat", "cmdChat", ADMIN_CHAT, "<message> - sends message to admins")
-
-    new str[1]
-    get_concmd(admin_chat_id, str, 0, g_AdminChatFlag, str, 0, -1)
 }
 
 public cmdSayAdmin(id)
@@ -53,7 +42,7 @@ public cmdSayAdmin(id)
     for (new i = 0; i < inum; ++i)
     {
         // dont print the message to the client that used the cmd if he has ADMIN_CHAT to avoid double printing
-        if (players[i] != id && (get_user_flags(players[i]) & g_AdminChatFlag || has_rcon(players[i])))
+        if (players[i] != id && (has_vip(players[i]) || has_rcon(players[i])))
         {
             colored_print(players[i], "%s", message)
             
@@ -64,37 +53,6 @@ public cmdSayAdmin(id)
 
     colored_print(id, "%s", message)
     console_print(id, "%s : %s", name, duplicate_message[1])
-
-    return PLUGIN_HANDLED
-}
-
-public cmdChat(id, level, cid)
-{
-    if (!cmd_access(id, level, cid, 2))
-        return PLUGIN_HANDLED
-
-    new message[192], name[32], players[32], inum, authid[32]
-
-    read_args(message, 191)
-    remove_quotes(message)
-    get_user_authid(id, authid, 31)
-    get_user_name(id, name, 31)
-    get_players(players, inum)
-
-    // FOR CHAT LOGGING
-    new cur_date[3], logfile[13]
-    get_time("%d", cur_date, 2)
-    format(logfile, 12, "chat_%s.log", cur_date)
-    log_to_file(logfile, "*VIP* %s: %s", name, message)
-
-    format(message, 191, "^x04 %s^x03 %s^x01 : %s", "VIP", name, message)
-    console_print(id, "%s", message)
-
-    for (new i = 0; i < inum; ++i)
-    {
-        if (access(players[i], g_AdminChatFlag) || has_rcon(players[i]))
-            colored_print(players[i], "%s", message)
-    }
 
     return PLUGIN_HANDLED
 }

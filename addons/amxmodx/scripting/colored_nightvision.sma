@@ -92,8 +92,6 @@ public client_putinserver(id)
         nvault_touch(g_nvault_handle, name)
     }
 
-//    set_task(14.0, "nvg_info", id)
-
     return PLUGIN_CONTINUE
 }
 
@@ -120,11 +118,6 @@ public client_infochanged(id)
     return PLUGIN_CONTINUE
 }
 
-public nvg_info(id)
-{
-    colored_print(id, "^x04***^x01 Смени цвет ночного:^x04 /nvg^x01 (сохраняется)")
-}
-
 public fwd_client_disconnect(id)
 {
     g_isconnected[id] = false
@@ -140,12 +133,12 @@ public fwd_client_disconnect(id)
 
 public FM_AddToFullPack_Post(iEsHandle, iE, iEnt, iHost, iHostFlags, iPlayer, iPSet)
 {
-	if( 1<=iHost<=g_maxplayers && get_orig_retval() )
+	if (1<=iHost<=g_maxplayers && get_orig_retval())
     {
-        if( iPlayer && g_isconnected[iHost] && active_bl[iHost] )
+        if (iPlayer && g_isconnected[iHost] && active_bl[iHost])
         {
-            if( iHost==iEnt )
-                set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT));
+            if (iHost==iEnt)
+                set_es(iEsHandle, ES_Effects, (get_es(iEsHandle, ES_Effects)|EF_BRIGHTLIGHT))
         }
     }
 	

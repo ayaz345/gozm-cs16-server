@@ -3,14 +3,16 @@
 #include <cs_teams_api>
 #include <colored_print>
 
-#define PDATA_SAFE 2
-#define OFFSET_LINUX 5
-#define OFFSET_CSMENUCODE 205
-#define MPROP_BACKNAME 2
-#define MPROP_NEXTNAME 3
-#define MPROP_EXITNAME 4
-#define OFFSET_TEAM 114
-#define TASKID_NEWROUND	641
+#define PDATA_SAFE          2
+#define OFFSET_LINUX        5
+
+#define MPROP_BACKNAME      2
+#define MPROP_NEXTNAME      3
+#define MPROP_EXITNAME      4
+
+#define OFFSET_TEAM         114
+#define OFFSET_CSMENUCODE   205
+#define TASKID_NEWROUND	    641
 
 enum
 {

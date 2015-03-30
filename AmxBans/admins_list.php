@@ -18,7 +18,7 @@ $resource	= mysql_query(
 	"SELECT admins.id, admins.access, admins.nickname, players.last_seen
     FROM $config->amxadmins AS admins
 	LEFT JOIN bio_players AS players ON BINARY admins.nickname = players.nick
-	WHERE ashow = '1'
+	WHERE ashow = '1' AND is_active = '1'
     ORDER BY access, id ASC"
 	) or die(mysql_error());
 
@@ -35,7 +35,7 @@ while($result = mysql_fetch_object($resource)) {
 			"nickname"	=> $result->nickname,
 			"time"		=> $date
 			);
-	
+
 		$amxadmins_array[] = $amxadmins_info;
 }
 

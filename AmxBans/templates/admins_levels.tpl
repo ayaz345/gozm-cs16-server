@@ -55,7 +55,7 @@
 		<td height='16' width='2%' class='listtable_1' align='center'><input type='hidden' name='sektion' value='{$sektion}'>{$level.level}</td>
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-bans_add' value='no'><input type='checkbox' name='{$level.level}-bans_add' {if $level.bans_add == "yes"}checked{/if}></td>
 		<td height='16' width='9%' class='listtable_1' align='center'>
-			
+
 			<select name='{$level.level}-bans_edit' style='font-family: verdana, tahoma, arial; font-size: 10px'>
 			<option value='no' {if $level.bans_edit == "no"}selected{/if}>{"_NO"|lang}</option>
 			<option value='yes' {if $level.bans_edit == "yes"}selected{/if}>{"_YES"|lang}</option>
@@ -63,7 +63,7 @@
 		</td>
 
 		<td height='16' width='9%' class='listtable_1' align='center'>
-			
+
 			<select name='{$level.level}-bans_delete' style='font-family: verdana, tahoma, arial; font-size: 10px'>
 			<option value='no' {if $level.bans_delete == "no"}selected{/if}>{"_NO"|lang}</option>
 			<option value='yes' {if $level.bans_delete == "yes"}selected{/if}>{"_YES"|lang}</option>
@@ -71,7 +71,7 @@
 		</td>
 
 		<td height='16' width='9%' class='listtable_1' align='center'>
-			
+
 			<select name='{$level.level}-bans_unban' style='font-family: verdana, tahoma, arial; font-size: 10px'>
 			<option value='no' {if $level.bans_unban == "no"}selected{/if}>{"_NO"|lang}</option>
 			<option value='yes' {if $level.bans_unban == "yes"}selected{/if}>{"_YES"|lang}</option>
@@ -82,14 +82,14 @@
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-bans_export' value='no'><input type='checkbox' name='{$level.level}-bans_export' {if $level.bans_export == "yes"}checked{/if}></td>
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-amxadmins_edit' value='no'><input type='checkbox' name='{$level.level}-amxadmins_edit' {if $level.amxadmins_edit == "yes"}checked{/if}></td>
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-webadmins_edit' value='no'><input type='checkbox' name='{$level.level}-webadmins_edit' {if $level.webadmins_edit == "yes"}checked{/if}></td>
-		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-servers_edit' value='no'><input type='checkbox' name='{$level.level}-servers_edit' {if $level.servers_edit == "yes"}checked{/if}>		
+		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-servers_edit' value='no'><input type='checkbox' name='{$level.level}-servers_edit' {if $level.servers_edit == "yes"}checked{/if}>
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-permissions_edit' value='no'><input type='checkbox' name='{$level.level}-permissions_edit' {if $level.permissions_edit == "yes"}checked{/if}></td>
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-prune_db' value='no'><input type='checkbox' name='{$level.level}-prune_db' {if $level.prune_db == "yes"}checked{/if}></td>
 		<td height='16' width='8%' class='listtable_1' align='center'><input type='hidden' name='{$level.level}-ip_view' value='no'><input type='checkbox' name='{$level.level}-ip_view' {if $level.ip_view == "yes"}checked{/if}>
 	</tr>
 {/foreach}
 	<tr class="listtable_1-{cycle values="w,g"}tr">
-		<td height='16' class='listtable_1' colspan='13' align='right'>{"_ADDLEVEL"|lang} 
+		<td height='16' class='listtable_1' colspan='13' align='right'>{"_ADDLEVEL"|lang}
 
 		<select name='new_lvl' style='font-family: verdana, tahoma, arial; font-size: 10px'>
 		{foreach from=$available_levels item=available_levels}
@@ -100,7 +100,7 @@
 		<input type='submit' name='action' value='{"_ADD"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 100px'></td>
 	</tr>
 	<tr class="listtable_1-{cycle values="w,g"}tr">
-		<td height='16' class='listtable_1' colspan='13' align='right'>{"_REMOVELEVEL"|lang} 
+		<td height='16' class='listtable_1' colspan='13' align='right'>{"_REMOVELEVEL"|lang}
 
 		<select name='ex_lvl' style='font-family: verdana, tahoma, arial; font-size: 10px'>
 		{foreach from=$existing_levels item=existing_levels}
@@ -116,7 +116,7 @@
 	</form>
 </table>
 {/if}
-				
+
 {if $sektion == "webadmins" && $smarty.session.webadmins_edit == "yes"}
 	<br>
 	<table cellspacing='1' class='listtable' width='100%'>
@@ -135,34 +135,34 @@
 			<td height='16' class='listtable_1' align='center'><input type='hidden' name='sektion' value='webadmins'><input type='hidden' name='id' value='{$webadmin.id}'><input type='text' name='username' value='{$webadmin.username}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 150px'></td>
 			<td height='16' class='listtable_1' align='center'><input type='text' name='password' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 150px'></td>
 			<td height='16' class='listtable_1' align='center'>
-	
+
 			{assign var=temp value=$webadmin.existing_lvls}
 			<select name='level' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 50px'>
 			{foreach item=item from=$temp}
 			<option value='{$item}' {if $item == $webadmin.level}selected{/if}>{$item}</option>
 			{/foreach}
 			</select>
-	
+
 			</td>
 			<td height='16' class='listtable_1' align='left'><input type='submit' name='action' value='{"_APPLY"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'> <input type='submit' name='action' value='{"_REMOVE"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px' onclick="javascript:return confirm('{"_DELADMIN"|lang}')"></td>
 		</tr>
 		</form>
 		{/foreach}
-	
+
 		{if $action == lang("_ADDWEBADMINS")}
 		<form name='admins' method='post' action='{$this}'>
 		<tr class="listtable_1-{cycle values="w,g"}tr">
 			<td height='16' class='listtable_1' align='center'><input type='hidden' name='sektion' value='webadmins'><input type='hidden' name='sektion' value='webadmins'><input type='text' name='username' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 150px'></td>
 			<td height='16' class='listtable_1' align='center'><input type='text' name='password' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 150px'></td>
 			<td height='16' class='listtable_1' align='center'>
-	
+
 			{assign var=temp value=$webadmin.existing_lvls}
 			<select name='level' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 50px'>
 			{foreach item=item from=$temp}
 			<option value='{$item}'>{$item}</option>
 			{/foreach}
 			</select>
-	
+
 			</td>
 			<td height='16' class='listtable_1' align='left'><input type='submit' name='action' value='{"_INSERT"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'></td>
 		</tr>
@@ -202,8 +202,8 @@
 			<td height='16' width='5%' class='listtable_1' align='center'><input type='text' name='flags' value='{$amxadmin.flags}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 30px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='steamid' value='{$amxadmin.steamid}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 120px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='nickname' value='{$amxadmin.nickname}' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 100px'></td>
-            <td height='16' width='10%' class='listtable_1' align='center'><select name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
-			<td height='16' width='10%' class='listtable_1' align='center'><select name='is_active' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Off</option><option value='1' {if $amxadmin.is_active == "1"}selected{/if}>Active</option></select></td>
+            <td height='16' width='10%' class='listtable_1' align='center'><select name='is_active' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Off</option><option value='1' {if $amxadmin.is_active == "1"}selected{/if}>Active</option></select></td>
+            <td height='16' width='10%' class='listtable_1' align='center'><select {if $amxadmin.is_active == "0"}disabled{/if} name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
             <td height='16' width='45%' class='listtable_1' align='left'><input type='submit' name='action' value='{"_APPLY"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'> <input type='submit' name='action' value='{"_REMOVE"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px' onclick="javascript:return confirm('{"_DELADMIN"|lang}')"></td>
 		</tr>
 		</form>
@@ -217,8 +217,8 @@
 			<td height='16' width='5%' class='listtable_1' align='center'><input type='text' name='flags' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 30px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='steamid' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 120px'></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><input type='text' name='nickname' style='font-family: verdana, tahoma, arial; font-size: 10px; width: 100px'></td>
-			<td height='16' width='10%' class='listtable_1' align='center'><select name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
 			<td height='16' width='10%' class='listtable_1' align='center'><select name='is_active' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Off</option><option value='1' {if $amxadmin.is_active == "1"}selected{/if}>Active</option></select></td>
+			<td height='16' width='10%' class='listtable_1' align='center'><select {if $amxadmin.is_active == "0"}disabled{/if} name='ashow' style='font-family: verdana, tahoma, arial; font-size: 10px'><option value='0'>Not show</option><option value='1' {if $amxadmin.ashow == "1"}selected{/if}>Show</option></select></td>
             <td height='16' width='45%' class='listtable_1' align='left'><input type='submit' name='action' value='{"_INSERT"|lang}' style='font-family: verdana, tahoma, arial; font-size: 10px'></td>
 		</tr>
 		</form>
@@ -271,5 +271,5 @@
 	</tr>
 	</table>
 	{/if}
-	
+
 	<!-- Comment out line 187, 198 and 211 (password field) in admins_levels.tpl then your width will be smaller -->

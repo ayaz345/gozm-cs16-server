@@ -28,8 +28,14 @@ new HATNAME[MAX_HATS][26]
 public plugin_init() 
 {
     register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
+
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
+
     register_clcmd("say /hats",	"access_hats_menu", -1, "Show Hats menu")
     register_clcmd("say_team /hats", "access_hats_menu", -1, "Show Hats menu")
+
+    return PLUGIN_CONTINUE
 }
 
 public plugin_cfg()

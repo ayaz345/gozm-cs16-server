@@ -123,6 +123,9 @@ public plugin_init()
 
     register_plugin("Galileo", pluginVersion, "Brad Jones");
 
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE;
+
     register_cvar("gal_version", pluginVersion, FCVAR_SERVER|FCVAR_SPONLY);
     set_cvar_string("gal_version", pluginVersion);
 
@@ -204,6 +207,8 @@ public plugin_init()
 
     g_sync_msgdisplay = CreateHudSyncObj();
     //set_task(1.0, "dbg_test",_,_,_,"a", 15);
+
+    return PLUGIN_CONTINUE;
 }
 
 public dbg_fakeVotes()

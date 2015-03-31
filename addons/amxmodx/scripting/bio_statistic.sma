@@ -73,7 +73,7 @@ public plugin_init()
     register_plugin(PLUGIN, VERSION, AUTHOR)
 
     if(!is_server_licenced())
-        return
+        return PLUGIN_CONTINUE
 
     g_CvarHost = register_cvar("bio_stats_host", "195.128.158.196")
     g_CvarDB = register_cvar("bio_stats_db", "b179761")
@@ -93,6 +93,8 @@ public plugin_init()
 	
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
     register_logevent("logevent_endRound", 2, "1=Round_End")
+
+    return PLUGIN_CONTINUE
 }
 
 public plugin_cfg()

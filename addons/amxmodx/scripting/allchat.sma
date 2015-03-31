@@ -13,6 +13,10 @@ new g_msg_saytext
 public plugin_init()
 {
     register_plugin("All Chat", VERSION, "Ian Cammarata")
+
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
+
     g_msg_saytext = get_user_msgid("SayText")
     register_message(g_msg_saytext, "col_changer")
     

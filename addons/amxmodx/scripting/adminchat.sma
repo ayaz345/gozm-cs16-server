@@ -4,8 +4,14 @@
 public plugin_init()
 {
     register_plugin("Admin Chat", AMXX_VERSION_STR, "GoZm")
+
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
+
     register_clcmd("say", "cmdSayAdmin", 0, "@<text> - displays message to admins")
     register_clcmd("say_team", "cmdSayAdmin", 0, "@<text> - displays message to admins")
+
+    return PLUGIN_CONTINUE
 }
 
 public cmdSayAdmin(id)

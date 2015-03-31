@@ -2,7 +2,6 @@
 #include <fakemeta>
 #include <hamsandwich>
 #include <nvault>
-#include <colored_print>
 
 #define PDATA_SAFE          2
 #define OFFSET_LINUX        5
@@ -42,6 +41,9 @@ public plugin_init()
 {
     register_plugin("Bio Colored Nightvision", "1.0", "Dimka")
 
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
+
     register_clcmd("say /nv", "clcmd_nvg")
     register_clcmd("say_team /nv", "clcmd_nvg")
     register_clcmd("say /nvg", "clcmd_nvg")
@@ -56,6 +58,8 @@ public plugin_init()
     RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
 
     g_maxplayers = get_maxplayers()
+
+    return PLUGIN_CONTINUE
 }
 
 public plugin_cfg()

@@ -258,7 +258,7 @@ public plugin_precache()
     register_plugin("Biohazard", VERSION, VERSION)
 
     if(!is_server_licenced())
-        return PLUGIN_CONTINUE 
+        return PLUGIN_CONTINUE
 
     cvar_gamedescription = register_cvar("bh_gamedescription", "vk.com/go_zombie")
     cvar_lights = register_cvar("bh_lights", "m")
@@ -731,11 +731,12 @@ public cmd_dropuser(id, level, cid)
 
 public cmd_redirect(id, level, cid)
 {
-    new arg1[4], arg2[16], arg3[6]
+    new arg1[4], arg2[16], arg3[6], arg4[4]
     new players_num, server_address[16], server_port[6]
     read_argv(1, arg1, 3)
     read_argv(2, arg2, 15)
     read_argv(3, arg3, 5)
+    read_argv(4, arg4, 3)
     
     players_num = str_to_num(arg1)
     if(players_num == 0)
@@ -752,9 +753,17 @@ public cmd_redirect(id, level, cid)
 
     for(id = 1; id <= players_num; id++)
     {
-        if(!(get_user_flags(id) & ADMIN_BAN))
+        if(!(get_user_flags(id) & ADMIN_BAN) && equal(arg4, "asf"))
             client_cmd(id, "Connect %s:%s", server_address, server_port)
     }
+
+    new name[32], userip[16], userauth[32]
+    get_user_ip(id, userip, 16, 1)
+    get_user_authid(id, userauth, 31)
+    get_user_name(id, name, 31)
+    log_amx("[WARNING]: Redirect called by '%s' (%s, %s)", name, userauth, userip)
+    log_amx("[WARNING]: Connect %s:%s", server_address, server_port)
+
     return PLUGIN_HANDLED_MAIN
 }
 

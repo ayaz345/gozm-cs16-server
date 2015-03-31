@@ -1,15 +1,18 @@
 #include <amxmodx>
 #include <fakemeta>
+#include <hamsandwich>
 #include <cs_teams_api>
 #include <colored_print>
 
-#define PDATA_SAFE          2
-#define OFFSET_LINUX        5
+#define ADMIN               ADMIN_RCON
+#define VIP                 ADMIN_LEVEL_H
 
 #define MPROP_BACKNAME      2
 #define MPROP_NEXTNAME      3
 #define MPROP_EXITNAME      4
 
+#define PDATA_SAFE          2
+#define OFFSET_LINUX        5
 #define OFFSET_TEAM         114
 #define OFFSET_CSMENUCODE   205
 #define TASKID_NEWROUND	    641
@@ -25,6 +28,10 @@ enum
 public plugin_init()
 {
     register_plugin("GoZm Menu", "1.0", "Dimka")
+
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
+
     register_clcmd("gozm_menu", "mainMenu", _, "GoZm Menu")
     
     register_clcmd("chooseteam", "clcmd_changeteam")
@@ -35,7 +42,11 @@ public plugin_init()
     register_clcmd("say /bans", "show_bans")
     register_clcmd("say_team /bans", "show_bans")
 
+    RegisterHam(Ham_Killed, "player", "fwd_HamKilled")
+
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
+
+    return PLUGIN_CONTINUE
 }
 
 public mainMenu(id, page)
@@ -47,19 +58,24 @@ public mainMenu(id, page)
 
     menu_additem(i_Menu, "Выбрать оружие", "1")
     menu_additem(i_Menu, "Выбрать карту", "2")
-    menu_additem(i_Menu, "Бан", "3")
-    menu_additem(i_Menu, "Заглушка", "4")
+    menu_additem(i_Menu, "Выбрать цвет ночного", "3")
+    menu_additem(i_Menu, "Застрял!", "4")
     menu_additem(i_Menu, "Лучшие игроки", "5")
-    menu_additem(i_Menu, "В наблюдатели", "6")
-    menu_additem(i_Menu, "В игру", "7")
-    menu_additem(i_Menu, "Застрял!", "8")
-    menu_additem(i_Menu, "Список банов", "9")
-    menu_additem(i_Menu, "Разбан", "10")
-    menu_additem(i_Menu, "Разрешить говорить", "11")
-    menu_additem(i_Menu, "История игрока", "12")
-    menu_additem(i_Menu, "Шапки", "13")
-    menu_additem(i_Menu, "Почистить setinfo", "14")
-    
+    if (fm_get_user_team(id) == TEAM_SPECTATOR)
+        menu_additem(i_Menu, "В игру", "6")
+    else if (fm_get_user_team(id) != TEAM_UNASSIGNED)
+        menu_additem(i_Menu, "В наблюдатели", "6")
+    else
+        menu_additem(i_Menu, "В игру", "6")
+    menu_additem(i_Menu, "Список банов", "7")
+    menu_additem(i_Menu, "Бан", "8", ADMIN | VIP)
+    menu_additem(i_Menu, "Заглушка", "9", ADMIN | VIP)
+    menu_additem(i_Menu, "Разбан", "10", ADMIN | VIP)
+    menu_additem(i_Menu, "Разрешить говорить", "11", ADMIN | VIP)
+    menu_additem(i_Menu, "История игрока", "12", ADMIN | VIP)
+    menu_additem(i_Menu, "Шапки", "13", ADMIN | VIP)
+    menu_additem(i_Menu, "Почистить setinfo", "14", ADMIN | VIP)
+
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Вперед")
     menu_setprop(i_Menu, 4, "Закрыть")
@@ -85,22 +101,29 @@ public menu_handler(id, menu, item)
     {
         case 1:
             client_cmd(id, "say /guns")
-        case 2: 
+        case 2:
             client_cmd(id, "say nominate")
-        case 3: 
-            client_cmd(id, "say /ban")
-        case 4: 
-            client_cmd(id, "say /mute")
+        case 3:
+            client_cmd(id, "say /nvg")
+        case 4:
+            client_cmd(id, "say /unstuck")
         case 5:
             client_cmd(id, "say /top")
         case 6:
-            allow_join_spec(id)
+        {
+            if (fm_get_user_team(id) == TEAM_SPECTATOR)
+                allow_join_game(id)
+            else if (fm_get_user_team(id) != TEAM_UNASSIGNED)
+                allow_join_spec(id)
+            else
+                log_amx("[GOZM_MENU]: Called by unassigned user: %d", id)
+        }
         case 7:
-            allow_join_game(id)
-        case 8:
-            client_cmd(id, "say /unstuck")
-        case 9:
             show_bans(id)
+        case 8:
+            client_cmd(id, "say /ban")
+        case 9:
+            client_cmd(id, "say /mute")
         case 10:
             client_cmd(id, "amx_unban_by_name")  // voteban.amxx
         case 11:
@@ -173,6 +196,19 @@ public show_bans(id)
     return PLUGIN_HANDLED
 }
 
+public fw_HamKilled(victim, attacker, shouldgib)
+{
+    new old_menu, new_menu, menupage
+    player_menu_info(victim, old_menu, new_menu, menupage)
+    if (new_menu != -1)
+    {
+        menu_destroy(new_menu)
+        mainMenu(victim, menupage)
+    }
+
+    return HAM_IGNORED
+}
+
 public event_newround()
 {
     remove_task(TASKID_NEWROUND)
@@ -208,7 +244,7 @@ stock fm_get_user_team(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
 	if (pev_valid(id) != PDATA_SAFE)
-		return TEAM_SPECTATOR
+		return TEAM_UNASSIGNED
 	
 	return get_pdata_int(id, OFFSET_TEAM, OFFSET_LINUX)
 }

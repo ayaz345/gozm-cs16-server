@@ -196,7 +196,7 @@ public show_bans(id)
     return PLUGIN_HANDLED
 }
 
-public fw_HamKilled(victim, attacker, shouldgib)
+public fwd_HamKilled(victim, attacker, shouldgib)
 {
     new old_menu, new_menu, menupage
     player_menu_info(victim, old_menu, new_menu, menupage)

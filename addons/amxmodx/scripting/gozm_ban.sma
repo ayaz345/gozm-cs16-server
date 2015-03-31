@@ -13,6 +13,10 @@ new ban_reason[128]
 public plugin_init()
 {
     register_plugin("GoZm Ban", "3.0", "Dimka")
+
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
+
     register_clcmd("say", "say_it" )
     register_clcmd("say_team", "say_it" )
     register_clcmd("VIP_REASON", "set_custom_ban_reason")
@@ -20,6 +24,8 @@ public plugin_init()
     register_clcmd("BANNED_NICKNAME", "unban_by_nickname")
     
     g_ban_time = register_cvar("amxx_voteban_bantime", "30")
+
+    return PLUGIN_CONTINUE
 }
 
 public say_it(id)
@@ -119,14 +125,14 @@ public choose_ban_reason(id)
 
     menu_additem(i_Menu, "WallHack", "20160")
     menu_additem(i_Menu, "SpeedHack & AIM", "40320")
-    menu_additem(i_Menu, "Block", "30")
-    menu_additem(i_Menu, "Reconnect", "15")
-    menu_additem(i_Menu, "Mat", "60")
-    menu_additem(i_Menu, "Auto B-Hop", "10080")
-    menu_additem(i_Menu, "Custom", "1")
-    menu_additem(i_Menu, "OCKOP6JIEHU9I", "1440")
-    menu_additem(i_Menu, "O6XOD", "10080")
-    
+    menu_additem(i_Menu, "Блок", "30")
+    menu_additem(i_Menu, "Реконнект", "15")
+    menu_additem(i_Menu, "Мат", "60")
+    menu_additem(i_Menu, "Скриптовые прыжки", "10080")
+    menu_additem(i_Menu, "Своя причина", "-1")
+    menu_additem(i_Menu, "Оскорбления", "1440")
+    menu_additem(i_Menu, "Обход", "10080")
+
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Дальше")
     menu_setprop(i_Menu, 4, "Закрыть")
@@ -147,8 +153,8 @@ public reason_menu_handler(id, menu, item)
     new s_Reason[64], s_Length[6], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Length, charsmax(s_Length), s_Reason, charsmax(s_Reason), i_Callback)
     new ban_length = str_to_num(s_Length)
-    
-    if(ban_length == 1)
+
+    if(ban_length == -1)
         client_cmd(id, "messagemode VIP_REASON")
     else
         actual_ban(id, ban_length, s_Reason)

@@ -831,8 +831,8 @@ public map_manageEnd()
             {
                 //client_print(0, print_chat, "%L %L", LANG_PLAYER, "GAL_CHANGE_TIMEEXPIRED", LANG_PLAYER, "GAL_CHANGE_NEXTROUND");
                 //colored_print(0, "^x04***^x01 ПОСЛЕДНИЙ РАУНД! Время карты истекло^x04 ***");
-                //set_hudmessage(_, _, _, 0.07, -1.0, 2, _, 4.5, 0.2, _, -1);
-                set_hudmessage(_, _, _, -1.0, 0.05, 2, _, 180.0, 0.2, _, 4);
+                set_hudmessage(_, _, _, 0.07, -1.0, 2, _, 4.5, 0.2, _, -1);
+                //set_hudmessage(_, _, _, -1.0, 0.05, 2, _, 180.0, 0.2, _, 4);
                 ShowSyncHudMsg(0, g_sync_msgdisplay, "Последний раунд");
             }
 
@@ -1016,7 +1016,7 @@ nomination_attempt(id, nomination[]) // (playerName[], &phraseIdx, matchingSegme
         {
             idxMap = g_nomination[idPlayer][idxNomination];
             if (idxMap >= 0)
-                if (++mapCnt >= 4)
+                if (++mapCnt >= get_pcvar_num(cvar_voteMapChoiceCnt))
                 {
                     colored_print(id, "^x04***^x01 Все номинации заняты!");
                     nomination_list(id);
@@ -1216,68 +1216,75 @@ nomination_cancel(id, idxMap)
 
 map_nominate(id, idxMap, idNominator = -1)
 {
-	// nominations can only be made if a vote isn't already in progress
-	if (g_voteStatus & VOTE_IN_PROGRESS)
-	{
+    // nominations can only be made if a vote isn't already in progress
+    if (g_voteStatus & VOTE_IN_PROGRESS)
+    {
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_INPROGRESS");
         colored_print(id, "^x04***^x01 Голосование уже началось!");
         return;
-	}
-	// and if the outcome of the vote hasn't already been determined
-	else if (g_voteStatus & VOTE_IS_OVER)
-	{
+    }
+    // and if the outcome of the vote hasn't already been determined
+    else if (g_voteStatus & VOTE_IS_OVER)
+    {
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_VOTEOVER");
         colored_print(id, "^x04***^x01 Голосование уже завершилось!");
         return;
-	}
-	
-	new mapName[32];
-	ArrayGetString(g_nominationMap, idxMap, mapName, sizeof(mapName)-1);
-	
-	// players can not nominate the current map
-	if (equal(g_currentMap, mapName))
-	{
+    }
+
+    if (ArraySize(g_nominationMap) >= get_pcvar_num(cvar_voteMapChoiceCnt))
+    {
+        colored_print(id, "^x04***^x01 Все номинации уже заняты!");
+        nomination_list(id);
+        return;
+    }
+
+    new mapName[32];
+    ArrayGetString(g_nominationMap, idxMap, mapName, sizeof(mapName)-1);
+
+    // players can not nominate the current map
+    if (equal(g_currentMap, mapName))
+    {
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_CURRENTMAP", g_currentMap);
         colored_print(id, "^x04***^x01 Ты сейчас на карте^x04 %s^x01!", g_currentMap);
         return;
-	}
-	
-	// players may not be able to nominate recently played maps
-	if (map_isTooRecent(mapName))
-	{
+    }
+
+    // players may not be able to nominate recently played maps
+    if (map_isTooRecent(mapName))
+    {
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOORECENT", mapName);
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOORECENT_HLP");
         colored_print(id, "^x04***^x01 На карте^x04 %s^x01 играли недавно!", mapName);
         return;
-	}
-	
-	// check if the map has already been nominated
-	if (idNominator == -1)
-	{
-		idNominator = nomination_getPlayer(idxMap);
-	}
+    }
 
-	if (idNominator == 0)
-	{
-		// determine the number of nominations the player already made
-		// and grab an open slot with the presumption that the player can make the nomination
-		new nominationCnt = 0, idxNominationOpen, idxNomination;
-		new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
-		
-		for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
-		{
-			if (g_nomination[id][idxNomination] >= 0)
-			{
-				nominationCnt++;
-			}
-			else
-			{
-				idxNominationOpen = idxNomination;
-			}
-		}
+    // check if the map has already been nominated
+    if (idNominator == -1)
+    {
+        idNominator = nomination_getPlayer(idxMap);
+    }
 
-		if (nominationCnt == playerNominationMax)
-		{
+    if (idNominator == 0)
+    {
+        // determine the number of nominations the player already made
+        // and grab an open slot with the presumption that the player can make the nomination
+        new nominationCnt = 0, idxNominationOpen, idxNomination;
+        new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+        
+        for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
+        {
+            if (g_nomination[id][idxNomination] >= 0)
+            {
+                nominationCnt++;
+            }
+            else
+            {
+                idxNominationOpen = idxNomination;
+            }
+        }
+
+        if (nominationCnt == playerNominationMax)
+        {
             new nominatedMaps[256], buffer[32];
             for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
             {
@@ -1289,30 +1296,30 @@ map_nominate(id, idxMap, idNominator = -1)
             //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY", playerNominationMax, nominatedMaps);
             //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_TOOMANY_HLP");
             colored_print(id, "^x04***^x01 Ты уже номинировал карту^x04 %s", nominatedMaps);
-		}
-		else
-		{
-			// otherwise, allow the nomination
-			g_nomination[id][idxNominationOpen] = idxMap;
-			g_nominationCnt++;
-			map_announceNomination(id, mapName);
-			//client_print(id, print_chat, "%L", id, "GAL_NOM_GOOD_HLP");
-		}		
-	}
-	else if (idNominator == id)
-	{
-		//client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_ALREADY", mapName);
+        }
+        else
+        {
+            // otherwise, allow the nomination
+            g_nomination[id][idxNominationOpen] = idxMap;
+            g_nominationCnt++;
+            map_announceNomination(id, mapName);
+            //client_print(id, print_chat, "%L", id, "GAL_NOM_GOOD_HLP");
+        }		
+    }
+    else if (idNominator == id)
+    {
+        //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_ALREADY", mapName);
         colored_print(id, "^x04***^x01 Ты уже выбрал эту карту^x04 %s^x01 !", mapName);
-	}
-	else
-	{
+    }
+    else
+    {
         new name[32];
         get_user_name(idNominator, name, 31);
 
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE", mapName, name);
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE_HLP");
         colored_print(id, "^x04***^x03 %s^x01 уже выбрал эту карту^x04 %s^x01 !", name, mapName);
-	}	
+    }
 }
 
 public nomination_list(id)

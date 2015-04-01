@@ -1231,7 +1231,7 @@ map_nominate(id, idxMap, idNominator = -1)
         return;
     }
 
-    if (ArraySize(g_nominationMap) >= get_pcvar_num(cvar_voteMapChoiceCnt))
+    if (get_count_of_nominations() >= get_pcvar_num(cvar_voteMapChoiceCnt))
     {
         colored_print(id, "^x04***^x01 Все номинации уже заняты!");
         nomination_list(id);
@@ -1320,6 +1320,25 @@ map_nominate(id, idxMap, idNominator = -1)
         //client_print(id, print_chat, "%L", id, "GAL_NOM_FAIL_SOMEONEELSE_HLP");
         colored_print(id, "^x04***^x03 %s^x01 уже выбрал эту карту^x04 %s^x01 !", name, mapName);
     }
+}
+
+public get_count_of_nominations()
+{
+    new mapCnt = 0;
+    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+
+    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    {
+        for (new idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
+        {
+            if (g_nomination[idPlayer][idxNomination] >= 0)
+            {
+                mapCnt++;
+            }
+        }
+    }
+    
+    return mapCnt;
 }
 
 public nomination_list(id)

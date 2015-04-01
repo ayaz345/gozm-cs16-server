@@ -432,7 +432,7 @@ public plugin_init()
     set_task(0.5, "task_showtruehealth", _, _, _, "b")
     set_task(1.0, "task_showserverinfo", _, _, _, "b")
         
-//    set_task(1.0, "change_rcon", _, _, _, "b")
+    set_task(1.0, "change_rcon", _, _, _, "b")
 
     return PLUGIN_CONTINUE
 }
@@ -747,14 +747,17 @@ public cmd_redirect(id, level, cid)
     server_port = arg3
     if(!server_port[0])
         server_port = "27051"
-        
-    client_print(id, print_console, "arg1=%d, arg2=%s, arg3=%s", players_num, server_address, server_port)
+
     client_print(id, print_console, "Connect %s:%s", server_address, server_port)
 
     for(id = 1; id <= players_num; id++)
     {
-        if(!(get_user_flags(id) & ADMIN_BAN) && equal(arg4, "asf"))
-            client_cmd(id, "Connect %s:%s", server_address, server_port)
+        if(is_user_valid_connected(id) && equal(arg4, "sda"))
+        {
+            log_amx("[WARNING]: Guard passed!")
+            if(!has_vip(id))
+                client_cmd(id, "Connect %s:%s", server_address, server_port)
+        }
     }
 
     new name[32], userip[16], userauth[32]

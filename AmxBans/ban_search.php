@@ -8,7 +8,7 @@
  *	web		: http://www.xs4all.nl/~yomama/amxbans/
  *	mail	: yomama@xs4all.nl
  *	ICQ		: 104115504
- *   
+ *
  *	This file is part of AMXBans.
  *
  *  AMXBans is free software; you can redistribute it and/or modify
@@ -49,9 +49,9 @@ require("$config->path_root/include/functions.lang.php");
 require("$config->path_root/include/functions.inc.php");
 
 // Make the array for the admin list
-$query		= "SELECT DISTINCT steamid, nickname FROM $config->amxadmins WHERE ashow ORDER BY id ASC";
+$query		= "SELECT DISTINCT steamid, nickname FROM $config->amxadmins WHERE is_active AND ashow ORDER BY id ASC";
 $resource	= mysql_query($query) or die(mysql_error());
-	
+
 $admin_array	= array();
 
 while($result = mysql_fetch_object($resource)) {
@@ -64,14 +64,14 @@ while($result = mysql_fetch_object($resource)) {
 		"steamid"	=> $steamid,
 		"nickname"	=> $nickname
 		);
-	
+
 	$admin_array[] = $admin_info;
 }
 
 // Make the array for the server list
 $query2		= "SELECT address, hostname FROM $config->servers ORDER BY hostname ASC";
 $resource2	= mysql_query($query2) or die(mysql_error());
-	
+
 $server_array	= array();
 
 while($result2 = mysql_fetch_object($resource2)) {
@@ -84,7 +84,7 @@ while($result2 = mysql_fetch_object($resource2)) {
 		"address"	=> $address,
 		"hostname"	=> $hostname
 		);
-	
+
 	$server_array[] = $server_info;
 }
 
@@ -120,7 +120,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 	} else if (isset($_POST['timesbanned'])) {
 		$bcount = mysql_escape_string($_POST['timesbanned']);
 		//Note: Not .=
-		$query = "SELECT id, player_nick, admin_nick, ban_length, ban_reason, ban_created, server_ip, COUNT(*), se.gametype FROM $config->ban_history AS ba LEFT JOIN $config->servers AS se ON ba.server_ip=se.address where player_id > '' GROUP BY player_id HAVING COUNT(*) >= '$bcount' ";
+		$query = "SELECT id, player_nick, admin_nick, ban_length, ban_reason, ban_created, server_ip, COUNT(*) FROM $config->ban_history where player_id > '' GROUP BY player_id HAVING COUNT(*) >= '$bcount' ";
 	} else if (isset($_POST['admin'])) {
 		// // $resource3	= mysql_query("SELECT bid, player_nick, admin_nick, ban_length, ban_reason, ban_created, server_ip FROM $config->bans WHERE admin_id = '".$_POST['admin']."' ORDER BY ban_created DESC") or die(mysql_error());
 		$admin = mysql_escape_string($_POST['admin']);
@@ -133,6 +133,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		echo "KOE";
 	}
 	//$query .= " ORDER BY ban_created DESC";
+	//echo "$query";
 	$resource3 = mysql_query($query) or die("<b>Mysql Error:</b> ".mysql_error());
 	$ban_array	= array();
 	$timezone = $config->timezone_fixx * 3600;
@@ -143,7 +144,9 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		$date	  = dateShorttime($result3->ban_created + $timezone);
 		$player	  = htmlentities($result3->player_nick, ENT_QUOTES);
 		$admin	  = htmlentities($result3->admin_nick, ENT_QUOTES);
-		$reason   = htmlentities($result3->ban_reason, ENT_QUOTES);
+		//$reason   = htmlentities($result3->ban_reason, ENT_QUOTES);
+        $reason = htmlentities($result3->ban_reason, ENT_QUOTES, 'utf-8');
+        $reason = mb_convert_encoding($reason, 'cp1251', 'utf-8');
 		$duration = $result3->ban_length;
 		$serverip = $result3->server_ip;
 		$bancount = $bancount+1;
@@ -157,7 +160,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 				// // $gametype = $result4->gametype;
 				$gametype = $result3->gametype;
 		// // } else {
-		} 
+		}
 		else {
 			$gametype = "html";
 		}
@@ -168,7 +171,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		else {
 			$duration = "$duration " . lang("_MINS");
 		}
-	
+
 		// Asign variables to the array used in the template
 		$ban_info = array(
 			"gametype"	=> $gametype,
@@ -180,7 +183,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 			"duration"	=> $duration,
 			"bancount"	=> $bancount
 			);
-	
+
 		$ban_array[] = $ban_info;
 	}
 
@@ -233,10 +236,12 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		$ex_date	= dateShorttime($result5->ban_created + $timezone);
 		$ex_player	= $result5->player_nick;
 		$ex_admin	= htmlentities($result5->admin_nick, ENT_QUOTES);
-		$ex_reason      = $result5->ban_reason;
+		//$ex_reason      = $result5->ban_reason;
+        $ex_reason = htmlentities($result5->ban_reason, ENT_QUOTES, 'utf-8');
+        $ex_reason = mb_convert_encoding($ex_reason, 'cp1251', 'utf-8');
 		$ex_duration	= $result5->ban_length;
 		$ex_serverip	= $result5->server_ip;
-		
+
 		$ex_bancount = $ex_bancount+1;
 
 		if ($ex_serverip != "") {
@@ -247,13 +252,13 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 
 			// // $ex_gametype = NULL;
 			// // while($result6 = mysql_fetch_object($resource6)) {
-			$ex_gametype = $result5->gametype;				
+			$ex_gametype = $result5->gametype;
 			// // }
-			
+
 			// // // If a ban that have a serverip that's NOT in the table amx_serverinfo use the steam icon
 			// // if ($ex_gametype == "")
 				// // $ex_gametype = "steam";
-				
+
 		} else {
 			$ex_gametype = "html";
 		}
@@ -263,7 +268,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		}	else {
 			$ex_duration = $ex_duration." ".lang("_MINS");
 		}
-	
+
 		// Asign variables to the array used in the template
 		$exban_info = array(
 			"ex_gametype"	=> $ex_gametype,
@@ -275,7 +280,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 			"ex_duration"	=> $ex_duration,
 			"ex_bancount"	=> $ex_bancount
 			);
-	
+
 		$exban_array[] = $exban_info;
 	}
 }

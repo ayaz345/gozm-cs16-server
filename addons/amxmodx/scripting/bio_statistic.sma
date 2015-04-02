@@ -4,32 +4,27 @@
 #include <hamsandwich>
 #include <biohazard>
 #include <sqlx>
-#include <time>
-#include <fun>
 #include <colored_print>
 
 #pragma dynamic 16384
 
-#define PLUGIN "[BIO] Statistics"
-#define VERSION "1.01"
-#define AUTHOR "Dimka"
-
-#define DEFAULT_TOP_COUNT   15
-#define MAX_BUFFER_LENGTH   2047
+#define DEFAULT_TOP_COUNT       15
+#define MAX_BUFFER_LENGTH       2047
 
 #define STATSX_SHELL_DESIGN3_STYLE "<meta charset=UTF-8><style>body{background:#E6E6E6;font-family:Verdana}th{background:#F5F5F5;color:#A70000;padding:6px;text-align:left}td{padding:2px 6px}table{color:#333;background:#E6E6E6;font-size:10px;font-family:Georgia;border:2px solid #D9D9D9}h2,h3{color:#333;}#c{background:#FFF}img{height:10px;background:#14CC00;margin:0 3px}#r{height:10px;background:#CC8A00}#clr{background:none;color:#A70000;font-size:20px;border:0}</style>"
 #define STATSX_SHELL_DESIGN7_STYLE "<meta charset=UTF-8><style>body{background:#FFF;font-family:Verdana}th{background:#2E2E2E;color:#FFF;text-align:left}table{padding:6px 2px;background:#FFF;font-size:11px;color:#333;border:1px solid #CCC}h2,h3{color:#333}#c{background:#F0F0F0}img{height:7px;background:#444;margin:0 3px}#r{height:7px;background:#999}#clr{background:none;color:#2E2E2E;font-size:20px;border:0}</style>"
 #define STATSX_SHELL_DESIGN8_STYLE "<meta charset=UTF-8><style>body{background:#242424;margin:20px;font-family:Tahoma}th{background:#2F3034;color:#BDB670;text-align:left} table{padding:4px;background:#4A4945;font-size:10px;color:#FFF}h2,h3{color:#D2D1CF}#c{background:#3B3C37}img{height:12px;background:#99CC00;margin:0 3px}#r{height:12px;background:#999900}#clr{background:none;color:#FFF;font-size:20px}</style>"
 #define STATSX_SHELL_DESIGN10_STYLE "<meta charset=UTF-8><style>body{background:#4C5844;font-family:Tahoma}th{background:#1E1E1E;color:#C0C0C0;padding:2px;text-align:left;}td{padding:2px 10px}table{color:#AAC0AA;background:#424242;font-size:13px}h2,h3{color:#C2C2C2;font-family:Tahoma}#c{background:#323232}img{height:3px;background:#B4DA45;margin:0 3px}#r{height:3px;background:#6F9FC8}#clr{background:none;color:#FFF;font-size:20px}</style>"
 
-#define OFFSET_DEATH 444
+#define PDATA_SAFE              2
+#define OFFSET_DEATH            444
 
-#define TASKID_AUTHORIZE 670
-#define TASKID_LASTSEEN 671
- 
+#define TASKID_AUTHORIZE        670
+#define TASKID_LASTSEEN         671
+
 #define column(%1) SQL_FieldNameToNum(query, %1)
 
-enum 
+enum
 {
 	ME_DMG,
 	ME_INFECT,
@@ -45,7 +40,7 @@ new g_Query[1024]
 new whois[1024]
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
-new g_CvarMaxInactiveDays//, g_pcvar_design
+new g_CvarMaxInactiveDays
 
 new const g_types[][] = {
     "first_zombie",
@@ -64,13 +59,13 @@ new bool:szTrigger = true
 new g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
     ((`infect` + `zombiekills`*2 + `humankills` + \
-    `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10 + `extra`) / \
+    `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10) / \
     (`infected` + `death` + 300)) AS `skill` \
     FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
 
-public plugin_init() 
+public plugin_init()
 {
-    register_plugin(PLUGIN, VERSION, AUTHOR)
+    register_plugin("[BIO] Statistics", "1.1", "Dimka")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -79,19 +74,16 @@ public plugin_init()
     g_CvarDB = register_cvar("bio_stats_db", "b179761")
     g_CvarUser = register_cvar("bio_stats_user", "u179761")
     g_CvarPassword = register_cvar("bio_stats_password", "petyx")
-	
-    register_cvar("bio_statistics_version", VERSION, FCVAR_SERVER|FCVAR_SPONLY)
-	
     g_CvarMaxInactiveDays = register_cvar("bio_stats_max_inactive_days", "30")
-//    g_pcvar_design = register_cvar("bio_stats_design", "4")
-	
+
     register_clcmd("say", "handleSay")
     register_clcmd("say_team", "handleSay")
-	
+
     RegisterHam(Ham_Killed, "player", "fw_HamKilled")
     RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage", 1)
-	
+
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
+
     register_logevent("logevent_endRound", 2, "1=Round_End")
 
     return PLUGIN_CONTINUE
@@ -112,10 +104,10 @@ public sql_init()
         return
 
     new host[32], db[32], user[32], password[32]
-    get_pcvar_string(g_CvarHost, host, 31)
-    get_pcvar_string(g_CvarDB, db, 31)
-    get_pcvar_string(g_CvarUser, user, 31)
-    get_pcvar_string(g_CvarPassword, password, 31)
+    get_pcvar_string(g_CvarHost, host, charsmax(host))
+    get_pcvar_string(g_CvarDB, db, charsmax(db))
+    get_pcvar_string(g_CvarUser, user, charsmax(user))
+    get_pcvar_string(g_CvarPassword, password, charsmax(password))
 
     g_SQL_Tuple = SQL_MakeDbTuple(host, user, password, db)
 
@@ -126,13 +118,13 @@ public sql_init()
     }
 
     new map_name[32]
-    get_mapname(map_name, 31)
+    get_mapname(map_name, charsmax(map_name))
     format(g_Query, charsmax(g_Query), "\
         INSERT INTO `bio_maps` (`map`) \
         VALUES ('%s') \
         ON DUPLICATE KEY UPDATE `games` = `games` + 1", map_name)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
-    
+
     new max_inactive_days = get_pcvar_num(g_CvarMaxInactiveDays)
     new inactive_period = get_systime() - max_inactive_days*24*60*60
     format(g_Query, charsmax(g_Query), "\
@@ -151,8 +143,6 @@ public client_authorized(id)
     g_UserDBId[id] = 0
     reset_player_statistic(id)
     set_task(0.5, "auth_player", TASKID_AUTHORIZE + id)
-
-    return PLUGIN_CONTINUE
 }
 
 public client_disconnect(id)
@@ -166,11 +156,11 @@ public client_disconnect(id)
 public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
-    
+
     new unquoted_name[64]
-    get_user_name(id, unquoted_name, 63)
-    mysql_escape_string(unquoted_name, 63)
-    copy(g_UserName[id], 63, unquoted_name)
+    get_user_name(id, unquoted_name, charsmax(unquoted_name))
+    mysql_escape_string(unquoted_name, charsmax(unquoted_name))
+    copy(g_UserName[id], charsmax(unquoted_name), unquoted_name)
     get_user_authid(id, g_UserAuthID[id], 31)
     get_user_ip(id, g_UserIP[id], 31, 1)
 
@@ -182,7 +172,7 @@ public auth_player(taskid)
     data[0] = id
     data[1] = get_user_userid(id)
     SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, 2)
-	
+
     return PLUGIN_HANDLED
 }
 
@@ -191,7 +181,7 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     if(FailState)
     {
         new szQuery[1024]
-        SQL_GetQueryString(query, szQuery, 1023)
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 1)
         return PLUGIN_HANDLED
     }
@@ -208,8 +198,8 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
     }
     else
     {
-        format(g_Query,charsmax(g_Query),
-            "INSERT INTO `bio_players` \
+        format(g_Query,charsmax(g_Query), "\
+            INSERT INTO `bio_players` \
             SET `nick`='%s', `ip`='%s', `steam_id`='%s'",
             g_UserName[id], g_UserIP[id], g_UserAuthID[id])
         SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
@@ -222,16 +212,16 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
     if(FailState)
     {
         new szQuery[1024]
-        SQL_GetQueryString(query, szQuery, 1023)
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 2)
 
         return PLUGIN_HANDLED
     }
-    
+
     new id = data[0]
     if (data[1] != get_user_userid(id))
         return PLUGIN_HANDLED
-    
+
     g_UserDBId[id] = SQL_GetInsertId(query)
     set_task(10.0, "update_last_seen", TASKID_LASTSEEN + id)
 
@@ -241,7 +231,7 @@ public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data
 public update_last_seen(taskid)
 {
     new id = taskid - TASKID_LASTSEEN
-    
+
     new last_seen = get_systime()
     format(g_Query, charsmax(g_Query), "\
         UPDATE `bio_players` \
@@ -258,17 +248,17 @@ public client_infochanged(id)
         return PLUGIN_CONTINUE
 
     new newname[32]
-    get_user_info(id, "name", newname, 31)
+    get_user_info(id, "name", newname, charsmax(newname))
     new oldname[32]
-    get_user_name(id, oldname, 31)
-    
+    get_user_name(id, oldname, charsmax(oldname))
+
     if (!equal(oldname, newname) && !equal(oldname, ""))
     {
         if (g_UserDBId[id])
         {
             set_task(0.1, "update_last_seen", TASKID_LASTSEEN + id)
         }
-        
+
         g_UserDBId[id] = 0
         reset_player_statistic(id)
         set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
@@ -287,15 +277,15 @@ public event_infect(id, infector)
         if (g_UserDBId[id])
         {
             format(g_Query, charsmax(g_Query), "\
-            UPDATE `bio_players` \
+                UPDATE `bio_players` \
                 SET `infected` = `infected` + 1 \
                 WHERE `id`=%d", g_UserDBId[id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
         if (g_UserDBId[infector])
         {
-            format(g_Query, charsmax(g_Query),
-                "UPDATE `bio_players` \
+            format(g_Query, charsmax(g_Query), "\
+                UPDATE `bio_players` \
                 SET `infect` = `infect` + 1 \
                 WHERE `id`=%d", g_UserDBId[infector])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
@@ -309,7 +299,7 @@ public event_infect(id, infector)
             WHERE `id`=%d", g_UserDBId[id])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
-    
+
     return PLUGIN_CONTINUE
 }
 
@@ -324,11 +314,11 @@ public logevent_endRound()
 
 public task_announce_best_human_and_zombie()
 {
-    new players[32], playersNum, i, maxInfectId = 0, maxDmgId = 0
+    new players[32], playersNum, maxInfectId = 0, maxDmgId = 0
     new maxInfectName[32], maxDmgName[32]
     new extraMaxInfectNum = 0, maxInfectList[32]
     get_players(players, playersNum, "ch")
-    for (i = 0; i < playersNum; i++)
+    for (new i = 0; i < playersNum; i++)
     {
         if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT])
         {
@@ -348,8 +338,8 @@ public task_announce_best_human_and_zombie()
     }
 
     maxInfectId = maxInfectList[random_num(0, extraMaxInfectNum)]
-    get_user_name(players[maxInfectId], maxInfectName, 31)
-    get_user_name(players[maxDmgId], maxDmgName, 31)
+    get_user_name(players[maxInfectId], maxInfectName, charsmax(maxInfectName))
+    get_user_name(players[maxDmgId], maxDmgName, charsmax(maxDmgName))
 
     if (g_Me[players[maxInfectId]][ME_INFECT] ||
         g_Me[players[maxDmgId]][ME_DMG])
@@ -358,13 +348,15 @@ public task_announce_best_human_and_zombie()
             maxDmgName, g_Me[players[maxDmgId]][ME_DMG])
         if (g_Me[players[maxInfectId]][ME_INFECT])
             colored_print(0, "^x04***^x01 Лучший зомби:^x04 %s^x01  ->  [^x03  %d^x01 заражени%s  ]",
-                maxInfectName, g_Me[players[maxInfectId]][ME_INFECT], 
+                maxInfectName, g_Me[players[maxInfectId]][ME_INFECT],
                 set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
-        
+
         // extra
         if (g_UserDBId[players[maxInfectId]])
         {
-            set_user_frags(players[maxInfectId], get_user_frags(players[maxInfectId])+1)
+            new Float:frags
+            pev(players[maxInfectId], pev_frags, frags)
+            set_pev(players[maxInfectId], pev_frags, frags+1.0)
 
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
@@ -374,7 +366,9 @@ public task_announce_best_human_and_zombie()
         }
         if (g_UserDBId[players[maxDmgId]])
         {
-            set_user_frags(players[maxDmgId], get_user_frags(players[maxDmgId])+1)
+            new Float:frags
+            pev(players[maxDmgId], pev_frags, frags)
+            set_pev(players[maxDmgId], pev_frags, frags+1.0)
 
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
@@ -429,7 +423,7 @@ public event_newround()
 public task_announce_best_player(best_id)
 {
     new best_name[32]
-    get_user_name(best_id, best_name, 31)
+    get_user_name(best_id, best_name, charsmax(best_name))
 /*
     colored_print(0, "^x04***^x01 Поздравляем!", best_name)
     colored_print(0, "^x04***^x01 Лучшим игроком карты признан^x03 %s^x01", best_name)
@@ -442,7 +436,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
 {
     new type
     new killer_frags = 1
-    
+
     if (g_UserDBId[victim] && is_user_connected(attacker))
     {
         format(g_Query, charsmax(g_Query), "\
@@ -464,7 +458,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
     else
     {
         show_me(attacker)
-        
+
         if (g_UserDBId[victim])
         {
             type = 2
@@ -490,22 +484,22 @@ public fw_HamKilled(victim, attacker, shouldgib)
             g_types[type], g_types[type], killer_frags, g_UserDBId[attacker])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
-    
+
     return HAM_IGNORED
 }
 
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 {
-    if (victim == attacker || 
-        !is_user_alive(attacker) || 
-        !is_user_connected(victim) || 
+    if (victim == attacker ||
+        !is_user_alive(attacker) ||
+        !is_user_connected(victim) ||
         !is_user_zombie(victim)
         )
         return HAM_IGNORED
 
     if (is_user_alive(attacker) && !is_user_zombie(attacker))
         g_Me[attacker][ME_DMG] += floatround(damage)
-    
+
     return HAM_IGNORED
 }
 
@@ -559,7 +553,7 @@ public show_me(id)
         colored_print(id, "^x04***^x01 Нанес^x04 %d^x01 дамаги",
             g_Me[id][ME_DMG])
     else
-        colored_print(id, "^x04***^x01 Заразил^x04 %d^x01 человек%s", 
+        colored_print(id, "^x04***^x01 Заразил^x04 %d^x01 человек%s",
             g_Me[id][ME_INFECT],
             0 < g_Me[id][ME_INFECT] < 5 ? "а" : "")
 
@@ -572,14 +566,14 @@ public show_rank(id, unquoted_whois[])
     {
         format(g_Query, charsmax(g_Query), "\
             SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` \
-            FROM %s WHERE `id`=%d", 
+            FROM %s WHERE `id`=%d",
             g_select_statement, g_UserDBId[id])
     }
     else
     {
         mysql_escape_string(unquoted_whois, 31)
         copy(whois, 31, unquoted_whois)
-    
+
         format(g_Query, charsmax(g_Query), "\
             SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` \
             FROM %s \
@@ -590,9 +584,9 @@ public show_rank(id, unquoted_whois[])
     new data[2]
     data[0] = id
     data[1] = get_user_userid(id)
-    
+
     SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, 2)
-    
+
     return PLUGIN_HANDLED
 }
 
@@ -603,7 +597,7 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     if(FailState)
     {
         new szQuery[1024]
-        SQL_GetQueryString(query, szQuery, 1023)
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 3)
         colored_print(id, "^x04***^x01 Команда^x04 /rank^x01 временно недоступна")
         return PLUGIN_HANDLED
@@ -619,17 +613,17 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
 
     if (SQL_MoreResults(query))
     {
-    	SQL_ReadResult(query, column("nick"), name, 31)
+    	SQL_ReadResult(query, column("nick"), name, charsmax(name))
     	rank = SQL_ReadResult(query, column("rank"))
         SQL_ReadResult(query, column("skill"), res)
         total = SQL_ReadResult(query, column("total"))
-    		
+
     	colored_print(id, "^x04***^x03 %s^x01 находится на^x04 %d^x01 из %d позиций!",
             name, rank, total)
-    } 
+    }
     else
     	colored_print(id, "^x04*** Игрок^x03 %s^x01 не найден. Проверь заглавные буквы!", whois)
-        
+
     return PLUGIN_HANDLED
 }
 
@@ -658,7 +652,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     if(FailState)
     {
         new szQuery[1024]
-        SQL_GetQueryString(query, szQuery, 1023)
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 5)
         colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
         return PLUGIN_HANDLED
@@ -685,7 +679,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     format(g_Query, charsmax(g_Query), "\
         SELECT `nick`, `rank`, `skill` \
         FROM %s \
-        WHERE `rank` <= %d ORDER BY `rank` ASC LIMIT %d, %d", 
+        WHERE `rank` <= %d ORDER BY `rank` ASC LIMIT %d, %d",
         g_select_statement, top, top - DEFAULT_TOP_COUNT, DEFAULT_TOP_COUNT)
     new more_data[4]
     more_data[0] = data[0]
@@ -693,7 +687,7 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     more_data[2] = data[2]
     more_data[3] = count
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part2", g_Query, more_data, 4)
-    
+
     return PLUGIN_HANDLED
 }
 
@@ -704,7 +698,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     if(FailState)
     {
         new szQuery[1024]
-        SQL_GetQueryString(query, szQuery, 1023)
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 6)
         colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
 
@@ -730,32 +724,32 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     new iLen = 0
     setc(g_text, MAX_BUFFER_LENGTH + 1, 0)
-    
+
     iLen = format_all_themes(g_text, iLen, id)
-    iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
+    iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
         "<body><table width=100%% border=0 align=center cellpadding=0 cellspacing=1>")
 
-    
+
     new lNick[32], lResult[32]
     format(lNick, 31, "Ник")
     format(lResult, 31, "Скилл")
-    iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
+    iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
         "<body><tr><th>%s<th>%s<th>%s</tr>", "#", lNick, lResult)
 
     new name[32], rank, skill
     new Float:pre_skill
     szTrigger = true
-    
+
     while (SQL_MoreResults(query))
     {
         rank = SQL_ReadResult(query, column("rank"))
-        SQL_ReadResult(query, column("nick"), name, 31)
+        SQL_ReadResult(query, column("nick"), name, charsmax(name))
         SQL_ReadResult(query, column("skill"), pre_skill)
         skill = floatround(pre_skill*1000.0)
 
-        iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen, 
+        iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
             "<tr%s><td>%d<td>%s<td>%d</tr>", szTrigger ? "" : " id=c", rank, name, skill)
-        
+
         SQL_NextRow(query)
         szTrigger = szTrigger ? false : true
     }
@@ -763,7 +757,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     show_motd(id, g_text, title)
 
     setc(g_text, MAX_BUFFER_LENGTH + 1, 0)
-    
+
     return PLUGIN_HANDLED
 }
 
@@ -772,7 +766,7 @@ public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, F
     if(FailState)
     {
         new szQuery[512]
-        SQL_GetQueryString(Query, szQuery, 511)
+        SQL_GetQueryString(Query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 99)
     }
 
@@ -798,31 +792,20 @@ format_all_themes(sBuffer[MAX_BUFFER_LENGTH + 1], iLen, player_id)
 {
     //new iDesign = get_pcvar_num(g_pcvar_design)
     new iDesign = player_id % 4
-
     switch(iDesign)
     {
         case 0:
-        {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN3_STYLE)
-        }
         case 1:
-        {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN7_STYLE)
-        }
         case 2:
-        {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN8_STYLE)
-        }
         case 3:
-        {
             iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN10_STYLE)
-        }
         default:
-        {
-            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN10_STYLE)			
-        }
+            iLen = format(sBuffer, MAX_BUFFER_LENGTH, STATSX_SHELL_DESIGN10_STYLE)
     }
-        
+
     return iLen
 }
 
@@ -853,8 +836,8 @@ stock mysql_escape_string(dest[], len)
 stock fm_get_user_deaths(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != 2)
+	if (pev_valid(id) != PDATA_SAFE)
 		return 0;
-	
+
 	return get_pdata_int(id, OFFSET_DEATH);
 }

@@ -42,19 +42,9 @@ new whois[1024]
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 new g_CvarMaxInactiveDays
 
-new const g_types[][] = {
-    "first_zombie",
-    "infect",
-    "zombiekills",
-    "humankills",
-    "nemkills",
-    "survkills",
-    "suicide"
-}
-
 new g_Me[33][ME_NUM]
 new g_text[MAX_BUFFER_LENGTH + 1]
-new bool:szTrigger = true
+new bool:gb_css_trigger = true
 
 new g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
@@ -65,7 +55,7 @@ new g_select_statement[] = "\
 
 public plugin_init()
 {
-    register_plugin("[BIO] Statistics", "1.1", "Dimka")
+    register_plugin("[BIO] Statistics", "1.2", "Dimka")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -407,13 +397,13 @@ public event_newround()
             }
         }
 
-        set_task(7.0, "task_announce_best_player", best_id)
+        set_task(8.0, "task_announce_best_player", best_id)
 
         if (g_UserDBId[best_id])
         {
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
-                SET `best_player` = `best_player` + 10 \
+                SET `best_player` = `best_player` + 1 \
                 WHERE `id`=%d", g_UserDBId[best_id])
             SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
         }
@@ -434,7 +424,7 @@ public task_announce_best_player(best_id)
 
 public fw_HamKilled(victim, attacker, shouldgib)
 {
-    new type
+    new type[16]
     new killer_frags = 1
 
     if (g_UserDBId[victim] && is_user_connected(attacker))
@@ -448,11 +438,11 @@ public fw_HamKilled(victim, attacker, shouldgib)
 
     if (victim == attacker || !is_user_connected(attacker))
     {
-        type = 6
+        type = "suicide"
     }
     else if (is_user_zombie(attacker))
     {
-        type = 1
+        type = "infect"
         g_Me[attacker][ME_INFECT]++
     }
     else
@@ -461,7 +451,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
 
         if (g_UserDBId[victim])
         {
-            type = 2
+            type = "zombiekills"
 
             if(get_user_weapon(attacker) == CSW_KNIFE)
             {
@@ -481,7 +471,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
             UPDATE `bio_players` \
             SET `%s` = `%s` + %d \
             WHERE `id`=%d",
-            g_types[type], g_types[type], killer_frags, g_UserDBId[attacker])
+            type, type, killer_frags, g_UserDBId[attacker])
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
 
@@ -640,7 +630,6 @@ public show_top(id, top)
     data[1] = get_user_userid(id)
     data[2] = top
     SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
-//    colored_print(id, "^x04***^x01 Список лучших сейчас загрузится")
 
     return PLUGIN_HANDLED
 }
@@ -738,7 +727,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     new name[32], rank, skill
     new Float:pre_skill
-    szTrigger = true
+    gb_css_trigger = true
 
     while (SQL_MoreResults(query))
     {
@@ -748,10 +737,10 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         skill = floatround(pre_skill*1000.0)
 
         iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
-            "<tr%s><td>%d<td>%s<td>%d</tr>", szTrigger ? "" : " id=c", rank, name, skill)
+            "<tr%s><td>%d<td>%s<td>%d</tr>", gb_css_trigger ? "" : " id=c", rank, name, skill)
 
         SQL_NextRow(query)
-        szTrigger = szTrigger ? false : true
+        gb_css_trigger = gb_css_trigger ? false : true
     }
 
     show_motd(id, g_text, title)

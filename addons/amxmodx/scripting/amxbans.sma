@@ -1,7 +1,3 @@
-new AUTHOR[] = "YoMama/Lux & lantz69 -Sqlx by Gizmo"
-new PLUGIN_NAME[] = "AMXBans"
-new VERSION[] = "5.0" // This is used in the plugins name
-
 #include <amxmodx>
 #include <amxmisc>
 #include <sqlx>
@@ -72,9 +68,6 @@ new g_unban_admin_team[10]
 
 /*****************************/
 
-// 16k * 4 = 64k stack size
-#pragma dynamic 16384 		// Give the plugin some extra memory to use
-
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 
 public plugin_init()
@@ -89,8 +82,7 @@ public plugin_init()
 
     g_coloredMenus = colored_menus()
 
-    register_plugin(PLUGIN_NAME, VERSION, AUTHOR)
-    register_cvar("amxbans_version", VERSION, FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
+    register_plugin("AMXBans", "5.1.1", "Dimka")
 
     // store in amxbans.cfg
     g_CvarHost = register_cvar("amxbans_host", "141.101.203.23")

@@ -6,8 +6,6 @@
 #include <sqlx>
 #include <colored_print>
 
-#pragma dynamic 16384
-
 #define DEFAULT_TOP_COUNT       15
 #define MAX_BUFFER_LENGTH       2047
 

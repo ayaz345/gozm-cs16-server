@@ -66,6 +66,21 @@ new g_unban_admin_nick[100] //Big b/c it can also be the servername
 new g_admin_steamid[50]
 new g_unban_admin_team[10]
 
+enum
+{
+    ID_INSERT_BANDETAILS = 1,
+    ID_UNBAN_BY_NICK,
+    ID_UNBAN_SELECT,
+    ID_DELETE_SUPERBAN,
+    ID_UNBAN_INSERT,
+    ID_UNBAN_PRINT,
+    ID_CHECK_PLAYER,
+    ID_INSERT_BANHISTORY,
+    ID_DELETE_EXPIRED,
+    ID_FETCH_REASONS,
+    ID_SQL_INIT
+}
+
 /*****************************/
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
@@ -107,7 +122,7 @@ public plugin_init()
     new configsDir[64], configfile[128]
     get_configsdir(configsDir, 63)
     format(configfile, 127, "%s/amxbans.cfg", configsDir)
-    if(file_exists(configfile))
+    if (file_exists(configfile))
     {
         server_cmd("exec %s", configfile)
     }
@@ -129,14 +144,25 @@ public sql_init()
 
     g_SqlX = SQL_MakeDbTuple(host, user, password, db)
 
-    if(!SQL_SetCharset(g_SqlX, "utf8"))
+    if (!SQL_SetCharset(g_SqlX, "utf8"))
     {
         new query[32]
         format(query, charsmax(query), "SET NAMES utf8")
-        SQL_ThreadQuery(g_SqlX, "mysql_thread", query)
+        SQL_ThreadQuery(g_SqlX, "_sql_init", query)
     }
 
     set_task(1.0, "fetchReasons")
+}
+
+public _sql_init(failstate, Handle:query, error[], errnum, data[], size)
+{
+	if (failstate)
+	{
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_SQL_INIT)
+	}
+	return PLUGIN_HANDLED
 }
 
 public client_connect(id)
@@ -170,7 +196,7 @@ public delayed_kick(id_str[])
 	new kick_message[128]
 	format(kick_message, 127, "Ты забанен, смотри консоль. Разбан тут: vk.com/go_zombie")
 
-	if ( get_pcvar_num(amxbans_debug) == 1 )
+	if (get_pcvar_num(amxbans_debug) == 1)
 		log_amx("[AMXBANS DEBUG] Delayed Kick ID: <%s>", id_str)
 
 	server_cmd("kick #%d %s", userid, kick_message)
@@ -185,7 +211,7 @@ public delayed_kick(id_str[])
 */
 public locate_player(id, identifier[])
 {
-    if ( get_pcvar_num(amxbans_debug) == 1 )
+    if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[AMXBANS DEBUG] identifier: %s", identifier)
     
     g_ban_type = "SI"
@@ -193,7 +219,7 @@ public locate_player(id, identifier[])
     new player
 
     // Check based on user ID
-    if (identifier[0]=='#' && identifier[1] ) 
+    if (identifier[0]=='#' && identifier[1]) 
     {
         player = find_player("k", str_to_num(identifier[1]))
     }
@@ -215,7 +241,7 @@ public locate_player(id, identifier[])
         // Check based on IP address
         player = find_player("d", identifier)
 
-        if ( player )
+        if (player)
             g_ban_type = "SI"
     }
 
@@ -236,7 +262,7 @@ public setBantimes()
 	new argc = read_argc() - 1
 	g_bantimesnum = argc
 
-	if(argc < 1 || argc > 12)
+	if (argc < 1 || argc > 12)
 	{
 		log_amx("[AMXBANS]: You have more than 12 or less than 1 bantimes set in amx_setbantimes")
 		log_amx("[AMXBANS]: Loading default bantimes")
@@ -251,23 +277,23 @@ public setBantimes()
         read_argv(i + 1, arg, 31)
         parse(arg, num, 31, flag, 31)
 
-        if(equal(flag, "m"))
+        if (equal(flag, "m"))
         { 
             g_BanMenuValues[i] = str_to_num(num)
         }
-        else if(equal(flag, "h"))
+        else if (equal(flag, "h"))
         {
             g_BanMenuValues[i] = (str_to_num(num) * 60)
         }
-        else if(equal(flag, "d"))
+        else if (equal(flag, "d"))
         {
             g_BanMenuValues[i] = (str_to_num(num) * 1440)
         }
-        else if(equal(flag, "w"))
+        else if (equal(flag, "w"))
         {
             g_BanMenuValues[i] = (str_to_num(num) * 10080)
         }
-        else if(equal(flag, "M"))
+        else if (equal(flag, "M"))
         {
             g_BanMenuValues[i] = (str_to_num(num) * 43200)
         }
@@ -301,7 +327,7 @@ public cmdBan(id, level, cid)
     parse(text, ban_length, 49, steamidorusername, 49)
 
     /* Check so the ban command has the right format */
-    if(!is_str_num(ban_length) || read_argc() < 4)
+    if (!is_str_num(ban_length) || read_argc() < 4)
     {
         client_print(id, print_console, "[AMXBANS]: amx_ban <время> <steamID или ник> <причина>")
         return PLUGIN_HANDLED
@@ -322,14 +348,14 @@ public cmdBan(id, level, cid)
     new iBanLength = str_to_num(ban_length)
 
     // This stops admins from banning perm in console
-    if(!has_rcon(id) && iBanLength == 0)
+    if (!has_rcon(id) && iBanLength == 0)
     {
         client_print(id, print_console, "[AMXBANS]: Нельзя банить в консоле навсегда!")
         return PLUGIN_HANDLED
     }
 
     // This stops admins from banning more than %d min in console
-    if(!has_rcon(id) && iBanLength > get_pcvar_num(consoleBanMax))
+    if (!has_rcon(id) && iBanLength > get_pcvar_num(consoleBanMax))
     {
         client_print(id, print_console, "[GOZM]: Максимум для бана %i минут!", 
             get_pcvar_num(consoleBanMax))
@@ -344,16 +370,16 @@ public cmdBan(id, level, cid)
         return PLUGIN_HANDLED
     }
 
-    if(g_being_banned[player]) //triggered error http://amxbans.net/forums/viewtopic.php?p=3468#3468
+    if (g_being_banned[player]) //triggered error http://amxbans.net/forums/viewtopic.php?p=3468#3468
     {
-        if ( get_pcvar_num(amxbans_debug) == 1 )
+        if (get_pcvar_num(amxbans_debug) == 1)
             log_amx("[AMXBANS DEBUG Blocking doubleban(g_being_banned)] Playerid: %d BanLenght: %s Reason: %s", player, ban_length, g_ban_reason)
         return PLUGIN_HANDLED
     }
 
     g_being_banned[player] = true
 
-    if ( get_pcvar_num(amxbans_debug) == 1 )
+    if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[cmdBan function 1]Playerid: %d", player)
 
     new player_steamid[50], player_ip[30]
@@ -374,7 +400,7 @@ public cmdBan(id, level, cid)
         else
             colored_print(id, "^x04***^x01 Игрок^x03 %s^x01 не найден на сервере", g_steamidorusername)
 
-        if ( get_pcvar_num(amxbans_debug) == 1 )
+        if (get_pcvar_num(amxbans_debug) == 1)
             log_amx("[AMXXBANS DEBUG] Player %s could not be found",g_steamidorusername)
 
         return PLUGIN_HANDLED
@@ -387,7 +413,7 @@ public cmdBan(id, level, cid)
         Don't wanna ban a player with STEAM_ID_PENDING to the DB as that can make many others to be considdered banned.
         Make an IP ban instead and don't add player_steamid to the DB
     */
-    if ( equal("4294967295", player_steamid)
+    if (equal("4294967295", player_steamid)
         || equal("HLTV", player_steamid)
         || equal("STEAM_ID_LAN",player_steamid)
         || equal("VALVE_ID_LAN",player_steamid)
@@ -430,7 +456,7 @@ public double_ban(param[]) {
         return PLUGIN_CONTINUE
 
     server_cmd("addip %d %s", iBanLength, ga_PlayerIP[id])
-    if ( get_pcvar_num(amxbans_debug) == 1 )
+    if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[! AMXBANS DEBUG] addip %d %s", iBanLength, ga_PlayerIP[id])
 
     return PLUGIN_CONTINUE
@@ -442,7 +468,7 @@ public SuperBan(victim_id, iBanLength, admin_or_vip_id)
         return PLUGIN_CONTINUE
 
     new victim_userid = get_user_userid(victim_id)
-    if(is_user_connected(victim_id) && (is_user_connected(admin_or_vip_id) || admin_or_vip_id == 0)) 
+    if (is_user_connected(victim_id) && (is_user_connected(admin_or_vip_id) || admin_or_vip_id == 0)) 
     {
         client_cmd(admin_or_vip_id, "amx_superban #%d %d ^"%s^"", 
             victim_userid, iBanLength, g_ban_reason)
@@ -452,13 +478,13 @@ public SuperBan(victim_id, iBanLength, admin_or_vip_id)
 
 public cmd_ban_(id, player, iBanLength)
 {
-    if ( get_pcvar_num(amxbans_debug) == 1 )
+    if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[cmdBan function 2]Playerid: %d", player)
 
     new bool:serverCmd = false
     // Determine if this was a server command or a command issued by a player in the game
     if (id == 0)
-        serverCmd = true;
+        serverCmd = true
 
     new player_steamid[50], player_ip[30], player_nick[50]
 
@@ -480,7 +506,7 @@ public cmd_ban_(id, player, iBanLength)
     {
         get_user_authid(id, admin_steamid, 49)
 
-        if ( get_pcvar_num(amxbans_debug) == 1 )
+        if (get_pcvar_num(amxbans_debug) == 1)
             log_amx("[AMXBANS DEBUG cmdBan] Adminsteamid: %s, Servercmd: %s", admin_steamid, serverCmd)
     }
     else
@@ -496,7 +522,7 @@ public cmd_ban_(id, player, iBanLength)
             admin_nick = servernick
     }
 
-    if ( get_pcvar_num(amxbans_debug) == 1 )
+    if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[AMXBANS DEBUG cmdBan] Admin nick: %s, Admin userid: %d", admin_nick, get_user_userid(id))
 
     new server_name[100]
@@ -536,7 +562,7 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 	new id = data[0]
 	new player = data[1]
 	
-	if ( get_pcvar_num(amxbans_debug) == 1 )
+	if (get_pcvar_num(amxbans_debug) == 1)
 		log_amx("[cmdBan function 4]Playerid: %d", player)
 
 	if (failstate)
@@ -544,7 +570,8 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
         colored_print(id, "^x04***^x01 Проблемы соединения с базой данных")
         g_being_banned[player] = false
         new szQuery[256]
-        MySqlX_ThreadError( szQuery, error, errnum, failstate, 7 )
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_INSERT_BANDETAILS)
 	}
 	else
 	{
@@ -561,8 +588,8 @@ public announce_and_kick(id, player, iBanLength)
 {
     new bool:serverCmd = false
     /* Determine if this was a server command or a command issued by a player in the game */
-    if ( id == 0 )
-        serverCmd = true;
+    if (id == 0)
+        serverCmd = true
 
     new player_steamid[50], player_ip[30], player_nick[50]
 
@@ -621,7 +648,7 @@ public announce_and_kick(id, player, iBanLength)
         else
             console_print(id, "[AMXXBANS] The Player %s was not found",g_steamidorusername)
 
-        if ( get_pcvar_num(amxbans_debug) == 1 )
+        if (get_pcvar_num(amxbans_debug) == 1)
             log_amx("[AMXXBANS DEBUG] Player %s could not be found",g_steamidorusername)
 
         return PLUGIN_HANDLED
@@ -671,7 +698,7 @@ public announce_and_kick(id, player, iBanLength)
 
 public cmdUnBan(id, level, cid)
 {
-    if(!(get_user_flags(id) & level))
+    if (!(get_user_flags(id) & level))
         return PLUGIN_HANDLED
 
     new steamid_or_nick[50]
@@ -741,24 +768,24 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
     if (failstate)
     {
         new szQuery[256]
-        MySqlX_ThreadError( szQuery, error, errnum, failstate, 11 )
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_BY_NICK)
     }
     else
     {
         new res_count = SQL_NumResults(query)
-        if(!res_count)
+        if (!res_count)
         {
             log_amx("[AMXBANS]: Player with that part of nickname is NOT found in bans")
             colored_print(id, "^x04***^x01 Такой ник (или часть) не найден в списке банов:^x04 %s",
                 g_player_nick)
             return PLUGIN_HANDLED
         }
-        else if(res_count <= MAX_UNBAN_OPTIONS)
+        else if (res_count <= MAX_UNBAN_OPTIONS)
         {
-            new i_Menu = menu_create("\yМеню разбана:", "unban_menu_handler" )
-            new c
+            new i_Menu = menu_create("\yМеню разбана:", "unban_menu_handler")
             
-            for(c=1; c<=res_count; c++)
+            for (new c=1; c<=res_count; c++)
             {
                 log_amx("[AMXBANS]: Found %d results", res_count)
 
@@ -829,13 +856,14 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 	new bool:serverCmd = false
 
 	// Determine if this was a server command or a command issued by a player in the game
-	if ( id == 0 )
+	if (id == 0)
 		serverCmd = true
 	
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 11 )
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_SELECT)
 	}
 	else
 	{
@@ -870,7 +898,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             get_user_name(id, unbanning_nick, 49)
             trim(unbanning_nick)
 
-            if(!equal(unbanning_nick, admin_nick) && !has_admin(id))
+            if (!equal(unbanning_nick, admin_nick) && !has_admin(id))
             {
                 log_amx("[AMXBANS]: NOT YOUR BAN: VIP'%s' vs ADM'%s'", unbanning_nick, admin_nick)
                 colored_print(id, "^x04***^x01 Игрок забанен випом^x04 %s", admin_nick)
@@ -941,7 +969,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
             data[1] = bid
             SQL_ThreadQuery(g_SqlX, "cmd_unban_insert", query, data, 2)
 
-            if ( get_pcvar_num(amxbans_debug) == 1 )
+            if (get_pcvar_num(amxbans_debug) == 1)
                 log_amx("[AMXBANS DEBUG] UNBAN IN GAME: INSERT INTO `%s` (VALUES('%s','%s','%s', '%s')",tbl_banhist,g_unban_player_steamid,g_player_nick,ban_length, g_unban_admin_nick)
         }
 	}
@@ -953,7 +981,8 @@ public cmd_delete_superban(failstate, Handle:query, error[], errnum, data[], siz
     if (failstate)
 	{
         new szQuery[256]
-        MySqlX_ThreadError(szQuery, error, errnum, failstate, 12)
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_DELETE_SUPERBAN)
 	}
 	else
 	{
@@ -970,8 +999,9 @@ public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size)
 
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 12 )
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_INSERT)
 	}
 	else
 	{
@@ -983,7 +1013,7 @@ public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size)
 		data[0] = id
 		SQL_ThreadQuery(g_SqlX, "cmd_unban_delete_and_print", query, data, 1)
 		
-		if ( get_pcvar_num(amxbans_debug) == 1 )
+		if (get_pcvar_num(amxbans_debug) == 1)
 			log_amx("[AMXBANS DEBUG] UNBAN IN GAME: DELETE FROM `%s` WHERE bid=%d",tbl_bans, bid)
 	}
 	return PLUGIN_HANDLED
@@ -995,8 +1025,9 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
 
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 13 )
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_PRINT)
 	}
 	else
 	{
@@ -1023,10 +1054,10 @@ public check_player(id)
     new query[4096]
     new data[1]
 
-    if(equal(player_steamid, "BOT"))
+    if (equal(player_steamid, "BOT"))
         return PLUGIN_HANDLED
 
-    if(equal(player_steamid, "STEAM_ID_LAN") || equal(player_steamid, ""))
+    if (equal(player_steamid, "STEAM_ID_LAN") || equal(player_steamid, ""))
         format(query, 4095, "\
         SELECT \
             bid, ban_created, ban_length, \
@@ -1059,12 +1090,13 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
 
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 17 )
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_CHECK_PLAYER)
 	}
 	else
 	{
-		if(!SQL_NumResults(query))
+		if (!SQL_NumResults(query))
 		{
 			return PLUGIN_HANDLED
 		}
@@ -1116,13 +1148,13 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                 client_cmd(id, "echo [GOZM]: Demo: cstrike/go_zombie.dem")
                 client_cmd(id, "echo [GOZM]: ===============================================")
 
-                if ( get_pcvar_num(amxbans_debug) == 1 )
+                if (get_pcvar_num(amxbans_debug) == 1)
                     log_amx("[AMXBANS DEBUG] BID:<%d> Player:<%s> <%s> connected and got kicked, because of an active ban, reason: %s", bid, player_nick, player_steamid, ban_reason)
 
                 new id_str[3]
                 num_to_str(id,id_str,3)
 
-                if ( get_pcvar_num(amxbans_debug) == 1 )
+                if (get_pcvar_num(amxbans_debug) == 1)
                     log_amx("[AMXBANS DEBUG] Delayed Kick-TASK ID1: <%d>  ID2: <%s>", id, id_str)
 
                 set_task(3.5, "delayed_kick", 0, id_str, 3)
@@ -1168,14 +1200,14 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
                     ban_length, server_ip, unban_created, 
                     map_name)
                 SQL_ThreadQuery(g_SqlX, "insert_to_banhistory", insert_query)
-                if ( get_pcvar_num(amxbans_debug) == 1 )
+                if (get_pcvar_num(amxbans_debug) == 1)
                     log_amx("[AMXBANS DEBUG] PRUNE BAN: INSERT INTO `%s` (VALUES('%s','%s','%s')",tbl_banhist, player_steamid, player_nick, ban_length)
                 
                 // DELETE EXPIRED BAN
                 new delete_query[512]
                 format(delete_query, 511,"DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
                 SQL_ThreadQuery(g_SqlX, "delete_expired_ban", delete_query)
-                if ( get_pcvar_num(amxbans_debug) == 1 )
+                if (get_pcvar_num(amxbans_debug) == 1)
                     log_amx("[AMXBANS DEBUG] PRUNE BAN: DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
             }
 		}
@@ -1187,8 +1219,9 @@ public insert_to_banhistory(failstate, Handle:query, error[], errnum, data[], si
 {
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 18 )
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_INSERT_BANHISTORY)
 	}
 	return PLUGIN_HANDLED
 }
@@ -1198,7 +1231,8 @@ public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size
     if (failstate)
     {
         new szQuery[256]
-        MySqlX_ThreadError( szQuery, error, errnum, failstate, 19 )
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_DELETE_EXPIRED)
     }
     return PLUGIN_HANDLED
 }
@@ -1217,8 +1251,9 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 {
 	if (failstate)
 	{
-		new szQuery[256]
-		MySqlX_ThreadError( szQuery, error, errnum, failstate, 5 )
+        new szQuery[256]
+        SQL_GetQueryString(query, szQuery, 255)
+        MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_FETCH_REASONS)
 	}
 	else
 	{
@@ -1255,7 +1290,8 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 /* ---------------- MENUS --------------- */
 displayBanMenu(id,pos)
 {
-    if (pos < 0)  return
+    if (pos < 0)
+        return
 
     get_players(g_menuPlayers[id],g_menuPlayersNum[id])
 
@@ -1270,7 +1306,7 @@ displayBanMenu(id,pos)
 
     new len = format(menuBody, 511, 
         g_coloredMenus ? "\yКого забаним?\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
-        (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0 )))
+        (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0)))
 
     new end = start + 7
     new keys = MENU_KEY_0|MENU_KEY_8
@@ -1287,7 +1323,7 @@ displayBanMenu(id,pos)
         if (has_vip(i))
         {
             ++b
-            if ( g_coloredMenus )
+            if (g_coloredMenus)
                 len += format(menuBody[len],511-len,"\d%d. %s\w^n", b, name)
             else
                 len += format(menuBody[len],511-len,"#. %s^n", name)
@@ -1305,7 +1341,7 @@ displayBanMenu(id,pos)
 
     new iBanLength = g_menuSettings[id]
     new cTimeLength[128]
-    if(iBanLength == 0)
+    if (iBanLength == 0)
         len += format(menuBody[len],511-len, g_coloredMenus ? "\w^n8. Навсегда^n" : "^n8. Навсегда^n")
     else
     {
@@ -1336,11 +1372,11 @@ public actionBanMenu(id,key)
             g_menuOption[id] %= g_bantimesnum
 
             new i
-            for(i = 0; i < g_bantimesnum; i++)
+            for (i = 0; i < g_bantimesnum; i++)
             {
-                if(g_menuOption[id] == i)
+                if (g_menuOption[id] == i)
                     g_menuSettings[id] = g_BanMenuValues[i]
-                else if(g_menuOption[id] == -1)
+                else if (g_menuOption[id] == -1)
                     g_menuSettings[id] = -1
             }
 
@@ -1404,7 +1440,7 @@ displayBanMenuReason(id)
 {
 	new menuBody[1024]
 	new len = format(menuBody,1023, g_coloredMenus ? "\y%s\R^n\w^n" : "%s^n^n", "Причина")
-	new i = 0;
+	new i = 0
 
 	while (i < g_aNum)
 	{
@@ -1548,20 +1584,7 @@ public actionBanhistoryMenu(id, key)
     return PLUGIN_HANDLED
 }
 
-/* ------------ MYSQL stuff ------------- */
-
-public mysql_thread(failstate, Handle:query, error[], errnum, data[], size)
-{
-	if (failstate)
-	{
-        new szQuery[512]
-        SQL_GetQueryString(query, szQuery, 511)
-        MySqlX_ThreadError(szQuery, error, errnum, failstate, 18)
-	}
-	return PLUGIN_HANDLED
-}
-
-/*********  Error handler  ***************/
+/*********  Error handler  *********/
 MySqlX_ThreadError(szQuery[], error[], errnum, failstate, id)
 {
 	if (failstate == TQUERY_CONNECT_FAILED)

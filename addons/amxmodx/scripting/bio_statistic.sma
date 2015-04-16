@@ -29,7 +29,9 @@ enum
 	ME_NUM
 }
 
-new g_UserIP[33][32], g_UserAuthID[33][32], g_UserName[33][32]
+new g_UserIP[33][32]
+new g_UserAuthID[33][32]
+new g_UserName[33][32]
 new g_UserDBId[33]
 
 new Handle:g_SQL_Tuple
@@ -43,6 +45,8 @@ new g_CvarMaxInactiveDays
 new g_Me[33][ME_NUM]
 new g_text[MAX_BUFFER_LENGTH + 1]
 new bool:gb_css_trigger = true
+
+new g_maxplayers
 
 new g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
@@ -73,6 +77,8 @@ public plugin_init()
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
 
     register_logevent("logevent_endRound", 2, "1=Round_End")
+
+    g_maxplayers = get_maxplayers()
 
     return PLUGIN_CONTINUE
 }
@@ -126,11 +132,11 @@ public plugin_end()
     SQL_FreeHandle(g_SQL_Tuple)
 }
 
-public client_authorized(id)
+public client_putinserver(id)
 {
     g_UserDBId[id] = 0
     reset_player_statistic(id)
-    set_task(0.5, "auth_player", TASKID_AUTHORIZE + id)
+    set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
 }
 
 public client_disconnect(id)
@@ -144,6 +150,8 @@ public client_disconnect(id)
 public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
+    if (!is_user_connected(id) || !id || id > g_maxplayers)
+        return PLUGIN_HANDLED
 
     new unquoted_name[64]
     get_user_name(id, unquoted_name, charsmax(unquoted_name))
@@ -295,7 +303,7 @@ public logevent_endRound()
 {
 	if (get_playersnum())
 	{
-        // to calculate critical hits
+        // pause to calculate critical hits
         set_task(0.1, "task_announce_best_human_and_zombie")
 	}
 }

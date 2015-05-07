@@ -158,8 +158,8 @@ public _sql_init(failstate, Handle:query, error[], errnum, data[], size)
 {
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_SQL_INIT)
 	}
 	return PLUGIN_HANDLED
@@ -569,8 +569,8 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 	{
         colored_print(id, "^x04***^x01 Проблемы соединения с базой данных")
         g_being_banned[player] = false
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_INSERT_BANDETAILS)
 	}
 	else
@@ -767,8 +767,8 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
 
     if (failstate)
     {
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_BY_NICK)
     }
     else
@@ -861,8 +861,8 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size)
 	
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_SELECT)
 	}
 	else
@@ -980,8 +980,8 @@ public cmd_delete_superban(failstate, Handle:query, error[], errnum, data[], siz
 {
     if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_DELETE_SUPERBAN)
 	}
 	else
@@ -999,8 +999,8 @@ public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size)
 
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_INSERT)
 	}
 	else
@@ -1025,8 +1025,8 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
 
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_UNBAN_PRINT)
 	}
 	else
@@ -1090,8 +1090,8 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
 
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_CHECK_PLAYER)
 	}
 	else
@@ -1131,7 +1131,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size)
             if ((ban_length_int == 0) || (ban_created ==0) || (ban_created+ban_length_int > current_time_int))
             {
                 new complain_url[256]
-                get_pcvar_string(complainurl ,complain_url,255)
+                get_pcvar_string(complainurl ,complain_url, 255)
                 
                 client_cmd(id, "echo [GOZM]: ===============================================")
                 client_cmd(id, "echo [GOZM]: Banned by %s", admin_nick)
@@ -1219,8 +1219,8 @@ public insert_to_banhistory(failstate, Handle:query, error[], errnum, data[], si
 {
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_INSERT_BANHISTORY)
 	}
 	return PLUGIN_HANDLED
@@ -1230,8 +1230,8 @@ public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size
 {
     if (failstate)
     {
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_DELETE_EXPIRED)
     }
     return PLUGIN_HANDLED
@@ -1251,8 +1251,8 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size)
 {
 	if (failstate)
 	{
-        new szQuery[256]
-        SQL_GetQueryString(query, szQuery, 255)
+        new szQuery[512]
+        SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, ID_FETCH_REASONS)
 	}
 	else

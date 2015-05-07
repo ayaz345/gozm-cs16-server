@@ -24,7 +24,6 @@ enum
     timeunit_hours,
     timeunit_days,
     timeunit_weeks,
-    timeunit_months,
 };
 
 // seconds are in each time unit
@@ -32,7 +31,6 @@ enum
 #define SECONDS_IN_HOUR   3600
 #define SECONDS_IN_DAY    86400
 #define SECONDS_IN_WEEK   604800
-#define SECONDS_IN_MONTH   2592000
 
 /* Stock by Brad */
 stock get_time_length(id, unitCnt, type, output[], outputLen)
@@ -41,14 +39,14 @@ stock get_time_length(id, unitCnt, type, output[], outputLen)
 
 // id:          The player whose language the length should be translated to (or 0 for server language).
 // unitCnt:     The number of time units you want translated into verbose text.
-// type:        The type of unit (i.e. seconds, minutes, hours, days, weeks, month) that you are passing in.
+// type:        The type of unit (i.e. seconds, minutes, hours, days, weeks) that you are passing in.
 // output:      The variable you want the verbose text to be placed in.
 // outputLen:	The length of the output variable.
 
     if (unitCnt > 0)
     {
         // determine the number of each time unit there are
-        new monthCnt = 0, weekCnt = 0, dayCnt = 0, hourCnt = 0, minuteCnt = 0, secondCnt = 0;
+        new weekCnt = 0, dayCnt = 0, hourCnt = 0, minuteCnt = 0, secondCnt = 0;
 
         switch (type)
         {
@@ -57,11 +55,7 @@ stock get_time_length(id, unitCnt, type, output[], outputLen)
             case timeunit_hours:   secondCnt = unitCnt * SECONDS_IN_HOUR;
             case timeunit_days:    secondCnt = unitCnt * SECONDS_IN_DAY;
             case timeunit_weeks:   secondCnt = unitCnt * SECONDS_IN_WEEK;
-            case timeunit_months:  secondCnt = unitCnt * SECONDS_IN_MONTH;
         }
-
-        monthCnt = secondCnt / SECONDS_IN_MONTH;
-        secondCnt -= (monthCnt * SECONDS_IN_MONTH);
 
         weekCnt = secondCnt / SECONDS_IN_WEEK;
         secondCnt -= (weekCnt * SECONDS_IN_WEEK);
@@ -77,10 +71,8 @@ stock get_time_length(id, unitCnt, type, output[], outputLen)
 
         // translate the unit counts into verbose text
         new maxElementIdx = -1;
-        new timeElement[6][33];
+        new timeElement[5][33];
 
-        if (monthCnt > 0)
-            format(timeElement[++maxElementIdx], 32, "%i %L", monthCnt, id, (monthCnt == 1) ? "TIME_ELEMENT_MONTH" : "TIME_ELEMENT_MONTHS");
         if (weekCnt > 0)
             format(timeElement[++maxElementIdx], 32, "%i %L", weekCnt, id, (weekCnt == 1) ? "TIME_ELEMENT_WEEK" : "TIME_ELEMENT_WEEKS");
         if (dayCnt > 0)

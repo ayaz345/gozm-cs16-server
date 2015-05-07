@@ -412,7 +412,8 @@ public srv_handleStart()
 		
 		if (nextMap[0] && is_map_valid(nextMap))
 		{
-			server_cmd("changelevel %s", nextMap);
+			//server_cmd("changelevel %s", nextMap);
+            engine_changelevel(nextMap);
 		}
 		else
 		{
@@ -2460,16 +2461,16 @@ public vote_handleChoice(id, key)
 
 public map_change()
 {
-	// restore the map's timelimit, just in case we had changed it
-	map_restoreOriginalTimeLimit();
-	
-	// grab the name of the map we're changing to	
-	new map[MAX_MAPNAME_LEN + 1];
-	get_cvar_string("amx_nextmap", map, sizeof(map)-1);
+    // restore the map's timelimit, just in case we had changed it
+    map_restoreOriginalTimeLimit();
 
-	// verify we're changing to a valid map
-	if (!is_map_valid(map))
-	{
+    // grab the name of the map we're changing to	
+    new map[MAX_MAPNAME_LEN + 1];
+    get_cvar_string("amx_nextmap", map, sizeof(map)-1);
+
+    // verify we're changing to a valid map
+    if (!is_map_valid(map))
+    {
         // probably admin did something dumb like changed the map time limit below
         // the time remaining in the map, thus making the map over immediately.
         // since the next map is unknown, just restart the current map.
@@ -2478,10 +2479,11 @@ public map_change()
         // uselesss but keep compiling out of errors
         if (g_pauseMapEndVoteTask)
             copy(map, sizeof(map)-1, g_currentMap);
-	}
+    }
 
-	// change to the map
-	server_cmd("changelevel %s", map);
+    // change to the map
+    //server_cmd("changelevel %s", map);
+    engine_changelevel(map);
 }
 
 Float:map_getMinutesElapsed()

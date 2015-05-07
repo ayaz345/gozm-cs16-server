@@ -12,19 +12,17 @@
 //
 
 #if defined _sqlx_included
-  #endinput
+	#endinput
 #endif
 #define _sqlx_included
 
 //eh..
 #define SQL_NumRows SQL_NumResults
 
-#if AMXX_VERSION_NUM >= 175
- #pragma reqclass sqlx
- #if !defined AMXMODX_NOAUTOLOAD
-  #pragma defclasslib sqlx mysql
- #endif //!defined AMXMODX_NOAUTOLOAD
-#endif //AMXX_VERSION_NUM
+#pragma reqclass sqlx
+#if !defined AMXMODX_NOAUTOLOAD
+	#pragma defclasslib sqlx mysql
+#endif
 
 enum Handle
 {
@@ -69,7 +67,8 @@ native Handle:SQL_Connect(Handle:cn_tuple, &errcode, error[], maxlength);
  * 
  * If a connection tuple is supplied, this should be called before SQL_Connect or SQL_ThreadQuery.
  * Also note the change will remain until you call this function with another value.
- * 
+ * This native does nothing in SQLite. 
+ *
  * Example: "utf8", "latin1"
  *
  * @param h					Database or connection tuple Handle.
@@ -192,7 +191,7 @@ native SQL_IsNull(Handle:query, column);
  *  SQL_ReadResult(query, 1, num2)
  *  SQL_ReadResult(query, 2, str, 31)
  */
-native SQL_ReadResult(Handle:query, column, {Float,_}:...);
+native SQL_ReadResult(Handle:query, column, any:...);
 
 
 /**
@@ -385,25 +384,29 @@ stock SQL_QueryAndIgnore(Handle:db, const queryfmt[], any:...)
 
 stock Handle:SQL_MakeStdTuple(timeout = 0)
 {
-    static host[64], user[32], pass[32], db[128];
-    static get_type[12], set_type[12];
+	static host[64], user[32], pass[32], db[128];
+	static get_type[12], set_type[12];
+	
+	get_cvar_string("amx_sql_host", host, 63);
+	get_cvar_string("amx_sql_user", user, 31);
+	get_cvar_string("amx_sql_pass", pass, 31);
+	get_cvar_string("amx_sql_type", set_type, 11);
+	get_cvar_string("amx_sql_db", db, 127);
 
-    get_cvar_string("amx_sql_host", host, 63);
-    get_cvar_string("amx_sql_user", user, 31);
-    get_cvar_string("amx_sql_pass", pass, 31);
-    get_cvar_string("amx_sql_type", set_type, 11);
-    get_cvar_string("amx_sql_db", db, 127);
-//    log_amx("host %s; user %s; pass %s; db: %s; t/o: %d", host, user, pass, db, timeout);
-
-    SQL_GetAffinity(get_type, 12);
-
-    if (!equali(get_type, set_type))
-    {
-        if (!SQL_SetAffinity(set_type))
-        {
-            log_amx("Failed to set affinity from %s to %s.", get_type, set_type);
-        }
-    }
-
-    return SQL_MakeDbTuple(host, user, pass, db, timeout);
+	if (timeout <= 0)
+	{
+		timeout = get_cvar_num("amx_sql_timeout");
+	}
+	
+	SQL_GetAffinity(get_type, 12);
+	
+	if (!equali(get_type, set_type))
+	{
+		if (!SQL_SetAffinity(set_type))
+		{
+			log_amx("Failed to set affinity from %s to %s.", get_type, set_type);
+		}
+	}
+	
+	return SQL_MakeDbTuple(host, user, pass, db, timeout);
 }

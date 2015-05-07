@@ -201,7 +201,9 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			$date = dateMonth($result->ban_created);
 			$player = htmlentities($result->player_nick, ENT_QUOTES);
 			$admin = htmlentities($result->admin_nick, ENT_QUOTES);
-			$reason = htmlentities($result->ban_reason, ENT_QUOTES);
+			//$reason = htmlentities($result->ban_reason, ENT_QUOTES);
+            $reason = htmlentities($result->ban_reason, ENT_QUOTES, 'utf-8');
+            $reason = mb_convert_encoding($reason, 'cp1251', 'utf-8');
 			$duration = $result->ban_length;
 
 			if(empty($duration)) {

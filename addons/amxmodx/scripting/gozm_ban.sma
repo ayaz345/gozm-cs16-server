@@ -218,7 +218,7 @@ public unban_by_nickname(id, level, cid)
         return PLUGIN_HANDLED
     }
 
-    log_amx("[GOZM_BAN]: Trying to unban %s", banned_nickname)
+//    log_amx("[GOZM_BAN]: Trying to unban %s", banned_nickname)
     client_cmd(id, "amx_unban %s", banned_nickname)
     return PLUGIN_HANDLED
 }

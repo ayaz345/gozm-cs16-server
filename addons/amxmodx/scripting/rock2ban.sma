@@ -1,10 +1,11 @@
 #include <amxmodx>
+#include <fakemeta>
 #include <colored_print>
 #include <gozm>
 
-#define PLUGIN 					"Rock to Ban"
-#define VERSION 				"2.2"
-#define AUTHOR 					"GoZm"
+#define PDATA_SAFE 					2
+#define OFFSET_LINUX 				5
+#define OFFSET_CSMENUCODE 			205
 
 new g_targets[MAX_PLAYERS+1]		// player's voteban targets
 new g_votes_for[MAX_PLAYERS+1]		// count of votes for ban that player
@@ -26,7 +27,7 @@ new const g_prefix[] = "[VOTEBAN]:"
 
 public plugin_init()
 {
-    register_plugin(PLUGIN, VERSION, AUTHOR)
+    register_plugin("Rock to Ban", "2.2", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -95,67 +96,70 @@ public client_disconnect(id)
 
 public voteban_menu(id)
 {
-	if (get_playersnum() < MIN_PLAYERS)
-	{
-		colored_print(id, "^x04%s^x01 Недостаточно игроков для проведения голосования!", g_prefix)
-		return PLUGIN_HANDLED
-	}
+    if (get_playersnum() < MIN_PLAYERS)
+    {
+        colored_print(id, "^x04%s^x01 Недостаточно игроков для проведения голосования!", g_prefix)
+        return PLUGIN_HANDLED
+    }
 
-	new players[32], players_num, player
-	new temp_string[64], name[32], info[3]
+    if(pev_valid(id) == PDATA_SAFE)
+        set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
-	new menu = menu_create("\yМеню \rVOTEBAN\y:", "menu_handle")
+    new players[32], players_num, player
+    new temp_string[64], name[32], info[3]
 
-	if (has_vip(id))
-		menu_setprop(menu, MPROP_TITLE, "\yМеню \rVOTEBAN\y:^n\dУправление только иммунитетом игрока!")
-	menu_setprop(menu, MPROP_NUMBER_COLOR, "\y")
-	menu_setprop(menu, MPROP_NEXTNAME, "Дальше")
-	menu_setprop(menu, MPROP_BACKNAME, "Назад")
-	menu_setprop(menu, MPROP_EXITNAME, "Выход")
+    new menu = menu_create("\yМеню \rVOTEBAN\y:", "menu_handle")
 
-	new callback = menu_makecallback("menu_callback")
+    if (has_vip(id))
+        menu_setprop(menu, MPROP_TITLE, "\yМеню \rVOTEBAN\y:^n\dУправление только иммунитетом игрока!\y")
+    menu_setprop(menu, MPROP_NUMBER_COLOR, "\y")
+    menu_setprop(menu, MPROP_NEXTNAME, "Дальше")
+    menu_setprop(menu, MPROP_BACKNAME, "Назад")
+    menu_setprop(menu, MPROP_EXITNAME, "Выход")
 
-	new max_votes = get_max_votes()
+    new callback = menu_makecallback("menu_callback")
 
-	get_players(players, players_num, "ch")		// skip bots and HLTV
-	for (new i = 0; i < players_num; i++)
-	{
-		player = players[i]
-		get_user_name(player, name, charsmax(name))
+    new max_votes = get_max_votes()
 
-		if (player == id)
-		{
-			continue	// don't show player itself
-		}
-		else if (g_immunity[player])
-		{
-			formatex(temp_string, charsmax(temp_string), "%s \yзащита", name)
-			if (has_vip(id))
-				menu_additem(menu, temp_string, info, .callback=callback)
-			else
-				menu_additem(menu, name, "", .callback=callback)
-		}
-		else if (has_vip(player))
-		{
-			// don't set info[] if player has immunity
-			menu_additem(menu, name, "", .callback=callback)
-		}
-		else
-		{
-			if (!g_votes_for[player])
-				formatex(temp_string, charsmax(temp_string), "%s", name)
-			else if (CHECK_FLAG(g_targets[id], player))
-				formatex(temp_string, charsmax(temp_string), "%s \r%d\y/%d", name, g_votes_for[player], max_votes)
-			else
-				formatex(temp_string, charsmax(temp_string), "%s \y%d/%d", name, g_votes_for[player], max_votes)
-			num_to_str(player, info, charsmax(info))
-			menu_additem(menu, temp_string, info, .callback=callback)
-		}
-	}
+    get_players(players, players_num, "ch")		// skip bots and HLTV
+    for (new i = 0; i < players_num; i++)
+    {
+        player = players[i]
+        get_user_name(player, name, charsmax(name))
 
-	menu_display(id, menu)
+        if (player == id)
+        {
+            continue	// don't show player itself
+        }
+        else if (g_immunity[player])
+        {
+            formatex(temp_string, charsmax(temp_string), "%s \yзащита", name)
+            if (has_vip(id))
+                menu_additem(menu, temp_string, info, .callback=callback)
+            else
+                menu_additem(menu, name, "", .callback=callback)
+        }
+        else if (has_vip(player))
+        {
+            // don't set info[] if player has immunity
+            menu_additem(menu, name, "", .callback=callback)
+        }
+        else
+        {
+            if (!g_votes_for[player])
+                formatex(temp_string, charsmax(temp_string), "%s", name)
+            else if (CHECK_FLAG(g_targets[id], player))
+                formatex(temp_string, charsmax(temp_string), "%s \r%d\y/%d", name, g_votes_for[player], max_votes)
+            else
+                formatex(temp_string, charsmax(temp_string), "%s \y%d/%d", name, g_votes_for[player], max_votes)
+            num_to_str(player, info, charsmax(info))
+            menu_additem(menu, temp_string, info, .callback=callback)
+        }
+    }
 
-	return PLUGIN_HANDLED
+    menu_display(id, menu)
+
+    return PLUGIN_HANDLED
 }
 
 public menu_callback(id, menu, item)

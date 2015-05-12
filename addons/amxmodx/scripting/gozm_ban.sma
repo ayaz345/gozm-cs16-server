@@ -7,9 +7,10 @@
 #define MPROP_NEXTNAME  3
 #define MPROP_EXITNAME  4
 
-new g_chosen_userid[MAX_PLAYERS]
-new g_ban_time
+new g_chosen_userid[MAX_PLAYERS+1]
 new ban_reason[128]
+
+new pcvar_bantime
 
 public plugin_init()
 {
@@ -18,50 +19,30 @@ public plugin_init()
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
 
-    register_clcmd("say", "say_it" )
-    register_clcmd("say_team", "say_it" )
+    register_clcmd("say /ban", "say_it" )
+    register_clcmd("say_team /ban", "say_it" )
+
     register_clcmd("VIP_REASON", "set_custom_ban_reason")
     register_clcmd("amx_unban_by_name", "custom_unban")
     register_clcmd("BANNED_NICKNAME", "unban_by_nickname")
     
-    g_ban_time = register_cvar("amxx_voteban_bantime", "30")
+    pcvar_bantime = register_cvar("amxx_voteban_bantime", "30")
 
     return PLUGIN_CONTINUE
 }
 
 public say_it(id)
 {
-    static say_args[11]
-    read_args(say_args, 10)
-    remove_quotes(say_args)
-
-    if(say_args[0] == '/' && containi(say_args, "voteban") != -1)
+    if(has_vip(id) || has_admin(id)) 
     {
-        if(has_vip(id)) 
-        {
-            show_player_menu(id)
-            return PLUGIN_HANDLED
-        }
-        else 
-        {
-            colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 /voteban")
-            return PLUGIN_HANDLED
-        }
+        show_player_menu(id)
+        return PLUGIN_HANDLED
     }
-    else if(say_args[0] == '/' && equali(say_args, "/ban")) 
+    else
     {
-        if(has_vip(id) || has_admin(id)) 
-        {
-            show_player_menu(id)
-            return PLUGIN_HANDLED
-        }
-        else
-        {
-            colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 /ban")
-            return PLUGIN_HANDLED
-        }
+        colored_print(id,"^x04***^x01 Только ВИПы могут использовать^x04 /ban")
+        return PLUGIN_HANDLED
     }
-    return PLUGIN_CONTINUE
 }
 
 public show_player_menu(id)
@@ -180,7 +161,7 @@ public set_custom_ban_reason(id, level, cid)
         return PLUGIN_HANDLED
     }
 
-    actual_ban(id, get_pcvar_num(g_ban_time), ban_reason)
+    actual_ban(id, get_pcvar_num(pcvar_bantime), ban_reason)
     return PLUGIN_HANDLED
 }
 

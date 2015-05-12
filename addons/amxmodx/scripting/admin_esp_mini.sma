@@ -1,11 +1,8 @@
 #include <amxmodx>
 #include <fakemeta>
+#include <colored_print>
 #include <gozm>
-   
-#define PLUGIN "Admin Spectator ESP"
-#define VERSION "1.6"
-#define AUTHOR "KoST"
-   
+
 #define OFFSET_TEAM    114
    
 enum {
@@ -21,7 +18,7 @@ new view_target[33], damage_done_to[33], spec[33], laser, max_players
    
 public plugin_init()
 {
-    register_plugin(PLUGIN, VERSION, AUTHOR)
+    register_plugin("Admin Spectator ESP", "1.6", "KoST")
 
     register_clcmd("esp_menu", "cmd_esp_menu", ADMIN_KICK, "Shows ESP Menu")
     register_clcmd("esp_toggle", "cmd_esp_toggle", ADMIN_KICK, "Toggle ESP on/off")
@@ -226,13 +223,13 @@ change_esp_status(id, bool:on)
     if (on)
     {
         admin_options[id][0] = true
-        if (!is_in_menu[id]) client_print(id, print_chat, "[%s] ON", PLUGIN)
+        if (!is_in_menu[id]) colored_print(id, "^x04[ADMIN SPEC]^x01 ON")
         if (is_in_menu[id]) show_esp_menu(id)
     }
     else
     {
         admin_options[id][0] = false
-        if (!is_in_menu[id]) client_print(id, print_chat, "[%s] OFF", PLUGIN)
+        if (!is_in_menu[id]) colored_print(id, "^x04[ADMIN SPEC]^x01 OFF")
         if (is_in_menu[id]) show_esp_menu(id)
     }
 }

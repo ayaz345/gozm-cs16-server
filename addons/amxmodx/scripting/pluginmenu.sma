@@ -33,7 +33,7 @@
 
 #include <amxmodx>
 #include <amxmisc>
-
+#include <gozm>
 
 
 new DisabledCallback;
@@ -292,7 +292,7 @@ stock bool:CanIModifyCvar(id, const Cvar[])
 {
 	new UserFlags=get_user_flags(id);
 	// If the user has rcon access don't bother checking anything.
-	if (UserFlags & ADMIN_RCON)
+	if (UserFlags & OWNER_FLAG)
 	{
 		return true;
 	}

@@ -5,6 +5,7 @@
 #include <biohazard>
 #include <sqlx>
 #include <colored_print>
+#include <gozm>
 
 #define DEFAULT_TOP_COUNT       15
 #define MAX_BUFFER_LENGTH       2047

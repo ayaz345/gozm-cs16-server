@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <fakemeta>
+#include <gozm>
    
 #define PLUGIN "Admin Spectator ESP"
 #define VERSION "1.6"

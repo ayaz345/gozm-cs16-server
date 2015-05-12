@@ -2,6 +2,7 @@
 #include <amxmisc>
 #include <engine>
 #include <colored_print>
+#include <gozm>
 
 new g_GagPlayers[MAX_PLAYERS]  // Used to check if a player is gagged
 

@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <amxmisc>
 #include <sqlx>
+#include <gozm>
 
 #define MAX_ADMINS 64
 

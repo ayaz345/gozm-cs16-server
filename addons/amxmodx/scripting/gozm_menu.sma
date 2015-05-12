@@ -3,9 +3,7 @@
 #include <hamsandwich>
 #include <cs_teams_api>
 #include <colored_print>
-
-#define ADMIN               ADMIN_RCON
-#define VIP                 ADMIN_LEVEL_H
+#include <gozm>
 
 #define MPROP_BACKNAME      2
 #define MPROP_NEXTNAME      3
@@ -68,13 +66,13 @@ public mainMenu(id, page)
     else
         menu_additem(i_Menu, "В игру", "6")
     menu_additem(i_Menu, "Список банов", "7")
-    menu_additem(i_Menu, "Бан", "8", ADMIN | VIP)
-    menu_additem(i_Menu, "Заглушка", "9", ADMIN | VIP)
-    menu_additem(i_Menu, "Разбан", "10", ADMIN | VIP)
-    menu_additem(i_Menu, "Разрешить говорить", "11", ADMIN | VIP)
-    menu_additem(i_Menu, "История игрока", "12", ADMIN | VIP)
-    menu_additem(i_Menu, "Шапки", "13", ADMIN | VIP)
-    menu_additem(i_Menu, "Почистить setinfo", "14", ADMIN | VIP)
+    menu_additem(i_Menu, "Бан", "8", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "Заглушка", "9", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "Разбан", "10", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "Разрешить говорить", "11", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "История игрока", "12", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "Шапки", "13", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "Почистить setinfo", "14", OWNER_FLAG | VIP_FLAG)
 
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Вперед")

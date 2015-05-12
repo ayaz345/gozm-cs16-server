@@ -11,6 +11,7 @@
 #include <cs_maxspeed_api>
 #include <cs_weap_models_api>
 #include <colored_print>
+#include <gozm>
 
 #tryinclude "biohazard.cfg"
 
@@ -339,12 +340,12 @@ public plugin_init()
     register_clcmd("say_team guns", "cmd_enablemenu")
     register_clcmd("say /unstuck", "clcmd_sayunstuck")
     register_clcmd("say_team /unstuck", "clcmd_sayunstuck")
-    register_clcmd("amx_infect", "cmd_infectuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-    register_clcmd("amx_cure", "cmd_cureuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
-    register_clcmd("amx_drop", "cmd_dropuser", ADMIN_RCON|ADMIN_BAN, "<name or #userid>")
+    register_clcmd("amx_infect", "cmd_infectuser", OWNER_FLAG|ADMIN_FLAG, "<name or #userid>")
+    register_clcmd("amx_cure", "cmd_cureuser", OWNER_FLAG|ADMIN_FLAG, "<name or #userid>")
+    register_clcmd("amx_drop", "cmd_dropuser", OWNER_FLAG|ADMIN_FLAG, "<name or #userid>")
     register_clcmd("redirect_players", "cmd_redirect")
 //    register_clcmd("nightvision", "nightvision")
-    register_clcmd("amx_exec", "do_exec", ADMIN_RCON, "<nick>")
+    register_clcmd("amx_exec", "do_exec", OWNER_FLAG, "<nick>")
 
     register_menu("Equipment", 1023, "action_equip")
     register_menu("Primary", 1023, "action_prim")

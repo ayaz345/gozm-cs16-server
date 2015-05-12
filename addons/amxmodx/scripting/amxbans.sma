@@ -3,6 +3,7 @@
 #include <sqlx>
 #include <time>
 #include <colored_print>
+#include <gozm>
 
 // Specify tablenames here
 #define tbl_reasons "amx_banreasons"
@@ -87,9 +88,9 @@ new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 
 public plugin_init()
 {
-    register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu") //Changed this line to make this menu come up instead of the normal amxx ban menu
-    register_clcmd("amxbans_custombanreason", "setCustomBanReason", ADMIN_BAN, "- configures custom ban message")
-    register_clcmd("amx_banhistorymenu", "cmdBanhistoryMenu", ADMIN_LEVEL_H, "- displays banhistorymenu")
+    register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_FLAG, "- displays ban menu") //Changed this line to make this menu come up instead of the normal amxx ban menu
+    register_clcmd("amxbans_custombanreason", "setCustomBanReason", ADMIN_FLAG, "- configures custom ban message")
+    register_clcmd("amx_banhistorymenu", "cmdBanhistoryMenu", VIP_FLAG, "- displays banhistorymenu")
 
     register_menucmd(register_menuid("Ban Menu"), 1023, "actionBanMenu")
     register_menucmd(register_menuid("Ban Reason Menu"), 1023, "actionBanMenuReason")
@@ -111,9 +112,9 @@ public plugin_init()
     banhistmotd_url = register_cvar("amxbans_banhistmotd_url","http://pathToYour/findex.php?steamid=%s&ip=%s")
     consoleBanMax = register_cvar("amxbans_consolebanmax", "1440")
 
-    register_concmd("amx_ban", "cmdBan", ADMIN_BAN, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
+    register_concmd("amx_ban", "cmdBan", ADMIN_FLAG, "<time in mins> <steamID or nickname or #authid or IP> <reason>")
     register_srvcmd("amx_ban", "cmdBan", -1, "<time in min> <steamID or nickname or #authid or IP> <reason>")
-    register_concmd("amx_unban", "cmdUnBan", ADMIN_BAN, "<steamID or nickname>")
+    register_concmd("amx_unban", "cmdUnBan", ADMIN_FLAG, "<steamID or nickname>")
     register_srvcmd("amx_unban", "cmdUnBan", -1, "<steamID or nickname>")
     register_srvcmd("amx_setbantimes", "setBantimes")
     
@@ -132,7 +133,7 @@ public plugin_init()
 }
 
 public addBanhistMenu()
-	AddMenuItem("Banhistory Menu", "amx_banhistorymenu", ADMIN_BAN, "AMXBans")
+	AddMenuItem("Banhistory Menu", "amx_banhistorymenu", ADMIN_FLAG, "AMXBans")
 
 public sql_init()
 {

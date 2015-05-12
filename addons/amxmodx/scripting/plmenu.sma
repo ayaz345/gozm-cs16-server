@@ -34,6 +34,7 @@
 
 #include <amxmodx>
 #include <amxmisc>
+#include <gozm>
 
 /** skip autoloading since it's optional */
 #define AMXMODX_NOAUTOLOAD
@@ -92,7 +93,7 @@ public plugin_init()
 	register_dictionary("plmenu.txt")
 
 	register_clcmd("amx_kickmenu", "cmdKickMenu", ADMIN_KICK, "- displays kick menu")
-	register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu")
+	register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_FLAG, "- displays ban menu")
 	register_clcmd("amx_slapmenu", "cmdSlapMenu", ADMIN_SLAY, "- displays slap/slay menu")
 	register_clcmd("amx_teammenu", "cmdTeamMenu", ADMIN_LEVEL_A, "- displays team menu")
 	register_clcmd("amx_clcmdmenu", "cmdClcmdMenu", ADMIN_LEVEL_A, "- displays client cmds menu")

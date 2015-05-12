@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <amxmisc>
+#include <gozm>
 
 new white_list[64]
 new ips_list[64]

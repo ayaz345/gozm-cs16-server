@@ -1,6 +1,7 @@
 #include <amxmodx>
 #include <amxmisc>
 #include <colored_print>
+#include <gozm>
 
 #define MPROP_BACKNAME  2
 #define MPROP_NEXTNAME  3

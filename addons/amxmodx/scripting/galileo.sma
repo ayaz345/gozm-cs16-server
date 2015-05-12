@@ -3,6 +3,7 @@ new const PLUGIN_VERSION[]  = "1.1 $Revision: 290 $"; // $Date: 2009-02-26 11:20
 #include <amxmodx>
 #include <amxmisc>
 #include <colored_print>
+#include <gozm>
 
 #pragma semicolon 1
 
@@ -156,7 +157,7 @@ public plugin_init()
     register_clcmd("listmaps", "cmd_HL1_listmaps");
 
     register_concmd("gal_startvote", "cmd_startVote", ADMIN_MAP);
-    register_concmd("gal_createmapfile", "cmd_createMapFile", ADMIN_RCON);
+    register_concmd("gal_createmapfile", "cmd_createMapFile", OWNER_FLAG);
     register_concmd("recentmaps", "cmd_listrecent");
 
     register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);

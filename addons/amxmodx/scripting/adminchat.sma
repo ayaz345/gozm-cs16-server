@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <colored_print>
+#include <gozm>
 
 public plugin_init()
 {

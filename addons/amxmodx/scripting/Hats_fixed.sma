@@ -3,6 +3,7 @@
 #include <fakemeta>
 #include <colored_print>
 #include <nvault>
+#include <gozm>
 
 #define PLUG_NAME 		    "Hats"
 #define PLUG_AUTH 		    "Dumka"

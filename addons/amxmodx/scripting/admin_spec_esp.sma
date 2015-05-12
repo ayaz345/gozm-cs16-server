@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <engine>
+#include <gozm>
 
 // Here you can adjust the required admin level if needed
 // there is a list of all levels http://www.amxmodx.org/funcwiki.php?go=module&id=1#const_admin

@@ -2,6 +2,7 @@
 #include <amxmisc>
 #include <fakemeta>
 #include <xs>
+#include <gozm>
 
 #define PLUGIN "WalkGuard"
 #define VERSION "1.3.2"
@@ -107,7 +108,7 @@ public plugin_init() {
 	register_menu("KillMenu", -1, "KillMenuAction", 0)
 
 	// Menu
-	register_clcmd("walkguardmenu", "InitWalkGuard", ADMIN_RCON, " - open the WalkGuard-Menu")
+	register_clcmd("walkguardmenu", "InitWalkGuard", OWNER_FLAG, " - open the WalkGuard-Menu")
 
 	// Sprache
 	register_dictionary("walkguard.txt")

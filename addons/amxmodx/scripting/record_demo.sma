@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <colored_print>
+#include <gozm>
 
 new cvar_forum, cvar_demo_name
 

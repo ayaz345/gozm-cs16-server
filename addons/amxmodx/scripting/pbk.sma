@@ -3,6 +3,7 @@
 #include <fakemeta>
 #include <cstrike>
 #include <colored_print>
+#include <gozm>
 
 #define CHECK_FREQ		5
 

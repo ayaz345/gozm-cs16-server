@@ -3137,34 +3137,5 @@ native admins_flush();
  */
 native bool:has_map_ent_class(const classname[]);
 
-public bool:is_server_licenced()
-{
-    new server_ips[][20] = {
-        "46.174.52.13:27259",  // MyArena
-        "172.23.65.13:27016"  // Home
-    }
-    new current_ip[20]
-    get_user_ip(0, current_ip, 19, 0);
-    
-    for(new c; c<sizeof server_ips; c++)
-    {
-        if(equal(current_ip, server_ips[c]))
-            return true;
-    }
-    return false;
-}
-
-public has_vip(id)
-    return get_user_flags(id) & ADMIN_LEVEL_H
-
-public has_admin(id)
-    return get_user_flags(id) & ADMIN_BAN
-    
-public has_rcon(id)
-    return get_user_flags(id) & ADMIN_RCON
-
-public is_priveleged_user(id)
-    return has_vip(id) || has_rcon(id) || has_admin(id)
-
 // Always keep this at the bottom of this file
 #include <message_stocks>

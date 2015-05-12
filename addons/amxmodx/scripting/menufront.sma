@@ -34,6 +34,7 @@
 
 #include <amxmodx>
 #include <amxmisc>
+#include <gozm>
 
 #define MAXMENUS			128
 #define STRINGSIZE			32
@@ -127,7 +128,7 @@ AddDefaultMenus()
 {
 	new flags;
 	AddMenuLang("KICK_PLAYER", "amx_kickmenu", get_clcmd_flags("amx_kickmenu", flags) ? flags : ADMIN_KICK , "Players Menu")
-	AddMenuLang("BAN_PLAYER", "amx_banmenu", get_clcmd_flags("amx_banmenu", flags) ? flags : ADMIN_BAN, "Players Menu")
+	AddMenuLang("BAN_PLAYER", "amx_banmenu", get_clcmd_flags("amx_banmenu", flags) ? flags : ADMIN_FLAG, "Players Menu")
 	AddMenuLang("SLAP_SLAY", "amx_slapmenu", get_clcmd_flags("amx_slapmenu", flags) ? flags : ADMIN_SLAY, "Players Menu")
 	AddMenuLang("TEAM_PLAYER", "amx_teammenu", get_clcmd_flags("amx_teammenu", flags) ? flags : ADMIN_LEVEL_A, "Players Menu")
 	AddMenuLang("CHANGEL", "amx_mapmenu", get_clcmd_flags("amx_mapmenu", flags) ? flags : ADMIN_MAP, "Maps Menu")

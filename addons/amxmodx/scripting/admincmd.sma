@@ -34,6 +34,7 @@
 
 #include <amxmodx>
 #include <amxmisc>
+#include <gozm>
 
 // This is not a dynamic array because it would be bad for 24/7 map servers.
 #define OLD_CONNECTION_QUEUE 10
@@ -160,10 +161,10 @@ public plugin_init()
 
 
     register_concmd("amx_kick", "cmdKick", ADMIN_KICK, "<name or #userid> [reason]")
-//    register_concmd("amx_ban", "cmdBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]")
-//    register_concmd("amx_banipxxxx", "cmdBanIP", ADMIN_BAN, "<name or #userid> <minutes> [reason]")
-//    register_concmd("amx_addban", "cmdAddBan", ADMIN_BAN, "<^"authid^" or ip> <minutes> [reason]")
-//    register_concmd("amx_unban", "cmdUnban", ADMIN_BAN, "<^"authid^" or ip>")
+//    register_concmd("amx_ban", "cmdBan", ADMIN_FLAG, "<name or #userid> <minutes> [reason]")
+//    register_concmd("amx_banipxxxx", "cmdBanIP", ADMIN_FLAG, "<name or #userid> <minutes> [reason]")
+//    register_concmd("amx_addban", "cmdAddBan", ADMIN_FLAG, "<^"authid^" or ip> <minutes> [reason]")
+//    register_concmd("amx_unban", "cmdUnban", ADMIN_FLAG, "<^"authid^" or ip>")
     register_concmd("amx_slay", "cmdSlay", ADMIN_SLAY, "<name or #userid>")
     register_concmd("amx_slap", "cmdSlap", ADMIN_SLAY, "<name or #userid> [power]")
 //    register_concmd("amx_leave", "cmdLeave", ADMIN_KICK, "<tag> [tag] [tag] [tag]")
@@ -175,9 +176,9 @@ public plugin_init()
     register_concmd("amx_map", "cmdMap", ADMIN_MAP, "<mapname>")
 //    register_concmd("amx_cfg", "cmdCfg", ADMIN_CFG, "<filename>")
     register_concmd("amx_nick", "cmdNick", ADMIN_SLAY, "<name or #userid> <new nick>")
-    register_concmd("amx_last", "cmdLast", ADMIN_BAN, "- list the last few disconnected clients info");
-//    register_clcmd("amx_rcon", "cmdRcon", ADMIN_RCON, "<command line>")
-//    register_clcmd("amx_showrcon", "cmdShowRcon", ADMIN_RCON, "<command line>")
+    register_concmd("amx_last", "cmdLast", ADMIN_FLAG, "- list the last few disconnected clients info");
+//    register_clcmd("amx_rcon", "cmdRcon", OWNER_FLAG, "<command line>")
+//    register_clcmd("amx_showrcon", "cmdShowRcon", OWNER_FLAG, "<command line>")
     register_clcmd("pauseAck", "cmdLBack")
 
 
@@ -275,7 +276,7 @@ public cmdUnban(id, level, cid)
 
 /* amx_addban is a special command now.
  * If a user with rcon uses it, it bans the user.  No questions asked.
- * If a user without rcon but with ADMIN_BAN uses it, it will scan the old
+ * If a user without rcon but with ADMIN_FLAG uses it, it will scan the old
  * connection queue, and if it finds the info for a player in it, it will
  * check their old access.  If they have immunity, it will not ban.
  * If they do not have immunity, it will ban.  If the user is not found,
@@ -284,13 +285,13 @@ public cmdUnban(id, level, cid)
  
 public cmdAddBan(id, level, cid)
 {
-	if (!cmd_access(id, level, cid, 3, true)) // check for ADMIN_BAN access
+	if (!cmd_access(id, level, cid, 3, true)) // check for ADMIN_FLAG access
 	{
 		if (get_user_flags(id) & level) // Getting here means they didn't input enough args
 		{
 			return PLUGIN_HANDLED;
 		}
-		if (!cmd_access(id, ADMIN_RCON, cid, 3)) // If somehow they have ADMIN_RCON without ADMIN_BAN, continue
+		if (!cmd_access(id, OWNER_FLAG, cid, 3)) // If somehow they have OWNER_FLAG without ADMIN_FLAG, continue
 		{
 			return PLUGIN_HANDLED;
 		}

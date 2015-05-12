@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <colored_print>
+#include <gozm>
 
 new g_Ping[33]
 new g_Samples[33]

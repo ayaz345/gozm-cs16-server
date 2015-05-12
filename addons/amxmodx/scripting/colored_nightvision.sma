@@ -2,6 +2,7 @@
 #include <fakemeta>
 #include <hamsandwich>
 #include <nvault>
+#include <gozm>
 
 #define PDATA_SAFE          2
 #define OFFSET_LINUX        5

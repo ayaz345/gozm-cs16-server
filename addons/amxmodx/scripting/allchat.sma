@@ -1,4 +1,5 @@
 #include <amxmodx>
+#include <gozm>
 
 #define VERSION "1.1"
 

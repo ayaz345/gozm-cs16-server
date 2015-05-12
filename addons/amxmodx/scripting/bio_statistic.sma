@@ -456,7 +456,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
     {
         show_me(attacker)
 
-        if (g_UserDBId[victim])
+        if (is_user_zombie(victim))
         {
             type = "zombiekills"
 

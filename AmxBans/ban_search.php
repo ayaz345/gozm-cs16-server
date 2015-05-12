@@ -145,8 +145,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		$player	  = htmlentities($result3->player_nick, ENT_QUOTES);
 		$admin	  = htmlentities($result3->admin_nick, ENT_QUOTES);
 		//$reason   = htmlentities($result3->ban_reason, ENT_QUOTES);
-        $reason = htmlentities($result3->ban_reason, ENT_QUOTES, 'utf-8');
-        $reason = mb_convert_encoding($reason, 'cp1251', 'utf-8');
+        $reason = convert_cp1251_to_utf8($result3->ban_reason);
 		$duration = $result3->ban_length;
 		$serverip = $result3->server_ip;
 		$bancount = $bancount+1;
@@ -237,8 +236,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		$ex_player	= $result5->player_nick;
 		$ex_admin	= htmlentities($result5->admin_nick, ENT_QUOTES);
 		//$ex_reason      = $result5->ban_reason;
-        $ex_reason = htmlentities($result5->ban_reason, ENT_QUOTES, 'utf-8');
-        $ex_reason = mb_convert_encoding($ex_reason, 'cp1251', 'utf-8');
+        $ex_reason = convert_cp1251_to_utf8($result5->ban_reason);
 		$ex_duration	= $result5->ban_length;
 		$ex_serverip	= $result5->server_ip;
 

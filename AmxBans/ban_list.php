@@ -169,8 +169,7 @@ while($result = mysql_fetch_object($resource)) {
 	}
 
 	//$server_name = $result->server_name;
-	$server_name = htmlentities($result->server_name, ENT_QUOTES, 'utf-8');
-    $server_name = mb_convert_encoding($server_name, 'cp1251', 'utf-8');
+	$server_name = convert_cp1251_to_utf8($result->server_name);
 
 	if ($config->fancy_layers == "enabled") {
 		if($config->display_comments == "enabled") {
@@ -251,8 +250,7 @@ while($result = mysql_fetch_object($resource)) {
 		}
 	}
 
-	$ban_reason = htmlentities($result->ban_reason, ENT_QUOTES, 'utf-8');
-    $ban_reason = mb_convert_encoding($ban_reason, 'cp1251', 'utf-8');
+	$ban_reason = convert_cp1251_to_utf8($result->ban_reason);
 
 	if ($serverip != "") {
 		$gametype = $result->gametype;

@@ -30,56 +30,64 @@
 $db_connect = @mysql_connect($config->db_host, $config->db_user, $config->db_pass) or die (mysql_error());
 $db_site    = @mysql_select_db($config->db_name, $db_connect) or die (mysql_error());
 
-function dateFull($timestamp) { // zondag 20 april 2003
+function dateFull($timestamp) // zondag 20 april 2003
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%A %d %B %Y", $timestamp);
 	
 	return $date;
 }
 
-function dateShort($timestamp) { // 20-04-03
+function dateShort($timestamp) // 20-04-03
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%d-%m-%y", $timestamp);
 	
 	return $date;
 }
 
-function dateMonth($timestamp) { // 20/04
+function dateMonth($timestamp) // 20/04
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%d/%m", $timestamp);
 	
 	return $date;
 }
 
-function dateShortYear($timestamp) { // 20-04-2003
+function dateShortYear($timestamp) // 20-04-2003
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%d-%m-%Y", $timestamp);
 	
 	return $date;
 }
 
-function dateMonthYear($timestamp) { // maart 2004
+function dateMonthYear($timestamp) // mart 2004
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%B %Y", $timestamp);
 	
 	return $date;
 }
 
-function dateFulltime($timestamp) { // zondag 20 april 2003 - 15:32
+function dateFulltime($timestamp) // zondag 20 april 2003 - 15:32
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%A %d %B %Y - %H:%M", $timestamp);
 	
 	return $date;
 }
 
-function dateShorttime($timestamp) { // 20-04-03 15:32
+function dateShorttime($timestamp) // 20-04-03 15:32
+{
 	setlocale (LC_TIME, 'Dutch');
 	$date = strftime("%d-%m-%Y - %H:%M", $timestamp);
 	
 	return $date;
 }
 
-function dateRFC822($timestamp) { // Sat, 28 Jun 2003 18:06:03 GMT
+function dateRFC822($timestamp) // Sat, 28 Jun 2003 18:06:03 GMT
+    {
 	$timestamp = $timestamp - 7200;
 	
 	$date = strftime("%a, %d %b %Y %H:%M:%S GMT", $timestamp);
@@ -87,7 +95,8 @@ function dateRFC822($timestamp) { // Sat, 28 Jun 2003 18:06:03 GMT
 	return $date;
 }
 
-function firstDayOfWeek($timestamp = NULL) { // Return a UNIX timestamp of the first day in a week
+function firstDayOfWeek($timestamp = NULL) // Return a UNIX timestamp of the first day in a week
+{ 
 	global $currenttime;
 	
 	if(isset($timestamp)) {
@@ -112,7 +121,8 @@ function firstDayOfWeek($timestamp = NULL) { // Return a UNIX timestamp of the f
 	return strtotime("$add_no_of_weeks weeks", $first_day);
 }
 
-function checkLeapYear($year) {
+function checkLeapYear($year) 
+{
 	if($year % 4 != 0) {
 		return FALSE;
 	}
@@ -126,7 +136,8 @@ function checkLeapYear($year) {
 	}
 }
 
-function timing($command) {
+function timing($command) 
+{
 	global $starttime, $endtime;
 	
 	if($command == 'start') {
@@ -147,7 +158,8 @@ function timing($command) {
 	}
 }
 
-function timeleft($begin,$end) {
+function timeleft($begin,$end) 
+{
 	$dif=$end-$begin;
 	//$week=0;
 
@@ -251,8 +263,8 @@ function GetUrlParams($exclude=false) {
 	return NULL;
 }
 
-function CheckAbility($action,$user_lvl) {
-
+function CheckAbility($action,$user_lvl) 
+{
 	global $config;
 
 	$check_ability	= mysql_query("SELECT $action FROM $config->levels WHERE level = '$user_lvl'") or die (mysql_error());
@@ -268,8 +280,8 @@ function CheckAbility($action,$user_lvl) {
 	}
 }
 
-function CheckFrontEndState() {
-
+function CheckFrontEndState() 
+{
 	global $config;
 	global $_SESSION;
 
@@ -285,8 +297,8 @@ function CheckFrontEndState() {
 	}
 }
 
-function GenerateString($strlen) {
-
+function GenerateString($strlen) 
+{
 	$auto_string= chr(mt_rand(ord('A'), ord('Z')));
 
 	for ($i= 0; $i<$strlen; $i++) {
@@ -298,13 +310,15 @@ function GenerateString($strlen) {
 	return $auto_string;
 }
 
-function IsLoggedIn() {
+function IsLoggedIn() 
+{
 
 	global $_SESSION, $REMOTE_ADDR;
 	return isset($_SESSION) && isset($_SESSION['uid']) && isset($_SESSION['pwd']) && $_SESSION['uip'] == $REMOTE_ADDR;
 }
 
-function CheckAMXWebVersion() {
+function CheckAMXWebVersion() 
+{
 	global $config;
 	@include("$config->update_url/version.inc");
 	if ($config->php_version >= $current_php_vers) {
@@ -314,8 +328,8 @@ function CheckAMXWebVersion() {
 	return 1;
 }
 
-function CheckAMXPlugVersion($mod,$version) {
-
+function CheckAMXPlugVersion($mod,$version) 
+{
 	global $config;
 	include("$config->update_url/version.inc");
 
@@ -335,8 +349,8 @@ function CheckAMXPlugVersion($mod,$version) {
 	return $result;
 }
 
-function AddImportBan($player_id,$player_nick,$admin_nick,$admin_ip,$ban_type,$ban_reason,$ban_length,$player_ip="") {
-
+function AddImportBan($player_id,$player_nick,$admin_nick,$admin_ip,$ban_type,$ban_reason,$ban_length,$player_ip="") 
+{
 	global $config;
 
 	$check_steamid	= mysql_query("SELECT player_id FROM $config->bans WHERE player_id = '$player_id'") or die (mysql_error());
@@ -353,7 +367,8 @@ function AddImportBan($player_id,$player_nick,$admin_nick,$admin_ip,$ban_type,$b
 	}
 }
 
-function display_post_get() { 
+function display_post_get() 
+{ 
    if ($_POST) { 
       echo "Displaying POST Variables: <br> \n"; 
       echo "<table border=1> \n"; 
@@ -386,14 +401,15 @@ function display_post_get() {
    } 
 }
 
-function display_array($array) { 
+function display_array($array) 
+{ 
 	echo "<pre>\n"; 
 	print_r($array);
 	echo "</pre>\n"; 
 }
 
-function ReadSessionFromCookie() {
-
+function ReadSessionFromCookie() 
+{
 	global $config;
 
 	$cook			= explode(":", $_COOKIE["amxbans"]);
@@ -471,8 +487,8 @@ function ReadSessionFromCookie() {
 	$_SESSION['ip_view'] = $ip_view;
 }
 
-function CountBans() {
-
+function CountBans() 
+{
 	global $config;
 	
 	$active_bans	= mysql_query("SELECT COUNT(bid) AS active_bans FROM $config->bans") or die(mysql_error());
@@ -489,7 +505,6 @@ function CountBans() {
 
 function get_post( $var )
 {
-
 	if ( isset( $_POST[$var] ) )
 	{
 		return $_POST[$var];
@@ -505,11 +520,14 @@ function print_it( $var )
 	echo "</pre>";
 }
 
+function convert_cp1251_to_utf8( $data )
+{
+    $html_data = htmlentities($data, ENT_QUOTES, 'utf-8');
+    return mb_convert_encoding($html_data, 'cp1251', 'utf-8');
+}
+
 function throw_error( $msg )
 {
-
-
-
 }
 
 ?>

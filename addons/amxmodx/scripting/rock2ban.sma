@@ -26,16 +26,21 @@ new const g_prefix[] = "[VOTEBAN]:"
 
 public plugin_init()
 {
-	register_plugin(PLUGIN, VERSION, AUTHOR)
+    register_plugin(PLUGIN, VERSION, AUTHOR)
 
-	register_clcmd("say voteban", "voteban_menu")
-	register_clcmd("say_team voteban", "voteban_menu")
-	register_clcmd("say /voteban", "voteban_menu")
-	register_clcmd("say_team /voteban", "voteban_menu")
+    if(!is_server_licenced())
+        return PLUGIN_CONTINUE
 
-	pcvar_percent = register_cvar("voteban_percent", "40")
-	pcvar_bantime = register_cvar("voteban_time", "10")
-	pcvar_limit = register_cvar("voteban_limit", "2")
+    register_clcmd("say voteban", "voteban_menu")
+    register_clcmd("say_team voteban", "voteban_menu")
+    register_clcmd("say /voteban", "voteban_menu")
+    register_clcmd("say_team /voteban", "voteban_menu")
+
+    pcvar_percent = register_cvar("voteban_percent", "40")
+    pcvar_bantime = register_cvar("voteban_time", "10")
+    pcvar_limit = register_cvar("voteban_limit", "2")
+
+    return PLUGIN_CONTINUE
 }
 
 public client_connect(id)

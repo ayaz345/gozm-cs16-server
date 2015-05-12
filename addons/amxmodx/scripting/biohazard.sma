@@ -1,5 +1,3 @@
-#define VERSION	"vk.com/go_zombie"
-
 #include <amxmodx>
 #include <amxmisc>
 #include <fakemeta>
@@ -17,8 +15,6 @@
 
 #if !defined _biohazardcfg_included
 	#assert Biohazard configuration file required!
-#elseif AMXX_VERSION_NUM < 180
-	#assert AMX Mod X v1.8.0 or greater required!
 #endif
 
 #define OFFSET_LINUX 5
@@ -256,7 +252,7 @@ new g_isalive[25] // whether player is alive
 public plugin_precache()
 {
     //server_cmd("maxplayers 32")
-    register_plugin("Biohazard", VERSION, VERSION)
+    register_plugin("Biohazard", "3.0", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE

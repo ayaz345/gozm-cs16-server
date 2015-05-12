@@ -110,7 +110,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
     } else if (isset($_POST['reason'])) {
 		// // $resource3	= mysql_query("SELECT bid, player_nick, admin_nick, ban_length, ban_reason, ban_created, server_ip FROM $config->bans WHERE ban_reason LIKE '%".$_POST['reason']."%' ORDER BY ban_created DESC") or die(mysql_error());
 		$reason = mysql_escape_string($_POST['reason']);
-		$query .= " ban_reason LIKE '%$reason%' ORDER BY ban_created DESC ";
+		$query .= " ban_reason LIKE '%$reason%' ";//ORDER BY ban_created DESC ";
 	} else if (isset($_POST['date'])) {
 		$date		= substr_replace($_POST['date'], '', 2, 1);
 		$date		= substr_replace($date, '', 4, 1);
@@ -132,7 +132,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 	} else  {
 		echo "KOE";
 	}
-	//$query .= " ORDER BY ban_created DESC";
+	$query .= " ORDER BY ban_created DESC LIMIT 100";
 	//echo "$query";
 	$resource3 = mysql_query($query) or die("<b>Mysql Error:</b> ".mysql_error());
 	$ban_array	= array();
@@ -225,7 +225,7 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 		$server = mysql_escape_string($_POST['server']);
 		$query5	.= " server_ip = '$server' ";
 }
-	$query5 .= " ORDER BY ban_created DESC";
+	$query5 .= " ORDER BY ban_created DESC LIMIT 100";
 
 	$resource5	= mysql_query($query5) or die(mysql_error());
 	$exban_array	= array();

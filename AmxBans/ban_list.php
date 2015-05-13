@@ -169,7 +169,7 @@ while($result = mysql_fetch_object($resource)) {
 	}
 
 	//$server_name = $result->server_name;
-	$server_name = convert_cp1251_to_utf8($result->server_name);
+	$server_name = cp1251_to_utf8($result->server_name);
 
 	if ($config->fancy_layers == "enabled") {
 		if($config->display_comments == "enabled") {
@@ -250,7 +250,7 @@ while($result = mysql_fetch_object($resource)) {
 		}
 	}
 
-	$ban_reason = convert_cp1251_to_utf8($result->ban_reason);
+	$ban_reason = cp1251_to_utf8($result->ban_reason);
 
 	if ($serverip != "") {
 		$gametype = $result->gametype;

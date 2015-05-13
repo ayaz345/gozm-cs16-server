@@ -122,17 +122,22 @@ if (isset($_POST['action'])) {
 				} else {
 					$ban_type = "SteamID";
 				}
-		
-                //$ban_reason = convert_cp1251_to_utf8($result->ban_reason);
+
                 $ban_reason = $result->ban_reason;
-        
+                //$ban_reason = cp1252_to_utf8($result->ban_reason);
+                //$ban_reason = mb_convert_encoding($result->ban_reason, 'cp1252', 'cp1251');
+                //$ban_reason = iconv('CP1251', 'UTF-8', $result->ban_reason);
+                //$ban_reason = mb_convert_encoding($result->ban_reason, 'cp1252');
+                //$ban_reason = mb_convert_encoding($ban_reason, 'cp1251', 'cp1252');
+                //$ban_reason = iconv('CP1252', 'UTF-8', $ban_reason);
+
 				if($result->server_name <> "website") {
 					$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";	
 					$resource2 = mysql_query($query2) or die(mysql_error());	
 					$result2 = mysql_fetch_object($resource2);
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES) . htmlentities($result2 ? $result2->nickname : "", ENT_QUOTES);
 					//$server_name = $result->server_name;
-                    $server_name = convert_cp1251_to_utf8($result->server_name);
+                    $server_name = cp1251_to_utf8($result->server_name);
 				} else {
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 					$server_name = "Website";
@@ -194,16 +199,20 @@ if (isset($_POST['action'])) {
 					$ban_duration = $result->ban_length;
 				}
 
-				//$ban_reason = convert_cp1251_to_utf8($result->ban_reason);
                 $ban_reason = $result->ban_reason;
-		
+				//$ban_reason = cp1252_to_utf8($result->ban_reason);
+                //$ban_reason = iconv('CP1251', 'UTF-8', $result->ban_reason);
+                //$ban_reason = mb_convert_encoding($result->ban_reason, 'cp1252');
+                //$ban_reason = mb_convert_encoding($ban_reason, 'cp1251', 'cp1252');
+                //$ban_reason = iconv('CP1252', 'UTF-8', $ban_reason);
+
 				if($result->server_name <> "website") {
 					$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";	
 					$resource2 = mysql_query($query2) or die(mysql_error());	
 					$result2 = mysql_fetch_object($resource2);
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES).")";
 					//$server_name = $result->server_name;
-                    $server_name = convert_cp1251_to_utf8($result->server_name);
+                    $server_name = cp1251_to_utf8($result->server_name);
 				} else {
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 					$server_name = "Website";

@@ -130,7 +130,7 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			$ban_type = "SteamID";
 		}
 
-        $ban_reason = convert_cp1251_to_utf8($result->ban_reason);
+        $ban_reason = cp1251_to_utf8($result->ban_reason);
 
 		if($result->server_name <> "website") {
 			//$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";
@@ -201,7 +201,7 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			$player = htmlentities($result->player_nick, ENT_QUOTES);
 			$admin = htmlentities($result->admin_nick, ENT_QUOTES);
 			//$reason = htmlentities($result->ban_reason, ENT_QUOTES);
-            $reason = convert_cp1251_to_utf8($result->ban_reason);
+            $reason = cp1251_to_utf8($result->ban_reason);
 			$duration = $result->ban_length;
 
 			if(empty($duration)) {

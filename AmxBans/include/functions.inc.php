@@ -520,10 +520,16 @@ function print_it( $var )
 	echo "</pre>";
 }
 
-function convert_cp1251_to_utf8( $data )
+function cp1251_to_utf8( $data )
 {
     $html_data = htmlentities($data, ENT_QUOTES, 'utf-8');
     return mb_convert_encoding($html_data, 'cp1251', 'utf-8');
+}
+
+function cp1252_to_utf8( $data )
+{
+    $html_data = htmlentities($data, ENT_QUOTES, 'utf-8');
+    return mb_convert_encoding($html_data, 'cp1252', 'utf-8');
 }
 
 function throw_error( $msg )

@@ -38,7 +38,7 @@ if ($config->error_handler == "enabled") {
 }
 
 include("$config->path_root/include/accesscontrol.inc.php");
-require("$config->path_root/include/functions.inc.php");
+//require("$config->path_root/include/functions.inc.php");
 
 if(($_SESSION['bans_delete'] != "yes" ) && ($_SESSION['bans_delete'] != "own" ) && ($_SESSION['bans_edit'] != "yes" ) && ($_SESSION['bans_delete'] != "own" ) && ($_SESSION['bans_unban'] != "yes" ) && ($_SESSION['bans_unban'] != "own" )){
 	echo "You do not have the required credentials to view this page.";
@@ -93,7 +93,7 @@ if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 					$ban_duration = $result->ban_length;
 				}
 		
-				//$ban_reason = convert_cp1251_to_utf8($result->ban_reason);
+				//$ban_reason = cp1251_to_utf8($result->ban_reason);
                 $ban_reason = $result->ban_reason;
 		
 				if($result->server_name <> "website") {
@@ -102,7 +102,7 @@ if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 					$result2 = mysql_fetch_object($resource2);
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities($result2->nickname, ENT_QUOTES).")";
 					//$server_name = $result->server_name;
-                    $server_name = convert_cp1251_to_utf8($result->server_name);
+                    $server_name = cp1251_to_utf8($result->server_name);
 				} else {
 					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
 					$server_name = "Website";

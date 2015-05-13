@@ -3,10 +3,6 @@
 #include <colored_print>
 #include <gozm>
 
-#define MPROP_BACKNAME  2
-#define MPROP_NEXTNAME  3
-#define MPROP_EXITNAME  4
-
 new g_chosen_userid[MAX_PLAYERS+1]
 new ban_reason[128]
 
@@ -61,9 +57,9 @@ public show_player_menu(id)
         menu_additem(i_Menu, name, str_userid, _, menu_makecallback("check_for_victim"))
     }
 
-    menu_setprop(i_Menu, 2, "Назад")
-    menu_setprop(i_Menu, 3, "Дальше")
-    menu_setprop(i_Menu, 4, "Закрыть")
+    menu_setprop(i_Menu, MPROP_BACKNAME, "Назад")
+    menu_setprop(i_Menu, MPROP_NEXTNAME, "Дальше")
+    menu_setprop(i_Menu, MPROP_EXITNAME, "Закрыть")
 
     menu_display(id, i_Menu, 0)
 
@@ -113,7 +109,7 @@ public choose_ban_reason(id)
     menu_additem(i_Menu, "Скриптовые прыжки", "10080")
     menu_additem(i_Menu, "Своя причина", "-1")
     menu_additem(i_Menu, "Оскорбления", "1440")
-    menu_additem(i_Menu, "Обход", "10080")
+    menu_additem(i_Menu, "Обход бана", "10080")
 
     menu_setprop(i_Menu, 2, "Назад")
     menu_setprop(i_Menu, 3, "Дальше")

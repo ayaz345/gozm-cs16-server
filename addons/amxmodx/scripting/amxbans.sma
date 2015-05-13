@@ -14,10 +14,6 @@
 
 #define column(%1) SQL_FieldNameToNum(query, %1)
 
-#define MPROP_BACKNAME  2
-#define MPROP_NEXTNAME  3
-#define MPROP_EXITNAME  4
-
 #define MAX_UNBAN_OPTIONS 7
 
 // Variables for menus
@@ -808,10 +804,10 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size)
 
                 SQL_NextRow(query)
             }
-            
-            menu_setprop(i_Menu, 2, "Назад")
-            menu_setprop(i_Menu, 3, "Дальше")
-            menu_setprop(i_Menu, 4, "Выход")
+
+            menu_setprop(i_Menu, MPROP_BACKNAME, "Назад")
+            menu_setprop(i_Menu, MPROP_NEXTNAME, "Дальше")
+            menu_setprop(i_Menu, MPROP_EXITNAME, "Выход")
 
             menu_display(id, i_Menu, 0)
             return PLUGIN_HANDLED

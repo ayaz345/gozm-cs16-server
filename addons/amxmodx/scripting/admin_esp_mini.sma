@@ -104,7 +104,7 @@ show_esp_menu(id)
     new keys = MENU_KEY_0|MENU_KEY_1|MENU_KEY_2
     new onoff[2][] = {{"\roff\w"},{"\yon\w"}}
     new text[2][] = {{"(use move forward/backward to switch on/off)"},{"(use esp_toggle command to toggle)"}}
-    formatex(menu, 500, "Admin Specator ESP^n %s %s^n^n1. ����� %s^n2. �������� %s^n^n0. �����", onoff[admin_options[id][ESP_ON]], text[0],
+    formatex(menu, 500, "Admin Specator ESP^n %s %s^n^n1. Линии %s^n2. Квадраты %s^n^n0. Выход", onoff[admin_options[id][ESP_ON]], text[0],
     onoff[admin_options[id][ESP_LINE]],
     onoff[admin_options[id][ESP_BOX]])
     show_menu(id, keys,menu)
@@ -223,13 +223,13 @@ change_esp_status(id, bool:on)
     if (on)
     {
         admin_options[id][0] = true
-        if (!is_in_menu[id]) colored_print(id, "^x04[ADMIN SPEC]^x01 ON")
+        if (!is_in_menu[id]) colored_print(id, "^x04[ADMIN SPEC]^x01 Активировано")
         if (is_in_menu[id]) show_esp_menu(id)
     }
     else
     {
         admin_options[id][0] = false
-        if (!is_in_menu[id]) colored_print(id, "^x04[ADMIN SPEC]^x01 OFF")
+        if (!is_in_menu[id]) colored_print(id, "^x04[ADMIN SPEC]^x01 Выключено")
         if (is_in_menu[id]) show_esp_menu(id)
     }
 }

@@ -5,10 +5,6 @@
 #include <colored_print>
 #include <gozm>
 
-#define MPROP_BACKNAME      2
-#define MPROP_NEXTNAME      3
-#define MPROP_EXITNAME      4
-
 #define PDATA_SAFE          2
 #define OFFSET_LINUX        5
 #define OFFSET_TEAM         114
@@ -74,9 +70,9 @@ public mainMenu(id, page)
     menu_additem(i_Menu, "Шапки", "13", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Почистить setinfo", "14")
 
-    menu_setprop(i_Menu, 2, "Назад")
-    menu_setprop(i_Menu, 3, "Вперед")
-    menu_setprop(i_Menu, 4, "Закрыть")
+    menu_setprop(i_Menu, MPROP_BACKNAME, "Назад")
+    menu_setprop(i_Menu, MPROP_NEXTNAME, "Вперед")
+    menu_setprop(i_Menu, MPROP_EXITNAME, "Закрыть")
 
     menu_display(id, i_Menu, page)
 

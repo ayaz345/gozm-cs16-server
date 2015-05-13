@@ -62,7 +62,7 @@ public mainMenu(id, page)
     else
         menu_additem(i_Menu, "В игру", "6")
     menu_additem(i_Menu, "Список банов", "7")
-    menu_additem(i_Menu, "Бан", "8", OWNER_FLAG | VIP_FLAG)
+    menu_additem(i_Menu, "Бан", "8")
     menu_additem(i_Menu, "Заглушка", "9", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Разбан", "10", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Разрешить говорить", "11", OWNER_FLAG | VIP_FLAG)
@@ -89,6 +89,8 @@ public menu_handler(id, menu, item)
 
     new s_Data[6], s_Name[64], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Data, charsmax(s_Data), s_Name, charsmax(s_Name), i_Callback)
+    menu_destroy(menu)
+
     new i_Key = str_to_num(s_Data)
 
     switch(i_Key)
@@ -115,7 +117,10 @@ public menu_handler(id, menu, item)
         case 7:
             show_bans(id)
         case 8:
-            client_cmd(id, "say /ban")
+            if (is_priveleged_user(id))
+                client_cmd(id, "say /ban")
+            else
+                client_cmd(id, "say /voteban")
         case 9:
             client_cmd(id, "say /mute")
         case 10:
@@ -130,7 +135,6 @@ public menu_handler(id, menu, item)
             clear_setinfo(id)
     }
 
-    menu_destroy(menu)
     return PLUGIN_HANDLED
 }
 

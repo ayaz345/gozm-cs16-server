@@ -16,7 +16,7 @@ public client_connect(id)
         get_user_authid(id, steam, charsmax(steam))
         get_user_ip(id, ip, charsmax(ip), 1)
 
-        log_amx("[PROXIES]: %s uses proxy! (STEAM: %s, IP: %s)", name, steam, ip)
+        log_amx("[PROXIES]: %s uses proxy! (%s, %s)", name, steam, ip)
         set_user_info(id, "_ip", "")
         client_cmd(id, "Setinfo ^"_ip^" ^"^";Disconnect;Connect %s;Clear", inf)
     }

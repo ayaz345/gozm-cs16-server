@@ -5,9 +5,6 @@
 #include <nvault>
 #include <gozm>
 
-#define PLUG_NAME 		    "Hats"
-#define PLUG_AUTH 		    "Dumka"
-#define PLUG_VERS 		    "2.0"
 #define PLUG_TAG 		    "HATS"
 
 #define MAX_HATS            64
@@ -28,7 +25,7 @@ new HATNAME[MAX_HATS][26]
 
 public plugin_init() 
 {
-    register_plugin(PLUG_NAME, PLUG_VERS, PLUG_AUTH)
+    register_plugin("Hats", "2.0", "Dumka")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE

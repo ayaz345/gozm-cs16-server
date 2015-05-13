@@ -157,16 +157,16 @@ public show_hats_menu(id)
 
     new i_menu = menu_create("\yШапки:", "hats_menu_handler")
 
-    for (new hat_id=0; hat_id<g_total_hats; hat_id++) 
+    for (new hat_id = 0; hat_id < g_total_hats; hat_id++) 
     {
         new s_hat_id[3]
         num_to_str(hat_id, s_hat_id, charsmax(s_hat_id))
         menu_additem(i_menu, HATNAME[hat_id], s_hat_id)
     }
 
-    menu_setprop(i_menu, 2, "Назад")
-    menu_setprop(i_menu, 3, "Вперед")
-    menu_setprop(i_menu, 4, "Закрыть")
+    menu_setprop(i_menu, MPROP_BACKNAME, "Назад")
+    menu_setprop(i_menu, MPROP_NEXTNAME, "Вперед")
+    menu_setprop(i_menu, MPROP_EXITNAME, "Закрыть")
 
     menu_display(id, i_menu)
 

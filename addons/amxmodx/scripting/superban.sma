@@ -1,7 +1,5 @@
 #include <amxmodx>
 #include <amxmisc>
-#include <sockets>
-#include <engine>
 #include <sqlx>
 
 #pragma semicolon 1

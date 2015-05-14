@@ -286,8 +286,9 @@ public check_votes(target)
 public get_max_votes()
 {
     new percent = get_pcvar_num(pcvar_percent)
-    new players_num = max(MIN_VOTERS, get_playersnum() - 1)     // one is for client being banning
-    return floatround(float(players_num*percent) / 100.0, floatround_ceil)
+    new players_num = get_playersnum() - 1     // one is for client being banning
+    new max_votes = floatround(float(players_num*percent) / 100.0, floatround_ceil)
+    return max(MIN_VOTERS, max_votes)
 }
 
 public ban_player(id, announce)

@@ -67,17 +67,13 @@ new Float:camping[33]		// der letzte Zeitpunkt des campens
 #define TASK_BASIS_SHOWZONES 1000
 
 new pcv_damage
-new pcv_botdamage
 new pcv_immunity
 new pcv_direction
-new pcv_botdirection
 new pcv_damageicon
 
 // less CPU
 new slap_direction
-new slap_botdirection
 new slap_damage
-new slap_botdamage
 new admin_immunity
 new icon_damage		// Damage-Icon
 
@@ -90,38 +86,42 @@ enum ROUNDSTATUS {
 
 new ROUNDSTATUS:roundstatus = RS_UNDEFINED
 
+new g_maxplayers
+new g_isconnected[MAX_PLAYERS+1]
+#define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
+
 public plugin_init() {
-	register_plugin(PLUGIN, VERSION, AUTHOR)
+    register_plugin(PLUGIN, VERSION, AUTHOR)
 
-	register_cvar("WalkGuard", VERSION, FCVAR_SERVER | FCVAR_SPONLY | FCVAR_UNLOGGED)
-	server_cmd("WalkGuard %s", VERSION)
+    register_cvar("WalkGuard", VERSION, FCVAR_SERVER | FCVAR_SPONLY | FCVAR_UNLOGGED)
+    server_cmd("WalkGuard %s", VERSION)
 
-	pcv_damage = register_cvar("wg_damage", "10")
-	pcv_botdamage = register_cvar("wg_botdamage", "0")	// Bot's sind einfach nur dumm ... und können nicht lesen
-	pcv_immunity = register_cvar("wg_immunity", "0")		// Admins mit Immunität brauchen nicht
-	pcv_direction = register_cvar("wg_direction", "1")	// zufällige Richtung beim Slap
-	pcv_botdirection = register_cvar("wg_botdirection", "1") // dito für Bots
-	pcv_damageicon = register_cvar("wg_damageicon", "262144") // eigentlich ein Pfeil
+    pcv_damage = register_cvar("wg_damage", "10")
+    pcv_immunity = register_cvar("wg_immunity", "0")		// Admins mit Immunität brauchen nicht
+    pcv_direction = register_cvar("wg_direction", "1")	// zufällige Richtung beim Slap
+    pcv_damageicon = register_cvar("wg_damageicon", "262144") // eigentlich ein Pfeil
 
-	register_menu("MainMenu", -1, "MainMenuAction", 0)
-	register_menu("EditMenu", -1, "EditMenuAction", 0)
-	register_menu("KillMenu", -1, "KillMenuAction", 0)
+    register_menu("MainMenu", -1, "MainMenuAction", 0)
+    register_menu("EditMenu", -1, "EditMenuAction", 0)
+    register_menu("KillMenu", -1, "KillMenuAction", 0)
 
-	// Menu
-	register_clcmd("walkguardmenu", "InitWalkGuard", OWNER_FLAG, " - open the WalkGuard-Menu")
+    // Menu
+    register_clcmd("walkguardmenu", "InitWalkGuard", OWNER_FLAG, " - open the WalkGuard-Menu")
 
-	// Sprache
-	register_dictionary("walkguard.txt")
+    // Sprache
+    register_dictionary("walkguard.txt")
 
-	// Einstelleungen der Variablen laden
-	register_event("HLTV", "Event_FreezeTime", "a", "1=0", "2=0")
-	register_logevent("Event_RoundStart", 2, "1=Round_Start")
-	register_logevent("Event_RoundEnd", 2, "1=Round_End")
+    // Einstelleungen der Variablen laden
+    register_event("HLTV", "Event_FreezeTime", "a", "1=0", "2=0")
+    register_logevent("Event_RoundStart", 2, "1=Round_Start")
+    register_logevent("Event_RoundEnd", 2, "1=Round_End")
 
-	register_forward(FM_Touch, "fw_touch")
+    register_forward(FM_Touch, "fw_touch")
 
-	// Zonen nachladen
-	set_task(1.0, "LoadWGZ")
+    // Zonen nachladen
+    set_task(1.0, "LoadWGZ")
+
+    g_maxplayers = get_maxplayers()
 }
 
 public plugin_precache() {
@@ -129,9 +129,16 @@ public plugin_precache() {
 	spr_dot = precache_model("sprites/dot.spr")
 }
 
+public client_putinserver(id)
+{
+    g_isconnected[id] = true
+}
+
 public client_disconnect(player) {
-	// aus irgend welchen Gründen ist der Spieler einfach wech........
-	if (player == editor) HideAllZones()
+    // aus irgend welchen Gründen ist der Spieler einfach wech........
+    if (player == editor) HideAllZones()
+
+    g_isconnected[player] = false
 }
 
 public Event_FreezeTime() {
@@ -144,8 +151,6 @@ public Event_RoundStart() {
 	// CPU schonen und die Variablen am Anfang gleich merken
 	slap_damage = get_pcvar_num(pcv_damage)
 	slap_direction = get_pcvar_num(pcv_direction)
-	slap_botdamage = get_pcvar_num(pcv_botdamage)
-	slap_botdirection = get_pcvar_num(pcv_botdirection)
 	admin_immunity = get_pcvar_num(pcv_immunity)
 	icon_damage = get_pcvar_num(pcv_damageicon)
 }
@@ -164,7 +169,7 @@ public Event_RoundEnd() {
 public fw_touch(zone, player) {
 	if (editor) return FMRES_IGNORED
 
-	if (!pev_valid(zone) || !is_user_connected(player))
+	if (!pev_valid(zone) || !is_user_valid_connected(player))
 		return FMRES_IGNORED
 
 	static classname[33]
@@ -211,7 +216,7 @@ public ZoneTouch(player, zone) {
 }
 
 public ZoneModeKill(player) {
-	if (!is_user_connected(player) || !is_user_alive(player)) return
+	if (!is_user_valid_connected(player) || !is_user_alive(player)) return
 	user_silentkill(player)
 	for(new i = 0; i < 5; i++) client_print(player, print_chat, "[WalkGuard] %L", player, "WALKGUARD_KILL_MESSAGE")
 	client_cmd(player,"speak ambience/thunder_clap.wav")
@@ -220,7 +225,7 @@ public ZoneModeKill(player) {
 public ZoneModeCamper(player) {
 	player -= TASK_BASIS_CAMPER
 
-	if (!is_user_connected(player))
+	if (!is_user_valid_connected(player))
 	{
 		// so ein Feigling ... hat sich einfach verdrückt ^^
 		remove_task(TASK_BASIS_CAMPER + player)
@@ -241,16 +246,9 @@ public ZoneModeCamper(player) {
 	new left = ct - floatround( gametime - campertime[player]) 
 	if (left < 1)
 	{
-		client_print(player, print_center, "%L", player, "WALKGUARD_CAMPING_DAMG")
-		if (is_user_bot(player))
-		{
-			if (slap_botdirection) RandomDirection(player)
-			fm_fakedamage(player, "camping", float(slap_botdamage), 0)
-		} else
-		{
-			if (slap_direction) RandomDirection(player)
-			fm_fakedamage(player, "camping", float(slap_damage), icon_damage)
-		}
+        client_print(player, print_center, "%L", player, "WALKGUARD_CAMPING_DAMG")
+        if (slap_direction) RandomDirection(player)
+        fm_fakedamage(player, "camping", float(slap_damage), icon_damage)
 	} else
 	{
 		client_print(player, print_center, "%L", player, "WALKGUARD_CAMPING_TIME", left)
@@ -485,7 +483,7 @@ public FX_Box(Float:sizemin[3], Float:sizemax[3], color[3], life) {
 	write_coord( floatround( sizemax[2] ) ); // z
 
 	write_short(life)	// Life
-	
+
 	write_byte(color[0])	// Color R / G / B
 	write_byte(color[1])
 	write_byte(color[2])
@@ -494,7 +492,7 @@ public FX_Box(Float:sizemin[3], Float:sizemax[3], color[3], life) {
 }
 
 public FX_Line(start[3], stop[3], color[3], brightness) {
-    if(!is_user_connected(editor))
+    if(!is_user_valid_connected(editor))
         return
 
     message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, editor) 

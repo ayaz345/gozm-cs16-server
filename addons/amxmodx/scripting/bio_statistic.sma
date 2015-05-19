@@ -49,6 +49,11 @@ new bool:gb_css_trigger = true
 
 new g_maxplayers
 
+new g_isconnected[MAX_PLAYERS + 1]
+new g_isalive[MAX_PLAYERS + 1]
+#define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
+#define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
+
 new g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
     ((`infect` + `zombiekills`*2 + `humankills` + \
@@ -73,6 +78,7 @@ public plugin_init()
     register_clcmd("say_team", "handleSay")
 
     RegisterHam(Ham_Killed, "player", "fw_HamKilled")
+    RegisterHam(Ham_Spawn, "player", "fw_SpawnPlayer", 1)
     RegisterHam(Ham_TakeDamage, "player", "fw_TakeDamage", 1)
 
     register_event("HLTV", "event_newround", "a", "1=0", "2=0")
@@ -136,6 +142,8 @@ public plugin_end()
 public client_putinserver(id)
 {
     g_UserDBId[id] = 0
+    g_isconnected[id] = true
+
     reset_player_statistic(id)
     set_task(0.1, "auth_player", TASKID_AUTHORIZE + id)
 }
@@ -143,6 +151,9 @@ public client_putinserver(id)
 public client_disconnect(id)
 {
     g_UserDBId[id] = 0
+    g_isconnected[id] = false
+    g_isalive[id] = false
+
     reset_player_statistic(id)
     remove_task(TASKID_AUTHORIZE + id)
     remove_task(TASKID_LASTSEEN + id)
@@ -151,7 +162,7 @@ public client_disconnect(id)
 public auth_player(taskid)
 {
     new id = taskid - TASKID_AUTHORIZE
-    if (!is_user_connected(id) || !id || id > g_maxplayers)
+    if (!is_user_valid_connected(id) || !id || id > g_maxplayers)
         return PLUGIN_HANDLED
 
     new unquoted_name[64]
@@ -241,7 +252,7 @@ public update_last_seen(taskid)
 
 public client_infochanged(id)
 {
-    if (!is_user_connected(id))
+    if (!is_user_valid_connected(id))
         return PLUGIN_CONTINUE
 
     new newname[32]
@@ -434,7 +445,9 @@ public fw_HamKilled(victim, attacker, shouldgib)
     new type[16]
     new killer_frags = 1
 
-    if (g_UserDBId[victim] && is_user_connected(attacker))
+    g_isalive[victim] = false
+
+    if (g_UserDBId[victim] && is_user_valid_connected(attacker))
     {
         format(g_Query, charsmax(g_Query), "\
             UPDATE `bio_players` \
@@ -443,7 +456,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
         SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
     }
 
-    if (victim == attacker || !is_user_connected(attacker))
+    if (victim == attacker || !is_user_valid_connected(attacker))
     {
         type = "suicide"
     }
@@ -472,7 +485,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
         }
     }
 
-    if (is_user_connected(attacker) && g_UserDBId[attacker])
+    if (is_user_valid_connected(attacker) && g_UserDBId[attacker])
     {
         format(g_Query, charsmax(g_Query), "\
             UPDATE `bio_players` \
@@ -485,16 +498,26 @@ public fw_HamKilled(victim, attacker, shouldgib)
     return HAM_IGNORED
 }
 
+public fw_SpawnPlayer(id)
+{
+    if(!is_user_alive(id))
+        return HAM_IGNORED
+
+    g_isalive[id] = true
+
+    return HAM_IGNORED
+}
+
 public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 {
     if (victim == attacker ||
-        !is_user_alive(attacker) ||
-        !is_user_connected(victim) ||
+        !is_user_valid_alive(attacker) ||
+        !is_user_valid_connected(victim) ||
         !is_user_zombie(victim)
         )
         return HAM_IGNORED
 
-    if (is_user_alive(attacker) && !is_user_zombie(attacker))
+    if (is_user_valid_alive(attacker) && !is_user_zombie(attacker))
         g_Me[attacker][ME_DMG] += floatround(damage)
 
     return HAM_IGNORED

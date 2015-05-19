@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <fakemeta>
+#include <hamsandwich>
 #include <colored_print>
 #include <gozm>
 
@@ -10,11 +11,17 @@ enum {
     ESP_LINE,
     ESP_BOX
 }
-   
+
+new g_maxplayers
+new g_isconnected[MAX_PLAYERS + 1]
+new g_isalive[MAX_PLAYERS + 1]
+#define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
+#define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
+
 new bool:admin[33], bool:first_person[33], bool:ducking[33], bool:admin_options[33][10], bool:is_in_menu[33]
 new team_colors[4][3]={{0,0,0},{150,0,0},{0,0,150},{0,150,0}} 
 new esp_colors[5][3]={{0,255,0},{100,60,60},{60,60,100},{255,0,255},{128,128,128}}
-new view_target[33], damage_done_to[33], spec[33], laser, max_players
+new view_target[33], damage_done_to[33], spec[33], laser
    
 public plugin_init()
 {
@@ -32,10 +39,13 @@ public plugin_init()
 
     register_forward(FM_PlayerPreThink, "fwdPlayerPreThink")    
 
+    RegisterHam(Ham_Killed, "player", "bacon_killed_player")
+    RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
+
     new keys = MENU_KEY_0|MENU_KEY_1|MENU_KEY_2
     register_menucmd(register_menuid("Admin Specator ESP"), keys, "menu_esp")
 
-    max_players = get_maxplayers()
+    g_maxplayers = get_maxplayers()
 
     set_task(1.0, "esp_timer")
 }
@@ -45,7 +55,9 @@ public plugin_precache()
    
 public client_putinserver(id)
 {
-    first_person[id]=false
+    first_person[id] = false
+    g_isconnected[id] = true
+
     if (is_priveleged_user(id))
     {
         admin[id]=true
@@ -57,6 +69,9 @@ public client_putinserver(id)
    
 public client_disconnect(id)
 {
+    g_isconnected[id] = false
+    g_isalive[id] = false
+
     save2vault(id)
     admin[id] = false
     spec[id] = 0
@@ -133,7 +148,7 @@ public event_Damage(id)
     if (id>0) 
     {
         new attacker=get_user_attacker(id)
-        if (attacker>0 && attacker<=max_players)
+        if (attacker>0 && attacker<=g_maxplayers)
         { 
             if (view_target[attacker]==id)
                 damage_done_to[attacker]=id
@@ -236,7 +251,7 @@ change_esp_status(id, bool:on)
    
 public fwdPlayerPreThink(id)
 {
-    if (!is_user_connected(id)) return FMRES_IGNORED
+    if (!is_user_valid_connected(id)) return FMRES_IGNORED
        
     static button, oldbutton
     button=pev(id, pev_button)
@@ -251,7 +266,7 @@ public fwdPlayerPreThink(id)
        
     if (admin[id])
     {
-        if (first_person[id] && !is_user_alive(id))
+        if (first_person[id] && !is_user_valid_alive(id))
         {
             if ((button & IN_FORWARD) && !(oldbutton & IN_FORWARD) && !admin_options[id][0])
             {
@@ -266,24 +281,41 @@ public fwdPlayerPreThink(id)
 
     return FMRES_HANDLED
 }
-   
+
+public bacon_killed_player(victim, killer, shouldgib)
+{
+    g_isalive[victim] = false
+
+    return HAM_IGNORED
+}
+
+public bacon_spawn_player_post(id)
+{
+    if(!is_user_valid_alive(id))
+        return HAM_IGNORED
+
+    g_isalive[id] = true
+
+    return HAM_IGNORED
+}
+
 public esp_timer()
 {
     static spec_id, Float:my_origin[3], my_team, target_team, Float:target_origin[3], Float:distance, width, Float:v_middle[3], 
     Float:v_hitpoint[3], Float:distance_to_hitpoint, Float:scaled_bone_len, Float:scaled_bone_width, Float:v_bone_start[3],
     Float:v_bone_end[3], Float:offset_vector[3], Float:eye_level[3], Float:distance_target_hitpoint, actual_bright, color
    
-    for (new i=1;i<=max_players;i++)
+    for (new i=1;i<=g_maxplayers;i++)
     {
-        if (admin_options[i][ESP_ON] && first_person[i] && is_user_connected(i) && admin[i] && (!is_user_alive(i)) && (spec[i]>0) && is_user_alive(spec[i]))
+        if (admin_options[i][ESP_ON] && first_person[i] && is_user_valid_connected(i) && admin[i] && (!is_user_valid_alive(i)) && (spec[i]>0) && is_user_valid_alive(spec[i]))
         {
             spec_id=spec[i]
             pev(i, pev_origin, my_origin)
             my_team = get_pdata_int(spec_id, OFFSET_TEAM)
                
-            for (new s=1;s<=max_players;s++)
+            for (new s=1;s<=g_maxplayers;s++)
             {
-                if (is_user_alive(s))
+                if (is_user_valid_alive(s))
                 {
                     target_team = get_pdata_int(s, OFFSET_TEAM)
                     if (!(target_team ==3))

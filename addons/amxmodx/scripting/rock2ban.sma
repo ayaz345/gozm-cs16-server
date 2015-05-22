@@ -7,27 +7,28 @@
 #define OFFSET_LINUX                5
 #define OFFSET_CSMENUCODE           205
 
-new g_targets[MAX_PLAYERS+1]        // player's voteban targets
-new g_votes_for[MAX_PLAYERS+1]      // count of votes for ban that player
-new g_votes_by[MAX_PLAYERS+1]       // count of votes for ban by that player
-new g_immunity[MAX_PLAYERS+1]       // admin can set immunity flag
+new g_targets[MAX_PLAYERS + 1]        // player's voteban targets
+new g_votes_for[MAX_PLAYERS + 1]      // count of votes for ban that player
+new g_votes_by[MAX_PLAYERS + 1]       // count of votes for ban by that player
+new g_immunity[MAX_PLAYERS + 1]       // admin can set immunity flag
 
 #define MIN_PLAYERS                 4
 #define MIN_VOTERS                  3
 
-#define CHECK_FLAG(%1,%2)           (%1 &   ( 1 << (%2-1) ))
-#define ADD_FLAG(%1,%2)             (%1 |=  ( 1 << (%2-1) ))
-#define REMOVE_FLAG(%1,%2)          (%1 &= ~( 1 << (%2-1) ))
+#define CHECK_FLAG(%1,%2)           (%1 &   ( 1 << (%2 - 1) ))
+#define ADD_FLAG(%1,%2)             (%1 |=  ( 1 << (%2 - 1) ))
+#define REMOVE_FLAG(%1,%2)          (%1 &= ~( 1 << (%2 - 1) ))
 
 new pcvar_percent
 new pcvar_bantime
 new pcvar_limit
 
 new const g_prefix[] = "[VOTEBAN]:"
+new const g_reason[] = "Voteban"
 
 public plugin_init()
 {
-    register_plugin("Rock to Ban", "2.2", "GoZm")
+    register_plugin("Rock to Ban", "2.3", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -46,17 +47,14 @@ public plugin_init()
 
 public client_connect(id)
 {
-    g_targets[id] = 0
-    g_votes_by[id] = 0
-    g_votes_for[id] = 0
-    g_immunity[id] = 0
+    reset_variables(id)
 }
 
 public client_disconnect(id)
 {
     new players[32], players_num, player
 
-    get_players(players, players_num, "ch")     // skip bots and HLTV
+    get_players(players, players_num)
     for (new i = 0; i < players_num; i++)
     {
         player = players[i]
@@ -84,21 +82,26 @@ public client_disconnect(id)
         // re-calculate others' votes
         if (g_votes_for[player] && !g_immunity[player])
         {
-            check_votes(player)
+            if (check_votes(player))
+            {
+                ban(player, 1)
+            }
         }
     }
 
-    g_targets[id] = 0
-    g_votes_by[id] = 0
-    g_votes_for[id] = 0
-    g_immunity[id] = 0
+    reset_variables(id)
 }
 
 public voteban_menu(id)
 {
     if (get_playersnum() < MIN_PLAYERS)
     {
+        new name[32]
+        get_user_name(id, name, charsmax(name))
+
+        log_amx("%s not enough players for %s", g_prefix, name)
         colored_print(id, "^x04%s^x01 Недостаточно игроков для проведения голосования!", g_prefix)
+    
         return PLUGIN_HANDLED
     }
 
@@ -121,7 +124,7 @@ public voteban_menu(id)
 
     new max_votes = get_max_votes()
 
-    get_players(players, players_num, "ch")     // skip bots and HLTV
+    get_players(players, players_num)
     for (new i = 0; i < players_num; i++)
     {
         player = players[i]
@@ -194,7 +197,9 @@ public menu_handle(id, menu, item)
 
     if (!is_user_connected(target))
     {
-        colored_print(id, "^x04%s^x01 Выбранный игрок вышел с сервера", g_prefix)
+        log_amx("%s chosen player left the server", g_prefix)
+        colored_print(id, "^x04%s^x01 Выбранный игрок^x04 вышел^x01 с сервера", g_prefix)
+
         return PLUGIN_HANDLED
     }
 
@@ -208,15 +213,19 @@ public menu_handle(id, menu, item)
         if (g_immunity[target])
         {
             g_immunity[target] = 0
+
             log_amx("%s %s removed immunity from %s", g_prefix, voter_name, target_name)
             colored_print(id, "^x04%s^x01 Ты убрал защиту у^x03 %s", g_prefix, target_name)
+
             return PLUGIN_HANDLED
         }
         else
         {
             g_immunity[target] = 1
+
             log_amx("%s %s set immunity to %s", g_prefix, voter_name, target_name)
             colored_print(id, "^x04%s^x01 Ты поставил защиту для^x03 %s", g_prefix, target_name)
+
             return PLUGIN_HANDLED
         }
     }
@@ -226,6 +235,7 @@ public menu_handle(id, menu, item)
         new max_votes = get_max_votes()
         new players_num = get_playersnum()
 
+        // vote is unset
         if (CHECK_FLAG(g_targets[id], target))
         {
             REMOVE_FLAG(g_targets[id], target)
@@ -233,20 +243,23 @@ public menu_handle(id, menu, item)
             g_votes_for[target]--
 
             log_amx("%s %s removed vote from %s (%d/%d of %d)",
-                    g_prefix, voter_name, target_name, g_votes_for[target], max_votes, get_playersnum())
+                    g_prefix, voter_name, target_name, g_votes_for[target], max_votes, players_num)
             colored_print(id, "^x04%s^x01 Ты убрал голос против^x03 %s", g_prefix, target_name)
+
             return PLUGIN_HANDLED
         }
 
+        // don't let vote too much ;)
         new limit = get_pcvar_num(pcvar_limit)
         if (g_votes_by[id] >= limit)
         {
-            // don't let vote too much ;)
             log_amx("%s %s votes too much (%d)", g_prefix, voter_name, g_votes_by[id])
             colored_print(id, "^x04%s^x01 Превышен твой лимит голосов:^x04 %s", g_prefix, limit)
+
             return PLUGIN_HANDLED
         }
 
+        // vote is set
         g_votes_by[id]++
         g_votes_for[target]++
         ADD_FLAG(g_targets[id], target)
@@ -255,32 +268,41 @@ public menu_handle(id, menu, item)
                 g_prefix, voter_name, target_name, g_votes_for[target], max_votes, players_num)
 
         new info_msg[128]
-        formatex(info_msg, charsmax(info_msg), "^x04%s^x01 Ты проголосовал против^x03 %s", g_prefix, target_name)
+        formatex(info_msg, charsmax(info_msg), "^x04%s^x01 Ты проголосовал против^x03 %s",
+            g_prefix, target_name)
         if (g_votes_for[target] < max_votes)
         {
             new delta = max_votes - g_votes_for[target]
+
             format(info_msg, charsmax(info_msg), "%s^x01. %s еще^x04 %d^x01 голос%s",
                    info_msg, delta == 1 ? "Нужен" : "Нужно", delta, set_completion(delta))
             colored_print(id, info_msg)
         }
-        else
+        else if (g_votes_for[target] == max_votes)
         {
             colored_print(id, info_msg)
 
-            ban_player(target, 1)
+            ban(target, 1)
+        }
+        else
+        {
+            log_amx("%s %s is being banning now", g_prefix, target_name)
+
+            return PLUGIN_HANDLED   // player is being banning now
         }
     }
 
     return PLUGIN_HANDLED
 }
 
-public check_votes(target)
+public bool:check_votes(target)
 {
     new max_votes = get_max_votes()
     if (g_votes_for[target] >= max_votes)
     {
-        ban_player(target, 1)
+        return true
     }
+    return false
 }
 
 public get_max_votes()
@@ -288,10 +310,11 @@ public get_max_votes()
     new percent = get_pcvar_num(pcvar_percent)
     new players_num = get_playersnum() - 1     // one is for client being banning
     new max_votes = floatround(float(players_num*percent) / 100.0, floatround_ceil)
+
     return max(MIN_VOTERS, max_votes)
 }
 
-public ban_player(id, announce)
+public ban(id, announce)
 {
     new user_name[32], user_id
     new ban_time
@@ -300,7 +323,7 @@ public ban_player(id, announce)
     user_id = get_user_userid(id)
     ban_time = get_pcvar_num(pcvar_bantime)
 
-    server_cmd("amx_ban %d #%d ^"GoZm Voteban^"", ban_time, user_id)
+    server_cmd("amx_ban %d #%d %s", ban_time, user_id, g_reason)
     log_amx("%s %s is banned by %d votes", g_prefix, user_name, g_votes_for[id])
 
     if (announce)
@@ -328,4 +351,12 @@ public set_completion(number)
     }
 
     return completion
+}
+
+public reset_variables(id)
+{
+    g_targets[id] = 0
+    g_votes_by[id] = 0
+    g_votes_for[id] = 0
+    g_immunity[id] = 0
 }

@@ -6,14 +6,14 @@
 
 new const g_preffix[] = "[MUTE]:"
 
-new g_GagPlayers[MAX_PLAYERS]  // Used to check if a player is gagged
+new g_GagPlayers[MAX_PLAYERS]
 
 new mutedIp[64][16]
 new muted_num = 1
 
 public plugin_init() 
 {
-    register_plugin("Mute Menu", "2.0", "GoZm")
+    register_plugin("Mute Menu", "2.1", "GoZm")
 
     register_clcmd("say /mute", "clcmd_mute")
     register_clcmd("say_team /mute", "clcmd_mute")
@@ -52,10 +52,11 @@ public clcmd_speak(id)
 
 public hook_radio(id)
 {
-    if(g_GagPlayers[id])
+    if (g_GagPlayers[id])
     {
         return PLUGIN_HANDLED
     }
+
     return PLUGIN_CONTINUE
 }
 
@@ -65,11 +66,11 @@ public display_mutemenu(id)
 
     static players[32], num
     get_players(players, num)
-    for(new i=0; i<num; i++)
+    for (new i=0; i<num; i++)
     {
         new name[32], str_id[3]
-        get_user_name(players[i], name, 31)
-        num_to_str(players[i], str_id, 2)
+        get_user_name(players[i], name, charsmax(name))
+        num_to_str(players[i], str_id, charsmax(str_id))
         
         menu_additem(i_Menu, name, str_id, _, menu_makecallback("check_for_muted_victim"))
     }
@@ -89,7 +90,7 @@ public check_for_muted_victim(id, menu, item)
     menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
 
     victim_id = str_to_num(s_Id)
-    if(victim_id == id || has_vip(victim_id) && !has_rcon(victim_id) || g_GagPlayers[victim_id])
+    if (victim_id == id || has_vip(victim_id) && !has_rcon(victim_id) || g_GagPlayers[victim_id])
         return ITEM_DISABLED
 
     return ITEM_ENABLED
@@ -97,7 +98,7 @@ public check_for_muted_victim(id, menu, item)
 
 public mute_player_menu_handler(id, menu, item)
 {
-    if(item == MENU_EXIT)
+    if (item == MENU_EXIT)
     {
         menu_destroy(menu)
         return PLUGIN_HANDLED
@@ -119,11 +120,11 @@ public display_speakmenu(id)
 
     static players[32], num
     get_players(players, num)
-    for(new i=0; i<num; i++)
+    for (new i = 0; i < num; i++)
     {
         new name[32], str_id[3]
-        get_user_name(players[i], name, 31)
-        num_to_str(players[i], str_id, 2)
+        get_user_name(players[i], name, charsmax(name))
+        num_to_str(players[i], str_id, charsmax(str_id))
 
         menu_additem(i_Menu, name, str_id, _, menu_makecallback("check_for_speaking_victim"))
     }
@@ -143,7 +144,7 @@ public check_for_speaking_victim(id, menu, item)
     menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
 
     victim_id = str_to_num(s_Id)
-    if(victim_id == id || has_vip(victim_id) && !has_rcon(victim_id) || !g_GagPlayers[victim_id])
+    if (victim_id == id || has_vip(victim_id) && !has_rcon(victim_id) || !g_GagPlayers[victim_id])
         return ITEM_DISABLED
 
     return ITEM_ENABLED
@@ -167,11 +168,10 @@ public speak_player_menu_handler(id, menu, item)
     return PLUGIN_HANDLED
 }
 
-// This function is what check the say / team_say messages & block them if the client is blocked.
 public block_gagged(id)
 {
 	if (!g_GagPlayers[id])
-        return PLUGIN_CONTINUE // Is true if the client is NOT blocked.
+        return PLUGIN_CONTINUE
 
 	new cmd[5]
 	read_argv(0, cmd, 4)
@@ -201,14 +201,13 @@ public CMD_GagPlayer(VIP, VictimID)
         return PLUGIN_HANDLED;
 
     new s_Flags[4], flags
-    new AdminName[32], VictimName[32]
-
-    format(s_Flags, 7, "abc")
+    formatex(s_Flags, charsmax(s_Flags), "abc")
     flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
     g_GagPlayers[VictimID] = flags
 
     set_speak(VictimID, SPEAK_MUTED)
 
+    new AdminName[32], VictimName[32]
     get_user_name(VIP, AdminName, charsmax(AdminName))
     get_user_name(VictimID, VictimName, charsmax(VictimName))
 
@@ -220,29 +219,28 @@ public CMD_GagPlayer(VIP, VictimID)
     return PLUGIN_HANDLED
 } 
 
-public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via console command )
+public CMD_UnGagPlayer(VIP, VictimID)
 {
-    if(has_vip(VictimID) && VictimID != VIP)  
-        return PLUGIN_HANDLED;
+    if (has_vip(VictimID) && VictimID != VIP)  
+        return PLUGIN_HANDLED
 
-    new AdminName[32], VictimName[32] 
-
-    get_user_name(VIP, AdminName, charsmax(AdminName))		// Gets Admin name
+    new AdminName[32], VictimName[32]
+    get_user_name(VIP, AdminName, charsmax(AdminName))
     get_user_name(VictimID, VictimName, charsmax(VictimName))
 
-    if(!g_GagPlayers[VictimID])		// Checks if player has gagged flag
+    if (!g_GagPlayers[VictimID])
     {
         console_print(VIP, "%s %s Is Not Gagged & Cannot Be Ungagged", g_preffix, VictimName)
         return PLUGIN_HANDLED
     }
 
-    if(!has_rcon(VIP))
+    if (!has_rcon(VIP))
         colored_print(0, "^x04%s^x03 %s^x01 может говорить благодаря випу %s", 
             g_preffix, VictimName, AdminName)
     else
         console_print(VIP, "%s %s is free", g_preffix, VictimName)
 
-    UnGagPlayer(VictimID)		// This is the function that does the actual removal of the gag info
+    UnGagPlayer(VictimID)
 
     return PLUGIN_HANDLED
 }
@@ -250,14 +248,14 @@ public CMD_UnGagPlayer(VIP, VictimID)   /// Removed gagged player ( done via con
 public client_putinserver(id) 
 { 
 	new checkIp[16]
-	get_user_ip(id, checkIp, 15, 1)
+	get_user_ip(id, checkIp, charsmax(checkIp), 1)
 	
-	for(new i=1; i<30; i++)
+	for (new i = 1; i < 30; i++)
     {
 		if(contain(mutedIp[i], checkIp) != -1 && !has_vip(id))
 		{
 			new s_Flags[4], flags
-			format(s_Flags, 7, "abc")
+			formatex(s_Flags, charsmax(s_Flags), "abc")
 			flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
 			g_GagPlayers[id] = flags
 			
@@ -268,11 +266,12 @@ public client_putinserver(id)
 
 public client_disconnect(id) 
 { 
-	if(g_GagPlayers[id]) // Checks if disconnected player is gagged, and removes flags from his id.
+	if (g_GagPlayers[id])
 	{
-		UnGagPlayer(id)		// This is the function that does the actual removal of the gag info
+		UnGagPlayer(id)
+
 		new gaggedIp[16]
-		get_user_ip(id, gaggedIp, 15, 1)
+		get_user_ip(id, gaggedIp, charsmax(gaggedIp), 1)
 		mutedIp[muted_num] = gaggedIp
 		muted_num++
 	}
@@ -280,15 +279,14 @@ public client_disconnect(id)
 
 public client_infochanged(id)
 {
-    if(!is_user_connected(id))
+    if (!is_user_connected(id))
         return PLUGIN_CONTINUE
     
-    new newname[32]
+    new newname[32], oldname[32]
     get_user_info(id, "name", newname, charsmax(newname))
-    new oldname[32]
     get_user_name(id, oldname, charsmax(oldname))
     
-    if(!equal(oldname,newname) && !equal(oldname,""))
+    if (!equal(oldname,newname) && !equal(oldname,""))
         set_task(0.2, "check_access", id)
     
     return PLUGIN_CONTINUE
@@ -296,14 +294,15 @@ public client_infochanged(id)
 
 public check_access(id)
 {
-    if(has_vip(id) && g_GagPlayers[id])
+    if (has_vip(id) && g_GagPlayers[id])
         UnGagPlayer(id)
+
     return PLUGIN_CONTINUE
 }
 
-stock UnGagPlayer(id) // This code is what removes the gag.
+stock UnGagPlayer(id)
 { 
-	if((g_GagPlayers[id] & 4) && is_user_connected(id))	// Unmutes the player if he had voicecomm muted.
+	if ((g_GagPlayers[id] & 4) && is_user_connected(id))
 	{
 		set_speak(id, SPEAK_ALL)
 	}

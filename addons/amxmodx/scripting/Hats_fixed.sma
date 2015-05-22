@@ -18,16 +18,15 @@ new g_total_hats
 new g_nvault_handle
 
 new g_hat_ent[33]
-new g_hat_file[64]
 
 new HATMDL[MAX_HATS][26]
 new HATNAME[MAX_HATS][26]
 
 public plugin_init() 
 {
-    register_plugin("Hats", "2.0", "Dumka")
+    register_plugin("Hats", "2.1", "Dumka")
 
-    if(!is_server_licenced())
+    if (!is_server_licenced())
         return PLUGIN_CONTINUE
 
     register_clcmd("say /hats",	"access_hats_menu", -1, "Show Hats menu")
@@ -48,14 +47,16 @@ public plugin_cfg()
 
 public plugin_precache() 
 {
-	new cfg_dir[32]
-	get_configsdir(cfg_dir, 31)
-	formatex(g_hat_file, 63, "%s/HatList.ini", cfg_dir)
-	command_load()
-	new tmpfile[101]
-	for (new i=1; i<g_total_hats; i++) 
+    new cfg_dir[32], hat_file[64]
+    get_configsdir(cfg_dir, charsmax(cfg_dir))
+    formatex(hat_file, charsmax(hat_file), "%s/HatList.ini", cfg_dir)
+
+    read_hats_from_file(hat_file)
+
+    new tmpfile[101]
+    for (new i = 1; i < g_total_hats; i++) 
     {
-        format(tmpfile, 100, "%s/%s", MODELPATH, HATMDL[i])
+        formatex(tmpfile, charsmax(tmpfile), "%s/%s", MODELPATH, HATMDL[i])
         if (file_exists(tmpfile)) 
         {
             precache_model(tmpfile)
@@ -64,32 +65,33 @@ public plugin_precache()
         {
             log_amx("[%s] Failed to precache: %d. %s", PLUG_TAG, i, tmpfile)
         }
-	}
+    }
 }
 
 public client_putinserver(id) 
 {
     g_hat_ent[id] = 0
+
     if (has_vip(id)) 
     {   
         new name[32], s_user_hat[3], ts
-        get_user_name(id, name, 31)
+        get_user_name(id, name, charsmax(name))
         if (nvault_lookup(g_nvault_handle, name, s_user_hat, charsmax(s_user_hat), ts))
         {
-            new i_user_hat
-            i_user_hat = nvault_get(g_nvault_handle, name)
-            if (i_user_hat < g_total_hats)
-                set_hat(id, i_user_hat, -1)
+            new hat_id = nvault_get(g_nvault_handle, name)
+            if (hat_id < g_total_hats)
+                set_hat(id, hat_id, -1)
         }
     }
+
     return PLUGIN_CONTINUE
 }
 
 public client_disconnect(id) 
 {
-    if(g_hat_ent[id] > 0) 
+    if (g_hat_ent[id] > 0) 
     {
-        fm_set_entity_visibility(g_hat_ent[id], 0)
+        fm_set_entity_visibility(g_hat_ent[id], false)
         g_hat_ent[id] = 0
     }
 }
@@ -100,10 +102,10 @@ public client_infochanged(id)
         return PLUGIN_CONTINUE
 
     new newname[32], oldname[32]
-    get_user_info(id, "name", newname, 31)
-    get_user_name(id, oldname, 31)
+    get_user_info(id, "name", newname, charsmax(newname))
+    get_user_name(id, oldname, charsmax(oldname))
 
-    if (!equal(oldname,newname) && !equal(oldname,""))
+    if (!equal(oldname, newname) && !equal(oldname, ""))
         set_task(0.1, "check_access", id)
 
     return PLUGIN_CONTINUE
@@ -114,17 +116,16 @@ public check_access(id)
     if (has_vip(id) && !g_hat_ent[id])
     {
         new name[32], s_user_hat[3], ts
-        get_user_name(id, name, 31)
+        get_user_name(id, name, charsmax(name))
         if (nvault_lookup(g_nvault_handle, name, s_user_hat, charsmax(s_user_hat), ts))
         {
-            new i_user_hat
-            i_user_hat = nvault_get(g_nvault_handle, name)
-            set_hat(id, i_user_hat, -1)
+            new hat_id = nvault_get(g_nvault_handle, name)
+            set_hat(id, hat_id, -1)
         }
     }
     else if (!has_vip(id) && g_hat_ent[id] > 0)
     {
-        fm_set_entity_visibility(g_hat_ent[id], 0)
+        fm_set_entity_visibility(g_hat_ent[id], false)
         g_hat_ent[id] = 0
     }
 
@@ -144,7 +145,7 @@ public access_hats_menu(id)
     } 
     else 
     {
-        colored_print(id,"^x01[^x04%s^x01] Только^x03 ВИПЫ^x01 могут использовать шапки", PLUG_TAG)
+        colored_print(id, "^x01[^x04%s^x01] Только^x03 ВИПЫ^x01 могут использовать шапки", PLUG_TAG)
     }
 
     return PLUGIN_HANDLED
@@ -152,7 +153,7 @@ public access_hats_menu(id)
 
 public show_hats_menu(id)
 {
-    if(pev_valid(id) == PDATA_SAFE)
+    if (pev_valid(id) == PDATA_SAFE)
         set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
     new i_menu = menu_create("\yШапки:", "hats_menu_handler")
@@ -178,6 +179,7 @@ public hats_menu_handler(id, menu, item)
     if (item == MENU_EXIT)
     {
         menu_destroy(menu)
+
         return PLUGIN_HANDLED
     }
 
@@ -188,40 +190,44 @@ public hats_menu_handler(id, menu, item)
         s_hat_name, charsmax(s_hat_name), 
         i_callback
     )
-    new i_hat_num = str_to_num(s_hat_num)
-    set_hat(id, i_hat_num, 0)
+    menu_destroy(menu)
+
+    new hat_id = str_to_num(s_hat_num)
+    set_hat(id, hat_id, 0)
 
     new name[32]
-    get_user_name(id, name, 31)
+    get_user_name(id, name, charsmax(name))
     nvault_set(g_nvault_handle, name, s_hat_num)
 
-    menu_destroy(menu)
     return PLUGIN_HANDLED
 }
 
 public set_hat(player, imodelnum, targeter) 
 {
-    new name[32]
-    new tmpfile[101]
-    format(tmpfile, 100, "%s/%s", MODELPATH, HATMDL[imodelnum])
-    get_user_name(player, name, 31)
+    new name[32], tmpfile[101]
+
+    formatex(tmpfile, charsmax(tmpfile), "%s/%s", MODELPATH, HATMDL[imodelnum])
+    get_user_name(player, name, charsmax(name))
+
     if (imodelnum == 0) 
     {
         if(g_hat_ent[player] > 0) 
         {
-            fm_set_entity_visibility(g_hat_ent[player], 0)
+            fm_set_entity_visibility(g_hat_ent[player], false)
         }
     } 
     else if (file_exists(tmpfile)) 
     {
         if(g_hat_ent[player] < 1) 
         {
-            g_hat_ent[player] = engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
-            if(g_hat_ent[player] > 0) 
+            g_hat_ent[player] = 
+                engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
+            if (g_hat_ent[player] > 0) 
             {
                 set_pev(g_hat_ent[player], pev_movetype, MOVETYPE_FOLLOW)
                 set_pev(g_hat_ent[player], pev_aiment, player)
                 set_pev(g_hat_ent[player], pev_rendermode, 	kRenderNormal)
+
                 engfunc(EngFunc_SetModel, g_hat_ent[player], tmpfile)
             }
         } 
@@ -230,6 +236,7 @@ public set_hat(player, imodelnum, targeter)
             engfunc(EngFunc_SetModel, g_hat_ent[player], tmpfile)
         }
         glowhat(player)
+
         if (targeter != -1) 
         {
             colored_print(targeter, "^x04***^x03 %s^x01 надел шапку^x04 %s", name, HATNAME[imodelnum])
@@ -241,33 +248,36 @@ public set_hat(player, imodelnum, targeter)
     }
 }
 
-public command_load() {
-	if(file_exists(g_hat_file)) 
+public read_hats_from_file(hat_file[])
+{
+	if (file_exists(hat_file)) 
     {
 		HATMDL[0] = ""
 		HATNAME[0] = "None"
 		g_total_hats = 1
-		new TempCrapA[2]
-		new sfLineData[128]
-		new file = fopen(g_hat_file,"rt")
-		while(file && !feof(file)) 
+		new temp[2]
+		new line[128]
+
+		new file = fopen(hat_file, "rt")
+		while (file && !feof(file)) 
         {
-			fgets(file,sfLineData,127)
+			fgets(file, line, charsmax(line))
 
-			// Skip Comment ; // and Empty Lines 
-			if (sfLineData[0] == ';' || strlen(sfLineData) < 1 || (sfLineData[0] == '/' && sfLineData[1] == '/')) continue
+			// skip commented lines
+			if (line[0] == ';' || strlen(line) < 1 || (line[0] == '/' && line[1] == '/')) 
+                continue
 
-			// BREAK IT UP!
-			parse(sfLineData, HATMDL[g_total_hats], 25, HATNAME[g_total_hats], 25, TempCrapA, 1)
+			// break it up
+			parse(line, HATMDL[g_total_hats], 25, HATNAME[g_total_hats], 25, temp, 1)
 			
 			g_total_hats += 1
-			if(g_total_hats >= MAX_HATS) 
+			if (g_total_hats >= MAX_HATS) 
             {
 				log_amx("[%s] Break command_load()", PLUG_TAG)
 				break
 			}
 		}
-		if(file) fclose(file)
+		if (file) fclose(file)
 	}
 }
 
@@ -279,15 +289,16 @@ public glowhat(id)
 	set_pev(g_hat_ent[id], pev_renderfx, kRenderFxNone)
 	set_pev(g_hat_ent[id], pev_renderamt, 0.0)
 
-	fm_set_entity_visibility(g_hat_ent[id], 1)
+	fm_set_entity_visibility(g_hat_ent[id], true)
+
 	return
 }
 
-stock fm_set_entity_visibility(index, visible=1)
+public fm_set_entity_visibility(index, bool:visible)
 {
     set_pev(
         index, 
         pev_effects, 
-        visible == 1 ? pev(index, pev_effects)&~EF_NODRAW : pev(index, pev_effects)|EF_NODRAW
+        visible ? pev(index, pev_effects) & ~EF_NODRAW : pev(index, pev_effects)|EF_NODRAW
     )
 }

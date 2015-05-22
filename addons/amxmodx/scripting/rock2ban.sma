@@ -84,7 +84,7 @@ public client_disconnect(id)
         {
             if (check_votes(player))
             {
-                ban(player, 1)
+                ban(player, true)
             }
         }
     }
@@ -282,7 +282,7 @@ public menu_handle(id, menu, item)
         {
             colored_print(id, info_msg)
 
-            ban(target, 1)
+            ban(target, true)
         }
         else
         {
@@ -314,7 +314,7 @@ public get_max_votes()
     return max(MIN_VOTERS, max_votes)
 }
 
-public ban(id, announce)
+public ban(id, bool:announce)
 {
     new user_name[32], user_id
     new ban_time

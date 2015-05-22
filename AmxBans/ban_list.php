@@ -154,7 +154,7 @@ while($result = mysql_fetch_object($resource)) {
 	$bid		= $result->bid;
 	//$date		= dateShort($result->ban_created + $timezone_correction);
     $date		= dateShorttime($result->ban_created + $timezone_correction);
-	$player 	= htmlentities($result->player_nick, ENT_QUOTES);
+	$player 	= cp1251_to_utf8($result->player_nick);
     $map        = htmlentities($result->map_name, ENT_QUOTES);
 
 	$admin = htmlentities($result->admin_nick, ENT_QUOTES);
@@ -233,18 +233,18 @@ while($result = mysql_fetch_object($resource)) {
 			if (empty($result->nickname))
 			{
 				// // $web_admin_name = htmlentities($result2->nickname, ENT_QUOTES);
-				$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
+				$admin_name = cp1251_to_utf8($result->admin_nick);
 				$web_admin_name = "";
 			}
 			else
 			{
 				// // $web_admin_name = "";
-				$web_admin_name = htmlentities($result->nickname, ENT_QUOTES);
-				$admin_name = htmlentities($result->nickname, ENT_QUOTES);
+				$web_admin_name = cp1251_to_utf8($result->nickname);
+				$admin_name = cp1251_to_utf8($result->nickname);
 			}
 			// // $server_name = $result->server_name;
 		} else {
-			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
+			$admin_name = cp1251_to_utf8($result->admin_nick);
 			$web_admin_name = $admin_name;
 			$server_name = lang("_WEBSITE");
 		}

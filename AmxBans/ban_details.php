@@ -82,12 +82,12 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			$resource2 = mysql_query($query2) or die(mysql_error());
 			$result2 = mysql_fetch_object($resource2);
 
-			$admin_amxname = htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES);
+			$admin_amxname = cp1251_to_utf8(($result2) ? $result2->nickname : "");
 		}
 
 		// Prepare all the variables
 		//$player_name = htmlentities($result->player_nick, ENT_QUOTES);
-		$player_name = $result->player_nick;
+		$player_name = cp1251_to_utf8($result->player_nick);
 		$map_name = $result->map_name;
 
 		if(!empty($result->player_ip)) {
@@ -138,10 +138,10 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			$resource2 = mysql_query($query2) or die(mysql_error());
 			$result2 = mysql_fetch_object($resource2);
 
-			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES).")";
-			$server_name = $result->server_name;
+			$admin_name = cp1251_to_utf8($result->admin_nick)." (".cp1251_to_utf8(($result2) ? $result2->nickname : "").")";
+			$server_name = cp1251_to_utf8($result->server_name);
 		} else {
-			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
+			$admin_name = cp1251_to_utf8($result->admin_nick);
 			$server_name = lang("_WEBSITE");
 		}
 
@@ -175,8 +175,8 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 			$unban_info = array(
 				"verify"	=> TRUE,
 				"unban_start"	=> dateShorttime($result->unban_created),
-				"unban_reason"	=> htmlentities($result->unban_reason, ENT_QUOTES),
-				"admin_name"	=> $result->unban_admin_nick
+				"unban_reason"	=> cp1251_to_utf8($result->unban_reason),
+				"admin_name"	=> cp1251_to_utf8($result->unban_admin_nick)
 				);
 		}
 	}
@@ -198,8 +198,8 @@ if((isset($_GET["bid"]) AND is_numeric($_GET["bid"])) OR (isset($_GET["bhid"]) A
 		while($result = mysql_fetch_object($resource)) {
 			$bhid = $result->bhid;
 			$date = dateMonth($result->ban_created);
-			$player = htmlentities($result->player_nick, ENT_QUOTES);
-			$admin = htmlentities($result->admin_nick, ENT_QUOTES);
+			$player = cp1251_to_utf8($result->player_nick);
+			$admin = cp1251_to_utf8($result->admin_nick);
 			//$reason = htmlentities($result->ban_reason, ENT_QUOTES);
             $reason = cp1251_to_utf8($result->ban_reason);
 			$duration = $result->ban_length;

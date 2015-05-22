@@ -142,8 +142,8 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 	while($result3 = mysql_fetch_object($resource3)) {
 		$bid	  = $result3->bid;
 		$date	  = dateShorttime($result3->ban_created + $timezone);
-		$player	  = htmlentities($result3->player_nick, ENT_QUOTES);
-		$admin	  = htmlentities($result3->admin_nick, ENT_QUOTES);
+		$player	  = cp1251_to_utf8($result3->player_nick);
+		$admin	  = cp1251_to_utf8($result3->admin_nick);
 		//$reason   = htmlentities($result3->ban_reason, ENT_QUOTES);
         $reason = cp1251_to_utf8($result3->ban_reason);
 		$duration = $result3->ban_length;
@@ -233,8 +233,8 @@ if ((isset($_POST['nick'])) || (isset($_POST['steamid'])) || (isset($_POST['ip']
 	while($result5 = mysql_fetch_object($resource5)) {
 		$bhid		= $result5->bhid;
 		$ex_date	= dateShorttime($result5->ban_created + $timezone);
-		$ex_player	= $result5->player_nick;
-		$ex_admin	= htmlentities($result5->admin_nick, ENT_QUOTES);
+		$ex_player	= cp1251_to_utf8($result5->player_nick);
+		$ex_admin	= cp1251_to_utf8($result5->admin_nick);
 		//$ex_reason      = $result5->ban_reason;
         $ex_reason = cp1251_to_utf8($result5->ban_reason);
 		$ex_duration	= $result5->ban_length;

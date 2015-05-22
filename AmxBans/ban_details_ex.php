@@ -8,7 +8,7 @@
  *	web		: http://www.amxbans.de
  *	mail		: setoy@my-horizon.de
  *	ICQ		: 226696015
- *   
+ *
  *	This file is part of AMXBans.
  *
  *  AMXBans is free software; you can redistribute it and/or modify
@@ -35,17 +35,17 @@ if (isset($_GET["bid"]) && $_GET["bid"] != "") $_GET["bid"]=(int)$_GET["bid"];
 if (isset($_GET["bhid"]) && $_GET["bhid"] != "") $_GET["bhid"]=(int)$_GET["bhid"];
 
 ///Captcha-System
-$rand = mt_rand(1000000,9999999); 
-$rand = base64_encode($rand); 
-$rand = substr($rand, 0, 7).""; 
-$rand = str_replace("J", "Z", $rand); 
-$rand = str_replace("I", "Y", $rand); 
-$rand = str_replace("j", "z", $rand); 
-$rand = str_replace("i", "y", $rand); 
+$rand = mt_rand(1000000,9999999);
+$rand = base64_encode($rand);
+$rand = substr($rand, 0, 7)."";
+$rand = str_replace("J", "Z", $rand);
+$rand = str_replace("I", "Y", $rand);
+$rand = str_replace("j", "z", $rand);
+$rand = str_replace("i", "y", $rand);
 
-if(!isset($_POST[action]) && $_POST[action] != "insert"){ 
-	unset($_SESSION['code']); 
-	$_SESSION['code'] = "$rand"; 
+if(!isset($_POST[action]) && $_POST[action] != "insert"){
+	unset($_SESSION['code']);
+	$_SESSION['code'] = "$rand";
 }
 
 // Require basic site files
@@ -61,94 +61,94 @@ require("$config->path_root/include/functions.inc.php");
 
 // Get ban details
 if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
-	
+
 	$query = "SELECT * FROM $config->ban_history WHERE bhid = '".mysql_escape_string($_GET["bhid"])."'";
-	
-	
-	$resource = mysql_query($query) or die(mysql_error());	
+
+
+	$resource = mysql_query($query) or die(mysql_error());
 	$numrows = mysql_num_rows($resource);
-	
+
 	if(mysql_num_rows($resource) == 0) {
 		trigger_error("Can't find ban with given ID.", E_USER_NOTICE);
 	} else {
 		$result = mysql_fetch_object($resource);
-		
+
 		// Get the AMX username of the admin if the ban was invoked from inside the server
 		if($result->server_name <> "website") {
 			//$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";
-			$query2 = "SELECT nickname FROM $config->amxadmins WHERE username = '".$result->admin_id."' OR username = '".$result->admin_ip."' OR username = '".$result->admin_nick."'";		
-			$resource2 = mysql_query($query2) or die(mysql_error());	
+			$query2 = "SELECT nickname FROM $config->amxadmins WHERE username = '".$result->admin_id."' OR username = '".$result->admin_ip."' OR username = '".$result->admin_nick."'";
+			$resource2 = mysql_query($query2) or die(mysql_error());
 			$result2 = mysql_fetch_object($resource2);
-			
-			$admin_amxname = htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES);
+
+			$admin_amxname = cp1251_to_utf8(($result2) ? $result2->nickname : "");
 		}
-		
+
 		// Prepare all the variables
 		//$player_name = htmlentities($result->player_nick, ENT_QUOTES);
-		$player_name = $result->player_nick;
+		$player_name = cp1251_to_utf8($result->player_nick);
 		$map_name = $result->map_name;
-		
+
 		if(!empty($result->player_ip)) {
 			$player_ip = htmlentities($result->player_ip, ENT_QUOTES);
 		} else {
 			$player_ip = "<i><font color='#677882'>" . lang("_NOIP") . "</font></i>";
 		}
-		
+
 		if(!empty($result->player_id)) {
 			$player_id = htmlentities($result->player_id, ENT_QUOTES);
 		} else {
 			//$player_id = "<i><font color='#677882'>" . lang("_NOSTEAMID") . "</font></i>";
 			$player_id = "&nbsp;";
 		}
-		
+
 		$timezone = $config->timezone_fixx * 3600;
 		$ban_start = dateShorttime($result->ban_created + $timezone);
-		
+
 		if(empty($result->ban_length) OR $result->ban_length == 0) {
 			$ban_duration = lang("_PERMANENT");
 			$ban_end = "<i><font color='#677882'>" . lang("_NOTAPPLICABLE") . "</font></i>";
 		} else {
-			
+
 			//echo $timezone;
 			$ban_duration = $result->ban_length . "&nbsp;" . lang("_MINS");
 			$date_and_ban = $result->ban_created + $timezone + ($result->ban_length * 60);
 
 			$now = date("U");
 			if($now >= $date_and_ban) {
-				$ban_end = dateShorttime($date_and_ban) . "&nbsp;(" . 
+				$ban_end = dateShorttime($date_and_ban) . "&nbsp;(" .
                     lang("_ALREADYEXP") . ")";
 			} else {
-				$ban_end = dateShorttime($date_and_ban) . "&nbsp;(" . 
+				$ban_end = dateShorttime($date_and_ban) . "&nbsp;(" .
                     timeleft($now + $timezone,$date_and_ban)."&nbsp;".lang("_REMAINING").")";
 			}
 		}
-		
+
 		if($result->ban_type == "SI") {
 			$ban_type = lang("_STEAMID&IP");
 		} else {
 			$ban_type = "SteamID";
 		}
-		
+
         $ban_reason = cp1251_to_utf8($result->ban_reason);
-		
+
 		if($result->server_name <> "website") {
 			//$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";
-			$query2 = "SELECT nickname FROM $config->amxadmins WHERE username = '".$result->admin_id."' OR username = '".$result->admin_ip."' OR username = '".$result->admin_nick."'";	
-			$resource2 = mysql_query($query2) or die(mysql_error());	
+			$query2 = "SELECT nickname FROM $config->amxadmins WHERE username = '".$result->admin_id."' OR username = '".$result->admin_ip."' OR username = '".$result->admin_nick."'";
+			$resource2 = mysql_query($query2) or die(mysql_error());
 			$result2 = mysql_fetch_object($resource2);
-			
-			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities(($result2) ? $result2->nickname : "", ENT_QUOTES).")";
+
+			$admin_name = cp1251_to_utf8($result->admin_nick)." (".cp1251_to_utf8(($result2) ? $result2->nickname : "").")";
 			//$server_name = $result->server_name;
             $server_name = cp1251_to_utf8($result->server_name);
 		} else {
-			$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
+			$admin_name = cp1251_to_utf8($result->admin_nick);
 			$server_name = lang("_WEBSITE");
 		}
 
-		
+
 		$id_type = "bhid";
 		$id = $_GET["bhid"];
-		
+
 		$ban_info = array(
 			"id_type"	=> $id_type,
 			"bhid"		=> $id,
@@ -164,18 +164,18 @@ if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
 			"admin_name"	=> $admin_name,
 			"amx_name"	=> isset($admin_amxname) ? $admin_amxname : "",
 			"server_name"	=> $server_name
-			);	
-		
-		
+			);
+
+
 		$unban_info = array(
 			"verify"	=> TRUE,
 			"unban_start"	=> dateShorttime($result->unban_created),
-			"unban_reason"	=> htmlentities($result->unban_reason, ENT_QUOTES),
+			"unban_reason"	=> cp1251_to_utf8($result->unban_reason),
 			"admin_name"	=> $result->unban_admin_nick
 		);
-		
+
 	}
-	
+
 	if(isset($_GET["bhid"])) {
 		// Make the array for the history ban list
 		if($result->player_id <> "")
@@ -187,25 +187,25 @@ if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
 			$query = "SELECT bhid, player_nick, admin_nick, ban_length, ban_reason, ban_created, server_ip FROM $config->ban_history WHERE player_ip = '".$result->player_ip."' ORDER BY ban_created DESC";
 		}
 		$resource = mysql_query($query) or die(mysql_error());
-		
+
 		$unban_array = array();
-		
+
 		while($result = mysql_fetch_object($resource)) {
 			$bhid = $result->bhid;
 			$date = dateMonth($result->ban_created);
-			$player = htmlentities($result->player_nick, ENT_QUOTES);
-			$admin = htmlentities($result->admin_nick, ENT_QUOTES);
-			$reason = htmlentities($result->ban_reason, ENT_QUOTES);
+			$player = cp1251_to_utf8($result->player_nick);
+			$admin = cp1251_to_utf8($result->admin_nick);
+			$reason = cp1251_to_utf8($result->ban_reason);
 			$duration = $result->ban_length;
-			
+
 			if(empty($duration)) {
 				$duration = lang("_PERMANENT");
 			}
-			
+
 			else {
 				$duration = "$duration" . lang("_MINS");
 			}
-			
+
 			// Asign variables to the array used in the template
 			$unban_info = array(
 				"bhid" => $bhid,
@@ -215,19 +215,19 @@ if(isset($_GET["bhid"]) AND is_numeric($_GET["bhid"])) {
 				"reason" => $reason,
 				"duration" => $duration
 				);
-			
+
 			$unban_array[] = $unban_info;
 		}
-		
+
 		$history = TRUE;
 	}
 }
 
 if($config->display_demo == "enabled"){
-	
+
 	$bhid = $_GET["bhid"];
 	$resourcecc	= mysql_query("SELECT id, bid, demo, comment FROM $config->amxdemos WHERE bhid = '".mysql_escape_string($bhid)."'") or die(mysql_error());
-	
+
 	$demos	= array();
 
 	while($resultss = mysql_fetch_object($resourcecc)) {
@@ -248,7 +248,7 @@ if($config->display_demo == "enabled"){
 
 	$bhid = $_GET['bhid'];
 	$resourcec	= mysql_query("SELECT id, name, comment, email, addr, date FROM $config->amxcomments WHERE bhid =".mysql_escape_string($bhid)." ORDER BY date ASC") or die(mysql_error());
-		
+
 	$ban_comments	= array();
 	$i=0;
 	while($results = mysql_fetch_object($resourcec)) {
@@ -280,29 +280,29 @@ if ((isset($_POST['action'])) && ($_POST['action'] == "insert")) {
 if ($_SERVER['HTTP_CLIENT_IP'])
 {
     $user_ip = $_SERVER['HTTP_CLIENT_IP'];
-} 
+}
 else if ($_SERVER['HTTP_X_FORWARDED_FOR'])
 {
     $user_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-} 
+}
 else if ($_SERVER['REMOTE_ADDR'])
 {
     $user_ip = $_SERVER['REMOTE_ADDR'];
-} 
+}
 else
 {
     $user_ip = "";
 }
 
-if($_POST['verify'] != $_SESSION['code']){ 
-         $url      = "$config->document_root"; 
-         $delay   = "5"; 
+if($_POST['verify'] != $_SESSION['code']){
+         $url      = "$config->document_root";
+         $delay   = "5";
          echo "Incorrect security code, please try again!";
 		 if(isset($_GET["bhid"])) {
 			$bhid = $_GET['bhid'];
 		    echo "<meta http-equiv=\"refresh\" content=\"".$delay.";url=\"ban_details_ex.php?bhid=$bhid\">";
 		}
-         exit(); 
+         exit();
 }
 
 
@@ -337,9 +337,9 @@ $bhid=$_GET["bhid"];
 		$comment = stripslashes($comment);
 
 		$email = htmlentities($email, ENT_QUOTES);
-		
+
 		if(isset($_GET["bhid"]) ){
-		
+
 			$bid=$_GET["bhid"];
 			$add = mysql_query("INSERT INTO $config->amxcomments ( `id` , `name` , `comment` , `email` , `addr` , `date` , `bhid`) VALUES ( '' , '" . $name . "' , '" . $comment . "' , '" . $email . "' , '" . $user_ip . "' , '" . $time . "' , '" . $bid . "')");
 		}
@@ -357,12 +357,12 @@ $bhid=$_GET["bhid"];
 if ((isset($_POST['action'])) && ($_POST['action'] == "delete") && ($_SESSION['bans_edit'] == "yes" )) {
 $id = $_POST['id'];
 $del = mysql_query("DELETE FROM $config->amxcomments WHERE id = '" . $id . "' LIMIT 1");
-			
+
 			$url		= "$config->document_root";
 			$delay	= "2";
 			echo lang("_COMMENT_DELETED") . "&nbsp;" . lang("_REDIRECT");
 			if(isset($_GET["bhid"])) {
-			
+
 				$bhid=$GET["bhid"];
 				echo "<meta http-equiv=\"refresh\" content=\"".$delay.";url=\"ban_details_ex.php?bhid=$bhid\">";
 			}
@@ -388,7 +388,7 @@ if ((isset($_POST['action'])) && ($_POST['action'] == "update") && ($_SESSION['b
 			$delay	= "2";
 			echo lang("_COMMENT_UPDATED") . "&nbsp;" . lang("_REDIRECT");
 			if(isset($_GET["bhid"])) {
-			
+
 				echo "<meta http-equiv=\"refresh\" content=\"".$delay.";url=\"ban_details.php?bhid=$bhid\">";
 			}
 			exit();

@@ -34,7 +34,7 @@
 			{if (($smarty.session.bans_edit == "yes") || (($smarty.session.bans_edit == "own") && ($smarty.session.uid == $bans.webadmin)))}
 				<form name="delete" method="post" action="{$dir}/admin/edit_ban_ex.php">
 				<input type='hidden' name='action' value='edit_ex'>
-				<input type='hidden' name='bhid' value='{$ban_info.bid}'>
+				<input type='hidden' name='bhid' value='{$ban_info.bhid}'>
 		<td align='right' width='2%'>
 				<input type='image' SRC='{$dir}/images/edit.gif' name='action' ALT='{"_EDIT"|lang}'><img src='{$dir}/images/spacer.gif' width='1px' height='1'></td></form>
 			{/if}
@@ -42,7 +42,7 @@
 		{if (($smarty.session.bans_delete == "yes") || (($smarty.session.bans_delete == "own") && ($smarty.session.uid == $bans.webadmin)))}
 				<form name="unban" method="post" action="{$dir}/admin/edit_ban_ex.php">
 				<input type='hidden' name='action' value='delete_ex'>
-				<input type='hidden' name='bhid' value='{$ban_info.bid}'>
+				<input type='hidden' name='bhid' value='{$ban_info.bhid}'>
 		<td align='right' valign='top' width='2%'>
 				<input type='image' src='{$dir}/images/delete.gif' name='delete' alt='{"_DELETE"|lang}' onclick="javascript:return confirm('{"_WANTTOREMOVE"|lang} ban_id {$ban_info.bid}?')"></td></form>
 			{/if}

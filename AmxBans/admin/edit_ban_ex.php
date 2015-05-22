@@ -8,7 +8,7 @@
  *	web		: http://www.amxbans.de
  *	mail		: setoy@my-horizon.de
  *	ICQ		: 226696015
- *   
+ *
  *	This file is part of AMXBans.
  *
  *  AMXBans is free software; you can redistribute it and/or modify
@@ -47,7 +47,7 @@ if(($_SESSION['bans_delete'] != "yes" ) && ($_SESSION['bans_delete'] != "own" ) 
 
 if (isset($_POST['action'])) {
 
-	
+
 if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 		$now = date("U");
 		$resource = mysql_query("DELETE FROM $config->ban_history WHERE bhid = '".$_POST['bhid']."'") or die(mysql_error());
@@ -58,8 +58,8 @@ if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 		//echo "Deleted bid ".$_POST['bid'].". Redirecting...";
 		echo "<meta http-equiv=\"refresh\" content=\"".$delay.";url='http://".$_SERVER["HTTP_HOST"]."$url'\">";
 		exit();
-	} 
-	else if ($_POST['action'] == "edit_ex") 
+	}
+	else if ($_POST['action'] == "edit_ex")
 	{// THIS IS NEW
 
 		// Get ban details
@@ -70,44 +70,43 @@ if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 				trigger_error("Can't find ban with given ID.", E_USER_NOTICE);
 			} else {
 				$result = mysql_fetch_object($resource);
-		
+
 				// Get the AMX username of the admin if the ban was invoked from inside the server
 				if($result->server_name <> "website") {
-					$query2		= "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";	
-					$resource2	= mysql_query($query2) or die(mysql_error());	
+					$query2		= "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";
+					$resource2	= mysql_query($query2) or die(mysql_error());
 					$result2	= mysql_fetch_object($resource2);
-					$admin_amxname	= htmlentities($result2->nickname, ENT_QUOTES);
+					$admin_amxname	= cp1251_to_utf8($result2->nickname);
 				}
-		
+
 				// Prepare all the variables
-				$player_name	= $result->player_nick;
+				$player_name	= cp1251_to_utf8($result->player_nick);
 				$player_id	= htmlentities($result->player_id, ENT_QUOTES);
 				$playa_ip	= $result->player_ip;
 				$ban_type	= $result->ban_type;
-		
+
 				$ban_start = dateShorttime($result->ban_created);
-		
+
 				if(empty($result->ban_length) OR $result->ban_length == 0) {
 					$ban_duration = 0;
 				} else {
 					$ban_duration = $result->ban_length;
 				}
-		
-				//$ban_reason = cp1251_to_utf8($result->ban_reason);
-                $ban_reason = $result->ban_reason;
-		
+
+				$ban_reason = cp1251_to_utf8($result->ban_reason);
+
 				if($result->server_name <> "website") {
-					$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";	
-					$resource2 = mysql_query($query2) or die(mysql_error());	
+					$query2 = "SELECT nickname FROM $config->amxadmins WHERE steamid = '".$result->admin_id."'";
+					$resource2 = mysql_query($query2) or die(mysql_error());
 					$result2 = mysql_fetch_object($resource2);
-					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES)." (".htmlentities($result2->nickname, ENT_QUOTES).")";
+					$admin_name = cp1251_to_utf8($result->admin_nick)." (".cp1251_to_utf8($result2->nickname).")";
 					//$server_name = $result->server_name;
                     $server_name = cp1251_to_utf8($result->server_name);
 				} else {
-					$admin_name = htmlentities($result->admin_nick, ENT_QUOTES);
+					$admin_name = cp1251_to_utf8($result->admin_nick);
 					$server_name = "Website";
 				}
-		
+
 				$ban_info = array(
 					"player_name"	=> isset($player_name) ? $player_name : "",
 					"player_id"		=> isset($player_id) ? $player_id : "",
@@ -119,12 +118,12 @@ if ($_POST['action'] == "delete_ex") { // THIS IS NEW
 					"ban_reason"	=> isset($ban_reason) ? $ban_reason : "",
 					"admin_name"	=> isset($admin_name) ? $admin_name : "",
 					"server_name"	=> isset($server_name) ? $server_name : ""
-					);	
+					);
 			}
 		}
-	
-	} 
-	else if ($_POST['action'] == "apply_ex") 
+
+	}
+	else if ($_POST['action'] == "apply_ex")
 	{
 		$player_nick = htmlentities($_POST['player_nick'], ENT_QUOTES);
 		$ban_reason = htmlentities($_POST['ban_reason'], ENT_QUOTES);

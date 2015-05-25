@@ -38,7 +38,7 @@ public plugin_init()
     register_clcmd("say /voteban", "voteban_menu")
     register_clcmd("say_team /voteban", "voteban_menu")
 
-    pcvar_percent = register_cvar("voteban_percent", "35")
+    pcvar_percent = register_cvar("voteban_percent", "30")
     pcvar_bantime = register_cvar("voteban_time", "10")
     pcvar_limit = register_cvar("voteban_limit", "2")
 
@@ -295,7 +295,7 @@ public menu_handle(id, menu, item)
     return PLUGIN_HANDLED
 }
 
-public bool:check_votes(target)
+bool:check_votes(target)
 {
     new max_votes = get_max_votes()
     if (g_votes_for[target] >= max_votes)
@@ -305,7 +305,7 @@ public bool:check_votes(target)
     return false
 }
 
-public get_max_votes()
+get_max_votes()
 {
     new percent = get_pcvar_num(pcvar_percent)
     new players_num = get_playersnum() - 1     // one is for client being banning
@@ -314,7 +314,7 @@ public get_max_votes()
     return max(MIN_VOTERS, max_votes)
 }
 
-public ban(id, bool:announce)
+ban(id, bool:announce)
 {
     new user_name[32], user_id
     new ban_time
@@ -332,7 +332,7 @@ public ban(id, bool:announce)
     }
 }
 
-public set_completion(number)
+set_completion(number)
 {
     new completion[5]   // 1 cyrillic symbol take 2 bytes
     new remaining = number % 10
@@ -353,7 +353,7 @@ public set_completion(number)
     return completion
 }
 
-public reset_variables(id)
+reset_variables(id)
 {
     g_targets[id] = 0
     g_votes_by[id] = 0

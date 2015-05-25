@@ -165,7 +165,7 @@ public fwd_cmdstart(id, handle, seed)
     return FMRES_IGNORED
 }
 
-public toggle_brightlight(id)
+toggle_brightlight(id)
 {
     if(active_bl[id] && active_nv[id])
     {
@@ -194,7 +194,7 @@ public nightvision(id)
 	return PLUGIN_HANDLED
 }
 
-public toggle_nightvision(id)
+toggle_nightvision(id)
 {
     if(active_nv[id] && active_bl[id])
     {
@@ -272,7 +272,7 @@ public bacon_spawn_player_post(id)
     return HAM_IGNORED
 }
 
-public nvg_menu(id)
+nvg_menu(id)
 {
     if(pev_valid(id) == PDATA_SAFE)
         set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu

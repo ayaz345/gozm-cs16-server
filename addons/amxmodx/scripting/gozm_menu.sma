@@ -7,6 +7,7 @@
 
 #define PDATA_SAFE          2
 #define OFFSET_LINUX        5
+
 #define OFFSET_TEAM         114
 #define OFFSET_CSMENUCODE   205
 #define TASKID_NEWROUND	    641
@@ -138,7 +139,7 @@ public menu_handler(id, menu, item)
     return PLUGIN_HANDLED
 }
 
-public allow_join_spec(id)
+allow_join_spec(id)
 {
     new specs[32], specsnum
     get_players(specs, specsnum, "e", "SPECTATOR")
@@ -163,7 +164,7 @@ public allow_join_spec(id)
     return PLUGIN_HANDLED
 }
 
-public allow_join_game(id)
+allow_join_game(id)
 {
     if(fm_get_user_team(id) == TEAM_SPECTATOR)
         cs_set_player_team(id, CS_TEAM_CT)
@@ -172,7 +173,7 @@ public allow_join_game(id)
     return PLUGIN_HANDLED
 }
 
-public clear_setinfo(id)
+clear_setinfo(id)
 {
     client_cmd(id, "setinfo ^"_gm^" ^"^"")
     client_cmd(id, "setinfo ^"clan^" ^"^"")
@@ -182,13 +183,13 @@ public clear_setinfo(id)
     colored_print(id, "^x04***^x01 Setinfo почищен! Теперь установи свой пароль.")
 }
 
-public player_history(id)
+player_history(id)
 {
     client_cmd(id, "amx_banhistorymenu")
     return PLUGIN_HANDLED
 }
 
-public show_bans(id)
+show_bans(id)
 {
     show_motd(id, "bans.txt", "BANS")
     return PLUGIN_HANDLED
@@ -238,7 +239,7 @@ public clcmd_changeteam(id)
     return PLUGIN_HANDLED
 }
 
-stock fm_get_user_team(id)
+fm_get_user_team(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
 	if (pev_valid(id) != PDATA_SAFE)

@@ -87,11 +87,11 @@ Age=1183432485
 [test.sma]
 Age=1157172235
 [gozm_menu.sma]
-Age=1185812082
+Age=1186596057
 [auto_join_on_connect.sma]
 Age=1146655469
 [team_select_handler.sma]
-Age=1153896823
+Age=1186596118
 [hide_cvars.sma]
 Age=1146819981
 [reload_animation_fix.sma]
@@ -140,3 +140,5 @@ Age=1186399858
 Age=1186594989
 [superban.sma]
 Age=1185811589
+[hats.sma]
+Age=1186596085

@@ -41,7 +41,7 @@ public say_it(id)
     }
 }
 
-public show_player_menu(id)
+show_player_menu(id)
 {
     new i_Menu = menu_create("\wКого будем \yбанить\w?", "show_player_menu_handler" )
 
@@ -97,7 +97,7 @@ public show_player_menu_handler(id, menu, item)
     return PLUGIN_HANDLED
 }
 
-public choose_ban_reason(id)
+choose_ban_reason(id)
 {
     new i_Menu = menu_create("\yПричина:", "reason_menu_handler" )
 
@@ -161,7 +161,7 @@ public set_custom_ban_reason(id, level, cid)
     return PLUGIN_HANDLED
 }
 
-public actual_ban(vip_id, time, reason[])
+actual_ban(vip_id, time, reason[])
 {
     //log_amx("[GOZM_BAN]: amx_ban %d #%d %s", time, g_chosen_userid[vip_id], reason)
     client_cmd(vip_id, "amx_ban %d #%d %s", time, g_chosen_userid[vip_id], reason)

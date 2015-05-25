@@ -2,7 +2,9 @@
 
 public plugin_init()
 {
-    return register_plugin("Anti Proxies", "1.0", "Sho0ter")
+    register_plugin("Anti Proxies", "1.0", "Sho0ter")
+
+    return PLUGIN_CONTINUE
 }
 
 public client_connect(id)
@@ -20,5 +22,6 @@ public client_connect(id)
         set_user_info(id, "_ip", "")
         client_cmd(id, "Setinfo ^"_ip^" ^"^";Disconnect;Connect %s;Clear", inf)
     }
+
     return PLUGIN_CONTINUE
 }

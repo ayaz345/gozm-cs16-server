@@ -99,7 +99,7 @@ public client_PreThink(id)
     return PLUGIN_CONTINUE
 }
 
-public clmsg(id)
+clmsg(id)
 {
     if (!id)
         return

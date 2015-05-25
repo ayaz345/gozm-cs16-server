@@ -206,7 +206,7 @@ public delayed_kick(id_str[])
 	- User ID
 	- User IP Address
 */
-public locate_player(id, identifier[])
+locate_player(identifier[])
 {
     if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[AMXBANS DEBUG] identifier: %s", identifier)
@@ -360,7 +360,7 @@ public cmdBan(id, level, cid)
     }
 
     /* Try to find the player that should be banned */
-    new player = locate_player(id, steamidorusername)
+    new player = locate_player(steamidorusername)
     if (player == -1)
     {
         colored_print(id, "^x04***^x01 У этого игрока есть иммунитет")
@@ -459,7 +459,7 @@ public double_ban(param[]) {
     return PLUGIN_CONTINUE
 }
 
-public SuperBan(victim_id, iBanLength, admin_or_vip_id) 
+SuperBan(victim_id, iBanLength, admin_or_vip_id) 
 {
     if (has_rcon(victim_id))
         return PLUGIN_CONTINUE
@@ -473,7 +473,7 @@ public SuperBan(victim_id, iBanLength, admin_or_vip_id)
     return PLUGIN_CONTINUE
 }
 
-public cmd_ban_(id, player, iBanLength)
+cmd_ban_(id, player, iBanLength)
 {
     if (get_pcvar_num(amxbans_debug) == 1)
         log_amx("[cmdBan function 2]Playerid: %d", player)
@@ -581,7 +581,7 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size)
 	return PLUGIN_HANDLED
 }
 
-public announce_and_kick(id, player, iBanLength)
+announce_and_kick(id, player, iBanLength)
 {
     new bool:serverCmd = false
     /* Determine if this was a server command or a command issued by a player in the game */

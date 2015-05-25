@@ -523,7 +523,7 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
     return HAM_IGNORED
 }
 
-public reset_player_statistic(id)
+reset_player_statistic(id)
 {
 	for (new i = 0; i < ME_NUM; i++)
 		g_Me[id][i] = 0
@@ -552,7 +552,7 @@ public handleSay(id)
     }
     else if (equal(arg1, "/rankstats") || equal(arg1, "/stats"))
     {
-        show_stats(id, arg2)
+        show_stats(id)
         return PLUGIN_HANDLED
     }
     else if (equal(arg1, "/top", 4))
@@ -567,7 +567,7 @@ public handleSay(id)
     return PLUGIN_CONTINUE
 }
 
-public show_me(id)
+show_me(id)
 {
     if (!is_user_zombie(id))
         colored_print(id, "^x04***^x01 Нанес^x04 %d^x01 дамаги",
@@ -580,7 +580,7 @@ public show_me(id)
     return PLUGIN_HANDLED
 }
 
-public show_rank(id, unquoted_whois[])
+show_rank(id, unquoted_whois[])
 {
     if (!unquoted_whois[0])
     {
@@ -647,12 +647,12 @@ public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size
     return PLUGIN_HANDLED
 }
 
-public show_stats(id, unquoted_whois[])
+show_stats(id)
 {
     colored_print(id, "^x04***^x01 Подробная статистика^x04 http://gozm.myarena.ru/top.php")
 }
 
-public show_top(id, top)
+show_top(id, top)
 {
     format(g_Query, charsmax(g_Query), "SELECT COUNT(*) FROM `bio_players`")
     new data[3]
@@ -828,7 +828,7 @@ format_all_themes(sBuffer[MAX_BUFFER_LENGTH + 1], iLen, player_id)
     return iLen
 }
 
-stock set_word_completion(number)
+set_word_completion(number)
 {
     new word_completion[8]
     if (number == 0 || number > 4)
@@ -841,7 +841,7 @@ stock set_word_completion(number)
     return word_completion
 }
 
-stock mysql_escape_string(dest[], len)
+mysql_escape_string(dest[], len)
 {
     replace_all(dest, len, "\\", "\\\\")
     replace_all(dest, len, "\0", "\\0")
@@ -852,7 +852,7 @@ stock mysql_escape_string(dest[], len)
     replace_all(dest, len, "^"", "\^"")
 }
 
-stock fm_get_user_deaths(id)
+fm_get_user_deaths(id)
 {
 	// Prevent server crash if entity is not safe for pdata retrieval
 	if (pev_valid(id) != PDATA_SAFE)

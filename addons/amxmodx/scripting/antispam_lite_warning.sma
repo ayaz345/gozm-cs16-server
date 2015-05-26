@@ -4,7 +4,7 @@
 
 public plugin_init()
 {
-    register_plugin("Anti-Spam", "1.2", "Dumka")
+    register_plugin("Anti-Spam", "1.3", "GoZm")
 
     register_clcmd("say", "check_player_msg")
     register_clcmd("say_team", "check_player_msg")
@@ -59,7 +59,7 @@ public check_player_msg(id)
     {
         colored_print(id, "^x04***^x01 [%s] -^x04 СПАМ, СООБЩЕНИЕ УДАЛЕНО!", text)
         return PLUGIN_HANDLED
-    }	
-        
+    }
+
     return PLUGIN_CONTINUE
 }

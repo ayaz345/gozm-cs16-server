@@ -4,9 +4,9 @@
 
 public plugin_init()
 {
-    register_plugin("Admin Chat", AMXX_VERSION_STR, "GoZm")
+    register_plugin("Admin Chat", "2.0", "GoZm")
 
-    if(!is_server_licenced())
+    if (!is_server_licenced())
         return PLUGIN_CONTINUE
 
     register_clcmd("say", "cmdSayAdmin", 0, "@<text> - displays message to admins")
@@ -22,9 +22,6 @@ public cmdSayAdmin(id)
 
     if (said[0] != '@')
         return PLUGIN_CONTINUE
-        
-//    if (!is_user_admin(id))
-//        return PLUGIN_CONTINUE
 
     new message[192], duplicate_message[192]
     new name[32], authid[32]
@@ -52,7 +49,7 @@ public cmdSayAdmin(id)
         if (players[i] != id && (has_vip(players[i]) || has_rcon(players[i])))
         {
             colored_print(players[i], "%s", message)
-            
+
             // duplicate russian messages
             console_print(players[i], "%s: %s", name, duplicate_message[1])
         }

@@ -1,42 +1,41 @@
 /*================================================================================
-	
+
 	--------------------------
 	-*- [CS] Teams API 1.2 -*-
 	--------------------------
-	
+
 	- Allows easily setting a player's team in CS and CZ
 	- Lets you decide whether to send the TeamInfo message to update scoreboard
 	- Prevents server crashes when changing all teams at once
-	
+
 ================================================================================*/
 
 #include <amxmodx>
 #include <cstrike>
 #include <fakemeta>
 
-#define TEAMCHANGE_DELAY 0.1
+#define TEAMCHANGE_DELAY 	0.1
 
-#define TASK_TEAMMSG 200
-#define ID_TEAMMSG (taskid - TASK_TEAMMSG)
+#define TASK_TEAMMSG 		200
+#define ID_TEAMMSG 			(taskid - TASK_TEAMMSG)
 
 // CS Player PData Offsets (win32)
-#define PDATA_SAFE 2
-#define OFFSET_CSTEAMS 114
+#define PDATA_SAFE 			2
+#define OFFSET_CSTEAMS 		114
 
 new const CS_TEAM_NAMES[][] = { "UNASSIGNED", "TERRORIST", "CT", "SPECTATOR" }
 
 new Float:g_TeamMsgTargetTime
-new g_MsgTeamInfo//, g_MsgScoreInfo
+new g_MsgTeamInfo
 new g_MaxPlayers
 
 public plugin_init()
 {
 	register_plugin("[CS] Teams API", "1.2", "WiLS")
-	
+
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0")
-	
+
 	g_MsgTeamInfo = get_user_msgid("TeamInfo")
-//	g_MsgScoreInfo = get_user_msgid("ScoreInfo")
 	g_MaxPlayers = get_maxplayers()
 }
 
@@ -49,25 +48,25 @@ public plugin_natives()
 public native_set_player_team(plugin_id, num_params)
 {
 	new id = get_param(1)
-	
+
 	if (!is_user_connected(id))
 	{
 		log_error(AMX_ERR_NATIVE, "[CS] Player is not in game (%d)", id)
-		return false;
+		return false
 	}
-	
+
 	new CsTeams:team = CsTeams:get_param(2)
-	
+
 	if (team < CS_TEAM_UNASSIGNED || team > CS_TEAM_SPECTATOR)
 	{
 		log_error(AMX_ERR_NATIVE, "[CS] Invalid team %d", _:team)
-		return false;
+		return false
 	}
-	
+
 	new update = get_param(3)
-	
+
 	fm_cs_set_user_team(id, team, update)
-	return true;
+	return true
 }
 
 // Event Round Start
@@ -75,8 +74,7 @@ public event_round_start()
 {
 	// CS automatically sends TeamInfo messages
 	// at roundstart for all players
-	new id
-	for (id = 1; id <= g_MaxPlayers; id++)
+	for (new id = 1; id <= g_MaxPlayers; id++)
 		remove_task(id+TASK_TEAMMSG)
 }
 
@@ -86,19 +84,19 @@ public client_disconnect(id)
 }
 
 // Set a Player's Team
-stock fm_cs_set_user_team(id, CsTeams:team, send_message)
+fm_cs_set_user_team(id, CsTeams:team, send_message)
 {
 	// Prevent server crash if entity's private data not initalized
 	if (pev_valid(id) != PDATA_SAFE)
-		return;
-	
+		return
+
 	// Already belongs to the team
 	if (cs_get_user_team(id) == team)
-		return;
-	
+		return
+
 	// Remove previous team message task
 	remove_task(id+TASK_TEAMMSG)
-	
+
 	// Set team offset
 	set_pdata_int(id, OFFSET_CSTEAMS, _:team)
 
@@ -110,18 +108,18 @@ stock fm_cs_set_user_team(id, CsTeams:team, send_message)
 public fm_cs_set_user_team_msg(taskid)
 {
 	// Tell everyone my new team
-	emessage_begin(MSG_ALL, g_MsgTeamInfo)
+	emessage_begin(MSG_BROADCAST, g_MsgTeamInfo)
 	ewrite_byte(ID_TEAMMSG) // player
 	ewrite_string(CS_TEAM_NAMES[_:cs_get_user_team(ID_TEAMMSG)]) // team
 	emessage_end()
 }
 
 // Update Player's Team on all clients (adding needed delays)
-stock fm_user_team_update(id)
-{	
+fm_user_team_update(id)
+{
 	new Float:current_time
 	current_time = get_gametime()
-	
+
 	if (current_time - g_TeamMsgTargetTime >= TEAMCHANGE_DELAY)
 	{
 		set_task(0.1, "fm_cs_set_user_team_msg", id+TASK_TEAMMSG)

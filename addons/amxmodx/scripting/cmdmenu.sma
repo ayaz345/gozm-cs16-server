@@ -1,37 +1,3 @@
-/* AMX Mod X
-*   Commands Menu Plugin
-*
-* by the AMX Mod X Development Team
-*  originally developed by OLO
-*
-* This file is part of AMX Mod X.
-*
-*
-*  This program is free software; you can redistribute it and/or modify it
-*  under the terms of the GNU General Public License as published by the
-*  Free Software Foundation; either version 2 of the License, or (at
-*  your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful, but
-*  WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-*  General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software Foundation,
-*  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-*
-*  In addition, as a special exception, the author gives permission to
-*  link the code of this program with the Half-Life Game Engine ("HL
-*  Engine") and Modified Game Libraries ("MODs") developed by Valve,
-*  L.L.C ("Valve"). You must obey the GNU General Public License in all
-*  respects for all of the code used other than the HL Engine and MODs
-*  from Valve. If you modify this file, you may extend this exception
-*  to your version of the file, but you are not obligated to do so. If
-*  you do not wish to do so, delete this exception statement from your
-*  version.
-*/
-
 #include <amxmodx>
 #include <amxmisc>
 
@@ -58,7 +24,7 @@ new g_cmdMenuCmd[MAX_CMDS_LAYERS][] =
 
 new g_cmdMenuCfg[MAX_CMDS_LAYERS][] =
 {
-	"cmds.ini", 
+	"cmds.ini",
 	"configs.ini",
 	"speech.ini"
 }
@@ -102,11 +68,11 @@ public plugin_init()
 
 	new configsDir[64], config[64]
 	get_configsdir(configsDir, 63)
-	
+
 	for (new a = 0; a < MAX_CMDS_LAYERS; ++a)
 	{
 		new MenuName[64]
-		
+
 		format(MenuName, 63, "%L", "en", g_cmdMenuName[a])
 		register_menucmd(register_menuid(MenuName), 1023, "actionCmdMenu")
 		register_clcmd(g_cmdMenuCmd[a], "cmdCmdMenu", ADMIN_MENU, g_cmdMenuHelp[a])
@@ -213,19 +179,19 @@ public actionCmdMenu(id, key)
 		{
 			new option = g_menuSelect[id][g_menuPosition[id] * 8 + key]
 			new flags = g_cmdMisc[option][1]
-			
+
 			if (flags & 1)
 				server_cmd("%s", g_cmdCmd[option])
 			else if (flags & 2)
 				client_cmd(id, "%s", g_cmdCmd[option])
 			else if (flags & 4)
 				client_cmd(0, "%s", g_cmdCmd[option])
-			
+
 			if (flags & 8)
 				displayCmdMenu(id, g_menuPosition[id])
 		}
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -240,7 +206,7 @@ displayCmdMenu(id, pos)
 
 	if (start >= g_menuSelectNum[id])
 		start = pos = g_menuPosition[id] = 0
-	
+
 	new limit = (g_menuSelectNum[id] / 8 + ((g_menuSelectNum[id] % 8)))
 	new len = format(menuBody, 511, g_coloredMenus ? "\y%L\R%d/%d^n\w^n" : "%L %d/%d^n^n", id, g_cmdMenuName[g_menuLayer[id]], pos + 1, (limit == 0) ? 1 : limit)
 	new end = start + 8
@@ -271,9 +237,9 @@ displayCmdMenu(id, pos)
 	}
 	else
 		format(menuBody[len], 511-len, "^n0. %L", id, pos ? "BACK" : "EXIT")
-	
+
 	new MenuName[64]
-	
+
 	format(MenuName, 63, "%L", "en", g_cmdMenuName[g_menuLayer[id]])
 	show_menu(id, keys, menuBody, -1, MenuName)
 }
@@ -303,23 +269,23 @@ public cmdCmdMenu(id, level, cid)
 	while (c < g_cmdNum[lvl])
 	{
 		d = a + c
-		
+
 		if (access(id, g_cmdMisc[d][0]))
 		{
 			g_menuSelect[id][g_menuSelectNum[id]++] = d
 		}
-		
+
 		++c
 	}
 
 	displayCmdMenu(id, g_menuPosition[id] = 0)
-	
+
 	return PLUGIN_HANDLED
 }
 
 loadCmdSettings(szFilename[], level)
 {
-	if (!file_exists(szFilename)) 
+	if (!file_exists(szFilename))
 		return 0
 
 	new text[256], szFlags[32], szAccess[32]
@@ -329,17 +295,17 @@ loadCmdSettings(szFilename[], level)
 	{
 		if (text[0] == ';') continue
 		c = d + g_cmdNum[level]
-		
+
 		if (parse(text, g_cmdName[c], 31, g_cmdCmd[c], 63, szFlags, 31, szAccess, 31) > 3)
 		{
 			while (replace(g_cmdCmd[c], 63, "\'", "^""))
 			{
 				// do nothing
 			}
-			
+
 			g_cmdMisc[c][1] = read_flags(szFlags)
 			g_cmdMisc[c][0] = read_flags(szAccess)
-			g_cmdNum[level]++ 
+			g_cmdNum[level]++
 		}
 	}
 
@@ -358,9 +324,9 @@ public actionCvarMenu(id, key)
 		{
 			new option = g_menuSelect[id][g_menuPosition[id] * 8 + key]
 			new szValue[32]
-			
+
 			get_cvar_string(g_cvarNames[option], szValue, 31)
-			
+
 			new end = g_cvarMisc[option][2]
 			new start = g_cvarMisc[option][1]
 
@@ -374,7 +340,7 @@ public actionCvarMenu(id, key)
 						{
 							i = start
 						}
-						
+
 						set_cvar_string(g_cvarNames[option], g_cvarCmd[i])
 						break
 					}
@@ -386,7 +352,7 @@ public actionCvarMenu(id, key)
 			displayCvarMenu(id, g_menuPosition[id])
 		}
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -416,7 +382,7 @@ displayCvarMenu(id, pos)
 		get_cvar_string(g_cvarNames[g_menuSelect[id][a]], szValue, 31)
 		keys |= (1<<b)
 		++b
-		
+
 		if (g_coloredMenus)
 			len += format(menuBody[len], 511-len, "%d. %s\R%s^n\w", b, g_cvarNames[g_menuSelect[id][a]], szValue)
 		else
@@ -430,7 +396,7 @@ displayCvarMenu(id, pos)
 	}
 	else
 		format(menuBody[len], 511-len, "^n0. %L", id, pos ? "BACK" : "EXIT")
-	
+
 	show_menu(id, keys, menuBody)
 }
 
@@ -452,22 +418,22 @@ public cmdCvarMenu(id, level, cid)
 
 loadCvarSettings(szFilename[])
 {
-	if (!file_exists(szFilename)) 
+	if (!file_exists(szFilename))
 		return 0
 
 	new text[256], szValues[12][32]
 	new inum, a, pos = 0
 	new cvar_values = MAX_CVARS * 5
-	
+
 	// a b c d
 	while (g_cvarNum < MAX_CVARS && read_file(szFilename, pos++, text, 255, a))
 	{
 		if (text[0] == ';') continue
-		
-		inum = parse(text, g_cvarNames[g_cvarNum], 31, 
-		szValues[0], 31, szValues[1], 31, szValues[2], 31, 
-		szValues[3], 31, szValues[4], 31, szValues[5], 31, 
-		szValues[6], 31, szValues[7], 31, szValues[8], 31, 
+
+		inum = parse(text, g_cvarNames[g_cvarNum], 31,
+		szValues[0], 31, szValues[1], 31, szValues[2], 31,
+		szValues[3], 31, szValues[4], 31, szValues[5], 31,
+		szValues[6], 31, szValues[7], 31, szValues[8], 31,
 		szValues[9], 31, szValues[10], 31, szValues[11], 31)
 
 		inum -= 2
@@ -480,7 +446,7 @@ loadCvarSettings(szFilename[])
 			{
 				// do nothing
 			}
-			
+
 			copy(g_cvarCmd[g_cvarCmdNum], 31, szValues[a])
 			g_cvarCmdNum++
 		}

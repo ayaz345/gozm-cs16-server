@@ -10,14 +10,15 @@
 
 stock bool:is_server_licenced()
 {
-    new server_ips[][20] = {
-        "46.174.52.13:27259",  // MyArena
-        "172.23.65.13:27016"  // Home
+    new server_ips[][21] = {
+        "46.174.52.13:27259",       // MyArena
+        "172.23.65.13:27016",       // Home
+        "172.20.115.176:27016"      // Home-2
     }
-    new current_ip[20]
-    get_user_ip(0, current_ip, 19, 0);
+    new current_ip[21]
+    get_user_ip(0, current_ip, charsmax(current_ip), 0);
     
-    for(new c; c<sizeof server_ips; c++)
+    for(new c=0; c<sizeof server_ips; c++)
     {
         if(equal(current_ip, server_ips[c]))
             return true

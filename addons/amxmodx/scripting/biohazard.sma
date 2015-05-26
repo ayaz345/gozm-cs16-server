@@ -2675,7 +2675,7 @@ stock fm_cs_set_user_money(id, value)
 	set_pdata_int(id, OFFSET_CSMONEY, value, OFFSET_LINUX)
 }
 
-stock reset_user_model(index)
+public reset_user_model(index)
 {
     set_pev(index, pev_rendermode, kRenderNormal)
     set_pev(index, pev_renderamt, 0.0)

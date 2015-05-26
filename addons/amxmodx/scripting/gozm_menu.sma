@@ -183,13 +183,13 @@ clear_setinfo(id)
     colored_print(id, "^x04***^x01 Setinfo почищен! Теперь установи свой пароль.")
 }
 
-player_history(id)
+public player_history(id)
 {
     client_cmd(id, "amx_banhistorymenu")
     return PLUGIN_HANDLED
 }
 
-show_bans(id)
+public show_bans(id)
 {
     show_motd(id, "bans.txt", "BANS")
     return PLUGIN_HANDLED

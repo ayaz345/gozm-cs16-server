@@ -6,7 +6,7 @@
 #define BOTH_STR_LEN KEYS_STR_LEN + LIST_STR_LEN
 
 new g_maxplayers;
-new g_isconnected[MAX_PLAYERS+1]
+new g_isconnected[MAX_PLAYERS]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 
 new cl_keys[33]

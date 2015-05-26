@@ -7,7 +7,7 @@ new cvar_demo_name
 
 public plugin_init()
 {
-    register_plugin("Demo recorder & Info", "1.0", "Dimka")
+    register_plugin("Demo recorder & Info", "1.0", "GoZm")
 }
 
 public plugin_precache()

@@ -2,7 +2,7 @@
 
 public plugin_init()
 {
-    register_plugin("File Cleaner", "1.0", "Dimka")
+    register_plugin("File Cleaner", "1.0", "GoZm")
 
     set_task(1.0, "clean_spray_logo")
 }

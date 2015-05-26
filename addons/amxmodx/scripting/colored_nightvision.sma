@@ -15,15 +15,15 @@
 new g_nvault_handle
 
 new g_maxplayers
-new active_nv[MAX_PLAYERS + 1]
-new active_bl[MAX_PLAYERS + 1]
+new active_nv[MAX_PLAYERS]
+new active_bl[MAX_PLAYERS]
 
-new g_isconnected[MAX_PLAYERS + 1]
-new g_isalive[MAX_PLAYERS + 1]
+new g_isconnected[MAX_PLAYERS]
+new g_isalive[MAX_PLAYERS]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 #define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
 
-new g_UserNVG[MAX_PLAYERS + 1]
+new g_UserNVG[MAX_PLAYERS]
 
 new const g_Radius = 110
 new const g_Colors[][3] =
@@ -40,7 +40,7 @@ new const g_Colors[][3] =
 
 public plugin_init()
 {
-    register_plugin("Bio Colored Nightvision", "1.0", "Dimka")
+    register_plugin("Bio Colored Nightvision", "2.0", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE

@@ -3,14 +3,14 @@
 #include <colored_print>
 #include <gozm>
 
-new g_chosen_userid[MAX_PLAYERS+1]
+new g_chosen_userid[MAX_PLAYERS]
 new ban_reason[128]
 
 new pcvar_bantime
 
 public plugin_init()
 {
-    register_plugin("GoZm Ban", "3.0", "Dimka")
+    register_plugin("GoZm Ban", "3.0", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE

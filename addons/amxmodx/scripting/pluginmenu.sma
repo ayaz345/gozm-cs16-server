@@ -103,7 +103,6 @@ DisplayPluginMenu(id,const MenuText[], const Handler[], const Command[], const C
 {
 	new Menu=menu_create(MenuText,Handler);
 
-
 	new PluginState[32];
 	new PluginName[64];
 	new func=get_func_id(Callback);

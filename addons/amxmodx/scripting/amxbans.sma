@@ -94,7 +94,7 @@ public plugin_init()
 
     g_coloredMenus = colored_menus()
 
-    register_plugin("AMXBans", "5.1.1", "Dimka")
+    register_plugin("AMXBans", "5.1.2", "GoZm")
 
     // store in amxbans.cfg
     g_CvarHost = register_cvar("amxbans_host", "141.101.203.23")
@@ -129,15 +129,15 @@ public plugin_init()
 }
 
 public addBanhistMenu()
-	AddMenuItem("Banhistory Menu", "amx_banhistorymenu", ADMIN_FLAG, "AMXBans")
+	AddMenuItem("Banhistory Menu", "amx_banhistorymenu", ADMIN_FLAG, "amxbans" /* case-insensitive */)
 
 public sql_init()
 {
     new host[32], db[32], user[32], password[32]
-    get_pcvar_string(g_CvarHost, host, 31)
-    get_pcvar_string(g_CvarDB, db, 31)
-    get_pcvar_string(g_CvarUser, user, 31)
-    get_pcvar_string(g_CvarPassword, password, 31)
+    get_pcvar_string(g_CvarHost, host, charsmax(host))
+    get_pcvar_string(g_CvarDB, db, charsmax(db))
+    get_pcvar_string(g_CvarUser, user, charsmax(user))
+    get_pcvar_string(g_CvarPassword, password, charsmax(password))
 
     g_SqlX = SQL_MakeDbTuple(host, user, password, db)
 

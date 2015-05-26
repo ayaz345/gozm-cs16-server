@@ -7,10 +7,10 @@
 #define OFFSET_LINUX                5
 #define OFFSET_CSMENUCODE           205
 
-new g_targets[MAX_PLAYERS + 1]        // player's voteban targets
-new g_votes_for[MAX_PLAYERS + 1]      // count of votes for ban that player
-new g_votes_by[MAX_PLAYERS + 1]       // count of votes for ban by that player
-new g_immunity[MAX_PLAYERS + 1]       // admin can set immunity flag
+new g_targets[MAX_PLAYERS]        // player's voteban targets
+new g_votes_for[MAX_PLAYERS]      // count of votes for ban that player
+new g_votes_by[MAX_PLAYERS]       // count of votes for ban by that player
+new g_immunity[MAX_PLAYERS]       // admin can set immunity flag
 
 #define MIN_PLAYERS                 4
 #define MIN_VOTERS                  3

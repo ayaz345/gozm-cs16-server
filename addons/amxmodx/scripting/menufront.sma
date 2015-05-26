@@ -30,7 +30,7 @@ new g_clientMenuPlugin[MAXMENUS][STRINGSIZE]
 // menuCmd: Command that should be executed to start menu
 // menuAccess: Access required for menu
 // menuPlugin: The exact case-insensitive name of plugin holding the menu command
-AddMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
+public AddMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
 {
 	if (g_menusNumber + 1 == MAXMENUS)
 	{
@@ -70,7 +70,7 @@ AddMenuLang(const menuBody[], const menuCmd[], const menuAccess, const menuPlugi
 	//server_print("Menu item %d added to Menus Front-End: ^"%s^" (LANG) from plugin ^"%s^"", g_menusNumber, menuBody, menuPlugin)
 }
 
-AddClientMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
+public AddClientMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
 {
 	if (g_clientMenusNumber + 1 == MAXMENUS)
 	{

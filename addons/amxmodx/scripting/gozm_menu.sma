@@ -22,7 +22,7 @@ enum
 
 public plugin_init()
 {
-    register_plugin("GoZm Menu", "1.1", "Dimka")
+    register_plugin("GoZm Menu", "1.1", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE

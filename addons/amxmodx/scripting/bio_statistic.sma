@@ -10,9 +10,9 @@
 #define DEFAULT_TOP_COUNT       15
 #define MAX_BUFFER_LENGTH       2047
 
-#define STATSX_SHELL_DESIGN3_STYLE "<meta charset=UTF-8><style>body{background:#E6E6E6;font-family:Verdana}th{background:#F5F5F5;color:#A70000;padding:6px;text-align:left}td{padding:2px 6px}table{color:#333;background:#E6E6E6;font-size:10px;font-family:Georgia;border:2px solid #D9D9D9}h2,h3{color:#333;}#c{background:#FFF}img{height:10px;background:#14CC00;margin:0 3px}#r{height:10px;background:#CC8A00}#clr{background:none;color:#A70000;font-size:20px;border:0}</style>"
-#define STATSX_SHELL_DESIGN7_STYLE "<meta charset=UTF-8><style>body{background:#FFF;font-family:Verdana}th{background:#2E2E2E;color:#FFF;text-align:left}table{padding:6px 2px;background:#FFF;font-size:11px;color:#333;border:1px solid #CCC}h2,h3{color:#333}#c{background:#F0F0F0}img{height:7px;background:#444;margin:0 3px}#r{height:7px;background:#999}#clr{background:none;color:#2E2E2E;font-size:20px;border:0}</style>"
-#define STATSX_SHELL_DESIGN8_STYLE "<meta charset=UTF-8><style>body{background:#242424;margin:20px;font-family:Tahoma}th{background:#2F3034;color:#BDB670;text-align:left} table{padding:4px;background:#4A4945;font-size:10px;color:#FFF}h2,h3{color:#D2D1CF}#c{background:#3B3C37}img{height:12px;background:#99CC00;margin:0 3px}#r{height:12px;background:#999900}#clr{background:none;color:#FFF;font-size:20px}</style>"
+#define STATSX_SHELL_DESIGN3_STYLE  "<meta charset=UTF-8><style>body{background:#E6E6E6;font-family:Verdana}th{background:#F5F5F5;color:#A70000;padding:6px;text-align:left}td{padding:2px 6px}table{color:#333;background:#E6E6E6;font-size:10px;font-family:Georgia;border:2px solid #D9D9D9}h2,h3{color:#333;}#c{background:#FFF}img{height:10px;background:#14CC00;margin:0 3px}#r{height:10px;background:#CC8A00}#clr{background:none;color:#A70000;font-size:20px;border:0}</style>"
+#define STATSX_SHELL_DESIGN7_STYLE  "<meta charset=UTF-8><style>body{background:#FFF;font-family:Verdana}th{background:#2E2E2E;color:#FFF;text-align:left}table{padding:6px 2px;background:#FFF;font-size:11px;color:#333;border:1px solid #CCC}h2,h3{color:#333}#c{background:#F0F0F0}img{height:7px;background:#444;margin:0 3px}#r{height:7px;background:#999}#clr{background:none;color:#2E2E2E;font-size:20px;border:0}</style>"
+#define STATSX_SHELL_DESIGN8_STYLE  "<meta charset=UTF-8><style>body{background:#242424;margin:20px;font-family:Tahoma}th{background:#2F3034;color:#BDB670;text-align:left} table{padding:4px;background:#4A4945;font-size:10px;color:#FFF}h2,h3{color:#D2D1CF}#c{background:#3B3C37}img{height:12px;background:#99CC00;margin:0 3px}#r{height:12px;background:#999900}#clr{background:none;color:#FFF;font-size:20px}</style>"
 #define STATSX_SHELL_DESIGN10_STYLE "<meta charset=UTF-8><style>body{background:#4C5844;font-family:Tahoma}th{background:#1E1E1E;color:#C0C0C0;padding:2px;text-align:left;}td{padding:2px 10px}table{color:#AAC0AA;background:#424242;font-size:13px}h2,h3{color:#C2C2C2;font-family:Tahoma}#c{background:#323232}img{height:3px;background:#B4DA45;margin:0 3px}#r{height:3px;background:#6F9FC8}#clr{background:none;color:#FFF;font-size:20px}</style>"
 
 #define PDATA_SAFE              2
@@ -21,19 +21,19 @@
 #define TASKID_AUTHORIZE        670
 #define TASKID_LASTSEEN         671
 
-#define column(%1) SQL_FieldNameToNum(query, %1)
+#define column(%1)              SQL_FieldNameToNum(query, %1)
 
 enum
 {
-	ME_DMG,
-	ME_INFECT,
-	ME_NUM
+    ME_DMG,
+    ME_INFECT,
+    ME_NUM
 }
 
-new g_UserIP[33][32]
-new g_UserAuthID[33][32]
-new g_UserName[33][32]
-new g_UserDBId[33]
+new g_UserIP[MAX_PLAYERS][32]
+new g_UserAuthID[MAX_PLAYERS][32]
+new g_UserName[MAX_PLAYERS][32]
+new g_UserDBId[MAX_PLAYERS]
 
 new Handle:g_SQL_Tuple
 
@@ -43,7 +43,7 @@ new whois[1024]
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
 new g_CvarMaxInactiveDays
 
-new g_Me[33][ME_NUM]
+new g_Me[MAX_PLAYERS][ME_NUM]
 new g_text[MAX_BUFFER_LENGTH + 1]
 new bool:gb_css_trigger = true
 
@@ -54,7 +54,7 @@ new g_isalive[MAX_PLAYERS + 1]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 #define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
 
-new g_select_statement[] = "\
+new const g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
     ((`infect` + `zombiekills`*2 + `humankills` + \
     `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10) / \
@@ -63,7 +63,7 @@ new g_select_statement[] = "\
 
 public plugin_init()
 {
-    register_plugin("[BIO] Statistics", "1.2", "Dimka")
+    register_plugin("[BIO] Statistics", "1.3", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE

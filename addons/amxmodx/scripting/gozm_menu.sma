@@ -22,13 +22,13 @@ enum
 
 public plugin_init()
 {
-    register_plugin("GoZm Menu", "1.0", "Dimka")
+    register_plugin("GoZm Menu", "1.1", "Dimka")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
 
     register_clcmd("gozm_menu", "mainMenu", _, "GoZm Menu")
-    
+
     register_clcmd("chooseteam", "clcmd_changeteam")
     register_clcmd("jointeam", "clcmd_changeteam")
 
@@ -158,7 +158,7 @@ allow_join_spec(id)
         colored_print(id, "^x04***^x01 Живой - играй!")
         return PLUGIN_HANDLED
     }
-    
+
     user_silentkill(id)
     cs_set_player_team(id, CS_TEAM_SPECTATOR)
     return PLUGIN_HANDLED
@@ -244,6 +244,6 @@ fm_get_user_team(id)
 	// Prevent server crash if entity is not safe for pdata retrieval
 	if (pev_valid(id) != PDATA_SAFE)
 		return TEAM_UNASSIGNED
-	
+
 	return get_pdata_int(id, OFFSET_TEAM, OFFSET_LINUX)
 }

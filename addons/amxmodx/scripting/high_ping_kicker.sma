@@ -68,7 +68,7 @@ public checkPing(param[])
     }
 }
 
-public kickPlayer(id)
+kickPlayer(id)
 {
     new name[32], authid[32]
     get_user_name(id, name, 31)

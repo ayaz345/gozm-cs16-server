@@ -2,7 +2,8 @@
 #include <colored_print>
 #include <gozm>
 
-new cvar_forum, cvar_demo_name
+new cvar_forum
+new cvar_demo_name
 
 public plugin_init()
 {

@@ -62,7 +62,7 @@ public plugin_precache()
 {
 	for (new i=0; i < sizeof grenade_fire; i++)
 		engfunc(EngFunc_PrecacheSound, grenade_fire[i])
-	
+
 	g_flameSpr = engfunc(EngFunc_PrecacheModel, sprite_grenade_fire)
 	g_smokeSpr = engfunc(EngFunc_PrecacheModel, sprite_grenade_smoke)
 	g_trailSpr = engfunc(EngFunc_PrecacheModel, sprite_grenade_trail)
@@ -73,22 +73,22 @@ public plugin_init()
 {
 	// Register plugin call
 	register_plugin("Napalm Nades", "1.3a", "MeRcyLeZZ")
-	
+
 	// Events
 	register_event("HLTV", "event_round_start", "a", "1=0", "2=0")
-	
+
 	// Forwards
 	register_forward(FM_SetModel, "fw_SetModel")
 	RegisterHam(Ham_Think, "grenade", "fw_ThinkGrenade")
-	
+
 	// CVARS
 	cvar_radius = register_cvar("napalm_radius", "240")
 	cvar_duration = register_cvar("napalm_duration", "5")
 	cvar_damage = register_cvar("napalm_damage", "8")
 	cvar_slowdown = register_cvar("napalm_slowdown", "0.77")
-	
+
 	g_maxplayers = get_maxplayers()
-	
+
 	// Message ids
 	g_msgDamage = get_user_msgid("Damage")
 }
@@ -107,7 +107,7 @@ public event_round_start()
 	g_slowdown = get_pcvar_float(cvar_slowdown)
 	g_damage = floatround(get_pcvar_float(cvar_damage), floatround_ceil)
 	g_radius = get_pcvar_float(cvar_radius)
-	
+
 	// Stop any burning tasks on players
 	for (new id=1; id<=g_maxplayers; id++)
 		remove_task(id+TASK_BURN);
@@ -119,27 +119,27 @@ public fw_SetModel(entity, const model[])
 	// Get damage time of grenade
 	static Float:dmgtime
 	pev(entity, pev_dmgtime, dmgtime)
-	
+
 	// Grenade not yet thrown
 	if (dmgtime == 0.0)
 		return FMRES_IGNORED;
-	
+
 	// Not an affected grenade (only HE)
 	if (!equal(model[7], "w_he", 4))
 		return FMRES_IGNORED;
-	
+
 	// Get owner of grenade and napalm weapon entity
 	static owner, napalm_weaponent
 	owner = pev(entity, pev_owner)
 	napalm_weaponent = fm_get_user_current_weapon_ent(owner)
-	
+
 	// Get owner's team
 	static owner_team
 	owner_team = fm_get_user_team(owner)
-	
+
 	// Give it a glow
 	fm_set_rendering(entity, kRenderFxGlowShell, NAPALM_R, NAPALM_G, NAPALM_B, kRenderNormal, 16)
-	
+
 	// And a colored trail
 	message_begin(MSG_BROADCAST, SVC_TEMPENTITY)
 	write_byte(TE_BEAMFOLLOW) // TE id
@@ -152,22 +152,22 @@ public fw_SetModel(entity, const model[])
 	write_byte(NAPALM_B) // b
 	write_byte(200) // brightness
 	message_end()
-	
+
 	// Reduce napalm ammo
 	static napalm_ammo
 	napalm_ammo = pev(napalm_weaponent, PEV_NAPALM_AMMO)
 	set_pev(napalm_weaponent, PEV_NAPALM_AMMO, --napalm_ammo)
-	
+
 	// Run out of napalms?
 	if (napalm_ammo < 1)
 	{
 		// Remove napalm flag from the owner's weapon entity
 		set_pev(napalm_weaponent, PEV_NADE_TYPE, 0)
 	}
-	
+
 	// Set grenade type on the thrown grenade entity
 	set_pev(entity, PEV_NADE_TYPE, NADE_TYPE_NAPALM)
-	
+
 	// Set owner's team on the thrown grenade entity
 	set_pev(entity, pev_team, owner_team)
 
@@ -207,42 +207,42 @@ napalm_explode(ent)
 	static attacker, attacker_team
 	attacker = pev(ent, pev_owner)
 	attacker_team = pev(ent, pev_team)
-	
+
 	// Get origin
 	static Float:originF[3]
 	pev(ent, pev_origin, originF)
-	
+
 	// Custom explosion effect
 	create_blast2(originF)
-	
+
 	// Napalm explosion sound
 	engfunc(EngFunc_EmitSound, ent, CHAN_WEAPON, grenade_fire[random_num(0, sizeof grenade_fire - 1)], 1.0, ATTN_NORM, 0, PITCH_NORM)
-	
+
 	// Collisions
 	static victim
 	victim = -1
-	
+
 	if (is_user_zombie(attacker))
 		return;
-	
+
 	while ((victim = engfunc(EngFunc_FindEntityInSphere, victim, originF, g_radius)) != 0)
 	{
 		// Only effect alive players
 		if (!is_user_alive(victim))
 			continue;
-		
+
 		//MINE
 		if (!is_user_zombie(victim))
 			continue;
-			
+
 		// myself is not allowed
 		if (victim == attacker)
 			continue;
-		
+
 		// Check if friendly fire is allowed
 		if (attacker_team == fm_get_user_team(victim))
 			continue;
-		
+
 		// Heat icon
 		message_begin(MSG_ONE_UNRELIABLE, g_msgDamage, _, victim)
 		write_byte(0) // damage save
@@ -252,12 +252,12 @@ napalm_explode(ent)
 		write_coord(0) // y
 		write_coord(0) // z
 		message_end()
-		
+
 		// Our task params
 		static params[2]
 		params[0] = g_duration * 5 // duration
 		params[1] = attacker // attacker
-		
+
 		// Set burning task on victim
 		set_task(0.1, "burning_flame", victim+TASK_BURN, params, sizeof params)
 	}
@@ -269,12 +269,12 @@ public burning_flame(args[2], taskid)
 	// Player died/disconnected
 	if (!is_user_alive(ID_BURN))
 		return;
-	
+
 	// Get player origin and flags
 	static Float:originF[3], flags
 	pev(ID_BURN, pev_origin, originF)
 	flags = pev(ID_BURN, pev_flags)
-	
+
 	// In water or burning stopped
 	if ((flags & FL_INWATER) || BURN_DURATION < 1)
 	{
@@ -288,7 +288,7 @@ public burning_flame(args[2], taskid)
 		write_byte(random_num(15, 20)) // scale
 		write_byte(random_num(10, 20)) // framerate
 		message_end()
-		
+
 		return;
 	}
 
@@ -300,15 +300,15 @@ public burning_flame(args[2], taskid)
 		xs_vec_mul_scalar(velocity, g_slowdown, velocity)
 		set_pev(ID_BURN, pev_velocity, velocity)
 	}
-	
+
 	// Get victim's health
 	static health
 	health = pev(ID_BURN, pev_health)
-	
+
 	// Take damage from the fire
 	if (health - g_damage > 0)
 		set_pev(ID_BURN, pev_health, float(health - g_damage))
-	
+
 	// Flame sprite
 	engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, originF, 0)
 	write_byte(TE_SPRITE) // TE id
@@ -319,10 +319,10 @@ public burning_flame(args[2], taskid)
 	write_byte(random_num(5, 10)) // scale
 	write_byte(200) // brightness
 	message_end()
-	
+
 	// Decrease task cycle count
 	BURN_DURATION -= 1;
-	
+
 	// Keep sending flame messages
 	set_task(0.4, "burning_flame", taskid, args, sizeof args)
 }
@@ -351,7 +351,7 @@ create_blast2(const Float:originF[3])
 	write_byte(200) // brightness
 	write_byte(0) // speed
 	message_end()
-	
+
 	// Medium ring
 	engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, originF, 0)
 	write_byte(TE_BEAMCYLINDER) // TE id
@@ -373,7 +373,7 @@ create_blast2(const Float:originF[3])
 	write_byte(200) // brightness
 	write_byte(0) // speed
 	message_end()
-	
+
 	// Largest ring
 	engfunc(EngFunc_MessageBegin, MSG_PVS, SVC_TEMPENTITY, originF, 0)
 	write_byte(TE_BEAMCYLINDER) // TE id
@@ -398,13 +398,13 @@ create_blast2(const Float:originF[3])
 }
 
 // Set entity's rendering type (from fakemeta_util)
-stock fm_set_rendering(entity, fx = kRenderFxNone, r = 255, g = 255, b = 255, render = kRenderNormal, amount = 16)
+fm_set_rendering(entity, fx = kRenderFxNone, r = 255, g = 255, b = 255, render = kRenderNormal, amount = 16)
 {
 	static Float:color[3]
 	color[0] = float(r)
 	color[1] = float(g)
 	color[2] = float(b)
-	
+
 	set_pev(entity, pev_renderfx, fx)
 	set_pev(entity, pev_rendercolor, color)
 	set_pev(entity, pev_rendermode, render)
@@ -412,13 +412,13 @@ stock fm_set_rendering(entity, fx = kRenderFxNone, r = 255, g = 255, b = 255, re
 }
 
 // Get User Current Weapon Entity
-stock fm_get_user_current_weapon_ent(id)
+fm_get_user_current_weapon_ent(id)
 {
 	return get_pdata_cbase(id, OFFSET_ACTIVE_ITEM, OFFSET_LINUX);
 }
 
 // Get User Team
-stock fm_get_user_team(id)
+fm_get_user_team(id)
 {
 	return get_pdata_int(id, OFFSET_CSTEAMS, OFFSET_LINUX);
 }

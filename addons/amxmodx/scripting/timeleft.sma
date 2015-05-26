@@ -44,7 +44,7 @@ public sayTimeLeft(id)
 	}
 	else
 		colored_print(id, "^x01Это^x04 последний^x01 раунд.")
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -60,7 +60,7 @@ setTimeText(text[], len, tmlf, id)
 {
 	new secs = tmlf % 60
 	new mins = tmlf / 60
-	
+
 	if (secs == 0)
 		format(text, len, "%d %L", mins, id, (mins > 1) ? "MINUTES" : "MINUTE")
 	else if (mins == 0)
@@ -74,41 +74,41 @@ setTimeVoice(text[], len, flags, tmlf)
 	new temp[7][32]
 	new secs = tmlf % 60
 	new mins = tmlf / 60
-	
+
 	for (new a = 0;a < 7;++a)
 		temp[a][0] = 0
 
 	if (secs > 0)
 	{
 		num_to_word(secs, temp[4], 31)
-		
-		if (!(flags & 8)) 
+
+		if (!(flags & 8))
 			temp[5] = "seconds "	/* there is no "second" in default hl */
 	}
-	
+
 	if (mins > 59)
 	{
 		new hours = mins / 60
-		
+
 		num_to_word(hours, temp[0], 31)
-		
+
 		if (!(flags & 8))
 			temp[1] = "hours "
-		
+
 		mins = mins % 60
 	}
-	
+
 	if (mins > 0)
 	{
 		num_to_word(mins, temp[2], 31)
-		
+
 		if (!(flags & 8))
 			temp[3] = "minutes "
 	}
-	
+
 	if (!(flags & 4))
 		temp[6] = "remaining "
-	
+
 	return format(text, len, "spk ^"vox/%s%s%s%s%s%s%s^"", temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6])
 }
 
@@ -126,7 +126,7 @@ findDispFormat(time)
 					remove_task(8648458)
 					set_task(1.0, "timeRemain", 34543, "", 0, "b")
 				}
-				
+
 				return i
 			}
 		}
@@ -135,7 +135,7 @@ findDispFormat(time)
 			return i
 		}
 	}
-	
+
 	return -1
 }
 
@@ -149,14 +149,14 @@ public setDisplaying()
 	{
 		read_argv(i + 1, arg, 31)
 		parse(arg, flags, 31, num, 31)
-		
+
 		g_TimeSet[i][0] = str_to_num(num)
 		g_TimeSet[i][1] = read_flags(flags)
-		
+
 		i++
 	}
 	g_TimeSet[i][0] = 0
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -165,16 +165,16 @@ public timeRemain(param[])
 	new gmtm = get_timeleft()
 	new tmlf = g_Switch ? --g_CountDown : gmtm
 	new stimel[12]
-	
+
 	format(stimel, 11, "%02d:%02d", gmtm / 60, gmtm % 60)
 	set_cvar_string("amx_timeleft", stimel)
-	
+
 	if (g_Switch && gmtm > g_Switch)
 	{
 		remove_task(34543)
 		g_Switch = 0
 		set_task(0.8, "timeRemain", 8648458, "", 0, "b")
-		
+
 		return
 	}
 
@@ -182,27 +182,27 @@ public timeRemain(param[])
 	{
 		g_LastTime = tmlf
 		new tm_set = findDispFormat(tmlf)
-		
+
 		if (tm_set != -1)
 		{
 			new flags = g_TimeSet[tm_set][1]
 			new arg[128]
-			
+
 			if (flags & 1)
 			{
 				new players[32], pnum
-				
+
 				get_players(players, pnum, "c")
-				
+
 				for (new i = 0; i < pnum; i++)
 				{
 					setTimeText(arg, 127, tmlf, players[i])
-					
+
 					if (flags & 16)
 						set_hudmessage(255, 255, 255, -1.0, 0.85, 0, 0.0, 1.1, 0.1, 0.5, -1)
 					else
 						set_hudmessage(255, 255, 255, -1.0, 0.85, 0, 0.0, 3.0, 0.0, 0.5, -1)
-					
+
 					show_hudmessage(players[i], "%s", arg)
 				}
 			}

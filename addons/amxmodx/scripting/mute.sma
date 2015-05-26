@@ -11,7 +11,7 @@ new g_GagPlayers[MAX_PLAYERS]
 new mutedIp[64][16]
 new muted_num = 1
 
-public plugin_init() 
+public plugin_init()
 {
     register_plugin("Mute Menu", "2.1", "GoZm")
 
@@ -28,7 +28,7 @@ public plugin_init()
     register_concmd("radio1", "hook_radio")
     register_concmd("radio2", "hook_radio")
     register_concmd("radio3", "hook_radio")
-} 
+}
 
 public clcmd_mute(id)
 {
@@ -36,7 +36,7 @@ public clcmd_mute(id)
         display_mutemenu(id)
     else
         colored_print(id, "^x04%s^x01 Затычка доступна только ВИПам!", g_preffix)
-    
+
     return PLUGIN_HANDLED
 }
 
@@ -46,7 +46,7 @@ public clcmd_speak(id)
         display_speakmenu(id)
     else
         colored_print(id, "^x04%s^x01 Затычка доступна только ВИПам!", g_preffix)
-    
+
     return PLUGIN_HANDLED
 }
 
@@ -60,7 +60,7 @@ public hook_radio(id)
     return PLUGIN_CONTINUE
 }
 
-public display_mutemenu(id)
+display_mutemenu(id)
 {
     new i_Menu = menu_create("\wКого \yзаткнем\w?", "mute_player_menu_handler" )
 
@@ -71,7 +71,7 @@ public display_mutemenu(id)
         new name[32], str_id[3]
         get_user_name(players[i], name, charsmax(name))
         num_to_str(players[i], str_id, charsmax(str_id))
-        
+
         menu_additem(i_Menu, name, str_id, _, menu_makecallback("check_for_muted_victim"))
     }
 
@@ -114,7 +114,7 @@ public mute_player_menu_handler(id, menu, item)
     return PLUGIN_HANDLED
 }
 
-public display_speakmenu(id)
+display_speakmenu(id)
 {
     new i_Menu = menu_create("\wРазрешим \yговорить\w:", "speak_player_menu_handler" )
 
@@ -189,15 +189,15 @@ public block_gagged(id)
         return PLUGIN_HANDLED
     }
 
-	return PLUGIN_CONTINUE 
-} 
+	return PLUGIN_CONTINUE
+}
 
-public CMD_GagPlayer(VIP, VictimID) 
+CMD_GagPlayer(VIP, VictimID)
 {
-    if (has_vip(VictimID) && VictimID != VIP)  
+    if (has_vip(VictimID) && VictimID != VIP)
         return PLUGIN_HANDLED;
 
-    if (!is_user_connected(VictimID))  
+    if (!is_user_connected(VictimID))
         return PLUGIN_HANDLED;
 
     new s_Flags[4], flags
@@ -217,11 +217,11 @@ public CMD_GagPlayer(VIP, VictimID)
         console_print(VIP, "%s %s is silented", g_preffix, VictimName)
 
     return PLUGIN_HANDLED
-} 
+}
 
-public CMD_UnGagPlayer(VIP, VictimID)
+CMD_UnGagPlayer(VIP, VictimID)
 {
-    if (has_vip(VictimID) && VictimID != VIP)  
+    if (has_vip(VictimID) && VictimID != VIP)
         return PLUGIN_HANDLED
 
     new AdminName[32], VictimName[32]
@@ -235,7 +235,7 @@ public CMD_UnGagPlayer(VIP, VictimID)
     }
 
     if (!has_rcon(VIP))
-        colored_print(0, "^x04%s^x03 %s^x01 может говорить благодаря випу %s", 
+        colored_print(0, "^x04%s^x03 %s^x01 может говорить благодаря випу %s",
             g_preffix, VictimName, AdminName)
     else
         console_print(VIP, "%s %s is free", g_preffix, VictimName)
@@ -245,11 +245,11 @@ public CMD_UnGagPlayer(VIP, VictimID)
     return PLUGIN_HANDLED
 }
 
-public client_putinserver(id) 
-{ 
+public client_putinserver(id)
+{
 	new checkIp[16]
 	get_user_ip(id, checkIp, charsmax(checkIp), 1)
-	
+
 	for (new i = 1; i < 30; i++)
     {
 		if(contain(mutedIp[i], checkIp) != -1 && !has_vip(id))
@@ -258,14 +258,14 @@ public client_putinserver(id)
 			formatex(s_Flags, charsmax(s_Flags), "abc")
 			flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
 			g_GagPlayers[id] = flags
-			
+
 			set_speak(id, SPEAK_MUTED)
 		}
     }
 }
 
-public client_disconnect(id) 
-{ 
+public client_disconnect(id)
+{
 	if (g_GagPlayers[id])
 	{
 		UnGagPlayer(id)
@@ -281,14 +281,14 @@ public client_infochanged(id)
 {
     if (!is_user_connected(id))
         return PLUGIN_CONTINUE
-    
+
     new newname[32], oldname[32]
     get_user_info(id, "name", newname, charsmax(newname))
     get_user_name(id, oldname, charsmax(oldname))
-    
+
     if (!equal(oldname,newname) && !equal(oldname,""))
         set_task(0.2, "check_access", id)
-    
+
     return PLUGIN_CONTINUE
 }
 
@@ -300,8 +300,8 @@ public check_access(id)
     return PLUGIN_CONTINUE
 }
 
-stock UnGagPlayer(id)
-{ 
+UnGagPlayer(id)
+{
 	if ((g_GagPlayers[id] & 4) && is_user_connected(id))
 	{
 		set_speak(id, SPEAK_ALL)

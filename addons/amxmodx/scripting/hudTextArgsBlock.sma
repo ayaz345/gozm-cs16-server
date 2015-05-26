@@ -1,15 +1,11 @@
 #include <amxmodx>
 #include <fakemeta>
 
-#define PLUGIN	"HudTextArgs Blocker"
-#define AUTHOR	"joaquimandrade"
-#define VERSION	"1.1"
-
 const NextHudTextArgsOffset = 198 // ConnorMcLeod
 
 const HintMaxLen = 38
 
-new Hints[][HintMaxLen] = 
+new Hints[][HintMaxLen] =
 {
 	"hint_win_round_by_killing_enemy",
 	"hint_press_buy_to_purchase",
@@ -44,14 +40,15 @@ new Trie:HintsStatus
 
 public plugin_init()
 {
-	register_plugin(PLUGIN, VERSION, AUTHOR)	
+	register_plugin("HudTextArgs Blocker", "joaquimandrade", "1.1")
+
 	register_message(get_user_msgid("HudTextArgs"), "hudTextArgs")
 }
 
 public plugin_cfg()
 {
 	HintsStatus = TrieCreate()
-	
+
 	for(new i=0; i<sizeof Hints; i++)
         TrieSetCell(HintsStatus, Hints[i][5], true)
 }
@@ -60,11 +57,11 @@ public hudTextArgs(msgid, msgDest, msgEnt)
 {
     static hint[HintMaxLen + 1]
     get_msg_arg_string(1, hint, charsmax(hint))
-    
+
     if(TrieKeyExists(HintsStatus, hint[6]))
     {
-        set_pdata_float(msgEnt, NextHudTextArgsOffset, 0.0)		
+        set_pdata_float(msgEnt, NextHudTextArgsOffset, 0.0)
         return PLUGIN_HANDLED
     }
-    return PLUGIN_CONTINUE 
+    return PLUGIN_CONTINUE
 }

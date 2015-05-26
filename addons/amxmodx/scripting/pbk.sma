@@ -197,7 +197,7 @@ determine_spec_time_elapsed(id)
 	return timeElapsed
 }
 
-public handle_time_elapsed(id, eventType)
+handle_time_elapsed(id, eventType)
 {
 	new maxSeconds, elapsedSeconds, eventImmunity
 	if (eventType == EVENT_JOIN)

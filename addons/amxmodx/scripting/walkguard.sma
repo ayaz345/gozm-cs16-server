@@ -4,10 +4,6 @@
 #include <xs>
 #include <gozm>
 
-#define PLUGIN "WalkGuard"
-#define VERSION "1.3.2"
-#define AUTHOR "mogel"
-
 /*
  *	fakemeta-version by djmd378
  */
@@ -90,11 +86,9 @@ new g_maxplayers
 new g_isconnected[MAX_PLAYERS+1]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 
-public plugin_init() {
-    register_plugin(PLUGIN, VERSION, AUTHOR)
-
-    register_cvar("WalkGuard", VERSION, FCVAR_SERVER | FCVAR_SPONLY | FCVAR_UNLOGGED)
-    server_cmd("WalkGuard %s", VERSION)
+public plugin_init()
+{
+    register_plugin("WalkGuard", "1.3.2", "mogel")
 
     pcv_damage = register_cvar("wg_damage", "10")
     pcv_immunity = register_cvar("wg_immunity", "0")		// Admins mit Immunität brauchen nicht
@@ -124,7 +118,8 @@ public plugin_init() {
     g_maxplayers = get_maxplayers()
 }
 
-public plugin_precache() {
+public plugin_precache()
+{
 	precache_model("models/gib_skull.mdl")
 	spr_dot = precache_model("sprites/dot.spr")
 }
@@ -134,20 +129,23 @@ public client_putinserver(id)
     g_isconnected[id] = true
 }
 
-public client_disconnect(player) {
+public client_disconnect(player)
+{
     // aus irgend welchen Gründen ist der Spieler einfach wech........
     if (player == editor) HideAllZones()
 
     g_isconnected[player] = false
 }
 
-public Event_FreezeTime() {
+public Event_FreezeTime()
+{
 	roundstatus = RS_FREEZETIME
 }
 
-public Event_RoundStart() {
+public Event_RoundStart()
+{
 	roundstatus = RS_RUNNING
-	
+
 	// CPU schonen und die Variablen am Anfang gleich merken
 	slap_damage = get_pcvar_num(pcv_damage)
 	slap_direction = get_pcvar_num(pcv_direction)
@@ -155,7 +153,8 @@ public Event_RoundStart() {
 	icon_damage = get_pcvar_num(pcv_damageicon)
 }
 
-public Event_RoundEnd() {
+public Event_RoundEnd()
+{
 	roundstatus = RS_END
 }
 
@@ -166,7 +165,8 @@ public Event_RoundEnd() {
 //		-> hier ist alles was passiert
 //
 // -----------------------------------------------------------------------------------------
-public fw_touch(zone, player) {
+public fw_touch(zone, player)
+{
 	if (editor) return FMRES_IGNORED
 
 	if (!pev_valid(zone) || !is_user_valid_connected(player))
@@ -174,31 +174,31 @@ public fw_touch(zone, player) {
 
 	static classname[33]
 	pev(player, pev_classname, classname, 32)
-	if (!equal(classname, "player")) 
+	if (!equal(classname, "player"))
 		return FMRES_IGNORED
-	
+
 	pev(zone, pev_classname, classname, 32)
-	if (!equal(classname, "walkguardzone")) 
+	if (!equal(classname, "walkguardzone"))
 		return FMRES_IGNORED
-	
-	if (roundstatus == RS_RUNNING) 
+
+	if (roundstatus == RS_RUNNING)
 		ZoneTouch(player, zone)
-	
+
 	return FMRES_IGNORED
 }
 
-public ZoneTouch(player, zone) {
-
+ZoneTouch(player, zone)
+{
 	new zm = pev(zone, ZONEID)
 	new userteam = get_user_team(player)
-	
+
 	// Admin mit Immunity brauchen nicht
 	if (admin_immunity && (get_user_flags(player) & ADMIN_IMMUNITY)) return
-	
+
 	// Kill Bill
-	if ( (ZONEMODE:zm == ZM_KILL) || ((ZONEMODE:zm == ZM_KILL_T1) && (userteam == 1)) || ((ZONEMODE:zm == ZM_KILL_T2) && (userteam == 2)) ) 
+	if ( (ZONEMODE:zm == ZM_KILL) || ((ZONEMODE:zm == ZM_KILL_T1) && (userteam == 1)) || ((ZONEMODE:zm == ZM_KILL_T2) && (userteam == 2)) )
 		set_task(0.1, "ZoneModeKill", player)
-	
+
 	// Camping
 	if ( (ZONEMODE:zm == ZM_CAMPING) || ((ZONEMODE:zm == ZM_CAMPING_T1) && (userteam == 1)) || ((ZONEMODE:zm == ZM_CAMPING_T2) && (userteam == 2)) ) {
 		if (!camping[player]) {
@@ -215,14 +215,16 @@ public ZoneTouch(player, zone) {
 	}
 }
 
-public ZoneModeKill(player) {
+public ZoneModeKill(player)
+{
 	if (!is_user_valid_connected(player) || !is_user_alive(player)) return
 	user_silentkill(player)
 	for(new i = 0; i < 5; i++) client_print(player, print_chat, "[WalkGuard] %L", player, "WALKGUARD_KILL_MESSAGE")
 	client_cmd(player,"speak ambience/thunder_clap.wav")
 }
 
-public ZoneModeCamper(player) {
+public ZoneModeCamper(player)
+{
 	player -= TASK_BASIS_CAMPER
 
 	if (!is_user_valid_connected(player))
@@ -231,7 +233,7 @@ public ZoneModeCamper(player) {
 		remove_task(TASK_BASIS_CAMPER + player)
 		return
 	}
-	
+
 	new Float:gametime = get_gametime();
 	if ((gametime - camping[player]) > 0.5)
 	{
@@ -243,7 +245,7 @@ public ZoneModeCamper(player) {
 	}
 
 	new ct = pev(camperzone[player], CAMPERTIME)
-	new left = ct - floatround( gametime - campertime[player]) 
+	new left = ct - floatround( gametime - campertime[player])
 	if (left < 1)
 	{
         client_print(player, print_center, "%L", player, "WALKGUARD_CAMPING_DAMG")
@@ -255,7 +257,8 @@ public ZoneModeCamper(player) {
 	}
 }
 
-public RandomDirection(player) {
+RandomDirection(player)
+{
 	new Float:velocity[3]
 	velocity[0] = random_float(-256.0, 256.0)
 	velocity[1] = random_float(-256.0, 256.0)
@@ -268,7 +271,8 @@ public RandomDirection(player) {
 //	Zonenerstellung
 //
 // -----------------------------------------------------------------------------------------
-public CreateZone(Float:position[3], Float:mins[3], Float:maxs[3], zm, campertime) {
+CreateZone(Float:position[3], Float:mins[3], Float:maxs[3], zm, campertime)
+{
 	new entity = fm_create_entity("info_target")
 	set_pev(entity, pev_classname, "walkguardzone")
 	fm_entity_set_model(entity, "models/gib_skull.mdl")
@@ -283,33 +287,35 @@ public CreateZone(Float:position[3], Float:mins[3], Float:maxs[3], zm, campertim
 	{
 		set_pev(entity, pev_solid, solidtyp[ZONEMODE:id])
 	}
-	
+
 	fm_entity_set_size(entity, mins, maxs)
-	
+
 	fm_set_entity_visibility(entity, 0)
-	
+
 	set_pev(entity, ZONEID, zm)
 	set_pev(entity, CAMPERTIME, campertime)
-	
+
 	//log_amx("create zone '%s' with campertime %i seconds", zonename[ZONEMODE:zm], campertime)
-	
+
 	return entity
 }
 
-public CreateNewZone(Float:position[3]) {
+CreateNewZone(Float:position[3])
+{
 	new Float:mins[3] = { -32.0, -32.0, -32.0 }
 	new Float:maxs[3] = { 32.0, 32.0, 32.0 }
 	return CreateZone(position, mins, maxs, 0, 10);	// ZM_NONE
 }
 
-public CreateZoneOnPlayer(player) {
+CreateZoneOnPlayer(player)
+{
 	// Position und erzeugen
 	new Float:position[3]
 	pev(player, pev_origin, position)
-	
+
 	new entity = CreateNewZone(position)
 	FindAllZones()
-	
+
 	for(new i = 0; i < maxzones; i++) if (zone[i] == entity) index = i;
 }
 
@@ -318,7 +324,8 @@ public CreateZoneOnPlayer(player) {
 //	Load & Save der WGZ
 //
 // -----------------------------------------------------------------------------------------
-public SaveWGZ(player) {
+SaveWGZ(player)
+{
 	new zonefile[200]
 	new mapname[50]
 
@@ -326,14 +333,14 @@ public SaveWGZ(player) {
 	get_configsdir(zonefile, 199)
 	format(zonefile, 199, "%s/walkguard", zonefile)
 	if (!dir_exists(zonefile)) mkdir(zonefile)
-	
+
 	// Namen über Map erstellen
 	get_mapname(mapname, 49)
 	format(zonefile, 199, "%s/%s.wgz", zonefile, mapname)
 	delete_file(zonefile)	// pauschal
-	
+
 	FindAllZones()	// zur Sicherheit
-	
+
 	// Header
 	write_file(zonefile, "; V1 - WalkGuard Zone-File")
 	write_file(zonefile, "; <zonename> <position (x/y/z)> <mins (x/y/z)> <maxs (x/y/z)> [<parameter>] ")
@@ -348,24 +355,24 @@ public SaveWGZ(player) {
 	write_file(zonefile, ";   - wgz_camper_t4 <time>")
 	write_file(zonefile, ";")
 	write_file(zonefile, "")
-	
+
 	// alle Zonen speichern
 	for(new i = 0; i < maxzones; i++)
 	{
 		new z = zone[i]	// das Entity
-		
+
 		// diverse Daten der Zone
 		new zm = pev(z, ZONEID)
-		
+
 		// Koordinaten holen
 		new Float:pos[3]
 		pev(z, pev_origin, pos)
-		
+
 		// Dimensionen holen
 		new Float:mins[3], Float:maxs[3]
 		pev(z, pev_mins, mins)
 		pev(z, pev_maxs, maxs)
-		
+
 		// Ausgabe formatieren
 		//  -> Type und CamperTime
 		new output[1000]
@@ -375,43 +382,44 @@ public SaveWGZ(player) {
 		//  -> Dimensionen
 		format(output, 999, "%s %.0f %.0f %.0f", output, mins[0], mins[1], mins[2])
 		format(output, 999, "%s %.0f %.0f %.0f", output, maxs[0], maxs[1], maxs[2])
-		
+
 		// diverse Parameter
 		if ((ZONEMODE:zm == ZM_CAMPING) || (ZONEMODE:zm == ZM_CAMPING_T1) || (ZONEMODE:zm == ZM_CAMPING_T2))
 		{
 			new ct = pev(z, CAMPERTIME)
 			format(output, 999, "%s %i", output, ct)
 		}
-		
+
 		// und schreiben
 		write_file(zonefile, output)
 	}
-	
+
 	client_print(player, print_chat, "%L", player, "ZONE_FILE_SAVED", zonefile)
 }
 
-public LoadWGZ() {
+public LoadWGZ()
+{
 	new zonefile[200]
 	new mapname[50]
 
 	// Verzeichnis holen
 	get_configsdir(zonefile, 199)
 	format(zonefile, 199, "%s/walkguard", zonefile)
-	
+
 	// Namen über Map erstellen
 	get_mapname(mapname, 49)
 	format(zonefile, 199, "%s/%s.wgz", zonefile, mapname)
-	
+
 	if (!file_exists(zonefile))
 	{
 		log_amx("no zone-file found")
 		return
 	}
-	
+
 	// einlesen der Daten
 	new input[1000], line = 0, len
-	
-	while( (line = read_file(zonefile , line , input , 127 , len) ) != 0 ) 
+
+	while( (line = read_file(zonefile , line , input , 127 , len) ) != 0 )
 	{
 		if (!strlen(input)  || (input[0] == ';')) continue;	// Kommentar oder Leerzeile
 
@@ -428,18 +436,18 @@ public LoadWGZ() {
 			if (equal(data, "wgz_camper_ct")) format(data, 19, "wgz_camper_t2")
 			if (equal(data, zonename[ZONEMODE:i])) zm = i;
 		}
-		
+
 		if (zm == -1)
 		{
 			log_amx("undefined zone -> '%s' ... dropped", data)
 			continue;
 		}
-		
+
 		// Position holen
 		argbreak(input, data, 20, input, 999);	pos[0] = str_to_float(data);
 		argbreak(input, data, 20, input, 999);	pos[1] = str_to_float(data);
 		argbreak(input, data, 20, input, 999);	pos[2] = str_to_float(data);
-		
+
 		// Dimensionen
 		argbreak(input, data, 20, input, 999);	mins[0] = str_to_float(data);
 		argbreak(input, data, 20, input, 999);	mins[1] = str_to_float(data);
@@ -458,48 +466,21 @@ public LoadWGZ() {
 		// und nun noch erstellen
 		CreateZone(pos, mins, maxs, zm, ct);
 	}
-	
+
 	FindAllZones()
 	HideAllZones()
 }
 
-// -----------------------------------------------------------------------------------------
-//
-//	WalkGuard-Menu
-//
-// -----------------------------------------------------------------------------------------
-public FX_Box(Float:sizemin[3], Float:sizemax[3], color[3], life) {
-	// FX
-	message_begin(MSG_BROADCAST, SVC_TEMPENTITY);
-
-	write_byte(31);
-	
-	write_coord( floatround( sizemin[0] ) ); // x
-	write_coord( floatround( sizemin[1] ) ); // y
-	write_coord( floatround( sizemin[2] ) ); // z
-	
-	write_coord( floatround( sizemax[0] ) ); // x
-	write_coord( floatround( sizemax[1] ) ); // y
-	write_coord( floatround( sizemax[2] ) ); // z
-
-	write_short(life)	// Life
-
-	write_byte(color[0])	// Color R / G / B
-	write_byte(color[1])
-	write_byte(color[2])
-	
-	message_end(); 
-}
-
-public FX_Line(start[3], stop[3], color[3], brightness) {
+FX_Line(start[3], stop[3], color[3], brightness)
+{
     if(!is_user_valid_connected(editor))
         return
 
-    message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, editor) 
+    message_begin(MSG_ONE_UNRELIABLE, SVC_TEMPENTITY, _, editor)
 
-    write_byte( TE_BEAMPOINTS ) 
+    write_byte( TE_BEAMPOINTS )
 
-    write_coord(start[0]) 
+    write_coord(start[0])
     write_coord(start[1])
     write_coord(start[2])
 
@@ -509,30 +490,31 @@ public FX_Line(start[3], stop[3], color[3], brightness) {
 
     write_short( spr_dot )
 
-    write_byte( 1 )	// framestart 
-    write_byte( 1 )	// framerate 
-    write_byte( 4 )	// life in 0.1's 
+    write_byte( 1 )	// framestart
+    write_byte( 1 )	// framerate
+    write_byte( 4 )	// life in 0.1's
     write_byte( 5 )	// width
-    write_byte( 0 ) 	// noise 
+    write_byte( 0 ) 	// noise
 
-    write_byte( color[0] )   // r, g, b 
-    write_byte( color[1] )   // r, g, b 
-    write_byte( color[2] )   // r, g, b 
+    write_byte( color[0] )   // r, g, b
+    write_byte( color[1] )   // r, g, b
+    write_byte( color[2] )   // r, g, b
 
-    write_byte( brightness )  	// brightness 
-    write_byte( 0 )   	// speed 
+    write_byte( brightness )  	// brightness
+    write_byte( 0 )   	// speed
 
-    message_end() 
+    message_end()
 }
 
-public DrawLine(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, color[3]) {
+DrawLine(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, color[3])
+{
 	new start[3]
 	new stop[3]
-	
+
 	start[0] = floatround( x1 )
 	start[1] = floatround( y1 )
 	start[2] = floatround( z1 )
-	
+
 	stop[0] = floatround( x2 )
 	stop[1] = floatround( y2 )
 	stop[2] = floatround( z2 )
@@ -540,9 +522,10 @@ public DrawLine(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, colo
 	FX_Line(start, stop, color, 200)
 }
 
-public ShowAllZones() {
+ShowAllZones()
+{
 	FindAllZones()	// zur Sicherheit alle suchen
-	
+
 	for(new i = 0; i < maxzones; i++)
 	{
 		new z = zone[i]
@@ -552,7 +535,8 @@ public ShowAllZones() {
 	}
 }
 
-public ShowZoneBox(entity) {
+public ShowZoneBox(entity)
+{
 	entity -= TASK_BASIS_SHOWZONES
 	if ((!fm_is_valid_ent(entity)) || !editor) return
 
@@ -589,14 +573,14 @@ public ShowZoneBox(entity) {
 	maxs[0] += pos[0]
 	maxs[1] += pos[1]
 	maxs[2] += pos[2]
-	
+
 	new id = pev(entity, ZONEID)
-	
+
 	new color[3]
 	color[0] = (zone[index] == entity) ? zone_color_aktiv[0] : zonecolor[ZONEMODE:id][0]
 	color[1] = (zone[index] == entity) ? zone_color_aktiv[1] : zonecolor[ZONEMODE:id][1]
 	color[2] = (zone[index] == entity) ? zone_color_aktiv[2] : zonecolor[ZONEMODE:id][2]
-	
+
 	// einzelnen Linien der Box zeichnen
 	//  -> alle Linien beginnen bei maxs
 	DrawLine(maxs[0], maxs[1], maxs[2], mins[0], maxs[1], maxs[2], color)
@@ -616,13 +600,13 @@ public ShowZoneBox(entity) {
 
 	// der Rest wird nur gezeichnet wenn es sich um ide aktuelle Box handelt
 	if (entity != zone[index]) return
-	
+
 	// jetzt noch die Koordinaten-Linien
 	if (direction == 0)	// X-Koordinaten
 	{
 		DrawLine(maxs[0], maxs[1], maxs[2], maxs[0], mins[1], mins[2], zone_color_green)
 		DrawLine(maxs[0], maxs[1], mins[2], maxs[0], mins[1], maxs[2], zone_color_green)
-		
+
 		DrawLine(mins[0], maxs[1], maxs[2], mins[0], mins[1], mins[2], zone_color_red)
 		DrawLine(mins[0], maxs[1], mins[2], mins[0], mins[1], maxs[2], zone_color_red)
 	}
@@ -633,7 +617,7 @@ public ShowZoneBox(entity) {
 
 		DrawLine(mins[0], maxs[1], mins[2], maxs[0], maxs[1], maxs[2], zone_color_green)
 		DrawLine(maxs[0], maxs[1], mins[2], mins[0], maxs[1], maxs[2], zone_color_green)
-	}	
+	}
 	if (direction == 2)	// Z-Koordinaten
 	{
 		DrawLine(maxs[0], maxs[1], maxs[2], mins[0], mins[1], maxs[2], zone_color_green)
@@ -644,7 +628,8 @@ public ShowZoneBox(entity) {
 	}
 }
 
-public HideAllZones() {
+HideAllZones()
+{
 	editor = 0	// Menü für den nächsten wieder frei geben ... ufnktionalität aktivieren
 	for(new i = 0; i < maxzones; i++)
 	{
@@ -654,7 +639,8 @@ public HideAllZones() {
 	}
 }
 
-public FindAllZones() {
+FindAllZones()
+{
 	new entity = -1
 	maxzones = 0
 	while( (entity = fm_find_ent_by_class(entity, "walkguardzone")) )
@@ -664,44 +650,46 @@ public FindAllZones() {
 	}
 }
 
-public InitWalkGuard(player) {
+public InitWalkGuard(player)
+{
 	new name[33], steam[33]
 	get_user_name(player, name, 32)
 	get_user_authid(player, steam, 32)
-	
+
 	if (!has_rcon(player))
 	{
 		log_amx("no access-rights for '%s' <%s>", name, steam)
 		return PLUGIN_HANDLED
 	}
-	
+
 	editor = player
 	FindAllZones();
 	ShowAllZones();
-	
+
 	set_task(0.1, "OpenWalkGuardMenu", player)
 
 	return PLUGIN_HANDLED
 }
 
-public OpenWalkGuardMenu(player) {
+public OpenWalkGuardMenu(player)
+{
 	new trans[70]
 	new menu[1024]
 	new zm = -1
 	new ct
 	new menukeys = MENU_KEY_0 + MENU_KEY_4 + MENU_KEY_9
-	
+
 	if (fm_is_valid_ent(zone[index]))
 	{
 		zm = pev(zone[index], ZONEID)
 		ct = pev(zone[index], CAMPERTIME)
 	}
-	
-	format(menu, 1023, "\dWalkGuard-Menu - Version %s\w", VERSION)
+
+	format(menu, 1023, "\dWalkGuard-Menu\w")
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%L", player, "WGM_ZONE_FOUND", menu, maxzones)
-	
+
 	if (zm != -1)
 	{
 		format(trans, 69, "%L", player, zonemode[ZONEMODE:zm])
@@ -719,27 +707,28 @@ public OpenWalkGuardMenu(player) {
 		format(menu, 1023, "%L", player, "WGM_ZONE_EDIT", menu)
 		format(menu, 1023, "%L", player, "WGM_ZONE_CHANGE", menu)
 	}
-	
+
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%L" ,player, "WGM_ZONE_CREATE", menu)
-	
+
 	if (zm != -1)
 	{
 		menukeys += MENU_KEY_6
 		format(menu, 1023, "%L", player, "WGM_ZONE_DELETE", menu)
 	}
 	format(menu, 1023, "%L", player, "WGM_ZONE_SAVE", menu)
-		
+
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%L" ,player, "WGM_ZONE_EXIT", menu)
-	
+
 	show_menu(player, menukeys, menu, -1, "MainMenu")
 	client_cmd(player, "spk sound/buttons/blip1.wav")
 }
 
-public MainMenuAction(player, key) {
+public MainMenuAction(player, key)
+{
 	key = (key == 10) ? 0 : key + 1
-	switch(key) 
+	switch(key)
 	{
 		case 1: {
 				// Zone editieren
@@ -785,12 +774,13 @@ public MainMenuAction(player, key) {
 	}
 }
 
-public OpenEditMenu(player) {
+OpenEditMenu(player)
+{
 	new trans[70]
-	
+
 	new menu[1024]
 	new menukeys = MENU_KEY_0 + MENU_KEY_1 + MENU_KEY_4 + MENU_KEY_5 + MENU_KEY_6 + MENU_KEY_7 + MENU_KEY_8 + MENU_KEY_9
-	
+
 	format(menu, 1023, "\dEdit WalkGuard-Zone\w")
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
@@ -802,7 +792,7 @@ public OpenEditMenu(player) {
 		zm = pev(zone[index], ZONEID)
 		ct = pev(zone[index], CAMPERTIME)
 	}
-	
+
 	if (zm != -1)
 	{
 		format(trans, 69, "%L", player, zonemode[ZONEMODE:zm])
@@ -817,9 +807,9 @@ public OpenEditMenu(player) {
 			format(menu, 1023, "%s^n", menu)		// Leerzeile
 		}
 	}
-	
+
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
-	
+
 	format(trans, 49, "%L", player, koordinaten[direction])
 	format(menu, 1023, "%L", player, "WGE_ZONE_SIZE_INIT", menu, trans)
 	format(menu, 1023, "%L", player, "WGE_ZONE_SIZE_MINS", menu)
@@ -828,12 +818,13 @@ public OpenEditMenu(player) {
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%s^n", menu)		// Leerzeile
 	format(menu, 1023, "%L", player, "WGE_ZONE_SIZE_QUIT", menu)
-	
+
 	show_menu(player, menukeys, menu, -1, "EditMenu")
 	client_cmd(player, "spk sound/buttons/blip1.wav")
 }
 
-public EditMenuAction(player, key) {
+public EditMenuAction(player, key)
+{
 	key = (key == 10) ? 0 : key + 1
 	switch(key)
 	{
@@ -895,9 +886,10 @@ public EditMenuAction(player, key) {
 	}
 }
 
-public VonRotAbziehen() {
+VonRotAbziehen()
+{
 	new entity = zone[index]
-	
+
 	// Koordinaten holen
 	new Float:pos[3]
 	pev(entity, pev_origin, pos)
@@ -909,18 +901,19 @@ public VonRotAbziehen() {
 
 	// könnte Probleme geben -> zu klein
 	//if ((floatabs(mins[direction]) + maxs[direction]) < setupunits + 1) return
-	
+
 	mins[direction] -= float(setupunits) / 2.0
 	maxs[direction] += float(setupunits) / 2.0
 	pos[direction] -= float(setupunits) / 2.0
-	
+
 	set_pev(entity, pev_origin, pos)
 	fm_entity_set_size(entity, mins, maxs)
 }
 
-public ZuRotAddieren() {
+ZuRotAddieren()
+{
 	new entity = zone[index]
-	
+
 	// Koordinaten holen
 	new Float:pos[3]
 	pev(entity, pev_origin, pos)
@@ -936,14 +929,15 @@ public ZuRotAddieren() {
 	mins[direction] += float(setupunits) / 2.0
 	maxs[direction] -= float(setupunits) / 2.0
 	pos[direction] += float(setupunits) / 2.0
-	
+
 	set_pev(entity, pev_origin, pos)
 	fm_entity_set_size(entity, mins, maxs)
 }
 
-public VonGelbAbziehen() {
+VonGelbAbziehen()
+{
 	new entity = zone[index]
-	
+
 	// Koordinaten holen
 	new Float:pos[3]
 	pev(entity, pev_origin, pos)
@@ -959,14 +953,15 @@ public VonGelbAbziehen() {
 	mins[direction] += float(setupunits) / 2.0
 	maxs[direction] -= float(setupunits) / 2.0
 	pos[direction] -= float(setupunits) / 2.0
-	
+
 	set_pev(entity, pev_origin, pos)
 	fm_entity_set_size(entity, mins, maxs)
 }
 
-public ZuGelbAddieren() {
+ZuGelbAddieren()
+{
 	new entity = zone[index]
-	
+
 	// Koordinaten holen
 	new Float:pos[3]
 	pev(entity, pev_origin, pos)
@@ -982,23 +977,25 @@ public ZuGelbAddieren() {
 	mins[direction] -= float(setupunits) / 2.0
 	maxs[direction] += float(setupunits) / 2.0
 	pos[direction] += float(setupunits) / 2.0
-	
+
 	set_pev(entity, pev_origin, pos)
 	fm_entity_set_size(entity, mins, maxs)
 }
 
-public OpenKillMenu(player) {
+OpenKillMenu(player)
+{
 	new menu[1024]
-	
+
 	format(menu, 1023, "%L", player, "ZONE_KILL_INIT")
 	format(menu, 1023, "%L", player, "ZONE_KILL_ASK", menu) // ja - nein - vieleicht
-	
+
 	show_menu(player, MENU_KEY_1 + MENU_KEY_0, menu, -1, "KillMenu")
-	
+
 	client_cmd(player, "spk sound/buttons/button10.wav")
 }
 
-public KillMenuAction(player, key) {
+public KillMenuAction(player, key)
+{
 	key = (key == 10) ? 0 : key + 1
 	switch(key)
 	{
@@ -1016,7 +1013,8 @@ public KillMenuAction(player, key) {
 	OpenWalkGuardMenu(player)
 }
 
-stock fm_set_kvd(entity, const key[], const value[], const classname[] = "") {
+stock fm_set_kvd(entity, const key[], const value[], const classname[] = "")
+{
 	if (classname[0])
 		set_kvd(0, KV_ClassName, classname)
 	else {
@@ -1056,7 +1054,8 @@ stock fm_entity_set_model(index, const model[])
 stock fm_create_entity(const classname[])
 	return engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, classname))
 
-stock fm_fakedamage(victim, const classname[], Float:takedmgdamage, damagetype) {
+stock fm_fakedamage(victim, const classname[], Float:takedmgdamage, damagetype)
+{
 	new class[] = "trigger_hurt"
 	new entity = fm_create_entity(class)
 	if (!entity)
@@ -1079,7 +1078,8 @@ stock fm_fakedamage(victim, const classname[], Float:takedmgdamage, damagetype) 
 	return 1
 }
 
-stock fm_entity_set_origin(index, const Float:origin[3]) {
+stock fm_entity_set_origin(index, const Float:origin[3])
+{
 	new Float:mins[3], Float:maxs[3]
 	pev(index, pev_mins, mins)
 	pev(index, pev_maxs, maxs)
@@ -1088,13 +1088,15 @@ stock fm_entity_set_origin(index, const Float:origin[3]) {
 	return engfunc(EngFunc_SetOrigin, index, origin)
 }
 
-stock fm_set_entity_visibility(index, visible = 1) {
+stock fm_set_entity_visibility(index, visible = 1)
+{
 	set_pev(index, pev_effects, visible == 1 ? pev(index, pev_effects) & ~EF_NODRAW : pev(index, pev_effects) | EF_NODRAW)
 
 	return 1
 }
 
-stock bool:fm_is_in_viewcone(index, const Float:point[3]) {
+stock bool:fm_is_in_viewcone(index, const Float:point[3])
+{
 	new Float:angles[3]
 	pev(index, pev_angles, angles)
 	engfunc(EngFunc_MakeVectors, angles)
@@ -1116,7 +1118,8 @@ stock bool:fm_is_in_viewcone(index, const Float:point[3]) {
 	return false
 }
 
-stock fm_trace_line(ignoreent, const Float:start[3], const Float:end[3], Float:ret[3]) {
+stock fm_trace_line(ignoreent, const Float:start[3], const Float:end[3], Float:ret[3])
+{
 	engfunc(EngFunc_TraceLine, start, end, ignoreent == -1 ? 1 : 0, ignoreent, 0)
 
 	new ent = get_tr2(0, TR_pHit)

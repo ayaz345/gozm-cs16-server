@@ -103,8 +103,8 @@ public plugin_init()
 	register_menucmd(register_menuid("Slap/Slay Menu"), 1023, "actionSlapMenu")
 	register_menucmd(register_menuid("Team Menu"), 1023, "actionTeamMenu")
 	register_menucmd(register_menuid("Client Cmds Menu"), 1023, "actionClcmdMenu")
-	
-	
+
+
 	g_bantimes = ArrayCreate();
 	// Load up the old default values
 	ArrayPushCell(g_bantimes, 0);
@@ -114,16 +114,16 @@ public plugin_init()
 	ArrayPushCell(g_bantimes, 30);
 	ArrayPushCell(g_bantimes, 45);
 	ArrayPushCell(g_bantimes, 60);
-	
-	
+
+
 	g_slapsettings = ArrayCreate();
 	// Old default values
 	ArrayPushCell(g_slapsettings, 0); // First option is ignored - it is slay
 	ArrayPushCell(g_slapsettings, 0); // slap 0 damage
 	ArrayPushCell(g_slapsettings, 1);
 	ArrayPushCell(g_slapsettings, 5);
-	
-	
+
+
 	register_srvcmd("amx_plmenu_bantimes", "plmenu_setbantimes");
 	register_srvcmd("amx_plmenu_slapdmg", "plmenu_setslapdmg");
 
@@ -137,61 +137,62 @@ public plugin_init()
 	if (module_exists("cstrike"))
 		g_cstrike = 1
 }
+
 public plmenu_setbantimes()
 {
 	new buff[32];
 	new args = read_argc();
-	
+
 	if (args <= 1)
 	{
 		server_print("usage: amx_plmenu_bantimes <time1> [time2] [time3] ...");
 		server_print("   use time of 0 for permanent.");
-		
+
 		return;
 	}
-	
+
 	ArrayClear(g_bantimes);
-	
+
 	for (new i = 1; i < args; i++)
 	{
 		read_argv(i, buff, charsmax(buff));
-		
+
 		ArrayPushCell(g_bantimes, str_to_num(buff));
-		
+
 	}
-	
+
 }
 public plmenu_setslapdmg()
 {
 	new buff[32];
 	new args = read_argc();
-	
+
 	if (args <= 1)
 	{
 		server_print("usage: amx_plmenu_slapdmg <dmg1> [dmg2] [dmg3] ...");
 		server_print("   slay is automatically set for the first value.");
-		
+
 		return;
 	}
-	
+
 	ArrayClear(g_slapsettings);
-	
+
 	ArrayPushCell(g_slapsettings, 0); // compensate for slay
-	
+
 	for (new i = 1; i < args; i++)
 	{
 		read_argv(i, buff, charsmax(buff));
-		
+
 		ArrayPushCell(g_slapsettings, str_to_num(buff));
-		
+
 	}
-	
 }
+
 public module_filter(const module[])
 {
 	if (equali(module, "cstrike"))
 		return PLUGIN_HANDLED
-	
+
 	return PLUGIN_CONTINUE
 }
 
@@ -199,12 +200,11 @@ public native_filter(const name[], index, trap)
 {
 	if (!trap)
 		return PLUGIN_HANDLED
-		
+
 	return PLUGIN_CONTINUE
 }
 
 /* Ban menu */
-
 public actionBanMenu(id, key)
 {
 	switch (key)
@@ -212,7 +212,7 @@ public actionBanMenu(id, key)
 		case 7:
 		{
 			/* BEGIN OF CHANGES BY MISTAGEE ADDED A FEW MORE OPTIONS */
-			
+
 			++g_menuOption[id]
 			g_menuOption[id] %= ArraySize(g_bantimes);
 
@@ -226,14 +226,14 @@ public actionBanMenu(id, key)
 		{
             new player = g_menuPlayers[id][g_menuPosition[id] * 7 + key]
             new name[32], name2[32], authid[32], authid2[32]
-		
+
             get_user_name(player, name2, 31)
             get_user_authid(id, authid, 31)
             get_user_authid(player, authid2, 31)
             get_user_name(id, name, 31)
-			
+
             new userid2 = get_user_userid(player)
-            
+
             if(!has_rcon(id))
                 log_amx("Ban: ^"%s<%d><%s><>^" ban and kick ^"%s<%d><%s><>^" (minutes ^"%d^")", name, get_user_userid(id), authid, name2, userid2, authid2, g_menuSettings[id])
 
@@ -255,9 +255,9 @@ public actionBanMenu(id, key)
 					show_activity_id(i, id, name, "%L %s %L", i, "BAN", name2, i, "FOR_MIN", tempTime);
 				}
             }
-            /* ---------- check for Steam ID added by MistaGee -------------------- 
+            /* ---------- check for Steam ID added by MistaGee --------------------
             IF AUTHID == 4294967295 OR VALVE_ID_LAN OR HLTV, BAN PER IP TO NOT BAN EVERYONE */
-			
+
             if (equal("4294967295", authid2)
 				|| equal("HLTV", authid2)
 				|| equal("STEAM_ID_LAN", authid2)
@@ -266,7 +266,7 @@ public actionBanMenu(id, key)
 				/* END OF MODIFICATIONS BY MISTAGEE */
 				new ipa[32]
 				get_user_ip(player, ipa, 31, 1)
-				
+
 				server_cmd("addip %d %s;writeip", g_menuSettings[id], ipa)
             }
             else
@@ -279,7 +279,7 @@ public actionBanMenu(id, key)
             displayBanMenu(id, g_menuPosition[id])
 		}
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -287,7 +287,7 @@ displayBanMenu(id, pos)
 {
 	if (pos < 0)
 		return
-        
+
 	get_players(g_menuPlayers[id], g_menuPlayersNum[id])
 
 	new menuBody[512]
@@ -314,14 +314,14 @@ displayBanMenu(id, pos)
 		if (has_vip(i) && !has_rcon(i))
 		{
 			++b
-			
+
 			if (g_coloredMenus)
 				len += format(menuBody[len], 511-len, "\d%d. %s^n\w", b, name)
 			else
 				len += format(menuBody[len], 511-len, "#. %s^n", name)
 		} else {
 			keys |= (1<<b)
-				
+
 			if (has_vip(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*^n\w" : "%d. %s *^n", ++b, name)
 			else
@@ -351,7 +351,7 @@ public cmdBanMenu(id, level, cid)
 		return PLUGIN_HANDLED
 
 	g_menuOption[id] = 0
-	
+
 	if (ArraySize(g_bantimes) > 0)
 	{
 		g_menuSettings[id] = ArrayGetCell(g_bantimes, g_menuOption[id]);
@@ -367,7 +367,6 @@ public cmdBanMenu(id, level, cid)
 }
 
 /* Slap/Slay */
-
 public actionSlapMenu(id, key)
 {
 	switch (key)
@@ -375,11 +374,11 @@ public actionSlapMenu(id, key)
 		case 7:
 		{
 			++g_menuOption[id]
-			
+
 			g_menuOption[id] %= ArraySize(g_slapsettings);
-			
+
 			g_menuSettings[id] = ArrayGetCell(g_slapsettings, g_menuOption[id]);
-			
+
 			displaySlapMenu(id, g_menuPosition[id]);
 		}
 		case 8: displaySlapMenu(id, ++g_menuPosition[id])
@@ -413,7 +412,7 @@ public actionSlapMenu(id, key)
             } else {
                 if(!has_rcon(id))
                     log_amx("Cmd: ^"%s<%d><%s><>^" slay ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2)
-                
+
                 show_activity_key("ADMIN_SLAY_1", "ADMIN_SLAY_2", name, name2);
             }
 
@@ -427,7 +426,7 @@ public actionSlapMenu(id, key)
             displaySlapMenu(id, g_menuPosition[id])
 		}
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -458,7 +457,7 @@ displaySlapMenu(id, pos)
 	{
 		i = g_menuPlayers[id][a]
 		get_user_name(i, name, 31)
-		
+
 		if (g_cstrike)
 		{
 			if (cs_get_user_team(i) == CS_TEAM_T)
@@ -478,14 +477,14 @@ displaySlapMenu(id, pos)
 		if (!is_user_alive(i) || has_vip(i) && !has_rcon(i))
 		{
 			++b
-		
+
 			if (g_coloredMenus)
 				len += format(menuBody[len], 511-len, "\d%d. %s\R%s^n\w", b, name, team)
 			else
-				len += format(menuBody[len], 511-len, "#. %s   %s^n", name, team)		
+				len += format(menuBody[len], 511-len, "#. %s   %s^n", name, team)
 		} else {
 			keys |= (1<<b)
-			
+
 			if (has_vip(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\y\R%s^n\w" : "%d. %s *   %s^n", ++b, name, team)
 			else
@@ -531,7 +530,6 @@ public cmdSlapMenu(id, level, cid)
 }
 
 /* Kick */
-
 public actionKickMenu(id, key)
 {
 	switch (key)
@@ -542,20 +540,20 @@ public actionKickMenu(id, key)
 		{
             new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
             new authid[32], authid2[32], name[32], name2[32]
-			
+
             get_user_authid(id, authid, 31)
             get_user_authid(player, authid2, 31)
             get_user_name(id, name, 31)
             get_user_name(player, name2, 31)
-			
+
             new userid2 = get_user_userid(player)
-            
+
             if(!has_rcon(id))
                 log_amx("Kick: ^"%s<%d><%s><>^" kick ^"%s<%d><%s><>^"", name, get_user_userid(id), authid, name2, userid2, authid2)
 
             show_activity_key("ADMIN_KICK_1", "ADMIN_KICK_2", name, name2);
 
-			
+
             server_cmd("kick #%d", userid2)
             server_exec()
 //			if(!has_rcon(player))
@@ -599,14 +597,14 @@ displayKickMenu(id, pos)
 		if (has_vip(i) && !has_rcon(i))
 		{
 			++b
-		
+
 			if (g_coloredMenus)
 				len += format(menuBody[len], 511-len, "\d%d. %s^n\w", b, name)
 			else
 				len += format(menuBody[len], 511-len, "#. %s^n", name)
 		} else {
 			keys |= (1<<b)
-			
+
 			if (has_vip(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*^n\w" : "%d. %s *^n", ++b, name)
 			else
@@ -634,7 +632,6 @@ public cmdKickMenu(id, level, cid)
 }
 
 /* Team menu */
-
 public actionTeamMenu(id, key)
 {
 	switch (key)
@@ -655,7 +652,7 @@ public actionTeamMenu(id, key)
 			get_user_authid(id, authid, 31)
 			get_user_authid(player, authid2, 31)
 			get_user_name(id, name, 31)
-				
+
 			log_amx("Cmd: ^"%s<%d><%s><>^" transfer ^"%s<%d><%s><>^" (team ^"%s^")", name, get_user_userid(id), authid, name2, get_user_userid(player), authid2, g_menuOption[id] ? "TERRORIST" : "CT")
 
 			show_activity_key("ADMIN_TRANSF_1", "ADMIN_TRANSF_2", name, name2, g_CSTeamNames[g_menuOption[id] % 3]);
@@ -673,7 +670,7 @@ public actionTeamMenu(id, key)
 				cs_reset_user_model(player)
 			} else {
 				new limit_setting = get_cvar_num("mp_limitteams")
-				
+
 				set_cvar_num("mp_limitteams", 0)
 				engclient_cmd(player, "jointeam", g_CSTeamNumbers[g_menuOption[id] % 2])
 				engclient_cmd(player, "joinclass", "1")
@@ -683,7 +680,7 @@ public actionTeamMenu(id, key)
 			displayTeamMenu(id, g_menuPosition[id])
 		}
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -714,11 +711,11 @@ displayTeamMenu(id, pos)
 	{
 		i = g_menuPlayers[id][a]
 		get_user_name(i, name, 31)
-		
+
 		if (g_cstrike)
 		{
 			iteam = _:cs_get_user_team(i)
-			
+
 			if (iteam == 1)
 			{
 				copy(team, 3, "TE")
@@ -741,14 +738,14 @@ displayTeamMenu(id, pos)
 		if ((iteam == g_CSTeamiNumbers[g_menuOption[id] % (g_cstrike ? 3 : 2)]) || has_vip(i) && !has_rcon(i) && (i != id))
 		{
 			++b
-			
+
 			if (g_coloredMenus)
 				len += format(menuBody[len], 511-len, "\d%d. %s\R%s^n\w", b, name, team)
 			else
-				len += format(menuBody[len], 511-len, "#. %s   %s^n", name, team)		
+				len += format(menuBody[len], 511-len, "#. %s   %s^n", name, team)
 		} else {
 			keys |= (1<<b)
-				
+
 			if (has_vip(i) && !has_rcon(i) && (i != id))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*\y\R%s^n\w" : "%d. %s *   %s^n", ++b, name, team)
 			else
@@ -782,7 +779,6 @@ public cmdTeamMenu(id, level, cid)
 }
 
 /* Client cmds menu */
-
 public actionClcmdMenu(id, key)
 {
 	switch (key)
@@ -799,20 +795,20 @@ public actionClcmdMenu(id, key)
 		{
 			new player = g_menuPlayers[id][g_menuPosition[id] * 7 + key]
 			new flags = g_clcmdMisc[g_menuSelect[id][g_menuOption[id]]][1]
-			
+
 			if (is_user_connected(player))
 			{
 				new command[512], authid[32], name[32], userid[32]
-				
+
 				copy(command, charsmax(command), g_clcmdCmd[g_menuSelect[id][g_menuOption[id]]])
 				get_user_authid(player, authid, 31)
 				get_user_name(player, name, 31)
 				num_to_str(get_user_userid(player), userid, 31)
-				
+
 				replace(command, charsmax(command), "%userid%", userid)
 				replace(command, charsmax(command), "%authid%", authid)
 				replace(command, charsmax(command), "%name%", name)
-				
+
 				if (flags & 1)
 				{
 					server_cmd("%s", command)
@@ -822,12 +818,12 @@ public actionClcmdMenu(id, key)
 				else if (flags & 4)
 					client_cmd(player, "%s", command)
 			}
-			
+
 			if (flags & 8)
 				displayClcmdMenu(id, g_menuPosition[id])
 		}
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -862,14 +858,14 @@ displayClcmdMenu(id, pos)
 		if (!g_menuSelectNum[id] || (access(i, ADMIN_IMMUNITY) && i != id) && !has_rcon(i))
 		{
 			++b
-			
+
 			if (g_coloredMenus)
 				len += format(menuBody[len], 511-len, "\d%d. %s^n\w", b, name)
 			else
-				len += format(menuBody[len], 511-len, "#. %s^n", name)		
+				len += format(menuBody[len], 511-len, "#. %s^n", name)
 		} else {
 			keys |= (1<<b)
-				
+
 			if (is_user_admin(i) && !has_rcon(i))
 				len += format(menuBody[len], 511-len, g_coloredMenus ? "%d. %s \r*^n\w" : "%d. %s *^n", ++b, name)
 			else

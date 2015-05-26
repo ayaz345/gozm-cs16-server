@@ -1,37 +1,3 @@
-/* AMX Mod X
-*   Menus Front-End Plugin
-*
-* by the AMX Mod X Development Team
-*  originally developed by OLO
-*
-* This file is part of AMX Mod X.
-*
-*
-*  This program is free software; you can redistribute it and/or modify it
-*  under the terms of the GNU General Public License as published by the
-*  Free Software Foundation; either version 2 of the License, or (at
-*  your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful, but
-*  WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-*  General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software Foundation,
-*  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-*
-*  In addition, as a special exception, the author gives permission to
-*  link the code of this program with the Half-Life Game Engine ("HL
-*  Engine") and Modified Game Libraries ("MODs") developed by Valve,
-*  L.L.C ("Valve"). You must obey the GNU General Public License in all
-*  respects for all of the code used other than the HL Engine and MODs
-*  from Valve. If you modify this file, you may extend this exception
-*  to your version of the file, but you are not obligated to do so. If
-*  you do not wish to do so, delete this exception statement from your
-*  version.
-*/
-
 #include <amxmodx>
 #include <amxmisc>
 #include <gozm>
@@ -64,7 +30,7 @@ new g_clientMenuPlugin[MAXMENUS][STRINGSIZE]
 // menuCmd: Command that should be executed to start menu
 // menuAccess: Access required for menu
 // menuPlugin: The exact case-insensitive name of plugin holding the menu command
-public AddMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
+AddMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
 {
 	if (g_menusNumber + 1 == MAXMENUS)
 	{
@@ -74,17 +40,17 @@ public AddMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPl
 
 	copy(g_menuBody[g_menusNumber], STRINGLENGTH, menuBody)
 	g_menuBodyPhrase[g_menusNumber] = false
-	
+
 	copy(g_menuCmd[g_menusNumber], STRINGLENGTH, menuCmd)
 	g_menuAccess[g_menusNumber] = menuAccess
-	
+
 	copy(g_menuPlugin[g_menusNumber], STRINGLENGTH, menuPlugin)
 
 	g_menusNumber++
 	server_print("Menu item %d added to Menus Front-End: ^"%s^" from plugin ^"%s^"", g_menusNumber, menuBody, menuPlugin)
 }
 
-public AddMenuLang(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
+AddMenuLang(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
 {
 	if (g_menusNumber + 1 == MAXMENUS)
 	{
@@ -94,17 +60,17 @@ public AddMenuLang(const menuBody[], const menuCmd[], const menuAccess, const me
 
 	copy(g_menuBody[g_menusNumber], STRINGLENGTH, menuBody)
 	g_menuBodyPhrase[g_menusNumber] = true
-	
+
 	copy(g_menuCmd[g_menusNumber], STRINGLENGTH, menuCmd)
 	g_menuAccess[g_menusNumber] = menuAccess
-	
+
 	copy(g_menuPlugin[g_menusNumber], STRINGLENGTH, menuPlugin)
 	g_menusNumber++
 
 	//server_print("Menu item %d added to Menus Front-End: ^"%s^" (LANG) from plugin ^"%s^"", g_menusNumber, menuBody, menuPlugin)
 }
 
-public AddClientMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
+AddClientMenu(const menuBody[], const menuCmd[], const menuAccess, const menuPlugin[])
 {
 	if (g_clientMenusNumber + 1 == MAXMENUS)
 	{
@@ -114,10 +80,10 @@ public AddClientMenu(const menuBody[], const menuCmd[], const menuAccess, const 
 
 	copy(g_clientMenuBody[g_clientMenusNumber], STRINGLENGTH, menuBody)
 	g_clientMenuBodyPhrase[g_clientMenusNumber] = false
-	
+
 	copy(g_clientMenuCmd[g_clientMenusNumber], STRINGLENGTH, menuCmd)
 	g_clientMenuAccess[g_clientMenusNumber] = menuAccess
-	
+
 	copy(g_clientMenuPlugin[g_clientMenusNumber], STRINGLENGTH, menuPlugin)
 
 	g_clientMenusNumber++
@@ -144,7 +110,8 @@ AddDefaultMenus()
 	AddMenuLang("RES_WEAP", "amx_restmenu", get_clcmd_flags("amx_restmenu", flags) ? flags : ADMIN_CFG, "Restrict Weapons")
 	AddMenuLang("TELE_PLAYER", "amx_teleportmenu", get_clcmd_flags("amx_teleportmenu", flags) ? flags : ADMIN_CFG, "Teleport Menu")
 }
-stock bool:get_clcmd_flags(const search_command[], &flags)
+
+bool:get_clcmd_flags(const search_command[], &flags)
 {
 	new count = get_clcmdsnum(-1);
 	static cmd[128];
@@ -164,6 +131,7 @@ stock bool:get_clcmd_flags(const search_command[], &flags)
 
 	return false;
 }
+
 public actionMenu(id, key)
 {
 	switch (key)
@@ -172,7 +140,7 @@ public actionMenu(id, key)
 		case 9: displayMenu(id, --g_menuPosition[id])
 		default: client_cmd(id, "%s", g_menuCmd[g_menuPosition[id] * 8 + key])
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -184,7 +152,7 @@ public clientActionMenu(id, key)
 		case 9: clientDisplayMenu(id, --g_clientMenuPosition[id])
 		default: client_cmd(id, "%s", g_clientMenuCmd[g_clientMenuPosition[id] * 8 + key])
 	}
-	
+
 	return PLUGIN_HANDLED
 }
 
@@ -200,8 +168,8 @@ displayMenu(id, pos)
 	if (start >= g_menusNumber)		// MENUS_NUMBER
 		start = pos = g_menuPosition[id] = 0
 
-	new len = format(menuBody, 511, 
-	
+	new len = format(menuBody, 511,
+
 	g_coloredMenus ? "\yAMX Mod X Menu\R%d/%d^n\w^n" : "AMX Mod X Menu %d/%d^n^n" , pos + 1, (g_menusNumber / MENUITEMSPERPAGE) + (((g_menusNumber % MENUITEMSPERPAGE) > 0) ? 1 : 0))
 
 	new end = start + MENUITEMSPERPAGE
@@ -212,19 +180,19 @@ displayMenu(id, pos)
 
 	for (new a = start; a < end; ++a)
 	{
-		if ( access(id, g_menuAccess[a]) && 
+		if ( access(id, g_menuAccess[a]) &&
 			((is_plugin_loaded(g_menuPlugin[a]) != -1) ||			// search plugins for registered name
 			 (is_plugin_loaded(g_menuPlugin[a], true) != -1)))	// search plugins for filename
 		{
 			keys |= (1<<b)
-			
+
 			if (g_menuBodyPhrase[a])
 				len += format(menuBody[len], 511-len, "%d. %L^n", ++b, id, g_menuBody[a])
 			else
 				len += format(menuBody[len], 511-len, "%d. %s^n", ++b, g_menuBody[a])
 		} else {
 			++b
-			
+
 			if (g_coloredMenus)
 			{
 				if (g_menuBodyPhrase[a])
@@ -273,19 +241,19 @@ clientDisplayMenu(id, pos)
 
 	for (new a = start; a < end; ++a)
 	{
-		if ( access(id, g_clientMenuAccess[a]) && 
+		if ( access(id, g_clientMenuAccess[a]) &&
 			((is_plugin_loaded(g_clientMenuPlugin[a]) != -1) ||			// search plugins for registered name
 			 (is_plugin_loaded(g_clientMenuPlugin[a], true) != -1)))		// search plugins for file name
 		{
 			keys |= (1<<b)
-			
+
 			if (g_clientMenuBodyPhrase[a])
 				len += format(menuBody[len], 511-len, "%d. %L^n", ++b, id, g_clientMenuBody[a])
 			else
 				len += format(menuBody[len], 511-len, "%d. %s^n", ++b, g_clientMenuBody[a])
 		} else {
 			++b
-			
+
 			if (g_coloredMenus)
 			{
 				if (g_clientMenuBodyPhrase[a])
@@ -320,6 +288,7 @@ public cmdMenu(id, level, cid)
 
 	return PLUGIN_HANDLED
 }
+
 public clientCmdMenu(id, level, cid)
 {
 	if (cmd_access(id, level, cid, 1))
@@ -379,9 +348,8 @@ public plugin_init()
 	register_srvcmd("amx_addclientmenuitem", "addclientmenuitem_cmd", 0, "<menu text> <menu command> <access flags> <plugin name | plugin filename> - Add a menu item to Client Menus Front-End")
 
 	g_coloredMenus = colored_menus()
-
-
 }
+
 public plugin_cfg()
 {
 	AddDefaultMenus()

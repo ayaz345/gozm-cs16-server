@@ -1,4 +1,5 @@
 #include <amxmodx>
+#include <amxmisc>
 #include <colored_print>
 #include <gozm>
 
@@ -18,45 +19,52 @@ public plugin_init()
 public cmdSayAdmin(id)
 {
     new said[2]
-    read_argv(1, said, 1)
+    read_argv(1, said, charsmax(said))
 
     if (said[0] != '@')
         return PLUGIN_CONTINUE
 
     new message[192], duplicate_message[192]
-    new name[32], authid[32]
+    new name[32]
     new players[32], inum
 
-    read_args(message, 191)
+    read_args(message, charsmax(message))
     remove_quotes(message)
-    get_user_authid(id, authid, 31)
-    get_user_name(id, name, 31)
+    get_user_name(id, name, charsmax(name))
 
     // FOR CHAT LOGGING
     new cur_date[3], logfile[13]
-    get_time("%d", cur_date, 2)
-    format(logfile, 12, "chat_%s.log", cur_date)
-    log_to_file(logfile, "*VIP* %s: %s", name, message[1])
+    new log_path[128]
+
+    get_time("%d", cur_date, charsmax(cur_date))
+    formatex(logfile, charsmax(logfile), "chat_%s.log", cur_date)
+    get_basedir(log_path, charsmax(log_path))  // addons/amxmodx
+    format(log_path, charsmax(log_path), "%s/logs/chat/%s", log_path, logfile)
+    log_to_file(log_path, "*VIP* %s: %s", name, message[1])
 
     duplicate_message = message
-    format(message, 191, "^x04 %s^x03 %s^x01 : %s", "*VIP*", name, message[1])
+    format(message, charsmax(message), "^x04 %s^x03 %s^x01 : %s", "*VIP*", name, message[1])
 
     get_players(players, inum)
 
+    new target
     for (new i = 0; i < inum; ++i)
     {
-        // dont print the message to the client that used the cmd if he has ADMIN_CHAT to avoid double printing
-        if (players[i] != id && (has_vip(players[i]) || has_rcon(players[i])))
+        // don't print the message to the client that used the cmd 
+        // if he has ADMIN_CHAT to avoid double printing
+        target = players[i]
+
+        if (target != id && is_priveleged_user(target))
         {
-            colored_print(players[i], "%s", message)
+            colored_print(target, "%s", message)
 
             // duplicate russian messages
-            console_print(players[i], "%s: %s", name, duplicate_message[1])
+            console_print(target, "%s: %s", name, duplicate_message[1])
         }
     }
 
     colored_print(id, "%s", message)
-    console_print(id, "%s : %s", name, duplicate_message[1])
+    console_print(id, "%s: %s", name, duplicate_message[1])
 
     return PLUGIN_HANDLED
 }

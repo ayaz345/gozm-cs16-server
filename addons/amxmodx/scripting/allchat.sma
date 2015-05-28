@@ -1,4 +1,5 @@
 #include <amxmodx>
+#include <amxmisc>
 #include <gozm>
 
 #define TASKID_CLEAN    411
@@ -13,9 +14,9 @@ new g_msg_saytext
 
 public plugin_init()
 {
-    register_plugin("All Chat", "1.1", "Ian Cammarata")
+    register_plugin("All Chat", "1.2", "GoZm")
 
-    if(!is_server_licenced())
+    if (!is_server_licenced())
         return PLUGIN_CONTINUE
 
     g_msg_saytext = get_user_msgid("SayText")
@@ -33,17 +34,17 @@ public clean_next_file()
     new s_cur_date[3]
     new i_next_date
 
-    get_localinfo("amxx_basedir", next_log_file_path, charsmax(next_log_file_path))
+    get_basedir(next_log_file_path, charsmax(next_log_file_path))  // addons/amxmodx
 
     get_time("%d", s_cur_date, charsmax(s_cur_date))
     i_next_date = str_to_num(s_cur_date) + 1
     if (i_next_date < 10)
-        format(next_log_file, charsmax(next_log_file), "chat_0%d.log", i_next_date)
+        formatex(next_log_file, charsmax(next_log_file), "chat_0%d.log", i_next_date)
     else
-        format(next_log_file, charsmax(next_log_file), "chat_%d.log", i_next_date)
+        formatex(next_log_file, charsmax(next_log_file), "chat_%d.log", i_next_date)
 
     format(next_log_file_path, charsmax(next_log_file),
-        "%s/logs/%s", next_log_file_path, next_log_file)
+        "%s/logs/chat/%s", next_log_file_path, next_log_file)
 
     if (file_exists(next_log_file_path))
     {
@@ -56,12 +57,12 @@ public col_changer(msg_id, msg_dest, rcvr)
 {
     new str2[26]
     get_msg_arg_string(2, str2, charsmax(str2))
-    if(equal(str2, "#Cstrike_Chat", 13))
+    if (equal(str2, "#Cstrike_Chat", 13))
     {
         new str3[22]
         get_msg_arg_string(3, str3, charsmax(str3))
 
-        if(!strlen(str3))
+        if (!strlen(str3))
         {
             new str4[101]
             get_msg_arg_string(4, str4, charsmax(str4))
@@ -73,13 +74,13 @@ public col_changer(msg_id, msg_dest, rcvr)
                 equal(alv_str4, str4)
             )
 
-            if(!same_as_last)
+            if (!same_as_last)
             {
                 new players[32], num
                 get_players(players, num)
                 buildmsg(sndr, 0, 2, str4)
 
-                for(new i=0; i<num; i++)
+                for(new i = 0; i < num; i++)
                 {
                     if(is_user_connected(players[i]))
                     {
@@ -96,7 +97,7 @@ public col_changer(msg_id, msg_dest, rcvr)
                 alv_sndr = sndr
                 alv_str2 = str2
                 alv_str4 = str4
-                if(task_exists(TASKID_CLEAN)) remove_task(TASKID_CLEAN)
+                if (task_exists(TASKID_CLEAN)) remove_task(TASKID_CLEAN)
                 set_task(0.1, "task_clear_antiloop_vars", TASKID_CLEAN)
             }
         }
@@ -117,17 +118,21 @@ buildmsg(sndr, namecol, msgcol, str4[])
 
     // FOR LOGGING
     new cur_date[3], logfile[13]
+    new log_path[128]
+
     get_time("%d", cur_date, charsmax(cur_date))
-    format(logfile, charsmax(logfile), "chat_%s.log", cur_date)
-    log_to_file(logfile, "%s: %s", sndr_name, str4)
+    formatex(logfile, charsmax(logfile), "chat_%s.log", cur_date)
+    get_basedir(log_path, charsmax(log_path))  // addons/amxmodx
+    format(log_path, charsmax(log_path), "%s/logs/chat/%s", log_path, logfile)
+    log_to_file(log_path, "%s: %s", sndr_name, str4)
 
     return PLUGIN_HANDLED
 }
 
 public task_clear_antiloop_vars()
 {
-	alv_sndr = 0
-	alv_str2 = ""
-	alv_str4 = ""
-	return PLUGIN_HANDLED
+    alv_sndr = 0
+    alv_str2 = ""
+    alv_str4 = ""
+    return PLUGIN_HANDLED
 }

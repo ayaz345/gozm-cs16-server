@@ -237,7 +237,7 @@ public plugin_init()
 
 	new szTime[32];
 	get_time("SB%Y%m%d", szTime, 31);
-	format(g_szLogFile, 63, "%s/%s.log", g_szLogFile, szTime);
+	format(g_szLogFile, 63, "%s/SB/%s.log", g_szLogFile, szTime);
 
 	register_dictionary("superban.txt");
 

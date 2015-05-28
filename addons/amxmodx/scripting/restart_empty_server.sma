@@ -7,12 +7,13 @@ new g_server_is_empty, g_restart_logfile[64]
 
 public plugin_init()
 {
-    register_plugin("Restart Empty Server", "1.0", "Dimka")
+    register_plugin("Restart Empty Server", "1.1", "GoZm")
 
     new cur_date[11]
-    get_time("%Y.%m.%d", cur_date, 10)
+    get_time("%Y.%m.%d", cur_date, charsmax(cur_date))
     get_basedir(g_restart_logfile, charsmax(g_restart_logfile))  // addons/amxmodx
-    format(g_restart_logfile, charsmax(g_restart_logfile), "%s/logs/restart_%s.log", g_restart_logfile, cur_date)
+    format(g_restart_logfile, charsmax(g_restart_logfile), 
+        "%s/logs/RR/restart_%s.log", g_restart_logfile, cur_date)
     if (!file_exists(g_restart_logfile))
         set_task(60.0, "restart_empty_server", _, _, _, "b")
 }

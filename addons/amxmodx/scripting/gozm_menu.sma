@@ -14,9 +14,9 @@
 
 enum
 {
-	TEAM_UNASSIGNED = 0,
-	TEAM_TERRORIST,
-	TEAM_CT,
+    TEAM_UNASSIGNED = 0,
+    TEAM_TERRORIST,
+    TEAM_CT,
     TEAM_SPECTATOR
 }
 
@@ -24,7 +24,7 @@ public plugin_init()
 {
     register_plugin("GoZm Menu", "1.1", "GoZm")
 
-    if(!is_server_licenced())
+    if (!is_server_licenced())
         return PLUGIN_CONTINUE
 
     register_clcmd("gozm_menu", "mainMenu", _, "GoZm Menu")
@@ -46,7 +46,7 @@ public plugin_init()
 
 public mainMenu(id, page)
 {
-    if(pev_valid(id) == PDATA_SAFE)
+    if (pev_valid(id) == PDATA_SAFE)
         set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
     new i_Menu = menu_create("\yGoZm Меню:", "menu_handler" )
@@ -143,17 +143,17 @@ allow_join_spec(id)
 {
     new specs[32], specsnum
     get_players(specs, specsnum, "e", "SPECTATOR")
-    if(specsnum > 1 && !(has_vip(id) || has_admin(id)))
+    if (specsnum > 1 && !(has_vip(id) || has_admin(id)))
     {
         colored_print(id, "^x04***^x01 Место в наблюдателях занято!")
         return PLUGIN_HANDLED
     }
-    if(fm_get_user_team(id) == TEAM_SPECTATOR)
+    if (fm_get_user_team(id) == TEAM_SPECTATOR)
     {
         colored_print(id, "^x04***^x01 Ты уже в наблюдателях!")
         return PLUGIN_HANDLED
     }
-    if(is_user_alive(id) && !(has_vip(id) || has_admin(id)))
+    if (is_user_alive(id) && !(has_vip(id) || has_admin(id)))
     {
         colored_print(id, "^x04***^x01 Живой - играй!")
         return PLUGIN_HANDLED
@@ -161,15 +161,17 @@ allow_join_spec(id)
 
     user_silentkill(id)
     cs_set_player_team(id, CS_TEAM_SPECTATOR)
+
     return PLUGIN_HANDLED
 }
 
 allow_join_game(id)
 {
-    if(fm_get_user_team(id) == TEAM_SPECTATOR)
+    if (fm_get_user_team(id) == TEAM_SPECTATOR)
         cs_set_player_team(id, CS_TEAM_CT)
     else
         colored_print(id, "^x04***^x01 Ты уже в игре!")
+
     return PLUGIN_HANDLED
 }
 
@@ -180,6 +182,7 @@ clear_setinfo(id)
     client_cmd(id, "setinfo ^"lang^" ^"^"")
     client_cmd(id, "setinfo ^"dm^" ^"^"")
     client_cmd(id, "setinfo ^"bottomcolor^" ^"^"")
+
     colored_print(id, "^x04***^x01 Setinfo почищен! Теперь установи свой пароль.")
 }
 
@@ -197,8 +200,9 @@ public show_bans(id)
 
 public fwd_HamKilled(victim, attacker, shouldgib)
 {
-    new old_menu, new_menu, menupage
+    static old_menu, new_menu, menupage
     player_menu_info(victim, old_menu, new_menu, menupage)
+
     if (new_menu != -1)
     {
         menu_destroy(new_menu)
@@ -218,11 +222,11 @@ public event_newround()
 public task_newround()
 {
     static players[32], num, id
+    static old_menu, new_menu, menupage
     get_players(players, num)
 
-    for(new i=0; i<num; i++)
+    for (new i = 0; i < num; i++)
     {
-        new old_menu, new_menu, menupage
         id = players[i]
         player_menu_info(id, old_menu, new_menu, menupage)
         if (new_menu != -1)
@@ -241,9 +245,9 @@ public clcmd_changeteam(id)
 
 fm_get_user_team(id)
 {
-	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != PDATA_SAFE)
-		return TEAM_UNASSIGNED
+    // Prevent server crash if entity is not safe for pdata retrieval
+    if (pev_valid(id) != PDATA_SAFE)
+        return TEAM_UNASSIGNED
 
-	return get_pdata_int(id, OFFSET_TEAM, OFFSET_LINUX)
+    return get_pdata_int(id, OFFSET_TEAM, OFFSET_LINUX)
 }

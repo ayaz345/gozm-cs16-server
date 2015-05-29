@@ -8,10 +8,14 @@ new g_Switch
 
 public plugin_init()
 {
-    register_plugin("TimeLeft", AMXX_VERSION_STR, "AMXX Dev Team")
+    register_plugin("Time Left", "1.1", "GoZm")
+
     register_dictionary("timeleft.txt")
+
     register_srvcmd("amx_time_display", "setDisplaying")
+
     register_cvar("amx_timeleft", "00:00", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_UNLOGGED|FCVAR_SPONLY)
+
     register_clcmd("say timeleft", "sayTimeLeft", 0, "- displays timeleft")
     register_clcmd("say_team timeleft", "sayTimeLeft", 0, "- displays timeleft")
     register_clcmd("say thetime", "sayTheTime", 0, "- displays current time")

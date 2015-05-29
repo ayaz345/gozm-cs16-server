@@ -4,13 +4,16 @@
 
 #define TASKID_CLEAN    411
 
+#define LOG_FOLDER      "chat"
+
 new const COLCHAR[3][2] = {"^x03"/*командный*/, "^x04"/*зеленый*/, "^x01"/*желтый*/}
 
-//vars to check if message has already been duplicated
+// vars to check if message has already been duplicated
 new alv_sndr, alv_str2[26], alv_str4[101]
 new g_msg[200], g_duplicate_msg[200]
 
 new g_msg_saytext
+new g_log_folder[64]
 
 public plugin_init()
 {
@@ -22,6 +25,11 @@ public plugin_init()
     g_msg_saytext = get_user_msgid("SayText")
     register_message(g_msg_saytext, "col_changer")
 
+    get_basedir(g_log_folder, charsmax(g_log_folder))
+    format(g_log_folder, charsmax(g_log_folder), "%s/logs/%s", g_log_folder, LOG_FOLDER)
+    if (!dir_exists(g_log_folder))
+        mkdir(g_log_folder)
+
     set_task(1.0, "clean_next_file")
 
     return PLUGIN_CONTINUE
@@ -29,12 +37,10 @@ public plugin_init()
 
 public clean_next_file()
 {
-    new next_log_file_path[128]
+    new next_log_file_path[64]
     new next_log_file[12]  // for logging
     new s_cur_date[3]
     new i_next_date
-
-    get_basedir(next_log_file_path, charsmax(next_log_file_path))  // addons/amxmodx
 
     get_time("%d", s_cur_date, charsmax(s_cur_date))
     i_next_date = str_to_num(s_cur_date) + 1
@@ -43,8 +49,8 @@ public clean_next_file()
     else
         formatex(next_log_file, charsmax(next_log_file), "chat_%d.log", i_next_date)
 
-    format(next_log_file_path, charsmax(next_log_file),
-        "%s/logs/chat/%s", next_log_file_path, next_log_file)
+    formatex(next_log_file_path, charsmax(next_log_file_path),
+        "%s/%s", g_log_folder, next_log_file)
 
     if (file_exists(next_log_file_path))
     {
@@ -118,12 +124,11 @@ buildmsg(sndr, namecol, msgcol, str4[])
 
     // FOR LOGGING
     new cur_date[3], logfile[13]
-    new log_path[128]
+    new log_path[64]
 
     get_time("%d", cur_date, charsmax(cur_date))
     formatex(logfile, charsmax(logfile), "chat_%s.log", cur_date)
-    get_basedir(log_path, charsmax(log_path))  // addons/amxmodx
-    format(log_path, charsmax(log_path), "%s/logs/chat/%s", log_path, logfile)
+    formatex(log_path, charsmax(log_path), "%s/%s", g_log_folder, logfile)
     log_to_file(log_path, "%s: %s", sndr_name, str4)
 
     return PLUGIN_HANDLED

@@ -54,6 +54,8 @@
 
 #define __PLUGIN_VERSION__	"1.2"
 
+#define LOG_FOLDER          "SB"
+
 enum {
 	TASK_LOADCFG = 13980
 }
@@ -224,77 +226,78 @@ ExplodeString(p_szOutput[][], p_nMax, p_nSize, p_szInput[], p_szDelimiter)
 
 public plugin_init()
 {
-	register_plugin("SuperBan QM", __PLUGIN_VERSION__, "Lukmanov Ildar & Quckly");
+    register_plugin("SuperBan QM", __PLUGIN_VERSION__, "Lukmanov Ildar & Quckly");
 
-	new configsDir[64];
-	get_configsdir(configsDir, 63);
-	server_cmd("exec %s/superban.cfg", configsDir);
-	get_localinfo("amx_logdir", g_szLogFile, 63);
-	if (!dir_exists(g_szLogFile))
-	{
-		mkdir(g_szLogFile);
-	}
+    new configsDir[64];
+    get_configsdir(configsDir, 63);
+    server_cmd("exec %s/superban.cfg", configsDir);
+    get_localinfo("amx_logdir", g_szLogFile, 63);
+    format(g_szLogFile, 63, "%s/%s", g_szLogFile, LOG_FOLDER);
+    if (!dir_exists(g_szLogFile))
+    {
+        mkdir(g_szLogFile);
+    }
 
-	new szTime[32];
-	get_time("SB%Y%m%d", szTime, 31);
-	format(g_szLogFile, 63, "%s/SB/%s.log", g_szLogFile, szTime);
+    new szTime[32];
+    get_time("SB%Y%m%d", szTime, 31);
+    format(g_szLogFile, 63, "%s/%s.log", g_szLogFile, szTime);
 
-	register_dictionary("superban.txt");
+    register_dictionary("superban.txt");
 
-	register_cvar("q_sb_version", "SuperBan Q", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY|FCVAR_UNLOGGED);
+    register_cvar("q_sb_version", "SuperBan Q", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY|FCVAR_UNLOGGED);
 
-	pcvar_ipban = register_cvar("amx_superban_ipban", "1");
-	pcvar_nameban = register_cvar("amx_superban_nameban", "1");
-	pcvar_lnameban = register_cvar("amx_superban_lnameban", "0");
-	pcvar_steamban = register_cvar("amx_superban_steamban", "1");
-	pcvar_subnetban = register_cvar("amx_superban_subnetban", "0");
-	pcvar_banurl = register_cvar("amx_superban_banurl", "");
-	pcvar_checkurl = register_cvar("amx_superban_checkurl", "");
-	pcvar_hide = register_cvar("amx_superban_hide", "0");
-	pcvar_log = register_cvar("amx_superban_log", "1");
-	pcvar_iptime = register_cvar("amx_superban_iptime", "1440");
-	pcvar_nametime = register_cvar("amx_superban_nametime", "1440");
-	pcvar_cookieban = register_cvar("amx_superban_cookieban", "0");
-	pcvar_messages = register_cvar("amx_superban_messages", "1");
-	pcvar_cookiewait = register_cvar("amx_superban_cookiewait", "3.0");
-	pcvar_config = register_cvar("amx_superban_config", "joystick");
-	pcvar_autoclear = register_cvar("amx_superban_autoclear", "0");
-	pcvar_periods = register_cvar("amx_superban_periods", "5,10,15,30,45,60,120,180,720,1440,10080,43200,525600,0");
-	pcvar_unbanflag = register_cvar("amx_superban_unbanflag", "d");
-	pcvar_sqltime = register_cvar("amx_superban_sqltime", "1");
-	pcvar_utf8 = register_cvar("amx_superban_utf8", "1");
-	pcvar_hideadmin = register_cvar("amx_superban_hideadmin", "0");
+    pcvar_ipban = register_cvar("amx_superban_ipban", "1");
+    pcvar_nameban = register_cvar("amx_superban_nameban", "1");
+    pcvar_lnameban = register_cvar("amx_superban_lnameban", "0");
+    pcvar_steamban = register_cvar("amx_superban_steamban", "1");
+    pcvar_subnetban = register_cvar("amx_superban_subnetban", "0");
+    pcvar_banurl = register_cvar("amx_superban_banurl", "");
+    pcvar_checkurl = register_cvar("amx_superban_checkurl", "");
+    pcvar_hide = register_cvar("amx_superban_hide", "0");
+    pcvar_log = register_cvar("amx_superban_log", "1");
+    pcvar_iptime = register_cvar("amx_superban_iptime", "1440");
+    pcvar_nametime = register_cvar("amx_superban_nametime", "1440");
+    pcvar_cookieban = register_cvar("amx_superban_cookieban", "0");
+    pcvar_messages = register_cvar("amx_superban_messages", "1");
+    pcvar_cookiewait = register_cvar("amx_superban_cookiewait", "3.0");
+    pcvar_config = register_cvar("amx_superban_config", "joystick");
+    pcvar_autoclear = register_cvar("amx_superban_autoclear", "0");
+    pcvar_periods = register_cvar("amx_superban_periods", "5,10,15,30,45,60,120,180,720,1440,10080,43200,525600,0");
+    pcvar_unbanflag = register_cvar("amx_superban_unbanflag", "d");
+    pcvar_sqltime = register_cvar("amx_superban_sqltime", "1");
+    pcvar_utf8 = register_cvar("amx_superban_utf8", "1");
+    pcvar_hideadmin = register_cvar("amx_superban_hideadmin", "0");
 
-	pcvar_prefix1 = register_cvar("amx_superban_prefix1", "0");
-	pcvar_prefix2 = register_cvar("amx_superban_prefix2", "4");
-	pcvar_comment = register_cvar("amx_superban_comment", "");
+    pcvar_prefix1 = register_cvar("amx_superban_prefix1", "0");
+    pcvar_prefix2 = register_cvar("amx_superban_prefix2", "4");
+    pcvar_comment = register_cvar("amx_superban_comment", "");
 
-	pcvar_chatprefix = register_cvar("q_sb_chatprefix", "^n[^gSUPERBAN^n] ");
-	pcvar_chatcolor = register_cvar("q_sb_chatcolor", "1");
-	pcvar_motd = register_cvar("q_sb_showmotd", "1");
-	pcvar_kicktime = register_cvar("q_sb_delaykick", "10.0");
-//	pcvar_timetype = register_cvar("q_sb_timetype", "0");
+    pcvar_chatprefix = register_cvar("q_sb_chatprefix", "^n[^gSUPERBAN^n] ");
+    pcvar_chatcolor = register_cvar("q_sb_chatcolor", "1");
+    pcvar_motd = register_cvar("q_sb_showmotd", "1");
+    pcvar_kicktime = register_cvar("q_sb_delaykick", "10.0");
+//  pcvar_timetype = register_cvar("q_sb_timetype", "0");
 
-	register_clcmd("Reason", "Cmd_SuperbanReason", ADMIN_BAN, "");
+    register_clcmd("Reason", "Cmd_SuperbanReason", ADMIN_BAN, "");
 
-	register_cvar("amx_superban_host", "127.0.0.1");
-	register_cvar("amx_superban_user", "root");
-	register_cvar("amx_superban_pass", "");
-	register_cvar("amx_superban_db", "amx");
-	register_cvar("amx_superban_table", "superban");
+    register_cvar("amx_superban_host", "127.0.0.1");
+    register_cvar("amx_superban_user", "root");
+    register_cvar("amx_superban_pass", "");
+    register_cvar("amx_superban_db", "amx");
+    register_cvar("amx_superban_table", "superban");
 
-	register_menucmd(register_menuid("SBMENU", 0), 1023, "actionBanMenu");
+    register_menucmd(register_menuid("SBMENU", 0), 1023, "actionBanMenu");
 
-	register_concmd("amx_superban", "SuperBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]");
-	register_concmd("amx_ban", "SuperBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]");
-	register_concmd("amx_banip", "SuperBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]");
-	register_concmd("amx_unsuperban", "UnSuperBan", ADMIN_BAN, "<name or ip or UID>");
-	register_concmd("amx_unban", "UnSuperBan", ADMIN_BAN, "<name or ip or UID>");
-	register_concmd("amx_superban_list", "BanList", ADMIN_BAN, "<number>");
-	register_concmd("amx_superban_clear", "Clear_Base", ADMIN_BAN, "");
+    register_concmd("amx_superban", "SuperBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]");
+    register_concmd("amx_ban", "SuperBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]");
+    register_concmd("amx_banip", "SuperBan", ADMIN_BAN, "<name or #userid> <minutes> [reason]");
+    register_concmd("amx_unsuperban", "UnSuperBan", ADMIN_BAN, "<name or ip or UID>");
+    register_concmd("amx_unban", "UnSuperBan", ADMIN_BAN, "<name or ip or UID>");
+    register_concmd("amx_superban_list", "BanList", ADMIN_BAN, "<number>");
+    register_concmd("amx_superban_clear", "Clear_Base", ADMIN_BAN, "");
 
-	register_clcmd("amx_superban_menu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu");
-	register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu");
+    register_clcmd("amx_superban_menu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu");
+    register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu");
 }
 
 public plugin_cfg()

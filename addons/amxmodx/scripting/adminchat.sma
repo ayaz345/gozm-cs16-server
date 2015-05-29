@@ -3,6 +3,10 @@
 #include <colored_print>
 #include <gozm>
 
+#define LOG_FOLDER      "chat"
+
+new g_log_folder[64]
+
 public plugin_init()
 {
     register_plugin("Admin Chat", "2.0", "GoZm")
@@ -12,6 +16,11 @@ public plugin_init()
 
     register_clcmd("say", "cmdSayAdmin", 0, "@<text> - displays message to admins")
     register_clcmd("say_team", "cmdSayAdmin", 0, "@<text> - displays message to admins")
+
+    get_basedir(g_log_folder, charsmax(g_log_folder))
+    format(g_log_folder, charsmax(g_log_folder), "%s/logs/%s", g_log_folder, LOG_FOLDER)
+    if (!dir_exists(g_log_folder))
+        mkdir(g_log_folder)
 
     return PLUGIN_CONTINUE
 }
@@ -38,8 +47,7 @@ public cmdSayAdmin(id)
 
     get_time("%d", cur_date, charsmax(cur_date))
     formatex(logfile, charsmax(logfile), "chat_%s.log", cur_date)
-    get_basedir(log_path, charsmax(log_path))  // addons/amxmodx
-    format(log_path, charsmax(log_path), "%s/logs/chat/%s", log_path, logfile)
+    formatex(log_path, charsmax(log_path), "%s/%s", g_log_folder, logfile)
     log_to_file(log_path, "*VIP* %s: %s", name, message[1])
 
     duplicate_message = message

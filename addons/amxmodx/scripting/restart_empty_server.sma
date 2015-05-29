@@ -1,7 +1,9 @@
 #include <amxmodx>
 #include <amxmisc>
 
-#define MAX_CHECKS  3
+#define MAX_CHECKS      3
+
+#define LOG_FOLDER      "RR"
 
 new g_server_is_empty, g_restart_logfile[64]
 
@@ -11,9 +13,14 @@ public plugin_init()
 
     new cur_date[11]
     get_time("%Y.%m.%d", cur_date, charsmax(cur_date))
-    get_basedir(g_restart_logfile, charsmax(g_restart_logfile))  // addons/amxmodx
+    get_basedir(g_restart_logfile, charsmax(g_restart_logfile))
     format(g_restart_logfile, charsmax(g_restart_logfile), 
-        "%s/logs/RR/restart_%s.log", g_restart_logfile, cur_date)
+        "%s/logs/%s", g_restart_logfile, LOG_FOLDER)
+    if (!dir_exists(g_restart_logfile))
+        mkdir(g_restart_logfile)
+    format(g_restart_logfile, charsmax(g_restart_logfile), 
+        "%s/restart_%s.log", g_restart_logfile, cur_date)
+
     if (!file_exists(g_restart_logfile))
         set_task(60.0, "restart_empty_server", _, _, _, "b")
 }

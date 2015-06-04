@@ -7,10 +7,11 @@
 #define OFFSET_LINUX                5
 #define OFFSET_CSMENUCODE           205
 
-new g_targets[MAX_PLAYERS]        // player's voteban targets
-new g_votes_for[MAX_PLAYERS]      // count of votes for ban that player
-new g_votes_by[MAX_PLAYERS]       // count of votes for ban by that player
-new g_immunity[MAX_PLAYERS]       // admin can set immunity flag
+new g_targets[MAX_PLAYERS]          // player's voteban targets
+new g_votes_for[MAX_PLAYERS]        // count of votes for ban that player
+new g_votes_by[MAX_PLAYERS]         // count of votes for ban by that player
+new g_immunity[MAX_PLAYERS]         // admin can set immunity flag
+new g_being_banned[MAX_PLAYERS]     // against duplicate bans
 
 #define MIN_PLAYERS                 4
 #define MIN_VOTERS                  3
@@ -28,7 +29,7 @@ new const g_reason[] = "Voteban"
 
 public plugin_init()
 {
-    register_plugin("Rock to Ban", "2.3", "GoZm")
+    register_plugin("Rock to Ban", "2.4", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -101,7 +102,7 @@ public voteban_menu(id)
 
         log_amx("%s not enough players for %s", g_prefix, name)
         colored_print(id, "^x04%s^x01 Недостаточно игроков для проведения голосования!", g_prefix)
-    
+
         return PLUGIN_HANDLED
     }
 
@@ -267,28 +268,30 @@ public menu_handle(id, menu, item)
         log_amx("%s %s set vote for %s (%d/%d of %d)",
                 g_prefix, voter_name, target_name, g_votes_for[target], max_votes, players_num)
 
-        new info_msg[128]
-        formatex(info_msg, charsmax(info_msg), "^x04%s^x01 Ты проголосовал против^x03 %s",
-            g_prefix, target_name)
-        if (g_votes_for[target] < max_votes)
+        if (g_being_banned[target])
         {
-            new delta = max_votes - g_votes_for[target]
-
-            format(info_msg, charsmax(info_msg), "%s^x01. %s еще^x04 %d^x01 голос%s",
-                   info_msg, delta == 1 ? "Нужен" : "Нужно", delta, set_completion(delta))
-            colored_print(id, info_msg)
-        }
-        else if (g_votes_for[target] == max_votes)
-        {
-            colored_print(id, info_msg)
-
-            ban(target, true)
+            log_amx("%s %s is being banning now", g_prefix, target_name)
+            colored_print(id, "^x04%s^x01 Игрок^x03 %s^x01 уже забанен, сейчас его кикнет", g_prefix, target_name)
         }
         else
         {
-            log_amx("%s %s is being banning now", g_prefix, target_name)
+            if (g_votes_for[target] < max_votes)
+            {
+                new delta = max_votes - g_votes_for[target]
 
-            return PLUGIN_HANDLED   // player is being banning now
+                new info_msg[128]
+                formatex(info_msg, charsmax(info_msg),
+                    "^x04%s^x01 Ты проголосовал против^x03 %s^x01. %s еще^x04 %d^x01 голос%s",
+                    g_prefix, target_name, delta == 1 ? "Нужен" : "Нужно", delta, set_completion(delta))
+
+                colored_print(id, info_msg)
+            }
+            else
+            {
+                g_being_banned[target] = 1
+
+                ban(target, true)
+            }
         }
     }
 
@@ -359,4 +362,5 @@ reset_variables(id)
     g_votes_by[id] = 0
     g_votes_for[id] = 0
     g_immunity[id] = 0
+    g_being_banned[id] = 0
 }

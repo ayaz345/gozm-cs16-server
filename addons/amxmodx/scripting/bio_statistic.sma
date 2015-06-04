@@ -49,6 +49,16 @@ new bool:gb_css_trigger = true
 
 new g_maxplayers
 
+enum
+{
+    ID_AUTH_1 = 1,
+    ID_AUTH_2,
+    ID_RANK,
+    ID_TOP_1,
+    ID_TOP_2,
+    ID_THREAD
+}
+
 new g_isconnected[MAX_PLAYERS]
 new g_isalive[MAX_PLAYERS]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
@@ -63,7 +73,7 @@ new const g_select_statement[] = "\
 
 public plugin_init()
 {
-    register_plugin("[BIO] Statistics", "1.3", "GoZm")
+    register_plugin("[BIO] Statistics", "1.4", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -105,6 +115,7 @@ public sql_init()
         return
 
     new host[32], db[32], user[32], password[32]
+
     get_pcvar_string(g_CvarHost, host, charsmax(host))
     get_pcvar_string(g_CvarDB, db, charsmax(db))
     get_pcvar_string(g_CvarUser, user, charsmax(user))
@@ -169,8 +180,8 @@ public auth_player(taskid)
     get_user_name(id, unquoted_name, charsmax(unquoted_name))
     mysql_escape_string(unquoted_name, charsmax(unquoted_name))
     copy(g_UserName[id], charsmax(unquoted_name), unquoted_name)
-    get_user_authid(id, g_UserAuthID[id], 31)
-    get_user_ip(id, g_UserIP[id], 31, 1)
+    get_user_authid(id, g_UserAuthID[id], charsmax(g_UserAuthID[]))
+    get_user_ip(id, g_UserIP[id], charsmax(g_UserIP[]), 1)
 
     format(g_Query, charsmax(g_Query), "\
         SELECT `id` FROM `bio_players` \
@@ -179,18 +190,18 @@ public auth_player(taskid)
     new data[2]
     data[0] = id
     data[1] = get_user_userid(id)
-    SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, 2)
+    SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part1", g_Query, data, sizeof(data))
 
     return PLUGIN_HANDLED
 }
 
-public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
+public ClientAuth_QueryHandler_Part1(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState)
+    if(failstate)
     {
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 1)
+        MySqlX_ThreadError(szQuery, error, err, failstate, floatround(querytime), ID_AUTH_1)
         return PLUGIN_HANDLED
     }
 
@@ -210,18 +221,18 @@ public ClientAuth_QueryHandler_Part1(FailState, Handle:query, error[], err, data
             INSERT INTO `bio_players` \
             SET `nick`='%s', `ip`='%s', `steam_id`='%s'",
             g_UserName[id], g_UserIP[id], g_UserAuthID[id])
-        SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, 2)
+        SQL_ThreadQuery(g_SQL_Tuple, "ClientAuth_QueryHandler_Part2", g_Query, data, size)
     }
     return PLUGIN_HANDLED
 }
 
-public ClientAuth_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
+public ClientAuth_QueryHandler_Part2(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState)
+    if(failstate)
     {
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 2)
+        MySqlX_ThreadError(szQuery, error, err, failstate, floatround(querytime), ID_AUTH_2)
 
         return PLUGIN_HANDLED
     }
@@ -255,9 +266,8 @@ public client_infochanged(id)
     if (!is_user_valid_connected(id))
         return PLUGIN_CONTINUE
 
-    new newname[32]
+    new newname[32], oldname[32]
     get_user_info(id, "name", newname, charsmax(newname))
-    new oldname[32]
     get_user_name(id, oldname, charsmax(oldname))
 
     if (!equal(oldname, newname) && !equal(oldname, ""))
@@ -364,7 +374,7 @@ public task_announce_best_human_and_zombie()
         {
             new Float:frags
             pev(players[maxInfectId], pev_frags, frags)
-            set_pev(players[maxInfectId], pev_frags, frags+1.0)
+            set_pev(players[maxInfectId], pev_frags, frags + 1.0)
 
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
@@ -376,7 +386,7 @@ public task_announce_best_human_and_zombie()
         {
             new Float:frags
             pev(players[maxDmgId], pev_frags, frags)
-            set_pev(players[maxDmgId], pev_frags, frags+1.0)
+            set_pev(players[maxDmgId], pev_frags, frags + 1.0)
 
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
@@ -525,8 +535,8 @@ public fw_TakeDamage(victim, inflictor, attacker, Float:damage, damage_type)
 
 reset_player_statistic(id)
 {
-	for (new i = 0; i < ME_NUM; i++)
-		g_Me[id][i] = 0
+    for (new i = 0; i < ME_NUM; i++)
+        g_Me[id][i] = 0
 }
 
 public handleSay(id)
@@ -605,21 +615,22 @@ show_rank(id, unquoted_whois[])
     data[0] = id
     data[1] = get_user_userid(id)
 
-    SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, 2)
+    SQL_ThreadQuery(g_SQL_Tuple, "ShowRank_QueryHandler", g_Query, data, sizeof(data))
 
     return PLUGIN_HANDLED
 }
 
-public ShowRank_QueryHandler(FailState, Handle:query, error[], err, data[], size, Float:querytime)
+public ShowRank_QueryHandler(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
     new id = data[0]
 
-    if(FailState)
+    if(failstate)
     {
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 3)
+        MySqlX_ThreadError(szQuery, error, err, failstate, floatround(querytime), ID_RANK)
         colored_print(id, "^x04***^x01 Команда^x04 /rank^x01 временно недоступна")
+
         return PLUGIN_HANDLED
     }
 
@@ -659,20 +670,20 @@ show_top(id, top)
     data[0] = id
     data[1] = get_user_userid(id)
     data[2] = top
-    SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, 3)
+    SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part1", g_Query, data, sizeof(data))
 
     return PLUGIN_HANDLED
 }
 
-public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[], size, Float:querytime)
+public ShowTop_QueryHandler_Part1(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
     new id = data[0]
 
-    if(FailState)
+    if(failstate)
     {
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 5)
+        MySqlX_ThreadError(szQuery, error, err, failstate, floatround(querytime), ID_TOP_1)
         colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
         return PLUGIN_HANDLED
     }
@@ -705,20 +716,20 @@ public ShowTop_QueryHandler_Part1(FailState, Handle:query, error[], err, data[],
     more_data[1] = data[1]
     more_data[2] = data[2]
     more_data[3] = count
-    SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part2", g_Query, more_data, 4)
+    SQL_ThreadQuery(g_SQL_Tuple, "ShowTop_QueryHandler_Part2", g_Query, more_data, sizeof(more_data))
 
     return PLUGIN_HANDLED
 }
 
-public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[], size, Float:querytime)
+public ShowTop_QueryHandler_Part2(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
     new id = data[0]
 
-    if(FailState)
+    if(failstate)
     {
         new szQuery[1024]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 6)
+        MySqlX_ThreadError(szQuery, error, err, failstate, floatround(querytime), ID_TOP_2)
         colored_print(id, "^x04***^x01 Команда^x04 /top^x01 временно недоступна")
 
         return PLUGIN_HANDLED
@@ -732,13 +743,13 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
     new count = data[3]
     if (top <= DEFAULT_TOP_COUNT)
-        format(title, 31, "ТОП игроков 1-%d", top)
+        formatex(title, charsmax(title), "ТОП игроков 1-%d", top)
     else if (top < count)
-        format(title, 31, "ТОП игроков %d-%d", top - DEFAULT_TOP_COUNT + 1, top)
+        formatex(title, charsmax(title), "ТОП игроков %d-%d", top - DEFAULT_TOP_COUNT + 1, top)
     else
     {
         top = count
-        format(title, 31, "ТОП игроков %d-%d ", top - DEFAULT_TOP_COUNT + 1, top)
+        formatex(title, charsmax(title), "ТОП игроков %d-%d ", top - DEFAULT_TOP_COUNT + 1, top)
     }
 
     new iLen = 0
@@ -750,8 +761,8 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
 
 
     new lNick[32], lResult[32]
-    format(lNick, 31, "Ник")
-    format(lResult, 31, "Скилл")
+    format(lNick, charsmax(lNick), "Ник")
+    format(lResult, charsmax(lResult), "Скилл")
     iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
         "<body><tr><th>%s<th>%s<th>%s</tr>", "#", lNick, lResult)
 
@@ -764,7 +775,7 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
         rank = SQL_ReadResult(query, column("rank"))
         SQL_ReadResult(query, column("nick"), name, charsmax(name))
         SQL_ReadResult(query, column("skill"), pre_skill)
-        skill = floatround(pre_skill*1000.0)
+        skill = floatround(pre_skill * 1000.0)
 
         iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
             "<tr%s><td>%d<td>%s<td>%d</tr>", gb_css_trigger ? "" : " id=c", rank, name, skill)
@@ -780,13 +791,13 @@ public ShowTop_QueryHandler_Part2(FailState, Handle:query, error[], err, data[],
     return PLUGIN_HANDLED
 }
 
-public threadQueryHandler(FailState, Handle:Query, error[], err, data[], size, Float:querytime)
+public threadQueryHandler(failstate, Handle:Query, error[], err, data[], size, Float:querytime)
 {
-    if(FailState)
+    if(failstate)
     {
         new szQuery[512]
         SQL_GetQueryString(Query, szQuery, charsmax(szQuery))
-        MySqlX_ThreadError(szQuery, error, err, FailState, floatround(querytime), 99)
+        MySqlX_ThreadError(szQuery, error, err, failstate, floatround(querytime), ID_THREAD)
     }
 
     return PLUGIN_HANDLED
@@ -854,9 +865,9 @@ mysql_escape_string(dest[], len)
 
 fm_get_user_deaths(id)
 {
-	// Prevent server crash if entity is not safe for pdata retrieval
-	if (pev_valid(id) != PDATA_SAFE)
-		return 0;
+    // Prevent server crash if entity is not safe for pdata retrieval
+    if (pev_valid(id) != PDATA_SAFE)
+        return 0
 
-	return get_pdata_int(id, OFFSET_DEATH);
+    return get_pdata_int(id, OFFSET_DEATH)
 }

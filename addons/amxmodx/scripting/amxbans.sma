@@ -764,11 +764,10 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size,
         else if (res_count <= MAX_UNBAN_OPTIONS)
         {
             new i_Menu = menu_create("\yМеню разбана:", "unban_menu_handler")
+            log_amx("[AMXBANS]: Found %d results", res_count)
 
-            for (new c=1; c<=res_count; c++)
+            for (new c = 1; c <= res_count; c++)
             {
-                log_amx("[AMXBANS]: Found %d results", res_count)
-
                 new player_name[64]
                 new admin_name[32]
                 new i_player_bid

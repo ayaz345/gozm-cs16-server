@@ -27,6 +27,8 @@ public plugin_init()
     register_clcmd("say /time", "sayTime", 0, "- displays current time")
     register_clcmd("say_team /time", "sayTime", 0, "- displays current time and timeleft")
 
+    register_srvcmd("timeleft", "srvTimeLeft", 0, "- displays timeleft for server console")
+
     set_task(0.8, "timeRemain", 8648458, "", 0, "b")
 }
 
@@ -34,10 +36,7 @@ public sayTheTime(id)
 {
     new ctime[64]
     get_time("%m/%d/%Y - %H:%M:%S", ctime, charsmax(ctime))
-    if (id)
-        colored_print(id, "^x01Сейчас:^x04 %s", ctime)
-    else
-        server_print("Сейчас: %s", ctime)
+    colored_print(id, "^x01Сейчас:^x04 %s", ctime)
 
     return PLUGIN_HANDLED
 }
@@ -47,18 +46,25 @@ public sayTimeLeft(id)
     if (get_cvar_float("mp_timelimit"))
     {
         new left = get_timeleft()
-        if (id)
-            colored_print(id, "^x01Осталось:^x04 %d:%02d", (left / 60), (left % 60))
-        else
-            server_print("Осталось: %d:%02d", (left / 60), (left % 60))
+        colored_print(id, "^x01Осталось:^x04 %d:%02d", (left / 60), (left % 60))
     }
     else
-        if (id)
-            colored_print(id, "^x01Это^x04 последний^x01 раунд.")
-        else
-            server_print("Это последний раунд.")
+        colored_print(id, "^x01Это^x04 последний^x01 раунд.")
 
     return PLUGIN_HANDLED
+}
+
+public srvTimeLeft(id)
+{
+    if (get_cvar_float("mp_timelimit"))
+    {
+        new left = get_timeleft()
+        server_print("Осталось: %d:%02d", (left / 60), (left % 60))
+    }
+    else
+        server_print("Это последний раунд.")
+
+    return PLUGIN_CONTINUE
 }
 
 public sayTime(id)

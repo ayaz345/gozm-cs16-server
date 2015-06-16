@@ -100,7 +100,7 @@ public voteban_menu(id)
         new name[32]
         get_user_name(id, name, charsmax(name))
 
-        log_amx("%s not enough players for %s", g_prefix, name)
+        log_amx("%s not enough players by %s", g_prefix, name)
         colored_print(id, "^x04%s^x01 Недостаточно игроков для проведения голосования!", g_prefix)
 
         return PLUGIN_HANDLED

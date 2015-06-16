@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <amxmisc>
+#include <cstrike>
 #include <fakemeta>
 #include <colored_print>
 #include <nvault>
@@ -101,10 +102,8 @@ public client_disconnect(id)
 {
     if (g_hat_ent[id] > 0)
     {
-        fm_set_entity_visibility(g_hat_ent[id], false)
+        remove_hat(id)
     }
-
-    g_hat_ent[id] = 0
 }
 
 public client_infochanged(id)
@@ -145,8 +144,7 @@ public check_access(id)
     }
     else if (!has_vip(id) && g_hat_ent[id] > 0)
     {
-        fm_set_entity_visibility(g_hat_ent[id], false)
-        g_hat_ent[id] = 0
+        remove_hat(id)
     }
 
     return PLUGIN_CONTINUE
@@ -231,15 +229,14 @@ set_hat(player, imodelnum, targeter)
     {
         if(g_hat_ent[player] > 0)
         {
-            fm_set_entity_visibility(g_hat_ent[player], false)
+            remove_hat(player)
         }
     }
     else if (file_exists(tmpfile))
     {
         if(g_hat_ent[player] < 1)
         {
-            g_hat_ent[player] =
-                engfunc(EngFunc_CreateNamedEntity, engfunc(EngFunc_AllocString, "info_target"))
+            g_hat_ent[player] = cs_create_entity("info_target")
             if (g_hat_ent[player] > 0)
             {
                 set_pev(g_hat_ent[player], pev_movetype, MOVETYPE_FOLLOW)
@@ -267,6 +264,13 @@ set_hat(player, imodelnum, targeter)
     {
         log_amx("[%s] %s not found!", PLUG_TAG, tmpfile)
     }
+}
+
+remove_hat(id)
+{
+    fm_set_entity_visibility(g_hat_ent[id], false)
+    engfunc(EngFunc_RemoveEntity, g_hat_ent[id])
+    g_hat_ent[id] = 0
 }
 
 read_hats_from_file(hat_file[])

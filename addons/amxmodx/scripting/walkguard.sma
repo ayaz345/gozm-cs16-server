@@ -1,5 +1,6 @@
 #include <amxmodx>
 #include <amxmisc>
+#include <cstrike>
 #include <fakemeta>
 #include <xs>
 #include <gozm>
@@ -273,7 +274,7 @@ RandomDirection(player)
 // -----------------------------------------------------------------------------------------
 CreateZone(Float:position[3], Float:mins[3], Float:maxs[3], zm, campertime)
 {
-	new entity = fm_create_entity("info_target")
+	new entity = cs_create_entity("info_target")
 	set_pev(entity, pev_classname, "walkguardzone")
 	fm_entity_set_model(entity, "models/gib_skull.mdl")
 	fm_entity_set_origin(entity, position)
@@ -643,7 +644,7 @@ FindAllZones()
 {
 	new entity = -1
 	maxzones = 0
-	while( (entity = fm_find_ent_by_class(entity, "walkguardzone")) )
+	while( (entity = cs_find_ent_by_class(entity, "walkguardzone")) )
 	{
 		zone[maxzones] = entity
 		maxzones++
@@ -1057,7 +1058,7 @@ stock fm_create_entity(const classname[])
 stock fm_fakedamage(victim, const classname[], Float:takedmgdamage, damagetype)
 {
 	new class[] = "trigger_hurt"
-	new entity = fm_create_entity(class)
+	new entity = cs_create_entity(class)
 	if (!entity)
 		return 0
 

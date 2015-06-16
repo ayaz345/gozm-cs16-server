@@ -15,7 +15,8 @@
 #define EVENT_AFK  		4
 
 new g_playerJoined[MAX_PLAYERS], g_playerSpawned[MAX_PLAYERS]
-new g_timeJoin[MAX_PLAYERS], g_timeSpec[MAX_PLAYERS], g_timeAFK[MAX_PLAYERS], g_timeSpecQuery[MAX_PLAYERS]
+new g_timeJoin[MAX_PLAYERS], g_timeSpec[MAX_PLAYERS], 
+    g_timeAFK[MAX_PLAYERS], g_timeSpecQuery[MAX_PLAYERS]
 new g_joinImmunity[32], g_specImmunity[32], g_afkImmunity[32]
 
 new bool:g_roundInProgress = false

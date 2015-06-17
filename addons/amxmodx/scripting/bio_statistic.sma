@@ -41,13 +41,15 @@ new g_Query[1024]
 new whois[1024]
 
 new g_CvarHost, g_CvarUser, g_CvarPassword, g_CvarDB
-new g_CvarMaxInactiveDays
+new g_CvarMaxInactiveDays, g_CvarMinPlayers
 
 new g_Me[MAX_PLAYERS][ME_NUM]
 new g_text[MAX_BUFFER_LENGTH + 1]
 new bool:gb_css_trigger = true
 
 new g_maxplayers
+new bool:g_enable_querying
+new bool:g_is_escape_map
 
 enum
 {
@@ -67,13 +69,13 @@ new g_isalive[MAX_PLAYERS]
 new const g_select_statement[] = "\
     (SELECT *, (@_c := @_c + 1) AS `rank`, \
     ((`infect` + `zombiekills`*2 + `humankills` + \
-    `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10) / \
+    `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10 + `escape_hero`*3) / \
     (`infected` + `death` + 300)) AS `skill` \
     FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
 
 public plugin_init()
 {
-    register_plugin("[BIO] Statistics", "1.4", "GoZm")
+    register_plugin("[BIO] Statistics", "1.5", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -83,6 +85,7 @@ public plugin_init()
     g_CvarUser = register_cvar("bio_stats_user", "u179761")
     g_CvarPassword = register_cvar("bio_stats_password", "petyx")
     g_CvarMaxInactiveDays = register_cvar("bio_stats_max_inactive_days", "30")
+    g_CvarMinPlayers = register_cvar("bio_stats_min_players", "5")
 
     register_clcmd("say", "handleSay")
     register_clcmd("say_team", "handleSay")
@@ -96,6 +99,8 @@ public plugin_init()
     register_logevent("logevent_endRound", 2, "1=Round_End")
 
     g_maxplayers = get_maxplayers()
+    g_enable_querying = true
+    g_is_escape_map = false
 
     return PLUGIN_CONTINUE
 }
@@ -107,6 +112,7 @@ public plugin_cfg()
     server_cmd("exec %s/bio_stats.cfg", cfgdir)
 
     set_task(0.1, "sql_init")
+    set_task(5.0, "is_map_escape")
 }
 
 public sql_init()
@@ -143,6 +149,39 @@ public sql_init()
         DELETE FROM `bio_players` \
         WHERE `last_seen` < %d", inactive_period)
     SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+}
+
+public is_map_escape()
+{
+    new current_map[32]
+    get_mapname(current_map, charsmax(current_map))
+
+    new cfgdir[32]
+    get_configsdir(cfgdir, charsmax(cfgdir))
+
+    new escape_maps_file[64]
+    formatex(escape_maps_file, charsmax(escape_maps_file), "%s/bio_escape.ini", cfgdir)
+    if (file_exists(escape_maps_file))
+    {
+        new line[64]
+        new file = fopen(escape_maps_file, "rt")
+        while (file && !feof(file))
+        {
+            fgets(file, line, charsmax(line))
+            trim(line)
+
+            // skip commented lines
+            if (line[0] == ';' || strlen(line) < 1 || (line[0] == '/' && line[1] == '/'))
+                continue
+            else if (equal(current_map, line))
+            {
+                g_is_escape_map = true
+                log_amx("[BIO STAT]: This is escape map")
+                break
+            }
+        }
+        if (file) fclose(file)
+    }
 }
 
 public plugin_end()
@@ -323,11 +362,14 @@ public event_infect(id, infector)
 
 public logevent_endRound()
 {
-	if (get_playersnum())
-	{
+    if (get_playersnum())
+    {
         // pause to calculate critical hits
         set_task(0.1, "task_announce_best_human_and_zombie")
-	}
+        
+        if (g_is_escape_map)
+            set_task(0.2, "task_celebrate_escape_heroes")
+    }
 }
 
 public task_announce_best_human_and_zombie()
@@ -335,7 +377,7 @@ public task_announce_best_human_and_zombie()
     new players[32], playersNum, maxInfectId = 0, maxDmgId = 0
     new maxInfectName[32], maxDmgName[32]
     new extraMaxInfectNum = 0, maxInfectList[32]
-    get_players(players, playersNum, "ch")
+    get_players(players, playersNum)
     for (new i = 0; i < playersNum; i++)
     {
         if (g_Me[players[i]][ME_INFECT] > g_Me[players[maxInfectId]][ME_INFECT])
@@ -370,12 +412,15 @@ public task_announce_best_human_and_zombie()
                 set_word_completion(g_Me[players[maxInfectId]][ME_INFECT]))
 
         // extra
+        new Float:frags
+        pev(players[maxInfectId], pev_frags, frags)
+        set_pev(players[maxInfectId], pev_frags, frags + 1.0)
+
+        pev(players[maxDmgId], pev_frags, frags)
+        set_pev(players[maxDmgId], pev_frags, frags + 1.0)
+
         if (g_UserDBId[players[maxInfectId]])
         {
-            new Float:frags
-            pev(players[maxInfectId], pev_frags, frags)
-            set_pev(players[maxInfectId], pev_frags, frags + 1.0)
-
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
                 SET `best_zombie` = `best_zombie` + 1 \
@@ -384,10 +429,6 @@ public task_announce_best_human_and_zombie()
         }
         if (g_UserDBId[players[maxDmgId]])
         {
-            new Float:frags
-            pev(players[maxDmgId], pev_frags, frags)
-            set_pev(players[maxDmgId], pev_frags, frags + 1.0)
-
             format(g_Query, charsmax(g_Query), "\
                 UPDATE `bio_players` \
                 SET `best_human` = `best_human` + 1 \
@@ -397,10 +438,49 @@ public task_announce_best_human_and_zombie()
     }
 }
 
+public task_celebrate_escape_heroes()
+{
+    new players[32], playersNum, id
+    get_players(players, playersNum, "a")
+    for (new i = 0; i < playersNum; i++)
+    {
+        id = players[i]
+        if (!is_user_zombie(id))
+        {
+            new Float:frags
+            pev(id, pev_frags, frags)
+            set_pev(id, pev_frags, frags + 3.0)
+
+            if (g_UserDBId[id])
+            {
+                format(g_Query, charsmax(g_Query), "\
+                    UPDATE `bio_players` \
+                    SET `escape_hero` = `escape_hero` + 1 \
+                    WHERE `id`=%d", g_UserDBId[id])
+                SQL_ThreadQuery(g_SQL_Tuple, "threadQueryHandler", g_Query)
+            }
+        }
+    }
+}
+
 public event_newround()
 {
+    if (get_playersnum() < get_pcvar_num(g_CvarMinPlayers))
+    {
+        if (g_enable_querying)
+        {
+            g_enable_querying = false
+            log_amx("[BIO STAT]: Querying disabled")
+        }
+    }
+    else if (!g_enable_querying)
+    {
+        g_enable_querying = true
+        log_amx("[BIO STAT]: Querying enabled")
+    }
+
     new players[32], playersNum
-    get_players(players, playersNum, "ch")
+    get_players(players, playersNum)
     for (new i = 0; i < playersNum; i++)
         reset_player_statistic(players[i])
 

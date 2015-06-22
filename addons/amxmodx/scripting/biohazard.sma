@@ -2397,7 +2397,7 @@ public native_set_class_wmodel(classid, weapon_model[])
 
 public native_is_user_zombie(index)
 {
-    return g_zombie[index] == true ? 1 : 0
+    return g_zombie[index]
 }
 
 public native_get_user_class(index)
@@ -2407,7 +2407,7 @@ public native_get_user_class(index)
 
 public native_is_user_infected(index)
 {
-    return g_preinfect[index] == true ? 1 : 0
+    return g_preinfect[index]
 }
 
 public native_game_started()

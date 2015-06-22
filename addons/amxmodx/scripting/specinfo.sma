@@ -14,7 +14,7 @@ new keys_string[33][KEYS_STR_LEN+1]
 
 public plugin_init()
 {
-    register_plugin("SpecInfo", "2.0", "GoZm");
+    register_plugin("SpecInfo", "2.1", "GoZm");
 
     register_forward(FM_ClientDisconnect, "fwd_client_disconnect")
 
@@ -39,10 +39,10 @@ public fwd_client_disconnect(id)
 
 public keys_update()
 {
-	new players[32], num, id, id2
+    static players[32], num, id, id2, i
 
-	get_players(players, num, "a")
-	for (new i=0; i<num; i++)
+    get_players(players, num, "a")
+    for (i=0; i<num; i++)
     {
         id = players[i]
         formatex(keys_string[id], KEYS_STR_LEN, " ^n^t^t%s^t^t^t%s^n^t%s %s %s^t^t%s",
@@ -62,16 +62,16 @@ public keys_update()
             keys_string[id][0] |= IN_DUCK
 
         cl_keys[id] = 0
-	}
+    }
 
-	get_players(players, num, "ch")
-	for (new i=0; i<num; i++)
+    get_players(players, num)
+    for (i=0; i<num; i++)
     {
         id = players[i]
         id2 = pev(id, pev_iuser2)
         if (id2 && id2 != id)
             clmsg(id)
-	}
+    }
 }
 
 public client_PreThink(id)
@@ -79,7 +79,8 @@ public client_PreThink(id)
     if (!is_user_valid_connected(id)) 
         return PLUGIN_CONTINUE
     
-    new user_button = pev(id, pev_button)
+    static user_button 
+    user_button = pev(id, pev_button)
     if (user_button == 0) 
         return PLUGIN_CONTINUE // saves a lot of cpu
 
@@ -104,7 +105,8 @@ clmsg(id)
     if (!id)
         return
 
-    new id2 = pev(id, pev_iuser2)
+    static id2 
+    id2 = pev(id, pev_iuser2)
     if (!id2)
         return
 
@@ -121,7 +123,7 @@ clmsg(id)
         0.1, /*fade out*/
         3 /*chan*/
     )
-    new msg[BOTH_STR_LEN+1]
+    static msg[BOTH_STR_LEN+1]
     msg ="^n^n^n^n^n^n^n^n^n^n^n^n"
         
     format(msg, BOTH_STR_LEN, "%s%s", msg, keys_string[id2][1])

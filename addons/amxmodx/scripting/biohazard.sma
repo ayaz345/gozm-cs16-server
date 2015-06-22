@@ -1863,7 +1863,8 @@ public task_showtruehealth()
 
 public task_showserverinfo()
 {
-    for (new id = 1; id <= g_maxplayers; id++)
+    static id
+    for (id = 1; id <= g_maxplayers; id++)
         if (is_user_valid_connected(id) && !is_user_valid_alive(id))
         {
             set_dhudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.0, 0.1, 0.0)

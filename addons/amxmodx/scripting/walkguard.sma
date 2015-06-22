@@ -644,11 +644,20 @@ FindAllZones()
 {
 	new entity = -1
 	maxzones = 0
-	while( (entity = cs_find_ent_by_class(entity, "walkguardzone")) )
+
+	while( (entity = fm_find_ent_by_class(entity, "walkguardzone")) )
 	{
 		zone[maxzones] = entity
 		maxzones++
+//		log_amx("[WALKGUARD DBG]: fm_find_ent_by_class - %d", entity)
 	}
+/*
+	entity = -1
+	while( (entity = cs_find_ent_by_class(entity, "walkguardzone")) )
+	{
+		log_amx("[WALKGUARD DBG]: cs_find_ent_by_class - %d", entity)
+	}
+*/
 }
 
 public InitWalkGuard(player)

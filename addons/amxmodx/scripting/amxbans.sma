@@ -148,7 +148,7 @@ public sql_init()
 
     if (!SQL_SetCharset(g_SqlX, "utf8"))
     {
-        new query[32]
+        static query[32]
         formatex(query, charsmax(query), "SET NAMES utf8")
         SQL_ThreadQuery(g_SqlX, "_sql_init", query)
     }
@@ -519,7 +519,7 @@ cmd_ban_(id, player, iBanLength)
     new mapname[32]
     get_mapname(mapname, charsmax(mapname))
 
-    new query[512]
+    static query[512]
     formatex(query, charsmax(query), "INSERT INTO `%s` \
         (player_id,player_ip,player_nick,admin_ip,admin_id,admin_nick,ban_type,\
         ban_reason,ban_created,ban_length,server_name,server_ip,map_name) \
@@ -704,7 +704,7 @@ public cmdUnBan(id, level, cid)
         log_amx("[AMXBANS]: %s is unbanning by steam: %s", admin_name, steamid_or_nick)
         g_unban_player_steamid = steamid_or_nick
 
-        new query[512]
+        static query[512]
         new data[1]
         formatex(query, charsmax(query), "SELECT \
             bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
@@ -723,7 +723,7 @@ public cmdUnBan(id, level, cid)
         log_amx("[AMXBANS]: %s is unbanning by nick: %s", admin_name, steamid_or_nick)
         g_player_nick = steamid_or_nick
 
-        new query[512]
+        static query[512]
         new data[1]
 
         replace_all(steamid_or_nick, charsmax(steamid_or_nick), "\", "\\")
@@ -812,7 +812,7 @@ public unban_menu_handler(id, menu, item)
     new s_Bid[6], s_Name[64], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Bid, charsmax(s_Bid), s_Name, charsmax(s_Name), i_Callback)
 
-    new query[512]
+    static query[512]
     new data[1]
     formatex(query, charsmax(query), "SELECT \
         bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
@@ -881,7 +881,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
             }
 
             server_cmd("removeip %s", player_ip)
-            new sub_query[512]
+            static sub_query[512]
             new banned_player_name[50]
             formatex(banned_player_name, charsmax(banned_player_name), "%s", g_player_nick)
 
@@ -928,7 +928,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
 
             new unban_created = get_systime(0)
 
-            new query[512]
+            static query[512]
             formatex(query, charsmax(query), "INSERT INTO `%s` \
                 (player_id,player_ip,player_nick,admin_id,admin_nick,ban_type,\
                 ban_reason,ban_created,ban_length,server_ip,server_name,\
@@ -978,7 +978,7 @@ public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size, 
     }
     else
     {
-        new query[512]
+        static query[512]
         new data[1]
 
         formatex(query, charsmax(query), "DELETE FROM `%s` WHERE bid=%d", tbl_bans, bid)
@@ -1022,7 +1022,7 @@ public check_player(id)
     get_user_authid(id, player_steamid, charsmax(player_steamid))
     get_user_ip(id, player_ip, charsmax(player_ip), 1)
 
-    new query[512]
+    static query[512]
     new data[1]
 
     if (equal(player_steamid, "BOT"))
@@ -1145,7 +1145,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
                 replace_all(server_name, charsmax(server_name), "'", "ґ")
 
                 // INSERT INTO BANHISTORY
-                new insert_query[512]
+                static insert_query[512]
                 formatex(insert_query, charsmax(insert_query),
                     "INSERT INTO `%s` ( \
                         player_id, player_ip, player_nick, \
@@ -1165,7 +1165,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
                 SQL_ThreadQuery(g_SqlX, "insert_to_banhistory", insert_query)
 
                 // DELETE EXPIRED BAN
-                new delete_query[512]
+                static delete_query[512]
                 formatex(delete_query, charsmax(delete_query),"DELETE FROM `%s` WHERE bid='%d'",tbl_bans, bid)
                 SQL_ThreadQuery(g_SqlX, "delete_expired_ban", delete_query)
             }
@@ -1200,7 +1200,8 @@ public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size
 /************  Start fetch reasons  *****************/
 public fetchReasons(id)
 {
-    new query[512], data[1]
+    static query[512]
+    new data[1]
     formatex(query, charsmax(query), "SELECT reason FROM %s", tbl_reasons)
     data[0] = id
     SQL_ThreadQuery(g_SqlX, "fetchReasons_", query, data, sizeof(data))

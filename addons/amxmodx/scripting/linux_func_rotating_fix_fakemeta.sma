@@ -22,15 +22,18 @@ public plugin_init()
 
 public fix_bug()
 {
-    new f_rota = cs_find_ent_by_class(-1, "func_rotating")
-    while(f_rota != 0)
+    static f_rota 
+    f_rota = -1
+
+    f_rota = cs_find_ent_by_class(f_rota, "func_rotating")
+    while(f_rota)
     {
-        new Float:angles[3]
+        static Float:angles[3]
         pev(f_rota, pev_angles, angles)
         angles[0] -= floatround(angles[0] / 360.0, floatround_floor) * 360.0
         angles[1] -= floatround(angles[1] / 360.0, floatround_floor) * 360.0
         angles[2] -= floatround(angles[2] / 360.0, floatround_floor) * 360.0
         set_pev(f_rota, pev_angles, angles)
-        f_rota = cs_find_ent_by_class(-1, "func_rotating")
+        f_rota = cs_find_ent_by_class(f_rota, "func_rotating")
     }
 }

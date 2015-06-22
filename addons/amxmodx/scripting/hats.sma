@@ -77,12 +77,13 @@ public client_putinserver(id)
 
     if (has_vip(id))
     {
-        new name[32], model[26], ts
+        static name[32], model[26], ts
         get_user_name(id, name, charsmax(name))
 
         if (nvault_lookup(g_nvault_handle, name, model, charsmax(model), ts))
         {
-            new index = index_of_model(model, HATMDL)
+            static index 
+            index = index_of_model(model, HATMDL)
 
             if (index != -1)
             {
@@ -111,7 +112,7 @@ public client_infochanged(id)
     if (!is_user_connected(id))
         return PLUGIN_CONTINUE
 
-    new newname[32], oldname[32]
+    static newname[32], oldname[32]
     get_user_info(id, "name", newname, charsmax(newname))
     get_user_name(id, oldname, charsmax(oldname))
 
@@ -125,12 +126,13 @@ public check_access(id)
 {
     if (has_vip(id) && !g_hat_ent[id])
     {
-        new name[32], model[26], ts
+        static name[32], model[26], ts
         get_user_name(id, name, charsmax(name))
 
         if (nvault_lookup(g_nvault_handle, name, model, charsmax(model), ts))
         {
-            new index = index_of_model(model, HATMDL)
+            static index 
+            index = index_of_model(model, HATMDL)
 
             if (index != -1)
             {
@@ -174,11 +176,12 @@ show_hats_menu(id)
     if (pev_valid(id) == PDATA_SAFE)
         set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
-    new i_menu = menu_create("\yШапки:", "hats_menu_handler")
+    static i_menu, hat_id
+    i_menu = menu_create("\yШапки:", "hats_menu_handler")
 
-    for (new hat_id = 0; hat_id < g_total_hats; hat_id++)
+    for (hat_id = 0; hat_id < g_total_hats; hat_id++)
     {
-        new s_hat_id[3]
+        static s_hat_id[3]
         num_to_str(hat_id, s_hat_id, charsmax(s_hat_id))
         menu_additem(i_menu, HATNAME[hat_id], s_hat_id)
     }
@@ -201,7 +204,7 @@ public hats_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_hat_num[3], s_hat_name[64], i_access, i_callback
+    static s_hat_num[3], s_hat_name[64], i_access, i_callback
     menu_item_getinfo(
         menu, item, i_access,
         s_hat_num, charsmax(s_hat_num),
@@ -210,10 +213,11 @@ public hats_menu_handler(id, menu, item)
     )
     menu_destroy(menu)
 
-    new hat_id = str_to_num(s_hat_num)
+    static hat_id 
+    hat_id = str_to_num(s_hat_num)
     set_hat(id, hat_id, 0)
 
-    new name[32]
+    static name[32]
     get_user_name(id, name, charsmax(name))
     nvault_set(g_nvault_handle, name, HATMDL[hat_id])
 
@@ -222,7 +226,7 @@ public hats_menu_handler(id, menu, item)
 
 set_hat(player, imodelnum, targeter)
 {
-    new tmpfile[101]
+    static tmpfile[101]
     formatex(tmpfile, charsmax(tmpfile), "%s/%s", MODELPATH, HATMDL[imodelnum])
 
     if (imodelnum == 0)
@@ -254,7 +258,7 @@ set_hat(player, imodelnum, targeter)
 
         if (targeter != -1)
         {
-            new name[32]
+            static name[32]
             get_user_name(player, name, charsmax(name))
 
             colored_print(targeter, "^x04***^x03 %s^x01 надел шапку^x04 %s", name, HATNAME[imodelnum])
@@ -280,9 +284,10 @@ read_hats_from_file(hat_file[])
         HATMDL[0] = ""
         HATNAME[0] = "[ Снять шапку ]"
         g_total_hats = 1
-        new line[128]
+        static line[128]
 
-        new file = fopen(hat_file, "rt")
+        static file 
+        file = fopen(hat_file, "rt")
         while (file && !feof(file))
         {
             fgets(file, line, charsmax(line))

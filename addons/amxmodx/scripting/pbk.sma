@@ -15,7 +15,7 @@
 #define EVENT_AFK  		4
 
 new g_playerJoined[MAX_PLAYERS], g_playerSpawned[MAX_PLAYERS]
-new g_timeJoin[MAX_PLAYERS], g_timeSpec[MAX_PLAYERS], 
+new g_timeJoin[MAX_PLAYERS], g_timeSpec[MAX_PLAYERS],
     g_timeAFK[MAX_PLAYERS], g_timeSpecQuery[MAX_PLAYERS]
 new g_joinImmunity[32], g_specImmunity[32], g_afkImmunity[32]
 
@@ -93,7 +93,10 @@ public client_disconnect(id)
 public event_resethud(id)
 {
     if (!g_playerSpawned[id])
+    {
         g_playerSpawned[id] = true
+        cs_set_user_lastactivity(id, get_gametime())
+    }
 }
 
 public event_round_end()
@@ -111,11 +114,11 @@ public check_players()
     new playerCnt = get_playersnum()
     new team[2], eventType
 
-    new bool:checkJoinStatus = 
+    new bool:checkJoinStatus =
         (get_pcvar_num(g_cvar_joinTime) && playerCnt >= get_pcvar_num(g_cvar_joinMinPlayers))
-    new bool:checkSpecStatus = 
+    new bool:checkSpecStatus =
         (get_pcvar_num(g_cvar_specTime) && playerCnt >= get_pcvar_num(g_cvar_specMinPlayers))
-    new bool:checkAFKStatus  = 
+    new bool:checkAFKStatus  =
         (get_pcvar_num(g_cvar_afkTime)  && playerCnt >= get_pcvar_num(g_cvar_afkMinPlayers) && g_roundInProgress)
 
     new players[32], id

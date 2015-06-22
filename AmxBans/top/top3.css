@@ -1,0 +1,54 @@
+<meta charset=UTF-8>
+<style>
+    body {
+        background: #E6E6E6;
+        font-family: Verdana
+    }
+    
+    th {
+        background: #F5F5F5;
+        color: #A70000;
+        padding: 6px;
+        text-align: center
+    }
+    
+    td {
+        padding: 2px 6px;
+        text-align: center
+    }
+    
+    table {
+        color: #333;
+        background: #E6E6E6;
+        font-size: 14px;
+        font-family: Georgia;
+        border: 2px solid #D9D9D9
+    }
+    
+    h2,
+    h3 {
+        color: #333;
+    }
+    
+    #c {
+        background: #FFF
+    }
+    
+    img {
+        height: 10px;
+        background: #14CC00;
+        margin: 0 3px
+    }
+    
+    #r {
+        height: 10px;
+        background: #CC8A00
+    }
+    
+    #clr {
+        background: none;
+        color: #A70000;
+        font-size: 20px;
+        border: 0
+    }
+</style>

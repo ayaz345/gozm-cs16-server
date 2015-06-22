@@ -1,0 +1,52 @@
+<meta charset=UTF-8>
+<style>
+    body {
+        background: #FFF;
+        font-family: Verdana
+    }
+    
+    th {
+        background: #2E2E2E;
+        color: #FFF;
+        text-align: center
+    }
+    
+    td {
+        text-align: center
+    }
+    
+    table {
+        padding: 6px 2px;
+        background: #FFF;
+        font-size: 14px;
+        color: #333;
+        border: 1px solid #CCC
+    }
+    
+    h2,
+    h3 {
+        color: #333
+    }
+    
+    #c {
+        background: #F0F0F0
+    }
+    
+    img {
+        height: 7px;
+        background: #444;
+        margin: 0 3px
+    }
+    
+    #r {
+        height: 7px;
+        background: #999
+    }
+    
+    #clr {
+        background: none;
+        color: #2E2E2E;
+        font-size: 20px;
+        border: 0
+    }
+</style>

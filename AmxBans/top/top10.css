@@ -1,0 +1,52 @@
+<meta charset=UTF-8>
+<style>
+    body {
+        background: #4C5844;
+        font-family: Tahoma
+    }
+    
+    th {
+        background: #1E1E1E;
+        color: #C0C0C0;
+        padding: 2px;
+        text-align: center;
+    }
+    
+    td {
+        padding: 2px 10px;
+        text-align: center
+    }
+    
+    table {
+        color: #AAC0AA;
+        background: #424242;
+        font-size: 14px
+    }
+    
+    h2,
+    h3 {
+        color: #C2C2C2;
+        font-family: Tahoma
+    }
+    
+    #c {
+        background: #323232
+    }
+    
+    img {
+        height: 3px;
+        background: #B4DA45;
+        margin: 0 3px
+    }
+    
+    #r {
+        height: 3px;
+        background: #6F9FC8
+    }
+    
+    #clr {
+        background: none;
+        color: #FFF;
+        font-size: 20px
+    }
+</style>

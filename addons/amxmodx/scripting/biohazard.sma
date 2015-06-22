@@ -2758,7 +2758,7 @@ fm_set_entity_visibility(index, visible = 1)
 collect_spawns_ent(const classname[])
 {
     new ent = -1
-    while ((ent = cs_find_ent_by_class(ent, classname)) != 0)
+    while ((ent = cs_find_ent_by_class(ent, classname)))
     {
         // get origin
         new Float:originF[3]

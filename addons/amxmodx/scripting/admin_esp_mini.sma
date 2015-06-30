@@ -6,7 +6,7 @@
 
 #define OFFSET_TEAM    114
 
-enum 
+enum
 {
     ESP_ON = 0,
     ESP_LINE,
@@ -20,7 +20,7 @@ new g_isalive[MAX_PLAYERS]
 #define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
 
 new bool:admin[33], bool:first_person[33], bool:ducking[33], bool:admin_options[33][10], bool:is_in_menu[33]
-new team_colors[4][3]={{0,0,0},{150,0,0},{0,0,150},{0,150,0}} 
+new team_colors[4][3]={{0,0,0},{150,0,0},{0,0,150},{0,150,0}}
 new esp_colors[5][3]={{0,255,0},{100,60,60},{60,60,100},{255,0,255},{128,128,128}}
 new view_target[33], damage_done_to[33], spec[33], laser
 
@@ -34,7 +34,7 @@ public plugin_init()
     register_event("Damage", "event_Damage", "b", "2!0", "3=0", "4!0")
     register_event("ResetHUD", "reset_hud_alive", "be")
 
-    register_forward(FM_PlayerPreThink, "fwdPlayerPreThink")    
+    register_forward(FM_PlayerPreThink, "fwdPlayerPreThink")
 
     RegisterHam(Ham_Killed, "player", "bacon_killed_player")
     RegisterHam(Ham_Spawn, "player", "bacon_spawn_player_post", 1)
@@ -49,7 +49,7 @@ public plugin_init()
 
 public plugin_precache()
 {
-    laser=precache_model("sprites/laserbeam.spr")
+    laser = precache_model("sprites/laserbeam.spr")
 }
 
 public client_putinserver(id)
@@ -84,15 +84,17 @@ public reset_hud_alive(id)
 show_esp_menu(id)
 {
     is_in_menu[id] = true
-    new menu[501]
-    new keys = MENU_KEY_0|MENU_KEY_1|MENU_KEY_2
-    new onoff[2][] = {{"\roff\w"},{"\yon\w"}}
-    new text[2][] = {{"(use move forward/backward to switch on/off)"},{"(use esp_toggle command to toggle)"}}
-    formatex(menu, 500, "Admin Specator ESP^n %s %s^n^n1. Линии %s^n2. Квадраты %s^n^n0. Выход", onoff[admin_options[id][ESP_ON]], text[0],
-    onoff[admin_options[id][ESP_LINE]],
-    onoff[admin_options[id][ESP_BOX]])
+    static menu[501]
+    static keys
+    keys = MENU_KEY_0|MENU_KEY_1|MENU_KEY_2
+    static onoff[2][] = {{"\roff\w"},{"\yon\w"}}
+    static text[2][] = {{"(use move forward/backward to switch on/off)"},{"(use esp_toggle command to toggle)"}}
+    formatex(menu, charsmax(menu),
+        "Admin Specator ESP^n %s %s^n^n1. Линии %s^n2. Квадраты %s^n^n0. Выход", onoff[admin_options[id][ESP_ON]], text[0],
+            onoff[admin_options[id][ESP_LINE]],
+            onoff[admin_options[id][ESP_BOX]])
     show_menu(id, keys,menu)
-       
+
     return PLUGIN_HANDLED
 }
 
@@ -107,18 +109,19 @@ public menu_esp(id, key)
         admin_options[id][key+1]=false
     else
         admin_options[id][key+1]=true
-   
+
     show_esp_menu(id)
     return PLUGIN_HANDLED
 }
 
 public event_Damage(id)
 {
-    if (id>0) 
+    if (id > 0)
     {
-        new attacker=get_user_attacker(id)
-        if (attacker>0 && attacker<=g_maxplayers)
-        { 
+        static attacker
+        attacker = get_user_attacker(id)
+        if (attacker > 0 && attacker <= g_maxplayers)
+        {
             if (view_target[attacker]==id)
                 damage_done_to[attacker]=id
         }
@@ -128,10 +131,10 @@ public event_Damage(id)
 
 public spec_mode(id)
 {
-    new specMode[12]
-    read_data(2, specMode, 11)
+    static specMode[12]
+    read_data(2, specMode, charsmax(specMode))
 
-    if(equal(specMode,"#Spec_Mode4"))
+    if(equal(specMode, "#Spec_Mode4"))
         first_person[id]=true
     else
         first_person[id]=false
@@ -141,10 +144,11 @@ public spec_mode(id)
 
 public spec_target(id)
 {
-    if (id>0)
+    if (id > 0)
     {
-        new target=read_data(2)
-        if (target!=0)
+        static target
+        target = read_data(2)
+        if (target != 0)
             spec[id]=target
     }
     return PLUGIN_CONTINUE
@@ -152,7 +156,8 @@ public spec_target(id)
 
 init_admin_options(id)
 {
-    for (new i=0;i<4;i++)
+    static i
+    for (i = 0; i < 4; i++)
     {
         admin_options[id][i] = true
     }
@@ -164,10 +169,11 @@ save2vault(id)
 {
     if (admin[id])
     {
-        new authid[35], tmp[11], key[41]
-        get_user_authid(id, authid, charsmax(authid)) 
-       
-        for (new s=0;s<4;s++)
+        static authid[35], tmp[11], key[41]
+        get_user_authid(id, authid, charsmax(authid))
+
+        static s
+        for (s = 0; s < 4; s++)
         {
             if (admin_options[id][s])
                 tmp[s]='1'
@@ -175,7 +181,7 @@ save2vault(id)
                 tmp[s]='0'
         }
         tmp[4]=0
-   
+
         formatex(key, charsmax(key), "ESP_%s", authid)
         set_vaultdata(key, tmp)
     }
@@ -185,13 +191,14 @@ load_vault_data(id)
 {
     if (admin[id])
     {
-        new data[11], authid[35], key[41]
+        static data[11], authid[35], key[41]
         get_user_authid (id, authid, charsmax(authid))
-        formatex(key, 40, "ESP_%s", authid) 
+        formatex(key, charsmax(key), "ESP_%s", authid)
         get_vaultdata(key, data, 4)
         if (strlen(data) > 0)
         {
-            for (new s=0;s<4;s++)
+            static s
+            for (s=0; s<4; s++)
             {
                 if (data[s]=='1')
                     admin_options[id][s]=true
@@ -221,7 +228,7 @@ change_esp_status(id, bool:on)
 public fwdPlayerPreThink(id)
 {
     if (!is_user_valid_connected(id)) return FMRES_IGNORED
-       
+
     static button, oldbutton
     button=pev(id, pev_button)
     if (button==0) return FMRES_IGNORED
@@ -270,11 +277,11 @@ public bacon_spawn_player_post(id)
 
 public esp_timer()
 {
-    static spec_id, Float:my_origin[3], my_team, target_team, Float:target_origin[3], Float:distance, width, Float:v_middle[3], 
+    static spec_id, Float:my_origin[3], my_team, target_team, Float:target_origin[3], Float:distance, width, Float:v_middle[3],
     Float:v_hitpoint[3], Float:distance_to_hitpoint, Float:scaled_bone_len, Float:scaled_bone_width, Float:v_bone_start[3],
-    Float:v_bone_end[3], Float:offset_vector[3], Float:eye_level[3], Float:distance_target_hitpoint, actual_bright, color
+    Float:v_bone_end[3], Float:offset_vector[3], Float:eye_level[3], Float:distance_target_hitpoint, actual_bright, color, i
 
-    for (new i=1;i<=g_maxplayers;i++)
+    for (i=1; i<=g_maxplayers; i++)
     {
         if (admin_options[i][ESP_ON] && first_person[i] && is_user_valid_connected(i) && admin[i] && (!is_user_valid_alive(i)) && (spec[i]>0) && is_user_valid_alive(spec[i]))
         {
@@ -282,7 +289,8 @@ public esp_timer()
             pev(i, pev_origin, my_origin)
             my_team = get_pdata_int(spec_id, OFFSET_TEAM)
 
-            for (new s=1;s<=g_maxplayers;s++)
+            static s
+            for (s=1;s<=g_maxplayers;s++)
             {
                 if (is_user_valid_alive(s))
                 {
@@ -368,20 +376,22 @@ public esp_timer()
 
     set_task(0.4, "esp_timer")
 
-    return PLUGIN_CONTINUE    
+    return PLUGIN_CONTINUE
 }
 
 Float:getVecLen(Float:Vec[3])
 {
-    new Float:VecNull[3]={0.0,0.0,0.0}
-    new Float:len=vector_distance(Vec,VecNull)
+    static Float:len
+    static Float:VecNull[3] = {0.0,0.0,0.0}
+    len = vector_distance(Vec, VecNull)
 
     return len
 }
 
 normalize(Float:Vec[3],Float:Ret[3],Float:multiplier)
 {
-    new Float:len=getVecLen(Vec)
+    static Float:len
+    len = getVecLen(Vec)
     copyVec(Vec,Ret)
     Ret[0]/=len
     Ret[1]/=len
@@ -445,7 +455,7 @@ make_TE_BEAMENTPOINT(id,Float:target_origin[3],width,target_team)
     write_coord(floatround(target_origin[1]))
     write_coord(floatround(target_origin[2]))
     write_short(laser)
-    write_byte(1)        
+    write_byte(1)
     write_byte(1)
     write_byte(3)
     write_byte(width)

@@ -34,7 +34,7 @@ public plugin_init()
 
 public sayTheTime(id)
 {
-    new ctime[64]
+    static ctime[64]
     get_time("%m/%d/%Y - %H:%M:%S", ctime, charsmax(ctime))
     colored_print(id, "^x01Сейчас:^x04 %s", ctime)
 
@@ -45,7 +45,8 @@ public sayTimeLeft(id)
 {
     if (get_cvar_float("mp_timelimit"))
     {
-        new left = get_timeleft()
+        static left
+        left = get_timeleft()
         colored_print(id, "^x01Осталось:^x04 %d:%02d", (left / 60), (left % 60))
     }
     else
@@ -58,7 +59,8 @@ public srvTimeLeft(id)
 {
     if (get_cvar_float("mp_timelimit"))
     {
-        new left = get_timeleft()
+        static left
+        left = get_timeleft()
         server_print("Осталось: %d:%02d", (left / 60), (left % 60))
     }
     else
@@ -76,65 +78,70 @@ public sayTime(id)
 }
 
 setTimeText(text[], len, tmlf, id)
-    {
-    new secs = tmlf % 60
-    new mins = tmlf / 60
+{
+    static mins, secs
+    secs = tmlf % 60
+    mins = tmlf / 60
 
     if (secs == 0)
-        format(text, len, "%d %L", mins, id, (mins > 1) ? "MINUTES" : "MINUTE")
+        formatex(text, len, "%d %L", mins, id, (mins > 1) ? "MINUTES" : "MINUTE")
     else if (mins == 0)
-        format(text, len, "%d %L", secs, id, (secs > 1) ? "SECONDS" : "SECOND")
+        formatex(text, len, "%d %L", secs, id, (secs > 1) ? "SECONDS" : "SECOND")
     else
-        format(text, len, "%d %L %d %L", 
+        formatex(text, len, "%d %L %d %L",
             mins, id, (mins > 1) ? "MINUTES" : "MINUTE", secs, id, (secs > 1) ? "SECONDS" : "SECOND")
-    }
+}
 
 setTimeVoice(text[], len, flags, tmlf)
 {
-    new temp[7][32]
-    new secs = tmlf % 60
-    new mins = tmlf / 60
+    static temp[7][32]
+    static mins, secs
+    secs = tmlf % 60
+    mins = tmlf / 60
 
-    for (new a = 0; a < 7; ++a)
+    static a
+    for (a = 0; a < 7; ++a)
         temp[a][0] = 0
 
     if (secs > 0)
     {
-        num_to_word(secs, temp[4], 31)
+        num_to_word(secs, temp[4], charsmax(temp[]))
 
         if (!(flags & 8))
-            temp[5] = "seconds "	/* there is no "second" in default hl */
+            copy(temp[5], charsmax(temp[]), "seconds ")      /* there is no "second" in default hl */
     }
 
     if (mins > 59)
     {
-        new hours = mins / 60
+        static hours
+        hours = mins / 60
 
-        num_to_word(hours, temp[0], 31)
+        num_to_word(hours, temp[0], charsmax(temp[]))
 
         if (!(flags & 8))
-            temp[1] = "hours "
+            copy(temp[1], charsmax(temp[]), "hours ")
 
         mins = mins % 60
     }
 
     if (mins > 0)
     {
-        num_to_word(mins, temp[2], 31)
+        num_to_word(mins, temp[2], charsmax(temp[]))
 
         if (!(flags & 8))
-            temp[3] = "minutes "
+            copy(temp[3], charsmax(temp[]), "minutes ")
     }
 
     if (!(flags & 4))
-        temp[6] = "remaining "
+        copy(temp[6], charsmax(temp[]), "remaining ")
 
-    return format(text, len, "spk ^"vox/%s%s%s%s%s%s%s^"", temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6])
-    }
+    return formatex(text, len, "spk ^"vox/%s%s%s%s%s%s%s^"", temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6])
+}
 
 findDispFormat(time)
 {
-    for (new i = 0; g_TimeSet[i][0]; ++i)
+    static i
+    for (i = 0; g_TimeSet[i][0]; ++i)
     {
         if (g_TimeSet[i][1] & 16)
         {
@@ -161,9 +168,11 @@ findDispFormat(time)
 
 public setDisplaying()
 {
-    new arg[32], flags[32], num[32]
-    new argc = read_argc() - 1
-    new i = 0
+    static arg[32], flags[32], num[32]
+    static argc, i
+
+    argc = read_argc() - 1
+    i = 0
 
     while (i < argc && i < 32)
     {
@@ -182,11 +191,13 @@ public setDisplaying()
 
 public timeRemain(param[])
 {
-    new gmtm = get_timeleft()
-    new tmlf = g_Switch ? --g_CountDown : gmtm
-    new stimel[12]
+    static stimel[12]
+    static gmtm, tmlf
 
-    format(stimel, charsmax(stimel), "%02d:%02d", gmtm / 60, gmtm % 60)
+    gmtm = get_timeleft()
+    tmlf = g_Switch ? --g_CountDown : gmtm
+
+    formatex(stimel, charsmax(stimel), "%02d:%02d", gmtm / 60, gmtm % 60)
     set_cvar_string("amx_timeleft", stimel)
 
     if (g_Switch && gmtm > g_Switch)
@@ -201,19 +212,24 @@ public timeRemain(param[])
     if (tmlf > 0 && g_LastTime != tmlf)
     {
         g_LastTime = tmlf
-        new tm_set = findDispFormat(tmlf)
+
+        static tm_set
+        tm_set = findDispFormat(tmlf)
 
         if (tm_set != -1)
         {
-            new flags = g_TimeSet[tm_set][1]
-            new arg[128]
+            static flags
+            static arg[128]
+
+            flags = g_TimeSet[tm_set][1]
 
             if (flags & 1)
             {
-                new players[32], pnum
+                static players[32], pnum
                 get_players(players, pnum, "c")
 
-                for (new i = 0; i < pnum; i++)
+                static i
+                for (i = 0; i < pnum; i++)
                 {
                     setTimeText(arg, charsmax(arg), tmlf, players[i])
 

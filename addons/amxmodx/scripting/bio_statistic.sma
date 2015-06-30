@@ -15,6 +15,8 @@
 #define STATSX_SHELL_DESIGN8_STYLE  "<meta charset=UTF-8><style>body{background:#242424;margin:20px;font-family:Tahoma}th{background:#2F3034;color:#BDB670;text-align:left} table{padding:4px;background:#4A4945;font-size:10px;color:#FFF}h2,h3{color:#D2D1CF}#c{background:#3B3C37}img{height:12px;background:#99CC00;margin:0 3px}#r{height:12px;background:#999900}#clr{background:none;color:#FFF;font-size:20px}</style>"
 #define STATSX_SHELL_DESIGN10_STYLE "<meta charset=UTF-8><style>body{background:#4C5844;font-family:Tahoma}th{background:#1E1E1E;color:#C0C0C0;padding:2px;text-align:left;}td{padding:2px 10px}table{color:#AAC0AA;background:#424242;font-size:13px}h2,h3{color:#C2C2C2;font-family:Tahoma}#c{background:#323232}img{height:3px;background:#B4DA45;margin:0 3px}#r{height:3px;background:#6F9FC8}#clr{background:none;color:#FFF;font-size:20px}</style>"
 
+#define SELECT_STATEMENT            "(SELECT *, (@_c := @_c + 1) AS `rank`, ((`infect` + `zombiekills`*2 + `humankills` + `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10 + `escape_hero`*3) / (`infected` + `death` + 300)) AS `skill` FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
+
 #define PDATA_SAFE              2
 #define OFFSET_DEATH            444
 
@@ -64,13 +66,6 @@ new g_isconnected[MAX_PLAYERS]
 new g_isalive[MAX_PLAYERS]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 #define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
-
-new const g_select_statement[] = "\
-    (SELECT *, (@_c := @_c + 1) AS `rank`, \
-    ((`infect` + `zombiekills`*2 + `humankills` + \
-    `knife_kills`*5 + `best_zombie` + `best_human` + `best_player`*10 + `escape_hero`*3) / \
-    (`infected` + `death` + 300)) AS `skill` \
-    FROM (SELECT @_c := 0) r, `bio_players` ORDER BY `skill` DESC) AS `newtable`"
 
 public plugin_init()
 {
@@ -249,7 +244,7 @@ public ClientAuth_QueryHandler_Part1(failstate, Handle:query, error[], err, data
         return PLUGIN_HANDLED
     }
 
-    static id 
+    static id
     id = data[0]
 
     if (data[1] != get_user_userid(id))
@@ -284,7 +279,7 @@ public ClientAuth_QueryHandler_Part2(failstate, Handle:query, error[], err, data
         return PLUGIN_HANDLED
     }
 
-    static id 
+    static id
     id = data[0]
     if (data[1] != get_user_userid(id))
         return PLUGIN_HANDLED
@@ -582,11 +577,11 @@ public fw_HamKilled(victim, attacker, shouldgib)
 
     if (victim == attacker || !is_user_valid_connected(attacker))
     {
-        type = "suicide"
+        copy(type, charsmax(type), "suicide")
     }
     else if (is_user_zombie(attacker))
     {
-        type = "infect"
+        copy(type, charsmax(type), "infect")
         g_Me[attacker][ME_INFECT]++
     }
     else
@@ -595,7 +590,7 @@ public fw_HamKilled(victim, attacker, shouldgib)
 
         if (is_user_zombie(victim))
         {
-            type = "zombiekills"
+            copy(type, charsmax(type), "zombiekills")
 
             if(g_UserDBId[attacker] && get_user_weapon(attacker) == CSW_KNIFE && g_enable_stats_querying)
             {
@@ -715,21 +710,21 @@ show_rank(id, unquoted_whois[])
 
     if (!unquoted_whois[0])
     {
-        format(query_rank, charsmax(query_rank), "\
+        formatex(query_rank, charsmax(query_rank), "\
             SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` \
             FROM %s WHERE `id`=%d",
-            g_select_statement, g_UserDBId[id])
+            SELECT_STATEMENT, g_UserDBId[id])
     }
     else
     {
         mysql_escape_string(unquoted_whois, charsmax(whois))
         copy(whois, charsmax(whois), unquoted_whois)
 
-        format(query_rank, charsmax(query_rank), "\
+        formatex(query_rank, charsmax(query_rank), "\
             SELECT *,(SELECT COUNT(*) FROM `bio_players`) AS `total` \
             FROM %s \
             WHERE `nick` LIKE BINARY '%%%s%%' LIMIT 1",
-            g_select_statement, whois)
+            SELECT_STATEMENT, whois)
     }
 
     static data[2]
@@ -743,7 +738,7 @@ show_rank(id, unquoted_whois[])
 
 public ShowRank_QueryHandler(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    static id 
+    static id
     id = data[0]
 
     if(failstate)
@@ -798,7 +793,7 @@ show_top(id, top)
 
 public ShowTop_QueryHandler_Part1(failstate, Handle:query, error[], err, data[], size, Float:querytime)
 {
-    static id 
+    static id
     id = data[0]
 
     if(failstate)
@@ -823,7 +818,7 @@ public ShowTop_QueryHandler_Part1(failstate, Handle:query, error[], err, data[],
     static count
     count = SQL_ReadResult(query, 0)
 
-    static top 
+    static top
     top = data[2]
     if (top <= DEFAULT_TOP_COUNT)
         top = DEFAULT_TOP_COUNT
@@ -831,11 +826,11 @@ public ShowTop_QueryHandler_Part1(failstate, Handle:query, error[], err, data[],
         top = count
 
     static query_show_top[512]
-    format(query_show_top, charsmax(query_show_top), "\
+    formatex(query_show_top, charsmax(query_show_top), "\
         SELECT `nick`, `rank`, `skill` \
         FROM %s \
         WHERE `rank` <= %d ORDER BY `rank` ASC LIMIT %d, %d",
-        g_select_statement, top, top - DEFAULT_TOP_COUNT, DEFAULT_TOP_COUNT)
+        SELECT_STATEMENT, top, top - DEFAULT_TOP_COUNT, DEFAULT_TOP_COUNT)
     static more_data[4]
     more_data[0] = data[0]
     more_data[1] = data[1]
@@ -865,10 +860,10 @@ public ShowTop_QueryHandler_Part2(failstate, Handle:query, error[], err, data[],
         return PLUGIN_HANDLED
 
     static title[32]
-    static top 
+    static top
     top = data[2]
 
-    static count 
+    static count
     count = data[3]
     if (top <= DEFAULT_TOP_COUNT)
         formatex(title, charsmax(title), "ТОП игроков 1-%d", top)
@@ -889,8 +884,8 @@ public ShowTop_QueryHandler_Part2(failstate, Handle:query, error[], err, data[],
         "<body><table width=100%% border=0 align=center cellpadding=0 cellspacing=1>")
 
     static lNick[32], lResult[32]
-    format(lNick, charsmax(lNick), "Ник")
-    format(lResult, charsmax(lResult), "Скилл")
+    formatex(lNick, charsmax(lNick), "Ник")
+    formatex(lResult, charsmax(lResult), "Скилл")
     iLen += format(g_text[iLen], MAX_BUFFER_LENGTH - iLen,
         "<body><tr><th>%s<th>%s<th>%s</tr>", "#", lNick, lResult)
 
@@ -949,7 +944,7 @@ MySqlX_ThreadError(szQuery[], error[], errnum, failstate, request_time, id)
 format_all_themes(sBuffer[MAX_BUFFER_LENGTH], iLen, player_id)
 {
     //new iDesign = get_pcvar_num(g_pcvar_design)
-    static iDesign 
+    static iDesign
     iDesign = player_id % 4
     switch(iDesign)
     {
@@ -970,13 +965,13 @@ format_all_themes(sBuffer[MAX_BUFFER_LENGTH], iLen, player_id)
 
 set_word_completion(number)
 {
-    static word_completion[8]
+    static word_completion[4]
     if (number == 0 || number > 4)
-        word_completion = "й"
+        copy(word_completion, charsmax(word_completion), "й")
     else if (number == 1)
-        word_completion = "е"
+        copy(word_completion, charsmax(word_completion), "е")
     else
-        word_completion = "я"
+        copy(word_completion, charsmax(word_completion), "я")
 
     return word_completion
 }

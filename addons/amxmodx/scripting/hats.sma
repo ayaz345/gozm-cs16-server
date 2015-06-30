@@ -39,7 +39,8 @@ public plugin_init()
 
 public plugin_cfg()
 {
-    new nvault_file[] = "gozm_hats"
+    new nvault_file[10]
+    copy(nvault_file, charsmax(nvault_file), "gozm_hats")
     g_nvault_handle = nvault_open(nvault_file)
     if (g_nvault_handle == INVALID_HANDLE)
         set_fail_state("[%s]: Error opening nvault file '%s'", PLUG_TAG, nvault_file)
@@ -82,7 +83,7 @@ public client_putinserver(id)
 
         if (nvault_lookup(g_nvault_handle, name, model, charsmax(model), ts))
         {
-            static index 
+            static index
             index = index_of_model(model, HATMDL)
 
             if (index != -1)
@@ -131,7 +132,7 @@ public check_access(id)
 
         if (nvault_lookup(g_nvault_handle, name, model, charsmax(model), ts))
         {
-            static index 
+            static index
             index = index_of_model(model, HATMDL)
 
             if (index != -1)
@@ -213,7 +214,7 @@ public hats_menu_handler(id, menu, item)
     )
     menu_destroy(menu)
 
-    static hat_id 
+    static hat_id
     hat_id = str_to_num(s_hat_num)
     set_hat(id, hat_id, 0)
 
@@ -281,12 +282,13 @@ read_hats_from_file(hat_file[])
 {
     if (file_exists(hat_file))
     {
-        HATMDL[0] = ""
-        HATNAME[0] = "[ Снять шапку ]"
+        copy(HATMDL[0], charsmax(HATMDL[]), "")
+        copy(HATNAME[0], charsmax(HATNAME[]), "[ Снять шапку ]")
+
         g_total_hats = 1
         static line[128]
 
-        static file 
+        static file
         file = fopen(hat_file, "rt")
         while (file && !feof(file))
         {
@@ -297,7 +299,7 @@ read_hats_from_file(hat_file[])
                 continue
 
             // break it up
-            parse(line, HATMDL[g_total_hats], 25, HATNAME[g_total_hats], 25)
+            parse(line, HATMDL[g_total_hats], charsmax(HATMDL[]), HATNAME[g_total_hats], charsmax(HATNAME[]))
 
             g_total_hats += 1
             if (g_total_hats >= MAX_HATS)
@@ -334,7 +336,8 @@ fm_set_entity_visibility(index, bool:visible)
 
 index_of_model(item[], array[][], size=sizeof(array))
 {
-    for (new i = 0; i < size; i++)
+    static i
+    for (i = 0; i < size; i++)
     {
         if (equal(array[i], item))
         {

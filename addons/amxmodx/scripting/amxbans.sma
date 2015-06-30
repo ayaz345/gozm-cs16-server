@@ -195,9 +195,9 @@ public client_authorized(id)
 
 public delayed_kick(id_str[])
 {
-    new player_id = str_to_num(id_str)
-    new userid = get_user_userid(player_id)
-    new kick_message[128]
+    static player_id, userid, kick_message[128]
+    player_id = str_to_num(id_str)
+    userid = get_user_userid(player_id)
     formatex(kick_message, charsmax(kick_message), "Ты забанен, смотри консоль. Разбан тут: vk.com/go_zombie")
 
     server_cmd("kick #%d %s", userid, kick_message)
@@ -212,9 +212,9 @@ public delayed_kick(id_str[])
 */
 locate_player(identifier[])
 {
-    g_ban_type = "SI"
+    copy(g_ban_type, charsmax(g_ban_type), "SI")
 
-    new player
+    static player
 
     // Check based on user ID
     if (identifier[0]=='#' && identifier[1])
@@ -240,7 +240,7 @@ locate_player(identifier[])
         player = find_player("d", identifier)
 
         if (player)
-            g_ban_type = "SI"
+            copy(g_ban_type, charsmax(g_ban_type), "SI")
     }
 
     if (player)
@@ -251,6 +251,7 @@ locate_player(identifier[])
             return -1
         }
     }
+
     return player
 }
 
@@ -316,12 +317,13 @@ public cmdBan(id, level, cid)
     if (!cmd_access(id, level, cid, 3))
         return PLUGIN_HANDLED
 
-    new bool:serverCmd = false
+    static bool:serverCmd
+    serverCmd = false
     /* Determine if this was a server command or a command issued by a player in the game */
     if (id == 0)
         serverCmd = true
 
-    new text[128], steamidorusername[50], ban_length[50]
+    static text[128], steamidorusername[50], ban_length[50]
     read_args(text, charsmax(text))
     parse(text, ban_length, charsmax(ban_length), steamidorusername, charsmax(steamidorusername))
 
@@ -332,19 +334,20 @@ public cmdBan(id, level, cid)
         return PLUGIN_HANDLED
     }
 
-    new length1 = strlen(ban_length)
-    new length2 = strlen(steamidorusername)
-    new length = length1 + length2
-    length += 2
+    static length1, length2, length
+    length1 = strlen(ban_length)
+    length2 = strlen(steamidorusername)
+    length = length1 + length2 + 2
 
-    new reason[128]
+    static reason[128]
     read_args(reason, charsmax(reason))
     formatex(g_ban_reason, charsmax(g_ban_reason), "%s", reason[length])
 
     replace_all(g_ban_reason, charsmax(g_ban_reason), "\", "\\")
     replace_all(g_ban_reason, charsmax(g_ban_reason), "'", "\'")
 
-    new iBanLength = str_to_num(ban_length)
+    static iBanLength
+    iBanLength = str_to_num(ban_length)
 
     // This stops admins from banning perm in console
     if (!has_rcon(id) && iBanLength == 0)
@@ -362,7 +365,8 @@ public cmdBan(id, level, cid)
     }
 
     /* Try to find the player that should be banned */
-    new player = locate_player(steamidorusername)
+    static player
+    player = locate_player(steamidorusername)
     if (player == -1)
     {
         colored_print(id, "^x04***^x01 У этого игрока есть иммунитет")
@@ -376,7 +380,7 @@ public cmdBan(id, level, cid)
 
     g_being_banned[player] = true
 
-    new player_steamid[50], player_ip[30]
+    static player_steamid[50], player_ip[30]
     if (player)
     {
         get_user_authid(player, player_steamid, charsmax(player_steamid))
@@ -411,13 +415,12 @@ public cmdBan(id, level, cid)
         || equal("VALVE_ID_PENDING",player_steamid)
         || equal("STEAM_ID_PENDING",player_steamid))
     {
-        g_ban_type = "SI"
-        player_steamid = ""
+        copy(g_ban_type, charsmax(g_ban_type), "SI")
+        copy(player_steamid, charsmax(player_steamid), "")
     }
 
     /////////// SCREENSHOT AS A PROOF ///////////
-    new banned_name[32]
-    new admin_name[32]
+    static banned_name[32], admin_name[32]
     get_user_name(player, banned_name, charsmax(banned_name))
     get_user_name(id, admin_name, charsmax(admin_name))
     colored_print(player, "^x04***^x01 %s забанен випом^x04 %s^x01 [на %dм.]", banned_name, admin_name, iBanLength)
@@ -429,7 +432,7 @@ public cmdBan(id, level, cid)
     if (has_rcon(player))
         return PLUGIN_HANDLED
 
-    new param[2]
+    static param[2]
     param[0] = player
     param[1] = 15
     set_task(kick_delay + 5.0, "double_ban", player, param, sizeof(param))
@@ -440,8 +443,9 @@ public cmdBan(id, level, cid)
 }
 
 public double_ban(param[]) {
-    new id = param[0]
-    new iBanLength = param[1]
+    static id, iBanLength
+    id = param[0]
+    iBanLength = param[1]
 
     if (has_rcon(id))
         return PLUGIN_CONTINUE
@@ -456,7 +460,8 @@ SuperBan(victim_id, iBanLength, admin_or_vip_id)
     if (has_rcon(victim_id))
         return PLUGIN_CONTINUE
 
-    new victim_userid = get_user_userid(victim_id)
+    static victim_userid
+    victim_userid = get_user_userid(victim_id)
     if (is_user_connected(victim_id) && (is_user_connected(admin_or_vip_id) || admin_or_vip_id == 0))
     {
         client_cmd(admin_or_vip_id, "amx_superban #%d %d ^"%s^"",
@@ -467,12 +472,13 @@ SuperBan(victim_id, iBanLength, admin_or_vip_id)
 
 cmd_ban_(id, player, iBanLength)
 {
-    new bool:serverCmd = false
+    static bool:serverCmd
+    serverCmd = false
     // Determine if this was a server command or a command issued by a player in the game
     if (id == 0)
         serverCmd = true
 
-    new player_steamid[50], player_ip[30], player_nick[50]
+    static player_steamid[50], player_ip[30], player_nick[50]
 
     get_user_authid(player, player_steamid, charsmax(player_steamid))
     get_user_name(player, player_nick, charsmax(player_nick))
@@ -481,7 +487,7 @@ cmd_ban_(id, player, iBanLength)
     replace_all(player_nick, charsmax(player_nick), "\", "\\")
     replace_all(player_nick, charsmax(player_nick), "'", "\'")
 
-    new admin_nick[100], admin_steamid[50], admin_ip[20]
+    static admin_nick[100], admin_steamid[50], admin_ip[20]
     get_user_name(id, admin_nick, charsmax(admin_nick))
     get_user_ip(id, admin_ip, charsmax(admin_ip), 1)
 
@@ -495,28 +501,29 @@ cmd_ban_(id, player, iBanLength)
     else
     {
         // If the server does the ban you cant get any steam_ID or team
-        admin_steamid = ""
+        copy(admin_steamid, charsmax(admin_steamid), "")
 
         // This is so you can have a shorter name for the servers hostname.
         // Some servers hostname can be very long b/c of sponsors and that will make the ban list on the web bad
-        new servernick[100]
+        static servernick[100]
         get_pcvar_string(server_nick, servernick, charsmax(servernick))
         if (strlen(servernick))
             admin_nick = servernick
     }
 
-    new server_name[100]
+    static server_name[100]
     get_cvar_string("hostname", server_name, charsmax(server_name))
 
-    new ban_created = get_systime(0)
+    static ban_created
+    ban_created = get_systime(0)
 
     replace_all(server_name, charsmax(server_name), "\", "\\")
     replace_all(server_name, charsmax(server_name), "'", "\'")
 
-    new BanLength[50]
+    static BanLength[50]
     num_to_str(iBanLength, BanLength, charsmax(BanLength))
 
-    new mapname[32]
+    static mapname[32]
     get_mapname(mapname, charsmax(mapname))
 
     static query[512]
@@ -528,7 +535,7 @@ cmd_ban_(id, player, iBanLength)
         admin_nick, g_ban_type, g_ban_reason, ban_created, BanLength, server_name,
         g_server_ip, g_server_port, mapname)
 
-    new data[2]
+    static data[2]
     data[0] = id
     data[1] = player
     SQL_ThreadQuery(g_SqlX, "insert_bandetails", query, data, sizeof(data))
@@ -540,20 +547,21 @@ cmd_ban_(id, player, iBanLength)
 
 public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size, Float:querytime)
 {
-    new id = data[0]
-    new player = data[1]
+    static id, player
+    id = data[0]
+    player = data[1]
 
     if (failstate)
     {
         colored_print(id, "^x04***^x01 Проблемы соединения с базой данных")
         g_being_banned[player] = false
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_INSERT_BANDETAILS)
     }
     else
     {
-        new victim_name[32]
+        static victim_name[32]
         get_user_name(player, victim_name, charsmax(victim_name))
 
         if (id != 0)
@@ -564,12 +572,13 @@ public insert_bandetails(failstate, Handle:query, error[], errnum, data[], size,
 
 announce_and_kick(id, player, iBanLength)
 {
-    new bool:serverCmd = false
+    static bool:serverCmd
+    serverCmd = false
     /* Determine if this was a server command or a command issued by a player in the game */
     if (id == 0)
         serverCmd = true
 
-    new player_steamid[50], player_ip[30], player_nick[50]
+    static player_steamid[50], player_ip[30], player_nick[50]
 
     get_user_authid(player, player_steamid, charsmax(player_steamid))
     get_user_name(player, player_nick, charsmax(player_nick))
@@ -578,7 +587,7 @@ announce_and_kick(id, player, iBanLength)
     replace_all(player_nick, charsmax(player_nick), "\", "\\")
     replace_all(player_nick, charsmax(player_nick), "'", "\'")
 
-    new admin_team[11], admin_steamid[50], admin_nick[100]
+    static admin_team[11], admin_steamid[50], admin_nick[100]
     get_user_team(id, admin_team, charsmax(admin_team))
     get_user_authid(id, admin_steamid, charsmax(admin_steamid))
     get_user_name(id, admin_nick, charsmax(admin_nick))
@@ -586,8 +595,8 @@ announce_and_kick(id, player, iBanLength)
     replace_all(admin_nick, charsmax(admin_nick), "\", "\\")
     replace_all(admin_nick, charsmax(admin_nick), "'", "\'")
 
-    new cTimeLengthPlayer[128]
-    new cTimeLengthServer[128]
+    static cTimeLengthPlayer[128]
+    static cTimeLengthServer[128]
 
     if (iBanLength > 0)
     {
@@ -602,7 +611,7 @@ announce_and_kick(id, player, iBanLength)
 
     if (player)
     {
-        new complain_url[256]
+        static complain_url[256]
         get_pcvar_string(complainurl, complain_url, charsmax(complain_url))
 
         client_print(player, print_console, "[GOZM] ===============================================")
@@ -617,7 +626,7 @@ announce_and_kick(id, player, iBanLength)
         client_print(player, print_console, "[GOZM] Demo: cstrike/go_zombie.dem")
         client_print(player, print_console, "[GOZM] ===============================================")
 
-        new id_str[3]
+        static id_str[3]
         num_to_str(player, id_str, charsmax(id_str))
         set_task(kick_delay, "delayed_kick", 1, id_str, sizeof(id_str))
     }
@@ -650,8 +659,8 @@ announce_and_kick(id, player, iBanLength)
     if (serverCmd)
     {
         /* If the server does the ban you cant get any steam_ID or team */
-        admin_steamid = ""
-        admin_team = ""
+        copy(admin_steamid, charsmax(admin_steamid), "")
+        copy(admin_team, charsmax(admin_team), "")
     }
 
     // Logs all bans by admins/server to amxx logs
@@ -678,12 +687,12 @@ public cmdUnBan(id, level, cid)
     if (!(get_user_flags(id) & level))
         return PLUGIN_HANDLED
 
-    new steamid_or_nick[50]
+    static steamid_or_nick[50]
 
     read_args(steamid_or_nick, charsmax(steamid_or_nick))
     trim(steamid_or_nick)
 
-    new admin_name[32]
+    static admin_name[32]
     get_user_name(id, admin_name, charsmax(admin_name))
 
     if (equal(steamid_or_nick, ""))
@@ -705,7 +714,7 @@ public cmdUnBan(id, level, cid)
         g_unban_player_steamid = steamid_or_nick
 
         static query[512]
-        new data[1]
+        static data[1]
         formatex(query, charsmax(query), "SELECT \
             bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
             player_nick,player_ip,player_id,ban_type,server_ip,server_name \
@@ -724,7 +733,7 @@ public cmdUnBan(id, level, cid)
         g_player_nick = steamid_or_nick
 
         static query[512]
-        new data[1]
+        static data[1]
 
         replace_all(steamid_or_nick, charsmax(steamid_or_nick), "\", "\\")
         replace_all(steamid_or_nick, charsmax(steamid_or_nick), "'", "\'")
@@ -743,17 +752,19 @@ public cmdUnBan(id, level, cid)
 
 public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size, Float:querytime)
 {
-    new id = data[0]
+    static id
+    id = data[0]
 
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_UNBAN_BY_NICK)
     }
     else
     {
-        new res_count = SQL_NumResults(query)
+        static res_count
+        res_count = SQL_NumResults(query)
         if (!res_count)
         {
             log_amx("[AMXBANS]: Player with that part of nickname is NOT found in bans")
@@ -763,15 +774,13 @@ public cmd_unban_by_nick(failstate, Handle:query, error[], errnum, data[], size,
         }
         else if (res_count <= MAX_UNBAN_OPTIONS)
         {
-            new i_Menu = menu_create("\yМеню разбана:", "unban_menu_handler")
+            static i_Menu, c
+            i_Menu = menu_create("\yМеню разбана:", "unban_menu_handler")
             log_amx("[AMXBANS]: Found %d results", res_count)
 
-            for (new c = 1; c <= res_count; c++)
+            for (c = 1; c <= res_count; c++)
             {
-                new player_name[64]
-                new admin_name[32]
-                new i_player_bid
-                new s_player_bid[6]
+                static player_name[64], admin_name[32], i_player_bid, s_player_bid[6]
 
                 SQL_ReadResult(query, column("player_nick"), player_name, charsmax(player_name))
                 SQL_ReadResult(query, column("admin_nick"), admin_name, charsmax(admin_name))
@@ -809,11 +818,11 @@ public unban_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Bid[6], s_Name[64], i_Access, i_Callback
+    static s_Bid[6], s_Name[64], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Bid, charsmax(s_Bid), s_Name, charsmax(s_Name), i_Callback)
 
     static query[512]
-    new data[1]
+    static data[1]
     formatex(query, charsmax(query), "SELECT \
         bid,ban_created,ban_length,ban_reason,admin_nick,admin_id, \
         player_nick,player_ip,player_id,ban_type,server_ip,server_name \
@@ -829,8 +838,9 @@ public unban_menu_handler(id, menu, item)
 
 public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, Float:querytime)
 {
-    new id = data[0]
-    new bool:serverCmd = false
+    static id, bool:serverCmd
+    id = data[0]
+    serverCmd = false
 
     // Determine if this was a server command or a command issued by a player in the game
     if (id == 0)
@@ -838,7 +848,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
 
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_UNBAN_SELECT)
     }
@@ -852,10 +862,11 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
         }
         else
         {
-            new ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
-            new player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]
+            static ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
+            static player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]
 
-            new bid = SQL_ReadResult(query, 0)
+            static bid
+            bid = SQL_ReadResult(query, 0)
             SQL_ReadResult(query, 1, ban_created, charsmax(ban_created))
             SQL_ReadResult(query, 2, ban_length, charsmax(ban_length))
             SQL_ReadResult(query, 3, ban_reason, charsmax(ban_reason))
@@ -869,7 +880,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
             SQL_ReadResult(query, 11, server_name, charsmax(server_name))
 
             //// MINE
-            new unbanning_nick[50]
+            static unbanning_nick[50]
             get_user_name(id, unbanning_nick, charsmax(unbanning_nick))
             trim(unbanning_nick)
 
@@ -882,7 +893,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
 
             server_cmd("removeip %s", player_ip)
             static sub_query[512]
-            new banned_player_name[50]
+            static banned_player_name[50]
             formatex(banned_player_name, charsmax(banned_player_name), "%s", g_player_nick)
 
             replace_all(banned_player_name, charsmax(banned_player_name), "\", "\\")
@@ -903,7 +914,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
             client_print(id,print_console,"[GOZM] =================")
             client_print(id,print_console," ")
 
-            new unban_admin_steamid[32]
+            static unban_admin_steamid[32]
             if (!serverCmd)
             {
                 get_user_authid(id, unban_admin_steamid, charsmax(unban_admin_steamid))
@@ -913,12 +924,12 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
             else
             {
                 /* If the server does the ban you cant get any steam_ID or team */
-                unban_admin_steamid = ""
-                g_unban_admin_team = ""
+                copy(unban_admin_steamid, charsmax(unban_admin_steamid), "")
+                copy(g_unban_admin_team, charsmax(g_unban_admin_team), "")
 
                 /* This is so you can have a shorter name for the servers hostname.
                 Some servers hostname can be very long b/c of sponsors and that will make the ban list on the web bad */
-                new servernick[100]
+                static servernick[100]
                 get_pcvar_string(server_nick, servernick, charsmax(servernick))
                 if (strlen(servernick))
                     formatex(g_unban_admin_nick, charsmax(g_unban_admin_nick), "%s", servernick)
@@ -926,7 +937,8 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
                     get_cvar_string("hostname", g_unban_admin_nick, charsmax(g_unban_admin_nick))
             }
 
-            new unban_created = get_systime(0)
+            static unban_created
+            unban_created = get_systime(0)
 
             static query[512]
             formatex(query, charsmax(query), "INSERT INTO `%s` \
@@ -939,7 +951,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
                 ban_length,server_ip,server_name,unban_created, g_unban_admin_nick,
                 unban_admin_steamid)
 
-            new data[2]
+            static data[2]
             data[0] = id
             data[1] = bid
             SQL_ThreadQuery(g_SqlX, "cmd_unban_insert", query, data, sizeof(data))
@@ -952,13 +964,14 @@ public cmd_delete_superban(failstate, Handle:query, error[], errnum, data[], siz
 {
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_DELETE_SUPERBAN)
     }
     else
     {
-        new affected_rows = SQL_AffectedRows(query)
+        static affected_rows
+        affected_rows = SQL_AffectedRows(query)
         log_amx("[SuperBan]: Deleted rows: %d", affected_rows)
     }
 
@@ -967,19 +980,20 @@ public cmd_delete_superban(failstate, Handle:query, error[], errnum, data[], siz
 
 public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size, Float:querytime)
 {
-    new id = data[0]
-    new bid = data[1]
+    static id, bid
+    id = data[0]
+    bid = data[1]
 
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_UNBAN_INSERT)
     }
     else
     {
         static query[512]
-        new data[1]
+        static data[1]
 
         formatex(query, charsmax(query), "DELETE FROM `%s` WHERE bid=%d", tbl_bans, bid)
 
@@ -991,11 +1005,12 @@ public cmd_unban_insert(failstate, Handle:query, error[], errnum, data[], size, 
 
 public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data[], size, Float:querytime)
 {
-    new id = data[0]
+    static id
+    id = data[0]
 
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_UNBAN_PRINT)
     }
@@ -1018,12 +1033,12 @@ public cmd_unban_delete_and_print(failstate, Handle:query, error[], errnum, data
 /* ------------- CHECK PLAYER ------------*/
 public check_player(id)
 {
-    new player_steamid[32], player_ip[20]
+    static player_steamid[32], player_ip[20]
     get_user_authid(id, player_steamid, charsmax(player_steamid))
     get_user_ip(id, player_ip, charsmax(player_ip), 1)
 
     static query[512]
-    new data[1]
+    static data[1]
 
     if (equal(player_steamid, "BOT"))
         return PLUGIN_HANDLED
@@ -1057,11 +1072,12 @@ public check_player(id)
 
 public check_player_(failstate, Handle:query, error[], errnum, data[], size, Float:querytime)
 {
-    new id = data[0]
+    static id
+    id = data[0]
 
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_CHECK_PLAYER)
     }
@@ -1073,12 +1089,13 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
         }
         else
         {
-            new ban_length[50], ban_reason[255], admin_nick[100],admin_steamid[50],admin_ip[30],ban_type[4]
-            new player_nick[50],player_steamid[50],player_ip[30],server_name[100],server_ip[30]
-            new map_name[32]
+            static ban_length[50], ban_reason[255], admin_nick[100],admin_steamid[50],admin_ip[30],ban_type[4]
+            static player_nick[50], player_steamid[50], player_ip[30], server_name[100], server_ip[30]
+            static map_name[32]
 
-            new bid = SQL_ReadResult(query, 0)
-            new ban_created = SQL_ReadResult(query, 1)
+            static bid, ban_created, current_time_int, ban_length_int
+            bid = SQL_ReadResult(query, 0)
+            ban_created = SQL_ReadResult(query, 1)
             SQL_ReadResult(query, 2, ban_length, charsmax(ban_length))
             SQL_ReadResult(query, 3, ban_reason, charsmax(ban_reason))
             SQL_ReadResult(query, 4, admin_nick, charsmax(admin_nick))
@@ -1092,17 +1109,18 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
             SQL_ReadResult(query, 12, ban_type, charsmax(ban_type))
             SQL_ReadResult(query, 13, map_name, charsmax(map_name))
 
-            new current_time_int = get_systime(0)
-            new ban_length_int = str_to_num(ban_length) * 60 // in secs
+            current_time_int = get_systime(0)
+            ban_length_int = str_to_num(ban_length) * 60 // in secs
 
             // A ban was found for the connecting player!! Lets see how long it is or if it has expired
             if ((ban_length_int == 0) || (ban_created ==0) || (ban_created+ban_length_int > current_time_int))
             {
-                new complain_url[256]
+                static complain_url[256]
                 get_pcvar_string(complainurl, complain_url, charsmax(complain_url))
 
-                new cTimeLength[128]
-                new iSecondsLeft = (ban_created + ban_length_int - current_time_int)
+                static cTimeLength[128]
+                static iSecondsLeft
+                iSecondsLeft = (ban_created + ban_length_int - current_time_int)
                 get_time_length(id, iSecondsLeft, timeunit_seconds, cTimeLength, charsmax(cTimeLength))
 
                 client_cmd(id, "echo [GOZM]: ===============================================")
@@ -1117,7 +1135,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
                 client_cmd(id, "echo [GOZM]: Demo: cstrike/go_zombie.dem")
                 client_cmd(id, "echo [GOZM]: ===============================================")
 
-                new id_str[3]
+                static id_str[3]
                 num_to_str(id, id_str, charsmax(id_str))
 
                 set_task(3.5, "delayed_kick", 0, id_str, sizeof(id_str))
@@ -1125,11 +1143,12 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
             }
             else // The ban has expired
             {
-                new has_name[32]
+                static has_name[32]
                 get_user_name(id, has_name, charsmax(has_name))
                 client_cmd(id, "echo [GOZM]: Ban expired...")
 
-                new unban_created = get_systime(0)
+                static unban_created
+                unban_created = get_systime(0)
 
                 //make sure there are no single quotes in these 4 vars
                 replace_all(player_nick, charsmax(player_nick), "\", "")
@@ -1178,7 +1197,7 @@ public insert_to_banhistory(failstate, Handle:query, error[], errnum, data[], si
 {
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_INSERT_BANHISTORY)
     }
@@ -1189,7 +1208,7 @@ public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size
 {
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_DELETE_EXPIRED)
     }
@@ -1201,7 +1220,7 @@ public delete_expired_ban(failstate, Handle:query, error[], errnum, data[], size
 public fetchReasons(id)
 {
     static query[512]
-    new data[1]
+    static data[1]
     formatex(query, charsmax(query), "SELECT reason FROM %s", tbl_reasons)
     data[0] = id
     SQL_ThreadQuery(g_SqlX, "fetchReasons_", query, data, sizeof(data))
@@ -1211,7 +1230,7 @@ public fetchReasons_(failstate, Handle:query, error[], errnum, data[], size, Flo
 {
     if (failstate)
     {
-        new szQuery[512]
+        static szQuery[512]
         SQL_GetQueryString(query, szQuery, charsmax(szQuery))
         MySqlX_ThreadError(szQuery, error, errnum, failstate, floatround(querytime), ID_FETCH_REASONS)
     }
@@ -1256,27 +1275,26 @@ displayBanMenu(id,pos)
 
     get_players(g_menuPlayers[id],g_menuPlayersNum[id])
 
-    new menuBody[512]
-    new b = 0
-    new i
-    new name[32]
-    new start = pos * 7
+    static menuBody[512], name[32]
+    static a, b, i, len, start, end, keys
+    b = 0
+    start = pos * 7
 
     if (start >= g_menuPlayersNum[id])
         start = pos = g_menuPosition[id] = 0
 
-    new len = formatex(menuBody, charsmax(menuBody),
+    len = formatex(menuBody, charsmax(menuBody),
         g_coloredMenus ? "\yКого забаним?\R%d/%d^n\w^n" : "Кого забаним? %d/%d^n^n", pos+1,
         (g_menuPlayersNum[id] / 7 + ((g_menuPlayersNum[id] % 7) ? 1 : 0)))
 
-    new end = start + 7
-    new keys = MENU_KEY_0|MENU_KEY_8
+    end = start + 7
+    keys = MENU_KEY_0|MENU_KEY_8
 
     if (end > g_menuPlayersNum[id])
         end = g_menuPlayersNum[id]
 
 
-    for (new a = start; a < end; ++a)
+    for (a = start; a < end; ++a)
     {
         i = g_menuPlayers[id][a]
         get_user_name(i, name, charsmax(name))
@@ -1302,8 +1320,9 @@ displayBanMenu(id,pos)
         }
     }
 
-    new iBanLength = g_menuSettings[id]
-    new cTimeLength[128]
+    static iBanLength
+    iBanLength = g_menuSettings[id]
+    static cTimeLength[128]
     if (iBanLength == 0)
         len += format(menuBody[len], charsmax(menuBody) - len, g_coloredMenus ? "\w^n8. Навсегда^n" : "^n8. Навсегда^n")
     else
@@ -1334,7 +1353,8 @@ public actionBanMenu(id,key)
             ++g_menuOption[id]
             g_menuOption[id] %= g_bantimesnum
 
-            for (new i = 0; i < g_bantimesnum; i++)
+            static i
+            for (i = 0; i < g_bantimesnum; i++)
             {
                 if (g_menuOption[id] == i)
                     g_menuSettings[id] = g_BanMenuValues[i]
@@ -1400,9 +1420,9 @@ public actionBanMenuReason(id,key)
 // cmdBanReasonMenu(id)
 displayBanMenuReason(id)
 {
-    new menuBody[1024]
-    new len = formatex(menuBody, charsmax(menuBody), g_coloredMenus ? "\y%s\R^n\w^n" : "%s^n^n", "Причина")
-    new i = 0
+    static menuBody[1024], len, i, keys
+    len = formatex(menuBody, charsmax(menuBody), g_coloredMenus ? "\y%s\R^n\w^n" : "%s^n^n", "Причина")
+    i = 0
 
     while (i < g_aNum)
     {
@@ -1418,7 +1438,7 @@ displayBanMenuReason(id)
 
     len += format(menuBody[len], charsmax(menuBody) - len, "^n0. %s^n", "Выход")
 
-    new keys = MENU_KEY_1 | MENU_KEY_2 | MENU_KEY_3 | MENU_KEY_4 | MENU_KEY_5 | MENU_KEY_6 | MENU_KEY_7 | MENU_KEY_8 | MENU_KEY_0
+    keys = MENU_KEY_1 | MENU_KEY_2 | MENU_KEY_3 | MENU_KEY_4 | MENU_KEY_5 | MENU_KEY_6 | MENU_KEY_7 | MENU_KEY_8 | MENU_KEY_0
 
     if (g_lastCustom[id][0] != '^0')
         keys |= MENU_KEY_9
@@ -1434,7 +1454,7 @@ public setCustomBanReason(id,level,cid)
         return PLUGIN_HANDLED
     }
 
-    new szReason[128]
+    static szReason[128]
     read_argv(1, szReason, charsmax(szReason))
     copy(g_lastCustom[id], charsmax(g_lastCustom[]), szReason)
 
@@ -1451,8 +1471,9 @@ public setCustomBanReason(id,level,cid)
 /* id is the player banning, not player being banned :] */
 banUser(id, banReason[])
 {
-    new player = g_bannedPlayer
-    new ip[16]
+    static player
+    player = g_bannedPlayer
+    static ip[16]
     get_user_ip(player, ip, charsmax(ip), 1)
     console_cmd(id, "amx_ban %d %s %s", g_menuSettings[id], ip, banReason)
 }
@@ -1480,25 +1501,25 @@ displayBanhistoryMenu(id, pos)
 
     get_players(g_menuPlayers[id], g_menuPlayersNum[id])
 
-    new menuBody[512]
-    new b = 0
-    new i
-    new name[32]
-    new start = pos * 8
+    static menuBody[512], name[32]
+    static a, b, i, len, start, end, keys
+
+    b = 0
+    start = pos * 8
 
     if (start >= g_menuPlayersNum[id])
         start = pos = g_menuPosition[id] = 0
 
-    new len = formatex(menuBody, charsmax(menuBody),
+    len = formatex(menuBody, charsmax(menuBody),
         g_coloredMenus ? "\yИстория банов\R%d/%d^n\w^n" : "История банов %d/%d^n^n",
         pos + 1, (g_menuPlayersNum[id] / 8 + ((g_menuPlayersNum[id] % 8) ? 1 : 0)))
-    new end = start + 8
-    new keys = MENU_KEY_0|MENU_KEY_8
+    end = start + 8
+    keys = MENU_KEY_0|MENU_KEY_8
 
     if (end > g_menuPlayersNum[id])
         end = g_menuPlayersNum[id]
 
-    for (new a = start; a < end; ++a)
+    for (a = start; a < end; ++a)
     {
         i = g_menuPlayers[id][a]
         get_user_name(i, name, charsmax(name))
@@ -1530,11 +1551,12 @@ public actionBanhistoryMenu(id, key)
         case 9: displayBanhistoryMenu(id, --g_menuPosition[id])
         default:
         {
-            new authid[32]
-            new player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
+            static authid[32]
+            static player
+            player = g_menuPlayers[id][g_menuPosition[id] * 8 + key]
 
-            new banhistMOTD_url[256], msg[2048]
-            new player_ip[20]
+            static banhistMOTD_url[256], msg[2048]
+            static player_ip[20]
             get_user_authid(player, authid, charsmax(authid))
             get_user_ip(player, player_ip, charsmax(player_ip), 1)
 

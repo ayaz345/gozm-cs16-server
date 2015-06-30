@@ -37,10 +37,10 @@ public plugin_init()
 
 public clean_next_file()
 {
-    new next_log_file_path[64]
-    new next_log_file[12]  // for logging
-    new s_cur_date[3]
-    new i_next_date
+    static next_log_file_path[64]
+    static next_log_file[12]  // for logging
+    static s_cur_date[3]
+    static i_next_date
 
     get_time("%d", s_cur_date, charsmax(s_cur_date))
     i_next_date = str_to_num(s_cur_date) + 1
@@ -61,20 +61,23 @@ public clean_next_file()
 
 public col_changer(msg_id, msg_dest, rcvr)
 {
-    new str2[26]
+    static str2[26]
     get_msg_arg_string(2, str2, charsmax(str2))
     if (equal(str2, "#Cstrike_Chat", 13))
     {
-        new str3[22]
+        static str3[22]
         get_msg_arg_string(3, str3, charsmax(str3))
 
         if (!strlen(str3))
         {
-            new str4[101]
+            static str4[101]
             get_msg_arg_string(4, str4, charsmax(str4))
             trim(str4)
-            new sndr = get_msg_arg_int(1)
-            new bool:same_as_last = bool:(
+
+            static sndr, bool:same_as_last
+
+            sndr = get_msg_arg_int(1)
+            same_as_last = bool:(
                 alv_sndr == sndr &&
                 equal(alv_str2, str2) &&
                 equal(alv_str4, str4)
@@ -82,11 +85,12 @@ public col_changer(msg_id, msg_dest, rcvr)
 
             if (!same_as_last)
             {
-                new players[32], num
+                static players[32], num
                 get_players(players, num)
                 buildmsg(sndr, 0, 2, str4)
 
-                for(new i = 0; i < num; i++)
+                static i
+                for(i = 0; i < num; i++)
                 {
                     if(is_user_connected(players[i]))
                     {
@@ -101,9 +105,11 @@ public col_changer(msg_id, msg_dest, rcvr)
                 }
 
                 alv_sndr = sndr
-                alv_str2 = str2
-                alv_str4 = str4
-                if (task_exists(TASKID_CLEAN)) remove_task(TASKID_CLEAN)
+                copy(alv_str2, charsmax(alv_str2), str2)
+                copy(alv_str4, charsmax(alv_str4), str4)
+
+                if (task_exists(TASKID_CLEAN))
+                    remove_task(TASKID_CLEAN)
                 set_task(0.1, "task_clear_antiloop_vars", TASKID_CLEAN)
             }
         }
@@ -114,7 +120,7 @@ public col_changer(msg_id, msg_dest, rcvr)
 
 buildmsg(sndr, namecol, msgcol, str4[])
 {
-    new sndr_name[32]
+    static sndr_name[32]
     get_user_name(sndr, sndr_name, charsmax(sndr_name))
 
     format(g_msg, charsmax(g_msg), "%s%s :  %s%s",
@@ -123,8 +129,8 @@ buildmsg(sndr, namecol, msgcol, str4[])
     format(g_duplicate_msg, charsmax(g_duplicate_msg), "%s : %s", sndr_name, str4)
 
     // FOR LOGGING
-    new cur_date[3], logfile[13]
-    new log_path[64]
+    static cur_date[3], logfile[13]
+    static log_path[64]
 
     get_time("%d", cur_date, charsmax(cur_date))
     formatex(logfile, charsmax(logfile), "chat_%s.log", cur_date)
@@ -137,7 +143,8 @@ buildmsg(sndr, namecol, msgcol, str4[])
 public task_clear_antiloop_vars()
 {
     alv_sndr = 0
-    alv_str2 = ""
-    alv_str4 = ""
+    copy(alv_str2, charsmax(alv_str2), "")
+    copy(alv_str4, charsmax(alv_str4), "")
+
     return PLUGIN_HANDLED
 }

@@ -5,14 +5,14 @@
 #include <colored_print>
 #include <gozm>
 
-#define CHECK_FREQ		5
+#define CHECK_FREQ      5
 
-#define TEAM_T 		    1
-#define TEAM_CT 		2
+#define TEAM_T          1
+#define TEAM_CT         2
 
-#define EVENT_JOIN 		1
-#define EVENT_SPEC 		2
-#define EVENT_AFK  		4
+#define EVENT_JOIN      1
+#define EVENT_SPEC      2
+#define EVENT_AFK       4
 
 new g_playerJoined[MAX_PLAYERS], g_playerSpawned[MAX_PLAYERS]
 new g_timeJoin[MAX_PLAYERS], g_timeSpec[MAX_PLAYERS],
@@ -37,21 +37,21 @@ public plugin_init()
     register_logevent("event_round_start", 2, "0=World triggered", "1=Round_Start")
     register_logevent("event_round_end", 2, "0=World triggered", "1=Round_End")
 
-    g_cvar_joinMinPlayers	= register_cvar("pbk_join_min_players", "4")
-    g_cvar_joinTime			= register_cvar("pbk_join_time", "120")
-    g_cvar_joinImmunity		= register_cvar("pbk_join_immunity_flags", "")
+    g_cvar_joinMinPlayers   = register_cvar("pbk_join_min_players", "4")
+    g_cvar_joinTime         = register_cvar("pbk_join_time", "120")
+    g_cvar_joinImmunity     = register_cvar("pbk_join_immunity_flags", "")
 
-    g_cvar_specMinPlayers	= register_cvar("pbk_spec_min_players", "4")
-    g_cvar_specTime			= register_cvar("pbk_spec_time", "120")
-    g_cvar_specImmunity		= register_cvar("pbk_spec_immunity_flags", "")
-    g_cvar_specQuery		= register_cvar("pbk_spec_query", "0")
+    g_cvar_specMinPlayers   = register_cvar("pbk_spec_min_players", "4")
+    g_cvar_specTime         = register_cvar("pbk_spec_time", "120")
+    g_cvar_specImmunity     = register_cvar("pbk_spec_immunity_flags", "")
+    g_cvar_specQuery        = register_cvar("pbk_spec_query", "0")
 
-    g_cvar_afkMinPlayers	= register_cvar("pbk_afk_min_players", "4")
-    g_cvar_afkTime			= register_cvar("pbk_afk_time", "90")
-    g_cvar_afkImmunity		= register_cvar("pbk_afk_immunity_flags", "")
+    g_cvar_afkMinPlayers    = register_cvar("pbk_afk_min_players", "4")
+    g_cvar_afkTime          = register_cvar("pbk_afk_time", "90")
+    g_cvar_afkImmunity      = register_cvar("pbk_afk_immunity_flags", "")
 
-    g_cvar_kick2ip			= register_cvar("pbk_kick2_ip", "")
-    g_cvar_kick2port		= register_cvar("pbk_kick2_port", "27015")
+    g_cvar_kick2ip          = register_cvar("pbk_kick2_ip", "")
+    g_cvar_kick2port        = register_cvar("pbk_kick2_port", "27015")
 }
 
 public plugin_cfg()
@@ -72,8 +72,8 @@ public fm_playerPostThink(id)
 {
     if (!g_playerJoined[id])
     {
-        new team[2]
-        new teamID = get_user_team(id, team, 1)
+        static team[2], teamID
+        teamID = get_user_team(id, team, charsmax(team))
         if (teamID == TEAM_T || teamID == TEAM_CT || team[0] == 'S')
             g_playerJoined[id] = true
     }
@@ -111,20 +111,22 @@ public event_round_start()
 
 public check_players()
 {
-    new playerCnt = get_playersnum()
-    new team[2], eventType
+    static team[2], eventType, playerCnt
+    static bool:checkJoinStatus, bool:checkSpecStatus, bool:checkAFKStatus
 
-    new bool:checkJoinStatus =
+    playerCnt = get_playersnum()
+
+    checkJoinStatus =
         (get_pcvar_num(g_cvar_joinTime) && playerCnt >= get_pcvar_num(g_cvar_joinMinPlayers))
-    new bool:checkSpecStatus =
+    checkSpecStatus =
         (get_pcvar_num(g_cvar_specTime) && playerCnt >= get_pcvar_num(g_cvar_specMinPlayers))
-    new bool:checkAFKStatus  =
+    checkAFKStatus  =
         (get_pcvar_num(g_cvar_afkTime)  && playerCnt >= get_pcvar_num(g_cvar_afkMinPlayers) && g_roundInProgress)
 
-    new players[32], id
+    static players[32], id, playerIdx
     get_players(players, playerCnt)
 
-    for (new playerIdx = 0; playerIdx < playerCnt; playerIdx++)
+    for (playerIdx = 0; playerIdx < playerCnt; playerIdx++)
     {
         id = players[playerIdx]
 
@@ -159,7 +161,8 @@ public check_players()
 
 determine_spec_time_elapsed(id)
 {
-    new timeElapsed = 0
+    static timeElapsed
+    timeElapsed = 0
 
     if (get_pcvar_num(g_cvar_specQuery))
     {
@@ -181,7 +184,7 @@ determine_spec_time_elapsed(id)
 
 handle_time_elapsed(id, eventType)
 {
-    new maxSeconds, elapsedSeconds, eventImmunity
+    static maxSeconds, elapsedSeconds, eventImmunity
     if (eventType == EVENT_JOIN)
     {
         maxSeconds = get_pcvar_num(g_cvar_joinTime)
@@ -210,7 +213,7 @@ handle_time_elapsed(id, eventType)
             return;
 
         // get the correct message formats for this event type
-        new msgReason[64], msgAnnounce[64]
+        static msgReason[64], msgAnnounce[64]
         switch (eventType)
         {
             case EVENT_JOIN:
@@ -230,7 +233,7 @@ handle_time_elapsed(id, eventType)
             }
         }
 
-        new kick2ip[32];
+        static kick2ip[32];
         get_pcvar_string(g_cvar_kick2ip, kick2ip, charsmax(kick2ip))
 
         if (kick2ip[0] == 0)
@@ -241,23 +244,23 @@ handle_time_elapsed(id, eventType)
         else
         {
             // kick the player into another server
-            new kick2port[16]
+            static kick2port[16]
             get_pcvar_string(g_cvar_kick2port, kick2port, charsmax(kick2port))
 
             client_cmd(id, "Connect %s:%s", kick2ip, kick2port)
         }
 
         // log the kick
-        new logText[128]
-        format(logText, charsmax(logText), "%s", msgAnnounce)
+        static logText[128], name[32]
+        formatex(logText, charsmax(logText), "%s", msgAnnounce)
         trim(logText)
-        new name[32]
         get_user_name(id, name, charsmax(name))
         log_amx("[PBK]: ^"%s^" %s", name, logText)
     }
     else if (0 < elapsedSeconds > maxSeconds - 3*CHECK_FREQ)
     {
-        new time_left = elapsedSeconds > maxSeconds - 2*CHECK_FREQ ? CHECK_FREQ : 2*CHECK_FREQ
+        static time_left
+        time_left = elapsedSeconds > maxSeconds - 2*CHECK_FREQ ? CHECK_FREQ : 2*CHECK_FREQ
         switch (eventType)
         {
             case EVENT_JOIN:

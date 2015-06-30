@@ -9,11 +9,11 @@ public plugin_init()
 
 public client_connect(id)
 {
-    new inf[32]
+    static inf[32]
     get_user_info(id, "_ip", inf, 31)
     if(strlen(inf))
     {
-        new name[32], steam[32], ip[16]
+        static name[32], steam[32], ip[16]
         get_user_name(id, name, charsmax(name))
         get_user_authid(id, steam, charsmax(steam))
         get_user_ip(id, ip, charsmax(ip), 1)

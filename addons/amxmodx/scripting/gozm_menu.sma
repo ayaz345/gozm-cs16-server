@@ -49,7 +49,8 @@ public mainMenu(id, page)
     if (pev_valid(id) == PDATA_SAFE)
         set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
-    new i_Menu = menu_create("\yGoZm Меню:", "menu_handler" )
+    static i_Menu
+    i_Menu = menu_create("\yGoZm Меню:", "menu_handler" )
 
     menu_additem(i_Menu, "Выбрать оружие", "1")
     menu_additem(i_Menu, "Выбрать карту", "2")
@@ -88,11 +89,12 @@ public menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Data[6], s_Name[64], i_Access, i_Callback
+    static s_Data[6], s_Name[64], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Data, charsmax(s_Data), s_Name, charsmax(s_Name), i_Callback)
     menu_destroy(menu)
 
-    new i_Key = str_to_num(s_Data)
+    static i_Key
+    i_Key = str_to_num(s_Data)
 
     switch(i_Key)
     {
@@ -141,7 +143,7 @@ public menu_handler(id, menu, item)
 
 allow_join_spec(id)
 {
-    new specs[32], specsnum
+    static specs[32], specsnum
     get_players(specs, specsnum, "e", "SPECTATOR")
     if (specsnum > 1 && !(has_vip(id) || has_admin(id)))
     {
@@ -225,7 +227,8 @@ public task_newround()
     static old_menu, new_menu, menupage
     get_players(players, num)
 
-    for (new i = 0; i < num; i++)
+    static i
+    for (i = 0; i < num; i++)
     {
         id = players[i]
         player_menu_info(id, old_menu, new_menu, menupage)

@@ -11,7 +11,7 @@ public plugin_init()
 
 public cmd_hook_say(id)
 {
-    new chat_msg[64]
+    static chat_msg[64]
     read_args(chat_msg, charsmax(chat_msg))
     remove_quotes(chat_msg)
 

@@ -7,47 +7,47 @@ new const PLUGIN_VERSION[]  = "1.1 $Revision: 290 $"; // $Date: 2009-02-26 11:20
 
 #pragma semicolon 1
 
-#define TASKID_EMPTYSERVER				98176977
-#define TASKID_REMINDER					52691153
+#define TASKID_EMPTYSERVER              98176977
+#define TASKID_REMINDER                 52691153
 
-#define RTV_CMD_STANDARD				1
-#define RTV_CMD_SHORTHAND				2
-#define RTV_CMD_DYNAMIC					4
+#define RTV_CMD_STANDARD                1
+#define RTV_CMD_SHORTHAND               2
+#define RTV_CMD_DYNAMIC                 4
 
-#define SOUND_GETREADYTOCHOOSE			1
-#define SOUND_COUNTDOWN					2
-#define SOUND_TIMETOCHOOSE				4
-#define SOUND_RUNOFFREQUIRED			8
+#define SOUND_GETREADYTOCHOOSE          1
+#define SOUND_COUNTDOWN                 2
+#define SOUND_TIMETOCHOOSE              4
+#define SOUND_RUNOFFREQUIRED            8
 
-#define SHOWSTATUS_VOTE					1
+#define SHOWSTATUS_VOTE                 1
 
-#define SHOWSTATUSTYPE_PERCENTAGE		2
+#define SHOWSTATUSTYPE_PERCENTAGE       2
 
-#define MAX_NOMINATION_CNT				5
+#define MAX_NOMINATION_CNT              5
 
-#define MAX_PREFIX_CNT					32
-#define MAX_RECENT_MAP_CNT				16
+#define MAX_PREFIX_CNT                  32
+#define MAX_RECENT_MAP_CNT              16
 
-#define MAX_PLAYER_CNT					32
-#define MAX_MAPNAME_LEN					31
-#define MAX_MAPS_IN_VOTE				8
-#define MAX_NOM_MATCH_CNT				1000
+#define MAX_PLAYER_CNT                  32
+#define MAX_MAPNAME_LEN                 31
+#define MAX_MAPS_IN_VOTE                8
+#define MAX_NOM_MATCH_CNT               1000
 
-#define VOTE_IN_PROGRESS				1
-#define VOTE_FORCED						2
-#define VOTE_IS_RUNOFF					4
-#define VOTE_IS_OVER					8
-#define VOTE_IS_EARLY					16
-#define VOTE_HAS_EXPIRED				32
+#define VOTE_IN_PROGRESS                1
+#define VOTE_FORCED                     2
+#define VOTE_IS_RUNOFF                  4
+#define VOTE_IS_OVER                    8
+#define VOTE_IS_EARLY                   16
+#define VOTE_HAS_EXPIRED                32
 
-#define SRV_START_CURRENTMAP			1
-#define SRV_START_NEXTMAP				2
-#define SRV_START_RANDOMMAP				4
+#define SRV_START_CURRENTMAP            1
+#define SRV_START_NEXTMAP               2
+#define SRV_START_RANDOMMAP             4
 
-#define LISTMAPS_USERID					0
-#define LISTMAPS_LAST					1
+#define LISTMAPS_USERID                 0
+#define LISTMAPS_LAST                   1
 
-#define TIMELIMIT_NOT_SET				-1.0
+#define TIMELIMIT_NOT_SET               -1.0
 
 new MENU_CHOOSEMAP[] = "gal_menuChooseMap";
 
@@ -147,13 +147,10 @@ public plugin_init()
     register_clcmd("say", "cmd_say", -1);
     register_clcmd("say_team", "cmd_say", -1);
     register_clcmd("say nextmap", "cmd_nextmap", 0, "- displays nextmap");
-    register_clcmd("say currentmap", "cmd_currentmap", 0, "- display current map");
     register_clcmd("say ff", "cmd_ff", 0, "- display friendly fire status");    // grrface
     register_clcmd("votemap", "cmd_HL1_votemap");
     register_clcmd("listmaps", "cmd_HL1_listmaps");
 
-    register_concmd("gal_startvote", "cmd_startVote", ADMIN_MAP);
-    register_concmd("gal_createmapfile", "cmd_createMapFile", OWNER_FLAG);
     register_concmd("recentmaps", "cmd_listrecent");
 
     register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
@@ -288,7 +285,7 @@ public vote_setupEnd()
 {
     g_originalTimelimit = get_cvar_float("mp_timelimit");
 
-    new nextMap[32];
+    static nextMap[32];
     if (get_pcvar_num(cvar_endOfMapVote))
     {
         formatex(nextMap, charsmax(nextMap), "%L", LANG_SERVER, "GAL_NEXTMAP_UNKNOWN");
@@ -310,8 +307,13 @@ public vote_setupEnd()
 
 map_getNext(Array:mapArray, currentMap[], nextMap[32])
 {
-    new thisMap[32], mapCnt = ArraySize(mapArray), nextmapIdx = 0, returnVal = -1;
-    for (new mapIdx = 0; mapIdx < mapCnt; mapIdx++)
+    static thisMap[32], mapCnt, nextmapIdx, returnVal, mapIdx;
+
+    mapCnt = ArraySize(mapArray);
+    nextmapIdx = 0;
+    returnVal = -1;
+
+    for (mapIdx = 0; mapIdx < mapCnt; mapIdx++)
     {
         ArrayGetString(mapArray, mapIdx, thisMap, charsmax(thisMap));
         if (equal(currentMap, thisMap))
@@ -398,10 +400,11 @@ map_setNext(nextMap[])
     set_cvar_string("amx_nextmap", nextMap);
 
     // update our data file
-    new filename[256];
+    static filename[256];
     formatex(filename, charsmax(filename), "%s/info.dat", DIR_DATA);
 
-    new file = fopen(filename, "wt");
+    static file;
+    file = fopen(filename, "wt");
     if (file)
     {
         fprintf(file, "%s", g_currentMap);
@@ -421,7 +424,8 @@ public vote_manageEnd()
         return;
     }
 
-    new secondsLeft = get_timeleft();
+    static secondsLeft;
+    secondsLeft = get_timeleft();
     // are we managing the end of the map?
     if (secondsLeft < 22 && !g_pauseMapEndManagerTask)
     {
@@ -497,15 +501,9 @@ public cmd_nominations(id)
 
 public cmd_nextmap(id)
 {
-    new map[32];
+    static map[32];
     get_cvar_string("amx_nextmap", map, charsmax(map));
     colored_print(0,"^x01Следующая карта ^x04%s^x01.", map);
-    return PLUGIN_CONTINUE;
-}
-
-public cmd_currentmap(id)
-{
-    client_print(0, print_chat, "%L: %s", LANG_PLAYER, "PLAYED_MAP", g_currentMap);
     return PLUGIN_CONTINUE;
 }
 
@@ -515,10 +513,11 @@ public cmd_listrecent(id)
     {
         case 1:
         {
-            new msg[101], msgIdx;
+            static msg[101], msgIdx, idx;
+            msgIdx = 0;
 
             console_print(id, "==== Недавние карты ====");
-            for (new idx = 0; idx < g_cntRecentMap; ++idx)
+            for (idx = 0; idx < g_cntRecentMap; ++idx)
             {
                 msgIdx += format(msg[msgIdx], charsmax(msg) - msgIdx, ", %s", g_recentMap[idx]);
                 console_print(id, "%s", g_recentMap[idx]);
@@ -527,44 +526,12 @@ public cmd_listrecent(id)
         }
         case 2:
         {
-            for (new idx = 0; idx < g_cntRecentMap; ++idx)
+            static idx;
+            for (idx = 0; idx < g_cntRecentMap; ++idx)
             {
                 client_print(id, print_chat, "%L (%i): %s", LANG_PLAYER, "GAL_MAP_RECENTMAP", idx+1, g_recentMap[idx]);
             }
         }
-    }
-
-    return PLUGIN_HANDLED;
-}
-
-public cmd_startVote(id, level, cid)
-{
-    if (!cmd_access(id, level, cid, 1))
-        return PLUGIN_HANDLED;
-
-    if (g_voteStatus & VOTE_IN_PROGRESS)
-    {
-        colored_print(id, "^x04***^x01 Голосование уже началось!");
-    }
-    else if (g_voteStatus & VOTE_IS_OVER)
-    {
-        colored_print(id, "^x04***^x01 Голосование истекло");
-    }
-    else
-    {
-        // we may not want to actually change the map after outcome of vote is determined
-        if (read_argc() == 2)
-        {
-            new arg[32];
-            read_args(arg, charsmax(arg));
-
-            if (equali(arg, "-nochange"))
-            {
-                g_handleMapChange = false;
-            }
-        }
-
-        vote_startDirector(true);
     }
 
     return PLUGIN_HANDLED;
@@ -576,14 +543,16 @@ map_populateList(Array:mapArray, mapFilename[])
     ArrayClear(mapArray);
 
     // load the array with maps
-    new mapCnt;
+    static mapCnt = 0;
+    mapCnt = 0;
 
     if (!equal(mapFilename, "*"))
     {
-        new file = fopen(mapFilename, "rt");
+        static file;
+        file = fopen(mapFilename, "rt");
         if (file)
         {
-            new buffer[32];
+            static buffer[32];
 
             while (!feof(file))
             {
@@ -606,12 +575,12 @@ map_populateList(Array:mapArray, mapFilename[])
     else
     {
         // no file provided, assuming contents of "maps" folder
-        new dir, mapName[32];
+        static dir, mapName[32];
         dir = open_dir("maps", mapName, charsmax(mapName));
 
         if (dir)
         {
-            new lenMapName;
+            static lenMapName;
 
             while (next_file(dir, mapName, charsmax(mapName)))
             {
@@ -639,7 +608,7 @@ map_populateList(Array:mapArray, mapFilename[])
 
 map_loadNominationList()
 {
-    new filename[256];
+    static filename[256];
     get_pcvar_string(cvar_nomMapFile, filename, charsmax(filename));
 
     g_nominationMapCnt = map_populateList(g_nominationMap, filename);
@@ -652,82 +621,16 @@ public cmd_ff()
     return PLUGIN_CONTINUE;
 }
 
-public cmd_createMapFile(id, level, cid)
-{
-    if (!cmd_access(id, level, cid, 1))
-        return PLUGIN_HANDLED;
-
-    new cntArg = read_argc() - 1;
-
-    switch (cntArg)
-    {
-        case 1:
-        {
-            new arg1[256];
-            read_argv(1, arg1, charsmax(arg1));
-            remove_quotes(arg1);
-
-            new mapName[MAX_MAPNAME_LEN+5]; // map name is 31 (i.e. MAX_MAPNAME_LEN), ".bsp" is 4, string terminator is 1.
-            new dir, file, mapCnt, lenMapName;
-
-            dir = open_dir("maps", mapName, charsmax(mapName));
-            if (dir)
-            {
-                new filename[256];
-                formatex(filename, charsmax(filename), "%s/%s", DIR_CONFIGS, arg1);
-
-                file = fopen(filename, "wt");
-                if (file)
-                {
-                    mapCnt = 0;
-                    while (next_file(dir, mapName, charsmax(mapName)))
-                    {
-                        lenMapName = strlen(mapName);
-
-                        if (lenMapName > 4 && equali(mapName[lenMapName - 4], ".bsp", 4))
-                        {
-                            mapName[lenMapName- 4] = '^0';
-                            if (is_map_valid(mapName))
-                            {
-                                mapCnt++;
-                                fprintf(file, "%s^n", mapName);
-                            }
-                        }
-                    }
-                    fclose(file);
-                    con_print(id, "%L", LANG_SERVER, "GAL_CREATIONSUCCESS", filename, mapCnt);
-                }
-                else
-                {
-                    con_print(id, "%L", LANG_SERVER, "GAL_CREATIONFAILED", filename);
-                }
-                close_dir(dir);
-            }
-            else
-            {
-                // directory not found, wtf?
-                con_print(id, "%L", LANG_SERVER, "GAL_MAPSFOLDERMISSING");
-            }
-        }
-        default:
-        {
-            // inform of correct usage
-            con_print(id, "%L", id, "GAL_CMD_CREATEFILE_USAGE1");
-            con_print(id, "%L", id, "GAL_CMD_CREATEFILE_USAGE2");
-        }
-    }
-    return PLUGIN_HANDLED;
-}
-
 map_loadPrefixList()
 {
-    new filename[256];
+    static filename[256];
     formatex(filename, charsmax(filename), "%s/prefixes.ini", DIR_CONFIGS);
 
-    new file = fopen(filename, "rt");
+    static file;
+    file = fopen(filename, "rt");
     if (file)
     {
-        new buffer[16];
+        static buffer[16];
         while (!feof(file))
         {
             fgets(file, buffer, charsmax(buffer));
@@ -756,7 +659,7 @@ map_loadPrefixList()
 
 map_loadEmptyCycleList()
 {
-    new filename[256];
+    static filename[256];
     get_pcvar_string(cvar_emptyMapFile, filename, charsmax(filename));
 
     g_emptyMapCnt = map_populateList(g_emptyCycleMap, filename);
@@ -825,7 +728,8 @@ public logevent_round_end()
     {
         ClearSyncHud(0, g_sync_msgdisplay);
 
-        new vote_duration = get_pcvar_num(cvar_voteDuration);
+        static vote_duration;
+        vote_duration = get_pcvar_num(cvar_voteDuration);
         server_cmd("mp_freezetime %d", vote_duration + 8 + 1);
         server_cmd("bh_starttime %d", vote_duration + 8 + 10);
     }
@@ -851,11 +755,11 @@ public event_intermission()
 
 map_getIdx(text[])
 {
-    new map[MAX_MAPNAME_LEN + 1];
-    new mapIdx;
-    new nominationMap[32];
+    static map[MAX_MAPNAME_LEN + 1];
+    static mapIdx, prefixIdx;
+    static nominationMap[32];
 
-    for (new prefixIdx = 0; prefixIdx < g_mapPrefixCnt; ++prefixIdx)
+    for (prefixIdx = 0; prefixIdx < g_mapPrefixCnt; ++prefixIdx)
     {
         formatex(map, charsmax(map), "%s%s", g_mapPrefix[prefixIdx], text);
 
@@ -877,7 +781,6 @@ public cmd_say(id)
     //-----
     // generic say handler to determine if we need to act on what was said
     //-----
-
     static text[70], arg1[32], arg2[32], arg3[2];
     read_args(text, charsmax(text));
     remove_quotes(text);
@@ -889,7 +792,7 @@ public cmd_say(id)
     // if the chat line has more than 2 words, we're not interested at all
     if (arg3[0] == 0)
     {
-        new idxMap;
+        static idxMap;
 
         // if the chat line contains 1 word, it could be a map or a one-word command
         if (arg2[0] == 0) // "say [rtv|rockthe<anything>vote] or [NEW] nominate for all list of maps"
@@ -906,11 +809,11 @@ public cmd_say(id)
             }
             else if (get_pcvar_num(cvar_nomPlayerAllowance))
             {
-                new first_symbols[5];
+                static first_symbols[5];
                 read_args(first_symbols, charsmax(first_symbols));
                 if(equali(first_symbols[1], "zm_") || equali(first_symbols[1], "ze_"))
                 {
-                    new short_piece_of_mapname[7];
+                    static short_piece_of_mapname[7];
                     read_args(short_piece_of_mapname, charsmax(short_piece_of_mapname));
                     nomination_attempt(id, short_piece_of_mapname[1]);
                     return PLUGIN_HANDLED;
@@ -955,11 +858,12 @@ public cmd_say(id)
 
 nomination_attempt(id, nomination[])
 {
-    new idxNomination, idxMap;
-    new mapCnt;
-    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+    static idxNomination, idxMap, idPlayer;
+    static  mapCnt, playerNominationMax;
+    mapCnt = 0;
+    playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
-    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
     {
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
@@ -982,7 +886,11 @@ nomination_attempt(id, nomination[])
     g_nominationMatchesMenu[id] = menu_create("\yНоминации", "nomination_handleMatchChoice");
 
     // gather all maps that match the nomination
-    new mapIdx, nominationMap[32], matchCnt = 0, matchIdx = -1, info[1], choice[64], disabledReason[32];
+    static mapIdx, nominationMap[32], matchCnt, matchIdx, info[1], choice[64], disabledReason[32];
+
+    matchCnt = 0;
+    matchIdx = -1;
+
     for (mapIdx = 0; mapIdx < g_nominationMapCnt && matchCnt <= MAX_NOM_MATCH_CNT; ++mapIdx)
     {
         ArrayGetString(g_nominationMap, mapIdx, nominationMap, charsmax(nominationMap));
@@ -1055,8 +963,8 @@ public nomination_handleMatchChoice(id, menu, item)
     }
 
     // Get item info
-    new mapIdx, info[1];
-    new access, callback;
+    static mapIdx, info[1];
+    static access, callback;
 
     menu_item_getinfo(g_nominationMatchesMenu[id], item, access, info, 1, _, _, callback);
 
@@ -1070,10 +978,10 @@ public nomination_handleMatchChoice(id, menu, item)
 nomination_getPlayer(idxMap)
 {
     // check if the map has already been nominated
-    new idxNomination;
-    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+    static idxNomination, playerNominationMax, idPlayer;
+    playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
-    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
     {
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
@@ -1088,7 +996,9 @@ nomination_getPlayer(idxMap)
 
 nomination_toggle(id, idxMap)
 {
-    new idNominator = nomination_getPlayer(idxMap);
+    static idNominator;
+    idNominator = nomination_getPlayer(idxMap);
+
     if (idNominator == id)
     {
         nomination_cancel(id, idxMap);
@@ -1114,8 +1024,10 @@ nomination_cancel(id, idxMap)
         return;
     }
 
-    new bool:nominationFound, idxNomination;
-    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+    static bool:nominationFound, idxNomination, playerNominationMax;
+
+    nominationFound = false;
+    playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
     for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
     {
@@ -1126,7 +1038,7 @@ nomination_cancel(id, idxMap)
         }
     }
 
-    new mapName[32];
+    static mapName[32];
     ArrayGetString(g_nominationMap, idxMap, mapName, charsmax(mapName));
 
     if (nominationFound)
@@ -1138,7 +1050,8 @@ nomination_cancel(id, idxMap)
     }
     else
     {
-        new idNominator = nomination_getPlayer(idxMap);
+        static idNominator;
+        idNominator = nomination_getPlayer(idxMap);
         if (idNominator)
         {
             new name[32];
@@ -1175,7 +1088,7 @@ map_nominate(id, idxMap, idNominator = -1)
         return;
     }
 
-    new mapName[32];
+    static mapName[32];
     ArrayGetString(g_nominationMap, idxMap, mapName, charsmax(mapName));
 
     // players can not nominate the current map
@@ -1202,8 +1115,10 @@ map_nominate(id, idxMap, idNominator = -1)
     {
         // determine the number of nominations the player already made
         // and grab an open slot with the presumption that the player can make the nomination
-        new nominationCnt = 0, idxNominationOpen, idxNomination;
-        new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+        static nominationCnt, idxNominationOpen, idxNomination, playerNominationMax;
+
+        nominationCnt = 0;
+        playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
@@ -1219,7 +1134,7 @@ map_nominate(id, idxMap, idNominator = -1)
 
         if (nominationCnt == playerNominationMax)
         {
-            new nominatedMaps[256], buffer[32];
+            static nominatedMaps[256], buffer[32];
             for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
             {
                 idxMap = g_nomination[id][idxNomination];
@@ -1243,7 +1158,7 @@ map_nominate(id, idxMap, idNominator = -1)
     }
     else
     {
-        new name[32];
+        static name[32];
         get_user_name(idNominator, name, charsmax(name));
 
         colored_print(id, "^x04***^x03 %s^x01 уже выбрал эту карту^x04 %s^x01 !", name, mapName);
@@ -1252,12 +1167,14 @@ map_nominate(id, idxMap, idNominator = -1)
 
 get_count_of_nominations()
 {
-    new mapCnt = 0;
-    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+    static mapCnt, playerNominationMax, idPlayer, idxNomination;
 
-    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    mapCnt = 0;
+    playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+
+    for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
     {
-        for (new idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
+        for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
             if (g_nomination[idPlayer][idxNomination] >= 0)
             {
@@ -1271,12 +1188,13 @@ get_count_of_nominations()
 
 nomination_list(id)
 {
-    new idxNomination, idxMap;
-    new msg[101];
-    new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
-    new mapName[32];
+    static idxNomination, idxMap, playerNominationMax, idPlayer;
+    static msg[101];
+    static mapName[32];
 
-    for (new idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+
+    for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
     {
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
@@ -1302,7 +1220,7 @@ public vote_startDirector(bool:forced)
 {
     g_vote_running = true;
 
-    new choicesLoaded, voteDuration;
+    static choicesLoaded, voteDuration;
 
     if (g_voteStatus & VOTE_IS_RUNOFF)
     {
@@ -1350,9 +1268,9 @@ public vote_startDirector(bool:forced)
         // SortCustom2D(g_mapChoice, choicesLoaded, "sort_stringsi");
 
         // mark the players who are in this vote for use later
-        new player[32], playerCnt;
+        static player[32], playerCnt, idxPlayer;
         get_players(player, playerCnt);
-        for (new idxPlayer = 0; idxPlayer < playerCnt; ++idxPlayer)
+        for (idxPlayer = 0; idxPlayer < playerCnt; ++idxPlayer)
         {
             g_voted[player[idxPlayer]] = false;
         }
@@ -1372,7 +1290,7 @@ public vote_startDirector(bool:forced)
         // display the vote outcome
         if (get_pcvar_num(cvar_voteStatus))
         {
-            new arg[3] = {-1, -1, false}; // indicates it's the end of vote display
+            static arg[3] = {-1, -1, false}; // indicates it's the end of vote display
             set_task(4.5 + float(voteDuration) + 1.0, "vote_display", _, arg, 3);
             set_task(4.5 + float(voteDuration) + 2.0, "vote_expire");
         }
@@ -1398,7 +1316,7 @@ public vote_countdownPendingVote()
     // audio countdown
     if (!(get_pcvar_num(cvar_soundsMute) & SOUND_COUNTDOWN))
     {
-        new word[6];
+        static word[6];
         num_to_word(countdown, word, 5);
 
         client_cmd(0, "spk ^"fvox/%s^"", word);
@@ -1418,16 +1336,17 @@ vote_addNominations()
     if (g_nominationCnt)
     {
         // set how many total nominations we can use in this vote
-        new maxNominations = get_pcvar_num(cvar_nomQtyUsed);
-        new slotsAvailable = g_choiceMax - g_choiceCnt;
-        new voteNominationMax = (maxNominations) ? min(maxNominations, slotsAvailable) : slotsAvailable;
+        static maxNominations, slotsAvailable, voteNominationMax, playerNominationMax;
+        maxNominations = get_pcvar_num(cvar_nomQtyUsed);
+        slotsAvailable = g_choiceMax - g_choiceCnt;
+        voteNominationMax = (maxNominations) ? min(maxNominations, slotsAvailable) : slotsAvailable;
 
         // set how many total nominations each player is allowed
-        new playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
+        playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
         // add as many nominations as we can
         // [TODO: develop a better method of determining which nominations make the cut; either FIFO or random]
-        new idxMap, id, mapName[32];
+        static idxMap, id, mapName[32];
 
         for (new idxNomination = playerNominationMax; idxNomination >= 1; --idxNomination)
         {
@@ -1461,20 +1380,23 @@ vote_addFiller()
     }
 
     // grab the name of the filler file
-    new filename[256];
+    static filename[256];
     get_pcvar_string(cvar_voteMapFile, filename, charsmax(filename));
 
     // create an array of files that will be pulled from
-    new fillerFile[8][256];
-    new mapsPerGroup[8], groupCnt;
+    static fillerFile[8][256];
+    static mapsPerGroup[8], groupCnt;
+
+    groupCnt = 0;
 
     if (!equal(filename, "*"))
     {
         // determine what kind of file it's being used as
-        new file = fopen(filename, "rt");
+        static file;
+        file = fopen(filename, "rt");
         if (file)
         {
-            new buffer[16];
+            static buffer[16];
             fgets(file, buffer, charsmax(buffer));
             trim(buffer);
             fclose(file);
@@ -1482,7 +1404,7 @@ vote_addFiller()
             if (equali(buffer, "[groups]"))
             {
                 // read the filler file to determine how many groups there are (max of 8)
-                new groupIdx;
+                static groupIdx;
 
                 file = fopen(filename, "rt");
 
@@ -1537,7 +1459,7 @@ vote_addFiller()
     }
 
     // fill remaining slots with random maps from each filler file, as much as possible
-    new mapCnt, mapKey, allowedCnt, unsuccessfulCnt, choiceIdx, mapName[32];
+    static mapCnt, mapKey, allowedCnt, unsuccessfulCnt, choiceIdx, mapName[32];
 
     for (new groupIdx = 0; groupIdx < groupCnt; ++groupIdx)
     {
@@ -1586,13 +1508,15 @@ vote_loadChoices()
 
 vote_loadRunoffChoices()
 {
-    new choiceCnt;
+    static choiceCnt, mapIdx;
 
-    new runoffChoice[2][MAX_MAPNAME_LEN+1];
+    choiceCnt = 0;
+    mapIdx = 0;
+
+    static runoffChoice[2][MAX_MAPNAME_LEN+1];
     copy(runoffChoice[0], charsmax(runoffChoice[]), g_mapChoice[g_runoffChoice[0]]);
     copy(runoffChoice[1], charsmax(runoffChoice[]), g_mapChoice[g_runoffChoice[1]]);
 
-    new mapIdx;
     if (g_runoffChoice[0] != g_choiceCnt)
     {
         copy(g_mapChoice[mapIdx++], charsmax(g_mapChoice[]), runoffChoice[0]);
@@ -1637,10 +1561,7 @@ public vote_handleDisplay()
     // ensure the vote status doesn't indicate expired
     g_voteStatus &= ~VOTE_HAS_EXPIRED;
 
-    new arg[3];
-    arg[0] = true;
-    arg[1] = 0;
-    arg[2] = false;
+    static arg[3] = {true, 0, false};
 
     if (get_pcvar_num(cvar_voteStatus) == SHOWSTATUS_VOTE)
     {
@@ -1657,12 +1578,15 @@ public vote_display(arg[3])
     static allKeys = MENU_KEY_1|MENU_KEY_2|MENU_KEY_3|MENU_KEY_4|MENU_KEY_5|MENU_KEY_6|MENU_KEY_7|MENU_KEY_8|MENU_KEY_9|MENU_KEY_0;
     static keys, voteStatus[512], voteTally[16];
 
-    new updateTimeRemaining = arg[0];
-    new id = arg[1];
+    static updateTimeRemaining, id;
+
+    updateTimeRemaining = arg[0];
+    id = arg[1];
 
     if (id > 0 && g_snuffDisplay[id])
     {
-        new unsnuffDisplay = arg[2];
+        static unsnuffDisplay;
+        unsnuffDisplay = arg[2];
         if (unsnuffDisplay)
         {
             g_snuffDisplay[id] = false;
@@ -1673,8 +1597,10 @@ public vote_display(arg[3])
         }
     }
 
-    new isVoteOver = (updateTimeRemaining == -1 && id == -1);
-    new charCnt;
+    static charCnt;
+    static isVoteOver;
+
+    isVoteOver = (updateTimeRemaining == -1 && id == -1);
 
     if (g_refreshVoteStatus || isVoteOver)
     {
@@ -1682,12 +1608,11 @@ public vote_display(arg[3])
         voteStatus[0] = 0;
         keys = MENU_KEY_0;
 
-        new voteCnt;
+        static allowStay, isRunoff, bool:allowExtend, choiceIdx;
 
-        new allowStay = (g_voteStatus & VOTE_IS_EARLY);
-
-        new isRunoff = (g_voteStatus & VOTE_IS_RUNOFF);
-        new bool:allowExtend = !allowStay && ((isRunoff && g_choiceCnt == 1) || (!(g_voteStatus & VOTE_FORCED) && !isRunoff && get_cvar_float("mp_timelimit") < get_pcvar_float(cvar_extendmapMax)));
+        allowStay = (g_voteStatus & VOTE_IS_EARLY);
+        isRunoff = (g_voteStatus & VOTE_IS_RUNOFF);
+        allowExtend = !allowStay && ((isRunoff && g_choiceCnt == 1) || (!(g_voteStatus & VOTE_FORCED) && !isRunoff && get_cvar_float("mp_timelimit") < get_pcvar_float(cvar_extendmapMax)));
 
         // add the header
         if (isVoteOver)
@@ -1700,8 +1625,9 @@ public vote_display(arg[3])
         }
 
         // add maps to the menu
-        for (new choiceIdx = 0; choiceIdx < g_choiceCnt; ++choiceIdx)
+        for (choiceIdx = 0; choiceIdx < g_choiceCnt; ++choiceIdx)
         {
+            static voteCnt;
             voteCnt = g_mapVote[choiceIdx];
             vote_getTallyStr(voteTally, charsmax(voteTally), voteCnt);
 
@@ -1737,7 +1663,8 @@ public vote_display(arg[3])
         // make a copy of the virgin menu
         if (g_vote[0] == 0)
         {
-            new cleanCharCnt = copy(g_vote, charsmax(g_vote), voteStatus);
+            static cleanCharCnt;
+            cleanCharCnt = copy(g_vote, charsmax(g_vote), voteStatus);
 
             // append a "None" option on for people to choose if they don't like any other choice
             formatex(g_vote[cleanCharCnt], charsmax(g_vote)-cleanCharCnt, "^n^n%s0. %sНичего", CLR_RED, CLR_WHITE);
@@ -1774,10 +1701,11 @@ public vote_display(arg[3])
         formatex(menuDirty, charsmax(menuDirty), "%s^n^n%sГолосование окончено.", voteStatus, CLR_YELLOW);
     }
 
-    new menuid, menukeys;
+    static menuid, menukeys;
 
     // display the vote
-    new showStatus = get_pcvar_num(cvar_voteStatus);
+    static showStatus;
+    showStatus = get_pcvar_num(cvar_voteStatus);
     if (id > 0)
     {
         // optionally display to single player that just voted
@@ -1793,10 +1721,10 @@ public vote_display(arg[3])
     else
     {
         // display to everyone
-        new players[32], playerCnt;
+        static players[32], playerCnt, playerIdx;
         get_players(players, playerCnt);
 
-        for (new playerIdx = 0; playerIdx < playerCnt; ++playerIdx)
+        for (playerIdx = 0; playerIdx < playerCnt; ++playerIdx)
         {
             id = players[playerIdx];
 
@@ -2060,7 +1988,8 @@ vote_resetStats()
 
 map_isInMenu(map[])
 {
-    for (new idxChoice = 0; idxChoice < g_choiceCnt; ++idxChoice)
+    static idxChoice;
+    for (idxChoice = 0; idxChoice < g_choiceCnt; ++idxChoice)
     {
         if (equal(map, g_mapChoice[idxChoice]))
         {
@@ -2074,11 +2003,12 @@ prefix_isInMenu(map[])
 {
     if (get_pcvar_num(cvar_voteUniquePrefixes))
     {
-        new tentativePrefix[8], existingPrefix[8], junk[8];
+        static tentativePrefix[8], existingPrefix[8], junk[8];
 
         strtok(map, tentativePrefix, charsmax(tentativePrefix), junk, charsmax(junk), '_', 1);
 
-        for (new idxChoice = 0; idxChoice < g_choiceCnt; ++idxChoice)
+        static idxChoice;
+        for (idxChoice = 0; idxChoice < g_choiceCnt; ++idxChoice)
         {
             strtok(g_mapChoice[idxChoice], existingPrefix, charsmax(existingPrefix), junk, charsmax(junk), '_', 1);
 
@@ -2095,7 +2025,8 @@ map_isTooRecent(map[])
 {
     if (get_pcvar_num(cvar_banRecent))
     {
-        for (new idxBannedMap = 0; idxBannedMap < g_cntRecentMap; ++idxBannedMap)
+        static idxBannedMap;
+        for (idxBannedMap = 0; idxBannedMap < g_cntRecentMap; ++idxBannedMap)
         {
             if (equal(map, g_recentMap[idxBannedMap]))
             {
@@ -2118,7 +2049,7 @@ public vote_handleChoice(id, key)
 
     if (g_voted[id] == false)
     {
-        new name[32];
+        static name[32];
         if (get_pcvar_num(cvar_voteAnnounceChoice))
         {
             get_user_name(id, name, charsmax(name));
@@ -2169,7 +2100,8 @@ public vote_handleChoice(id, key)
             }
 
             // register the player's choice giving extra weight to admin votes
-            new voteWeight = get_pcvar_num(cvar_voteWeight);
+            static voteWeight;
+            voteWeight = get_pcvar_num(cvar_voteWeight);
             if (voteWeight > 1 && has_flag(id, g_voteWeightFlags))
             {
                 g_mapVote[key] += voteWeight;
@@ -2192,7 +2124,7 @@ public vote_handleChoice(id, key)
     // display the vote again, with status
     if (get_pcvar_num(cvar_voteStatus) == SHOWSTATUS_VOTE)
     {
-        new arg[3];
+        static arg[3];
         arg[0] = false;
         arg[1] = id;
         arg[2] = true;
@@ -2224,6 +2156,7 @@ public map_change()
     }
 
     // change to the map
+    log_amx("[GALILEO]: Going to change the map to %s", map);
     engine_changelevel(map);
 }
 
@@ -2241,7 +2174,8 @@ vote_rock(id)
         return;
     }
 
-    new Float:minutesElapsed = map_getMinutesElapsed();
+    static Float:minutesElapsed;
+    minutesElapsed = map_getMinutesElapsed();
 
     // rocks can only be made if a vote isn't already in progress
     if (g_voteStatus & VOTE_IN_PROGRESS)
@@ -2274,7 +2208,8 @@ vote_rock(id)
     }
 
     // determine how many total rocks are needed
-    new rocksNeeded = vote_getRocksNeeded();
+    static rocksNeeded;
+    rocksNeeded = vote_getRocksNeeded();
 
     // make sure player hasn't already rocked the vote
     if (g_rockedVote[id])
@@ -2332,7 +2267,8 @@ vote_getRocksNeeded()
 
 public rtv_remind(param)
 {
-    new who = param - TASKID_REMINDER;
+    static who;
+    who = param - TASKID_REMINDER;
 
     // let the players know how many more rocks are needed
     colored_print(who, "^x04***^x01 Для голосования нужно еще^x04 %i^x01 rtv", vote_getRocksNeeded() - g_rockedVoteCnt);
@@ -2380,17 +2316,20 @@ map_listAll(id)
     static lastMapDisplayed[MAX_PLAYER_CNT + 1][2];
 
     // determine if the player has requested a listing before
-    new userid = get_user_userid(id);
+    static userid;
+    userid = get_user_userid(id);
     if (userid != lastMapDisplayed[id][LISTMAPS_USERID])
     {
         lastMapDisplayed[id][LISTMAPS_USERID] = 0;
     }
 
-    new command[32];
+    static command[32];
     read_argv(0, command, charsmax(command));
 
-    new arg1[8], start;
-    new mapCount = get_pcvar_num(cvar_listmapsPaginate);
+    static arg1[8], start, mapCount;
+
+    start = 0;
+    mapCount = get_pcvar_num(cvar_listmapsPaginate);
 
     if (mapCount)
     {
@@ -2435,7 +2374,8 @@ map_listAll(id)
         start = g_nominationMapCnt - 1;
     }
 
-    new end = mapCount ? start + mapCount - 1 : g_nominationMapCnt;
+    static end;
+    end = mapCount ? start + mapCount - 1 : g_nominationMapCnt;
 
     if (end > g_nominationMapCnt)
     {
@@ -2448,7 +2388,7 @@ map_listAll(id)
 
     con_print(id, "^n----- %L -----", id, "GAL_LISTMAPS_TITLE", g_nominationMapCnt);
 
-    new nominated[64], nominator_id, name[32], mapName[32], idx;
+    static nominated[64], nominator_id, name[32], mapName[32], idx;
     for (idx = start - 1; idx < end; idx++)
     {
         nominator_id = nomination_getPlayer(idx);
@@ -2478,12 +2418,12 @@ map_listAll(id)
 
 con_print(id, message[], {Float,Sql,Result,_}:...)
 {
-    new consoleMessage[256];
+    static consoleMessage[256];
     vformat(consoleMessage, charsmax(consoleMessage), message, 3);
 
     if (id)
     {
-        new authid[32];
+        static authid[32];
         get_user_authid(id, authid, charsmax(authid));
 
         if (!equal(authid, "STEAM_ID_LAN"))
@@ -2503,7 +2443,8 @@ public client_disconnect(id)
     // un-rock the vote
     vote_unrock(id);
 
-    new dbg_playerCnt = get_realplayersnum()-1;
+    static dbg_playerCnt;
+    dbg_playerCnt = get_realplayersnum() - 1;
 
     if (dbg_playerCnt == 0)
     {
@@ -2548,7 +2489,7 @@ public srv_announceEarlyVote(id)
 {
     if (is_user_connected(id))
     {
-        new text[101];
+        static text[101];
         formatex(text, charsmax(text), "^x04%L", id, "GAL_VOTE_EARLY");
         print_color(id, text);
     }
@@ -2568,7 +2509,8 @@ public srv_initEmptyCheck()
 
 srv_startEmptyCountdown()
 {
-    new waitMinutes = get_pcvar_num(cvar_emptyWait);
+    static waitMinutes;
+    waitMinutes = get_pcvar_num(cvar_emptyWait);
     if (waitMinutes)
     {
         set_task(float(waitMinutes * 60), "srv_startEmptyCycle", TASKID_EMPTYSERVER);
@@ -2581,7 +2523,7 @@ public srv_startEmptyCycle()
 
     // set the next map from the empty cycle list,
     // or the first one, if the current map isn't part of the cycle
-    new nextMap[32], mapIdx;
+    static nextMap[32], mapIdx;
     mapIdx = map_getNext(g_emptyCycleMap, g_currentMap, nextMap);
     map_setNext(nextMap);
 
@@ -2600,9 +2542,10 @@ nomination_announceCancellation(nominations[])
 
 nomination_clearAll()
 {
-    for (new idxPlayer = 1; idxPlayer <= MAX_PLAYER_CNT; idxPlayer++)
+    static idxPlayer, idxNomination;
+    for (idxPlayer = 1; idxPlayer <= MAX_PLAYER_CNT; idxPlayer++)
     {
-        for (new idxNomination = 1; idxNomination <= MAX_NOMINATION_CNT; idxNomination++)
+        for (idxNomination = 1; idxNomination <= MAX_NOMINATION_CNT; idxNomination++)
         {
             g_nomination[idxPlayer][idxNomination] = -1;
         }
@@ -2612,7 +2555,7 @@ nomination_clearAll()
 
 map_announceNomination(id, map[])
 {
-    new name[32];
+    static name[32];
     get_user_name(id, name, charsmax(name));
 
     colored_print(0, "^x03%s ^x01выбрал карту ^x04%s", name, map);
@@ -2625,7 +2568,7 @@ stock sort_stringsi(const elem1[], const elem2[], const array[], data[], data_si
 
 get_realplayersnum()
 {
-    new players[32], playerCnt;
+    static players[32], playerCnt;
     get_players(players, playerCnt);
 
     return playerCnt;

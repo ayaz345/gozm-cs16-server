@@ -27,7 +27,7 @@ public client_putinserver(id)
     if (has_vip(id))
         return PLUGIN_CONTINUE
 
-    new param[1]
+    static param[1]
     param[0] = id
     set_task(float(get_pcvar_num(p_amx_hpk_delay)), "checkPing", id, param, 1, "b")
 
@@ -41,9 +41,10 @@ public client_disconnect(id)
 
 public checkPing(param[])
 {
-    new id = param[0]
+    static id
+    id = param[0]
 
-    new ping, loss
+    static ping, loss
     get_user_ping(id, ping, loss)
 
     g_Ping[id] += ping
@@ -70,9 +71,9 @@ public checkPing(param[])
 
 kickPlayer(id)
 {
-    new name[32], authid[32]
-    get_user_name(id, name, 31)
-    get_user_authid(id, authid, 31)
+    static name[32], authid[32]
+    get_user_name(id, name, charsmax(name))
+    get_user_authid(id, authid, charsmax(authid))
     server_cmd("kick #%d Высокий пинг - %d", get_user_userid(id), g_Ping[id] / g_Samples[id])
 
     log_amx("[HPK]: ^"%s^" was kicked due to highping %d", name, g_Ping[id] / g_Samples[id])

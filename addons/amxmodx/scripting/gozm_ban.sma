@@ -21,7 +21,7 @@ public plugin_init()
     register_clcmd("VIP_REASON", "set_custom_ban_reason")
     register_clcmd("amx_unban_by_name", "custom_unban")
     register_clcmd("BANNED_NICKNAME", "unban_by_nickname")
-    
+
     pcvar_bantime = register_cvar("amxx_voteban_bantime", "30")
 
     return PLUGIN_CONTINUE
@@ -29,7 +29,7 @@ public plugin_init()
 
 public say_it(id)
 {
-    if(has_vip(id) || has_admin(id)) 
+    if(has_vip(id) || has_admin(id))
     {
         show_player_menu(id)
         return PLUGIN_HANDLED
@@ -43,17 +43,19 @@ public say_it(id)
 
 show_player_menu(id)
 {
-    new i_Menu = menu_create("\wКого будем \yбанить\w?", "show_player_menu_handler" )
+    static i_Menu, i
+    i_Menu = menu_create("\wКого будем \yбанить\w?", "show_player_menu_handler" )
 
     static players[32], num
     get_players(players, num)
-    for(new i=0; i<num; i++)
+    for(i=0; i<num; i++)
     {
-        new name[32], userid, str_userid[6]
-        get_user_name(players[i], name, 31)
+        static name[32], str_userid[6]
+        static userid
+        get_user_name(players[i], name, charsmax(name))
         userid = get_user_userid(players[i])
-        num_to_str(userid, str_userid, 5)
-        
+        num_to_str(userid, str_userid, charsmax(str_userid))
+
         menu_additem(i_Menu, name, str_userid, _, menu_makecallback("check_for_victim"))
     }
 
@@ -68,10 +70,10 @@ show_player_menu(id)
 
 public check_for_victim(id, menu, item)
 {
-    new s_Name[32], s_Userid[6], i_Access, i_Callback
+    static s_Name[32], s_Userid[6], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Userid, charsmax(s_Userid), s_Name, charsmax(s_Name), i_Callback)
 
-    new player_id
+    static player_id
     player_id = get_user_index(s_Name)
 
     if(player_id == id || has_vip(player_id))
@@ -87,7 +89,7 @@ public show_player_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Name[32], s_Userid[6], i_Access, i_Callback
+    static s_Name[32], s_Userid[6], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Userid, charsmax(s_Userid), s_Name, charsmax(s_Name), i_Callback)
     g_chosen_userid[id] = str_to_num(s_Userid)
 
@@ -99,7 +101,8 @@ public show_player_menu_handler(id, menu, item)
 
 choose_ban_reason(id)
 {
-    new i_Menu = menu_create("\yПричина:", "reason_menu_handler" )
+    static i_Menu
+    i_Menu = menu_create("\yПричина:", "reason_menu_handler" )
 
     menu_additem(i_Menu, "WallHack", "20160")
     menu_additem(i_Menu, "SpeedHack & AIM", "40320")
@@ -128,9 +131,10 @@ public reason_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Reason[64], s_Length[6], i_Access, i_Callback
+    static s_Reason[64], s_Length[6], i_Access, i_Callback
     menu_item_getinfo(menu, item, i_Access, s_Length, charsmax(s_Length), s_Reason, charsmax(s_Reason), i_Callback)
-    new ban_length = str_to_num(s_Length)
+    static ban_length
+    ban_length = str_to_num(s_Length)
 
     if(ban_length == -1)
         client_cmd(id, "messagemode VIP_REASON")
@@ -149,9 +153,9 @@ public set_custom_ban_reason(id, level, cid)
         return PLUGIN_HANDLED
     }
 
-    new szReason[128]
-    read_argv(1, szReason, 127)
-    copy(ban_reason, 127, szReason)
+    static szReason[128]
+    read_argv(1, szReason, charsmax(szReason))
+    copy(ban_reason, charsmax(ban_reason), szReason)
     if(strlen(ban_reason) == 0) {
         colored_print(id,"^x04***^x01 Введи причину бана!")
         return PLUGIN_HANDLED
@@ -187,9 +191,9 @@ public unban_by_nickname(id, level, cid)
         return PLUGIN_HANDLED
     }
 
-    new banned_nickname[32]
-    read_argv(1, banned_nickname, 31)
-    if(strlen(banned_nickname) == 0) 
+    static banned_nickname[32]
+    read_argv(1, banned_nickname, charsmax(banned_nickname))
+    if(strlen(banned_nickname) == 0)
     {
         colored_print(id,"^x04***^x01 Уточни ник для разбана!")
         return PLUGIN_HANDLED

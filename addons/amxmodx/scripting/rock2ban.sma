@@ -53,10 +53,10 @@ public client_connect(id)
 
 public client_disconnect(id)
 {
-    new players[32], players_num, player
+    static players[32], players_num, player, i
 
     get_players(players, players_num)
-    for (new i = 0; i < players_num; i++)
+    for (i = 0; i < players_num; i++)
     {
         player = players[i]
 
@@ -97,7 +97,7 @@ public voteban_menu(id)
 {
     if (get_playersnum() < MIN_PLAYERS)
     {
-        new name[32]
+        static name[32]
         get_user_name(id, name, charsmax(name))
 
         log_amx("%s not enough players by %s", g_prefix, name)
@@ -109,10 +109,11 @@ public voteban_menu(id)
     if(pev_valid(id) == PDATA_SAFE)
         set_pdata_int(id, OFFSET_CSMENUCODE, 0, OFFSET_LINUX)  // prevent from showing CS std menu
 
-    new players[32], players_num, player
-    new temp_string[64], name[32], info[3]
+    static players[32], players_num, player
+    static temp_string[64], name[32], info[3]
 
-    new menu = menu_create("\yМеню \rVOTEBAN\y:", "menu_handle")
+    static menu
+    menu = menu_create("\yМеню \rVOTEBAN\y:", "menu_handle")
 
     if (has_vip(id))
         menu_setprop(menu, MPROP_TITLE, "\yМеню \rVOTEBAN\y:^n\dУправление только иммунитетом игрока!\y")
@@ -121,12 +122,14 @@ public voteban_menu(id)
     menu_setprop(menu, MPROP_BACKNAME, "Назад")
     menu_setprop(menu, MPROP_EXITNAME, "Выход")
 
-    new callback = menu_makecallback("menu_callback")
+    static callback
+    callback = menu_makecallback("menu_callback")
 
-    new max_votes = get_max_votes()
+    static max_votes, i
+    max_votes = get_max_votes()
 
     get_players(players, players_num)
-    for (new i = 0; i < players_num; i++)
+    for (i = 0; i < players_num; i++)
     {
         player = players[i]
         get_user_name(player, name, charsmax(name))
@@ -168,7 +171,7 @@ public voteban_menu(id)
 
 public menu_callback(id, menu, item)
 {
-    new access, info[3], callback, temp_string[64]
+    static access, info[3], callback, temp_string[64]
     menu_item_getinfo(menu, item, access, info, charsmax(info), temp_string, charsmax(temp_string), callback)
 
     if (!info[0])
@@ -189,12 +192,13 @@ public menu_handle(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new access, info[3], callback
+    static access, info[3], callback
 
     menu_item_getinfo(menu, item, access, info, charsmax(info), .callback=callback)
     menu_destroy(menu)
 
-    new target = str_to_num(info)
+    static target
+    target = str_to_num(info)
 
     if (!is_user_connected(target))
     {
@@ -204,7 +208,7 @@ public menu_handle(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new voter_name[32], target_name[32]
+    static voter_name[32], target_name[32]
     get_user_name(id, voter_name, charsmax(voter_name))
     get_user_name(target, target_name, charsmax(target_name))
 
@@ -233,8 +237,9 @@ public menu_handle(id, menu, item)
     // set/unset vote by player
     else
     {
-        new max_votes = get_max_votes()
-        new players_num = get_playersnum()
+        static max_votes, players_num
+        max_votes = get_max_votes()
+        players_num = get_playersnum()
 
         // vote is unset
         if (CHECK_FLAG(g_targets[id], target))
@@ -251,7 +256,8 @@ public menu_handle(id, menu, item)
         }
 
         // don't let vote too much ;)
-        new limit = get_pcvar_num(pcvar_limit)
+        static limit
+        limit = get_pcvar_num(pcvar_limit)
         if (g_votes_by[id] >= limit)
         {
             log_amx("%s %s votes too much (%d)", g_prefix, voter_name, g_votes_by[id])
@@ -277,9 +283,10 @@ public menu_handle(id, menu, item)
         {
             if (g_votes_for[target] < max_votes)
             {
-                new delta = max_votes - g_votes_for[target]
+                static delta
+                delta = max_votes - g_votes_for[target]
 
-                new info_msg[128]
+                static info_msg[128]
                 formatex(info_msg, charsmax(info_msg),
                     "^x04%s^x01 Ты проголосовал против^x03 %s^x01. %s еще^x04 %d^x01 голос%s",
                     g_prefix, target_name, delta == 1 ? "Нужен" : "Нужно", delta, set_completion(delta))
@@ -300,7 +307,8 @@ public menu_handle(id, menu, item)
 
 bool:check_votes(target)
 {
-    new max_votes = get_max_votes()
+    static max_votes
+    max_votes = get_max_votes()
     if (g_votes_for[target] >= max_votes)
     {
         return true
@@ -310,17 +318,18 @@ bool:check_votes(target)
 
 get_max_votes()
 {
-    new percent = get_pcvar_num(pcvar_percent)
-    new players_num = get_playersnum() - 1     // one is for client being banning
-    new max_votes = floatround(float(players_num*percent) / 100.0, floatround_ceil)
+    static percent, players_num, max_votes
+    percent = get_pcvar_num(pcvar_percent)
+    players_num = get_playersnum() - 1     // one is for client being banning
+    max_votes = floatround(float(players_num*percent) / 100.0, floatround_ceil)
 
     return max(MIN_VOTERS, max_votes)
 }
 
 ban(id, bool:announce)
 {
-    new user_name[32], user_id
-    new ban_time
+    static user_name[32]
+    static user_id, ban_time
 
     get_user_name(id, user_name, charsmax(user_name))
     user_id = get_user_userid(id)
@@ -337,8 +346,9 @@ ban(id, bool:announce)
 
 set_completion(number)
 {
-    new completion[5]   // 1 cyrillic symbol take 2 bytes
-    new remaining = number % 10
+    static completion[5]   // 1 cyrillic symbol take 2 bytes
+    static remaining
+    remaining = number % 10
 
     if (remaining == 1 && number != 11)
     {

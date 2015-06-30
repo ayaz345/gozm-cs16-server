@@ -62,13 +62,14 @@ public hook_radio(id)
 
 display_mutemenu(id)
 {
-    new i_Menu = menu_create("\wКого \yзаткнем\w?", "mute_player_menu_handler" )
+    static i_Menu
+    i_Menu = menu_create("\wКого \yзаткнем\w?", "mute_player_menu_handler" )
 
-    static players[32], num
+    static players[32], num, i
     get_players(players, num)
-    for (new i=0; i<num; i++)
+    for (i=0; i<num; i++)
     {
-        new name[32], str_id[3]
+        static name[32], str_id[3]
         get_user_name(players[i], name, charsmax(name))
         num_to_str(players[i], str_id, charsmax(str_id))
 
@@ -86,7 +87,7 @@ display_mutemenu(id)
 
 public check_for_muted_victim(id, menu, item)
 {
-    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    static s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
     menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
 
     victim_id = str_to_num(s_Id)
@@ -104,7 +105,7 @@ public mute_player_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    static s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
     menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
     menu_destroy(menu)
 
@@ -116,13 +117,14 @@ public mute_player_menu_handler(id, menu, item)
 
 display_speakmenu(id)
 {
-    new i_Menu = menu_create("\wРазрешим \yговорить\w:", "speak_player_menu_handler" )
+    static i_Menu
+    i_Menu = menu_create("\wРазрешим \yговорить\w:", "speak_player_menu_handler" )
 
-    static players[32], num
+    static players[32], num, i
     get_players(players, num)
-    for (new i = 0; i < num; i++)
+    for (i = 0; i < num; i++)
     {
-        new name[32], str_id[3]
+        static name[32], str_id[3]
         get_user_name(players[i], name, charsmax(name))
         num_to_str(players[i], str_id, charsmax(str_id))
 
@@ -140,7 +142,7 @@ display_speakmenu(id)
 
 public check_for_speaking_victim(id, menu, item)
 {
-    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    static s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
     menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
 
     victim_id = str_to_num(s_Id)
@@ -158,7 +160,7 @@ public speak_player_menu_handler(id, menu, item)
         return PLUGIN_HANDLED
     }
 
-    new s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
+    static s_Name[32], s_Id[3], i_Access, i_Callback, victim_id
     menu_item_getinfo(menu, item, i_Access, s_Id, charsmax(s_Id), s_Name, charsmax(s_Name), i_Callback)
     menu_destroy(menu)
 
@@ -170,26 +172,26 @@ public speak_player_menu_handler(id, menu, item)
 
 public block_gagged(id)
 {
-	if (!g_GagPlayers[id])
+    if (!g_GagPlayers[id])
         return PLUGIN_CONTINUE
 
-	new cmd[5]
-	read_argv(0, cmd, 4)
-	if (cmd[3] == '_')
+    static cmd[5]
+    read_argv(0, cmd, charsmax(cmd))
+    if (cmd[3] == '_')
     {
-		if (g_GagPlayers[id] & 2)
+        if (g_GagPlayers[id] & 2)
         {
-			colored_print(id, "^x04%s^x01 Тебя заткнули!", g_preffix)
-			return PLUGIN_HANDLED
+            colored_print(id, "^x04%s^x01 Тебя заткнули!", g_preffix)
+            return PLUGIN_HANDLED
         }
     }
-	else if (g_GagPlayers[id] & 1)
+    else if (g_GagPlayers[id] & 1)
     {
         colored_print(id, "^x04%s^x01 Тебя заткнули!", g_preffix)
         return PLUGIN_HANDLED
     }
 
-	return PLUGIN_CONTINUE
+    return PLUGIN_CONTINUE
 }
 
 CMD_GagPlayer(VIP, VictimID)
@@ -200,14 +202,14 @@ CMD_GagPlayer(VIP, VictimID)
     if (!is_user_connected(VictimID))
         return PLUGIN_HANDLED;
 
-    new s_Flags[4], flags
+    static s_Flags[4], flags
     formatex(s_Flags, charsmax(s_Flags), "abc")
     flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
     g_GagPlayers[VictimID] = flags
 
     set_speak(VictimID, SPEAK_MUTED)
 
-    new AdminName[32], VictimName[32]
+    static AdminName[32], VictimName[32]
     get_user_name(VIP, AdminName, charsmax(AdminName))
     get_user_name(VictimID, VictimName, charsmax(VictimName))
 
@@ -224,7 +226,7 @@ CMD_UnGagPlayer(VIP, VictimID)
     if (has_vip(VictimID) && VictimID != VIP)
         return PLUGIN_HANDLED
 
-    new AdminName[32], VictimName[32]
+    static AdminName[32], VictimName[32]
     get_user_name(VIP, AdminName, charsmax(AdminName))
     get_user_name(VictimID, VictimName, charsmax(VictimName))
 
@@ -247,34 +249,35 @@ CMD_UnGagPlayer(VIP, VictimID)
 
 public client_putinserver(id)
 {
-	new checkIp[16]
-	get_user_ip(id, checkIp, charsmax(checkIp), 1)
+    static checkIp[16]
+    get_user_ip(id, checkIp, charsmax(checkIp), 1)
 
-	for (new i = 1; i < 30; i++)
+    static i
+    for (i = 1; i < 30; i++)
     {
-		if(contain(mutedIp[i], checkIp) != -1 && !has_vip(id))
-		{
-			new s_Flags[4], flags
-			formatex(s_Flags, charsmax(s_Flags), "abc")
-			flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
-			g_GagPlayers[id] = flags
+        if(contain(mutedIp[i], checkIp) != -1 && !has_vip(id))
+        {
+            static s_Flags[4], flags
+            formatex(s_Flags, charsmax(s_Flags), "abc")
+            flags = read_flags(s_Flags) // Converts the string flags ( a,b or c ) into a int
+            g_GagPlayers[id] = flags
 
-			set_speak(id, SPEAK_MUTED)
-		}
+            set_speak(id, SPEAK_MUTED)
+        }
     }
 }
 
 public client_disconnect(id)
 {
-	if (g_GagPlayers[id])
-	{
-		UnGagPlayer(id)
+    if (g_GagPlayers[id])
+    {
+        UnGagPlayer(id)
 
-		new gaggedIp[16]
-		get_user_ip(id, gaggedIp, charsmax(gaggedIp), 1)
-		mutedIp[muted_num] = gaggedIp
-		muted_num++
-	}
+        static gaggedIp[16]
+        get_user_ip(id, gaggedIp, charsmax(gaggedIp), 1)
+        mutedIp[muted_num] = gaggedIp
+        muted_num++
+    }
 }
 
 public client_infochanged(id)
@@ -282,11 +285,11 @@ public client_infochanged(id)
     if (!is_user_connected(id))
         return PLUGIN_CONTINUE
 
-    new newname[32], oldname[32]
+    static newname[32], oldname[32]
     get_user_info(id, "name", newname, charsmax(newname))
     get_user_name(id, oldname, charsmax(oldname))
 
-    if (!equal(oldname,newname) && !equal(oldname,""))
+    if (!equal(oldname, newname) && !equal(oldname, ""))
         set_task(0.2, "check_access", id)
 
     return PLUGIN_CONTINUE
@@ -302,9 +305,9 @@ public check_access(id)
 
 UnGagPlayer(id)
 {
-	if ((g_GagPlayers[id] & 4) && is_user_connected(id))
-	{
-		set_speak(id, SPEAK_ALL)
-	}
-	g_GagPlayers[id] = 0
+    if ((g_GagPlayers[id] & 4) && is_user_connected(id))
+    {
+        set_speak(id, SPEAK_ALL)
+    }
+    g_GagPlayers[id] = 0
 }

@@ -27,23 +27,23 @@ public plugin_init()
 
 public cmdSayAdmin(id)
 {
-    new said[2]
+    static said[2]
     read_argv(1, said, charsmax(said))
 
     if (said[0] != '@')
         return PLUGIN_CONTINUE
 
-    new message[192], duplicate_message[192]
-    new name[32]
-    new players[32], inum
+    static message[192], duplicate_message[192]
+    static name[32]
+    static players[32], inum
 
     read_args(message, charsmax(message))
     remove_quotes(message)
     get_user_name(id, name, charsmax(name))
 
     // FOR CHAT LOGGING
-    new cur_date[3], logfile[13]
-    new log_path[128]
+    static cur_date[3], logfile[13]
+    static log_path[128]
 
     get_time("%d", cur_date, charsmax(cur_date))
     formatex(logfile, charsmax(logfile), "chat_%s.log", cur_date)
@@ -55,10 +55,10 @@ public cmdSayAdmin(id)
 
     get_players(players, inum)
 
-    new target
-    for (new i = 0; i < inum; ++i)
+    static target, i
+    for (i = 0; i < inum; ++i)
     {
-        // don't print the message to the client that used the cmd 
+        // don't print the message to the client that used the cmd
         // if he has ADMIN_CHAT to avoid double printing
         target = players[i]
 

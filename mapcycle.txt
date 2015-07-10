@@ -10,6 +10,9 @@ zm_2rybika_beta
 zm_666_brick
 zm_abbac
 zm_apartment
+;zm_battle_yard_v1
+;zm_baza
+zm_blocks_b1
 zm_caca
 zm_cave_new
 zm_cpl_mill_kamp
@@ -33,6 +36,7 @@ zm_snow_s1h_v2
 zm_south_escape_b2
 zm_street_new
 zm_survive_beta2
+zm_toxic_house
 zm_westwood_gz
 zm_winda_gz
 zm_xata

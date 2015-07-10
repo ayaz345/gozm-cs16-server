@@ -92,6 +92,12 @@ public plugin_init()
     }
 }
 
+public plugin_end()
+{
+    ArrayDestroy(g_CustomViewModelsNames)
+    ArrayDestroy(g_CustomWeaponModelsNames)
+}
+
 public plugin_natives()
 {
     register_library("cs_weap_models_api")

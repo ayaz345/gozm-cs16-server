@@ -104,6 +104,12 @@ public plugin_init()
         g_cstrike = 1
 }
 
+public plugin_end()
+{
+    ArrayDestroy(g_bantimes)
+    ArrayDestroy(g_slapsettings)
+}
+
 public plmenu_setbantimes()
 {
     static buff[32]

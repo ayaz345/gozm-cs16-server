@@ -215,9 +215,10 @@ locate_player(identifier[])
     copy(g_ban_type, charsmax(g_ban_type), "SI")
 
     static player
+    player = 0
 
     // Check based on user ID
-    if (identifier[0]=='#' && identifier[1])
+    if (identifier[0] == '#' && identifier[1])
     {
         player = find_player("k", str_to_num(identifier[1]))
     }

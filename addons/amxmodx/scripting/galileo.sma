@@ -67,7 +67,7 @@ new g_nomination[MAX_PLAYER_CNT + 1][MAX_NOMINATION_CNT + 1], g_nominationCnt, g
 
 new g_voteWeightFlags[32];
 
-new Array:g_emptyCycleMap, bool:g_isUsingEmptyCycle = false, g_emptyMapCnt = 0;
+new Array:g_emptyCycleMap, bool:g_isUsingEmptyCycle = false, g_emptyMapCnt;
 
 new Array:g_mapCycle;
 
@@ -154,50 +154,50 @@ public plugin_init()
     register_concmd("recentmaps", "cmd_listrecent");
 
     register_cvar("amx_nextmap", "", FCVAR_SERVER|FCVAR_EXTDLL|FCVAR_SPONLY);
-    cvar_extendmapMax               =   register_cvar("amx_extendmap_max", "35");
-    cvar_extendmapStep          =   register_cvar("amx_extendmap_step", "15");
+    cvar_extendmapMax           = register_cvar("amx_extendmap_max", "35");
+    cvar_extendmapStep          = register_cvar("amx_extendmap_step", "15");
 
-    cvar_cmdVotemap                 = register_cvar("gal_cmd_votemap", "0");
-    cvar_cmdListmaps                = register_cvar("gal_cmd_listmaps", "1");
+    cvar_cmdVotemap             = register_cvar("gal_cmd_votemap", "0");
+    cvar_cmdListmaps            = register_cvar("gal_cmd_listmaps", "1");
 
     cvar_listmapsPaginate       = register_cvar("gal_listmaps_paginate", "10");
 
-    cvar_banRecent                  = register_cvar("gal_banrecent", "6");
+    cvar_banRecent              = register_cvar("gal_banrecent", "6");
     cvar_banRecentStyle         = register_cvar("gal_banrecentstyle", "1");
 
-    cvar_endOnRound                 = register_cvar("gal_endonround", "1");
-    cvar_endOfMapVote               = register_cvar("gal_endofmapvote", "1");
+    cvar_endOnRound             = register_cvar("gal_endonround", "1");
+    cvar_endOfMapVote           = register_cvar("gal_endofmapvote", "1");
 
-    cvar_emptyWait                  =   register_cvar("gal_emptyserver_wait", "2");
-    cvar_emptyMapFile               = register_cvar("gal_emptyserver_mapfile", "emptycycle.txt");
+    cvar_emptyWait              = register_cvar("gal_emptyserver_wait", "2");
+    cvar_emptyMapFile           = register_cvar("gal_emptyserver_mapfile", "emptycycle.txt");
 
-    cvar_srvStart                       = register_cvar("gal_srv_start", "4");
+    cvar_srvStart               = register_cvar("gal_srv_start", "4");
 
-    cvar_rtvCommands                = register_cvar("gal_rtv_commands", "2");
-    cvar_rtvWait                    = register_cvar("gal_rtv_wait", "3");
-    cvar_rtvRatio                       = register_cvar("gal_rtv_ratio", "0.50");
-    cvar_rtvReminder                = register_cvar("gal_rtv_reminder", "0");
+    cvar_rtvCommands            = register_cvar("gal_rtv_commands", "2");
+    cvar_rtvWait                = register_cvar("gal_rtv_wait", "3");
+    cvar_rtvRatio               = register_cvar("gal_rtv_ratio", "0.50");
+    cvar_rtvReminder            = register_cvar("gal_rtv_reminder", "0");
 
-    cvar_nomPlayerAllowance = register_cvar("gal_nom_playerallowance", "1");
-    cvar_nomMapFile                 = register_cvar("gal_nom_mapfile", "mapcycle.txt");
-    cvar_nomPrefixes                = register_cvar("gal_nom_prefixes", "0");
-    cvar_nomQtyUsed                 = register_cvar("gal_nom_qtyused", "0");
+    cvar_nomPlayerAllowance     = register_cvar("gal_nom_playerallowance", "1");
+    cvar_nomMapFile             = register_cvar("gal_nom_mapfile", "mapcycle.txt");
+    cvar_nomPrefixes            = register_cvar("gal_nom_prefixes", "0");
+    cvar_nomQtyUsed             = register_cvar("gal_nom_qtyused", "0");
 
-    cvar_voteWeight                 = register_cvar("gal_vote_weight", "2");
+    cvar_voteWeight             = register_cvar("gal_vote_weight", "2");
     cvar_voteWeightFlags        = register_cvar("gal_vote_weightflags", "t");
-    cvar_voteMapFile                = register_cvar("gal_vote_mapfile", "mapcycle.txt");
-    cvar_voteDuration               = register_cvar("gal_vote_duration", "10");
+    cvar_voteMapFile            = register_cvar("gal_vote_mapfile", "mapcycle.txt");
+    cvar_voteDuration           = register_cvar("gal_vote_duration", "10");
     cvar_voteExpCountdown       = register_cvar("gal_vote_expirationcountdown", "1");
-    cvar_voteMapChoiceCnt       =   register_cvar("gal_vote_mapchoices", "3");
-    cvar_voteAnnounceChoice = register_cvar("gal_vote_announcechoice", "1");
-    cvar_voteStatus                 =   register_cvar("gal_vote_showstatus", "1");
+    cvar_voteMapChoiceCnt       = register_cvar("gal_vote_mapchoices", "3");
+    cvar_voteAnnounceChoice     = register_cvar("gal_vote_announcechoice", "1");
+    cvar_voteStatus             = register_cvar("gal_vote_showstatus", "1");
     cvar_voteStatusType         = register_cvar("gal_vote_showstatustype", "1");
-    cvar_voteUniquePrefixes = register_cvar("gal_vote_uniqueprefixes", "0");
+    cvar_voteUniquePrefixes     = register_cvar("gal_vote_uniqueprefixes", "0");
 
     cvar_runoffEnabled          = register_cvar("gal_runoff_enabled", "0");
     cvar_runoffDuration         = register_cvar("gal_runoff_duration", "10");
 
-    cvar_soundsMute                 = register_cvar("gal_sounds_mute", "0");
+    cvar_soundsMute             = register_cvar("gal_sounds_mute", "0");
 
     g_sync_msgdisplay = CreateHudSyncObj();
 
@@ -279,6 +279,11 @@ public plugin_cfg()
 public plugin_end()
 {
     map_restoreOriginalTimeLimit();
+
+    ArrayDestroy(g_fillerMap);
+    ArrayDestroy(g_nominationMap);
+    ArrayDestroy(g_mapCycle);
+    ArrayDestroy(g_emptyCycleMap);
 }
 
 public vote_setupEnd()
@@ -782,8 +787,10 @@ public cmd_say(id)
     // generic say handler to determine if we need to act on what was said
     //-----
     static text[70], arg1[32], arg2[32], arg3[2];
+
     read_args(text, charsmax(text));
     remove_quotes(text);
+
     arg1[0] = '^0';
     arg2[0] = '^0';
     arg3[0] = '^0';
@@ -859,22 +866,25 @@ public cmd_say(id)
 nomination_attempt(id, nomination[])
 {
     static idxNomination, idxMap, idPlayer;
-    static  mapCnt, playerNominationMax;
-    mapCnt = 0;
+    static mapCnt, playerNominationMax;
+
     playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
-    for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    for (idPlayer = 1, mapCnt = 0; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
     {
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
             idxMap = g_nomination[idPlayer][idxNomination];
             if (idxMap >= 0)
+            {
                 if (++mapCnt >= get_pcvar_num(cvar_voteMapChoiceCnt))
                 {
                     colored_print(id, "^x04***^x01 Все номинации заняты!");
                     nomination_list(id);
+
                     return PLUGIN_CONTINUE;
                 }
+            }
         }
     }
 
@@ -1054,7 +1064,7 @@ nomination_cancel(id, idxMap)
         idNominator = nomination_getPlayer(idxMap);
         if (idNominator)
         {
-            new name[32];
+            static name[32];
             get_user_name(idNominator, name, charsmax(name));
 
             colored_print(id, "^x04***^x01 Карта^x04 %s^x01 уже выбрана игроком^x03 %s^x01!", mapName, name);
@@ -1169,10 +1179,9 @@ get_count_of_nominations()
 {
     static mapCnt, playerNominationMax, idPlayer, idxNomination;
 
-    mapCnt = 0;
     playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
-    for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
+    for (idPlayer = 1, mapCnt = 0; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
     {
         for (idxNomination = 1; idxNomination <= playerNominationMax; ++idxNomination)
         {
@@ -1192,6 +1201,8 @@ nomination_list(id)
     static msg[101];
     static mapName[32];
 
+    msg[0] = '^0';
+
     playerNominationMax = min(get_pcvar_num(cvar_nomPlayerAllowance), MAX_NOMINATION_CNT);
 
     for (idPlayer = 1; idPlayer <= MAX_PLAYER_CNT; ++idPlayer)
@@ -1206,6 +1217,7 @@ nomination_list(id)
             }
         }
     }
+
     if (msg[0])
     {
         colored_print(id, "^x04***^x01 Выбор игроков: %s", msg[1]);
@@ -2156,7 +2168,6 @@ public map_change()
     }
 
     // change to the map
-    log_amx("[GALILEO]: Going to change the map to %s", map);
     engine_changelevel(map);
 }
 

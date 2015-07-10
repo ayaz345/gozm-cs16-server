@@ -257,6 +257,11 @@ public plugin_init()
     register_clcmd("amx_banmenu", "cmdBanMenu", ADMIN_BAN, "- displays ban menu");
 }
 
+public plugin_end()
+{
+    ArrayDestroy(g_bantimes);
+}
+
 public plugin_cfg()
 {
     get_pcvar_string(pcvar_config, Config, charsmax(Config));

@@ -64,7 +64,10 @@ public mainMenu(id, page)
     else
         menu_additem(i_Menu, "В игру", "6")
     menu_additem(i_Menu, "Список банов", "7")
-    menu_additem(i_Menu, "Бан", "8")
+    if (is_priveleged_user(id))
+        menu_additem(i_Menu, "Бан", "8")
+    else
+        menu_additem(i_Menu, "Вотебан", "8")
     menu_additem(i_Menu, "Заглушка", "9", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Разбан", "10", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Разрешить говорить", "11", OWNER_FLAG | VIP_FLAG)

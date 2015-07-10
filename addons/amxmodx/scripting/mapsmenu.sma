@@ -28,7 +28,7 @@ public plugin_init()
     register_menucmd(register_menuid("Votemap Menu"), 1023, "actionVoteMapMenu")
     register_menucmd(register_menuid("The winner: "), 3, "actionResult")
 
-    g_mapName=ArrayCreate(32)
+    g_mapName = ArrayCreate(32)
 
     new maps_ini_file[64]
     get_configsdir(maps_ini_file, charsmax(maps_ini_file))
@@ -43,6 +43,11 @@ public plugin_init()
     load_settings(maps_ini_file)
 
     g_coloredMenus = colored_menus()
+}
+
+public plugin_end()
+{
+    ArrayDestroy(g_mapName)
 }
 
 public autoRefuse()

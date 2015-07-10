@@ -49,7 +49,7 @@ public plugin_cfg()
 {
     HintsStatus = TrieCreate()
 
-    new size = sizeof Hints
+    new size = sizeof(Hints)
     for (new i=0; i<size; i++)
         TrieSetCell(HintsStatus, Hints[i][5], true)
 }
@@ -66,4 +66,9 @@ public hudTextArgs(msgid, msgDest, msgEnt)
     }
 
     return PLUGIN_CONTINUE
+}
+
+public plugin_end()
+{
+    TrieDestroy(HintsStatus)
 }

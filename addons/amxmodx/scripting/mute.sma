@@ -8,8 +8,7 @@ new const g_preffix[] = "[MUTE]:"
 
 new g_GagPlayers[MAX_PLAYERS]
 
-new mutedIp[64][16]
-new muted_num = 1
+new Array:g_muted_array
 
 public plugin_init()
 {
@@ -28,6 +27,13 @@ public plugin_init()
     register_concmd("radio1", "hook_radio")
     register_concmd("radio2", "hook_radio")
     register_concmd("radio3", "hook_radio")
+
+    g_muted_array = ArrayCreate(16)
+}
+
+public plugin_end()
+{
+    ArrayDestroy(g_muted_array)
 }
 
 public clcmd_mute(id)
@@ -249,13 +255,15 @@ CMD_UnGagPlayer(VIP, VictimID)
 
 public client_putinserver(id)
 {
-    static checkIp[16]
-    get_user_ip(id, checkIp, charsmax(checkIp), 1)
+    static checkIp[16], mutedIp[16], i, muted_array_size
 
-    static i
-    for (i = 1; i < 30; i++)
+    get_user_ip(id, checkIp, charsmax(checkIp), 1)
+    muted_array_size = ArraySize(g_muted_array)
+
+    for (i = 0; i < muted_array_size; i++)
     {
-        if(contain(mutedIp[i], checkIp) != -1 && !has_vip(id))
+        ArrayGetString(g_muted_array, i, mutedIp, charsmax(mutedIp))
+        if(equal(mutedIp, checkIp) && !has_vip(id))
         {
             static s_Flags[4], flags
             formatex(s_Flags, charsmax(s_Flags), "abc")
@@ -275,8 +283,7 @@ public client_disconnect(id)
 
         static gaggedIp[16]
         get_user_ip(id, gaggedIp, charsmax(gaggedIp), 1)
-        mutedIp[muted_num] = gaggedIp
-        muted_num++
+        ArrayPushString(g_muted_array, gaggedIp)
     }
 }
 

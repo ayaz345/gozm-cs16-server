@@ -1,11 +1,9 @@
 #include <amxmodx>
 #include <regex>
-#include <colored_print>
 
 new const g_equal_list[][] = {
-    "/xmenu",
-    "/cp",
-    "/knife"
+    "protector",
+    "ya_chiter"
 }
 
 new const g_contain_list[][] = {
@@ -46,11 +44,11 @@ bool:is_invalid(const text[])
         return true
     }
 
-    for (i=0; i<sizeof(g_equal_list); i++)
+    for (i = 0; i < sizeof(g_equal_list); i++)
         if (equal(text, g_equal_list[i]))
             return true
 
-    for (i=0; i<sizeof(g_contain_list); i++)
+    for (i = 0; i < sizeof(g_contain_list); i++)
         if (contain(text, g_contain_list[i]) != -1)
             return true
 
@@ -64,10 +62,7 @@ public check_player_msg(id)
     remove_quotes(text)
 
     if(is_invalid(text))
-    {
-        colored_print(id, "^x04***^x01 [%s] -^x04 СПАМ, СООБЩЕНИЕ УДАЛЕНО!", text)
         return PLUGIN_HANDLED
-    }
 
     return PLUGIN_CONTINUE
 }

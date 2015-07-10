@@ -1,0 +1,15 @@
+ajawad.wad
+cached.wad
+cs_assault.wad
+cs_dust.wad
+cs_office.wad
+cstrike.wad
+de_vegas.wad
+liquids.wad
+halflife.wad
+tswad.wad
+cs_bdog.wad
+torntextures.wad
+de_aztec.wad
+models/zmbanner.mdl
+zm_deathmines_b1.res

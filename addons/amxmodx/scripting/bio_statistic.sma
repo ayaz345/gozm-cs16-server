@@ -454,13 +454,14 @@ public task_announce_best_human_and_zombie()
 public task_celebrate_escape_heroes()
 {
     static query_escape_heroes[256]
-    new db_ids_as_string[MAX_PLAYERS][7]
-    static db_ids_full_string[128]
+    new db_ids_as_string[MAX_PLAYERS][8]
+    static db_ids_full_string[256]
     static hero_counter
-    hero_counter = 0
-
     static players[32], playersNum
     static id, i
+
+    hero_counter = 0
+
     get_players(players, playersNum)
     for (i = 0; i < playersNum; i++)
     {
@@ -471,10 +472,9 @@ public task_celebrate_escape_heroes()
 
             if (g_UserDBId[id])
             {
-                static db_id_as_string[7]
+                static db_id_as_string[8]
                 num_to_str(g_UserDBId[id], db_id_as_string, charsmax(db_id_as_string))
-                copy(db_ids_as_string[hero_counter], charsmax(db_id_as_string), db_id_as_string)
-                hero_counter++
+                copy(db_ids_as_string[++hero_counter - 1], charsmax(db_id_as_string), db_id_as_string)
             }
         }
     }

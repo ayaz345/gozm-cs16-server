@@ -1233,7 +1233,7 @@ public qh_banlist(failstate, Handle:query, const error[], errornum, const data[]
     static id;
     id = data[0];
 
-    static s_BanTime[32], s_UnBanTime[32], s_UID[32], s_Reason[256];
+    static s_BanTime[32], s_UnBanTime[32], s_UID[32], s_Reason[64];
     static s_Name[32], s_BanName[32], s_IP[16], s_Admin[32];
     static i_Col_UID, i_Col_BanTime, i_Col_UnBanTime, i_Col_Reason, i_Col_Name, i_Col_BanName, i_Col_IP, i_Col_Admin;
     i_Col_UID = SQL_FieldNameToNum(query, "uid");

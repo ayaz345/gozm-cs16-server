@@ -92,7 +92,7 @@ public client_disconnect(id)
 
 public event_resethud(id)
 {
-    if (!g_playerSpawned[id])
+    if (!g_playerSpawned[id] && is_user_alive(id))
     {
         g_playerSpawned[id] = true
         cs_set_user_lastactivity(id, get_gametime())
@@ -223,12 +223,12 @@ handle_time_elapsed(id, eventType)
             }
             case EVENT_SPEC:
             {
-                formatex(msgReason, charsmax(msgReason), " Был в спектрах более %d секунд", maxSeconds)
+                formatex(msgReason, charsmax(msgReason), " В спектрах более %d секунд", maxSeconds)
                 formatex(msgAnnounce, charsmax(msgAnnounce), "was kicked for spectating longer than %ds", maxSeconds)
             }
             case EVENT_AFK:
             {
-                formatex(msgReason, charsmax(msgReason), " Был AFK более %d секунд", maxSeconds)
+                formatex(msgReason, charsmax(msgReason), " AFK более %d секунд", maxSeconds)
                 formatex(msgAnnounce, charsmax(msgAnnounce), "was kicked for being AFK longer than %ds", maxSeconds)
             }
         }

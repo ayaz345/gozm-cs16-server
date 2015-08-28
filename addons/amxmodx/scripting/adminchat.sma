@@ -33,7 +33,13 @@ public cmdSayAdmin(id)
     if (said[0] != '@')
         return PLUGIN_CONTINUE
 
-    static message[192], duplicate_message[192]
+    /*
+    Make sure:
+    message is not longer than 192 character as chat message,
+    duplicate_message is not longer than 128 character as console message,
+    otherwise it will crash the server
+    */
+    static message[191], duplicate_message[127]
     static name[32]
     static players[32], inum
 
@@ -50,7 +56,7 @@ public cmdSayAdmin(id)
     formatex(log_path, charsmax(log_path), "%s/%s", g_log_folder, logfile)
     log_to_file(log_path, "*VIP* %s: %s", name, message[1])
 
-    duplicate_message = message
+    copy(duplicate_message, charsmax(duplicate_message), message)
     format(message, charsmax(message), "^x04 %s^x03 %s^x01 : %s", "*VIP*", name, message[1])
 
     get_players(players, inum)

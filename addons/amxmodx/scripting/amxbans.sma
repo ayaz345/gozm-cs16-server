@@ -6,15 +6,17 @@
 #include <gozm>
 
 // Specify tablenames here
-#define tbl_reasons     "amx_banreasons"
-#define tbl_svrnfo      "amx_serverinfo"
-#define tbl_bans        "amx_bans"
-#define tbl_banhist     "amx_banhistory"
-#define tbl_admins      "amx_amxadmins"
+#define tbl_reasons             "amx_banreasons"
+#define tbl_svrnfo              "amx_serverinfo"
+#define tbl_bans                "amx_bans"
+#define tbl_banhist             "amx_banhistory"
+#define tbl_admins              "amx_amxadmins"
 
 #define column(%1) SQL_FieldNameToNum(query, %1)
 
-#define MAX_UNBAN_OPTIONS 7
+#define TASKID_DELAYED_KICK     123
+
+#define MAX_UNBAN_OPTIONS       7
 
 // Variables for menus
 new g_BanMenuValues[12]
@@ -50,7 +52,7 @@ new g_bantimesnum
 
 // For the cmdBan
 new g_steamidorusername[50] // Only used if the player is not on the server.
-new g_ban_reason[256]
+new g_ban_reason[64]
 new g_ban_type[4] // String that contains "S" for steamID ban and "SI" for IP ban
 new bool:g_being_banned[33]
 new ga_PlayerIP[33][16]
@@ -193,14 +195,19 @@ public client_authorized(id)
     return PLUGIN_CONTINUE
 }
 
-public delayed_kick(id_str[])
+public delayed_kick(reason[], task_id)
 {
     static player_id, userid, kick_message[128]
-    player_id = str_to_num(id_str)
+    player_id = task_id - TASKID_DELAYED_KICK
     userid = get_user_userid(player_id)
-    formatex(kick_message, charsmax(kick_message), "Ты забанен, смотри консоль. Разбан тут: vk.com/go_zombie")
+
+    static complain_url[64]
+    get_pcvar_string(complainurl, complain_url, charsmax(complain_url))
+
+    formatex(kick_message, charsmax(kick_message), " Ты забанен: %s. Разбан: %s", reason, complain_url)
 
     server_cmd("kick #%d %s", userid, kick_message)
+
     return PLUGIN_CONTINUE
 }
 
@@ -340,7 +347,7 @@ public cmdBan(id, level, cid)
     length2 = strlen(steamidorusername)
     length = length1 + length2 + 2
 
-    static reason[128]
+    static reason[64]
     read_args(reason, charsmax(reason))
     formatex(g_ban_reason, charsmax(g_ban_reason), "%s", reason[length])
 
@@ -612,7 +619,7 @@ announce_and_kick(id, player, iBanLength)
 
     if (player)
     {
-        static complain_url[256]
+        static complain_url[64]
         get_pcvar_string(complainurl, complain_url, charsmax(complain_url))
 
         client_print(player, print_console, "[GOZM] ===============================================")
@@ -627,9 +634,7 @@ announce_and_kick(id, player, iBanLength)
         client_print(player, print_console, "[GOZM] Demo: cstrike/go_zombie.dem")
         client_print(player, print_console, "[GOZM] ===============================================")
 
-        static id_str[3]
-        num_to_str(player, id_str, charsmax(id_str))
-        set_task(kick_delay, "delayed_kick", 1, id_str, sizeof(id_str))
+        set_task(kick_delay, "delayed_kick", TASKID_DELAYED_KICK + player, g_ban_reason, sizeof(g_ban_reason))
     }
     else /* The player was not found in server */
     {
@@ -863,7 +868,7 @@ public cmd_unban_select(failstate, Handle:query, error[], errnum, data[], size, 
         }
         else
         {
-            static ban_created[50], ban_length[50], ban_reason[255], admin_nick[100]
+            static ban_created[50], ban_length[50], ban_reason[64], admin_nick[100]
             static player_ip[30],player_steamid[50], ban_type[10], server_ip[30], server_name[100]
 
             static bid
@@ -1136,10 +1141,7 @@ public check_player_(failstate, Handle:query, error[], errnum, data[], size, Flo
                 client_cmd(id, "echo [GOZM]: Demo: cstrike/go_zombie.dem")
                 client_cmd(id, "echo [GOZM]: ===============================================")
 
-                static id_str[3]
-                num_to_str(id, id_str, charsmax(id_str))
-
-                set_task(3.5, "delayed_kick", 0, id_str, sizeof(id_str))
+                set_task(3.5, "delayed_kick", TASKID_DELAYED_KICK + id, ban_reason, sizeof(ban_reason))
                 return PLUGIN_HANDLED
             }
             else // The ban has expired

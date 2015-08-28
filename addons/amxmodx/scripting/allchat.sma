@@ -8,16 +8,22 @@
 
 new const COLCHAR[3][2] = {"^x03"/*командный*/, "^x04"/*зеленый*/, "^x01"/*желтый*/}
 
-// vars to check if message has already been duplicated
+// variables to check if message has already been duplicated
 new alv_sndr, alv_str2[26], alv_str4[101]
-new g_msg[200], g_duplicate_msg[200]
+/*
+Make sure:
+g_msg is not longer than 192 character as chat message,
+g_duplicate_msg is not longer than 128 character as console message,
+otherwise it will crash the server
+*/
+new g_msg[191], g_duplicate_msg[127]
 
 new g_msg_saytext
 new g_log_folder[64]
 
 public plugin_init()
 {
-    register_plugin("All Chat", "1.2", "GoZm")
+    register_plugin("All Chat", "1.3", "GoZm")
 
     if (!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -99,7 +105,7 @@ public col_changer(msg_id, msg_dest, rcvr)
                         write_string(g_msg)
                         message_end()
 
-                        // duplicate russian messages
+                        // to duplicate russian messages
                         console_print(players[i], g_duplicate_msg)
                     }
                 }
@@ -123,10 +129,10 @@ buildmsg(sndr, namecol, msgcol, str4[])
     static sndr_name[32]
     get_user_name(sndr, sndr_name, charsmax(sndr_name))
 
-    format(g_msg, charsmax(g_msg), "%s%s :  %s%s",
+    formatex(g_msg, charsmax(g_msg), "%s%s :  %s%s",
         COLCHAR[namecol], sndr_name,
         COLCHAR[msgcol], str4)
-    format(g_duplicate_msg, charsmax(g_duplicate_msg), "%s : %s", sndr_name, str4)
+    formatex(g_duplicate_msg, charsmax(g_duplicate_msg), "%s : %s", sndr_name, str4)
 
     // FOR LOGGING
     static cur_date[3], logfile[13]

@@ -4,7 +4,8 @@
 
 #define SUBNET_FILE     "subnet_ips.ini"
 #define WHITE_FILE      "white_list.ini"
-#define KICK_MSG        "vk.com/go_zombie"
+
+new pcvar_kick_msg
 
 new g_white_file[64]
 new g_ips_file[64]
@@ -27,6 +28,8 @@ public plugin_init()
     register_srvcmd("subnet", "show_subnet_list")
     register_srvcmd("whitelist", "show_white_list")
     register_srvcmd("reload_subnet", "reload_subnet_list")
+
+    pcvar_kick_msg = register_cvar("amx_subnet_kick_msg", "vk.com/go_zombie")
 
     g_subnet_array = ArrayCreate(32)
     g_white_array = ArrayCreate(32)
@@ -116,7 +119,9 @@ public client_putinserver(id)
 
     if (!has_vip(id) && check_subnet(id, userip))
     {
-        server_cmd("kick #%d ^"%s^"", get_user_userid(id), KICK_MSG)
+        new kick_msg[32]
+        get_pcvar_string(pcvar_kick_msg, kick_msg, charsmax(kick_msg))
+        server_cmd("kick #%d ^"%s^"", get_user_userid(id), kick_msg)
         log_to_file(g_log_file, "%s | %s | %s - FAILED to connect", name, userip, userauth)
     }
     else

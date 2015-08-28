@@ -14,16 +14,15 @@
 
 <table cellspacing='1' class='listtable' width='100%'>
   <tr>
-	<td height='16' width='2%' class='listtable_top'>&nbsp;</td>
-	<td height='16' width='{if $display_reason == "enabled"}10%{else}15%{/if}' class='listtable_top'><b>{"_DATE"|lang}</b></td>
-	<td height='16' width='{if $display_reason == "enabled"}23%{else}33%{/if}' class='listtable_top'><b>{"_PLAYER"|lang}</b></td>
-	<td height='16' width='{if $display_reason == "enabled"}20%{else}30%{/if}' class='listtable_top'><b>{"_ADMIN"|lang}</b></td>
-	{if $display_reason == "enabled"}<td height='16' width='25%' class='listtable_top'><b>{"_REASON"|lang}</b></td>{/if}
-	<td height='16' width='20%' class='listtable_top'><b>{"_LENGHT"|lang}</b></td>
-	{if $display_comments == "enabled"}<td height='16' width='25%' class='listtable_top'><b>{"_COMMENTS"|lang}</b></td>{/if}
-	{if $display_demo == "enabled"}<td height='16' width='25%' class='listtable_top'><b>{"_DEMO"|lang}</b></td>{/if}
-
+    <td height='16' width='2%'  class='listtable_top'>&nbsp;</td>
+    <td height='16' width='10%' class='listtable_top'><b>{"_DATE"|lang}</b></td>
+    <td height='16' width='18%' class='listtable_top'><b>{"_PLAYER"|lang}</b></td>
+    <td height='16' width='18%' class='listtable_top'><b>{"_MAP"|lang}</b></td>
+    <td height='16' width='18%' class='listtable_top'><b>{"_ADMIN"|lang}</b></td>
+    <td height='16' width='18%' class='listtable_top'><b>{"_REASON"|lang}</b></td>
+    <td height='16' width='17%' class='listtable_top'><b>{"_LENGHT"|lang}</b></td>
   </tr>
+
 	<tr bgcolor="#D3D8DC">
    		<td height='16' width='100%' class='listtable_1' colspan='{if $display_demo == "enabled"}8{else}7{/if}' align='right'>
         {"_YOUR"|lang} {"_IP"|lang}: <b>{$pages_results.ip}</b> - {if $banned_ip} <a href="{$dir}/ban_details.php?bid={$banned_ip}" style="color:red">{"_BANNED"|lang}</a> {else}<font color="#3EA055">{"_CLEAN"|lang}</font>{/if} &nbsp;|&nbsp;
@@ -39,6 +38,7 @@
             <td height='16' class='listtable_1' align='center'><img src='{$dir}/images/{$bans.gametype}.gif'></td>
             <td height='16' class='listtable_1'>{$bans.date}</td>
             <td height='16' class='listtable_1'>{if $geoip == "enabled"}{if $bans.cc != ""}<img src='{$dir}/images/flags/{$bans.cc|lower}.gif' alt='{$bans.cn}'> {else}<img src='{$dir}/images/spacer.gif' width='18' height='12'> {/if}{/if}{$bans.player}</td>
+            <td height='16' class='listtable_1'>{$bans.map}</td>
             <td height='16' class='listtable_1'>{if ($display_admin == "enabled") || ($smarty.session.bans_add == "yes")}{$bans.admin}{else}<i><font color='#677882'>{"_HIDDEN"|lang}</font></i>{/if}</td>
             {if $display_reason == "enabled"}<td height='16' class='listtable_1'>{$bans.ban_reason}&nbsp;</td>{/if}
             <td height='16' class='listtable_1'>

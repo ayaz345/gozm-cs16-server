@@ -532,6 +532,11 @@ function cp1252_to_utf8( $data )
     return mb_convert_encoding($html_data, 'cp1252', 'utf-8');
 }
 
+function utf8_to_cp1251( $data )
+{
+    return mb_convert_encoding($data, 'utf-8', 'cp1251');
+}
+
 function throw_error( $msg )
 {
 }

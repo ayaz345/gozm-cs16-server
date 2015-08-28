@@ -236,9 +236,11 @@ if (isset($_POST['action'])) {
 	} else if ($_POST['action'] == "apply") {
 		$player_nick = $_POST['player_nick'];
 		$ban_reason = $_POST['ban_reason'];
+        $player_nick = utf8_to_cp1251($player_nick);
+        $ban_reason = utf8_to_cp1251($ban_reason);
 
 		if($_POST['player_ip'] == "") {
-			$resource = mysql_query("UPDATE `$config->bans` SET `player_ip` = NULL, `player_id` = '".$_POST['player_id']."', `player_nick` = '$player_nick', `ban_type` = '".$_POST['ban_type']."', `ban_reason` = '$ban_reason', `ban_length` = '".min($_POST['ban_length'], 43800*3)."' WHERE `bid` = '".$_POST['bid']."'") or die (mysql_error());
+            $resource = mysql_query("UPDATE `$config->bans` SET `player_ip` = NULL, `player_id` = '".$_POST['player_id']."', `player_nick` = '$player_nick', `ban_type` = '".$_POST['ban_type']."', `ban_reason` = '$ban_reason', `ban_length` = '".min($_POST['ban_length'], 43800*3)."' WHERE `bid` = '".$_POST['bid']."'") or die (mysql_error());
             $superban = mysql_query("UPDATE `superban` SET `sid` = '".$_POST['player_id']."', `banname` = '$player_nick', `reason` = '$ban_reason', `unbantime` = `bantime` + 60*'".min($_POST['ban_length'], 43800*3)."' WHERE `banname` = '$superban_name'") or die (mysql_error());
 		} else {
 			$resource = mysql_query("UPDATE `$config->bans` SET `player_ip` = '".$_POST['player_ip']."', `player_id` = '".$_POST['player_id']."', `player_nick` = '$player_nick', `ban_type` = '".$_POST['ban_type']."', `ban_reason` = '$ban_reason', `ban_length` = '".min($_POST['ban_length'], 43800*3)."' WHERE `bid` = '".$_POST['bid']."'") or die (mysql_error());

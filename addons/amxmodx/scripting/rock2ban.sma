@@ -44,10 +44,12 @@ public plugin_init()
     pcvar_min_players_to_vote   = register_cvar("voteban_min_players_to_vote", "5")
     pcvar_min_voters_needed     = register_cvar("voteban_min_voters_needed ", "4")
 
+    set_task(0.1, "cache_cvars")
+
     return PLUGIN_CONTINUE
 }
 
-public plugin_precache()
+public cache_cvars()
 {
     g_percent = get_pcvar_num(pcvar_percent)
     g_bantime = get_pcvar_num(pcvar_bantime)

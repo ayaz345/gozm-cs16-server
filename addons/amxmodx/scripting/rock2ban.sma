@@ -3,33 +3,32 @@
 #include <colored_print>
 #include <gozm>
 
-#define PDATA_SAFE                  2
-#define OFFSET_LINUX                5
-#define OFFSET_CSMENUCODE           205
+#define PDATA_SAFE                      2
+#define OFFSET_LINUX                    5
+#define OFFSET_CSMENUCODE               205
 
-new g_targets[MAX_PLAYERS]          // player's voteban targets
-new g_votes_for[MAX_PLAYERS]        // count of votes for ban that player
-new g_votes_by[MAX_PLAYERS]         // count of votes for ban by that player
-new g_immunity[MAX_PLAYERS]         // admin can set immunity flag
-new g_being_banned[MAX_PLAYERS]     // against duplicate bans
+new g_targets[MAX_PLAYERS+1]            // player's voteban targets
+new g_votes_for[MAX_PLAYERS+1]          // count of votes for ban that player
+new g_votes_by[MAX_PLAYERS+1]           // count of votes for ban by that player
+new g_immunity[MAX_PLAYERS+1]           // admin can set immunity flag
+new g_being_banned[MAX_PLAYERS+1]       // against duplicate bans
 
-#define MIN_PLAYERS                 4
-#define MIN_VOTERS                  3
+#define CHECK_FLAG(%1,%2)               (%1 &   ( 1 << (%2 - 1) ))
+#define ADD_FLAG(%1,%2)                 (%1 |=  ( 1 << (%2 - 1) ))
+#define REMOVE_FLAG(%1,%2)              (%1 &= ~( 1 << (%2 - 1) ))
 
-#define CHECK_FLAG(%1,%2)           (%1 &   ( 1 << (%2 - 1) ))
-#define ADD_FLAG(%1,%2)             (%1 |=  ( 1 << (%2 - 1) ))
-#define REMOVE_FLAG(%1,%2)          (%1 &= ~( 1 << (%2 - 1) ))
-
-new pcvar_percent
-new pcvar_bantime
-new pcvar_limit
+new pcvar_percent, g_percent
+new pcvar_bantime, g_bantime
+new pcvar_player_limit, g_player_limit
+new pcvar_min_players_to_vote, g_min_players_to_vote
+new pcvar_min_voters_needed, g_min_voters_needed
 
 new const g_prefix[] = "[VOTEBAN]:"
 new const g_reason[] = "Voteban"
 
 public plugin_init()
 {
-    register_plugin("Rock to Ban", "2.4", "GoZm")
+    register_plugin("Rock to Ban", "2.5", "GoZm")
 
     if(!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -39,11 +38,22 @@ public plugin_init()
     register_clcmd("say /voteban", "voteban_menu")
     register_clcmd("say_team /voteban", "voteban_menu")
 
-    pcvar_percent = register_cvar("voteban_percent", "30")
-    pcvar_bantime = register_cvar("voteban_time", "10")
-    pcvar_limit = register_cvar("voteban_limit", "2")
+    pcvar_percent               = register_cvar("voteban_percent", "30")
+    pcvar_bantime               = register_cvar("voteban_time", "10")
+    pcvar_player_limit          = register_cvar("voteban_player_limit", "2")
+    pcvar_min_players_to_vote   = register_cvar("voteban_min_players_to_vote", "5")
+    pcvar_min_voters_needed     = register_cvar("voteban_min_voters_needed ", "4")
 
     return PLUGIN_CONTINUE
+}
+
+public plugin_precache()
+{
+    g_percent = get_pcvar_num(pcvar_percent)
+    g_bantime = get_pcvar_num(pcvar_bantime)
+    g_player_limit = get_pcvar_num(pcvar_player_limit)
+    g_min_players_to_vote = get_pcvar_num(pcvar_min_players_to_vote)
+    g_min_voters_needed = get_pcvar_num(pcvar_min_voters_needed)
 }
 
 public client_connect(id)
@@ -95,7 +105,7 @@ public client_disconnect(id)
 
 public voteban_menu(id)
 {
-    if (get_playersnum() < MIN_PLAYERS)
+    if (get_playersnum() < g_min_players_to_vote)
     {
         static name[32]
         get_user_name(id, name, charsmax(name))
@@ -256,12 +266,10 @@ public menu_handle(id, menu, item)
         }
 
         // don't let vote too much ;)
-        static limit
-        limit = get_pcvar_num(pcvar_limit)
-        if (g_votes_by[id] >= limit)
+        if (g_votes_by[id] >= g_player_limit)
         {
             log_amx("%s %s votes too much (%d)", g_prefix, voter_name, g_votes_by[id])
-            colored_print(id, "^x04%s^x01 Превышен твой лимит голосов:^x04 %s", g_prefix, limit)
+            colored_print(id, "^x04%s^x01 Превышен твой лимит голосов:^x04 %s", g_prefix, g_player_limit)
 
             return PLUGIN_HANDLED
         }
@@ -318,24 +326,22 @@ bool:check_votes(target)
 
 get_max_votes()
 {
-    static percent, players_num, max_votes
-    percent = get_pcvar_num(pcvar_percent)
+    static players_num, max_votes
     players_num = get_playersnum() - 1     // one is for client being banning
-    max_votes = floatround(float(players_num*percent) / 100.0, floatround_ceil)
+    max_votes = floatround(float(players_num*g_percent) / 100.0, floatround_ceil)
 
-    return max(MIN_VOTERS, max_votes)
+    return max(g_min_voters_needed, max_votes)
 }
 
 ban(id, bool:announce)
 {
     static user_name[32]
-    static user_id, ban_time
+    static user_id
 
     get_user_name(id, user_name, charsmax(user_name))
     user_id = get_user_userid(id)
-    ban_time = get_pcvar_num(pcvar_bantime)
 
-    server_cmd("amx_ban %d #%d %s", ban_time, user_id, g_reason)
+    server_cmd("amx_ban %d #%d %s", g_bantime, user_id, g_reason)
     log_amx("%s %s is banned by %d votes", g_prefix, user_name, g_votes_for[id])
 
     if (announce)

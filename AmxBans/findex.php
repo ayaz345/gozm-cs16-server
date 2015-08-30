@@ -41,48 +41,47 @@ require("$config->path_root/include/functions.lang.php");
 require("$config->path_root/include/functions.inc.php");
 
 // Get ban details
-	
 if(isset($_GET["steamid"])) 
 {
 	// Make the array for the history ban list
 	$query = "SELECT player_nick, admin_nick, ban_length, ban_created, player_id, ban_reason FROM $config->ban_history WHERE player_id = '".mysql_escape_string($_GET["steamid"])."' or player_ip = '".mysql_escape_string($_GET["ip"])."' ORDER BY ban_created DESC";
-		
+
 	$resource = mysql_query($query) or die(mysql_error());
-		
+
 	if(mysql_num_rows($resource) == 0) 
 	{
 		//trigger_error("Can't find ban with given ID: ".mysql_escape_string($_GET["steamid"] , E_USER_NOTICE);
 	}
 	else
-	{		
+	{
 		$unban_array = array();
-			
+
 		while($result = mysql_fetch_object($resource)) 
 		{
 			$date = dateMonth($result->ban_created);
-			$player = htmlentities($result->player_nick, ENT_QUOTES);
+			$player = cp1251_to_utf8($result->player_nick);
 			$player_id = htmlentities($result->player_id, ENT_QUOTES);
 			$duration = $result->ban_length;
-			$reason = htmlentities($result->ban_reason, ENT_QUOTES);
-			$admin = htmlentities($result->admin_nick, ENT_QUOTES);			
-				
+			$reason = cp1251_to_utf8($result->ban_reason);
+			$admin = cp1251_to_utf8($result->admin_nick);
+
 			if(empty($duration)) 
 			{
 				$duration = "Permanent";
-			}			
+			}
 			else 
 			{
 				$duration = $duration." mins";
 			}
-				
-			// Asign variables to the array used in the template
-			$unban_info = array(				
+
+			// Assign variables to the array used in the template
+			$unban_info = array(
 				"date" => $date,
 				"player" => $player,
 				"player_id" => $player_id,
 				"duration" => $duration,
 				"reason" => $reason,
-				"admin" => $admin,				
+				"admin" => $admin,
 				);
 				
 			$unban_array[] = $unban_info;

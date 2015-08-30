@@ -22,7 +22,7 @@ enum
 
 public plugin_init()
 {
-    register_plugin("GoZm Menu", "1.1", "GoZm")
+    register_plugin("GoZm Menu", "1.1.1", "GoZm")
 
     if (!is_server_licenced())
         return PLUGIN_CONTINUE
@@ -71,7 +71,7 @@ public mainMenu(id, page)
     menu_additem(i_Menu, "Заглушка", "9", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Разбан", "10", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Разрешить говорить", "11", OWNER_FLAG | VIP_FLAG)
-    menu_additem(i_Menu, "История игрока", "12")
+    menu_additem(i_Menu, "История банов игрока", "12")
     menu_additem(i_Menu, "Шапки", "13", OWNER_FLAG | VIP_FLAG)
     menu_additem(i_Menu, "Почистить setinfo", "14")
 

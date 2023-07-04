@@ -15,16 +15,15 @@ def build_ip_list(ip_pool):
             index = octets_of_ip_first.index(octet_in_ip_first)
             break
 
-    f = open("temp_crap.txt", "w")
-    begin, end = eval(octet_in_ip_first), eval(octet_in_ip_last) + 1
-    for entry in range(begin, end):
-        octets_of_ip_first[index] = str(entry)
-        if index is not 4:
-            for octet in range(index + 1, 4):
-                octets_of_ip_first[octet] = str(0)
-        line = "addip 0.0 " + ".".join(octets_of_ip_first) + "\n"
-        f.write(line)
-    f.close()
+    with open("temp_crap.txt", "w") as f:
+        begin, end = eval(octet_in_ip_first), eval(octet_in_ip_last) + 1
+        for entry in range(begin, end):
+            octets_of_ip_first[index] = str(entry)
+            if index is not 4:
+                for octet in range(index + 1, 4):
+                    octets_of_ip_first[octet] = str(0)
+            line = "addip 0.0 " + ".".join(octets_of_ip_first) + "\n"
+            f.write(line)
 
 def main():
     build_ip_list('139.223.0.0 - 139.255.255.255')
